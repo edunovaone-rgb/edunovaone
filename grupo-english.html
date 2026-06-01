@@ -436,7 +436,7 @@
     };
     const BANNER_COLORS = ['#7c3aed,#2563eb','#16a34a,#0f766e','#d97706,#b45309','#0284c7,#0369a1','#c026d3,#7c3aed','#2563eb,#1d4ed8'];
 
-    async function openPerfilPopup(uid) {
+    async function openPerfilPopup(uid, fallbackNombre, fallbackGrado) {
       const overlay = document.getElementById('perfilOverlay');
       document.getElementById('perfilName').textContent = 'Loading...';
       document.getElementById('perfilGrado').textContent = '';
@@ -449,9 +449,22 @@
 
       try {
         const snap = await getDoc(doc(db, 'usuarios', uid));
-        if (!snap.exists()) { document.getElementById('perfilName').textContent = 'No profile yet'; return; }
+        if (!snap.exists()) {
+          const nombre = fallbackNombre || uid.slice(0,8);
+          const colorIdx = uid.charCodeAt(0) % BANNER_COLORS.length;
+          document.getElementById('perfilBanner').style.background = `linear-gradient(135deg, ${BANNER_COLORS[colorIdx]})`;
+          document.getElementById('perfilAvatar').src = avatarUrl(nombre);
+          document.getElementById('perfilName').textContent = nombre;
+          document.getElementById('perfilGrado').textContent = fallbackGrado || 'Student';
+          document.getElementById('perfilRacha').textContent = '0';
+          document.getElementById('perfilHoras').textContent = '0';
+          document.getElementById('perfilJuegos').textContent = '0';
+          document.getElementById('perfilGrupos').innerHTML = '<span style="font-size:.82rem;color:var(--text-muted)">No groups</span>';
+          document.getElementById('perfilInsignias').innerHTML = '<span style="font-size:.82rem;color:var(--text-muted)">No badges yet</span>';
+          return;
+        }
         const d = snap.data() || {};
-        const nombre = d.nombre || d.displayName || uid.slice(0,8);
+        const nombre = d.nombre || d.displayName || fallbackNombre || uid.slice(0,8);
         const colorIdx = uid.charCodeAt(0) % BANNER_COLORS.length;
 
         document.getElementById('perfilBanner').style.background = `linear-gradient(135deg, ${BANNER_COLORS[colorIdx]})`;
@@ -473,7 +486,17 @@
           : '<span style="font-size:.82rem;color:var(--text-muted)">No badges yet</span>';
       } catch(e) {
         console.error('openPerfilPopup error:', e);
-        document.getElementById('perfilName').textContent = 'Error loading';
+        const nombre = fallbackNombre || uid.slice(0,8);
+        const colorIdx = uid.charCodeAt(0) % BANNER_COLORS.length;
+        document.getElementById('perfilBanner').style.background = `linear-gradient(135deg, ${BANNER_COLORS[colorIdx]})`;
+        document.getElementById('perfilAvatar').src = avatarUrl(nombre);
+        document.getElementById('perfilName').textContent = nombre;
+        document.getElementById('perfilGrado').textContent = fallbackGrado || 'Student';
+        document.getElementById('perfilRacha').textContent = '—';
+        document.getElementById('perfilHoras').textContent = '—';
+        document.getElementById('perfilJuegos').textContent = '—';
+        document.getElementById('perfilGrupos').innerHTML = '<span style="font-size:.82rem;color:var(--text-muted)">No groups</span>';
+        document.getElementById('perfilInsignias').innerHTML = '<span style="font-size:.82rem;color:var(--text-muted)">No badges yet</span>';
       }
     }
 
