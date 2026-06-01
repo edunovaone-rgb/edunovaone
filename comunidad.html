@@ -63,7 +63,8 @@
     .comment-send-btn:disabled{opacity:.5;cursor:not-allowed;}
     /* Groups */
     .groups-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
-    .group-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.5rem;}
+    .group-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.5rem;cursor:pointer;transition:transform .18s,box-shadow .18s;}
+    .group-card:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(15,23,42,0.1);}
     .group-icon{font-size:1.8rem;}
     .group-card h4{margin:0;font-size:.95rem;color:var(--accent-strong);}
     .group-card p{margin:0;font-size:.82rem;color:var(--text-muted);flex:1;}
