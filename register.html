@@ -460,21 +460,23 @@
     // ── Registro ──
     document.getElementById('regForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name   = document.getElementById('regName').value.trim();
-      const email  = document.getElementById('regEmail').value;
-      const pass   = document.getElementById('regPass').value;
-      const pass2  = document.getElementById('regPass2').value;
-      const school = document.getElementById('regSchool').value;
-      const grade  = document.getElementById('regGrade').value;
-      const terms  = document.getElementById('regTerms').checked;
+      const name     = document.getElementById('regName').value.trim();
+      const username = document.getElementById('regUsername').value.trim().toLowerCase();
+      const email    = document.getElementById('regEmail').value;
+      const pass     = document.getElementById('regPass').value;
+      const pass2    = document.getElementById('regPass2').value;
+      const school   = document.getElementById('regSchool').value;
+      const grade    = document.getElementById('regGrade').value;
+      const terms    = document.getElementById('regTerms').checked;
 
       const ok = [
-        setField('regName',   'regNameErr',   name.length >= 2),
-        setField('regEmail',  'regEmailErr',  emailValido(email)),
-        setField('regPass',   'regPassErr',   pass.length >= 6),
-        setField('regPass2',  'regPass2Err',  pass2 === pass && pass2.length > 0, 'Las contraseñas no coinciden'),
-        setField('regSchool', 'regSchoolErr', school !== ''),
-        setField('regGrade',  'regGradeErr',  grade  !== ''),
+        setField('regName',     'regNameErr',     name.length >= 2),
+        setField('regUsername', 'regUsernameErr', /^[a-zA-Z0-9_]{3,20}$/.test(username), 'Solo letras, números y _ (3–20 caracteres)'),
+        setField('regEmail',    'regEmailErr',    emailValido(email)),
+        setField('regPass',     'regPassErr',     pass.length >= 6),
+        setField('regPass2',    'regPass2Err',    pass2 === pass && pass2.length > 0, 'Las contraseñas no coinciden'),
+        setField('regSchool',   'regSchoolErr',   school !== ''),
+        setField('regGrade',    'regGradeErr',    grade  !== ''),
       ].every(Boolean);
 
       document.getElementById('regTermsErr').classList.toggle('show', !terms);
