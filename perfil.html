@@ -790,6 +790,140 @@
           </div>`).join('');
       }
 
+      // ── Insignias ──
+      const TODAS_INSIGNIAS = [
+        {
+          id: 'primer_paso',
+          nombre: 'Primer Paso',
+          icono: '🌱',
+          descripcion: 'Completaste tu perfil',
+          color: 'badge-blue',
+          condicion: (d) => !!(d.grado && d.colegio),
+        },
+        {
+          id: 'estudioso',
+          nombre: 'Estudioso',
+          icono: '📚',
+          descripcion: '5+ horas de estudio',
+          color: 'badge-bronze',
+          condicion: (d) => (d.horasEstudio ?? 0) >= 5,
+        },
+        {
+          id: 'dedicado',
+          nombre: 'Dedicado',
+          icono: '🔥',
+          descripcion: '20+ horas de estudio',
+          color: 'badge-gold',
+          condicion: (d) => (d.horasEstudio ?? 0) >= 20,
+        },
+        {
+          id: 'racha_3',
+          nombre: 'En Racha',
+          icono: '⚡',
+          descripcion: 'Racha de 3 días',
+          color: 'badge-bronze',
+          condicion: (d) => (d.rachaActual ?? 0) >= 3,
+        },
+        {
+          id: 'racha_7',
+          nombre: 'Imparable',
+          icono: '🌟',
+          descripcion: 'Racha de 7 días',
+          color: 'badge-gold',
+          condicion: (d) => (d.rachaActual ?? 0) >= 7,
+        },
+        {
+          id: 'jugador',
+          nombre: 'Jugador',
+          icono: '🎮',
+          descripcion: '3+ juegos completados',
+          color: 'badge-purple',
+          condicion: (d) => (d.juegosCompletados ?? 0) >= 3,
+        },
+        {
+          id: 'coleccionista',
+          nombre: 'Coleccionista',
+          icono: '🗂️',
+          descripcion: '5+ recursos guardados',
+          color: 'badge-blue',
+          condicion: (d) => (d.recursosGuardados ?? 0) >= 5,
+        },
+        {
+          id: 'social',
+          nombre: 'Social',
+          icono: '👥',
+          descripcion: 'Unido a un grupo',
+          color: 'badge-purple',
+          condicion: (d) => (d.grupos || []).length >= 1,
+        },
+        {
+          id: 'matematico',
+          nombre: 'Matemático',
+          icono: '🧮',
+          descripcion: '80%+ en Matemática',
+          color: 'badge-gold',
+          condicion: (d) => ((d.progreso || {}).matematica ?? 0) >= 80,
+        },
+        {
+          id: 'cientifico',
+          nombre: 'Científico',
+          icono: '🔬',
+          descripcion: '80%+ en Ciencias',
+          color: 'badge-blue',
+          condicion: (d) => ((d.progreso || {}).ciencia ?? 0) >= 80,
+        },
+        {
+          id: 'historiador',
+          nombre: 'Historiador',
+          icono: '🌍',
+          descripcion: '80%+ en Historia',
+          color: 'badge-bronze',
+          condicion: (d) => ((d.progreso || {}).historia ?? 0) >= 80,
+        },
+        {
+          id: 'bilingue',
+          nombre: 'Bilingüe',
+          icono: '🇬🇧',
+          descripcion: '80%+ en Inglés',
+          color: 'badge-purple',
+          condicion: (d) => ((d.progreso || {}).ingles ?? 0) >= 80,
+        },
+      ];
+
+      // Calcular qué insignias se han ganado
+      const insigniasGanadas = TODAS_INSIGNIAS.filter(ins => ins.condicion(data));
+      const idsGanados = insigniasGanadas.map(i => i.id);
+
+      // Guardar en Firestore si hay cambios
+      const idsGuardados = (data.insignias || []).map(i => i.id);
+      const hayNuevas = idsGanados.some(id => !idsGuardados.includes(id));
+      if (hayNuevas) {
+        const insigniasParaGuardar = insigniasGanadas.map(ins => ({
+          id: ins.id,
+          nombre: ins.nombre,
+          icono: ins.icono,
+          descripcion: ins.descripcion,
+          fechaObtenida: idsGuardados.includes(ins.id)
+            ? (data.insignias.find(i => i.id === ins.id)?.fechaObtenida || new Date().toLocaleDateString('es-PE'))
+            : new Date().toLocaleDateString('es-PE'),
+        }));
+        import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js').then(({ updateDoc }) => {
+          updateDoc(ref, { insignias: insigniasParaGuardar });
+        });
+      }
+
+      // Renderizar insignias
+      const badgesContainer = document.getElementById('badgesContainer');
+      if (insigniasGanadas.length === 0) {
+        badgesContainer.innerHTML = `<p style="color:var(--text-muted);font-size:0.9rem;text-align:center;width:100%;padding:.5rem 0;">Aún no tienes insignias. ¡Sigue estudiando para ganarlas!</p>`;
+      } else {
+        badgesContainer.innerHTML = insigniasGanadas.map(ins => `
+          <div class="badge-item" title="${ins.descripcion}">
+            <div class="badge-icon ${ins.color}">${ins.icono}</div>
+            <span>${ins.nombre}</span>
+          </div>`).join('');
+      }
+
       // ── Mis Grupos ──
       const gruposGrid = document.getElementById('myGroupsGrid');
       const grupos = data.grupos || [];
