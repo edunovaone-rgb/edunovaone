@@ -834,6 +834,16 @@
     const navBtn  = document.getElementById('navAuthBtn');
     const heroBtn = document.getElementById('heroAuthBtn');
 
+    // ── Conteo real de estudiantes ──
+    (async () => {
+      try {
+        const snap = await getCountFromServer(collection(db, 'usuarios'));
+        const count = snap.data().count;
+        const el = document.getElementById('metricEstudiantes');
+        if (el && count > 0) el.textContent = '+' + count;
+      } catch(e) {}
+    })();
+
     // Elementos de la landing
     const landingSections = [
       document.querySelector('.index-hero'),
