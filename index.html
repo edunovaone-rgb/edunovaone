@@ -838,20 +838,16 @@
     async function updateMetricEstudiantes() {
       const el = document.getElementById('metricEstudiantes');
       if (!el) return;
+      // Mostrar valor cacheado de localStorage inmediatamente
+      const cached = localStorage.getItem('edunova_totalUsuarios');
+      if (cached && parseInt(cached) > 0) el.textContent = '+' + cached;
       try {
-        // 1. Intentar leer stats/global (lectura pública, sin auth)
+        // Intentar leer stats/global (puede fallar sin auth)
         const statsSnap = await getDoc(doc(db, 'stats', 'global'));
         if (statsSnap.exists() && statsSnap.data().totalUsuarios > 0) {
-          el.textContent = '+' + statsSnap.data().totalUsuarios;
-          return;
-        }
-        // 2. Fallback: contar directamente (requiere auth o reglas abiertas)
-        const countSnap = await getCountFromServer(collection(db, 'usuarios'));
-        const count = countSnap.data().count;
-        if (count > 0) {
+          const count = statsSnap.data().totalUsuarios;
           el.textContent = '+' + count;
-          // Guardar en stats/global para futuras visitas sin auth
-          setDoc(doc(db,'stats','global'), { totalUsuarios: count }, { merge: true }).catch(()=>{});
+          localStorage.setItem('edunova_totalUsuarios', count);
         }
       } catch(e) {}
     }
