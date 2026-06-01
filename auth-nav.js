@@ -20,24 +20,31 @@ onAuthStateChanged(_auth, async (user) => {
   if (!btn) return;
 
   if (user) {
-    // Nombre de display como fallback
-    const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
-
-    // Intentar leer username de Firestore
-    let username = null;
+    // Actualizar lastSeen en cada carga de página
     try {
-      const snap = await getDoc(doc(_db, 'usuarios', user.uid));
-      if (snap.exists()) username = snap.data().username || null;
-    } catch (_) {}
+      const { getFirestore, doc, getDoc, updateDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      const db  = getFirestore(_app);
+      const ref = doc(db, 'usuarios', user.uid);
+      updateDoc(ref, { lastSeen: Date.now() }).catch(() => {});
 
-    // Construir contenido del botón
-    if (username) {
-      btn.innerHTML = `
-        <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;gap:1px;">
-          <span style="font-size:0.88rem;font-weight:700;">👤 ${displayFirst}</span>
-          <span style="font-size:0.72rem;font-weight:500;opacity:0.75;">@${username}</span>
-        </span>`;
-    } else {
+      // Leer username
+      const snap = await getDoc(ref);
+      const username = snap.exists() ? (snap.data().username || null) : null;
+
+      // Nombre de display como fallback
+      const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
+
+      if (username) {
+        btn.innerHTML = `
+          <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;gap:1px;">
+            <span style="font-size:0.88rem;font-weight:700;">👤 ${displayFirst}</span>
+            <span style="font-size:0.72rem;font-weight:500;opacity:0.75;">@${username}</span>
+          </span>`;
+      } else {
+        btn.textContent = `👤 ${displayFirst}`;
+      }
+    } catch (_) {
+      const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
       btn.textContent = `👤 ${displayFirst}`;
     }
 
@@ -46,7 +53,7 @@ onAuthStateChanged(_auth, async (user) => {
     btn.style.color = 'var(--accent-strong)';
     btn.style.boxShadow = 'none';
     btn.style.border = '1px solid rgba(99,102,241,0.2)';
-    btn.style.padding = username ? '0.45rem 1rem' : '';
+    btn.style.padding = '0.45rem 1rem';
   } else {
     btn.textContent = 'Iniciar sesión';
     btn.href = 'login.html';
