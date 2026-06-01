@@ -1177,54 +1177,125 @@
       const descEl = document.getElementById('profileDescription');
       descEl.textContent = data.descripcion || '';
 
-      // ── Modal de edición ──
-      const overlay      = document.getElementById('editModalOverlay');
-      const editBtn      = document.getElementById('editProfileBtn');
-      const cancelBtn    = document.getElementById('editModalCancel');
-      const saveBtn      = document.getElementById('editModalSave');
-      const descInput    = document.getElementById('descInput');
-      const charCounter  = document.getElementById('charCounter');
+      // ── Username en perfil ──
+      const usernameEl = document.getElementById('profileUsername');
+      if (data.username) usernameEl.textContent = '@' + data.username;
 
-      // ── Límite: 2 ediciones por semana ──
-      // Devuelve el lunes de la semana ISO de una fecha dada (como string YYYY-MM-DD)
+      // ── Indicador de actividad (lastSeen) ──
+      const statusDot   = document.getElementById('statusDot');
+      const statusLabel = document.getElementById('statusLabel');
+
+      // Actualizar lastSeen del usuario actual
+      const nowTs = Date.now();
+      updateDoc(ref, { lastSeen: nowTs }).catch(() => {});
+
+      function renderStatus(lastSeen) {
+        if (!lastSeen) { statusDot.className = 'status-dot offline'; statusLabel.textContent = ''; return; }
+        const diffMs  = Date.now() - lastSeen;
+        const diffMin = Math.floor(diffMs / 60000);
+        if (diffMin < 5) {
+          statusDot.className = 'status-dot online';
+          statusDot.title     = 'Activo ahora';
+          statusLabel.textContent = '🟢 Activo ahora';
+          statusLabel.style.color = '#16a34a';
+        } else if (diffMin < 60) {
+          statusDot.className = 'status-dot offline';
+          statusDot.title     = `Activo hace ${diffMin} min`;
+          statusLabel.textContent = `Activo hace ${diffMin} min`;
+          statusLabel.style.color = '';
+        } else {
+          const diffH = Math.floor(diffMin / 60);
+          const label = diffH < 24 ? `hace ${diffH}h` : `hace ${Math.floor(diffH/24)}d`;
+          statusDot.className = 'status-dot offline';
+          statusDot.title     = `Activo ${label}`;
+          statusLabel.textContent = `Activo ${label}`;
+          statusLabel.style.color = '';
+        }
+      }
+      renderStatus(data.lastSeen || nowTs);
+
+      // ── Modal de edición ──
+      const overlay     = document.getElementById('editModalOverlay');
+      const editBtn     = document.getElementById('editProfileBtn');
+      const cancelBtn   = document.getElementById('editModalCancel');
+      const saveBtn     = document.getElementById('editModalSave');
+      const descInput   = document.getElementById('descInput');
+      const charCounter = document.getElementById('charCounter');
+      const usernameInput = document.getElementById('usernameInput');
+      const usernameHint  = document.getElementById('usernameHint');
+      const quotaBadge    = document.getElementById('quotaBadge');
+
+      // ── Límite: 2 ediciones de username por semana ──
       function getWeekKey(date) {
         const d = new Date(date);
-        const day = d.getDay() || 7; // domingo = 7
-        d.setDate(d.getDate() - day + 1); // retroceder al lunes
-        return d.toISOString().slice(0, 10); // YYYY-MM-DD del lunes
+        const day = d.getDay() || 7;
+        d.setDate(d.getDate() - day + 1);
+        return d.toISOString().slice(0, 10);
       }
 
-      const todayWeekKey = getWeekKey(new Date());
-      const editHistory  = data.editDescHistory || { weekKey: '', count: 0 };
-      // Si la semana guardada es distinta a la actual, reiniciar contador
-      const editsThisWeek = editHistory.weekKey === todayWeekKey ? (editHistory.count || 0) : 0;
-      const MAX_EDITS = 2;
-      const canEdit = editsThisWeek < MAX_EDITS;
+      const todayWeekKey   = getWeekKey(new Date());
+      const editHistory    = data.editUsernameHistory || { weekKey: '', count: 0 };
+      let editsThisWeek    = editHistory.weekKey === todayWeekKey ? (editHistory.count || 0) : 0;
+      const MAX_EDITS      = 2;
 
-      // Actualizar botón según disponibilidad
+      function updateQuotaBadge(used) {
+        const remaining = MAX_EDITS - used;
+        if (remaining <= 0) {
+          quotaBadge.textContent = 'Sin cambios disponibles esta semana';
+          quotaBadge.className   = 'edit-quota-badge exhausted';
+        } else {
+          quotaBadge.textContent = `${remaining} cambio${remaining === 1 ? '' : 's'} de apodo disponible${remaining === 1 ? '' : 's'}`;
+          quotaBadge.className   = 'edit-quota-badge';
+        }
+      }
+      updateQuotaBadge(editsThisWeek);
+
       function refreshEditBtn() {
         const remaining = MAX_EDITS - editsThisWeek;
-        if (!canEdit) {
-          editBtn.style.opacity = '0.5';
+        if (remaining <= 0) {
+          editBtn.style.opacity = '0.55';
           editBtn.style.cursor  = 'not-allowed';
-          editBtn.title = 'Ya usaste tus 2 ediciones de esta semana';
+          editBtn.title = 'Sin cambios de apodo disponibles esta semana';
         } else {
-          editBtn.title = `Puedes editar ${remaining} vez${remaining === 1 ? '' : 'es'} más esta semana`;
+          editBtn.style.opacity = '';
+          editBtn.style.cursor  = '';
+          editBtn.title = `Puedes cambiar el apodo ${remaining} vez${remaining === 1 ? '' : 'es'} más esta semana`;
         }
       }
       refreshEditBtn();
 
       editBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (!canEdit) {
-          alert('Ya usaste tus 2 ediciones de descripción esta semana. Podrás editar de nuevo la próxima semana.');
-          return;
-        }
-        descInput.value = data.descripcion || '';
+        usernameInput.value = data.username || '';
+        descInput.value     = data.descripcion || '';
         charCounter.textContent = `${descInput.value.length} / 50`;
         charCounter.classList.toggle('over', descInput.value.length > 50);
+        usernameHint.textContent = 'Solo letras, números y _ · 3–20 caracteres';
+        usernameHint.className   = 'edit-field-hint';
+        // Bloquear campo si no quedan cambios
+        usernameInput.disabled = editsThisWeek >= MAX_EDITS;
+        updateQuotaBadge(editsThisWeek);
         overlay.classList.add('open');
-        descInput.focus();
+        usernameInput.focus();
+      });
+
+      usernameInput.addEventListener('input', () => {
+        const val = usernameInput.value.trim();
+        const ok  = /^[a-zA-Z0-9_]{3,20}$/.test(val);
+        if (val.length === 0) {
+          usernameHint.textContent = 'Solo letras, números y _ · 3–20 caracteres';
+          usernameHint.className   = 'edit-field-hint';
+          usernameInput.classList.remove('input-error');
+        } else if (!ok) {
+          usernameHint.textContent = 'Solo letras, números y _ · entre 3 y 20 caracteres';
+          usernameHint.className   = 'edit-field-hint error';
+          usernameInput.classList.add('input-error');
+        } else {
+          usernameHint.textContent = '✓ Nombre de usuario válido';
+          usernameHint.className   = 'edit-field-hint';
+          usernameHint.style.color = '#16a34a';
+          usernameInput.classList.remove('input-error');
+        }
       });
 
       descInput.addEventListener('input', () => {
@@ -1237,27 +1308,42 @@
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
 
       saveBtn.addEventListener('click', async () => {
-        if (!canEdit) return;
-        const newDesc = descInput.value.trim().slice(0, 50);
-        const newCount = editsThisWeek + 1;
-        await updateDoc(ref, {
-          descripcion: newDesc,
-          editDescHistory: { weekKey: todayWeekKey, count: newCount }
-        });
+        const newDesc     = descInput.value.trim().slice(0, 50);
+        const newUsername = usernameInput.value.trim().toLowerCase();
+        const usernameChanged = newUsername !== (data.username || '');
+
+        // Validar username si cambió
+        if (usernameChanged) {
+          if (editsThisWeek >= MAX_EDITS) {
+            alert('Ya usaste tus 2 cambios de apodo esta semana. Podrás cambiarlo de nuevo la próxima semana.');
+            return;
+          }
+          if (!/^[a-zA-Z0-9_]{3,20}$/.test(newUsername)) {
+            usernameHint.textContent = 'Solo letras, números y _ · entre 3 y 20 caracteres';
+            usernameHint.className   = 'edit-field-hint error';
+            usernameInput.classList.add('input-error');
+            usernameInput.focus();
+            return;
+          }
+        }
+
+        const updates = { descripcion: newDesc };
+
+        if (usernameChanged && newUsername.length >= 3) {
+          const newCount = editsThisWeek + 1;
+          updates.username = newUsername;
+          updates.editUsernameHistory = { weekKey: todayWeekKey, count: newCount };
+          editsThisWeek = newCount;
+          data.username = newUsername;
+          usernameEl.textContent = '@' + newUsername;
+          updateQuotaBadge(editsThisWeek);
+          refreshEditBtn();
+        }
+
+        await updateDoc(ref, updates);
         data.descripcion = newDesc;
-        data.editDescHistory = { weekKey: todayWeekKey, count: newCount };
         descEl.textContent = newDesc;
         overlay.classList.remove('open');
-
-        // Actualizar estado del botón tras guardar
-        const newRemaining = MAX_EDITS - newCount;
-        if (newCount >= MAX_EDITS) {
-          editBtn.style.opacity = '0.5';
-          editBtn.style.cursor  = 'not-allowed';
-          editBtn.title = 'Ya usaste tus 2 ediciones de esta semana';
-        } else {
-          editBtn.title = `Puedes editar ${newRemaining} vez${newRemaining === 1 ? '' : 'es'} más esta semana`;
-        }
       });
     });
   </script>
