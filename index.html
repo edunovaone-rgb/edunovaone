@@ -893,6 +893,16 @@
         // Saludo
         document.getElementById('dashGreeting').textContent = `¡Hola, ${nombre}! 👋`;
 
+        // Sincronizar conteo de estudiantes (con auth podemos leer la colección)
+        getCountFromServer(collection(db, 'usuarios')).then(cs => {
+          const count = cs.data().count;
+          if (count > 0) {
+            const el = document.getElementById('metricEstudiantes');
+            if (el) el.textContent = '+' + count;
+            setDoc(doc(db,'stats','global'), { totalUsuarios: count }, { merge: true }).catch(()=>{});
+          }
+        }).catch(()=>{});
+
         // Cargar datos de Firestore
         try {
           const uRef = doc(db, 'usuarios', user.uid);
