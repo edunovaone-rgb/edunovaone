@@ -63,22 +63,23 @@
     .comment-send-btn:disabled{opacity:.5;cursor:not-allowed;}
     /* Groups */
     .groups-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
-    .group-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.5rem;cursor:pointer;transition:transform .18s,box-shadow .18s;}
+    .group-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.5rem;transition:transform .18s,box-shadow .18s;}
     .group-card:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(15,23,42,0.1);}
     .group-icon{font-size:1.8rem;}
-    .group-card h4{margin:0;font-size:.95rem;color:var(--accent-strong);}
+    .group-card h4{margin:0;font-size:.95rem;}
+    .group-card h4 a{color:var(--accent-strong);text-decoration:none;}
+    .group-card h4 a:hover{text-decoration:underline;}
     .group-card p{margin:0;font-size:.82rem;color:var(--text-muted);flex:1;}
     .group-members{font-size:.8rem;color:var(--text-muted);}
+    .group-card-actions{display:flex;gap:.5rem;margin-top:.25rem;}
+    .ver-grupo-btn{flex:1;padding:.5rem .75rem;border:none;border-radius:.75rem;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-weight:700;font-size:.82rem;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
+    .ver-grupo-btn:hover{opacity:.9;}
     .empty-posts{text-align:center;padding:2.5rem 1rem;color:var(--text-muted);font-size:.95rem;}
     /* Join button states */
-    .join-btn { cursor:pointer; transition: all .2s; }
-    .join-btn.joined {
-      background: rgba(16,185,129,0.1) !important;
-      border-color: rgba(16,185,129,0.4) !important;
-      color: #16a34a !important;
-      font-weight: 700;
-      cursor: default;
-    }
+    .join-btn{flex:1;padding:.5rem .75rem;border:1.5px solid rgba(148,163,184,0.3);border-radius:.75rem;background:#fff;color:var(--text-muted);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;}
+    .join-btn:hover{border-color:var(--accent);color:var(--accent-strong);}
+    .join-btn.joined{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.4);color:#16a34a;font-weight:700;cursor:default;}
+    .join-btn:disabled{opacity:.6;cursor:not-allowed;}
     @media(max-width:1080px){.comunidad-grid{grid-template-columns:1fr;}.comunidad-hero-card{grid-template-columns:1fr;}.comunidad-hero-img{display:none;}}
     @media(max-width:600px){.groups-grid{grid-template-columns:1fr 1fr;}.post-top{flex-direction:column;}}
     @media(max-width:400px){.groups-grid{grid-template-columns:1fr;}}
@@ -155,47 +156,65 @@
         <div>
           <h3 class="comunidad-section-title">Grupos de estudio</h3>
           <div class="groups-grid" id="groupsGrid">
-            <div class="group-card" data-gid="matematica" data-href="grupo-matematica.html" data-nombre="Matemática Avanzada" data-desc="Resuelve problemas y comparte estrategias." data-icon="🧮" data-color="#7c3aed">
+            <div class="group-card">
               <div class="group-icon">🧮</div>
               <h4>Matemática Avanzada</h4>
               <p>Resuelve problemas y comparte estrategias.</p>
               <span class="group-members" id="gm-matematica">👥 142 miembros</span>
-              <button class="join-btn button button-secondary" data-gid="matematica">Unirse</button>
+              <div class="group-card-actions">
+                <button class="ver-grupo-btn" onclick="window.location.href='grupo-matematica.html'">Ver grupo →</button>
+                <button class="join-btn" data-gid="matematica" data-nombre="Matemática Avanzada" data-icon="🧮" data-color="#7c3aed" data-desc="Resuelve problemas y comparte estrategias.">Unirse</button>
+              </div>
             </div>
-            <div class="group-card" data-gid="ciencias" data-href="grupo-ciencias.html" data-nombre="Ciencias Naturales" data-desc="Debates sobre biología, química y física." data-icon="🔬" data-color="#16a34a">
+            <div class="group-card">
               <div class="group-icon">🔬</div>
               <h4>Ciencias Naturales</h4>
               <p>Debates sobre biología, química y física.</p>
               <span class="group-members" id="gm-ciencias">👥 98 miembros</span>
-              <button class="join-btn button button-secondary" data-gid="ciencias">Unirse</button>
+              <div class="group-card-actions">
+                <button class="ver-grupo-btn" onclick="window.location.href='grupo-ciencias.html'">Ver grupo →</button>
+                <button class="join-btn" data-gid="ciencias" data-nombre="Ciencias Naturales" data-icon="🔬" data-color="#16a34a" data-desc="Debates sobre biología, química y física.">Unirse</button>
+              </div>
             </div>
-            <div class="group-card" data-gid="historia" data-href="grupo-historia.html" data-nombre="Historia Universal" data-desc="Comparte apuntes y discute eventos históricos." data-icon="🌍" data-color="#d97706">
+            <div class="group-card">
               <div class="group-icon">🌍</div>
               <h4>Historia Universal</h4>
               <p>Comparte apuntes y discute eventos históricos.</p>
               <span class="group-members" id="gm-historia">👥 76 miembros</span>
-              <button class="join-btn button button-secondary" data-gid="historia">Unirse</button>
+              <div class="group-card-actions">
+                <button class="ver-grupo-btn" onclick="window.location.href='grupo-historia.html'">Ver grupo →</button>
+                <button class="join-btn" data-gid="historia" data-nombre="Historia Universal" data-icon="🌍" data-color="#d97706" data-desc="Comparte apuntes y discute eventos históricos.">Unirse</button>
+              </div>
             </div>
-            <div class="group-card" data-gid="english" data-href="grupo-english.html" data-nombre="English Club" data-desc="Practica inglés con otros estudiantes." data-icon="🇬🇧" data-color="#2563eb">
+            <div class="group-card">
               <div class="group-icon">🇬🇧</div>
               <h4>English Club</h4>
               <p>Practica inglés con otros estudiantes.</p>
               <span class="group-members" id="gm-english">👥 115 miembros</span>
-              <button class="join-btn button button-secondary" data-gid="english">Unirse</button>
+              <div class="group-card-actions">
+                <button class="ver-grupo-btn" onclick="window.location.href='grupo-english.html'">Ver grupo →</button>
+                <button class="join-btn" data-gid="english" data-nombre="English Club" data-icon="🇬🇧" data-color="#2563eb" data-desc="Practica inglés con otros estudiantes.">Unirse</button>
+              </div>
             </div>
-            <div class="group-card" data-gid="tecnologia" data-href="grupo-tecnologia.html" data-nombre="Tecnología y Programación" data-desc="Aprende programación y herramientas digitales." data-icon="💻" data-color="#0284c7">
+            <div class="group-card">
               <div class="group-icon">💻</div>
               <h4>Tecnología y Programación</h4>
               <p>Aprende programación y herramientas digitales.</p>
               <span class="group-members" id="gm-tecnologia">👥 63 miembros</span>
-              <button class="join-btn button button-secondary" data-gid="tecnologia">Unirse</button>
+              <div class="group-card-actions">
+                <button class="ver-grupo-btn" onclick="window.location.href='grupo-tecnologia.html'">Ver grupo →</button>
+                <button class="join-btn" data-gid="tecnologia" data-nombre="Tecnología y Programación" data-icon="💻" data-color="#0284c7" data-desc="Aprende programación y herramientas digitales.">Unirse</button>
+              </div>
             </div>
-            <div class="group-card" data-gid="comunicacion" data-nombre="Comunicación y Literatura" data-desc="Mejora tu escritura y comprensión lectora." data-icon="📖" data-color="#c026d3">
+            <div class="group-card">
               <div class="group-icon">📖</div>
               <h4>Comunicación y Literatura</h4>
               <p>Mejora tu escritura y comprensión lectora.</p>
               <span class="group-members" id="gm-comunicacion">👥 89 miembros</span>
-              <button class="join-btn button button-secondary" data-gid="comunicacion">Unirse</button>
+              <div class="group-card-actions">
+                <button class="ver-grupo-btn" onclick="window.location.href='grupo-comunicacion.html'">Ver grupo →</button>
+                <button class="join-btn" data-gid="comunicacion" data-nombre="Comunicación y Literatura" data-icon="📖" data-color="#c026d3" data-desc="Mejora tu escritura y comprensión lectora.">Unirse</button>
+              </div>
             </div>
           </div>
         </div>
@@ -438,42 +457,41 @@
     // ── Grupos: cargar estado y manejar unirse ──
     async function loadGroups(user) {
       const userRef  = doc(db, 'usuarios', user.uid);
-      const userSnap = await getDoc(userRef);
-      const grupos   = userSnap.exists() ? (userSnap.data().grupos || []) : [];
+      const userSnap = await getDoc(userRef).catch(() => null);
+      const grupos   = userSnap && userSnap.exists() ? (userSnap.data().grupos || []) : [];
 
       document.querySelectorAll('.join-btn').forEach(btn => {
         const gid = btn.dataset.gid;
         if (grupos.includes(gid)) {
-          btn.textContent = '✓ Ya te uniste';
+          btn.textContent = '✓ Unido';
           btn.classList.add('joined');
           btn.disabled = true;
         } else {
           btn.addEventListener('click', async () => {
             if (!currentUser) { window.location.href = 'login.html'; return; }
             btn.disabled = true;
-            btn.textContent = 'Uniéndose...';
+            btn.textContent = '...';
 
-            // Guardar en Firestore del usuario
-            await updateDoc(userRef, { grupos: arrayUnion(gid) }).catch(async () => {
-              await setDoc(userRef, { grupos: [gid] }, { merge: true });
-            });
-
-            // Guardar info del grupo en colección grupos
-            const card = btn.closest('.group-card');
-            await setDoc(doc(db, 'grupos', gid), {
-              nombre:  card.dataset.nombre,
-              icon:    card.dataset.icon,
-              color:   card.dataset.color,
-              desc:    card.dataset.desc,
-            }, { merge: true });
-
-            // Agregar miembro
-            await updateDoc(doc(db, 'grupos', gid), {
-              miembros: arrayUnion(user.uid)
-            }).catch(() => {});
-
-            btn.textContent = '✓ Ya te uniste';
-            btn.classList.add('joined');
+            try {
+              const card = btn.closest('.group-card');
+              // Una sola operación: setDoc con merge en usuario y grupo simultáneamente
+              await Promise.all([
+                setDoc(userRef, { grupos: arrayUnion(gid) }, { merge: true }),
+                setDoc(doc(db, 'grupos', gid), {
+                  nombre: card.dataset.nombre,
+                  icon:   card.dataset.icon,
+                  color:  card.dataset.color,
+                  desc:   card.dataset.desc,
+                  miembros: arrayUnion(user.uid)
+                }, { merge: true })
+              ]);
+              btn.textContent = '✓ Unido';
+              btn.classList.add('joined');
+            } catch (err) {
+              console.error('Error al unirse:', err);
+              btn.disabled = false;
+              btn.textContent = 'Unirse';
+            }
           });
         }
       });

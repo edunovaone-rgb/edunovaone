@@ -1,25 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tecnología y Programación | EduNova</title>
+  <title>Comunicación y Literatura | EduNova</title>
   <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="grupo-shared.css" />
   <style>
-    .grupo-hero { background: linear-gradient(135deg,rgba(2,132,199,0.12),rgba(3,105,161,0.06)); }
-    .grupo-hero-icon { background: rgba(2,132,199,0.15); }
-    .grupo-meta-badge { background: rgba(2,132,199,0.1); color: #0284c7; }
-    .grupo-tab-btn.active { border-bottom-color: #0284c7; }
-    .tarea-icon { background: rgba(2,132,199,0.1); }
-    .evento-item { border-left: 3px solid #0284c7; }
-    .foro-item:hover { border-color: rgba(2,132,199,0.3); }
-    .foro-avatars span { background: #0284c7; }
-    .grupo-mini-card:hover { background: rgba(2,132,199,0.06); }
-    .post-form button { background: linear-gradient(135deg,#0284c7,#0369a1); }
-    .recurso-card:hover { box-shadow: 0 8px 20px rgba(2,132,199,0.14); }
+    .grupo-hero { background: linear-gradient(135deg,rgba(192,38,211,0.12),rgba(168,85,247,0.06)); }
+    .grupo-hero-icon { background: rgba(192,38,211,0.15); }
+    .grupo-meta-badge { background: rgba(192,38,211,0.1); color: #c026d3; }
+    .grupo-tab-btn.active { border-bottom-color: #c026d3; }
+    .tarea-icon { background: rgba(192,38,211,0.1); }
+    .evento-item { border-left: 3px solid #c026d3; }
+    .foro-item:hover { border-color: rgba(192,38,211,0.3); }
+    .foro-avatars span { background: #c026d3; }
+    .grupo-mini-card:hover { background: rgba(192,38,211,0.06); }
+    .post-form button { background: linear-gradient(135deg,#c026d3,#7c3aed); }
+    .recurso-card:hover { box-shadow: 0 8px 20px rgba(192,38,211,0.14); }
   </style>
 </head>
 <body>
@@ -46,13 +46,13 @@
     </nav>
 
     <div class="grupo-hero">
-      <div class="grupo-hero-icon">💻</div>
+      <div class="grupo-hero-icon">📖</div>
       <div class="grupo-hero-info">
-        <h2>Grupo: Tecnología y Programación</h2>
-        <p>Aprende a programar, diseña proyectos web y explora el mundo digital junto a otros estudiantes tech.</p>
+        <h2>Grupo: Comunicación y Literatura</h2>
+        <p>Mejora tu escritura, comprensión lectora y expresión oral junto a otros estudiantes apasionados por las letras.</p>
         <div class="grupo-hero-meta">
           <span class="grupo-meta-badge" id="memberCount">👥 Cargando...</span>
-          <span class="grupo-meta-badge">🖥️ HTML · CSS · Python</span>
+          <span class="grupo-meta-badge">✍️ Redacción · Lectura · Oratoria</span>
           <span class="grupo-meta-badge">🎯 Todos los niveles</span>
         </div>
       </div>
@@ -79,22 +79,22 @@
           <div class="grupo-tab-panel" id="tab-recursos">
             <h3 style="margin:0 0 1rem">Recursos</h3>
             <div class="recursos-grid">
-              <div class="recurso-card"><div class="recurso-type-icon rtype-pdf">📄</div><div class="recurso-card-info"><strong>Introducción a HTML5</strong><span>PDF · Web</span></div></div>
-              <div class="recurso-card"><div class="recurso-type-icon rtype-video">▶️</div><div class="recurso-card-info"><strong>CSS Flexbox & Grid</strong><span>Video · Diseño Web</span></div></div>
-              <div class="recurso-card"><div class="recurso-type-icon rtype-doc">📘</div><div class="recurso-card-info"><strong>Python para Principiantes</strong><span>Doc · Programación</span></div></div>
-              <div class="recurso-card"><div class="recurso-type-icon rtype-video">▶️</div><div class="recurso-card-info"><strong>JavaScript Básico</strong><span>Video · Programación</span></div></div>
-              <div class="recurso-card"><div class="recurso-type-icon rtype-pdf">📄</div><div class="recurso-card-info"><strong>Algoritmos y Lógica</strong><span>PDF · Computación</span></div></div>
-              <div class="recurso-card"><div class="recurso-type-icon rtype-doc">📘</div><div class="recurso-card-info"><strong>Bases de Datos SQL</strong><span>Doc · Bases de Datos</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-pdf">📄</div><div class="recurso-card-info"><strong>Técnicas de Redacción</strong><span>PDF · Escritura</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-video">▶️</div><div class="recurso-card-info"><strong>Comprensión Lectora</strong><span>Video · Lectura</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-doc">📘</div><div class="recurso-card-info"><strong>Géneros Literarios</strong><span>Doc · Literatura</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-video">▶️</div><div class="recurso-card-info"><strong>Oratoria y Debate</strong><span>Video · Comunicación</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-pdf">📄</div><div class="recurso-card-info"><strong>Ortografía y Gramática</strong><span>PDF · Lengua</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-doc">📘</div><div class="recurso-card-info"><strong>Análisis de Textos</strong><span>Doc · Literatura</span></div></div>
             </div>
           </div>
 
           <div class="grupo-tab-panel" id="tab-tareas">
             <h3 style="margin:0 0 1rem">Tareas del grupo</h3>
             <ul class="tarea-list">
-              <li class="tarea-item"><div class="tarea-icon">🌐</div><span style="flex:1">Crear una página web personal con HTML y CSS</span><span class="tarea-badge tarea-pending">Pendiente</span></li>
-              <li class="tarea-item"><div class="tarea-icon">🐍</div><span style="flex:1">Ejercicios de Python: listas y funciones</span><span class="tarea-badge tarea-pending">Pendiente</span></li>
-              <li class="tarea-item"><div class="tarea-icon">🔢</div><span style="flex:1">Diagrama de flujo: algoritmo de ordenamiento</span><span class="tarea-badge tarea-done">Completada</span></li>
-              <li class="tarea-item"><div class="tarea-icon">💾</div><span style="flex:1">Consultas básicas en SQL</span><span class="tarea-badge tarea-done">Completada</span></li>
+              <li class="tarea-item"><div class="tarea-icon">✍️</div><span style="flex:1">Redactar un ensayo argumentativo (mín. 400 palabras)</span><span class="tarea-badge tarea-pending">Pendiente</span></li>
+              <li class="tarea-item"><div class="tarea-icon">📚</div><span style="flex:1">Leer y analizar "El Principito" cap. 1–5</span><span class="tarea-badge tarea-pending">Pendiente</span></li>
+              <li class="tarea-item"><div class="tarea-icon">🎤</div><span style="flex:1">Preparar exposición oral de 3 minutos</span><span class="tarea-badge tarea-done">Completada</span></li>
+              <li class="tarea-item"><div class="tarea-icon">🔤</div><span style="flex:1">Ejercicios de ortografía: uso de B y V</span><span class="tarea-badge tarea-done">Completada</span></li>
             </ul>
           </div>
 
@@ -105,26 +105,26 @@
             </div>
             <div class="foro-list">
               <div class="foro-item">
-                <div class="foro-item-title">💬 ¿Cómo centrar un div en CSS?</div>
-                <p class="foro-item-desc">Llevo horas intentando centrar un elemento y no me sale. ¿Alguien me ayuda?</p>
+                <div class="foro-item-title">💬 ¿Cómo mejorar la introducción de un ensayo?</div>
+                <p class="foro-item-desc">Siempre me trabo al empezar a escribir. ¿Algún truco para arrancar bien?</p>
                 <div class="foro-item-meta">
-                  <div class="foro-avatars"><span>JM</span><span>LT</span><span>PV</span></div>
-                  <span class="foro-members">63 miembros</span>
-                  <span class="foro-comments">💬 8</span>
+                  <div class="foro-avatars"><span>MR</span><span>CP</span><span>AL</span></div>
+                  <span class="foro-members">89 miembros</span>
+                  <span class="foro-comments">💬 7</span>
                 </div>
               </div>
               <div class="foro-item">
-                <div class="foro-item-title">💬 Python vs JavaScript para empezar</div>
-                <p class="foro-item-desc">¿Cuál recomiendan para aprender a programar desde cero?</p>
+                <div class="foro-item-title">💬 Recomendaciones de libros para secundaria</div>
+                <p class="foro-item-desc">¿Qué libros les gustaron más este año? Quiero leer algo entretenido pero que también ayude.</p>
                 <div class="foro-item-meta">
-                  <div class="foro-avatars"><span>JM</span><span>LT</span></div>
-                  <span class="foro-members">45 miembros</span>
-                  <span class="foro-comments">💬 5</span>
+                  <div class="foro-avatars"><span>MR</span><span>CP</span></div>
+                  <span class="foro-members">62 miembros</span>
+                  <span class="foro-comments">💬 4</span>
                 </div>
               </div>
             </div>
             <div class="foro-new-input">
-              <div class="grupo-post-avatar" id="foroAvatar" style="background:#0284c7">?</div>
+              <div class="grupo-post-avatar" id="foroAvatar" style="background:#c026d3">?</div>
               <input type="text" placeholder="Inicia una nueva discusión..." />
             </div>
           </div>
@@ -142,20 +142,20 @@
           <div class="miembro-search"><span>🔍</span><input type="text" placeholder="Buscar miembro..." /></div>
           <ul class="miembros-list">
             <li class="miembro-item">
-              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=JavierMorales" alt="JM" loading="lazy" /></div>
-              <div class="miembro-info"><strong>Javier Morales</strong><span>Admin · 5° Sec.</span></div>
+              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=MariaRojas&backgroundColor=c026d3" alt="MR" loading="lazy" /></div>
+              <div class="miembro-info"><strong>María Rojas</strong><span>Admin · 5° Sec.</span></div>
             </li>
             <li class="miembro-item">
-              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=LuciaTaboada" alt="LT" loading="lazy" /></div>
-              <div class="miembro-info"><strong>Lucía Taboada</strong><span>4° Secundaria</span></div>
+              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=CarlosPineda&backgroundColor=7c3aed" alt="CP" loading="lazy" /></div>
+              <div class="miembro-info"><strong>Carlos Pineda</strong><span>4° Secundaria</span></div>
             </li>
             <li class="miembro-item">
-              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=PedroVega" alt="PV" loading="lazy" /></div>
-              <div class="miembro-info"><strong>Pedro Vega</strong><span>3° Secundaria</span></div>
+              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AnaLopez&backgroundColor=2563eb" alt="AL" loading="lazy" /></div>
+              <div class="miembro-info"><strong>Ana López</strong><span>3° Secundaria</span></div>
             </li>
             <li class="miembro-item">
-              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=IsabelNaranjo" alt="IN" loading="lazy" /></div>
-              <div class="miembro-info"><strong>Isabel Naranjo</strong><span>5° Secundaria</span></div>
+              <div class="miembro-avatar"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=RicardoFlores&backgroundColor=d97706" alt="RF" loading="lazy" /></div>
+              <div class="miembro-info"><strong>Ricardo Flores</strong><span>5° Secundaria</span></div>
             </li>
           </ul>
         </div>
@@ -163,21 +163,21 @@
         <div class="grupo-card">
           <h3>Próximos Eventos</h3>
           <div style="display:grid;gap:.65rem">
-            <div class="evento-item"><strong>Live: Intro a React.js</strong>Hoy · 6:00 PM</div>
-            <div class="evento-item"><strong>Hackathon escolar</strong>Sábado · 9:00 AM</div>
+            <div class="evento-item"><strong>Taller: Escritura Creativa</strong>Hoy · 4:00 PM</div>
+            <div class="evento-item"><strong>Club de Lectura: El Principito</strong>Jueves · 5:00 PM</div>
           </div>
         </div>
 
         <div class="grupo-card">
           <h3>Grupos de estudio</h3>
           <div class="grupos-mini-list">
-            <a href="grupo-matematica.html" class="grupo-mini-card">
-              <div class="grupo-mini-icon" style="background:rgba(124,58,237,0.12)">🧮</div>
-              <div class="grupo-mini-info"><strong>Matemática Avanzada</strong><p>Álgebra, geometría y cálculo.</p><small>👥 142 miembros</small></div>
+            <a href="grupo-historia.html" class="grupo-mini-card">
+              <div class="grupo-mini-icon" style="background:rgba(217,119,6,0.12)">🌍</div>
+              <div class="grupo-mini-info"><strong>Historia Universal</strong><p>Eventos y civilizaciones.</p><small>👥 76 miembros</small></div>
             </a>
-            <a href="grupo-ciencias.html" class="grupo-mini-card">
-              <div class="grupo-mini-icon" style="background:rgba(16,185,129,0.12)">🔬</div>
-              <div class="grupo-mini-info"><strong>Ciencias Naturales</strong><p>Biología, química y física.</p><small>👥 98 miembros</small></div>
+            <a href="grupo-english.html" class="grupo-mini-card">
+              <div class="grupo-mini-icon" style="background:rgba(37,99,235,0.12)">🇬🇧</div>
+              <div class="grupo-mini-info"><strong>English Club</strong><p>Practica inglés.</p><small>👥 115 miembros</small></div>
             </a>
           </div>
           <a href="comunidad.html"><button class="ver-todos-btn">Ver todos</button></a>
@@ -206,7 +206,7 @@
       from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const CFG = { apiKey:"AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE", authDomain:"edunova-library.firebaseapp.com", projectId:"edunova-library", storageBucket:"edunova-library.firebasestorage.app", messagingSenderId:"707176884039", appId:"1:707176884039:web:7c2b34c1bfcbdc7ec10e62" };
-    const GID = 'tecnologia', GNAME = 'Tecnología y Programación', GICON = '💻', GCOLOR = 'rgba(2,132,199,0.12)';
+    const GID = 'comunicacion', GNAME = 'Comunicación y Literatura', GICON = '📖', GCOLOR = 'rgba(192,38,211,0.12)';
     const app  = getApps().length ? getApps()[0] : initializeApp(CFG);
     const auth = getAuth(app), db = getFirestore(app);
 
@@ -226,7 +226,10 @@
 
     async function renderJoinCard(user) {
       const card = document.getElementById('joinCard');
-      if (!user) { card.innerHTML = `<p style="text-align:center;color:var(--text-muted)">¿Quieres unirte? <a href="login.html" style="color:var(--accent-strong);font-weight:700">Inicia sesión</a></p>`; return; }
+      if (!user) {
+        card.innerHTML = `<p style="text-align:center;color:var(--text-muted)">¿Quieres unirte? <a href="login.html" style="color:var(--accent-strong);font-weight:700">Inicia sesión</a></p>`;
+        return;
+      }
       const [uSnap, gSnap] = await Promise.all([getDoc(doc(db,'usuarios',user.uid)), getDoc(doc(db,'grupos',GID))]);
       const grupos = uSnap.exists() ? (uSnap.data().grupos||[]) : [];
       const count  = gSnap.exists() ? (gSnap.data().miembros||[]).length : 0;
@@ -240,7 +243,7 @@
           renderJoinCard(user); renderPostForm(user, false);
         };
       } else {
-        card.innerHTML = `<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar en las discusiones</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Unirse al grupo</button>`;
+        card.innerHTML = `<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar en las discusiones</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#c026d3,#7c3aed);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Unirse al grupo</button>`;
         document.getElementById('joinBtn').onclick = async () => {
           await updateDoc(uRef,{grupos:arrayUnion(GID)}).catch(async()=>{ await setDoc(uRef,{grupos:[GID]},{merge:true}); });
           await setDoc(gRef,{nombre:GNAME,icon:GICON,color:GCOLOR},{merge:true});
