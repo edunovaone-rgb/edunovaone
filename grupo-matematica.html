@@ -332,6 +332,31 @@
       });
     }
 
+    function renderForoInput(user, isMember) {
+      const fi = document.getElementById('foroInput');
+      if (!fi) return;
+      if (!user) {
+        fi.innerHTML = `<div class="foro-new-input" style="justify-content:center">
+          <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
+            <a href="login.html" style="color:var(--accent-strong);font-weight:700">Inicia sesión</a> y únete al grupo para participar en el foro.
+          </p></div>`;
+        return;
+      }
+      if (!isMember) {
+        fi.innerHTML = `<div class="foro-new-input" style="justify-content:center">
+          <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
+            Únete al grupo para poder iniciar una discusión.
+          </p></div>`;
+        return;
+      }
+      fi.innerHTML = `<div class="foro-new-input">
+        <div class="grupo-post-avatar" style="background:#7c3aed;flex-shrink:0">
+          <img src="${avatarUrl(user.displayName||user.email)}" alt="" />
+        </div>
+        <input type="text" id="foroInputField" placeholder="Inicia una nueva discusión..." />
+      </div>`;
+    }
+
     onAuthStateChanged(auth, user => {
       const navBtn = document.getElementById('navAuthBtn');
       if (user) {
