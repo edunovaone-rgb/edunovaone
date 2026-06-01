@@ -432,6 +432,11 @@
     document.getElementById('regName').addEventListener('input', function() {
       setField('regName', 'regNameErr', this.value.trim().length >= 2);
     });
+    document.getElementById('regUsername').addEventListener('input', function() {
+      const val = this.value.trim();
+      const ok = /^[a-zA-Z0-9_]{3,20}$/.test(val);
+      setField('regUsername', 'regUsernameErr', ok, 'Solo letras, números y _ (3–20 caracteres)');
+    });
     document.getElementById('regEmail').addEventListener('input', function() {
       setField('regEmail', 'regEmailErr', emailValido(this.value),
         'Usa un correo válido: gmail.com, hotmail.com, outlook.com, etc.');
