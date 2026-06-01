@@ -95,3 +95,165 @@
   </style>
 </head>
 <body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="uni-nav-brand-text"><strong>EduNova</strong><span>Library</span></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html" class="active">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav style="margin-bottom:1rem;font-size:.9rem">
+      <a href="comunidad.html" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a Comunidad</a>
+    </nav>
+
+    <!-- Hero -->
+    <div class="grupo-hero">
+      <div class="grupo-hero-icon">🧮</div>
+      <div class="grupo-hero-info">
+        <h2>Grupo: Matemática Avanzada</h2>
+        <p>Resuelve problemas, comparte estrategias y aprende junto a otros estudiantes apasionados por las matemáticas.</p>
+        <div class="grupo-hero-meta">
+          <span class="grupo-meta-badge" id="memberCount">👥 Cargando...</span>
+          <span class="grupo-meta-badge">📚 Álgebra · Geometría · Cálculo</span>
+          <span class="grupo-meta-badge">🎯 Todos los niveles</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grupo-layout">
+      <!-- MAIN -->
+      <div class="grupo-main">
+        <div class="grupo-card">
+          <!-- Tabs -->
+          <div class="grupo-tabs">
+            <button class="grupo-tab-btn active" data-tab="general">General</button>
+            <button class="grupo-tab-btn" data-tab="recursos">Recursos</button>
+            <button class="grupo-tab-btn" data-tab="tareas">Tareas</button>
+            <button class="grupo-tab-btn" data-tab="foro">Foro</button>
+          </div>
+
+          <!-- Tab: General -->
+          <div class="grupo-tab-panel active" id="tab-general">
+            <div id="groupPostForm"></div>
+            <div class="posts-feed" id="groupFeed" style="margin-top:1rem">
+              <p style="color:var(--text-muted);font-size:.9rem;text-align:center">Cargando...</p>
+            </div>
+          </div>
+
+          <!-- Tab: Recursos -->
+          <div class="grupo-tab-panel" id="tab-recursos">
+            <h3 style="margin:0 0 1rem">Recursos</h3>
+            <div class="recursos-grid">
+              <div class="recurso-card"><div class="recurso-type-icon rtype-pdf">📄</div><div class="recurso-card-info"><strong>Teoremas de Límite</strong><span>PDF · Cálculo</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-video">▶️</div><div class="recurso-card-info"><strong>Integral Definida</strong><span>Video · Cálculo</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-doc">📘</div><div class="recurso-card-info"><strong>Problemas de Álgebra Lineal</strong><span>Doc · Álgebra</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-video">▶️</div><div class="recurso-card-info"><strong>Geometría Analítica</strong><span>Video · Geometría</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-pdf">📄</div><div class="recurso-card-info"><strong>Estadística Descriptiva</strong><span>PDF · Estadística</span></div></div>
+              <div class="recurso-card"><div class="recurso-type-icon rtype-doc">📘</div><div class="recurso-card-info"><strong>Ejercicios de Trigonometría</strong><span>Doc · Trigonometría</span></div></div>
+            </div>
+          </div>
+
+          <!-- Tab: Tareas -->
+          <div class="grupo-tab-panel" id="tab-tareas">
+            <h3 style="margin:0 0 1rem">Tareas del grupo</h3>
+            <ul class="tarea-list">
+              <li class="tarea-item"><div class="tarea-icon">📐</div><span style="flex:1">Resolver ejercicios de derivadas (págs. 45–50)</span><span class="tarea-badge tarea-pending">Pendiente</span></li>
+              <li class="tarea-item"><div class="tarea-icon">∫</div><span style="flex:1">Práctica de integrales por partes</span><span class="tarea-badge tarea-pending">Pendiente</span></li>
+              <li class="tarea-item"><div class="tarea-icon">📊</div><span style="flex:1">Ejercicios de probabilidad condicional</span><span class="tarea-badge tarea-done">Completada</span></li>
+              <li class="tarea-item"><div class="tarea-icon">🔢</div><span style="flex:1">Repaso de números complejos</span><span class="tarea-badge tarea-done">Completada</span></li>
+            </ul>
+          </div>
+
+          <!-- Tab: Foro -->
+          <div class="grupo-tab-panel" id="tab-foro">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+              <h3 style="margin:0">Últimos Foros</h3>
+              <button class="ver-todos-btn" style="width:auto;padding:.45rem 1rem;margin:0">Ver todos</button>
+            </div>
+            <div class="foro-list">
+              <div class="foro-item">
+                <div class="foro-item-top"><span class="foro-item-title">💬 Duda sobre el Teorema de Stokes</span></div>
+                <p class="foro-item-desc">¿Alguien puede explicar cómo aplicar el Teorema de Stokes en superficies cerradas?</p>
+                <div class="foro-item-meta">
+                  <div class="foro-avatars"><span>DV</span><span>SP</span><span>LM</span></div>
+                  <span class="foro-members">142 miembros</span>
+                  <span class="foro-comments">💬 2</span>
+                </div>
+              </div>
+              <div class="foro-item">
+                <div class="foro-item-top"><span class="foro-item-title">💬 Duda sobre la Integral Multivariable</span></div>
+                <p class="foro-item-desc">Tengo problemas con las integrales dobles en coordenadas polares.</p>
+                <div class="foro-item-meta">
+                  <div class="foro-avatars"><span>DV</span><span>SP</span><span>LM</span><span>+</span></div>
+                  <span class="foro-members">188 miembros</span>
+                  <span class="foro-comments">💬 6</span>
+                </div>
+              </div>
+            </div>
+            <div class="foro-new-input">
+              <div class="grupo-post-avatar" id="foroAvatar" style="background:#7c3aed;width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff;flex-shrink:0">?</div>
+              <input type="text" placeholder="Inicia una nueva discusión..." />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="grupo-sidebar">
+        <!-- Unirse/Salir -->
+        <div class="grupo-card" id="joinCard">
+          <p style="color:var(--text-muted);font-size:.9rem;text-align:center">Cargando...</p>
+        </div>
+
+        <!-- Lista de Miembros -->
+        <div class="grupo-card">
+          <h3>Lista de Miembros</h3>
+          <div class="miembro-search"><span>🔍</span><input type="text" placeholder="Lista de escar..." /></div>
+          <ul class="miembros-list">
+            <li class="miembro-item"><div class="miembro-avatar" style="background:#7c3aed">DV</div><div class="miembro-info"><strong>Diego Vargas</strong><span>Admin · 5° Sec.</span></div></li>
+            <li class="miembro-item"><div class="miembro-avatar" style="background:#2563eb">SP</div><div class="miembro-info"><strong>Sofía Paredes</strong><span>4° Secundaria</span></div></li>
+            <li class="miembro-item"><div class="miembro-avatar" style="background:#16a34a">LM</div><div class="miembro-info"><strong>Luis Mendoza</strong><span>5° Secundaria</span></div></li>
+            <li class="miembro-item"><div class="miembro-avatar" style="background:#d97706">AR</div><div class="miembro-info"><strong>Andrea Ríos</strong><span>3° Secundaria</span></div></li>
+          </ul>
+        </div>
+
+        <!-- Próximos Eventos -->
+        <div class="grupo-card">
+          <h3>Próximos Eventos</h3>
+          <div style="display:grid;gap:.65rem">
+            <div class="evento-item"><strong>Live session: Cálculo Multivariable</strong>Hoy · 2:00 PM</div>
+            <div class="evento-item"><strong>Repaso: Álgebra Lineal</strong>Viernes · 4:00 PM</div>
+          </div>
+        </div>
+
+        <!-- Grupos de estudio -->
+        <div class="grupo-card">
+          <h3>Grupos de estudio</h3>
+          <div class="grupos-mini-list">
+            <a href="grupo-ciencias.html" class="grupo-mini-card" style="text-decoration:none">
+              <div class="grupo-mini-icon" style="background:rgba(16,185,129,0.12)">🔬</div>
+              <div class="grupo-mini-info"><strong>Ciencias Naturales</strong><p>Biología, química y física.</p><small>👥 98 miembros</small></div>
+            </a>
+            <a href="grupo-historia.html" class="grupo-mini-card" style="text-decoration:none">
+              <div class="grupo-mini-icon" style="background:rgba(217,119,6,0.12)">🌍</div>
+              <div class="grupo-mini-info"><strong>Historia Universal</strong><p>Eventos y civilizaciones.</p><small>👥 76 miembros</small></div>
+            </a>
+          </div>
+          <a href="comunidad.html"><button class="ver-todos-btn">Ver todos</button></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><p>EduNova Library · Biblioteca Digital para Estudiantes</p></footer>
