@@ -332,6 +332,15 @@
             </div>
           </div>
 
+          <!-- Código docente (opcional) -->
+          <div style="display:grid;gap:0.2rem;">
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">🔑</span>
+              <input type="text" id="regDocCode" placeholder="Código docente (opcional)" autocomplete="off" />
+            </div>
+            <p style="font-size:.78rem;color:var(--text-muted);margin:.1rem 0 0 .25rem;">Solo para docentes. Déjalo vacío si eres estudiante.</p>
+          </div>
+
           <label class="reg-checkbox">
             <input type="checkbox" id="regTerms" required />
             Acepto los <a href="terminos.html" target="_blank" style="color:var(--accent-strong);font-weight:700;text-decoration:none;">términos y condiciones</a>
@@ -350,6 +359,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
@@ -362,6 +372,7 @@
 
     const app  = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db   = getFirestore(app);
 
     // ── Helpers ──
     function togglePass(id, btn) {
@@ -469,6 +480,16 @@
       try {
         const cred = await createUserWithEmailAndPassword(auth, email, pass);
         await updateProfile(cred.user, { displayName: name });
+        const docCode = document.getElementById('regDocCode').value.trim();
+        const rol = docCode === 'DOC-EDUNOVA-2025' ? 'docente' : 'alumno';
+        await setDoc(doc(db, 'usuarios', cred.user.uid), {
+          nombre: name,
+          email: email,
+          colegio: school,
+          grado: grade,
+          rol: rol,
+          createdAt: new Date().toISOString()
+        }, { merge: true });
         window.location.href = 'index.html';
       } catch (err) {
         const msgs = {

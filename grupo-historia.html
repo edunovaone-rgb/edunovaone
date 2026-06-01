@@ -264,22 +264,59 @@
       }
     }
 
-    function renderPostForm(user, isMember) {
+    function renderPostForm(user, isMember, rol) {
       const f = document.getElementById('groupPostForm');
       if (!user || !isMember) { f.innerHTML = ''; return; }
-      const ini = initials(user.displayName||user.email);
-      f.innerHTML = `<div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.75rem">
-        <div class="grupo-post-avatar"><img src="${avatarUrl(user.displayName||user.email)}" alt="${ini}" /></div>
-        <div class="post-form" style="flex:1">
-          <textarea id="gpt" placeholder="Comparte algo con el grupo..."></textarea>
-          <button id="gpb">Publicar</button>
-        </div></div>`;
-      document.getElementById('gpb').onclick = async () => {
-        const t = document.getElementById('gpt').value.trim();
-        if (!t) return;
-        await addDoc(collection(db,'grupos',GID,'posts'), { autor: user.displayName||user.email.split('@')[0], autorId: user.uid, texto: t, createdAt: serverTimestamp() });
-        document.getElementById('gpt').value = '';
-      };
+
+      if (rol === 'docente') {
+        const ini = initials(user.displayName||user.email);
+        f.innerHTML = `<div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.75rem">
+          <div class="grupo-post-avatar"><img src="${avatarUrl(user.displayName||user.email)}" alt="${ini}" /></div>
+          <div class="post-form" style="flex:1">
+            <textarea id="gpt" placeholder="Comparte un tema con el grupo..."></textarea>
+            <button id="gpb">Publicar</button>
+          </div></div>`;
+        document.getElementById('gpb').onclick = async () => {
+          const t = document.getElementById('gpt').value.trim();
+          if (!t) return;
+          await addDoc(collection(db,'grupos',GID,'posts'), {
+            autor: user.displayName||user.email.split('@')[0],
+            autorId: user.uid,
+            texto: t,
+            rol: 'docente',
+            createdAt: serverTimestamp()
+          });
+          document.getElementById('gpt').value = '';
+        };
+      } else {
+        const ini = initials(user.displayName||user.email);
+        f.innerHTML = `<div style="background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.15);border-radius:1rem;padding:1rem;margin-bottom:.75rem;">
+          <p style="margin:0 0 .5rem;font-size:.88rem;color:var(--text-muted);">💬 ¿Tienes una consulta? Puedes abrir un foro de discusión.</p>
+          <div style="display:flex;gap:.65rem;align-items:flex-start;">
+            <div class="grupo-post-avatar" style="width:2rem;height:2rem;font-size:.75rem;flex-shrink:0;background:${colorFor(user.displayName||user.email)};border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">${ini}</div>
+            <div style="flex:1">
+              <textarea id="gpt-consulta" placeholder="Escribe tu consulta o pregunta..." style="width:100%;padding:.65rem .9rem;border:1.5px solid rgba(148,163,184,0.25);border-radius:.9rem;font-size:.88rem;color:var(--text);background:#fafbff;outline:none;font-family:inherit;resize:none;min-height:60px;box-sizing:border-box;"></textarea>
+              <button id="gpb-consulta" style="margin-top:.5rem;padding:.55rem 1.2rem;border:none;border-radius:999px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;">Publicar consulta</button>
+            </div>
+          </div>
+        </div>`;
+        document.getElementById('gpb-consulta').onclick = async () => {
+          const t = document.getElementById('gpt-consulta').value.trim();
+          if (!t) return;
+          const btn = document.getElementById('gpb-consulta');
+          btn.disabled = true; btn.textContent = '...';
+          await addDoc(collection(db,'grupos',GID,'posts'), {
+            autor: user.displayName||user.email.split('@')[0],
+            autorId: user.uid,
+            texto: t,
+            rol: 'alumno',
+            tipo: 'consulta',
+            createdAt: serverTimestamp()
+          });
+          document.getElementById('gpt-consulta').value = '';
+          btn.disabled = false; btn.textContent = 'Publicar consulta';
+        };
+      }
     }
 
     function loadFeed() {
@@ -288,9 +325,14 @@
         if (snap.empty) { feed.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem;text-align:center">¡Sé el primero en publicar!</p>'; return; }
         feed.innerHTML = snap.docs.map(d => {
           const p = d.data(), ini = initials(p.autor||'U');
+          const badge = p.rol === 'docente'
+            ? `<span style="font-size:.7rem;background:rgba(124,58,237,0.12);color:#7c3aed;padding:.15rem .5rem;border-radius:999px;font-weight:700;margin-left:.35rem;">Docente</span>`
+            : p.tipo === 'consulta'
+            ? `<span style="font-size:.7rem;background:rgba(59,130,246,0.1);color:#2563eb;padding:.15rem .5rem;border-radius:999px;font-weight:700;margin-left:.35rem;">Consulta</span>`
+            : '';
           return `<div class="grupo-post">
             <div class="grupo-post-avatar"><img src="${avatarUrl(p.autor||'U')}" alt="${ini}" loading="lazy" /></div>
-            <div class="grupo-post-body"><strong>${p.autor} <small>· ${timeAgo(p.createdAt)}</small></strong><p>${p.texto}</p></div>
+            <div class="grupo-post-body"><strong>${p.autor}${badge} <small>· ${timeAgo(p.createdAt)}</small></strong><p>${p.texto}</p></div>
           </div>`;
         }).join('');
       });
@@ -303,12 +345,15 @@
         navBtn.href = 'perfil.html';
         navBtn.style.cssText = 'background:rgba(99,102,241,0.1);color:var(--accent-strong);box-shadow:none';
         const fa = document.getElementById('foroAvatar');
-        fa.innerHTML = `<img src="${avatarUrl(user.displayName||user.email)}" alt="" />`;
+        if (fa) fa.innerHTML = `<img src="${avatarUrl(user.displayName||user.email)}" alt="" />`;
       }
-      renderJoinCard(user); // no await — runs in background
+      renderJoinCard(user);
       if (user) {
         getDoc(doc(db,'usuarios',user.uid)).then(uSnap => {
-          renderPostForm(user, uSnap.exists() && (uSnap.data().grupos||[]).includes(GID));
+          const data = uSnap.exists() ? uSnap.data() : {};
+          const isMember = (data.grupos||[]).includes(GID);
+          const rol = data.rol || 'alumno';
+          renderPostForm(user, isMember, rol);
         }).catch(()=>{});
       }
     });
