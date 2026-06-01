@@ -13,7 +13,7 @@
   },
   "then": {
     "type": "runCommand",
-    "command": "cd \"c:\\Users\\Casa\\Desktop\\J.A.P\\workspace\\proyecto\" && git add . && git commit -m \"Auto-update: cambios guardados\" && git push",
+    "command": "git -C \"c:\\Users\\Casa\\Desktop\\J.A.P\\workspace\\proyecto\" add . & git -C \"c:\\Users\\Casa\\Desktop\\J.A.P\\workspace\\proyecto\" commit -m \"Auto-update: cambios guardados\" & git -C \"c:\\Users\\Casa\\Desktop\\J.A.P\\workspace\\proyecto\" push",
     "timeout": 30
   }
 }
