@@ -431,6 +431,65 @@
       }
     });
 
+    // ── Perfil Popup ──
+    const GRUPO_NOMBRES = {
+      matematica: '🧮 Matemática', ciencias: '🔬 Ciencias',
+      historia: '🌍 Historia', english: '🇬🇧 English',
+      tecnologia: '💻 Tecnología', comunicacion: '📖 Comunicación'
+    };
+    const BANNER_COLORS = ['#7c3aed,#2563eb','#16a34a,#0f766e','#d97706,#b45309','#0284c7,#0369a1','#c026d3,#7c3aed','#2563eb,#1d4ed8'];
+
+    async function openPerfilPopup(uid) {
+      const overlay = document.getElementById('perfilOverlay');
+      // Reset
+      document.getElementById('perfilName').textContent = 'Cargando...';
+      document.getElementById('perfilGrado').textContent = '';
+      document.getElementById('perfilRacha').textContent = '—';
+      document.getElementById('perfilHoras').textContent = '—';
+      document.getElementById('perfilJuegos').textContent = '—';
+      document.getElementById('perfilGrupos').innerHTML = '';
+      document.getElementById('perfilInsignias').innerHTML = '';
+      overlay.classList.add('open');
+
+      try {
+        const snap = await getDoc(doc(db, 'usuarios', uid));
+        if (!snap.exists()) { document.getElementById('perfilName').textContent = 'Usuario no encontrado'; return; }
+        const d = snap.data();
+        const nombre = d.nombre || d.displayName || uid.slice(0,8);
+        const colorIdx = uid.charCodeAt(0) % BANNER_COLORS.length;
+
+        document.getElementById('perfilBanner').style.background = `linear-gradient(135deg, ${BANNER_COLORS[colorIdx]})`;
+        document.getElementById('perfilAvatar').src = avatarUrl(nombre);
+        document.getElementById('perfilName').textContent = nombre;
+        document.getElementById('perfilGrado').textContent = [d.grado, d.colegio].filter(Boolean).join(' · ') || 'Estudiante';
+        document.getElementById('perfilRacha').textContent = d.rachaActual ?? 0;
+        document.getElementById('perfilHoras').textContent = d.horasEstudio ?? 0;
+        document.getElementById('perfilJuegos').textContent = d.juegosCompletados ?? 0;
+
+        // Grupos
+        const grupos = d.grupos || [];
+        document.getElementById('perfilGrupos').innerHTML = grupos.length
+          ? grupos.map(g => `<span class="perfil-grupo-tag">${GRUPO_NOMBRES[g] || g}</span>`).join('')
+          : '<span style="font-size:.82rem;color:var(--text-muted)">Sin grupos</span>';
+
+        // Insignias
+        const insignias = d.insignias || [];
+        document.getElementById('perfilInsignias').innerHTML = insignias.length
+          ? insignias.map(i => `<span class="perfil-insignia">${i.icono} ${i.nombre}</span>`).join('')
+          : '<span style="font-size:.82rem;color:var(--text-muted)">Sin insignias aún</span>';
+      } catch(e) {
+        document.getElementById('perfilName').textContent = 'Error al cargar';
+      }
+    }
+
+    document.getElementById('perfilClose').addEventListener('click', () => {
+      document.getElementById('perfilOverlay').classList.remove('open');
+    });
+    document.getElementById('perfilOverlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('perfilOverlay'))
+        document.getElementById('perfilOverlay').classList.remove('open');
+    });
+
     loadFeed();
     loadMembersList();
   </script>
