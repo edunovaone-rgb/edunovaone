@@ -3,10 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Recursos educativos para 3° de Secundaria en EduNova Library." />
   <title>3° Secundaria | EduNova Library</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .grado-hero { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(37,99,235,0.06)); border-radius: 2rem; padding: 2rem; margin-bottom: 1.75rem; display: flex; align-items: center; gap: 1.5rem; }
+    .grado-hero-badge { width: 5rem; height: 5rem; border-radius: 1.5rem; background: linear-gradient(135deg,#7c3aed,#2563eb); color: #fff; font-size: 2rem; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .grado-hero-info h1 { margin: 0 0 .4rem; font-size: clamp(1.4rem,2.5vw,2rem); color: var(--accent-strong); }
+    .grado-hero-info p { margin: 0; color: var(--text-muted); font-size: .95rem; }
+    .materias-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1.25rem; }
+    .materia-card { background: #fff; border: 1px solid rgba(59,130,246,0.1); border-radius: 1.75rem; padding: 1.5rem; box-shadow: 0 12px 28px rgba(15,23,42,0.05); display: flex; flex-direction: column; gap: .75rem; transition: transform .2s, box-shadow .2s; }
+    .materia-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(99,102,241,0.12); }
+    .materia-icon { width: 3rem; height: 3rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .materia-card h3 { margin: 0; font-size: 1rem; color: var(--accent-strong); }
+    .materia-card p { margin: 0; font-size: .88rem; color: var(--text-muted); line-height: 1.5; flex: 1; }
+    .materia-recursos { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .recurso-tag { padding: .25rem .7rem; border-radius: 999px; font-size: .75rem; font-weight: 700; background: rgba(99,102,241,0.08); color: var(--accent-strong); }
+    .materia-actions { display: flex; gap: .65rem; margin-top: .25rem; }
+    .section-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+    .tips-card { background: linear-gradient(135deg,rgba(16,185,129,0.07),rgba(37,99,235,0.04)); border: 1px solid rgba(16,185,129,0.15); border-radius: 1.5rem; padding: 1.4rem; }
+    .tips-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
+    .tips-list li { display: flex; align-items: flex-start; gap: .65rem; font-size: .9rem; color: var(--text-muted); }
+    .tips-list li span { font-size: 1rem; flex-shrink: 0; }
+  </style>
 </head>
 <body>
-  <!-- Contenido de 3° Secundaria — pendiente -->
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="uni-nav-brand-text"><strong>EduNova</strong><span>Library</span></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav style="margin-bottom:1rem;font-size:.9rem">
+      <a href="biblioteca.html" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a Biblioteca</a>
+    </nav>
+
+    <div class="grado-hero">
+      <div class="grado-hero-badge">3°</div>
+      <div class="grado-hero-info">
+        <h1>3° de Secundaria</h1>
+        <p>Recursos, libros y materiales para tu tercer año de secundaria.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Materias disponibles</h2>
+    <div class="materias-grid">
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(124,58,237,0.1)">📐</div>
+        <h3>Matemática</h3>
+        <p>Geometría plana, trigonometría básica, sistemas de ecuaciones y funciones lineales.</p>
+        <div class="materia-recursos">
+          <span class="recurso-tag">PDF</span>
+          <span class="recurso-tag">7 recursos</span>
+        </div>
+        <div class="materia-actions">
+          <a href="biblioteca.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver recursos</a>
+        </div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(16,185,129,0.1)">⚗️</div>
+        <h3>Ciencia y Tecnología</h3>
+        <p>Química inorgánica, tabla periódica, reacciones químicas y física básica.</p>
+        <div class="materia-recursos">
+          <span class="recurso-tag">PDF</span>
+          <span class="recurso-tag">6 recursos</span>
+        </div>
+        <div class="materia-actions">
+          <a href="biblioteca.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver recursos</a>
+        </div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(239,68,68,0.1)">📖</div>
+        <h3>Comunicación</h3>
+        <p>Literatura peruana e hispanoamericana, análisis literario y redacción académica.</p>
+        <div class="materia-recursos">
+          <span class="recurso-tag">PDF</span>
+          <span class="recurso-tag">5 recursos</span>
+        </div>
+        <div class="materia-actions">
+          <a href="biblioteca.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver recursos</a>
+        </div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(217,119,6,0.1)">🏛️</div>
+        <h3>Historia, Geografía y Economía</h3>
+        <p>Historia del Perú colonial, independencia americana y geografía regional.</p>
+        <div class="materia-recursos">
+          <span class="recurso-tag">Libro</span>
+          <span class="recurso-tag">4 recursos</span>
+        </div>
+        <div class="materia-actions">
+          <a href="biblioteca.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver recursos</a>
+        </div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(37,99,235,0.1)">🇬🇧</div>
+        <h3>Inglés</h3>
+        <p>Tiempos verbales, pasado simple, futuro, vocabulario temático y escritura básica.</p>
+        <div class="materia-recursos">
+          <span class="recurso-tag">PDF</span>
+          <span class="recurso-tag">5 recursos</span>
+        </div>
+        <div class="materia-actions">
+          <a href="biblioteca.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver recursos</a>
+        </div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(192,38,211,0.1)">🎨</div>
+        <h3>Arte y Cultura</h3>
+        <p>Historia del arte, expresión artística, música y patrimonio cultural peruano.</p>
+        <div class="materia-recursos">
+          <span class="recurso-tag">PDF</span>
+          <span class="recurso-tag">3 recursos</span>
+        </div>
+        <div class="materia-actions">
+          <a href="biblioteca.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver recursos</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tips-card" style="margin-top:2rem">
+      <h3 class="section-title" style="margin-bottom:.85rem">💡 Consejos para 3° de Secundaria</h3>
+      <ul class="tips-list">
+        <li><span>📐</span>En geometría, dibuja siempre las figuras antes de resolver para visualizar mejor el problema.</li>
+        <li><span>⚗️</span>Memoriza los primeros 20 elementos de la tabla periódica con nemotecnias.</li>
+        <li><span>📚</span>Lee las obras literarias completas, no solo los resúmenes, para el análisis.</li>
+        <li><span>🗺️</span>Usa mapas mentales para organizar los eventos históricos cronológicamente.</li>
+        <li><span>🎯</span>Este año es clave para consolidar bases antes de los últimos años de secundaria.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-2.html" class="button button-secondary">← 2° Secundaria</a>
+      <a href="grado-4.html" class="button button-primary">4° Secundaria →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
 </body>
 </html>
