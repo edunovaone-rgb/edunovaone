@@ -218,6 +218,12 @@
       const count  = gSnap && gSnap.exists() ? (gSnap.data().miembros||[]).length : 0;
       if (count > 0) document.getElementById('memberCount').textContent = `👥 ${count} miembros`;
       if (grupos.includes(GID)) {
+        const miembrosActuales = gSnap && gSnap.exists() ? (gSnap.data().miembros||[]) : [];
+        if (!miembrosActuales.includes(user.uid)) {
+          setDoc(gRef, { nombre:GNAME, icon:GICON, color:GCOLOR, miembros: arrayUnion(user.uid) }, { merge: true }).catch(()=>{});
+        }
+        const realCount = miembrosActuales.includes(user.uid) ? miembrosActuales.length : miembrosActuales.length + 1;
+        if (realCount > 0) document.getElementById('memberCount').textContent = `👥 ${realCount} miembro${realCount !== 1 ? 's' : ''}`;
         card.innerHTML = `<p style="color:#16a34a;font-weight:700;text-align:center;margin:0 0 .75rem">✓ Ya eres miembro</p><button class="leave-btn" id="leaveBtn">Salirse del grupo</button>`;
         document.getElementById('leaveBtn').onclick = async () => {
           if (!confirm('¿Seguro?')) return;
@@ -225,13 +231,13 @@
             updateDoc(uRef,{grupos:arrayRemove(GID)}).catch(()=>{}),
             updateDoc(gRef,{miembros:arrayRemove(user.uid)}).catch(()=>{})
           ]);
-          renderJoinCard(user); renderPostForm(user, false); renderForoInput(user, false);
+          renderJoinCard(user); renderPostForm(user, false); renderForoInput(user, false); loadMembersList();
         };
-        // Render post form for already-member with correct rol
         getDoc(uRef).then(snap => {
           const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
           renderPostForm(user, true, rol);
           renderForoInput(user, true);
+          loadMembersList();
         }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); });
       } else {
         card.innerHTML = `<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar en las discusiones</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#d97706,#b45309);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Unirse al grupo</button>`;
