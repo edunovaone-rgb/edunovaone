@@ -503,6 +503,9 @@
               ]);
               btn.textContent = '✓ Unido';
               btn.classList.add('joined');
+              // Actualizar grupos del usuario y refrescar área de publicación
+              currentUserGroups = [...currentUserGroups, gid];
+              await renderNewPostArea(user);
             } catch (err) {
               console.error('Error al unirse:', err);
               btn.disabled = false;
