@@ -503,6 +503,106 @@
       });
     }
 
+    // ── Tabs Libros | Resúmenes ──
+    let resumenesLoaded = false;
+    document.querySelectorAll('.bib-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('bibtab-' + btn.dataset.bibtab).classList.add('active');
+
+        // Cargar resúmenes la primera vez
+        if (btn.dataset.bibtab === 'resumenes' && !resumenesLoaded) {
+          resumenesLoaded = true;
+          fetch('resumenes.html')
+            .then(r => r.text())
+            .then(html => {
+              // Extraer solo el main content
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              const main = doc.querySelector('.resumenes-main');
+              if (main) {
+                document.getElementById('resumenesContent').innerHTML = main.innerHTML;
+                // Re-ejecutar scripts de resúmenes
+                initResumenes();
+              }
+            })
+            .catch(() => {
+              document.getElementById('resumenesContent').innerHTML =
+                '<p style="text-align:center;color:var(--text-muted);padding:2rem;">No se pudo cargar los resúmenes.</p>';
+            });
+        }
+      });
+    });
+
+    function initResumenes() {
+      const AREAS = {
+        matematica:   { nombre: 'Matemática' },
+        ciencia:      { nombre: 'Ciencia' },
+        historia:     { nombre: 'Historia' },
+        comunicacion: { nombre: 'Comunicación' },
+        ingles:       { nombre: 'Inglés' }
+      };
+
+      function gradeBtnsHTML() {
+        return `<div class="grade-selector">
+          <span class="grade-selector-label">Selecciona tu grado:</span>
+          <div class="grade-btns-row">
+            <button class="res-grade-btn active" data-grado="1">1°</button>
+            <button class="res-grade-btn" data-grado="2">2°</button>
+            <button class="res-grade-btn" data-grado="3">3°</button>
+            <button class="res-grade-btn" data-grado="4">4°</button>
+            <button class="res-grade-btn" data-grado="5">5°</button>
+          </div>
+        </div>
+        <div class="grade-content">
+          <div class="placeholder-panel">📝 El contenido de este grado estará disponible próximamente.</div>
+        </div>`;
+      }
+
+      const areaSelector = document.getElementById('areaSelector');
+      const resumePanel  = document.getElementById('resumePanel');
+      if (!areaSelector) return;
+
+      document.querySelectorAll('.area-card').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const area = btn.dataset.area;
+          const data = AREAS[area];
+          areaSelector.style.display = 'none';
+          resumePanel.style.display  = 'grid';
+          document.getElementById('breadcrumbArea').textContent = data.nombre;
+          document.getElementById('areaContent').innerHTML = gradeBtnsHTML();
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          document.getElementById('tab-resumen').classList.add('active');
+
+          document.querySelectorAll('.res-grade-btn').forEach(gb => {
+            gb.addEventListener('click', () => {
+              document.querySelectorAll('.res-grade-btn').forEach(b => b.classList.remove('active'));
+              gb.classList.add('active');
+              document.querySelector('.grade-content').innerHTML =
+                `<div class="placeholder-panel">📝 El contenido de ${data.nombre} para ${gb.dataset.grado}° grado estará disponible próximamente.</div>`;
+            });
+          });
+        });
+      });
+
+      document.getElementById('backToAreas').addEventListener('click', () => {
+        resumePanel.style.display  = 'none';
+        areaSelector.style.display = 'grid';
+      });
+
+      document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          document.getElementById('tab-' + link.dataset.tab).classList.add('active');
+        });
+      });
+    }
+
     // ── Filtros rápidos ──
     // Orden definido para cada criterio (índice = posición preferida)
     const SORT_ORDER = {
