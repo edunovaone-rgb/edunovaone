@@ -248,7 +248,8 @@
               const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
               renderPostForm(user, true, rol);
               renderForoInput(user, true);
-            }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); });
+              loadMembersList();
+            }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); loadMembersList(); });
           } catch(e) {
             btn.disabled = false; btn.textContent = 'Unirse al grupo';
           }
