@@ -966,6 +966,157 @@
       });
     });
   </script>
-  <script type="module" src="auth-nav.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const _app = initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+
+    const _auth = getAuth(_app);
+    const _db   = getFirestore(_app);
+
+    // Iconos por materia
+    const MATERIA_ICON = {
+      matematica:   '📗',
+      ciencia:      '📘',
+      historia:     '📙',
+      comunicacion: '📕',
+      ingles:       '📒',
+      tecnologia:   '💻',
+    };
+
+    // ── Actualiza el navbar ──
+    function updateNavBtn(user) {
+      const btn = document.getElementById('navAuthBtn');
+      if (!btn) return;
+      if (user) {
+        const nombre = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
+        btn.textContent = `👤 ${nombre}`;
+        btn.href = 'perfil.html';
+        btn.style.background = 'rgba(99,102,241,0.1)';
+        btn.style.color = 'var(--accent-strong)';
+        btn.style.boxShadow = 'none';
+        btn.style.border = '1px solid rgba(99,102,241,0.2)';
+      } else {
+        btn.textContent = 'Iniciar sesión';
+        btn.href = 'login.html';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.boxShadow = '';
+        btn.style.border = '';
+      }
+    }
+
+    // ── Renderiza el historial en el panel ──
+    function renderHistorial(historial) {
+      const loading  = document.getElementById('actividadLoading');
+      const noAuth   = document.getElementById('actividadNoAuth');
+      const authDiv  = document.getElementById('actividadAuth');
+      const vacio    = document.getElementById('actividadVacio');
+      const list     = document.getElementById('historialList');
+
+      loading.style.display = 'none';
+      noAuth.style.display  = 'none';
+
+      if (!historial || historial.length === 0) {
+        authDiv.style.display = 'none';
+        vacio.style.display   = 'block';
+        return;
+      }
+
+      // Mostrar los últimos 5 vistos (más reciente primero)
+      const recientes = [...historial].reverse().slice(0, 5);
+      list.innerHTML = recientes.map(item => {
+        const icon = MATERIA_ICON[item.materia] || '📚';
+        return `<li><span class="activity-icon">${icon}</span>${item.titulo}</li>`;
+      }).join('');
+
+      authDiv.style.display = 'block';
+      vacio.style.display   = 'none';
+    }
+
+    // ── Guarda un libro en el historial del usuario ──
+    async function registrarLectura(user, bookData) {
+      if (!user) return;
+      try {
+        const ref = doc(_db, 'usuarios', user.uid);
+        const snap = await getDoc(ref);
+
+        const entrada = {
+          titulo:  bookData.titulo,
+          materia: bookData.materia,
+          grado:   bookData.grado,
+          tipo:    bookData.tipo,
+          fecha:   new Date().toISOString()
+        };
+
+        if (snap.exists()) {
+          // Evitar duplicados: quitar entrada anterior con mismo título y agregar la nueva al final
+          const historialActual = snap.data().historial || [];
+          const sinDuplicado = historialActual.filter(h => h.titulo !== entrada.titulo);
+          sinDuplicado.push(entrada);
+          // Guardar solo los últimos 20
+          const historialFinal = sinDuplicado.slice(-20);
+          await updateDoc(ref, { historial: historialFinal });
+          renderHistorial(historialFinal);
+        }
+      } catch (err) {
+        console.warn('No se pudo guardar en historial:', err);
+      }
+    }
+
+    // ── Carga el historial del usuario ──
+    async function cargarHistorial(user) {
+      try {
+        const snap = await getDoc(doc(_db, 'usuarios', user.uid));
+        const historial = snap.exists() ? (snap.data().historial || []) : [];
+        renderHistorial(historial);
+      } catch (err) {
+        console.warn('No se pudo cargar el historial:', err);
+        renderHistorial([]);
+      }
+    }
+
+    // ── Escucha cambios de sesión ──
+    let currentUser = null;
+
+    onAuthStateChanged(_auth, (user) => {
+      currentUser = user;
+      updateNavBtn(user);
+
+      const loading = document.getElementById('actividadLoading');
+      const noAuth  = document.getElementById('actividadNoAuth');
+
+      if (user) {
+        cargarHistorial(user);
+      } else {
+        loading.style.display = 'none';
+        noAuth.style.display  = 'block';
+      }
+    });
+
+    // ── Intercepta clics en "Leer" para registrar en historial ──
+    document.getElementById('booksSection').addEventListener('click', (e) => {
+      const link = e.target.closest('a.button-primary');
+      if (!link) return;
+      const card = link.closest('.book-card');
+      if (!card || !currentUser) return;
+
+      registrarLectura(currentUser, {
+        titulo:  card.dataset.titulo  || 'Libro',
+        materia: card.dataset.materia || '',
+        grado:   card.dataset.grado   || '',
+        tipo:    card.dataset.tipo    || ''
+      });
+    });
+  </script>
 </body>
 </html>
