@@ -750,10 +750,13 @@
     });
 
     // Sidebar y footer → activar pestaña Resúmenes
-    document.getElementById('sidebarResumenesBtn').addEventListener('click', (e) => {
-      e.preventDefault();
-      activarTabResumenes();
-    });
+    const sidebarResumenesBtn = document.getElementById('sidebarResumenesBtn');
+    if (sidebarResumenesBtn) {
+      sidebarResumenesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        activarTabResumenes();
+      });
+    }
     document.getElementById('footerResumenesBtn').addEventListener('click', () => {
       activarTabResumenes();
     });
