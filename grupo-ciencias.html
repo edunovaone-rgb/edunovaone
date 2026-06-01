@@ -397,7 +397,7 @@
           const nombre = s && s.exists() ? (s.data().displayName || s.data().nombre || uid.slice(0,8)) : uid.slice(0,8);
           const grado  = s && s.exists() ? (s.data().grado || '') : '';
           const ini    = nombre.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-          return `<li class="miembro-item">
+          return `<li class="miembro-item" onclick="openPerfilPopup('${uid}')">
             <div class="miembro-avatar"><img src="${avatarUrl(nombre)}" alt="${ini}" loading="lazy" /></div>
             <div class="miembro-info"><strong>${nombre}</strong><span>${grado || 'Estudiante'}</span></div>
           </li>`;
