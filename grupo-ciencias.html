@@ -397,13 +397,13 @@
           const nombre = s && s.exists() ? (s.data().displayName || s.data().nombre || uid.slice(0,8)) : uid.slice(0,8);
           const grado  = s && s.exists() ? (s.data().grado || '') : '';
           const ini    = nombre.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-          return `<li class="miembro-item" data-uid="${uid}">
+          return `<li class="miembro-item" data-uid="${uid}" data-nombre="${nombre}" data-grado="${grado}">
             <div class="miembro-avatar"><img src="${avatarUrl(nombre)}" alt="${ini}" loading="lazy" /></div>
             <div class="miembro-info"><strong>${nombre}</strong><span>${grado || 'Estudiante'}</span></div>
           </li>`;
         }).join('');
         list.querySelectorAll('.miembro-item[data-uid]').forEach(li => {
-          li.addEventListener('click', () => openPerfilPopup(li.dataset.uid));
+          li.addEventListener('click', () => openPerfilPopup(li.dataset.uid, li.dataset.nombre, li.dataset.grado));
         });
         if (uids.length > 8) {
           list.innerHTML += `<li style="color:var(--text-muted);font-size:.8rem;text-align:center;padding:.4rem">+${uids.length - 8} más</li>`;
