@@ -1,0 +1,486 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Crear cuenta en EduNova Library" />
+  <title>Crear cuenta | EduNova</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 15% 60%, rgba(124,58,237,0.16) 0%, transparent 50%),
+                  radial-gradient(ellipse at 85% 15%, rgba(192,38,211,0.12) 0%, transparent 45%),
+                  radial-gradient(ellipse at 75% 85%, rgba(244,63,94,0.1) 0%, transparent 40%),
+                  #f5f3ff;
+      padding: 2rem 1rem;
+    }
+
+    .auth-wrapper {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .auth-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      align-self: flex-start;
+    }
+
+    .auth-brand img { width: 42px; height: 42px; }
+
+    .auth-brand-text strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--accent-strong);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .auth-brand-text span {
+      font-size: 0.68rem;
+      color: #c026d3;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .auth-card-new {
+      width: 100%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 24px 60px rgba(99,102,241,0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-card-new::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(192,38,211,0.07);
+      pointer-events: none;
+    }
+
+    .auth-card-title {
+      text-align: center;
+      margin: 0;
+      font-size: 1.7rem;
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+
+    .auth-card-sub {
+      text-align: center;
+      margin: -0.75rem 0 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Grid 2 columnas */
+    .reg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .auth-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .auth-input-icon {
+      position: absolute;
+      left: 1rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .auth-input-wrap input,
+    .auth-input-wrap select {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1.5px solid rgba(148,163,184,0.3);
+      border-radius: 1rem;
+      background: #fafbff;
+      font-size: 0.93rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      appearance: none;
+    }
+
+    .auth-input-wrap.no-icon input,
+    .auth-input-wrap.no-icon select {
+      padding-left: 1rem;
+    }
+
+    .auth-input-wrap input:focus,
+    .auth-input-wrap select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(109,40,217,0.1);
+    }
+
+    .auth-input-wrap input::placeholder { color: #94a3b8; }
+
+    .auth-eye {
+      position: absolute;
+      right: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-muted);
+      padding: 0;
+    }
+
+    /* Select arrow */
+    .select-arrow {
+      position: absolute;
+      right: 1rem;
+      pointer-events: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* Checkbox */
+    .reg-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .reg-checkbox input[type="checkbox"] {
+      width: 1.2rem;
+      height: 1.2rem;
+      border: 1.5px solid rgba(148,163,184,0.4);
+      border-radius: 0.35rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+    }
+
+    .reg-checkbox a {
+      color: var(--accent-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .auth-btn-main {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+    }
+
+    .auth-btn-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(99,102,241,0.4);
+    }
+
+    .auth-note {
+      text-align: center;
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .auth-note a {
+      color: var(--accent-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Validación */
+    .auth-input-wrap input.invalid,
+    .auth-input-wrap select.invalid {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important;
+    }
+    .auth-input-wrap input.valid,
+    .auth-input-wrap select.valid {
+      border-color: #22c55e !important;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.1) !important;
+    }
+    .field-error {
+      font-size: 0.78rem;
+      color: #ef4444;
+      margin: -0.4rem 0 0 0.25rem;
+      display: none;
+    }
+    .field-error.show { display: block; }
+
+    @media (max-width: 520px) {
+      .auth-card-new { padding: 1.75rem 1.25rem; border-radius: 1.5rem; }
+      .reg-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-wrapper">
+
+    <a href="index.html" class="auth-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="auth-brand-text">
+        <strong>EduNova</strong>
+        <span>Library</span>
+      </div>
+    </a>
+
+    <a href="index.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.9rem;font-weight:600;text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;background:rgba(255,255,255,0.8);border:1px solid rgba(148,163,184,0.25);transition:color 0.2s,background 0.2s;" onmouseover="this.style.color='var(--accent-strong)'" onmouseout="this.style.color='var(--text-muted)'">
+      ← Volver al inicio
+    </a>
+
+    <div class="auth-card-new">
+      <h1 class="auth-card-title">Crear cuenta</h1>
+      <p class="auth-card-sub">Únete a miles de estudiantes</p>
+
+      <form id="regForm" novalidate>
+        <div style="display:grid;gap:0.85rem;">
+
+          <div class="reg-grid">
+            <div style="display:grid;gap:0.2rem;">
+              <div class="auth-input-wrap no-icon">
+                <input type="text" id="regName" placeholder="Nombre completo" required />
+              </div>
+              <p class="field-error" id="regNameErr">Ingresa tu nombre completo</p>
+            </div>
+            <div style="display:grid;gap:0.2rem;">
+              <div class="auth-input-wrap no-icon">
+                <input type="email" id="regEmail" placeholder="Correo electrónico" required />
+              </div>
+              <p class="field-error" id="regEmailErr">Ingresa un correo válido (ej: nombre@dominio.com)</p>
+            </div>
+            <div style="display:grid;gap:0.2rem;">
+              <div class="auth-input-wrap no-icon">
+                <input type="password" id="regPass" placeholder="Contraseña" required />
+                <button type="button" class="auth-eye" onclick="togglePass('regPass', this)">👁️</button>
+              </div>
+              <p class="field-error" id="regPassErr">Mínimo 6 caracteres</p>
+            </div>
+            <div style="display:grid;gap:0.2rem;">
+              <div class="auth-input-wrap no-icon">
+                <input type="password" id="regPass2" placeholder="Confirmar contraseña" required />
+                <button type="button" class="auth-eye" onclick="togglePass('regPass2', this)">👁️</button>
+              </div>
+              <p class="field-error" id="regPass2Err">Las contraseñas no coinciden</p>
+            </div>
+          </div>
+
+          <!-- Colegio y Grado -->
+          <div class="reg-grid">
+            <div style="display:grid;gap:0.2rem;">
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">🏫</span>
+                <select id="regSchool" required>
+                  <option value="" disabled selected>Colegio</option>
+                  <option>Instituto Tecnológico</option>
+                  <option>Colegio San Andrés</option>
+                  <option>Colegio San José</option>
+                  <option>Academia Nova</option>
+                </select>
+                <span class="select-arrow">▼</span>
+              </div>
+              <p class="field-error" id="regSchoolErr">Selecciona tu colegio</p>
+            </div>
+            <div style="display:grid;gap:0.2rem;">
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">🎓</span>
+                <select id="regGrade" required>
+                  <option value="" disabled selected>Grado / Nivel</option>
+                  <option>1° Secundaria</option>
+                  <option>2° Secundaria</option>
+                  <option>3° Secundaria</option>
+                  <option>4° Secundaria</option>
+                  <option>5° Secundaria</option>
+                </select>
+                <span class="select-arrow">▼</span>
+              </div>
+              <p class="field-error" id="regGradeErr">Selecciona tu grado</p>
+            </div>
+          </div>
+
+          <label class="reg-checkbox">
+            <input type="checkbox" id="regTerms" required />
+            Acepto los <a href="terminos.html" target="_blank" style="color:var(--accent-strong);font-weight:700;text-decoration:none;">términos y condiciones</a>
+          </label>
+          <p class="field-error" id="regTermsErr">Debes aceptar los términos</p>
+
+          <button type="submit" class="auth-btn-main">Crear cuenta</button>
+        </div>
+      </form>
+
+      <p class="auth-note">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ── Helpers ──
+    function togglePass(id, btn) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+      btn.textContent = input.type === 'password' ? '👁️' : '🙈';
+    }
+    window.togglePass = togglePass;
+
+    function setField(id, errId, isValid, msg) {
+      const input = document.getElementById(id);
+      const err   = document.getElementById(errId);
+      input.classList.toggle('invalid', !isValid);
+      input.classList.toggle('valid',    isValid);
+      if (err) {
+        if (msg) err.textContent = msg;
+        err.classList.toggle('show', !isValid);
+      }
+      return isValid;
+    }
+
+    function showFormError(msg) {
+      let el = document.getElementById('firebaseErr');
+      if (!el) {
+        el = document.createElement('p');
+        el.id = 'firebaseErr';
+        el.style.cssText = 'color:#ef4444;font-size:0.85rem;text-align:center;margin:0;';
+        document.querySelector('.auth-btn-main').before(el);
+      }
+      el.textContent = msg;
+    }
+
+    function setBtnLoading(loading) {
+      const btn = document.querySelector('.auth-btn-main');
+      btn.disabled = loading;
+      btn.textContent = loading ? 'Creando cuenta...' : 'Crear cuenta';
+    }
+
+    // ── Dominios permitidos ──
+    const DOMINIOS_OK = [
+      'gmail.com','hotmail.com','outlook.com','yahoo.com','yahoo.es',
+      'icloud.com','aol.com','proton.me','protonmail.com','tuta.com',
+      'tutanota.com','zoho.com','live.com','msn.com','outlook.es',
+      'hotmail.es','yandex.com','mail.ru'
+    ];
+
+    function emailValido(val) {
+      const partes = val.toLowerCase().split('@');
+      if (partes.length !== 2) return false;
+      const d = partes[1];
+      if (DOMINIOS_OK.includes(d)) return true;
+      if (/\.(edu|gob|gov)(\.[\w]{2,4})?$/.test(d)) return true;
+      if (/\.com$/.test(d)) return true;
+      return false;
+    }
+
+    // ── Validación en tiempo real ──
+    document.getElementById('regName').addEventListener('input', function() {
+      setField('regName', 'regNameErr', this.value.trim().length >= 2);
+    });
+    document.getElementById('regEmail').addEventListener('input', function() {
+      setField('regEmail', 'regEmailErr', emailValido(this.value),
+        'Usa un correo válido: gmail.com, hotmail.com, outlook.com, etc.');
+    });
+    document.getElementById('regPass').addEventListener('input', function() {
+      setField('regPass', 'regPassErr', this.value.length >= 6);
+      const p2 = document.getElementById('regPass2');
+      if (p2.value) setField('regPass2', 'regPass2Err', p2.value === this.value, 'Las contraseñas no coinciden');
+    });
+    document.getElementById('regPass2').addEventListener('input', function() {
+      const p1 = document.getElementById('regPass').value;
+      setField('regPass2', 'regPass2Err', this.value === p1 && this.value.length > 0, 'Las contraseñas no coinciden');
+    });
+    document.getElementById('regSchool').addEventListener('change', function() {
+      setField('regSchool', 'regSchoolErr', this.value !== '');
+    });
+    document.getElementById('regGrade').addEventListener('change', function() {
+      setField('regGrade', 'regGradeErr', this.value !== '');
+    });
+
+    // ── Registro ──
+    document.getElementById('regForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name   = document.getElementById('regName').value.trim();
+      const email  = document.getElementById('regEmail').value;
+      const pass   = document.getElementById('regPass').value;
+      const pass2  = document.getElementById('regPass2').value;
+      const school = document.getElementById('regSchool').value;
+      const grade  = document.getElementById('regGrade').value;
+      const terms  = document.getElementById('regTerms').checked;
+
+      const ok = [
+        setField('regName',   'regNameErr',   name.length >= 2),
+        setField('regEmail',  'regEmailErr',  emailValido(email)),
+        setField('regPass',   'regPassErr',   pass.length >= 6),
+        setField('regPass2',  'regPass2Err',  pass2 === pass && pass2.length > 0, 'Las contraseñas no coinciden'),
+        setField('regSchool', 'regSchoolErr', school !== ''),
+        setField('regGrade',  'regGradeErr',  grade  !== ''),
+      ].every(Boolean);
+
+      document.getElementById('regTermsErr').classList.toggle('show', !terms);
+      if (!ok || !terms) return;
+
+      setBtnLoading(true);
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        await updateProfile(cred.user, { displayName: name });
+        window.location.href = 'index.html';
+      } catch (err) {
+        const msgs = {
+          'auth/email-already-in-use': 'Ya existe una cuenta con ese correo.',
+          'auth/weak-password':        'La contraseña es muy débil (mínimo 6 caracteres).',
+          'auth/invalid-email':        'El correo no es válido.',
+        };
+        showFormError(msgs[err.code] || 'Error al crear la cuenta. Intenta de nuevo.');
+      } finally {
+        setBtnLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>

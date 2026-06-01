@@ -1,0 +1,500 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Comunidad EduNova: colabora con otros estudiantes y comparte recursos." />
+  <title>EduNova Library | Comunidad</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .comunidad-grid{display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:1.75rem;align-items:start;margin-top:1.5rem;}
+    .comunidad-sidebar{background:#fff;border:1px solid rgba(59,130,246,0.08);border-radius:2rem;padding:1.5rem;box-shadow:0 24px 50px rgba(15,23,42,0.06);display:flex;flex-direction:column;gap:0;}
+    .comunidad-main{display:grid;gap:1.5rem;}
+    .comunidad-hero-card{background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(37,99,235,0.05));border:1px solid rgba(16,185,129,0.14);border-radius:2rem;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;}
+    .comunidad-hero-card h2{margin:0 0 .75rem;color:var(--accent-strong);font-size:clamp(1.4rem,2vw,2rem);}
+    .comunidad-hero-card p{margin:0 0 1.25rem;color:var(--text-muted);line-height:1.7;}
+    .comunidad-hero-img{width:140px;height:140px;}
+    .comunidad-section-title{margin:0 0 1rem;font-size:1.1rem;color:var(--text);font-weight:700;}
+    /* New post form */
+    .new-post-card{background:#fff;border:1px solid rgba(99,102,241,0.15);border-radius:1.5rem;padding:1.25rem 1.4rem;box-shadow:0 8px 24px rgba(15,23,42,0.05);}
+    .new-post-header{display:flex;align-items:center;gap:.85rem;margin-bottom:.85rem;}
+    .new-post-avatar{width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#fff;flex-shrink:0;background:var(--accent);}
+    .new-post-input{width:100%;padding:.85rem 1rem;border:1.5px solid rgba(148,163,184,0.25);border-radius:1rem;font-size:.93rem;color:var(--text);background:#fafbff;outline:none;resize:vertical;min-height:80px;font-family:inherit;box-sizing:border-box;}
+    .new-post-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(109,40,217,0.08);}
+    .new-post-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.75rem;flex-wrap:wrap;}
+    .tag-select{padding:.55rem .9rem;border:1.5px solid rgba(148,163,184,0.25);border-radius:.75rem;font-size:.88rem;color:var(--text);background:#fafbff;outline:none;}
+    .post-submit-btn{padding:.65rem 1.4rem;border:none;border-radius:999px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-weight:700;font-size:.9rem;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+    .post-submit-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(99,102,241,0.3);}
+    .post-submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+    .login-prompt{text-align:center;padding:1rem;color:var(--text-muted);font-size:.9rem;background:#f8fbff;border-radius:1rem;border:1px solid rgba(148,163,184,0.15);}
+    .login-prompt a{color:var(--accent-strong);font-weight:700;text-decoration:none;}
+    /* Posts */
+    .posts-list{display:grid;gap:1.25rem;}
+    .post-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem 1.4rem;box-shadow:0 12px 28px rgba(15,23,42,0.04);}
+    .post-top{display:flex;gap:1rem;align-items:flex-start;}
+    .post-avatar{width:2.8rem;height:2.8rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:#fff;flex-shrink:0;}
+    .post-body{flex:1;min-width:0;}
+    .post-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap;}
+    .post-author{font-weight:700;font-size:.9rem;color:var(--text);}
+    .post-time{font-size:.78rem;color:var(--text-muted);}
+    .post-tag{padding:.2rem .6rem;border-radius:999px;background:rgba(99,102,241,0.08);color:var(--accent-strong);font-size:.75rem;font-weight:700;}
+    .post-text{margin:0 0 .75rem;font-size:.92rem;color:var(--text-muted);line-height:1.6;}
+    .post-actions{display:flex;gap:.75rem;align-items:center;}
+    .like-btn{display:inline-flex;align-items:center;gap:.35rem;background:none;border:1px solid rgba(148,163,184,0.25);border-radius:999px;padding:.35rem .85rem;font-size:.82rem;color:var(--text-muted);cursor:pointer;transition:all .2s;}
+    .like-btn:hover{border-color:rgba(239,68,68,0.4);color:#ef4444;}
+    .like-btn.liked{background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.35);color:#ef4444;font-weight:700;}
+    .comment-toggle-btn{display:inline-flex;align-items:center;gap:.35rem;background:none;border:1px solid rgba(148,163,184,0.25);border-radius:999px;padding:.35rem .85rem;font-size:.82rem;color:var(--text-muted);cursor:pointer;transition:all .2s;}
+    .comment-toggle-btn:hover,.comment-toggle-btn.open{border-color:rgba(99,102,241,0.35);color:var(--accent-strong);background:rgba(99,102,241,0.06);}
+    /* Comments */
+    .comments-section{display:none;margin-top:1rem;border-top:1px solid rgba(148,163,184,0.12);padding-top:1rem;}
+    .comments-section.open{display:block;}
+    .comments-list{display:grid;gap:.75rem;margin-bottom:.85rem;}
+    .comment-item{display:flex;gap:.75rem;align-items:flex-start;}
+    .comment-avatar{width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff;flex-shrink:0;}
+    .comment-bubble{background:#f8fbff;border:1px solid rgba(59,130,246,0.08);border-radius:1rem;padding:.6rem .9rem;flex:1;}
+    .comment-author{font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+    .comment-text{font-size:.85rem;color:var(--text-muted);line-height:1.5;margin:0;}
+    .comment-time{font-size:.72rem;color:var(--text-muted);margin-top:.25rem;}
+    /* Comment input */
+    .comment-form{display:flex;gap:.65rem;align-items:flex-start;}
+    .comment-input{flex:1;padding:.65rem .9rem;border:1.5px solid rgba(148,163,184,0.25);border-radius:.9rem;font-size:.88rem;color:var(--text);background:#fafbff;outline:none;font-family:inherit;resize:none;min-height:40px;}
+    .comment-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(109,40,217,0.07);}
+    .comment-send-btn{padding:.6rem 1.1rem;border:none;border-radius:999px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+    .comment-send-btn:disabled{opacity:.5;cursor:not-allowed;}
+    /* Groups */
+    .groups-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+    .group-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.5rem;}
+    .group-icon{font-size:1.8rem;}
+    .group-card h4{margin:0;font-size:.95rem;color:var(--accent-strong);}
+    .group-card p{margin:0;font-size:.82rem;color:var(--text-muted);flex:1;}
+    .group-members{font-size:.8rem;color:var(--text-muted);}
+    .empty-posts{text-align:center;padding:2.5rem 1rem;color:var(--text-muted);font-size:.95rem;}
+    /* Join button states */
+    .join-btn { cursor:pointer; transition: all .2s; }
+    .join-btn.joined {
+      background: rgba(16,185,129,0.1) !important;
+      border-color: rgba(16,185,129,0.4) !important;
+      color: #16a34a !important;
+      font-weight: 700;
+      cursor: default;
+    }
+    @media(max-width:1080px){.comunidad-grid{grid-template-columns:1fr;}.comunidad-hero-card{grid-template-columns:1fr;}.comunidad-hero-img{display:none;}}
+    @media(max-width:600px){.groups-grid{grid-template-columns:1fr 1fr;}.post-top{flex-direction:column;}}
+    @media(max-width:400px){.groups-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="uni-nav-brand-text"><strong>EduNova</strong><span>Library</span></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html" class="active">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <button class="uni-icon-btn" aria-label="Buscar">🔍</button>
+      <button class="uni-icon-btn" aria-label="Notificaciones">🔔</button>
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="comunidad-grid">
+      <aside class="comunidad-sidebar library-sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebarCollapsible">
+          <span class="nav-icon">👥</span> Menú <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="sidebar-collapsible" id="sidebarCollapsible">
+          <div class="sidebar-brand">
+            <img src="assets/Icono.png" alt="EduNova Library" />
+            <div><p class="eyebrow">EduNova Library</p><h2>Menú</h2></div>
+          </div>
+          <nav class="sidebar-nav">
+            <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
+            <a href="biblioteca.html"><span class="nav-icon">📚</span>Biblioteca</a>
+            <a href="resumenes.html"><span class="nav-icon">📝</span>Resúmenes</a>
+            <a href="juegos.html"><span class="nav-icon">🎮</span>Juegos</a>
+            <a href="herramientas.html"><span class="nav-icon">🛠️</span>Herramientas</a>
+            <a href="comunidad.html" class="active"><span class="nav-icon">👥</span>Comunidad</a>
+            <a href="perfil.html"><span class="nav-icon">👤</span>Mi Perfil</a>
+          </nav>
+          <div class="sidebar-card">
+            <strong>Únete a la comunidad</strong>
+            <p>Comparte tus apuntes y conecta con otros estudiantes.</p>
+            <a href="register.html" class="button button-primary">Registrarse</a>
+          </div>
+        </div>
+      </aside>
+
+      <div class="comunidad-main">
+        <div class="comunidad-hero-card">
+          <div>
+            <h2>Comparte y aprende junto a otros estudiantes</h2>
+            <p>Una comunidad colaborativa donde puedes resolver dudas, compartir apuntes y trabajar en proyectos.</p>
+            <a href="#foro" class="button button-primary">Ver el foro</a>
+          </div>
+          <img src="assets/comunidad.svg" alt="Comunidad" class="comunidad-hero-img" />
+        </div>
+
+        <div id="foro">
+          <h3 class="comunidad-section-title">Publicaciones recientes</h3>
+
+          <!-- Nueva publicación -->
+          <div id="newPostArea" style="margin-bottom:1.25rem;"></div>
+
+          <!-- Lista de posts -->
+          <div class="posts-list" id="postsList">
+            <div class="empty-posts">⏳ Cargando publicaciones...</div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="comunidad-section-title">Grupos de estudio</h3>
+          <div class="groups-grid" id="groupsGrid">
+            <div class="group-card" data-gid="matematica" data-nombre="Matemática Avanzada" data-desc="Resuelve problemas y comparte estrategias." data-icon="🧮" data-color="#7c3aed">
+              <div class="group-icon">🧮</div>
+              <h4>Matemática Avanzada</h4>
+              <p>Resuelve problemas y comparte estrategias.</p>
+              <span class="group-members" id="gm-matematica">👥 142 miembros</span>
+              <button class="join-btn button button-secondary" data-gid="matematica">Unirse</button>
+            </div>
+            <div class="group-card" data-gid="ciencias" data-nombre="Ciencias Naturales" data-desc="Debates sobre biología, química y física." data-icon="🔬" data-color="#16a34a">
+              <div class="group-icon">🔬</div>
+              <h4>Ciencias Naturales</h4>
+              <p>Debates sobre biología, química y física.</p>
+              <span class="group-members" id="gm-ciencias">👥 98 miembros</span>
+              <button class="join-btn button button-secondary" data-gid="ciencias">Unirse</button>
+            </div>
+            <div class="group-card" data-gid="historia" data-nombre="Historia Universal" data-desc="Comparte apuntes y discute eventos históricos." data-icon="🌍" data-color="#d97706">
+              <div class="group-icon">🌍</div>
+              <h4>Historia Universal</h4>
+              <p>Comparte apuntes y discute eventos históricos.</p>
+              <span class="group-members" id="gm-historia">👥 76 miembros</span>
+              <button class="join-btn button button-secondary" data-gid="historia">Unirse</button>
+            </div>
+            <div class="group-card" data-gid="english" data-nombre="English Club" data-desc="Practica inglés con otros estudiantes." data-icon="🇬🇧" data-color="#2563eb">
+              <div class="group-icon">🇬🇧</div>
+              <h4>English Club</h4>
+              <p>Practica inglés con otros estudiantes.</p>
+              <span class="group-members" id="gm-english">👥 115 miembros</span>
+              <button class="join-btn button button-secondary" data-gid="english">Unirse</button>
+            </div>
+            <div class="group-card" data-gid="tecnologia" data-nombre="Tecnología y Programación" data-desc="Aprende programación y herramientas digitales." data-icon="💻" data-color="#0284c7">
+              <div class="group-icon">💻</div>
+              <h4>Tecnología y Programación</h4>
+              <p>Aprende programación y herramientas digitales.</p>
+              <span class="group-members" id="gm-tecnologia">👥 63 miembros</span>
+              <button class="join-btn button button-secondary" data-gid="tecnologia">Unirse</button>
+            </div>
+            <div class="group-card" data-gid="comunicacion" data-nombre="Comunicación y Literatura" data-desc="Mejora tu escritura y comprensión lectora." data-icon="📖" data-color="#c026d3">
+              <div class="group-icon">📖</div>
+              <h4>Comunicación y Literatura</h4>
+              <p>Mejora tu escritura y comprensión lectora.</p>
+              <span class="group-members" id="gm-comunicacion">👥 89 miembros</span>
+              <button class="join-btn button button-secondary" data-gid="comunicacion">Unirse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>EduNova Library · Biblioteca Digital para Estudiantes</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import {
+      getFirestore, collection, addDoc, onSnapshot,
+      doc, updateDoc, arrayUnion, arrayRemove,
+      query, orderBy, serverTimestamp, getDocs,
+      getDoc, setDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const app  = initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    // Sidebar toggle
+    const st = document.getElementById('sidebarToggle');
+    const sc = document.getElementById('sidebarCollapsible');
+    if (st) st.addEventListener('click', () => {
+      const o = sc.classList.toggle('open');
+      st.classList.toggle('open', o);
+      st.setAttribute('aria-expanded', String(o));
+    });
+
+    // Colores de avatar por inicial
+    const COLORS = ['#7c3aed','#2563eb','#16a34a','#d97706','#c026d3','#0f766e','#dc2626','#0284c7'];
+    function colorFor(str) { let h=0; for(let c of str) h=(h*31+c.charCodeAt(0))%COLORS.length; return COLORS[h]; }
+    function initials(name) { return name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
+    function timeAgo(ts) {
+      if (!ts) return 'Ahora';
+      const d = ts.toDate ? ts.toDate() : new Date(ts);
+      const s = Math.floor((Date.now()-d)/1000);
+      if (s<60) return 'Hace un momento';
+      if (s<3600) return `Hace ${Math.floor(s/60)} min`;
+      if (s<86400) return `Hace ${Math.floor(s/3600)} h`;
+      return `Hace ${Math.floor(s/86400)} días`;
+    }
+
+    let currentUser = null;
+
+    // ── Render área de nuevo post ──
+    function renderNewPostArea(user) {
+      const area = document.getElementById('newPostArea');
+      if (!user) {
+        area.innerHTML = `<div class="login-prompt">¿Quieres publicar? <a href="login.html">Inicia sesión</a> o <a href="register.html">regístrate</a>.</div>`;
+        return;
+      }
+      const col = colorFor(user.displayName || user.email);
+      const ini = initials(user.displayName || user.email);
+      area.innerHTML = `
+        <div class="new-post-card">
+          <div class="new-post-header">
+            <div class="new-post-avatar" style="background:${col}">${ini}</div>
+            <strong style="font-size:.9rem;color:var(--text);">${user.displayName || 'Tú'}</strong>
+          </div>
+          <textarea class="new-post-input" id="newPostText" placeholder="¿Qué quieres compartir con la comunidad?"></textarea>
+          <div class="new-post-footer">
+            <select class="tag-select" id="newPostTag">
+              <option value="General">General</option>
+              <option value="Matemática">Matemática</option>
+              <option value="Ciencia">Ciencia</option>
+              <option value="Historia">Historia</option>
+              <option value="Comunicación">Comunicación</option>
+              <option value="Inglés">Inglés</option>
+              <option value="Tecnología">Tecnología</option>
+            </select>
+            <button class="post-submit-btn" id="submitPost">Publicar</button>
+          </div>
+        </div>`;
+
+      document.getElementById('submitPost').addEventListener('click', async () => {
+        const texto = document.getElementById('newPostText').value.trim();
+        const tag   = document.getElementById('newPostTag').value;
+        if (!texto) return;
+        const btn = document.getElementById('submitPost');
+        btn.disabled = true; btn.textContent = 'Publicando...';
+        await addDoc(collection(db, 'posts'), {
+          autor:    user.displayName || user.email.split('@')[0],
+          autorId:  user.uid,
+          texto,
+          tag,
+          likes:    [],
+          createdAt: serverTimestamp()
+        });
+        document.getElementById('newPostText').value = '';
+        btn.disabled = false; btn.textContent = 'Publicar';
+      });
+    }
+
+    // ── Render un post ──
+    async function renderPost(postDoc) {
+      const p   = postDoc.data();
+      const pid = postDoc.id;
+      const col = colorFor(p.autor || 'U');
+      const ini = initials(p.autor || 'U');
+      const liked = currentUser && p.likes && p.likes.includes(currentUser.uid);
+
+      // Cargar comentarios
+      const comSnap = await getDocs(query(collection(db,'posts',pid,'comentarios'), orderBy('createdAt','asc')));
+      const coms = comSnap.docs.map(d => ({id:d.id,...d.data()}));
+
+      const card = document.createElement('div');
+      card.className = 'post-card';
+      card.id = 'post-' + pid;
+      card.innerHTML = `
+        <div class="post-top">
+          <div class="post-avatar" style="background:${col}">${ini}</div>
+          <div class="post-body">
+            <div class="post-meta">
+              <span class="post-author">${p.autor}</span>
+              <span class="post-time">· ${timeAgo(p.createdAt)}</span>
+              <span class="post-tag">${p.tag || 'General'}</span>
+            </div>
+            <p class="post-text">${p.texto}</p>
+            <div class="post-actions">
+              <button class="like-btn ${liked?'liked':''}" data-pid="${pid}">
+                ❤️ <span class="like-count">${p.likes ? p.likes.length : 0}</span>
+              </button>
+              <button class="comment-toggle-btn" data-pid="${pid}">
+                💬 ${coms.length} comentario${coms.length!==1?'s':''}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="comments-section" id="cs-${pid}">
+          <div class="comments-list" id="cl-${pid}">
+            ${coms.map(c => `
+              <div class="comment-item">
+                <div class="comment-avatar" style="background:${colorFor(c.autor||'U')}">${initials(c.autor||'U')}</div>
+                <div class="comment-bubble">
+                  <div class="comment-author">${c.autor}</div>
+                  <p class="comment-text">${c.texto}</p>
+                  <div class="comment-time">${timeAgo(c.createdAt)}</div>
+                </div>
+              </div>`).join('')}
+          </div>
+          ${currentUser ? `
+            <div class="comment-form">
+              <textarea class="comment-input" id="ci-${pid}" placeholder="Escribe un comentario..." rows="1"></textarea>
+              <button class="comment-send-btn" data-pid="${pid}">Enviar</button>
+            </div>` : `<div class="login-prompt" style="margin-top:.5rem;">
+              <a href="login.html">Inicia sesión</a> para comentar.
+            </div>`}
+        </div>`;
+
+      // Like
+      card.querySelector('.like-btn').addEventListener('click', async () => {
+        if (!currentUser) { window.location.href='login.html'; return; }
+        const ref  = doc(db,'posts',pid);
+        const btn  = card.querySelector('.like-btn');
+        const isLiked = btn.classList.contains('liked');
+        await updateDoc(ref, { likes: isLiked ? arrayRemove(currentUser.uid) : arrayUnion(currentUser.uid) });
+        btn.classList.toggle('liked', !isLiked);
+        const cnt = card.querySelector('.like-count');
+        cnt.textContent = parseInt(cnt.textContent) + (isLiked ? -1 : 1);
+      });
+
+      // Toggle comentarios
+      card.querySelector('.comment-toggle-btn').addEventListener('click', () => {
+        const sec = document.getElementById('cs-'+pid);
+        const btn = card.querySelector('.comment-toggle-btn');
+        const open = sec.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.innerHTML = open ? '💬 Cerrar' : `💬 ${coms.length} comentario${coms.length!==1?'s':''}`;
+      });
+
+      // Enviar comentario
+      const sendBtn = card.querySelector('.comment-send-btn');
+      if (sendBtn) {
+        sendBtn.addEventListener('click', async () => {
+          const input = document.getElementById('ci-'+pid);
+          const texto = input.value.trim();
+          if (!texto) return;
+          sendBtn.disabled = true;
+          const newCom = await addDoc(collection(db,'posts',pid,'comentarios'), {
+            autor: currentUser.displayName || currentUser.email.split('@')[0],
+            autorId: currentUser.uid,
+            texto,
+            createdAt: serverTimestamp()
+          });
+          const comData = { id: newCom.id, autor: currentUser.displayName || currentUser.email.split('@')[0], texto, createdAt: null };
+          const cl = document.getElementById('cl-'+pid);
+          const div = document.createElement('div');
+          div.className = 'comment-item';
+          div.innerHTML = `
+            <div class="comment-avatar" style="background:${colorFor(comData.autor)}">${initials(comData.autor)}</div>
+            <div class="comment-bubble">
+              <div class="comment-author">${comData.autor}</div>
+              <p class="comment-text">${comData.texto}</p>
+              <div class="comment-time">Ahora</div>
+            </div>`;
+          cl.appendChild(div);
+          input.value = '';
+          sendBtn.disabled = false;
+          // Actualizar contador
+          const tb = card.querySelector('.comment-toggle-btn');
+          const newCount = cl.querySelectorAll('.comment-item').length;
+          if (!tb.classList.contains('open')) tb.innerHTML = `💬 ${newCount} comentario${newCount!==1?'s':''}`;
+        });
+      }
+
+      return card;
+    }
+
+    // ── Cargar posts en tiempo real ──
+    function loadPosts() {
+      const container = document.getElementById('postsList');
+      const q = query(collection(db,'posts'), orderBy('createdAt','desc'));
+      onSnapshot(q, async (snap) => {
+        container.innerHTML = '';
+        if (snap.empty) {
+          container.innerHTML = '<div class="empty-posts">📭 Aún no hay publicaciones. ¡Sé el primero en compartir algo!</div>';
+          return;
+        }
+        for (const docSnap of snap.docs) {
+          const card = await renderPost(docSnap);
+          container.appendChild(card);
+        }
+      });
+    }
+
+    // ── Grupos: cargar estado y manejar unirse ──
+    async function loadGroups(user) {
+      const userRef  = doc(db, 'usuarios', user.uid);
+      const userSnap = await getDoc(userRef);
+      const grupos   = userSnap.exists() ? (userSnap.data().grupos || []) : [];
+
+      document.querySelectorAll('.join-btn').forEach(btn => {
+        const gid = btn.dataset.gid;
+        if (grupos.includes(gid)) {
+          btn.textContent = '✓ Ya te uniste';
+          btn.classList.add('joined');
+          btn.disabled = true;
+        } else {
+          btn.addEventListener('click', async () => {
+            if (!currentUser) { window.location.href = 'login.html'; return; }
+            btn.disabled = true;
+            btn.textContent = 'Uniéndose...';
+
+            // Guardar en Firestore del usuario
+            await updateDoc(userRef, { grupos: arrayUnion(gid) }).catch(async () => {
+              await setDoc(userRef, { grupos: [gid] }, { merge: true });
+            });
+
+            // Guardar info del grupo en colección grupos
+            const card = btn.closest('.group-card');
+            await setDoc(doc(db, 'grupos', gid), {
+              nombre:  card.dataset.nombre,
+              icon:    card.dataset.icon,
+              color:   card.dataset.color,
+              desc:    card.dataset.desc,
+            }, { merge: true });
+
+            // Agregar miembro
+            await updateDoc(doc(db, 'grupos', gid), {
+              miembros: arrayUnion(user.uid)
+            }).catch(() => {});
+
+            btn.textContent = '✓ Ya te uniste';
+            btn.classList.add('joined');
+          });
+        }
+      });
+    }
+
+    // ── Auth state ──
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      const navBtn = document.getElementById('navAuthBtn');
+      if (user) {
+        navBtn.textContent = `👤 ${user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta'}`;
+        navBtn.href = 'perfil.html';
+        navBtn.style.background = 'rgba(99,102,241,0.1)';
+        navBtn.style.color = 'var(--accent-strong)';
+        navBtn.style.boxShadow = 'none';
+      }
+      renderNewPostArea(user);
+      loadPosts();
+      if (user) loadGroups(user);
+    });
+  </script>
+  <script type="module" src="auth-nav.js"></script>
+</body>
+</html>

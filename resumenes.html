@@ -1,0 +1,726 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Resúmenes inteligentes en EduNova para estudiar rápido y claro." />
+  <title>EduNova Library | Resúmenes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Layout ── */
+    .resumenes-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: start;
+      margin-top: 1.5rem;
+    }
+
+    /* ── Sidebar ── */
+    .resumenes-sidebar {
+      background: #ffffff;
+      border: 1px solid rgba(59,130,246,0.08);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      box-shadow: 0 24px 50px rgba(15,23,42,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .sidebar-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sidebar-back:hover { color: var(--accent-strong); }
+
+    .resumenes-sidebar nav {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .resumenes-sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 1rem;
+      color: var(--text-muted);
+      background: transparent;
+      text-decoration: none;
+      font-size: 0.93rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .resumenes-sidebar nav a:hover,
+    .resumenes-sidebar nav a.active {
+      background: rgba(99,102,241,0.1);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .resumenes-sidebar nav a .nav-icon {
+      background: rgba(59,130,246,0.1);
+      color: var(--accent-strong);
+    }
+
+    .resumenes-sidebar nav a.active .nav-icon {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .sidebar-promo {
+      background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(37,99,235,0.08));
+      border: 1px solid rgba(99,102,241,0.18);
+      border-radius: 1.5rem;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+    }
+
+    .sidebar-promo strong {
+      font-size: 0.95rem;
+      color: var(--accent-strong);
+      line-height: 1.4;
+    }
+
+    .sidebar-promo-icon {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    /* ── Main panel ── */
+    .resumenes-main {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .resumenes-topbar {
+      background: #ffffff;
+      border: 1px solid rgba(59,130,246,0.08);
+      border-radius: 1.75rem;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 16px 36px rgba(15,23,42,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .breadcrumb span { color: var(--text-muted); }
+    .breadcrumb a    { color: var(--accent-strong); text-decoration: none; }
+
+    .resumenes-tabs-card {
+      background: #ffffff;
+      border: 1px solid rgba(59,130,246,0.08);
+      border-radius: 1.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 16px 36px rgba(15,23,42,0.05);
+    }
+
+    /* ── Tab panels ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Content 3-col ── */
+    .summary-columns {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 0.9fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .summary-col {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .summary-col h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--accent-strong);
+    }
+
+    .summary-col p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* formula box */
+    .formula-box {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: rgba(99,102,241,0.08);
+      border: 1.5px solid rgba(99,102,241,0.22);
+      border-radius: 1rem;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--accent-strong);
+      font-weight: 700;
+      margin: 0.25rem 0;
+    }
+
+    .definition-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .definition-list li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .definition-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* steps */
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* example col */
+    .example-col {
+      background: #f8fbff;
+      border: 1px solid rgba(59,130,246,0.1);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .example-col h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .example-step {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .example-result {
+      display: inline-block;
+      padding: 0.55rem 1.2rem;
+      background: rgba(99,102,241,0.08);
+      border: 1.5px solid rgba(99,102,241,0.22);
+      border-radius: 0.75rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-strong);
+      font-style: italic;
+    }
+
+    /* concepts row */
+    .concepts-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(148,163,184,0.15);
+      margin-top: 0.5rem;
+    }
+
+    .concept-tag {
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(99,102,241,0.08);
+      border: 1px solid rgba(99,102,241,0.18);
+      color: var(--accent-strong);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* ── Area selector ── */
+    /* ── Grade selector inside area ── */
+    .grade-selector {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: .75rem 1rem;
+      background: #f8fbff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+    }
+    .grade-selector-label {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .grade-btns-row {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .res-grade-btn {
+      padding: .45rem 1rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(99,102,241,0.2);
+      background: #ffffff;
+      color: var(--text-muted);
+      font-size: .88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .res-grade-btn:hover { border-color: var(--accent); color: var(--accent-strong); }
+    .res-grade-btn.active {
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      border-color: transparent;
+      color: #fff;
+      font-weight: 700;
+    }    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: .25rem;
+    }
+    .area-card {
+      background: #ffffff;
+      border: 1.5px solid rgba(99,102,241,0.12);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .65rem;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.05);
+    }
+    .area-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(99,102,241,0.14);
+      border-color: var(--accent);
+    }
+    .area-icon {
+      width: 3.2rem; height: 3.2rem;
+      border-radius: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .area-card strong {
+      font-size: .95rem;
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+    .area-card span {
+      font-size: .8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* placeholder panels */
+    .placeholder-panel {
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── Sidebar toggle button (solo móvil) ── */
+    .sidebar-toggle {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 1rem;
+      background: #ffffff;
+      color: var(--accent-strong);
+      font-size: 0.93rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-toggle .toggle-arrow {
+      margin-left: auto;
+      transition: transform 0.25s ease;
+    }
+
+    .sidebar-toggle.open .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .sidebar-collapsible {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* ── Responsive: tablet (≤ 1100px) ── */
+    @media (max-width: 1100px) {
+      .resumenes-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .summary-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      /* sidebar se vuelve colapsable */
+      .sidebar-toggle {
+        display: flex;
+      }
+
+      .sidebar-collapsible {
+        display: none;
+        overflow: hidden;
+      }
+
+      .sidebar-collapsible.open {
+        display: flex;
+      }
+
+      .resumenes-sidebar {
+        gap: 0;
+        padding: 1rem 1.25rem;
+      }
+    }
+
+    /* ── Responsive: móvil (≤ 700px) ── */
+    @media (max-width: 700px) {
+      .summary-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .resumenes-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+
+      .resumenes-topbar .button {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tabs-nav {
+        gap: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .tabs-nav::-webkit-scrollbar { display: none; }
+
+      .tab-btn {
+        padding: 0.9rem 0.9rem;
+        font-size: 0.82rem;
+        flex-shrink: 0;
+      }
+
+      .resumenes-tabs-card {
+        padding: 0 1rem;
+      }
+
+      .tab-panel {
+        padding: 1.25rem 0 0.5rem;
+      }
+
+      .formula-box {
+        width: 100%;
+        text-align: center;
+      }
+
+      .page-content {
+        padding: 0 0.75rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="uni-nav-brand-text"><strong>EduNova</strong><span>Library</span></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <button class="uni-icon-btn" aria-label="Buscar">🔍</button>
+      <button class="uni-icon-btn" aria-label="Notificaciones">🔔</button>
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="resumenes-grid">
+
+      <!-- ── Sidebar ── -->
+      <aside class="resumenes-sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebarCollapsible">
+          <span class="nav-icon">📝</span> Menú
+          <span class="toggle-arrow">▼</span>
+        </button>
+
+        <div class="sidebar-collapsible" id="sidebarCollapsible">
+          <a href="biblioteca.html" class="sidebar-back">← Volver</a>
+
+          <nav>
+            <a href="#" class="active" data-tab="resumen">
+              <span class="nav-icon">📝</span>Resumen
+            </a>
+            <a href="#" data-tab="flashcards">
+              <span class="nav-icon">🃏</span>Flashcards
+            </a>
+            <a href="#" data-tab="mapa">
+              <span class="nav-icon">🗺️</span>Mapa conceptual
+            </a>
+            <a href="#" data-tab="formulas">
+              <span class="nav-icon">🔢</span>Fórmulas
+            </a>
+            <a href="#" data-tab="rapido">
+              <span class="nav-icon">🎯</span>Modo rápido
+            </a>
+          </nav>
+
+          <div class="sidebar-promo">
+            <div class="sidebar-promo-icon">🧠</div>
+            <strong>Estudia más rápido con resúmenes inteligentes</strong>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ── Main ── -->
+      <div class="resumenes-main">
+
+        <!-- Pantalla de selección de área -->
+        <div id="areaSelector">
+          <div class="resumenes-topbar">
+            <div class="breadcrumb">
+              <span>Resúmenes</span>
+              <span>›</span>
+              <span style="color:var(--text)">Elige un área</span>
+            </div>
+          </div>
+          <div class="area-grid">
+            <button class="area-card" data-area="matematica">
+              <span class="area-icon" style="background:rgba(99,102,241,0.12)">∑</span>
+              <strong>Matemática</strong>
+              <span>Álgebra, geometría y más</span>
+            </button>
+            <button class="area-card" data-area="ciencia">
+              <span class="area-icon" style="background:rgba(16,185,129,0.12)">⚗️</span>
+              <strong>Ciencia</strong>
+              <span>Biología, química y física</span>
+            </button>
+            <button class="area-card" data-area="historia">
+              <span class="area-icon" style="background:rgba(217,119,6,0.12)">🏛️</span>
+              <strong>Historia</strong>
+              <span>Perú y el mundo</span>
+            </button>
+            <button class="area-card" data-area="comunicacion">
+              <span class="area-icon" style="background:rgba(37,99,235,0.12)">📖</span>
+              <strong>Comunicación</strong>
+              <span>Lengua y literatura</span>
+            </button>
+            <button class="area-card" data-area="ingles">
+              <span class="area-icon" style="background:rgba(124,58,237,0.12)">🇬🇧</span>
+              <strong>Inglés</strong>
+              <span>Grammar y vocabulario</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel de resumen (oculto hasta elegir área) -->
+        <div id="resumePanel" style="display:none;">
+          <div class="resumenes-topbar">
+            <div class="breadcrumb">
+              <button id="backToAreas" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:.9rem;font-weight:600;padding:0;display:flex;align-items:center;gap:.4rem;">← Áreas</button>
+              <span>›</span>
+              <span id="breadcrumbArea" style="color:var(--accent-strong);font-weight:700;"></span>
+            </div>
+            <a href="#" class="button button-primary" style="gap:0.5rem;">🔖 Guardar resumen</a>
+          </div>
+
+          <div class="resumenes-tabs-card">
+            <div class="tab-panel active" id="tab-resumen">
+              <div id="areaContent"></div>
+            </div>
+            <div class="tab-panel" id="tab-flashcards">
+              <div class="placeholder-panel">🃏 Las flashcards estarán disponibles próximamente.</div>
+            </div>
+            <div class="tab-panel" id="tab-mapa">
+              <div class="placeholder-panel">🗺️ El mapa conceptual estará disponible próximamente.</div>
+            </div>
+            <div class="tab-panel" id="tab-formulas">
+              <div class="placeholder-panel">🔢 Las fórmulas estarán disponibles próximamente.</div>
+            </div>
+            <div class="tab-panel" id="tab-rapido">
+              <div class="placeholder-panel">🎯 El modo rápido estará disponible próximamente.</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /main -->
+    </div><!-- /grid -->
+  </main>
+
+  <footer class="site-footer">
+    <p>EduNova Library · Biblioteca Digital para Estudiantes</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // ── Contenido por área ──
+    const AREAS = {
+      matematica: { nombre: 'Matemática' },
+      ciencia:    { nombre: 'Ciencia' },
+      historia:   { nombre: 'Historia' },
+      comunicacion: { nombre: 'Comunicación' },
+      ingles:     { nombre: 'Inglés' }
+    };
+
+    function gradeBtnsHTML() {
+      return `<div class="grade-selector">
+        <span class="grade-selector-label">Selecciona tu grado:</span>
+        <div class="grade-btns-row">
+          <button class="res-grade-btn active" data-grado="1">1°</button>
+          <button class="res-grade-btn" data-grado="2">2°</button>
+          <button class="res-grade-btn" data-grado="3">3°</button>
+          <button class="res-grade-btn" data-grado="4">4°</button>
+          <button class="res-grade-btn" data-grado="5">5°</button>
+        </div>
+      </div>
+      <div class="grade-content">
+        <div class="placeholder-panel">📝 El contenido de este grado estará disponible próximamente.</div>
+      </div>`;
+    }
+
+    // ── Selección de área ──
+    document.querySelectorAll('.area-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const area = btn.dataset.area;
+        const data = AREAS[area];
+
+        document.getElementById('areaSelector').style.display = 'none';
+        document.getElementById('resumePanel').style.display  = 'grid';
+        document.getElementById('breadcrumbArea').textContent = data.nombre;
+        document.getElementById('areaContent').innerHTML      = gradeBtnsHTML();
+
+        // Reset tabs al resumen
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('tab-resumen').classList.add('active');
+        document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(l => l.classList.remove('active'));
+        document.querySelector('.resumenes-sidebar nav a[data-tab="resumen"]').classList.add('active');
+
+        // Activar botones de grado
+        document.querySelectorAll('.res-grade-btn').forEach(gb => {
+          gb.addEventListener('click', () => {
+            document.querySelectorAll('.res-grade-btn').forEach(b => b.classList.remove('active'));
+            gb.classList.add('active');
+            // Contenido por grado — pendiente
+            document.querySelector('.grade-content').innerHTML =
+              `<div class="placeholder-panel">📝 El contenido de ${data.nombre} para ${gb.dataset.grado}° grado estará disponible próximamente.</div>`;
+          });
+        });
+      });
+    });
+
+    // ── Volver a áreas ──
+    document.getElementById('backToAreas').addEventListener('click', () => {
+      document.getElementById('resumePanel').style.display  = 'none';
+      document.getElementById('areaSelector').style.display = 'grid';
+    });
+
+    // ── Sidebar tabs ──
+    const sidebarLinks = document.querySelectorAll('.resumenes-sidebar nav a[data-tab]');
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.dataset.tab;
+        sidebarLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('tab-' + target).classList.add('active');
+      });
+    });
+
+    // ── Sidebar toggle (móvil) ──
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarCollapsible = document.getElementById('sidebarCollapsible');
+    if (sidebarToggle && sidebarCollapsible) {
+      sidebarToggle.addEventListener('click', () => {
+        const isOpen = sidebarCollapsible.classList.toggle('open');
+        sidebarToggle.classList.toggle('open', isOpen);
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+  </script>
+  <script type="module" src="auth-nav.js"></script>
+</body>
+</html>

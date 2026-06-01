@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Herramientas de estudio EduNova para organizar y planificar el aprendizaje." />
+  <title>EduNova Library | Herramientas</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .herramientas-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: start;
+      margin-top: 1.5rem;
+    }
+    .herramientas-sidebar {
+      background: #ffffff;
+      border: 1px solid rgba(59,130,246,0.08);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      box-shadow: 0 24px 50px rgba(15,23,42,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .herramientas-main { display: grid; gap: 1.5rem; }
+
+    .tools-hero-card {
+      background: linear-gradient(135deg, rgba(37,99,235,0.07), rgba(124,58,237,0.05));
+      border: 1px solid rgba(59,130,246,0.14);
+      border-radius: 2rem;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .tools-hero-card h2 { margin: 0 0 0.75rem; color: var(--accent-strong); font-size: clamp(1.4rem,2vw,2rem); }
+    .tools-hero-card p  { margin: 0 0 1.25rem; color: var(--text-muted); line-height: 1.7; }
+    .tools-hero-img { width: 140px; height: 140px; }
+
+    .tools-section-title { margin: 0 0 1rem; font-size: 1.1rem; color: var(--text); }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .tool-card {
+      background: #ffffff;
+      border: 1px solid rgba(59,130,246,0.1);
+      border-radius: 1.75rem;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      box-shadow: 0 16px 32px rgba(15,23,42,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tool-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px rgba(15,23,42,0.1); }
+    .tool-icon {
+      width: 3rem; height: 3rem;
+      border-radius: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .tool-icon.blue   { background: rgba(37,99,235,0.12); }
+    .tool-icon.purple { background: rgba(124,58,237,0.12); }
+    .tool-icon.green  { background: rgba(16,185,129,0.12); }
+    .tool-icon.orange { background: rgba(249,115,22,0.12); }
+    .tool-card h4 { margin: 0; font-size: 1rem; color: var(--accent-strong); }
+    .tool-card p  { margin: 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .feature-item {
+      background: #ffffff;
+      border: 1px solid rgba(59,130,246,0.1);
+      border-radius: 1.5rem;
+      padding: 1.25rem;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.05);
+    }
+    .feature-item h4 { margin: 0 0 0.4rem; color: var(--accent-strong); font-size: 0.95rem; }
+    .feature-item p  { margin: 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+
+    @media (max-width: 1080px) {
+      .herramientas-grid { grid-template-columns: 1fr; }
+      .tools-hero-card { grid-template-columns: 1fr; }
+      .tools-hero-img { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="uni-nav-brand-text"><strong>EduNova</strong><span>Library</span></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html" class="active">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <button class="uni-icon-btn" aria-label="Buscar">🔍</button>
+      <button class="uni-icon-btn" aria-label="Notificaciones">🔔</button>
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="herramientas-grid">
+
+      <!-- Sidebar -->
+      <aside class="herramientas-sidebar library-sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebarCollapsible">
+          <span class="nav-icon">🛠️</span> Menú
+          <span class="toggle-arrow">▼</span>
+        </button>
+        <div class="sidebar-collapsible" id="sidebarCollapsible">
+          <div class="sidebar-brand">
+            <img src="assets/Icono.png" alt="EduNova Library" />
+            <div>
+              <p class="eyebrow">EduNova Library</p>
+              <h2>Menú</h2>
+            </div>
+          </div>
+          <nav class="sidebar-nav">
+            <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
+            <a href="biblioteca.html"><span class="nav-icon">📚</span>Biblioteca</a>
+            <a href="resumenes.html"><span class="nav-icon">📝</span>Resúmenes</a>
+            <a href="juegos.html"><span class="nav-icon">🎮</span>Juegos</a>
+            <a href="herramientas.html" class="active"><span class="nav-icon">🛠️</span>Herramientas</a>
+            <a href="comunidad.html"><span class="nav-icon">👥</span>Comunidad</a>
+            <a href="perfil.html"><span class="nav-icon">👤</span>Mi Perfil</a>
+          </nav>
+          <div class="sidebar-card">
+            <strong>Organiza tu semana</strong>
+            <p>Usa el planificador para distribuir mejor tu tiempo de estudio.</p>
+            <a href="#" class="button button-primary">Abrir planificador</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div class="herramientas-main">
+
+        <div class="tools-hero-card">
+          <div>
+            <h2>Organiza tu estudio con herramientas inteligentes</h2>
+            <p>Crea planes, recordatorios y actividades de apoyo para que tu tiempo de estudio sea más efectivo.</p>
+            <a href="#herramientas" class="button button-primary">Ver herramientas</a>
+          </div>
+          <img src="assets/herramientas.svg" alt="Herramientas" class="tools-hero-img" />
+        </div>
+
+        <div id="herramientas">
+          <h3 class="tools-section-title">Herramientas disponibles</h3>
+          <div class="tools-grid">
+            <div class="tool-card">
+              <div class="tool-icon blue">📅</div>
+              <h4>Planificador de estudio</h4>
+              <p>Organiza tus sesiones por día, materia y objetivo con un calendario interactivo.</p>
+              <a href="#" class="button button-primary">Abrir</a>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon purple">⏱️</div>
+              <h4>Temporizador Pomodoro</h4>
+              <p>Estudia en bloques de 25 minutos con descansos programados para mayor concentración.</p>
+              <a href="#" class="button button-primary">Abrir</a>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon green">✅</div>
+              <h4>Lista de tareas</h4>
+              <p>Registra tus pendientes, márcalos como completados y lleva un seguimiento diario.</p>
+              <a href="#" class="button button-primary">Abrir</a>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon orange">📊</div>
+              <h4>Seguimiento de progreso</h4>
+              <p>Visualiza tu avance por materia con gráficas y estadísticas de estudio.</p>
+              <a href="#" class="button button-primary">Abrir</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="tools-section-title">Funciones disponibles</h3>
+          <div class="features-grid">
+            <div class="feature-item">
+              <h4>📋 Planificación</h4>
+              <p>Organiza tus sesiones de estudio por días y objetivos claros.</p>
+            </div>
+            <div class="feature-item">
+              <h4>📈 Seguimiento</h4>
+              <p>Registra avances y tareas completadas en tiempo real.</p>
+            </div>
+            <div class="feature-item">
+              <h4>💡 Apoyo</h4>
+              <p>Accede a herramientas que mejoran tu productividad y concentración.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>EduNova Library · Biblioteca Digital para Estudiantes</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarCollapsible = document.getElementById('sidebarCollapsible');
+    if (sidebarToggle && sidebarCollapsible) {
+      sidebarToggle.addEventListener('click', () => {
+        const isOpen = sidebarCollapsible.classList.toggle('open');
+        sidebarToggle.classList.toggle('open', isOpen);
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+  </script>
+  <script type="module" src="auth-nav.js"></script>
+</body>
+</html>

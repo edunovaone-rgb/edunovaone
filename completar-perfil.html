@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Completa tu perfil | EduNova Library</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 20% 50%, rgba(124,58,237,0.16) 0%, transparent 55%),
+                  radial-gradient(ellipse at 80% 20%, rgba(192,38,211,0.12) 0%, transparent 45%),
+                  #f5f3ff;
+      padding: 2rem 1rem;
+    }
+    .setup-wrapper {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .setup-brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+    }
+    .setup-brand img { width: 42px; height: 42px; }
+    .setup-brand strong { display:block; font-size:1.1rem; color:var(--accent-strong); font-weight:800; line-height:1; }
+    .setup-brand span   { font-size:.68rem; color:#c026d3; font-weight:700; text-transform:uppercase; letter-spacing:.12em; }
+
+    .setup-card {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 24px 60px rgba(99,102,241,0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .setup-card h1 { margin:0 0 .25rem; font-size:1.6rem; color:var(--accent-strong); font-weight:800; text-align:center; }
+    .setup-card p  { margin:0; color:var(--text-muted); font-size:.9rem; text-align:center; }
+
+    .setup-avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+    }
+    .setup-avatar-img {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,rgba(124,58,237,0.15),rgba(37,99,235,0.15));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      border: 3px solid rgba(99,102,241,0.2);
+      overflow: hidden;
+    }
+    .setup-avatar-img img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+    .setup-avatar strong { font-size:.95rem; color:var(--text); font-weight:700; }
+    .setup-avatar span   { font-size:.82rem; color:var(--text-muted); }
+
+    .setup-form { display: grid; gap: 1rem; }
+
+    .input-group { display: grid; gap: .5rem; }
+    .input-group label { font-size:.88rem; color:var(--text-muted); font-weight:600; }
+    .input-group select, .input-group input {
+      width: 100%;
+      padding: .9rem 1rem;
+      border: 1.5px solid rgba(148,163,184,0.3);
+      border-radius: 1rem;
+      background: #fafbff;
+      font-size: .93rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      box-sizing: border-box;
+      appearance: none;
+    }
+    .input-group select:focus, .input-group input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(109,40,217,0.1);
+    }
+
+    .setup-btn {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+    }
+    .setup-btn:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(99,102,241,0.4); }
+    .setup-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    .field-error { font-size:.78rem; color:#ef4444; display:none; }
+    .field-error.show { display:block; }
+  </style>
+</head>
+<body>
+  <div class="setup-wrapper">
+
+    <a href="index.html" class="setup-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div><strong>EduNova</strong><span>Library</span></div>
+    </a>
+
+    <div class="setup-card">
+      <div class="setup-avatar">
+        <div class="setup-avatar-img" id="setupAvatar">🧑‍🎓</div>
+        <strong id="setupName">Cargando...</strong>
+        <span id="setupEmail"></span>
+      </div>
+
+      <h1>¡Casi listo!</h1>
+      <p>Completa tu perfil para personalizar tu experiencia en EduNova Library.</p>
+
+      <form class="setup-form" id="setupForm" novalidate>
+        <div class="input-group">
+          <label>Colegio</label>
+          <select id="setupSchool" required>
+            <option value="" disabled selected>Selecciona tu colegio</option>
+            <option>IES San Martín</option>
+            <option>Instituto Tecnológico</option>
+            <option>Colegio San Andrés</option>
+            <option>Colegio San José</option>
+            <option>Academia Nova</option>
+            <option>Otro</option>
+          </select>
+          <span class="field-error" id="errSchool">Selecciona tu colegio</span>
+        </div>
+
+        <div class="input-group">
+          <label>Grado / Nivel</label>
+          <select id="setupGrade" required>
+            <option value="" disabled selected>Selecciona tu grado</option>
+            <option value="1° Secundaria">1° Secundaria</option>
+            <option value="2° Secundaria">2° Secundaria</option>
+            <option value="3° Secundaria">3° Secundaria</option>
+            <option value="4° Secundaria">4° Secundaria</option>
+            <option value="5° Secundaria">5° Secundaria</option>
+          </select>
+          <span class="field-error" id="errGrade">Selecciona tu grado</span>
+        </div>
+
+        <button type="submit" class="setup-btn" id="setupBtn">Guardar y continuar →</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const app  = initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    let currentUser = null;
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = 'login.html'; return; }
+      currentUser = user;
+
+      // Mostrar datos del usuario
+      document.getElementById('setupName').textContent  = user.displayName || user.email.split('@')[0];
+      document.getElementById('setupEmail').textContent = user.email;
+      if (user.photoURL) {
+        document.getElementById('setupAvatar').innerHTML = `<img src="${user.photoURL}" alt="avatar">`;
+      }
+
+      // Si ya tiene perfil completo, redirigir al inicio
+      const snap = await getDoc(doc(db, 'usuarios', user.uid));
+      if (snap.exists() && snap.data().grado && snap.data().colegio) {
+        window.location.href = 'index.html';
+        return;
+      }
+    });
+
+    document.getElementById('setupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!currentUser) return;
+
+      const school = document.getElementById('setupSchool').value;
+      const grade  = document.getElementById('setupGrade').value;
+
+      // Validar
+      let ok = true;
+      if (!school) { document.getElementById('errSchool').classList.add('show'); ok = false; }
+      else          { document.getElementById('errSchool').classList.remove('show'); }
+      if (!grade)  { document.getElementById('errGrade').classList.add('show'); ok = false; }
+      else          { document.getElementById('errGrade').classList.remove('show'); }
+      if (!ok) return;
+
+      const btn = document.getElementById('setupBtn');
+      btn.disabled = true;
+      btn.textContent = 'Guardando...';
+
+      try {
+        await setDoc(doc(db, 'usuarios', currentUser.uid), {
+          grado:             grade,
+          colegio:           school,
+          horasEstudio:      0,
+          recursosGuardados: 0,
+          juegosCompletados: 0,
+          rachaActual:       0,
+          progreso:          { matematica: 0, ciencia: 0, historia: 0, comunicacion: 0, ingles: 0 },
+          actividad:         [],
+          metas: [
+            { texto: 'Mejorar en Matemática',    done: false },
+            { texto: 'Leer 2 libros este mes',   done: false },
+            { texto: 'Estudiar 5 horas diarias', done: false },
+            { texto: 'Completar curso de Inglés',done: false },
+          ],
+          grupos: []
+        }, { merge: true });
+
+        window.location.href = 'index.html';
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Guardar y continuar →';
+        alert('Error al guardar. Intenta de nuevo.');
+      }
+    });
+  </script>
+</body>
+</html>
