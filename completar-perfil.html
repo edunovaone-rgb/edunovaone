@@ -218,6 +218,7 @@
 
       try {
         await setDoc(doc(db, 'usuarios', currentUser.uid), {
+          nombre:            currentUser.displayName || currentUser.email.split('@')[0],
           grado:             grade,
           colegio:           school,
           horasEstudio:      0,
