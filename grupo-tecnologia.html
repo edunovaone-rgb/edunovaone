@@ -329,14 +329,37 @@
       });
     }
 
+    function renderForoInput(user, isMember) {
+      const fi = document.getElementById('foroInput');
+      if (!fi) return;
+      if (!user) {
+        fi.innerHTML = `<div class="foro-new-input" style="justify-content:center">
+          <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
+            <a href="login.html" style="color:var(--accent-strong);font-weight:700">Inicia sesión</a> y únete al grupo para participar en el foro.
+          </p></div>`;
+        return;
+      }
+      if (!isMember) {
+        fi.innerHTML = `<div class="foro-new-input" style="justify-content:center">
+          <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
+            Únete al grupo para poder iniciar una discusión.
+          </p></div>`;
+        return;
+      }
+      fi.innerHTML = `<div class="foro-new-input">
+        <div class="grupo-post-avatar" style="background:#0284c7;flex-shrink:0">
+          <img src="${avatarUrl(user.displayName||user.email)}" alt="" />
+        </div>
+        <input type="text" id="foroInputField" placeholder="Inicia una nueva discusión..." />
+      </div>`;
+    }
+
     onAuthStateChanged(auth, user => {
       const navBtn = document.getElementById('navAuthBtn');
       if (user) {
         navBtn.textContent = `👤 ${user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta'}`;
         navBtn.href = 'perfil.html';
         navBtn.style.cssText = 'background:rgba(99,102,241,0.1);color:var(--accent-strong);box-shadow:none';
-        const fa = document.getElementById('foroAvatar');
-        if (fa) fa.innerHTML = `<img src="${avatarUrl(user.displayName||user.email)}" alt="" />`;
       }
       renderJoinCard(user);
       if (user) {
@@ -345,7 +368,10 @@
           const isMember = (data.grupos||[]).includes(GID);
           const rol = data.rol || 'alumno';
           renderPostForm(user, isMember, rol);
-        }).catch(()=>{});
+          renderForoInput(user, isMember);
+        }).catch(()=>{ renderForoInput(user, false); });
+      } else {
+        renderForoInput(null, false);
       }
     });
 
