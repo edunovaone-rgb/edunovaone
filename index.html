@@ -872,12 +872,29 @@
 
         // Cargar datos de Firestore
         try {
-          const snap = await getDoc(doc(db, 'usuarios', user.uid));
+          const uRef = doc(db, 'usuarios', user.uid);
+          const snap = await getDoc(uRef);
           if (snap.exists()) {
             const d = snap.data();
+
+            // ── Lógica de racha ──
+            const hoy = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+            const ultima = d.ultimaVisita || null;
+            let racha = d.rachaActual ?? 0;
+
+            if (ultima !== hoy) {
+              const ayer = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+              if (ultima === ayer) {
+                racha = racha + 1; // día consecutivo
+              } else {
+                racha = 1; // se rompió la racha, empieza de nuevo
+              }
+              await updateDoc(uRef, { rachaActual: racha, ultimaVisita: hoy }).catch(() => {});
+            }
+
             const el = id => document.getElementById(id);
             if (el('dashHoras'))  el('dashHoras').textContent  = d.horasEstudio      ?? 0;
-            if (el('dashRacha'))  el('dashRacha').textContent  = d.rachaActual        ?? 0;
+            if (el('dashRacha'))  el('dashRacha').textContent  = racha;
             if (el('dashJuegos')) el('dashJuegos').textContent = d.juegosCompletados ?? 0;
             const p = d.progreso || {};
             setBar('dpb-math', 'dp-math', p.matematica   ?? 0);
