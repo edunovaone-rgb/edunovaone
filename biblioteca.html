@@ -80,33 +80,33 @@
     /* ── Biblioteca tabs ── */
     .bib-tabs {
       display: flex;
-      gap: 0;
-      border-bottom: 2px solid rgba(148,163,184,0.15);
+      gap: 0.5rem;
       margin-bottom: 1.5rem;
       background: #fff;
-      border-radius: 1.5rem 1.5rem 0 0;
-      padding: 0 1.5rem;
+      border-radius: 1rem;
+      padding: 0.5rem;
+      border: 1px solid rgba(59,130,246,0.1);
+      width: fit-content;
     }
     .bib-tab-btn {
-      padding: 1rem 1.4rem;
+      padding: 0.6rem 1.4rem;
       border: none;
       background: transparent;
       color: var(--text-muted);
       font-size: .95rem;
       font-weight: 600;
       cursor: pointer;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -2px;
+      border-radius: 0.65rem;
       white-space: nowrap;
-      transition: color .2s, border-color .2s;
+      transition: background .2s, color .2s;
       display: flex;
       align-items: center;
       gap: .5rem;
     }
-    .bib-tab-btn:hover { color: var(--accent-strong); }
+    .bib-tab-btn:hover { background: rgba(99,102,241,0.07); color: var(--accent-strong); }
     .bib-tab-btn.active {
-      color: var(--accent-strong);
-      border-bottom-color: var(--accent);
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
       font-weight: 700;
     }
     .bib-tab-panel { display: none; }
@@ -370,6 +370,7 @@
         <!-- ── Tabs Libros | Resúmenes ── -->
         <div class="bib-tabs">
           <button class="bib-tab-btn active" data-bibtab="libros">📚 Libros</button>
+          <button class="bib-tab-btn" data-bibtab="resumenes">📝 Resúmenes</button>
         </div>
 
         <!-- ── Panel: Libros ── -->
@@ -630,7 +631,12 @@
         </div>
         </div><!-- /bibtab-libros -->
 
-        <!-- (Pestaña "Resúmenes" eliminada) -->
+        <!-- ── Panel: Resúmenes ── -->
+        <div class="bib-tab-panel" id="bibtab-resumenes">
+          <div id="resumenesContent">
+            <p style="text-align:center;color:var(--text-muted);padding:1rem;">Cargando resúmenes...</p>
+          </div>
+        </div>
 
       </section><!-- /library-main -->
 
@@ -692,7 +698,38 @@
       });
     }
 
-    // ── Tabs Libros ──
+    // ── Tabs Libros | Resúmenes ──
+    let resumenesLoaded = false;
+
+    function activarTabResumenes() {
+      document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
+      const btn = document.querySelector('.bib-tab-btn[data-bibtab="resumenes"]');
+      if (btn) btn.classList.add('active');
+      const panel = document.getElementById('bibtab-resumenes');
+      if (panel) panel.classList.add('active');
+      if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      if (!resumenesLoaded) {
+        resumenesLoaded = true;
+        fetch('resumenes.html')
+          .then(r => r.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const grid = doc.querySelector('.resumenes-grid');
+            if (grid) {
+              document.getElementById('resumenesContent').innerHTML = grid.outerHTML;
+              initResumenes();
+            }
+          })
+          .catch(() => {
+            document.getElementById('resumenesContent').innerHTML =
+              '<p style="text-align:center;color:var(--text-muted);padding:2rem;">No se pudo cargar los resúmenes.</p>';
+          });
+      }
+    }
+
     document.querySelectorAll('.bib-tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
@@ -700,8 +737,116 @@
         btn.classList.add('active');
         const panel = document.getElementById('bibtab-' + btn.dataset.bibtab);
         if (panel) panel.classList.add('active');
+
+        if (btn.dataset.bibtab === 'resumenes' && !resumenesLoaded) {
+          resumenesLoaded = true;
+          fetch('resumenes.html')
+            .then(r => r.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              const grid = doc.querySelector('.resumenes-grid');
+              if (grid) {
+                document.getElementById('resumenesContent').innerHTML = grid.outerHTML;
+                initResumenes();
+              }
+            })
+            .catch(() => {
+              document.getElementById('resumenesContent').innerHTML =
+                '<p style="text-align:center;color:var(--text-muted);padding:2rem;">No se pudo cargar los resúmenes.</p>';
+            });
+        }
       });
     });
+
+    function initResumenes() {
+      const AREAS = {
+        matematica:   { nombre: 'Matemática' },
+        ciencia:      { nombre: 'Ciencia' },
+        historia:     { nombre: 'Historia' },
+        comunicacion: { nombre: 'Comunicación' },
+        ingles:       { nombre: 'Inglés' }
+      };
+
+      function gradeBtnsHTML() {
+        return `<div class="grade-selector">
+          <span class="grade-selector-label">Selecciona tu grado:</span>
+          <div class="grade-btns-row">
+            <button class="res-grade-btn active" data-grado="1">1°</button>
+            <button class="res-grade-btn" data-grado="2">2°</button>
+            <button class="res-grade-btn" data-grado="3">3°</button>
+            <button class="res-grade-btn" data-grado="4">4°</button>
+            <button class="res-grade-btn" data-grado="5">5°</button>
+          </div>
+        </div>
+        <div class="grade-content">
+          <div class="placeholder-panel">📝 El contenido de este grado estará disponible próximamente.</div>
+        </div>`;
+      }
+
+      const areaSelector = document.getElementById('areaSelector');
+      const resumePanel  = document.getElementById('resumePanel');
+      if (!areaSelector) return;
+
+      document.querySelectorAll('.area-card').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const area = btn.dataset.area;
+          const data = AREAS[area];
+          areaSelector.style.display = 'none';
+          if (resumePanel) resumePanel.style.display  = 'grid';
+          const breadcrumb = document.getElementById('breadcrumbArea');
+          if (breadcrumb && data) breadcrumb.textContent = data.nombre;
+          const areaContent = document.getElementById('areaContent');
+          if (areaContent) areaContent.innerHTML = gradeBtnsHTML();
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          const tabRes = document.getElementById('tab-resumen');
+          if (tabRes) tabRes.classList.add('active');
+
+          document.querySelectorAll('.res-grade-btn').forEach(gb => {
+            gb.addEventListener('click', () => {
+              document.querySelectorAll('.res-grade-btn').forEach(b => b.classList.remove('active'));
+              gb.classList.add('active');
+              const gc = document.querySelector('.grade-content');
+              if (gc) gc.innerHTML =
+                `<div class="placeholder-panel">📝 El contenido de ${data.nombre} para ${gb.dataset.grado}° grado estará disponible próximamente.</div>`;
+            });
+          });
+        });
+      });
+
+      const backBtn = document.getElementById('backToAreas');
+      if (backBtn) {
+        backBtn.addEventListener('click', () => {
+          if (resumePanel) resumePanel.style.display  = 'none';
+          areaSelector.style.display = 'grid';
+        });
+      }
+
+      // "← Volver" del sidebar de resúmenes: vuelve a la pestaña Libros
+      const sidebarBackBtn = document.querySelector('#resumenesContent .sidebar-back');
+      if (sidebarBackBtn) {
+        sidebarBackBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
+          const libBtn = document.querySelector('.bib-tab-btn[data-bibtab="libros"]');
+          if (libBtn) libBtn.classList.add('active');
+          const libPanel = document.getElementById('bibtab-libros');
+          if (libPanel) libPanel.classList.add('active');
+        });
+      }
+
+      document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          const tab = document.getElementById('tab-' + link.dataset.tab);
+          if (tab) tab.classList.add('active');
+        });
+      });
+    }
 
     // ── Filtros rápidos ──
     // Orden definido para cada criterio (índice = posición preferida)
