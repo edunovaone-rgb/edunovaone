@@ -292,33 +292,11 @@
           document.getElementById('gpt').value = '';
         };
       } else {
-        const ini = initials(user.displayName||user.email);
-        f.innerHTML = `<div style="background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.15);border-radius:1rem;padding:1rem;margin-bottom:.75rem;">
-          <p style="margin:0 0 .5rem;font-size:.88rem;color:var(--text-muted);">💬 ¿Tienes una consulta? Puedes abrir un foro de discusión.</p>
-          <div style="display:flex;gap:.65rem;align-items:flex-start;">
-            <div class="grupo-post-avatar" style="width:2rem;height:2rem;font-size:.75rem;flex-shrink:0;background:${colorFor(user.displayName||user.email)};border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">${ini}</div>
-            <div style="flex:1">
-              <textarea id="gpt-consulta" placeholder="Escribe tu consulta o pregunta..." style="width:100%;padding:.65rem .9rem;border:1.5px solid rgba(148,163,184,0.25);border-radius:.9rem;font-size:.88rem;color:var(--text);background:#fafbff;outline:none;font-family:inherit;resize:none;min-height:60px;box-sizing:border-box;"></textarea>
-              <button id="gpb-consulta" style="margin-top:.5rem;padding:.55rem 1.2rem;border:none;border-radius:999px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;">Publicar consulta</button>
-            </div>
-          </div>
+        // Alumnos: solo pueden escribir en el tab Foro
+        f.innerHTML = `<div style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.12);border-radius:1rem;padding:.85rem 1rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.65rem;">
+          <span style="font-size:1.1rem;">💬</span>
+          <p style="margin:0;font-size:.88rem;color:var(--text-muted);">Para escribir, ve al tab <strong style="color:var(--accent-strong);cursor:pointer;" onclick="document.querySelector('[data-tab=foro]').click()">Foro</strong> y abre una discusión.</p>
         </div>`;
-        document.getElementById('gpb-consulta').onclick = async () => {
-          const t = document.getElementById('gpt-consulta').value.trim();
-          if (!t) return;
-          const btn = document.getElementById('gpb-consulta');
-          btn.disabled = true; btn.textContent = '...';
-          await addDoc(collection(db,'grupos',GID,'posts'), {
-            autor: user.displayName||user.email.split('@')[0],
-            autorId: user.uid,
-            texto: t,
-            rol: 'alumno',
-            tipo: 'consulta',
-            createdAt: serverTimestamp()
-          });
-          document.getElementById('gpt-consulta').value = '';
-          btn.disabled = false; btn.textContent = 'Publicar consulta';
-        };
       }
     }
 
