@@ -246,7 +246,8 @@
         getDoc(uRef).then(snap => {
           const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
           renderPostForm(user, true, rol);
-        }).catch(() => renderPostForm(user, true, 'alumno'));
+          renderForoInput(user, true);
+        }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); });
       } else {
         card.innerHTML = `<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Join to participate in discussions</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Join group</button>`;
         document.getElementById('joinBtn').onclick = async () => {
@@ -261,7 +262,8 @@
             getDoc(uRef).then(snap => {
               const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
               renderPostForm(user, true, rol);
-            }).catch(() => renderPostForm(user, true, 'alumno'));
+              renderForoInput(user, true);
+            }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); });
           } catch(e) {
             btn.disabled = false; btn.textContent = 'Join group';
           }
