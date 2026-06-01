@@ -352,6 +352,7 @@
             <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
             <a href="biblioteca.html" class="active"><span class="nav-icon">📚</span>Biblioteca</a>
             <a href="#" id="sidebarResumenesBtn"><span class="nav-icon">📝</span>Resúmenes</a>
+            <a href="juegos.html"><span class="nav-icon">🎮</span>Juegos</a>
             <a href="herramientas.html"><span class="nav-icon">🛠️</span>Herramientas</a>
             <a href="comunidad.html"><span class="nav-icon">👥</span>Comunidad</a>
             <a href="perfil.html"><span class="nav-icon">👤</span>Mi Perfil</a>
@@ -633,7 +634,7 @@
 
         <!-- ── Panel: Resúmenes ── -->
         <div class="bib-tab-panel" id="bibtab-resumenes">
-          <div class="resumenes-embed" id="resumenesContent">
+          <div id="resumenesContent">
             <p style="text-align:center;color:var(--text-muted);padding:1rem;">Cargando resúmenes...</p>
           </div>
         </div>
@@ -675,7 +676,7 @@
   <footer class="site-footer">
     <div class="footer-actions">
       <a href="index.html" class="button button-secondary">Volver a Inicio</a>
-      <a href="resumenes.html" class="button button-primary">Ir a Resúmenes</a>
+      <button class="button button-primary" id="footerResumenesBtn">📝 Ver Resúmenes</button>
     </div>
   </footer>
 
@@ -693,6 +694,34 @@
 
     // ── Tabs Libros | Resúmenes ──
     let resumenesLoaded = false;
+
+    function activarTabResumenes() {
+      document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelector('.bib-tab-btn[data-bibtab="resumenes"]').classList.add('active');
+      document.getElementById('bibtab-resumenes').classList.add('active');
+      document.getElementById('bibtab-resumenes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      if (!resumenesLoaded) {
+        resumenesLoaded = true;
+        fetch('resumenes.html')
+          .then(r => r.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const grid = doc.querySelector('.resumenes-grid');
+            if (grid) {
+              document.getElementById('resumenesContent').innerHTML = grid.outerHTML;
+              initResumenes();
+            }
+          })
+          .catch(() => {
+            document.getElementById('resumenesContent').innerHTML =
+              '<p style="text-align:center;color:var(--text-muted);padding:2rem;">No se pudo cargar los resúmenes.</p>';
+          });
+      }
+    }
+
     document.querySelectorAll('.bib-tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
@@ -700,19 +729,16 @@
         btn.classList.add('active');
         document.getElementById('bibtab-' + btn.dataset.bibtab).classList.add('active');
 
-        // Cargar resúmenes la primera vez
         if (btn.dataset.bibtab === 'resumenes' && !resumenesLoaded) {
           resumenesLoaded = true;
           fetch('resumenes.html')
             .then(r => r.text())
             .then(html => {
-              // Extraer solo el main content
               const parser = new DOMParser();
               const doc = parser.parseFromString(html, 'text/html');
-              const main = doc.querySelector('.resumenes-main');
-              if (main) {
-                document.getElementById('resumenesContent').innerHTML = main.innerHTML;
-                // Re-ejecutar scripts de resúmenes
+              const grid = doc.querySelector('.resumenes-grid');
+              if (grid) {
+                document.getElementById('resumenesContent').innerHTML = grid.outerHTML;
                 initResumenes();
               }
             })
@@ -722,6 +748,15 @@
             });
         }
       });
+    });
+
+    // Sidebar y footer → activar pestaña Resúmenes
+    document.getElementById('sidebarResumenesBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      activarTabResumenes();
+    });
+    document.getElementById('footerResumenesBtn').addEventListener('click', () => {
+      activarTabResumenes();
     });
 
     function initResumenes() {
@@ -779,6 +814,18 @@
         resumePanel.style.display  = 'none';
         areaSelector.style.display = 'grid';
       });
+
+      // "← Volver" del sidebar de resúmenes: vuelve a la pestaña Libros
+      const sidebarBackBtn = document.querySelector('#resumenesContent .sidebar-back');
+      if (sidebarBackBtn) {
+        sidebarBackBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
+          document.querySelector('.bib-tab-btn[data-bibtab="libros"]').classList.add('active');
+          document.getElementById('bibtab-libros').classList.add('active');
+        });
+      }
 
       document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(link => {
         link.addEventListener('click', (e) => {
