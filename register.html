@@ -284,6 +284,13 @@
               <p class="field-error" id="regEmailErr">Ingresa un correo válido (ej: nombre@dominio.com)</p>
             </div>
             <div style="display:grid;gap:0.2rem;">
+              <div class="auth-input-wrap" style="position:relative;">
+                <span class="auth-input-icon" style="font-size:0.85rem;font-weight:700;color:#94a3b8;">@</span>
+                <input type="text" id="regUsername" placeholder="Nombre de usuario" required autocomplete="off" />
+              </div>
+              <p class="field-error" id="regUsernameErr">Solo letras, números y _ (mín. 3 caracteres)</p>
+            </div>
+            <div style="display:grid;gap:0.2rem;">
               <div class="auth-input-wrap no-icon">
                 <input type="password" id="regPass" placeholder="Contraseña" required />
                 <button type="button" class="auth-eye" onclick="togglePass('regPass', this)">👁️</button>
