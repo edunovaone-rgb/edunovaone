@@ -481,6 +481,10 @@
           rol: 'alumno',
           createdAt: new Date().toISOString()
         }, { merge: true });
+        // Incrementar contador público de estudiantes
+        try {
+          await setDoc(doc(db, 'stats', 'global'), { totalUsuarios: increment(1) }, { merge: true });
+        } catch(e) {}
         window.location.href = 'index.html';
       } catch (err) {
         const msgs = {
