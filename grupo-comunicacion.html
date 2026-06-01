@@ -243,7 +243,7 @@
             updateDoc(uRef,{grupos:arrayRemove(GID)}).catch(()=>{}),
             updateDoc(gRef,{miembros:arrayRemove(user.uid)}).catch(()=>{})
           ]);
-          renderJoinCard(user); renderPostForm(user, false);
+          renderJoinCard(user); renderPostForm(user, false); renderForoInput(user, false);
         };
         // Render post form for already-member with correct rol
         getDoc(uRef).then(snap => {
