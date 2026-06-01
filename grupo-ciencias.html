@@ -261,7 +261,8 @@
             getDoc(uRef).then(snap => {
               const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
               renderPostForm(user, true, rol);
-            }).catch(() => renderPostForm(user, true, 'alumno'));
+              renderForoInput(user, true);
+            }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); });
           } catch(e) {
             btn.disabled = false; btn.textContent = 'Unirse al grupo';
           }
