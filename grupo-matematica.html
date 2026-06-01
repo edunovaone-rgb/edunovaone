@@ -338,8 +338,6 @@
         navBtn.textContent = `👤 ${user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta'}`;
         navBtn.href = 'perfil.html';
         navBtn.style.cssText = 'background:rgba(99,102,241,0.1);color:var(--accent-strong);box-shadow:none';
-        const fa = document.getElementById('foroAvatar');
-        if (fa) fa.innerHTML = `<img src="${avatarUrl(user.displayName||user.email)}" alt="" />`;
       }
       renderJoinCard(user);
       if (user) {
@@ -348,7 +346,10 @@
           const isMember = (data.grupos||[]).includes(GID);
           const rol = data.rol || 'alumno';
           renderPostForm(user, isMember, rol);
-        }).catch(()=>{});
+          renderForoInput(user, isMember);
+        }).catch(()=>{ renderForoInput(user, false); });
+      } else {
+        renderForoInput(null, false);
       }
     });
 
