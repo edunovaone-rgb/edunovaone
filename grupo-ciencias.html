@@ -71,8 +71,7 @@
           <div class="grupo-tab-panel active" id="tab-general">
             <div id="groupPostForm"></div>
             <div class="posts-feed" id="groupFeed" style="margin-top:1rem">
-              <div class="skeleton skeleton-line medium"></div>
-              <div class="skeleton skeleton-line short" style="margin-top:.5rem"></div>
+              <p style="color:var(--text-muted);font-size:.9rem;text-align:center">¡Sé el primero en publicar!</p>
             </div>
           </div>
 
@@ -306,14 +305,16 @@
         const fa = document.getElementById('foroAvatar');
         fa.innerHTML = `<img src="${avatarUrl(user.displayName||user.email)}" alt="" />`;
       }
-      renderJoinCard(user); // no await — runs in background
+      renderJoinCard(user);
       if (user) {
         getDoc(doc(db,'usuarios',user.uid)).then(uSnap => {
           renderPostForm(user, uSnap.exists() && (uSnap.data().grupos||[]).includes(GID));
         }).catch(()=>{});
       }
-      loadFeed();
     });
+
+    // loadFeed corre inmediatamente, sin esperar auth
+    loadFeed();
   </script>
   <script type="module" src="auth-nav.js"></script>
 </body>
