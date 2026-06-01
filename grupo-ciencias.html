@@ -133,8 +133,8 @@
 
       <div class="grupo-sidebar">
         <div class="grupo-card" id="joinCard">
-          <div class="skeleton skeleton-line medium"></div>
-          <div class="skeleton skeleton-line short" style="margin-top:.5rem"></div>
+          <p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar en las discusiones</p>
+          <button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#16a34a,#0f766e);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Unirse al grupo</button>
         </div>
 
         <div class="grupo-card">
@@ -227,25 +227,40 @@
     async function renderJoinCard(user) {
       const card = document.getElementById('joinCard');
       if (!user) { card.innerHTML = `<p style="text-align:center;color:var(--text-muted)">¿Quieres unirte? <a href="login.html" style="color:var(--accent-strong);font-weight:700">Inicia sesión</a></p>`; return; }
-      const [uSnap, gSnap] = await Promise.all([getDoc(doc(db,'usuarios',user.uid)), getDoc(doc(db,'grupos',GID))]);
-      const grupos = uSnap.exists() ? (uSnap.data().grupos||[]) : [];
-      const count  = gSnap.exists() ? (gSnap.data().miembros||[]).length : 0;
-      document.getElementById('memberCount').textContent = `👥 ${count} miembros`;
+      // Show join button immediately, then check membership in background
       const uRef = doc(db,'usuarios',user.uid), gRef = doc(db,'grupos',GID);
+      const [uSnap, gSnap] = await Promise.all([
+        getDoc(uRef).catch(()=>null),
+        getDoc(gRef).catch(()=>null)
+      ]);
+      const grupos = uSnap && uSnap.exists() ? (uSnap.data().grupos||[]) : [];
+      const count  = gSnap && gSnap.exists() ? (gSnap.data().miembros||[]).length : 0;
+      if (count > 0) document.getElementById('memberCount').textContent = `👥 ${count} miembros`;
       if (grupos.includes(GID)) {
         card.innerHTML = `<p style="color:#16a34a;font-weight:700;text-align:center;margin:0 0 .75rem">✓ Ya eres miembro</p><button class="leave-btn" id="leaveBtn">Salirse del grupo</button>`;
         document.getElementById('leaveBtn').onclick = async () => {
           if (!confirm('¿Seguro?')) return;
-          await Promise.all([updateDoc(uRef,{grupos:arrayRemove(GID)}), updateDoc(gRef,{miembros:arrayRemove(user.uid)}).catch(()=>{})]);
+          await Promise.all([
+            updateDoc(uRef,{grupos:arrayRemove(GID)}).catch(()=>{}),
+            updateDoc(gRef,{miembros:arrayRemove(user.uid)}).catch(()=>{})
+          ]);
           renderJoinCard(user); renderPostForm(user, false);
         };
       } else {
         card.innerHTML = `<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar en las discusiones</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#16a34a,#0f766e);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Unirse al grupo</button>`;
         document.getElementById('joinBtn').onclick = async () => {
-          await updateDoc(uRef,{grupos:arrayUnion(GID)}).catch(async()=>{ await setDoc(uRef,{grupos:[GID]},{merge:true}); });
-          await setDoc(gRef,{nombre:GNAME,icon:GICON,color:GCOLOR},{merge:true});
-          await updateDoc(gRef,{miembros:arrayUnion(user.uid)}).catch(()=>{});
-          renderJoinCard(user); renderPostForm(user, true);
+          const btn = document.getElementById('joinBtn');
+          btn.disabled = true; btn.textContent = '...';
+          try {
+            await Promise.all([
+              setDoc(uRef, { grupos: arrayUnion(GID) }, { merge: true }),
+              setDoc(gRef, { nombre:GNAME, icon:GICON, color:GCOLOR, miembros: arrayUnion(user.uid) }, { merge: true })
+            ]);
+            card.innerHTML = `<p style="color:#16a34a;font-weight:700;text-align:center;margin:0">✓ Ya eres miembro</p>`;
+            renderPostForm(user, true);
+          } catch(e) {
+            btn.disabled = false; btn.textContent = 'Unirse al grupo';
+          }
         };
       }
     }
@@ -282,7 +297,7 @@
       });
     }
 
-    onAuthStateChanged(auth, async user => {
+    onAuthStateChanged(auth, user => {
       const navBtn = document.getElementById('navAuthBtn');
       if (user) {
         navBtn.textContent = `👤 ${user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta'}`;
@@ -291,10 +306,11 @@
         const fa = document.getElementById('foroAvatar');
         fa.innerHTML = `<img src="${avatarUrl(user.displayName||user.email)}" alt="" />`;
       }
-      await renderJoinCard(user);
+      renderJoinCard(user); // no await — runs in background
       if (user) {
-        const uSnap = await getDoc(doc(db,'usuarios',user.uid));
-        renderPostForm(user, uSnap.exists() && (uSnap.data().grupos||[]).includes(GID));
+        getDoc(doc(db,'usuarios',user.uid)).then(uSnap => {
+          renderPostForm(user, uSnap.exists() && (uSnap.data().grupos||[]).includes(GID));
+        }).catch(()=>{});
       }
       loadFeed();
     });
