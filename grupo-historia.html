@@ -449,8 +449,8 @@
 
       try {
         const snap = await getDoc(doc(db, 'usuarios', uid));
-        if (!snap.exists()) { document.getElementById('perfilName').textContent = 'Usuario no encontrado'; return; }
-        const d = snap.data();
+        if (!snap.exists()) { document.getElementById('perfilName').textContent = 'Sin perfil aún'; return; }
+        const d = snap.data() || {};
         const nombre = d.nombre || d.displayName || uid.slice(0,8);
         const colorIdx = uid.charCodeAt(0) % BANNER_COLORS.length;
 
@@ -462,18 +462,18 @@
         document.getElementById('perfilHoras').textContent = d.horasEstudio ?? 0;
         document.getElementById('perfilJuegos').textContent = d.juegosCompletados ?? 0;
 
-        const grupos = d.grupos || [];
+        const grupos = Array.isArray(d.grupos) ? d.grupos : [];
         document.getElementById('perfilGrupos').innerHTML = grupos.length
           ? grupos.map(g => `<span class="perfil-grupo-tag">${GRUPO_NOMBRES[g] || g}</span>`).join('')
           : '<span style="font-size:.82rem;color:var(--text-muted)">Sin grupos</span>';
 
-        const insignias = d.insignias || [];
+        const insignias = Array.isArray(d.insignias) ? d.insignias.filter(i => i && typeof i === 'object') : [];
         document.getElementById('perfilInsignias').innerHTML = insignias.length
-          ? insignias.map(i => `<span class="perfil-insignia">${i.icono} ${i.nombre}</span>`).join('')
+          ? insignias.map(i => `<span class="perfil-insignia">${i.icono || '🏅'} ${i.nombre || ''}</span>`).join('')
           : '<span style="font-size:.82rem;color:var(--text-muted)">Sin insignias aún</span>';
       } catch(e) {
-        document.getElementById('perfilName').textContent = 'Error al cargar';
         console.error('openPerfilPopup error:', e);
+        document.getElementById('perfilName').textContent = 'Error al cargar';
       }
     }
 
