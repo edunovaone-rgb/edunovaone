@@ -1094,8 +1094,41 @@
       const descInput    = document.getElementById('descInput');
       const charCounter  = document.getElementById('charCounter');
 
+      // ── Límite: 2 ediciones por semana ──
+      // Devuelve el lunes de la semana ISO de una fecha dada (como string YYYY-MM-DD)
+      function getWeekKey(date) {
+        const d = new Date(date);
+        const day = d.getDay() || 7; // domingo = 7
+        d.setDate(d.getDate() - day + 1); // retroceder al lunes
+        return d.toISOString().slice(0, 10); // YYYY-MM-DD del lunes
+      }
+
+      const todayWeekKey = getWeekKey(new Date());
+      const editHistory  = data.editDescHistory || { weekKey: '', count: 0 };
+      // Si la semana guardada es distinta a la actual, reiniciar contador
+      const editsThisWeek = editHistory.weekKey === todayWeekKey ? (editHistory.count || 0) : 0;
+      const MAX_EDITS = 2;
+      const canEdit = editsThisWeek < MAX_EDITS;
+
+      // Actualizar botón según disponibilidad
+      function refreshEditBtn() {
+        const remaining = MAX_EDITS - editsThisWeek;
+        if (!canEdit) {
+          editBtn.style.opacity = '0.5';
+          editBtn.style.cursor  = 'not-allowed';
+          editBtn.title = 'Ya usaste tus 2 ediciones de esta semana';
+        } else {
+          editBtn.title = `Puedes editar ${remaining} vez${remaining === 1 ? '' : 'es'} más esta semana`;
+        }
+      }
+      refreshEditBtn();
+
       editBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        if (!canEdit) {
+          alert('Ya usaste tus 2 ediciones de descripción esta semana. Podrás editar de nuevo la próxima semana.');
+          return;
+        }
         descInput.value = data.descripcion || '';
         charCounter.textContent = `${descInput.value.length} / 50`;
         charCounter.classList.toggle('over', descInput.value.length > 50);
@@ -1113,11 +1146,27 @@
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
 
       saveBtn.addEventListener('click', async () => {
+        if (!canEdit) return;
         const newDesc = descInput.value.trim().slice(0, 50);
-        await updateDoc(ref, { descripcion: newDesc });
+        const newCount = editsThisWeek + 1;
+        await updateDoc(ref, {
+          descripcion: newDesc,
+          editDescHistory: { weekKey: todayWeekKey, count: newCount }
+        });
         data.descripcion = newDesc;
+        data.editDescHistory = { weekKey: todayWeekKey, count: newCount };
         descEl.textContent = newDesc;
         overlay.classList.remove('open');
+
+        // Actualizar estado del botón tras guardar
+        const newRemaining = MAX_EDITS - newCount;
+        if (newCount >= MAX_EDITS) {
+          editBtn.style.opacity = '0.5';
+          editBtn.style.cursor  = 'not-allowed';
+          editBtn.title = 'Ya usaste tus 2 ediciones de esta semana';
+        } else {
+          editBtn.title = `Puedes editar ${newRemaining} vez${newRemaining === 1 ? '' : 'es'} más esta semana`;
+        }
       });
     });
   </script>
