@@ -506,6 +506,8 @@
               // Actualizar grupos del usuario y refrescar área de publicación
               currentUserGroups = [...currentUserGroups, gid];
               await renderNewPostArea(user);
+              // Actualizar conteo en la card
+              loadGroupCounts();
             } catch (err) {
               console.error('Error al unirse:', err);
               btn.disabled = false;
@@ -514,6 +516,19 @@
           });
         }
       });
+    }
+
+    // ── Conteos reales de miembros por grupo ──
+    async function loadGroupCounts() {
+      const gids = ['matematica','ciencias','historia','english','tecnologia','comunicacion'];
+      await Promise.all(gids.map(async gid => {
+        try {
+          const snap = await getDoc(doc(db, 'grupos', gid));
+          const count = snap.exists() ? (snap.data().miembros || []).length : 0;
+          const el = document.getElementById('gm-' + gid);
+          if (el) el.textContent = `👥 ${count} miembro${count !== 1 ? 's' : ''}`;
+        } catch(e) {}
+      }));
     }
 
     // ── Auth state ──
@@ -531,6 +546,9 @@
       loadPosts();
       if (user) loadGroups(user);
     });
+
+    // Cargar conteos sin necesidad de auth
+    loadGroupCounts();
   </script>
   <script type="module" src="auth-nav.js"></script>
 </body>
