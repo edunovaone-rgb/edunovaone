@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Auto Push to GitHub",
+  "description": "Automatically commits and pushes changes to GitHub when HTML, CSS or JS files are saved in the project",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.html",
+      "**/*.css",
+      "**/*.js"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "cd \"c:\\Users\\Casa\\Desktop\\J.A.P\\workspace\\proyecto\" && git add . && git commit -m \"Auto-update: cambios guardados\" && git push",
+    "timeout": 30
+  }
+}
