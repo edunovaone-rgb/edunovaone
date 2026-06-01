@@ -819,15 +819,31 @@
   <!-- ── Edit description modal ── -->
   <div class="edit-modal-overlay" id="editModalOverlay" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
     <div class="edit-modal">
-      <h3 id="editModalTitle">✏️ Editar descripción</h3>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+        <h3 id="editModalTitle">✏️ Editar perfil</h3>
+        <span class="edit-quota-badge" id="quotaBadge">2 cambios disponibles</span>
+      </div>
+
+      <!-- Username -->
       <div>
-        <label for="descInput">Descripción (máx. 50 caracteres)</label>
+        <label for="usernameInput">Nombre de usuario <span style="font-weight:400;opacity:.7;">(apodo visible)</span></label>
+        <div style="position:relative;display:flex;align-items:center;">
+          <span style="position:absolute;left:.9rem;font-size:.85rem;font-weight:700;color:#94a3b8;pointer-events:none;">@</span>
+          <input type="text" id="usernameInput" maxlength="20" placeholder="tu_apodo" style="padding-left:2rem;" autocomplete="off" />
+        </div>
+        <p class="edit-field-hint" id="usernameHint">Solo letras, números y _ · 3–20 caracteres</p>
+      </div>
+
+      <!-- Descripción -->
+      <div>
+        <label for="descInput">Descripción <span style="font-weight:400;opacity:.7;">(máx. 50 caracteres)</span></label>
         <textarea id="descInput" maxlength="50" placeholder="Escribe algo sobre ti..."></textarea>
         <p class="char-counter" id="charCounter">0 / 50</p>
       </div>
+
       <div class="edit-modal-actions">
         <button class="button button-secondary" id="editModalCancel">Cancelar</button>
-        <button class="button button-primary" id="editModalSave">Guardar</button>
+        <button class="button button-primary" id="editModalSave">Guardar cambios</button>
       </div>
     </div>
   </div>
