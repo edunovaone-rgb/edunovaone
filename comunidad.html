@@ -272,12 +272,27 @@
     }
 
     let currentUser = null;
+    let currentUserGroups = []; // grupos a los que pertenece el usuario actual
+
+    // ── Verificar si el usuario pertenece a al menos un grupo ──
+    async function getUserGroups(uid) {
+      try {
+        const uSnap = await getDoc(doc(db, 'usuarios', uid));
+        return uSnap.exists() ? (uSnap.data().grupos || []) : [];
+      } catch { return []; }
+    }
 
     // ── Render área de nuevo post ──
-    function renderNewPostArea(user) {
+    async function renderNewPostArea(user) {
       const area = document.getElementById('newPostArea');
       if (!user) {
         area.innerHTML = `<div class="login-prompt">¿Quieres publicar? <a href="login.html">Inicia sesión</a> o <a href="register.html">regístrate</a>.</div>`;
+        return;
+      }
+      const grupos = await getUserGroups(user.uid);
+      currentUserGroups = grupos;
+      if (grupos.length === 0) {
+        area.innerHTML = `<div class="login-prompt">Para publicar en el foro debes <strong>unirte a un grupo de estudio</strong> primero. <a href="#groupsGrid">Ver grupos</a>.</div>`;
         return;
       }
       const col = colorFor(user.displayName || user.email);
@@ -369,12 +384,13 @@
                 </div>
               </div>`).join('')}
           </div>
-          ${currentUser ? `
-            <div class="comment-form">
+          ${!currentUser
+            ? `<div class="login-prompt" style="margin-top:.5rem;"><a href="login.html">Inicia sesión</a> para comentar.</div>`
+            : currentUserGroups.length === 0
+            ? `<div class="login-prompt" style="margin-top:.5rem;">Debes <a href="#groupsGrid"><strong>unirte a un grupo</strong></a> para poder comentar.</div>`
+            : `<div class="comment-form">
               <textarea class="comment-input" id="ci-${pid}" placeholder="Escribe un comentario..." rows="1"></textarea>
               <button class="comment-send-btn" data-pid="${pid}">Enviar</button>
-            </div>` : `<div class="login-prompt" style="margin-top:.5rem;">
-              <a href="login.html">Inicia sesión</a> para comentar.
             </div>`}
         </div>`;
 
@@ -508,7 +524,7 @@
         navBtn.style.color = 'var(--accent-strong)';
         navBtn.style.boxShadow = 'none';
       }
-      renderNewPostArea(user);
+      await renderNewPostArea(user);
       loadPosts();
       if (user) loadGroups(user);
     });
