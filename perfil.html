@@ -877,6 +877,21 @@
         await setDoc(ref, data);
       }
 
+      // ── Lógica de racha ──
+      const hoy = new Date().toISOString().slice(0, 10);
+      const ultima = data.ultimaVisita || null;
+      let rachaActual = data.rachaActual ?? 0;
+      if (ultima !== hoy) {
+        const ayer = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+        if (ultima === ayer) {
+          rachaActual = rachaActual + 1;
+        } else {
+          rachaActual = 1;
+        }
+        await updateDoc(ref, { rachaActual, ultimaVisita: hoy }).catch(() => {});
+        data.rachaActual = rachaActual;
+      }
+
       // ── Rellenar UI ──
       const grado   = data.grado   || 'Grado no configurado';
       const colegio = data.colegio || 'Colegio no configurado';
