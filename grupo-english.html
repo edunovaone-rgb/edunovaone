@@ -169,6 +169,31 @@
 
   <footer class="site-footer"><p>EduNova Library · Biblioteca Digital para Estudiantes</p></footer>
 
+  <!-- ── Perfil Popup ── -->
+  <div class="perfil-overlay" id="perfilOverlay" role="dialog" aria-modal="true" aria-label="Member profile">
+    <div class="perfil-popup">
+      <div class="perfil-banner" id="perfilBanner">
+        <button class="perfil-close" id="perfilClose" aria-label="Close">✕</button>
+        <div class="perfil-avatar-wrap">
+          <img id="perfilAvatar" src="" alt="Avatar" />
+        </div>
+      </div>
+      <div class="perfil-body">
+        <p class="perfil-name" id="perfilName">—</p>
+        <p class="perfil-grado" id="perfilGrado">—</p>
+        <div class="perfil-stats">
+          <div class="perfil-stat"><strong id="perfilRacha">0</strong><span>🔥 Streak</span></div>
+          <div class="perfil-stat"><strong id="perfilHoras">0</strong><span>Hours</span></div>
+          <div class="perfil-stat"><strong id="perfilJuegos">0</strong><span>Games</span></div>
+        </div>
+        <p class="perfil-section-title">Groups</p>
+        <div class="perfil-grupos" id="perfilGrupos"></div>
+        <p class="perfil-section-title">Badges</p>
+        <div class="perfil-insignias" id="perfilInsignias"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.querySelectorAll('.grupo-tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
