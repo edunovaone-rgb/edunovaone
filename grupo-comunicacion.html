@@ -321,16 +321,21 @@
           if (!t) return;
           const btn = document.getElementById('gpb-consulta');
           btn.disabled = true; btn.textContent = '...';
-          await addDoc(collection(db,'grupos',GID,'posts'), {
-            autor: user.displayName||user.email.split('@')[0],
-            autorId: user.uid,
-            texto: t,
-            rol: 'alumno',
-            tipo: 'consulta',
-            createdAt: serverTimestamp()
-          });
-          document.getElementById('gpt-consulta').value = '';
-          btn.disabled = false; btn.textContent = 'Publicar consulta';
+          try {
+            await addDoc(collection(db,'grupos',GID,'posts'), {
+              autor: user.displayName||user.email.split('@')[0],
+              autorId: user.uid,
+              texto: t,
+              rol: 'alumno',
+              tipo: 'consulta',
+              createdAt: serverTimestamp()
+            });
+            document.getElementById('gpt-consulta').value = '';
+          } catch(e) {
+            alert('Error al publicar. Intenta de nuevo.');
+          } finally {
+            btn.disabled = false; btn.textContent = 'Publicar consulta';
+          }
         };
       }
     }
