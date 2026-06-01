@@ -1,0 +1,244 @@
+/* ═══════════════════════════════════════════
+   grupo-shared.css — Estilos compartidos para
+   todos los grupos de estudio de EduNova
+   ═══════════════════════════════════════════ */
+
+/* ── Hero ── */
+.grupo-hero {
+  border-radius: 2rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.grupo-hero-icon {
+  font-size: 3rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.grupo-hero-info h2 { margin: 0 0 .4rem; color: var(--accent-strong); font-size: 1.8rem; }
+.grupo-hero-info p  { margin: 0 0 .75rem; color: var(--text-muted); }
+.grupo-hero-meta    { display: flex; gap: 1rem; flex-wrap: wrap; }
+.grupo-meta-badge   { padding: .3rem .85rem; border-radius: 999px; font-size: .82rem; font-weight: 700; }
+
+/* ── Layout ── */
+.grupo-layout { display: grid; grid-template-columns: minmax(0,1fr) 290px; gap: 1.5rem; align-items: start; }
+.grupo-main   { display: grid; gap: 1.25rem; }
+.grupo-sidebar{ display: grid; gap: 1.25rem; }
+
+/* ── Card base ── */
+.grupo-card {
+  background: #fff;
+  border: 1px solid rgba(59,130,246,0.1);
+  border-radius: 1.5rem;
+  padding: 1.4rem;
+  box-shadow: 0 12px 28px rgba(15,23,42,0.05);
+}
+.grupo-card h3 { margin: 0 0 1rem; color: var(--accent-strong); font-size: 1rem; font-weight: 700; }
+
+/* ── Tabs ── */
+.grupo-tabs {
+  display: flex;
+  border-bottom: 2px solid rgba(148,163,184,0.15);
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.grupo-tabs::-webkit-scrollbar { display: none; }
+.grupo-tab-btn {
+  padding: .75rem 1.2rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.grupo-tab-btn:hover  { color: var(--accent-strong); }
+.grupo-tab-panel      { display: none; }
+.grupo-tab-panel.active { display: block; }
+
+/* ── Recursos ── */
+.recursos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .85rem;
+}
+.recurso-card {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  padding: .9rem 1rem;
+  background: #f8fbff;
+  border: 1px solid rgba(59,130,246,0.1);
+  border-radius: 1.1rem;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none;
+}
+.recurso-card:hover { transform: translateY(-2px); }
+.recurso-type-icon {
+  width: 2.6rem; height: 2.6rem;
+  border-radius: .75rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.rtype-pdf   { background: rgba(239,68,68,0.12);  color: #dc2626; }
+.rtype-video { background: rgba(16,185,129,0.12); color: #059669; }
+.rtype-doc   { background: rgba(37,99,235,0.12);  color: #2563eb; }
+.recurso-card-info strong { font-size: .88rem; color: var(--text); display: block; font-weight: 700; }
+.recurso-card-info span   { font-size: .78rem; color: var(--text-muted); }
+
+/* ── Foro ── */
+.foro-list { display: grid; gap: .85rem; }
+.foro-item {
+  padding: 1rem;
+  background: #f8fbff;
+  border: 1px solid rgba(59,130,246,0.08);
+  border-radius: 1.1rem;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.foro-item-title { font-size: .92rem; font-weight: 700; color: var(--text); }
+.foro-item-desc  { font-size: .83rem; color: var(--text-muted); margin: .3rem 0 .6rem; }
+.foro-item-meta  { display: flex; align-items: center; gap: 1rem; }
+.foro-avatars    { display: flex; }
+.foro-avatars span {
+  width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  color: #fff; font-size: .65rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fff; margin-left: -.4rem;
+}
+.foro-avatars span:first-child { margin-left: 0; }
+.foro-members, .foro-comments { font-size: .78rem; color: var(--text-muted); }
+.foro-new-input {
+  display: flex; align-items: center; gap: .75rem;
+  margin-top: 1rem; padding-top: 1rem;
+  border-top: 1px solid rgba(148,163,184,0.12);
+}
+.foro-new-input input {
+  flex: 1; padding: .65rem 1rem;
+  border: 1.5px solid rgba(148,163,184,0.2);
+  border-radius: 999px; font-size: .88rem;
+  outline: none; font-family: inherit; background: #fafbff;
+}
+.foro-new-input input:focus { border-color: var(--accent); }
+
+/* ── Tareas ── */
+.tarea-list  { display: grid; gap: .75rem; list-style: none; padding: 0; margin: 0; }
+.tarea-item  { display: flex; align-items: center; gap: .85rem; padding: .85rem 1rem; background: #f8fbff; border-radius: 1rem; font-size: .9rem; color: var(--text-muted); }
+.tarea-badge { padding: .25rem .7rem; border-radius: 999px; font-size: .75rem; font-weight: 700; white-space: nowrap; }
+.tarea-pending { background: rgba(245,158,11,0.12); color: #d97706; }
+.tarea-done    { background: rgba(16,185,129,0.12);  color: #059669; }
+.tarea-icon    { width: 2rem; height: 2rem; border-radius: .6rem; display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+
+/* ── Miembros sidebar ── */
+.miembro-search {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .55rem .85rem;
+  border: 1.5px solid rgba(148,163,184,0.2);
+  border-radius: .9rem; margin-bottom: .85rem; background: #fafbff;
+}
+.miembro-search input { border: none; outline: none; font-size: .85rem; background: transparent; flex: 1; font-family: inherit; }
+.miembros-list  { display: grid; gap: .55rem; list-style: none; padding: 0; margin: 0; }
+.miembro-item   { display: flex; align-items: center; gap: .75rem; }
+.miembro-avatar {
+  width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  overflow: hidden;
+}
+.miembro-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.miembro-info strong { font-size: .85rem; color: var(--text); display: block; }
+.miembro-info span   { font-size: .75rem; color: var(--text-muted); }
+
+/* ── Eventos ── */
+.evento-item { padding: .75rem 1rem; background: #f8fbff; border-radius: 1rem; font-size: .88rem; color: var(--text-muted); }
+.evento-item strong { display: block; color: var(--text); font-size: .9rem; margin-bottom: .2rem; }
+
+/* ── Grupos mini ── */
+.grupos-mini-list { display: grid; gap: .75rem; }
+.grupo-mini-card  {
+  display: flex; gap: .75rem; align-items: flex-start;
+  padding: .75rem; background: #f8fbff; border-radius: 1rem;
+  cursor: pointer; transition: background .2s; text-decoration: none;
+}
+.grupo-mini-icon { width: 2.4rem; height: 2.4rem; border-radius: .75rem; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.grupo-mini-info strong { font-size: .85rem; color: var(--accent-strong); display: block; }
+.grupo-mini-info p      { margin: 0; font-size: .75rem; color: var(--text-muted); line-height: 1.4; }
+.grupo-mini-info small  { font-size: .75rem; color: var(--text-muted); }
+
+/* ── Botones ── */
+.ver-todos-btn {
+  width: 100%; margin-top: .75rem; padding: .65rem;
+  border: 1.5px solid rgba(99,102,241,0.2); border-radius: 999px;
+  background: #fff; color: var(--accent-strong);
+  font-weight: 700; font-size: .85rem; cursor: pointer; transition: background .2s;
+}
+.ver-todos-btn:hover { background: rgba(99,102,241,0.06); }
+.leave-btn {
+  width: 100%; padding: .85rem;
+  border: 1.5px solid rgba(239,68,68,0.3); border-radius: 1rem;
+  background: transparent; color: #ef4444;
+  font-weight: 700; font-size: .9rem; cursor: pointer; transition: background .2s;
+}
+.leave-btn:hover { background: rgba(239,68,68,0.06); }
+
+/* ── Feed / Posts ── */
+.posts-feed { display: grid; gap: .75rem; }
+.grupo-post { padding: .9rem 1rem; background: #f8fbff; border-radius: 1rem; display: flex; gap: .75rem; }
+.grupo-post-avatar {
+  width: 2.2rem; height: 2.2rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .78rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  overflow: hidden;
+}
+.grupo-post-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.grupo-post-body strong { font-size: .85rem; color: var(--text); display: block; margin-bottom: .2rem; }
+.grupo-post-body p      { margin: 0; font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+.grupo-post-body small  { font-size: .72rem; color: var(--text-muted); }
+
+/* ── Post form ── */
+.post-form { display: grid; gap: .75rem; }
+.post-form textarea {
+  padding: .85rem 1rem;
+  border: 1.5px solid rgba(148,163,184,0.25);
+  border-radius: 1rem; font-size: .92rem;
+  font-family: inherit; resize: vertical; min-height: 80px; outline: none;
+}
+.post-form textarea:focus { border-color: var(--accent); }
+.post-form button { padding: .7rem 1.4rem; border: none; border-radius: 999px; color: #fff; font-weight: 700; cursor: pointer; justify-self: end; }
+
+/* ── Skeleton loader ── */
+.skeleton {
+  background: linear-gradient(90deg, #f0f4ff 25%, #e2e8f0 50%, #f0f4ff 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: .75rem;
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.skeleton-line { height: .85rem; margin-bottom: .5rem; }
+.skeleton-line.short { width: 60%; }
+.skeleton-line.medium { width: 80%; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .grupo-layout   { grid-template-columns: 1fr; }
+  .recursos-grid  { grid-template-columns: 1fr; }
+  .grupo-hero     { flex-direction: column; text-align: center; }
+  .grupo-hero-meta{ justify-content: center; }
+}
+@media (max-width: 600px) {
+  .grupo-hero { padding: 1.25rem; }
+  .grupo-card { padding: 1rem; }
+}
