@@ -835,18 +835,27 @@
     const heroBtn = document.getElementById('heroAuthBtn');
 
     // ── Conteo real de estudiantes ──
-    (async () => {
+    async function updateMetricEstudiantes() {
+      const el = document.getElementById('metricEstudiantes');
+      if (!el) return;
       try {
-        const snap = await getDoc(doc(db, 'stats', 'global'));
-        const count = snap.exists() ? (snap.data().totalUsuarios || 0) : 0;
-        const el = document.getElementById('metricEstudiantes');
-        if (el && count > 0) el.textContent = '+' + count;
-        // Si no existe el doc de stats, lo inicializamos
-        if (!snap.exists()) {
-          setDoc(doc(db,'stats','global'), { totalUsuarios: 1 }, { merge: true }).catch(()=>{});
+        // 1. Intentar leer stats/global (lectura pública, sin auth)
+        const statsSnap = await getDoc(doc(db, 'stats', 'global'));
+        if (statsSnap.exists() && statsSnap.data().totalUsuarios > 0) {
+          el.textContent = '+' + statsSnap.data().totalUsuarios;
+          return;
+        }
+        // 2. Fallback: contar directamente (requiere auth o reglas abiertas)
+        const countSnap = await getCountFromServer(collection(db, 'usuarios'));
+        const count = countSnap.data().count;
+        if (count > 0) {
+          el.textContent = '+' + count;
+          // Guardar en stats/global para futuras visitas sin auth
+          setDoc(doc(db,'stats','global'), { totalUsuarios: count }, { merge: true }).catch(()=>{});
         }
       } catch(e) {}
-    })();
+    }
+    updateMetricEstudiantes();
 
     // Elementos de la landing
     const landingSections = [
