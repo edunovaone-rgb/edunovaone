@@ -907,9 +907,7 @@
             ? (data.insignias.find(i => i.id === ins.id)?.fechaObtenida || new Date().toLocaleDateString('es-PE'))
             : new Date().toLocaleDateString('es-PE'),
         }));
-        import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js').then(({ updateDoc }) => {
-          updateDoc(ref, { insignias: insigniasParaGuardar });
-        });
+        updateDoc(ref, { insignias: insigniasParaGuardar });
       }
 
       // Renderizar insignias
