@@ -329,6 +329,30 @@
       margin-top: 0.25rem;
     }
 
+    /* ── Badge tooltip ── */
+    .badge-item {
+      position: relative;
+      cursor: default;
+    }
+    .badge-item::after {
+      content: attr(title);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15,23,42,0.85);
+      color: #fff;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.5rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s;
+      z-index: 10;
+    }
+    .badge-item:hover::after { opacity: 1; }
+
     /* ── Groups section ── */
     .groups-section-card {
       background: #ffffff;
