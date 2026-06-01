@@ -650,12 +650,17 @@
           </div>
 
           <div class="profile-identity">
-            <div class="profile-avatar" id="profileAvatar">🧑‍🎓</div>
+            <div class="profile-avatar-wrap">
+              <div class="profile-avatar" id="profileAvatar">🧑‍🎓</div>
+              <span class="status-dot offline" id="statusDot" title="Cargando..."></span>
+            </div>
             <div class="profile-name-block">
               <div class="profile-name-row">
                 <h3 id="profileName">—</h3>
                 <span class="badge-role">Estudiante</span>
               </div>
+              <p id="profileUsername" style="margin:0;font-size:0.85rem;color:var(--accent);font-weight:600;"></p>
+              <p id="statusLabel" style="margin:0;font-size:0.78rem;color:var(--text-muted);"></p>
               <p class="profile-meta" id="profileMeta">
                 Cargando...
               </p>
