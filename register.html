@@ -489,6 +489,7 @@
         // Todos se registran como alumno — el admin cambia el rol en Firestore
         await setDoc(doc(db, 'usuarios', cred.user.uid), {
           nombre: name,
+          username: username,
           email: email,
           colegio: school,
           grado: grade,
