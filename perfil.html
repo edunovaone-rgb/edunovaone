@@ -410,6 +410,96 @@
       background: rgba(239, 68, 68, 0.12);
     }
 
+    /* ── Description ── */
+    .profile-description {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .profile-description:empty::before {
+      content: 'Sin descripción';
+      opacity: 0.5;
+    }
+
+    /* ── Edit modal ── */
+    .edit-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .edit-modal-overlay.open {
+      display: flex;
+    }
+
+    .edit-modal {
+      background: #fff;
+      border-radius: 1.75rem;
+      padding: 2rem;
+      width: min(420px, 92vw);
+      box-shadow: 0 32px 64px rgba(15, 23, 42, 0.18);
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .edit-modal h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--accent-strong);
+    }
+
+    .edit-modal label {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .edit-modal textarea {
+      width: 100%;
+      resize: vertical;
+      min-height: 80px;
+      border: 1.5px solid rgba(99, 102, 241, 0.25);
+      border-radius: 0.85rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+
+    .edit-modal textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .char-counter {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: right;
+      margin-top: 0.25rem;
+    }
+
+    .char-counter.over {
+      color: #ef4444;
+      font-weight: 700;
+    }
+
+    .edit-modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 1080px) {
       .profile-grid { grid-template-columns: 1fr; }
@@ -499,7 +589,7 @@
         <div class="profile-header-card">
           <div class="profile-top-row">
             <h2>Mi Perfil</h2>
-            <a href="#" class="button button-secondary" style="gap:0.5rem;">
+            <a href="#" class="button button-secondary" id="editProfileBtn" style="gap:0.5rem;">
               ✏️ Editar perfil
             </a>
           </div>
@@ -514,6 +604,7 @@
               <p class="profile-meta" id="profileMeta">
                 Cargando...
               </p>
+              <p class="profile-description" id="profileDescription"></p>
             </div>
           </div>
 
@@ -664,6 +755,22 @@
       </div><!-- /profile-content -->
     </div><!-- /profile-grid -->
   </main>
+
+  <!-- ── Edit description modal ── -->
+  <div class="edit-modal-overlay" id="editModalOverlay" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div class="edit-modal">
+      <h3 id="editModalTitle">✏️ Editar descripción</h3>
+      <div>
+        <label for="descInput">Descripción (máx. 50 caracteres)</label>
+        <textarea id="descInput" maxlength="50" placeholder="Escribe algo sobre ti..."></textarea>
+        <p class="char-counter" id="charCounter">0 / 50</p>
+      </div>
+      <div class="edit-modal-actions">
+        <button class="button button-secondary" id="editModalCancel">Cancelar</button>
+        <button class="button button-primary" id="editModalSave">Guardar</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <p>EduNova Library · Biblioteca Digital para Estudiantes</p>
@@ -975,6 +1082,43 @@
             </a>`;
         }).join('');
       }
+      // ── Descripción ──
+      const descEl = document.getElementById('profileDescription');
+      descEl.textContent = data.descripcion || '';
+
+      // ── Modal de edición ──
+      const overlay      = document.getElementById('editModalOverlay');
+      const editBtn      = document.getElementById('editProfileBtn');
+      const cancelBtn    = document.getElementById('editModalCancel');
+      const saveBtn      = document.getElementById('editModalSave');
+      const descInput    = document.getElementById('descInput');
+      const charCounter  = document.getElementById('charCounter');
+
+      editBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        descInput.value = data.descripcion || '';
+        charCounter.textContent = `${descInput.value.length} / 50`;
+        charCounter.classList.toggle('over', descInput.value.length > 50);
+        overlay.classList.add('open');
+        descInput.focus();
+      });
+
+      descInput.addEventListener('input', () => {
+        const len = descInput.value.length;
+        charCounter.textContent = `${len} / 50`;
+        charCounter.classList.toggle('over', len > 50);
+      });
+
+      cancelBtn.addEventListener('click', () => overlay.classList.remove('open'));
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
+
+      saveBtn.addEventListener('click', async () => {
+        const newDesc = descInput.value.trim().slice(0, 50);
+        await updateDoc(ref, { descripcion: newDesc });
+        data.descripcion = newDesc;
+        descEl.textContent = newDesc;
+        overlay.classList.remove('open');
+      });
     });
   </script>
   <script type="module" src="auth-nav.js"></script>
