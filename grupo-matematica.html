@@ -249,7 +249,8 @@
         getDoc(uRef).then(snap => {
           const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
           renderPostForm(user, true, rol);
-        }).catch(() => renderPostForm(user, true, 'alumno'));
+          renderForoInput(user, true);
+        }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); });
       } else {
         card.innerHTML = `<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar en las discusiones</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Unirse al grupo</button>`;
         document.getElementById('joinBtn').onclick = async () => {
@@ -264,7 +265,8 @@
             getDoc(uRef).then(snap => {
               const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
               renderPostForm(user, true, rol);
-            }).catch(() => renderPostForm(user, true, 'alumno'));
+              renderForoInput(user, true);
+            }).catch(() => { renderPostForm(user, true, 'alumno'); renderForoInput(user, true); });
           } catch(e) {
             btn.disabled = false; btn.textContent = 'Unirse al grupo';
           }
