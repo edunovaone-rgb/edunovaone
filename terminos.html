@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Términos y Condiciones | EduNova Library</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { margin: 0; background: #f5f7ff; }
+
+    .terminos-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .terminos-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding: .5rem .9rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(148,163,184,0.25);
+      transition: color .2s;
+    }
+    .terminos-back:hover { color: var(--accent-strong); }
+
+    .terminos-card {
+      background: #ffffff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      box-shadow: 0 24px 60px rgba(15,23,42,0.07);
+    }
+
+    .terminos-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid rgba(99,102,241,0.1);
+    }
+
+    .terminos-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      background: rgba(99,102,241,0.08);
+      color: var(--accent-strong);
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .terminos-header h1 {
+      margin: 0 0 .5rem;
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: var(--accent-strong);
+      line-height: 1.2;
+    }
+
+    .terminos-header .meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: .75rem;
+    }
+
+    .terminos-header .meta span {
+      font-size: .82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .terminos-intro {
+      background: rgba(99,102,241,0.05);
+      border-left: 4px solid var(--accent);
+      border-radius: .5rem;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .clausula {
+      margin-bottom: 2rem;
+    }
+
+    .clausula-title {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin: 0 0 .75rem;
+      font-size: 1rem;
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+
+    .clausula-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .clausula p {
+      margin: 0 0 .6rem;
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .clausula ul {
+      margin: .5rem 0 .6rem 1.25rem;
+      padding: 0;
+      display: grid;
+      gap: .4rem;
+    }
+
+    .clausula ul li {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .terminos-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(148,163,184,0.2);
+      text-align: center;
+    }
+
+    .terminos-footer p {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin: 0 0 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .terminos-card { padding: 1.5rem 1.25rem; border-radius: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header compact">
+    <div class="site-header-top">
+      <div class="brand">
+        <img src="assets/Icono.png" alt="EduNova Library" class="brand-image" />
+        <div>
+          <p class="eyebrow">EduNova Library</p>
+          <h1>Términos y Condiciones</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="terminos-wrapper">
+    <a href="register.html" class="terminos-back">← Volver al registro</a>
+
+    <div class="terminos-card">
+
+      <div class="terminos-header">
+        <div class="terminos-badge">⚖️ Marco Normativo y Regulatorio</div>
+        <h1>Términos y Condiciones de Uso del Sistema de Autenticación y Registro</h1>
+        <div class="meta">
+          <span>🏫 IES San Martín – Lambayeque</span>
+          <span>📚 Proyecto: EduNova Library</span>
+          <span>📅 Vigencia: Mayo 2026</span>
+        </div>
+      </div>
+
+      <div class="terminos-intro">
+        El presente documento constituye un convenio de naturaleza civil y tecnológica que regula el acceso, registro y uso del subsistema de gestión de identidades (Login) de la plataforma digital <strong>EduNova Library</strong>. Al completar el proceso de registro y presionar la casilla de verificación correspondiente, el usuario manifiesta su consentimiento expreso, libre e informado, sometiéndose estrictamente a las cláusulas descritas a continuación. Si el usuario no asume el cumplimiento de estas disposiciones, deberá abstenerse de interactuar con el sistema de autenticación.
+      </div>
+
+      <div class="clausula">
+        <h2 class="clausula-title"><span class="clausula-num">1</span>Del Objeto del Subsistema de Autenticación</h2>
+        <p>El módulo de registro y control de acceso tiene como única finalidad la tokenización y personalización de la experiencia de aprendizaje del estudiante dentro del entorno de EduNova Library. La indexación de credenciales es un requisito técnico indispensable para habilitar las funciones de persistencia de datos, tales como:</p>
+        <ul>
+          <li>El almacenamiento del historial de lecturas y analítica académica.</li>
+          <li>La sincronización de agendas y el sistema de alertas/recordatorios escolares.</li>
+          <li>El resguardo de metadatos en la zona colaborativa y la trazabilidad en los minijuegos educativos.</li>
+        </ul>
+      </div>
+
+      <div class="clausula">
+        <h2 class="clausula-title"><span class="clausula-num">2</span>Elegibilidad, Veracidad de la Información y Protección al Menor</h2>
+        <p>Dado que la plataforma se orienta al entorno de la educación secundaria, el registro queda restringido a la comunidad estudiantil, docente y administrativa vinculada al sector educativo. El usuario se obliga a proveer información fidedigna, exacta y actualizada durante el proceso de matriculación digital (nombres, apellidos, correo electrónico institucional/personal y grado académico). Queda terminantemente prohibida la suplantación de identidad mediante el uso de datos de terceros.</p>
+      </div>
+
+      <div class="clausula">
+        <h2 class="clausula-title"><span class="clausula-num">3</span>Custodia, Confidencialidad y Seguridad de las Credenciales</h2>
+        <p>El usuario es el único responsable legal y técnico de salvaguardar la confidencialidad de su identificador y contraseña de acceso.</p>
+        <ul>
+          <li><strong>Intransferibilidad:</strong> Las cuentas de usuario creadas son individuales, personales e intransferibles. Queda prohibida la cesión temporal o permanente de las credenciales de acceso.</li>
+          <li><strong>Eximente de Responsabilidad:</strong> La administración de EduNova Library no asumirá responsabilidad civil, penal o técnica por pérdidas de información, alteraciones de perfil o vulneraciones de privacidad derivadas de la negligencia del usuario.</li>
+          <li><strong>Reporte Obligatorio:</strong> Cualquier anomalía o sospecha de acceso no autorizado indexado a su cuenta deberá ser reportada inmediatamente a la administración del proyecto.</li>
+        </ul>
+      </div>
+
+      <div class="clausula">
+        <h2 class="clausula-title"><span class="clausula-num">4</span>Propiedad Intelectual y Restricciones de Uso</h2>
+        <p>Los recursos disponibles dentro del ecosistema autenticado (libros digitales, guías, mapas conceptuales y resúmenes inteligentes) están protegidos por las normativas de propiedad intelectual y derechos de autor. El acceso mediante Login otorga una licencia de uso estrictamente personal, pedagógica y no comercial. Se prohíbe explícitamente el uso de scripts, "scraping" o software de automatización para la extracción masiva de los contenidos de la biblioteca.</p>
+      </div>
+
+      <div class="clausula">
+        <h2 class="clausula-title"><span class="clausula-num">5</span>Delitos Informáticos y Régimen de Conducta Tecnológica</h2>
+        <p>Se penalizará de manera estricta cualquier intento de sabotaje informático. El usuario se compromete a no incurrir en las siguientes conductas:</p>
+        <ul>
+          <li>Inyección de código malicioso, ataques de denegación de servicio (DoS) o intentos de descifrado forzado sobre la base de datos de autenticación de usuarios.</li>
+          <li>Uso de vectores de ataque o alteración de APIs para manipular el sistema de puntajes de los minijuegos pedagógicos.</li>
+          <li>Despliegue de herramientas automatizadas (bots) orientadas a la creación masiva y fraudulenta de cuentas de usuario.</li>
+        </ul>
+      </div>
+
+      <div class="clausula">
+        <h2 class="clausula-title"><span class="clausula-num">6</span>Privacidad y Tratamiento de Datos Personales</h2>
+        <p>En estricto cumplimiento de los principios de confidencialidad y finalidad, los datos recolectados en el formulario de registro se procesarán con el único propósito de optimizar la arquitectura técnica de la plataforma. EduNova Library garantiza el cifrado básico de las contraseñas y se compromete a no ceder, vender, transferir o divulgar la información recopilada a ninguna entidad externa o con fines comerciales.</p>
+      </div>
+
+      <div class="clausula">
+        <h2 class="clausula-title"><span class="clausula-num">7</span>Sanciones, Suspensión y Revocación de Accesos</h2>
+        <p>La administración del proyecto posee la facultad unilateral de aplicar medidas correctivas ante la detección de infracciones a este reglamento. Las sanciones aplicables comprenden desde la amonestación digital y la suspensión temporal, hasta la revocación permanente y eliminación de la cuenta de usuario. Lo anterior se ejecutará sin perjuicio de las acciones disciplinarias que la institución educativa dictamine o de las acciones legales pertinentes según las leyes de delitos informáticos vigentes.</p>
+      </div>
+
+      <div class="terminos-footer">
+        <p>Al regresar al formulario y marcar la casilla, confirmas haber leído y aceptado todos los términos anteriores.</p>
+        <a href="register.html" class="button button-primary">✓ Entendido, volver al registro</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

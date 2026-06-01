@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Iniciar sesión en EduNova Library" />
+  <title>Iniciar sesión | EduNova</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 20% 50%, rgba(124,58,237,0.18) 0%, transparent 55%),
+                  radial-gradient(ellipse at 80% 20%, rgba(192,38,211,0.12) 0%, transparent 45%),
+                  radial-gradient(ellipse at 70% 80%, rgba(59,130,246,0.1) 0%, transparent 40%),
+                  #f5f3ff;
+      padding: 2rem 1rem;
+    }
+
+    .auth-wrapper {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* Brand */
+    .auth-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      align-self: flex-start;
+    }
+
+    .auth-brand img { width: 42px; height: 42px; }
+
+    .auth-brand-text strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--accent-strong);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .auth-brand-text span {
+      font-size: 0.68rem;
+      color: #c026d3;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* Card */
+    .auth-card-new {
+      width: 100%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 24px 60px rgba(99,102,241,0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decoración blob */
+    .auth-card-new::before {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(124,58,237,0.08);
+      pointer-events: none;
+    }
+
+    .auth-card-title {
+      text-align: center;
+      margin: 0;
+      font-size: 1.7rem;
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+
+    .auth-card-sub {
+      text-align: center;
+      margin: -0.75rem 0 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Inputs */
+    .auth-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .auth-input-icon {
+      position: absolute;
+      left: 1rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .auth-input-wrap input {
+      width: 100%;
+      padding: 0.95rem 1rem 0.95rem 2.8rem;
+      border: 1.5px solid rgba(148,163,184,0.3);
+      border-radius: 1rem;
+      background: #fafbff;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+
+    .auth-input-wrap input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(109,40,217,0.1);
+    }
+
+    .auth-input-wrap input::placeholder { color: #94a3b8; }
+
+    .auth-eye {
+      position: absolute;
+      right: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-muted);
+      padding: 0;
+    }
+
+    .auth-forgot {
+      text-align: right;
+      margin: -0.5rem 0 0;
+    }
+
+    .auth-forgot a {
+      font-size: 0.88rem;
+      color: var(--accent-strong);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Botón principal */
+    .auth-btn-main {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+    }
+
+    .auth-btn-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(99,102,241,0.4);
+    }
+
+    /* Divisor */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(148,163,184,0.3);
+    }
+
+    /* Botón Google */
+    .auth-btn-google {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1.5px solid rgba(148,163,184,0.3);
+      border-radius: 1rem;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .auth-btn-google:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+
+    .google-icon {
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #ea4335 25%, #fbbc05 25% 50%, #34a853 50% 75%, #4285f4 75%);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .auth-note {
+      text-align: center;
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .auth-note a {
+      color: var(--accent-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Validación */
+    .auth-input-wrap input.invalid {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+    }
+    .auth-input-wrap input.valid {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.1);
+    }
+    .field-error {
+      font-size: 0.78rem;
+      color: #ef4444;
+      margin: -0.5rem 0 0 0.25rem;
+      display: none;
+    }
+    .field-error.show { display: block; }
+
+    @media (max-width: 520px) {
+      .auth-card-new { padding: 1.75rem 1.25rem; border-radius: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-wrapper">
+
+    <a href="index.html" class="auth-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="auth-brand-text">
+        <strong>EduNova</strong>
+        <span>Library</span>
+      </div>
+    </a>
+
+    <a href="index.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.9rem;font-weight:600;text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;background:rgba(255,255,255,0.8);border:1px solid rgba(148,163,184,0.25);transition:color 0.2s,background 0.2s;" onmouseover="this.style.color='var(--accent-strong)'" onmouseout="this.style.color='var(--text-muted)'">
+      ← Volver al inicio
+    </a>
+
+    <div class="auth-card-new">
+      <h1 class="auth-card-title">Iniciar sesión</h1>
+      <p class="auth-card-sub">Bienvenido de nuevo a EduNova Library</p>
+
+      <form id="loginForm" novalidate>
+        <div style="display:grid;gap:0.25rem;">
+          <div class="auth-input-wrap">
+            <span class="auth-input-icon">✉️</span>
+            <input type="email" id="loginEmail" placeholder="Correo electrónico" required />
+          </div>
+          <p class="field-error" id="loginEmailErr">Ingresa un correo válido (ej: nombre@dominio.com)</p>
+        </div>
+
+        <div style="display:grid;gap:0.25rem;">
+          <div class="auth-input-wrap">
+            <span class="auth-input-icon">🔒</span>
+            <input type="password" id="loginPass" placeholder="Contraseña" required />
+            <button type="button" class="auth-eye" onclick="togglePass('loginPass', this)">👁️</button>
+          </div>
+          <p class="field-error" id="loginPassErr">La contraseña no puede estar vacía</p>
+        </div>
+
+        <div class="auth-forgot" style="margin-top:0.75rem;">
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <div style="margin-top:1.25rem;display:grid;gap:1rem;">
+          <button type="submit" class="auth-btn-main">Iniciar sesión</button>
+
+          <div class="auth-divider">o continuar con</div>
+
+          <button type="button" class="auth-btn-google">
+            <span class="google-icon">G</span>
+            Continuar con Google
+          </button>
+        </div>
+      </form>
+
+      <p class="auth-note">¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    };
+
+    const app      = initializeApp(firebaseConfig);
+    const auth     = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // ── Helpers de UI ──
+    function togglePass(id, btn) {
+      const input = document.getElementById(id);
+      input.type = input.type === 'password' ? 'text' : 'password';
+      btn.textContent = input.type === 'password' ? '👁️' : '🙈';
+    }
+    window.togglePass = togglePass;
+
+    function setFieldState(input, errEl, isValid, msg) {
+      input.classList.toggle('invalid', !isValid);
+      input.classList.toggle('valid', isValid);
+      if (errEl) {
+        if (msg) errEl.textContent = msg;
+        errEl.classList.toggle('show', !isValid);
+      }
+    }
+
+    function showFormError(msg) {
+      let el = document.getElementById('firebaseErr');
+      if (!el) {
+        el = document.createElement('p');
+        el.id = 'firebaseErr';
+        el.style.cssText = 'color:#ef4444;font-size:0.85rem;text-align:center;margin:0;';
+        document.querySelector('.auth-btn-main').before(el);
+      }
+      el.textContent = msg;
+    }
+
+    function setBtnLoading(loading) {
+      const btn = document.querySelector('.auth-btn-main');
+      btn.disabled = loading;
+      btn.textContent = loading ? 'Cargando...' : 'Iniciar sesión';
+    }
+
+    // ── Dominios permitidos ──
+    const DOMINIOS_OK = [
+      'gmail.com','hotmail.com','outlook.com','yahoo.com','yahoo.es',
+      'icloud.com','aol.com','proton.me','protonmail.com','tuta.com',
+      'tutanota.com','zoho.com','live.com','msn.com','outlook.es',
+      'hotmail.es','yandex.com','mail.ru'
+    ];
+
+    function emailValido(val) {
+      const partes = val.toLowerCase().split('@');
+      if (partes.length !== 2) return false;
+      const d = partes[1];
+      if (DOMINIOS_OK.includes(d)) return true;
+      if (/\.(edu|gob|gov)(\.[\w]{2,4})?$/.test(d)) return true;
+      if (/\.com$/.test(d)) return true;
+      return false;
+    }
+
+    // ── Validación en tiempo real ──
+    const emailInput = document.getElementById('loginEmail');
+    const passInput  = document.getElementById('loginPass');
+
+    emailInput.addEventListener('input', () => {
+      setFieldState(emailInput, document.getElementById('loginEmailErr'),
+        emailValido(emailInput.value), 'Usa un correo válido: gmail.com, hotmail.com, etc.');
+    });
+
+    passInput.addEventListener('input', () => {
+      setFieldState(passInput, document.getElementById('loginPassErr'),
+        passInput.value.length > 0, 'La contraseña no puede estar vacía');
+    });
+
+    // ── Login con correo/contraseña ──
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailOk = emailValido(emailInput.value);
+      const passOk  = passInput.value.length > 0;
+      setFieldState(emailInput, document.getElementById('loginEmailErr'), emailOk);
+      setFieldState(passInput,  document.getElementById('loginPassErr'),  passOk);
+      if (!emailOk || !passOk) return;
+
+      setBtnLoading(true);
+      try {
+        await signInWithEmailAndPassword(auth, emailInput.value, passInput.value);
+        window.location.href = 'index.html';
+      } catch (err) {
+        const msgs = {
+          'auth/user-not-found':  'No existe una cuenta con ese correo.',
+          'auth/wrong-password':  'Contraseña incorrecta.',
+          'auth/invalid-credential': 'Correo o contraseña incorrectos.',
+          'auth/too-many-requests': 'Demasiados intentos. Espera un momento.',
+        };
+        showFormError(msgs[err.code] || 'Error al iniciar sesión. Intenta de nuevo.');
+      } finally {
+        setBtnLoading(false);
+      }
+    });
+
+    // ── Login con Google ──
+    document.querySelector('.auth-btn-google').addEventListener('click', async () => {
+      try {
+        await signInWithPopup(auth, provider);
+        window.location.href = 'index.html';
+      } catch (err) {
+        if (err.code !== 'auth/popup-closed-by-user') {
+          showFormError('Error al iniciar con Google. Intenta de nuevo.');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

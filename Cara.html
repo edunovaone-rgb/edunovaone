@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EduNova Prompt Design: prompts y herramientas para aprendizaje inteligente en secundaria." />
+  <title>EduNova Prompt Design</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>EduNova Library - Prompt Design System</h1>
+      <p>Intelligent Digital Library for Students</p>
+    </div>
+  </header>
+
+  <nav class="page-nav">
+    <a href="#overview">Resumen</a>
+    <a href="#archetypes">Arquetipos</a>
+    <a href="#principles">Principios</a>
+    <a href="#matrix">Matriz</a>
+    <a href="#templates">Plantillas</a>
+  </nav>
+
+  <main class="container">
+    <section id="overview" class="section-card">
+      <h2>Project Overview</h2>
+      <p>EduNova Library es una plataforma educativa inteligente diseñada para estudiantes de secundaria. Su objetivo es facilitar el acceso a recursos, promover el aprendizaje autónomo e interactivo y mejorar la experiencia de estudio.</p>
+      <ul>
+        <li><strong>Tagline:</strong> Learning was never so intelligent</li>
+        <li><strong>Target Audience:</strong> Secondary students</li>
+        <li><strong>Core Purpose:</strong> Facilitate access to educational resources</li>
+      </ul>
+    </section>
+
+    <section id="archetypes" class="section-card">
+      <h2>Core Prompt Archetypes</h2>
+
+      <article class="card">
+        <h3>Student Learning Prompts</h3>
+        <button class="accordion">Smart Summarization Prompt</button>
+        <div class="panel">
+          <pre>"Create an intelligent summary of [TOPIC/MATERIAL] that includes:
+- Key concepts (3-5 main ideas)
+- Practical examples relevant to [SUBJECT]
+- Visual learning tips
+- Potential test questions
+- Study time estimate
+
+Adapt the complexity level to: [BEGINNER/INTERMEDIATE/ADVANCED]
+Language: Spanish"</pre>
+        </div>
+
+        <button class="accordion">Interactive Learning Prompt</button>
+        <div class="panel">
+          <pre>"Design an interactive learning session for [TOPIC] that:
+- Starts with an engaging question
+- Breaks content into 5-minute modules
+- Includes interactive elements (quizzes, matching, drag-and-drop)
+- Provides immediate feedback
+- Gamifies the learning experience with points/badges
+- Adjusts difficulty based on performance"</pre>
+        </div>
+
+        <button class="accordion">Personalized Study Plan Prompt</button>
+        <div class="panel">
+          <pre>"Create a personalized study plan for a student who:
+- Needs to learn [TOPIC]
+- Has [X] hours available per week
+- Prefers: [LEARNING_STYLE: visual/auditory/kinesthetic]
+- Struggles with: [COMMON_DIFFICULTIES]
+- Has mastered: [PREREQUISITES]
+
+Include:
+- Weekly schedule
+- Resource recommendations from EduNova
+- Practice activities
+- Progress checkpoints"</pre>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Content Generation Prompts</h3>
+        <button class="accordion">Study Material Creation Prompt</button>
+        <div class="panel">
+          <pre>"Generate comprehensive study material for [TOPIC] including:
+
+**Format Requirements:**
+- Target level: [GRADE/LEVEL]
+- Duration: [ESTIMATED_STUDY_TIME]
+- Format: [NOTES/FLASHCARDS/MINDMAP/INFOGRAPHIC]
+
+**Content Structure:**
+1. Introduction & relevance
+2. Core concepts & definitions
+3. Historical context (if applicable)
+4. Real-world applications
+5. Common misconceptions
+6. Practice problems with solutions
+7. Resources for deeper learning
+
+**Pedagogical Requirements:**
+- Use clear, student-friendly language
+- Include visual descriptions (for graphics)
+- Add difficulty progression
+- Reference interconnected topics"</pre>
+        </div>
+
+        <button class="accordion">Practice Quiz/Assessment Prompt</button>
+        <div class="panel">
+          <pre>"Create an adaptive assessment for [TOPIC] with:
+- Question Types: [MCQ/SHORT_ANSWER/MATCHING/ESSAY]
+- Difficulty Levels: 3 Easy ? 3 Medium ? 3 Hard
+- Total Items: [NUMBER]
+- Time Limit: [MINUTES]
+- Feedback Type: [IMMEDIATE/AFTER_COMPLETION/DETAILED]
+
+For each question include:
+- Clear, unambiguous wording
+- Correct answer with explanation
+- Common misconceptions as distractors
+- Learning objectives addressed"</pre>
+        </div>
+
+        <button class="accordion">Interactive Gamified Content Prompt</button>
+        <div class="panel">
+          <pre>"Design a gamified learning activity for [TOPIC] that:
+- Game Format: [QUIZ_GAME/PUZZLE/RACE/ROLE_PLAY]
+- Duration: 10-15 minutes
+- Difficulty: [LEVEL]
+- Reward System:
+  - Points per correct answer: [X]
+  - Bonus points for speed: [Y]
+  - Unlock badges: [BADGE_NAMES]
+  - Leaderboard compatibility: YES
+
+Include:
+- Engaging storyline/context
+- Progressive difficulty
+- Motivational feedback
+- Social sharing options"</pre>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Problem-Solving Prompts</h3>
+        <button class="accordion">Rapid Access Problem Prompt</button>
+        <div class="panel">
+          <pre>"Help me find the best learning resource for [TOPIC] considering:
+- My current knowledge level: [LEVEL]
+- Time available: [MINUTES]
+- Learning style: [VISUAL/READING/PRACTICAL]
+- Format preference: [VIDEO/TEXT/INTERACTIVE]
+
+Return:
+1. Top 3 recommended resources from EduNova
+2. Why each one is suitable
+3. Estimated learning time
+4. What I'll be able to do after"</pre>
+        </div>
+
+        <button class="accordion">Note Organization Problem Prompt</button>
+        <div class="panel">
+          <pre>"Help me organize my notes on [TOPICS] using:
+- Organization method: [CORNELL_METHOD/MIND_MAP/OUTLINE/OTHER]
+- Create a template I can reuse
+- Include color-coding suggestions
+- Add cross-referencing system
+- Provide digital organization tips for EduNova platform"</pre>
+        </div>
+
+        <button class="accordion">Reading Habit Building Prompt</button>
+        <div class="panel">
+          <pre>"Create a reading habit plan that:
+- Starts with easy wins (5 min/day)
+- Gradually increases to [TARGET] minutes
+- Tracks progress with rewards
+- Suggests bite-sized content from EduNova
+- Includes accountability checkpoints
+- Builds intrinsic motivation
+
+Duration: 30-day challenge"</pre>
+        </div>
+      </article>
+    </section>
+
+    <section id="principles" class="section-card">
+      <h2>Prompt Design Principles</h2>
+      <ul class="principles-list">
+        <li><strong>Student-Centric Language:</strong> Use friendly, encouraging tone; avoid jargon.</li>
+        <li><strong>Problem-Focused Solutions:</strong> Address problems and offer actionable steps.</li>
+        <li><strong>Gamification Elements:</strong> Add rewards, badges, and motivation.</li>
+        <li><strong>Adaptability:</strong> Adjust complexity and personalize for different styles.</li>
+        <li><strong>Interactive & Hands-On:</strong> Include practice, real-world tasks, and peer collaboration.</li>
+        <li><strong>Progress & Motivation:</strong> Provide feedback loops and achievement recognition.</li>
+      </ul>
+    </section>
+
+    <section id="matrix" class="section-card">
+      <h2>Prompt Implementation Matrix</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Primary Use</th>
+              <th>Problem Solved</th>
+              <th>Learning Style</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Smart Summarization</td>
+              <td>Content Compression</td>
+              <td>Rapid Access, Reading Habits</td>
+              <td>Visual, Reading</td>
+            </tr>
+            <tr>
+              <td>Interactive Learning</td>
+              <td>Active Engagement</td>
+              <td>Poor Motivation, Distraction</td>
+              <td>Kinesthetic, Interactive</td>
+            </tr>
+            <tr>
+              <td>Study Plans</td>
+              <td>Organization</td>
+              <td>Note Organization, Time Management</td>
+              <td>Organizational</td>
+            </tr>
+            <tr>
+              <td>Quizzes</td>
+              <td>Assessment</td>
+              <td>Knowledge Gaps</td>
+              <td>Interactive</td>
+            </tr>
+            <tr>
+              <td>Gamified Content</td>
+              <td>Motivation</td>
+              <td>Low Engagement</td>
+              <td>Gamification</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="templates" class="section-card">
+      <h2>Quick Prompt Templates</h2>
+      <article class="small-card">
+        <h3>Explain Like I'm [AGE]</h3>
+        <pre>"Explain [COMPLEX_TOPIC] to a [AGE]-year-old student:
+- Use simple language
+- Include 2-3 relatable examples
+- Add a fun fact
+- End with a real-world connection"</pre>
+      </article>
+
+      <article class="small-card">
+        <h3>The 5-Minute Crash Course</h3>
+        <pre>"Create a 5-minute crash course on [TOPIC]:
+- What you MUST know (30 seconds)
+- Key examples (1.5 minutes)
+- Common mistakes to avoid (1 minute)
+- Quick quiz (1.5 minutes)
+- Resources for deeper learning"</pre>
+      </article>
+
+      <article class="small-card">
+        <h3>Study Hack Alert</h3>
+        <pre>"What's the smartest way to master [TOPIC]?
+Include:
+- The biggest time-waster to avoid
+- The #1 study technique for this topic
+- Tools/resources that accelerate learning
+- A productivity hack specific to this subject"</pre>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

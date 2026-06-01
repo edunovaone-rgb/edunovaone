@@ -1,0 +1,845 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mi Perfil - EduNova Library: tu progreso, actividad e insignias." />
+  <title>EduNova Library | Mi Perfil</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Profile layout ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(0, 2.8fr);
+      gap: 1.75rem;
+      align-items: start;
+      margin-top: 1.5rem;
+    }
+
+    /* ── Profile header card ── */
+    .profile-header-card {
+      background: #ffffff;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-radius: 2rem;
+      padding: 1.75rem;
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.06);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .profile-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .profile-top-row h2 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: var(--text);
+    }
+
+    .profile-identity {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .profile-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(37, 99, 235, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      flex-shrink: 0;
+      border: 3px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .profile-name-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .profile-name-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-name-row h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--text);
+    }
+
+    .badge-role {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .profile-meta {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── Stats row ── */
+    .profile-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem;
+      background: #f8fbff;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-radius: 1.25rem;
+    }
+
+    .stat-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 0.85rem;
+      background: rgba(59, 130, 246, 0.12);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .stat-icon.orange { background: rgba(249, 115, 22, 0.12); }
+    .stat-icon.green  { background: rgba(16, 185, 129, 0.12); }
+    .stat-icon.purple { background: rgba(124, 58, 237, 0.12); }
+
+    .stat-info strong {
+      display: block;
+      font-size: 1.25rem;
+      color: var(--accent-strong);
+      line-height: 1.1;
+    }
+
+    .stat-info span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Main content columns ── */
+    .profile-content {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .profile-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    /* ── Section cards ── */
+    .profile-section-card {
+      background: #ffffff;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-radius: 1.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .profile-section-card h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--accent-strong);
+    }
+
+    /* ── Progress bars ── */
+    .progress-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .progress-item {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .progress-label span:last-child {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .progress-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.18);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .fill-math    { background: linear-gradient(90deg, #22c55e, #16a34a); }
+    .fill-science { background: linear-gradient(90deg, #3b82f6, #2563eb); }
+    .fill-history { background: linear-gradient(90deg, #a855f7, #7c3aed); }
+    .fill-comm    { background: linear-gradient(90deg, #f97316, #ea580c); }
+    .fill-english { background: linear-gradient(90deg, #ec4899, #db2777); }
+
+    /* ── Activity list ── */
+    .activity-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: #f8fbff;
+      border-radius: 1rem;
+    }
+
+    .activity-item .activity-icon {
+      flex-shrink: 0;
+    }
+
+    .activity-item-info strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .activity-item-info time {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Goals list ── */
+    .goals-list {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .goal-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .goal-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      border: 2px solid rgba(148, 163, 184, 0.4);
+      flex-shrink: 0;
+      font-size: 0.75rem;
+    }
+
+    .goal-check.done {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .goal-item.completed {
+      color: var(--text);
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    /* ── Badges ── */
+    .badges-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .badge-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+    }
+
+    .badge-gold   { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+    .badge-purple { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+    .badge-blue   { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+    .badge-bronze { background: linear-gradient(135deg, #fb923c, #ea580c); }
+
+    .badge-item span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .see-all-link {
+      display: block;
+      text-align: right;
+      color: var(--accent-strong);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Groups section ── */
+    .groups-section-card {
+      background: #ffffff;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      border-radius: 1.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+      display: grid;
+      gap: 1.1rem;
+    }
+    .groups-section-card h3 { margin:0; font-size:1.05rem; color:var(--accent-strong); }
+
+    .my-groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .my-group-item {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.9rem 1rem;
+      background: #f8fbff;
+      border: 1px solid rgba(59,130,246,0.1);
+      border-radius: 1.25rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .my-group-item:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15,23,42,0.08); }
+    .my-group-icon {
+      width: 2.6rem; height: 2.6rem;
+      border-radius: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .my-group-info strong { display:block; font-size:0.88rem; color:var(--accent-strong); font-weight:700; }
+    .my-group-info span   { font-size:0.78rem; color:var(--text-muted); }
+    .no-groups-msg { color:var(--text-muted); font-size:0.9rem; text-align:center; padding:1rem 0; }
+    .no-groups-msg a { color:var(--accent-strong); font-weight:700; text-decoration:none; }
+    .sidebar-logout {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1rem;
+      border-radius: 1rem;
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.06);
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.2s ease;
+      margin-top: auto;
+    }
+
+    .sidebar-logout:hover {
+      background: rgba(239, 68, 68, 0.12);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1080px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-columns { grid-template-columns: repeat(2, 1fr); }
+      .profile-stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .profile-columns { grid-template-columns: 1fr; }
+      .profile-stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 420px) {
+      .profile-stats-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="uni-nav-brand-text"><strong>EduNova</strong><span>Library</span></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>
+      <li><a href="resumenes.html">Resúmenes</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <button class="uni-icon-btn" aria-label="Buscar">🔍</button>
+      <button class="uni-icon-btn" aria-label="Notificaciones">🔔</button>
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="profile-grid">
+
+      <!-- ── Sidebar ── -->
+      <aside class="library-sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebarCollapsible">
+          <span class="nav-icon">👤</span> Menú
+          <span class="toggle-arrow">▼</span>
+        </button>
+
+        <div class="sidebar-collapsible" id="sidebarCollapsible">
+          <div class="sidebar-brand">
+            <img src="assets/Icono.png" alt="EduNova Library" />
+            <div>
+              <p class="eyebrow">EduNova Library</p>
+              <h2>Menú</h2>
+            </div>
+          </div>
+
+          <nav class="sidebar-nav">
+            <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
+            <a href="biblioteca.html"><span class="nav-icon">📚</span>Biblioteca</a>
+            <a href="resumenes.html"><span class="nav-icon">📝</span>Resúmenes</a>
+            <a href="juegos.html"><span class="nav-icon">🎮</span>Juegos</a>
+            <a href="herramientas.html"><span class="nav-icon">🛠️</span>Herramientas</a>
+            <a href="comunidad.html"><span class="nav-icon">👥</span>Comunidad</a>
+            <a href="perfil.html" class="active"><span class="nav-icon">👤</span>Mi Perfil</a>
+          </nav>
+
+          <a href="login.html" class="sidebar-logout" id="logoutBtn" style="display:none;">
+            <span class="nav-icon" style="background:rgba(239,68,68,0.12);color:#ef4444;">↩</span>
+            Cerrar sesión
+          </a>
+        </div>
+      </aside>
+
+      <!-- ── No logueado ── -->
+      <div id="notLoggedIn" style="display:none;flex:1;align-items:center;justify-content:center;">
+        <div style="text-align:center;padding:3rem 2rem;background:#fff;border-radius:2rem;box-shadow:0 24px 50px rgba(15,23,42,0.06);max-width:400px;">
+          <div style="font-size:3rem;margin-bottom:1rem;">🔒</div>
+          <h2 style="margin:0 0 .75rem;color:var(--accent-strong);">Acceso restringido</h2>
+          <p style="color:var(--text-muted);margin:0 0 1.5rem;line-height:1.7;">Debes iniciar sesión para ver tu perfil y estadísticas.</p>
+          <a href="login.html" class="button button-primary" style="margin-right:.5rem;">Iniciar sesión</a>
+          <a href="register.html" class="button button-secondary">Registrarse</a>
+        </div>
+      </div>
+
+      <!-- ── Main content ── -->
+      <div class="profile-content" id="profileContent" style="display:none;">
+
+        <!-- Header card -->
+        <div class="profile-header-card">
+          <div class="profile-top-row">
+            <h2>Mi Perfil</h2>
+            <a href="#" class="button button-secondary" style="gap:0.5rem;">
+              ✏️ Editar perfil
+            </a>
+          </div>
+
+          <div class="profile-identity">
+            <div class="profile-avatar" id="profileAvatar">🧑‍🎓</div>
+            <div class="profile-name-block">
+              <div class="profile-name-row">
+                <h3 id="profileName">—</h3>
+                <span class="badge-role">Estudiante</span>
+              </div>
+              <p class="profile-meta" id="profileMeta">
+                Cargando...
+              </p>
+            </div>
+          </div>
+
+          <div class="profile-stats-row">
+            <div class="stat-item">
+              <span class="stat-icon">⏱️</span>
+              <div class="stat-info">
+                <strong id="statHoras">0</strong>
+                <span>Horas de estudio</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-icon green">🔖</span>
+              <div class="stat-info">
+                <strong id="statRecursos">0</strong>
+                <span>Recursos guardados</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-icon purple">🎮</span>
+              <div class="stat-info">
+                <strong id="statJuegos">0</strong>
+                <span>Juegos completados</span>
+              </div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-icon orange">🔥</span>
+              <div class="stat-info">
+                <strong id="statRacha">0</strong>
+                <span>Racha actual</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Three columns -->
+        <div class="profile-columns">
+
+          <!-- Mi progreso --><div class="profile-section-card">
+            <h3>Mi progreso</h3>
+            <div class="progress-list" id="progressList">
+              <div class="progress-item">
+                <div class="progress-label"><span>Matemática</span><span id="pctMath">0%</span></div>
+                <div class="progress-bar"><div class="progress-fill fill-math" id="barMath" style="width:0%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Ciencia</span><span id="pctScience">0%</span></div>
+                <div class="progress-bar"><div class="progress-fill fill-science" id="barScience" style="width:0%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Historia</span><span id="pctHistory">0%</span></div>
+                <div class="progress-bar"><div class="progress-fill fill-history" id="barHistory" style="width:0%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Comunicación</span><span id="pctComm">0%</span></div>
+                <div class="progress-bar"><div class="progress-fill fill-comm" id="barComm" style="width:0%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Inglés</span><span id="pctEnglish">0%</span></div>
+                <div class="progress-bar"><div class="progress-fill fill-english" id="barEnglish" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actividad reciente -->
+          <div class="profile-section-card">
+            <h3>Actividad reciente</h3>
+            <div class="activity-list">
+              <div class="activity-item">
+                <span class="activity-icon">📚</span>
+                <div class="activity-item-info">
+                  <strong>Leyó: Ecuaciones de 2° grado</strong>
+                  <time>Hoy, 10:30 a.m.</time>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-icon">🎮</span>
+                <div class="activity-item-info">
+                  <strong>Completó: Quiz de Historia</strong>
+                  <time>Ayer, 6:15 p.m.</time>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-icon">📄</span>
+                <div class="activity-item-info">
+                  <strong>Guardó: Resumen de Biología</strong>
+                  <time>Ayer, 4:30 p.m.</time>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-icon">⏱️</span>
+                <div class="activity-item-info">
+                  <strong>Usó Pomodoro</strong>
+                  <time>Ayer, 3:00 p.m.</time>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metas + Insignias -->
+          <div style="display:grid;gap:1.25rem;">
+
+            <!-- Metas académicas -->
+            <div class="profile-section-card">
+              <h3>Metas académicas</h3>
+              <div class="goals-list">
+                <div class="goal-item completed">
+                  <span class="goal-check done">✓</span>
+                  Mejorar en Matemática
+                </div>
+                <div class="goal-item completed">
+                  <span class="goal-check done">✓</span>
+                  Leer 2 libros este mes
+                </div>
+                <div class="goal-item">
+                  <span class="goal-check"></span>
+                  Estudiar 5 horas diarias
+                </div>
+                <div class="goal-item">
+                  <span class="goal-check"></span>
+                  Completar curso de Inglés
+                </div>
+              </div>
+            </div>
+
+            <!-- Insignias -->
+            <div class="profile-section-card">
+              <h3>Insignias</h3>
+              <div class="badges-row">
+                <div class="badge-item">
+                  <div class="badge-icon badge-gold">🏅</div>
+                  <span>Lector</span>
+                </div>
+                <div class="badge-item">
+                  <div class="badge-icon badge-purple">🎖️</div>
+                  <span>Constante</span>
+                </div>
+                <div class="badge-item">
+                  <div class="badge-icon badge-blue">🥇</div>
+                  <span>Top Quiz</span>
+                </div>
+                <div class="badge-item">
+                  <div class="badge-icon badge-bronze">🏆</div>
+                  <span>Racha 7</span>
+                </div>
+              </div>
+              <a href="#" class="see-all-link">Ver todas →</a>
+            </div>
+
+          </div>
+        </div><!-- /profile-columns -->
+
+        <!-- ── Mis Grupos ── -->
+        <div class="groups-section-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+            <h3>👥 Mis Grupos</h3>
+            <a href="comunidad.html#grupos" class="button button-secondary" style="font-size:.85rem;padding:.5rem 1rem;">+ Explorar grupos</a>
+          </div>
+          <div class="my-groups-grid" id="myGroupsGrid">
+            <p class="no-groups-msg">Cargando grupos...</p>
+          </div>
+        </div>
+
+      </div><!-- /profile-content -->
+    </div><!-- /profile-grid -->
+  </main>
+
+  <footer class="site-footer">
+    <p>EduNova Library · Biblioteca Digital para Estudiantes</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    const app = initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    // ── Sidebar toggle ──
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarCollapsible = document.getElementById('sidebarCollapsible');
+    if (sidebarToggle && sidebarCollapsible) {
+      sidebarToggle.addEventListener('click', () => {
+        const isOpen = sidebarCollapsible.classList.toggle('open');
+        sidebarToggle.classList.toggle('open', isOpen);
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    // ── Cerrar sesión ──
+    document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      await signOut(auth);
+      window.location.href = 'index.html';
+    });
+
+    // ── Helpers ──
+    function setBar(barId, pctId, value) {
+      document.getElementById(barId).style.width = value + '%';
+      document.getElementById(pctId).textContent = value + '%';
+    }
+
+    function setText(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+
+    // ── Cargar perfil ──
+    onAuthStateChanged(auth, async (user) => {
+      const profileContent = document.getElementById('profileContent');
+      const notLoggedIn    = document.getElementById('notLoggedIn');
+
+      if (!user) {
+        // No logueado — mostrar mensaje, ocultar perfil
+        profileContent.style.display = 'none';
+        notLoggedIn.style.display    = 'flex';
+        document.getElementById('logoutBtn').style.display = 'none';
+        return;
+      }
+
+      // Logueado — mostrar perfil
+      profileContent.style.display = 'grid';
+      notLoggedIn.style.display    = 'none';
+      document.getElementById('logoutBtn').style.display = 'flex';
+
+      // Datos básicos de Auth
+      setText('profileName', user.displayName || user.email.split('@')[0]);
+
+      // Foto o avatar
+      if (user.photoURL) {
+        const avatar = document.getElementById('profileAvatar');
+        avatar.innerHTML = `<img src="${user.photoURL}" alt="avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+      }
+
+      // Leer documento del usuario en Firestore
+      const ref  = doc(db, 'usuarios', user.uid);
+      const snap = await getDoc(ref);
+
+      let data;
+      if (snap.exists()) {
+        data = snap.data();
+      } else {
+        // Usuario nuevo — crear documento con valores en 0
+        data = {
+          grado: '',
+          colegio: '',
+          horasEstudio: 0,
+          recursosGuardados: 0,
+          juegosCompletados: 0,
+          rachaActual: 0,
+          progreso: { matematica: 0, ciencia: 0, historia: 0, comunicacion: 0, ingles: 0 },
+          actividad: [],
+          metas: [
+            { texto: 'Mejorar en Matemática',    done: false },
+            { texto: 'Leer 2 libros este mes',   done: false },
+            { texto: 'Estudiar 5 horas diarias', done: false },
+            { texto: 'Completar curso de Inglés',done: false },
+          ]
+        };
+        await setDoc(ref, data);
+      }
+
+      // ── Rellenar UI ──
+      const grado   = data.grado   || 'Grado no configurado';
+      const colegio = data.colegio || 'Colegio no configurado';
+      setText('profileMeta', `${grado}\n${colegio}`);
+      document.getElementById('profileMeta').innerHTML = `${grado}<br>${colegio}`;
+
+      setText('statHoras',    data.horasEstudio      ?? 0);
+      setText('statRecursos', data.recursosGuardados ?? 0);
+      setText('statJuegos',   data.juegosCompletados ?? 0);
+      setText('statRacha',    data.rachaActual        ?? 0);
+
+      // Progreso
+      const p = data.progreso || {};
+      setBar('barMath',    'pctMath',    p.matematica   ?? 0);
+      setBar('barScience', 'pctScience', p.ciencia      ?? 0);
+      setBar('barHistory', 'pctHistory', p.historia     ?? 0);
+      setBar('barComm',    'pctComm',    p.comunicacion ?? 0);
+      setBar('barEnglish', 'pctEnglish', p.ingles       ?? 0);
+
+      // Actividad reciente
+      const actList = document.querySelector('.activity-list');
+      if (data.actividad && data.actividad.length > 0) {
+        actList.innerHTML = data.actividad.slice(0, 4).map(a => `
+          <div class="activity-item">
+            <span class="activity-icon">${a.icono || '📌'}</span>
+            <div class="activity-item-info">
+              <strong>${a.texto}</strong>
+              <time>${a.fecha}</time>
+            </div>
+          </div>`).join('');
+      } else {
+        actList.innerHTML = `<p style="color:var(--text-muted);font-size:0.9rem;text-align:center;padding:1rem 0;">Aún no hay actividad registrada.</p>`;
+      }
+
+      // Metas
+      const goalsList = document.querySelector('.goals-list');
+      if (data.metas && data.metas.length > 0) {
+        goalsList.innerHTML = data.metas.map(m => `
+          <div class="goal-item ${m.done ? 'completed' : ''}">
+            <span class="goal-check ${m.done ? 'done' : ''}">${m.done ? '✓' : ''}</span>
+            ${m.texto}
+          </div>`).join('');
+      }
+
+      // ── Mis Grupos ──
+      const gruposGrid = document.getElementById('myGroupsGrid');
+      const grupos = data.grupos || [];
+
+      // Info de cada grupo (nombre, icono, color)
+      const GRUPOS_INFO = {
+        matematica:   { nombre: 'Matemática Avanzada',       icon: '🧮', color: 'rgba(124,58,237,0.12)'  },
+        ciencias:     { nombre: 'Ciencias Naturales',        icon: '🔬', color: 'rgba(16,185,129,0.12)'  },
+        historia:     { nombre: 'Historia Universal',        icon: '🌍', color: 'rgba(217,119,6,0.12)'   },
+        english:      { nombre: 'English Club',              icon: '🇬🇧', color: 'rgba(37,99,235,0.12)'  },
+        tecnologia:   { nombre: 'Tecnología y Programación', icon: '💻', color: 'rgba(2,132,199,0.12)'   },
+        comunicacion: { nombre: 'Comunicación y Literatura', icon: '📖', color: 'rgba(192,38,211,0.12)'  },
+      };
+
+      if (grupos.length === 0) {
+        gruposGrid.innerHTML = `<p class="no-groups-msg">Aún no te has unido a ningún grupo.<br><a href="comunidad.html">Explorar grupos →</a></p>`;
+      } else {
+        gruposGrid.innerHTML = grupos.map(gid => {
+          const g = GRUPOS_INFO[gid] || { nombre: gid, icon: '👥', color: 'rgba(99,102,241,0.1)' };
+          return `
+            <a href="comunidad.html" class="my-group-item">
+              <div class="my-group-icon" style="background:${g.color}">${g.icon}</div>
+              <div class="my-group-info">
+                <strong>${g.nombre}</strong>
+                <span>✓ Miembro</span>
+              </div>
+            </a>`;
+        }).join('');
+      }
+    });
+  </script>
+  <script type="module" src="auth-nav.js"></script>
+</body>
+</html>

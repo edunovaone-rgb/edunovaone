@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EduNova Library: biblioteca digital e interactiva para estudiantes de secundaria." />
+  <title>EduNova Library</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Reset de body para index ── */
+    body { margin: 0; }
+
+    /* ══════════════════════════════
+       NAVBAR
+    ══════════════════════════════ */
+    .index-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 3rem;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(99,102,241,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 1rem;
+    }
+
+    .index-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .index-nav-brand img {
+      width: 38px;
+      height: 38px;
+    }
+
+    .index-nav-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .index-nav-brand-text strong {
+      font-size: 1rem;
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+
+    .index-nav-brand-text span {
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .index-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .index-nav-links a {
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .index-nav-links a:hover { color: var(--accent-strong); }
+    .index-nav-links a.active {
+      color: var(--accent-strong);
+      font-weight: 700;
+      border-bottom: 2px solid var(--accent);
+      border-radius: 0;
+    }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .index-hero {
+      background: linear-gradient(160deg, #f0f0ff 0%, #fce4f8 50%, #ffe8f0 100%);
+      padding: 3.5rem 3rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: end;
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .index-hero-copy {
+      padding-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .index-hero-title {
+      margin: 0;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.1;
+      color: var(--accent-strong);
+    }
+
+    .index-hero-title span {
+      color: #c026d3;
+    }
+
+    .index-hero-subtitle {
+      margin: 0;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .index-hero-tagline {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #7c3aed;
+      font-style: italic;
+      font-weight: 700;
+      position: relative;
+      width: fit-content;
+    }
+
+    .index-hero-tagline::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #f43f5e;
+      border-radius: 2px;
+    }
+
+    .index-hero-desc {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 380px;
+    }
+
+    .index-hero-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .index-hero-actions .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .index-hero-actions .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(99,102,241,0.4);
+    }
+
+    .index-hero-actions .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--accent-strong);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1.5px solid rgba(99,102,241,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .index-hero-actions .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99,102,241,0.15);
+    }
+
+    .index-hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .index-hero-image img {
+      width: 100%;
+      max-width: 460px;
+      display: block;
+      filter: drop-shadow(0 20px 40px rgba(99,102,241,0.2));
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════
+       MÉTRICAS
+    ══════════════════════════════ */
+    .index-metrics {
+      background: #ffffff;
+      padding: 1.5rem 3rem;
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(99,102,241,0.08);
+    }
+
+    .index-metric {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      border-right: 1px solid rgba(148,163,184,0.15);
+    }
+
+    .index-metric:last-child { border-right: none; }
+
+    .index-metric-icon {
+      width: 2.8rem;
+      height: 2.8rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.85rem;
+    }
+
+    .index-metric strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+
+    .index-metric span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════
+       SECCIÓN FEATURES
+    ══════════════════════════════ */
+    .index-features {
+      padding: 3.5rem 3rem;
+      background: #fafbff;
+    }
+
+    .index-features-title {
+      text-align: center;
+      margin: 0 0 2.5rem;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: var(--text);
+    }
+
+    .index-features-title span {
+      color: #c026d3;
+    }
+
+    .index-features-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .index-feature-card {
+      background: #ffffff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.05);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .index-feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(99,102,241,0.12);
+    }
+
+    .index-feature-icon {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    .index-feature-card h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .index-feature-card p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════
+       FOOTER BANNER
+    ══════════════════════════════ */
+    .index-footer-banner {
+      background: linear-gradient(135deg, #7c3aed, #db2777);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .index-footer-banner p {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .index-footer-banner span {
+      font-size: 1.8rem;
+    }
+
+    .index-footer {
+      padding: 1.25rem 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      background: #ffffff;
+      border-top: 1px solid rgba(99,102,241,0.08);
+    }
+
+    /* Ocultar cuando logueado */
+    .hidden-when-auth { display: none !important; }
+
+    /* ══════════════════════════════
+       DASHBOARD (logueado)
+    ══════════════════════════════ */
+    .dashboard { display: none; }
+    .dashboard.visible { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 60px); }
+
+    /* Sidebar dashboard */
+    .dash-sidebar {
+      background: #ffffff;
+      border-right: 1px solid rgba(99,102,241,0.1);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+    }
+    .dash-brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .5rem .75rem 1rem;
+      text-decoration: none;
+    }
+    .dash-brand img { width: 32px; height: 32px; }
+    .dash-brand-text strong { display: block; font-size: .9rem; color: var(--accent-strong); font-weight: 800; }
+    .dash-brand-text span   { font-size: .65rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+    .dash-nav-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .75rem 1rem;
+      border-radius: 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: background .2s, color .2s;
+    }
+    .dash-nav-item:hover { background: rgba(99,102,241,0.07); color: var(--accent-strong); }
+    .dash-nav-item.active { background: rgba(99,102,241,0.1); color: var(--accent-strong); font-weight: 700; }
+    .dash-nav-icon {
+      width: 2rem; height: 2rem;
+      border-radius: .65rem;
+      background: rgba(99,102,241,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem; flex-shrink: 0;
+    }
+    .dash-nav-item.active .dash-nav-icon { background: var(--accent); }
+    .dash-sidebar-promo {
+      margin-top: auto;
+      background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(37,99,235,0.08));
+      border: 1px solid rgba(99,102,241,0.18);
+      border-radius: 1.25rem;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+    }
+    .dash-sidebar-promo .promo-icon { font-size: 2rem; }
+    .dash-sidebar-promo p { margin: 0; font-size: .82rem; color: var(--accent-strong); font-weight: 700; line-height: 1.4; }
+
+    /* Main dashboard */
+    .dash-main {
+      padding: 1.75rem 2rem;
+      display: grid;
+      gap: 1.5rem;
+      background: #f8fbff;
+      align-content: start;
+    }
+
+    /* Greeting */
+    .dash-greeting-card {
+      background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(37,99,235,0.06));
+      border: 1px solid rgba(99,102,241,0.14);
+      border-radius: 1.75rem;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .dash-greeting-card h2 { margin: 0 0 .3rem; font-size: 1.4rem; color: var(--accent-strong); }
+    .dash-greeting-card p  { margin: 0; color: var(--text-muted); font-size: .9rem; }
+    .dash-stats-mini {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .dash-stat-mini {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: .6rem 1rem;
+      background: #ffffff;
+      border-radius: 1rem;
+      border: 1px solid rgba(99,102,241,0.1);
+      min-width: 80px;
+    }
+    .dash-stat-mini strong { font-size: 1.2rem; color: var(--accent-strong); font-weight: 800; }
+    .dash-stat-mini span   { font-size: .72rem; color: var(--text-muted); }
+
+    /* Quick access */
+    .dash-section-title { margin: 0; font-size: 1rem; font-weight: 700; color: var(--text); }
+    .dash-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .dash-quick-card {
+      background: #ffffff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 1.5rem;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .dash-quick-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(99,102,241,0.12); }
+    .dash-quick-icon { width: 3rem; height: 3rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .dash-quick-card h4 { margin: 0; font-size: .88rem; color: var(--accent-strong); font-weight: 700; }
+    .dash-quick-card p  { margin: 0; font-size: .76rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* Recent activity */
+    .dash-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .dash-card {
+      background: #ffffff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 1.5rem;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.04);
+      display: grid;
+      gap: .85rem;
+    }
+    .dash-card h3 { margin: 0; font-size: .95rem; color: var(--accent-strong); font-weight: 700; }
+    .dash-activity-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .65rem .85rem;
+      background: #f8fbff;
+      border-radius: .85rem;
+      font-size: .85rem;
+      color: var(--text-muted);
+    }
+    .dash-activity-icon {
+      width: 1.8rem; height: 1.8rem;
+      border-radius: .6rem;
+      background: rgba(99,102,241,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; flex-shrink: 0;
+    }
+    .dash-activity-item strong { display: block; font-size: .85rem; color: var(--text); }
+    .dash-activity-item time   { font-size: .75rem; color: var(--text-muted); }
+
+    /* Progress bars */
+    .dash-progress-item { display: grid; gap: .3rem; }
+    .dash-progress-label { display: flex; justify-content: space-between; font-size: .82rem; color: var(--text-muted); }
+    .dash-progress-bar { height: 7px; border-radius: 999px; background: rgba(148,163,184,0.18); overflow: hidden; }
+    .dash-progress-fill { height: 100%; border-radius: 999px; }
+
+    @media (max-width: 900px) {
+      .dashboard.visible { grid-template-columns: 1fr; }
+      .dash-sidebar { display: none; }
+      .dash-two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1080px) {
+      .index-features-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 860px) {
+      .index-nav { padding: 0.9rem 1.5rem; }
+      .index-nav-links { display: none; }
+      .index-hero { grid-template-columns: 1fr; padding: 2.5rem 1.5rem 0; min-height: unset; }
+      .index-hero-image { display: none; }
+      .index-hero-copy { padding-bottom: 2rem; }
+      .index-metrics { padding: 1rem 1.5rem; flex-wrap: wrap; }
+      .index-metric { border-right: none; border-bottom: 1px solid rgba(148,163,184,0.15); flex: 1 1 45%; }
+      .index-metric:last-child { border-bottom: none; }
+      .index-features { padding: 2.5rem 1.5rem; }
+      .index-features-grid { grid-template-columns: repeat(2, 1fr); }
+      .index-footer-banner { padding: 1.5rem; }
+    }
+
+    @media (max-width: 500px) {
+      .index-features-grid { grid-template-columns: 1fr 1fr; }
+      .index-metric { flex: 1 1 100%; }
+      .index-hero-actions { flex-direction: column; }
+      .index-hero-actions a { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="index-nav">
+    <a href="index.html" class="index-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="index-nav-brand-text">
+        <strong>EduNova</strong>
+        <span>Library</span>
+      </div>
+    </a>
+
+    <ul class="index-nav-links">
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>
+      <li><a href="resumenes.html">Resúmenes</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+
+    <a href="login.html" id="navAuthBtn" class="button button-primary" style="white-space:nowrap;">Iniciar sesión</a>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="index-hero">
+    <div class="index-hero-copy">
+      <h1 class="index-hero-title">
+        EduNova <span>Library</span>
+      </h1>
+      <p class="index-hero-subtitle">Biblioteca Digital Inteligente<br>para Estudiantes</p>
+      <p class="index-hero-tagline">Aprender nunca fue tan inteligente.</p>
+      <p class="index-hero-desc">Accede a libros, resúmenes, herramientas interactivas y mucho más para mejorar tu aprendizaje cada día.</p>
+      <div class="index-hero-actions">
+        <a href="biblioteca.html" class="btn-primary">📚 Explorar Biblioteca</a>
+        <a href="register.html" id="heroAuthBtn" class="btn-secondary">▶ Comenzar Gratis</a>
+      </div>
+    </div>
+    <div class="index-hero-image">
+      <img src="assets/Fondoindex.png" alt="Estudiantes usando EduNova Library" style="border-radius:2rem;object-fit:cover;" />
+    </div>
+  </section>
+
+  <!-- ── Métricas ── -->
+  <div class="index-metrics">
+    <div class="index-metric">
+      <span class="index-metric-icon" style="background:rgba(124,58,237,0.12);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </span>
+      <div>
+        <strong>+5000</strong>
+        <span>Estudiantes</span>
+      </div>
+    </div>
+    <div class="index-metric">
+      <span class="index-metric-icon" style="background:rgba(37,99,235,0.12);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </span>
+      <div>
+        <strong>+2000</strong>
+        <span>Recursos</span>
+      </div>
+    </div>
+    <div class="index-metric">
+      <span class="index-metric-icon" style="background:rgba(16,185,129,0.12);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </span>
+      <div>
+        <strong>+50</strong>
+        <span>Herramientas</span>
+      </div>
+    </div>
+    <div class="index-metric">
+      <span class="index-metric-icon" style="background:rgba(245,158,11,0.12);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+      </span>
+      <div>
+        <strong>+100</strong>
+        <span>Logros</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Features ── -->
+  <section class="index-features">
+    <h2 class="index-features-title">
+      Todo lo que necesitas para <span>aprender mejor</span>
+    </h2>
+    <div class="index-features-grid">
+      <a href="biblioteca.html" class="index-feature-card">
+        <img src="assets/biblioteca.svg" alt="Biblioteca Digital" class="index-feature-icon" />
+        <h3>Biblioteca Digital</h3>
+        <p>Miles de libros y materiales educativos organizados por cursos y niveles.</p>
+      </a>
+      <a href="resumenes.html" class="index-feature-card">
+        <img src="assets/resumenes.svg" alt="Resúmenes Inteligentes" class="index-feature-icon" />
+        <h3>Resúmenes Inteligentes</h3>
+        <p>Estudia más rápido con resúmenes, fórmulas, mapas y flashcards.</p>
+      </a>
+      <a href="herramientas.html" class="index-feature-card">
+        <img src="assets/herramientas.svg" alt="Organización" class="index-feature-icon" />
+        <h3>Organización</h3>
+        <p>Agenda, tareas y recordatorios para mantenerte al día.</p>
+      </a>
+      <a href="juegos.html" class="index-feature-card">
+        <img src="assets/juegos.svg" alt="Aprende Jugando" class="index-feature-icon" />
+        <h3>Aprende Jugando</h3>
+        <p>Minijuegos educativos para reforzar tus conocimientos.</p>
+      </a>
+      <a href="comunidad.html" class="index-feature-card">
+        <img src="assets/comunidad.svg" alt="Comunidad" class="index-feature-icon" />
+        <h3>Comunidad</h3>
+        <p>Comparte apuntes, resuelve dudas y crece junto a otros estudiantes.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Dashboard (logueado) ── -->
+  <div class="dashboard" id="dashboard">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <a href="index.html" class="dash-brand">
+        <img src="assets/Icono.png" alt="EduNova" />
+        <div class="dash-brand-text"><strong>EduNova</strong><span>Library</span></div>
+      </a>
+      <a href="index.html" class="dash-nav-item active">
+        <span class="dash-nav-icon">🏠</span>Inicio
+      </a>
+      <a href="biblioteca.html" class="dash-nav-item">
+        <span class="dash-nav-icon">📚</span>Biblioteca
+      </a>
+      <a href="resumenes.html" class="dash-nav-item">
+        <span class="dash-nav-icon">📝</span>Resúmenes
+      </a>
+      <a href="juegos.html" class="dash-nav-item">
+        <span class="dash-nav-icon">🎮</span>Juegos
+      </a>
+      <a href="herramientas.html" class="dash-nav-item">
+        <span class="dash-nav-icon">🛠️</span>Herramientas
+      </a>
+      <a href="comunidad.html" class="dash-nav-item">
+        <span class="dash-nav-icon">👥</span>Comunidad
+      </a>
+      <a href="perfil.html" class="dash-nav-item">
+        <span class="dash-nav-icon">👤</span>Mi Perfil
+      </a>
+      <div class="dash-sidebar-promo">
+        <div class="promo-icon">🤖</div>
+        <p>Recomendaciones basadas en tu aprendizaje</p>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="dash-main">
+
+      <!-- Saludo -->
+      <div class="dash-greeting-card">
+        <div>
+          <h2 id="dashGreeting">¡Bienvenido! 👋</h2>
+          <p>Continúa donde lo dejaste. Tu progreso te espera.</p>
+        </div>
+        <div class="dash-stats-mini">
+          <div class="dash-stat-mini"><strong id="dashHoras">0</strong><span>Horas</span></div>
+          <div class="dash-stat-mini"><strong id="dashRacha">0</strong><span>🔥 Racha</span></div>
+          <div class="dash-stat-mini"><strong id="dashJuegos">0</strong><span>Juegos</span></div>
+        </div>
+      </div>
+
+      <!-- Accesos rápidos -->
+      <div>
+        <h3 class="dash-section-title" style="margin-bottom:.85rem;">⚡ Acceso rápido</h3>
+        <div class="dash-quick-grid">
+          <a href="biblioteca.html" class="dash-quick-card">
+            <div class="dash-quick-icon" style="background:rgba(37,99,235,0.1)">📚</div>
+            <h4>Biblioteca</h4>
+            <p>Libros y recursos</p>
+          </a>
+          <a href="resumenes.html" class="dash-quick-card">
+            <div class="dash-quick-icon" style="background:rgba(124,58,237,0.1)">📝</div>
+            <h4>Resúmenes</h4>
+            <p>Estudia más rápido</p>
+          </a>
+          <a href="juegos.html" class="dash-quick-card">
+            <div class="dash-quick-icon" style="background:rgba(16,185,129,0.1)">🎮</div>
+            <h4>Juegos</h4>
+            <p>Aprende jugando</p>
+          </a>
+          <a href="herramientas.html" class="dash-quick-card">
+            <div class="dash-quick-icon" style="background:rgba(245,158,11,0.1)">🛠️</div>
+            <h4>Herramientas</h4>
+            <p>Organiza tu estudio</p>
+          </a>
+          <a href="comunidad.html" class="dash-quick-card">
+            <div class="dash-quick-icon" style="background:rgba(192,38,211,0.1)">👥</div>
+            <h4>Comunidad</h4>
+            <p>Conecta y comparte</p>
+          </a>
+          <a href="perfil.html" class="dash-quick-card">
+            <div class="dash-quick-icon" style="background:rgba(99,102,241,0.1)">👤</div>
+            <h4>Mi Perfil</h4>
+            <p>Ver tu progreso</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Actividad + Progreso -->
+      <div class="dash-two-col">
+        <div class="dash-card">
+          <h3>📋 Actividad reciente</h3>
+          <div id="dashActivity">
+            <div class="dash-activity-item">
+              <span class="dash-activity-icon">📚</span>
+              <div><strong>Biblioteca Digital</strong><time>Explora los recursos disponibles</time></div>
+            </div>
+            <div class="dash-activity-item">
+              <span class="dash-activity-icon">📝</span>
+              <div><strong>Resúmenes</strong><time>Elige un área para estudiar</time></div>
+            </div>
+            <div class="dash-activity-item">
+              <span class="dash-activity-icon">🎮</span>
+              <div><strong>Juegos educativos</strong><time>Refuerza tus conocimientos</time></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3>📊 Mi progreso</h3>
+          <div style="display:grid;gap:.75rem;" id="dashProgress">
+            <div class="dash-progress-item">
+              <div class="dash-progress-label"><span>Matemática</span><span id="dp-math">0%</span></div>
+              <div class="dash-progress-bar"><div class="dash-progress-fill" id="dpb-math" style="width:0%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
+            </div>
+            <div class="dash-progress-item">
+              <div class="dash-progress-label"><span>Ciencia</span><span id="dp-sci">0%</span></div>
+              <div class="dash-progress-bar"><div class="dash-progress-fill" id="dpb-sci" style="width:0%;background:linear-gradient(90deg,#3b82f6,#2563eb)"></div></div>
+            </div>
+            <div class="dash-progress-item">
+              <div class="dash-progress-label"><span>Historia</span><span id="dp-his">0%</span></div>
+              <div class="dash-progress-bar"><div class="dash-progress-fill" id="dpb-his" style="width:0%;background:linear-gradient(90deg,#a855f7,#7c3aed)"></div></div>
+            </div>
+            <div class="dash-progress-item">
+              <div class="dash-progress-label"><span>Comunicación</span><span id="dp-com">0%</span></div>
+              <div class="dash-progress-bar"><div class="dash-progress-fill" id="dpb-com" style="width:0%;background:linear-gradient(90deg,#f97316,#ea580c)"></div></div>
+            </div>
+            <div class="dash-progress-item">
+              <div class="dash-progress-label"><span>Inglés</span><span id="dp-eng">0%</span></div>
+              <div class="dash-progress-bar"><div class="dash-progress-fill" id="dpb-eng" style="width:0%;background:linear-gradient(90deg,#ec4899,#db2777)"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Footer banner ── -->
+  <div class="index-footer-banner">
+    <p>"Tu conocimiento en un solo lugar."</p>
+    <span>🎓</span>
+  </div>
+
+  <footer class="index-footer">
+    EduNova Library · Biblioteca Digital para Estudiantes
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const app  = initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    const navBtn  = document.getElementById('navAuthBtn');
+    const heroBtn = document.getElementById('heroAuthBtn');
+
+    // Elementos de la landing
+    const landingSections = [
+      document.querySelector('.index-hero'),
+      document.querySelector('.index-metrics'),
+      document.querySelector('.index-features'),
+      document.querySelector('.index-footer-banner'),
+    ];
+
+    const dashboard = document.getElementById('dashboard');
+
+    function setBar(fillId, labelId, val) {
+      const f = document.getElementById(fillId);
+      const l = document.getElementById(labelId);
+      if (f) f.style.width = val + '%';
+      if (l) l.textContent = val + '%';
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const nombre = user.displayName ? user.displayName.split(' ')[0] : 'Estudiante';
+
+        // Navbar
+        navBtn.textContent = `👤 ${nombre}`;
+        navBtn.href = 'perfil.html';
+        navBtn.style.background = 'rgba(99,102,241,0.1)';
+        navBtn.style.color = 'var(--accent-strong)';
+        navBtn.style.boxShadow = 'none';
+
+        // Ocultar landing, mostrar dashboard
+        landingSections.forEach(s => { if (s) s.style.display = 'none'; });
+        if (heroBtn) heroBtn.classList.add('hidden-when-auth');
+        dashboard.classList.add('visible');
+
+        // Saludo
+        document.getElementById('dashGreeting').textContent = `¡Hola, ${nombre}! 👋`;
+
+        // Cargar datos de Firestore
+        try {
+          const snap = await getDoc(doc(db, 'usuarios', user.uid));
+          if (snap.exists()) {
+            const d = snap.data();
+            const el = id => document.getElementById(id);
+            if (el('dashHoras'))  el('dashHoras').textContent  = d.horasEstudio      ?? 0;
+            if (el('dashRacha'))  el('dashRacha').textContent  = d.rachaActual        ?? 0;
+            if (el('dashJuegos')) el('dashJuegos').textContent = d.juegosCompletados ?? 0;
+            const p = d.progreso || {};
+            setBar('dpb-math', 'dp-math', p.matematica   ?? 0);
+            setBar('dpb-sci',  'dp-sci',  p.ciencia       ?? 0);
+            setBar('dpb-his',  'dp-his',  p.historia      ?? 0);
+            setBar('dpb-com',  'dp-com',  p.comunicacion  ?? 0);
+            setBar('dpb-eng',  'dp-eng',  p.ingles        ?? 0);
+
+            // Actividad reciente
+            if (d.actividad && d.actividad.length > 0) {
+              document.getElementById('dashActivity').innerHTML = d.actividad.slice(0,3).map(a => `
+                <div class="dash-activity-item">
+                  <span class="dash-activity-icon">${a.icono || '📌'}</span>
+                  <div><strong>${a.texto}</strong><time>${a.fecha}</time></div>
+                </div>`).join('');
+            }
+          }
+        } catch(e) {}
+
+      } else {
+        // No logueado — mostrar landing normal
+        landingSections.forEach(s => { if (s) s.style.display = ''; });
+        dashboard.classList.remove('visible');
+        navBtn.textContent = 'Iniciar sesión';
+        navBtn.href = 'login.html';
+        navBtn.style.background = '';
+        navBtn.style.color = '';
+        navBtn.style.boxShadow = '';
+        if (heroBtn) heroBtn.classList.remove('hidden-when-auth');
+      }
+    });
+  </script>
+</body>
+</html>

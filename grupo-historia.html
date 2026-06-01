@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historia Universal | EduNova</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{margin:0}
+    .grupo-hero{background:linear-gradient(135deg,rgba(217,119,6,0.12),rgba(180,83,9,0.06));border-radius:2rem;padding:2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem}
+    .grupo-hero-icon{font-size:3.5rem;width:5rem;height:5rem;background:rgba(217,119,6,0.15);border-radius:1.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .grupo-hero-info h2{margin:0 0 .4rem;color:var(--accent-strong);font-size:1.8rem}
+    .grupo-hero-info p{margin:0 0 .75rem;color:var(--text-muted)}
+    .grupo-hero-meta{display:flex;gap:1rem;flex-wrap:wrap}
+    .grupo-meta-badge{padding:.3rem .85rem;border-radius:999px;background:rgba(217,119,6,0.1);color:#d97706;font-size:.82rem;font-weight:700}
+    .grupo-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:1.5rem;align-items:start}
+    .grupo-main,.grupo-sidebar{display:grid;gap:1.25rem}
+    .grupo-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.4rem;box-shadow:0 12px 28px rgba(15,23,42,0.05)}
+    .grupo-card h3{margin:0 0 1rem;color:var(--accent-strong);font-size:1rem}
+    .tema-list{display:grid;gap:.6rem;list-style:none;padding:0;margin:0}
+    .tema-list li{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:#f8fbff;border-radius:.9rem;font-size:.9rem;color:var(--text-muted)}
+    .tema-icon{width:2rem;height:2rem;border-radius:.6rem;background:rgba(217,119,6,0.12);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+    .recurso-list,.miembros-list{display:grid;gap:.6rem;list-style:none;padding:0;margin:0}
+    .recurso-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:#f8fbff;border-radius:.9rem}
+    .recurso-item span{font-size:.88rem;color:var(--accent-strong);font-weight:600}
+    .recurso-item small{font-size:.78rem;color:var(--text-muted);display:block}
+    .miembro-item{display:flex;align-items:center;gap:.75rem}
+    .miembro-avatar{width:2.2rem;height:2.2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;color:#fff;flex-shrink:0}
+    .miembro-info strong{font-size:.88rem;color:var(--text);display:block}
+    .miembro-info span{font-size:.76rem;color:var(--text-muted)}
+    .leave-btn{width:100%;padding:.85rem;border:1.5px solid rgba(239,68,68,0.3);border-radius:1rem;background:transparent;color:#ef4444;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s}
+    .leave-btn:hover{background:rgba(239,68,68,0.06)}
+    .post-form{display:grid;gap:.75rem}
+    .post-form textarea{padding:.85rem 1rem;border:1.5px solid rgba(148,163,184,0.25);border-radius:1rem;font-size:.92rem;font-family:inherit;resize:vertical;min-height:80px;outline:none}
+    .post-form textarea:focus{border-color:var(--accent)}
+    .post-form button{padding:.7rem 1.4rem;border:none;border-radius:999px;background:linear-gradient(135deg,#d97706,#b45309);color:#fff;font-weight:700;cursor:pointer;justify-self:end}
+    .grupo-post{padding:.9rem 1rem;background:#f8fbff;border-radius:1rem;display:flex;gap:.75rem}
+    .grupo-post-avatar{width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff;flex-shrink:0}
+    .grupo-post-body strong{font-size:.85rem;color:var(--text);display:block;margin-bottom:.2rem}
+    .grupo-post-body p{margin:0;font-size:.85rem;color:var(--text-muted);line-height:1.5}
+    .grupo-post-body small{font-size:.72rem;color:var(--text-muted)}
+    .posts-feed{display:grid;gap:.75rem}
+    @media(max-width:900px){.grupo-layout{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNova Library" />
+      <div class="uni-nav-brand-text"><strong>EduNova</strong><span>Library</span></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>
+      <li><a href="resumenes.html">Resúmenes</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html" class="active">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+  <main class="page-content">
+    <nav style="margin-bottom:1rem;font-size:.9rem"><a href="comunidad.html" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a Comunidad</a></nav>
+    <div class="grupo-hero">
+      <div class="grupo-hero-icon">🌍</div>
+      <div class="grupo-hero-info">
+        <h2>Historia Universal</h2>
+        <p>Comparte apuntes, discute eventos históricos y aprende sobre civilizaciones y revoluciones que cambiaron el mundo.</p>
+        <div class="grupo-hero-meta">
+          <span class="grupo-meta-badge" id="memberCount">👥 Cargando...</span>
+          <span class="grupo-meta-badge">🏛️ Antigua · Medieval · Moderna</span>
+          <span class="grupo-meta-badge">🎯 Todos los niveles</span>
+        </div>
+      </div>
+    </div>
+    <div class="grupo-layout">
+      <div class="grupo-main">
+        <div class="grupo-card">
+          <h3>💬 Publicaciones del grupo</h3>
+          <div id="groupPostForm"></div>
+          <div class="posts-feed" id="groupFeed" style="margin-top:1rem"><p style="color:var(--text-muted);font-size:.9rem;text-align:center">Cargando...</p></div>
+        </div>
+        <div class="grupo-card">
+          <h3>📖 Temas que cubrimos</h3>
+          <ul class="tema-list">
+            <li><span class="tema-icon">🏛️</span>Civilizaciones antiguas</li>
+            <li><span class="tema-icon">⚔️</span>Edad Media y feudalismo</li>
+            <li><span class="tema-icon">🚢</span>Descubrimientos y colonización</li>
+            <li><span class="tema-icon">🗽</span>Revoluciones modernas</li>
+            <li><span class="tema-icon">🌐</span>Historia contemporánea</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grupo-sidebar">
+        <div class="grupo-card" id="joinCard"><p style="color:var(--text-muted);font-size:.9rem;text-align:center">Cargando...</p></div>
+        <div class="grupo-card">
+          <h3>🔗 Recursos recomendados</h3>
+          <ul class="recurso-list">
+            <li class="recurso-item"><span class="tema-icon">📗</span><div><span>Historia del Perú</span><small>Biblioteca · Libro</small></div></li>
+            <li class="recurso-item"><span class="tema-icon">📝</span><div><span>Resumen: Rev. Francesa</span><small>Resúmenes · Historia</small></div></li>
+            <li class="recurso-item"><span class="tema-icon">🎮</span><div><span>Trivia de Historia</span><small>Juegos · Medio</small></div></li>
+          </ul>
+        </div>
+        <div class="grupo-card">
+          <h3>⭐ Miembros activos</h3>
+          <ul class="miembros-list">
+            <li class="miembro-item"><div class="miembro-avatar" style="background:#2563eb">CR</div><div class="miembro-info"><strong>Carlos Ríos</strong><span>5° Secundaria · 45 posts</span></div></li>
+            <li class="miembro-item"><div class="miembro-avatar" style="background:#7c3aed">SL</div><div class="miembro-info"><strong>Sebastián Lara</strong><span>3° Secundaria · 33 posts</span></div></li>
+            <li class="miembro-item"><div class="miembro-avatar" style="background:#c026d3">VC</div><div class="miembro-info"><strong>Valentina Cruz</strong><span>5° Secundaria · 27 posts</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><p>EduNova Library · Biblioteca Digital para Estudiantes</p></footer>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    const GID='historia',GNAME='Historia Universal';
+    const app=initializeApp({apiKey:"AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",authDomain:"edunova-library.firebaseapp.com",projectId:"edunova-library",storageBucket:"edunova-library.firebasestorage.app",messagingSenderId:"707176884039",appId:"1:707176884039:web:7c2b34c1bfcbdc7ec10e62"});
+    const auth=getAuth(app),db=getFirestore(app);
+    const COLORS=['#7c3aed','#2563eb','#16a34a','#d97706','#c026d3','#0f766e','#dc2626','#0284c7'];
+    function colorFor(s){let h=0;for(let c of s)h=(h*31+c.charCodeAt(0))%COLORS.length;return COLORS[h]}
+    function initials(n){return n.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()}
+    function timeAgo(ts){if(!ts)return'Ahora';const d=ts.toDate?ts.toDate():new Date(ts);const s=Math.floor((Date.now()-d)/1000);if(s<60)return'Hace un momento';if(s<3600)return`Hace ${Math.floor(s/60)} min`;if(s<86400)return`Hace ${Math.floor(s/3600)} h`;return`Hace ${Math.floor(s/86400)} días`}
+    async function renderJoinCard(user){
+      const card=document.getElementById('joinCard');
+      if(!user){card.innerHTML=`<p style="text-align:center;color:var(--text-muted)">¿Quieres unirte? <a href="login.html" style="color:var(--accent-strong);font-weight:700">Inicia sesión</a></p>`;return}
+      const uRef=doc(db,'usuarios',user.uid),uSnap=await getDoc(uRef);
+      const grupos=uSnap.exists()?(uSnap.data().grupos||[]):[];
+      const gRef=doc(db,'grupos',GID),gSnap=await getDoc(gRef);
+      const count=gSnap.exists()?(gSnap.data().miembros||[]).length:0;
+      document.getElementById('memberCount').textContent=`👥 ${count} miembros`;
+      if(grupos.includes(GID)){
+        card.innerHTML=`<p style="color:#16a34a;font-weight:700;text-align:center;margin:0 0 .75rem">✓ Ya eres miembro</p><button class="leave-btn" id="leaveBtn">Salirse del grupo</button>`;
+        document.getElementById('leaveBtn').addEventListener('click',async()=>{if(!confirm('¿Seguro?'))return;await updateDoc(uRef,{grupos:arrayRemove(GID)});await updateDoc(gRef,{miembros:arrayRemove(user.uid)}).catch(()=>{});renderJoinCard(user);renderPostForm(user,false)});
+      }else{
+        card.innerHTML=`<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#d97706,#b45309);color:#fff;font-weight:700;cursor:pointer">Unirse al grupo</button>`;
+        document.getElementById('joinBtn').addEventListener('click',async()=>{await updateDoc(uRef,{grupos:arrayUnion(GID)}).catch(async()=>{await setDoc(uRef,{grupos:[GID]},{merge:true})});await setDoc(gRef,{nombre:GNAME,icon:'🌍',color:'rgba(217,119,6,0.12)'},{merge:true});await updateDoc(gRef,{miembros:arrayUnion(user.uid)}).catch(()=>{});renderJoinCard(user);renderPostForm(user,true)});
+      }
+    }
+    function renderPostForm(user,isMember){
+      const f=document.getElementById('groupPostForm');
+      if(!user||!isMember){f.innerHTML='';return}
+      const col=colorFor(user.displayName||user.email),ini=initials(user.displayName||user.email);
+      f.innerHTML=`<div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.75rem"><div class="grupo-post-avatar" style="background:${col}">${ini}</div><div class="post-form" style="flex:1"><textarea id="gpt" placeholder="Comparte algo con el grupo..."></textarea><button id="gpb">Publicar</button></div></div>`;
+      document.getElementById('gpb').addEventListener('click',async()=>{const t=document.getElementById('gpt').value.trim();if(!t)return;await addDoc(collection(db,'grupos',GID,'posts'),{autor:user.displayName||user.email.split('@')[0],autorId:user.uid,texto:t,createdAt:serverTimestamp()});document.getElementById('gpt').value=''});
+    }
+    function loadFeed(){
+      const feed=document.getElementById('groupFeed');
+      onSnapshot(query(collection(db,'grupos',GID,'posts'),orderBy('createdAt','desc')),snap=>{
+        if(snap.empty){feed.innerHTML='<p style="color:var(--text-muted);font-size:.9rem;text-align:center">¡Sé el primero en publicar!</p>';return}
+        feed.innerHTML=snap.docs.map(d=>{const p=d.data();return`<div class="grupo-post"><div class="grupo-post-avatar" style="background:${colorFor(p.autor||'U')}">${initials(p.autor||'U')}</div><div class="grupo-post-body"><strong>${p.autor} <small>· ${timeAgo(p.createdAt)}</small></strong><p>${p.texto}</p></div></div>`}).join('')
+      });
+    }
+    onAuthStateChanged(auth,async user=>{
+      const navBtn=document.getElementById('navAuthBtn');
+      if(user){navBtn.textContent=`👤 ${user.displayName?user.displayName.split(' ')[0]:'Mi cuenta'}`;navBtn.href='perfil.html';navBtn.style.cssText='background:rgba(99,102,241,0.1);color:var(--accent-strong);box-shadow:none'}
+      await renderJoinCard(user);
+      if(user){const uSnap=await getDoc(doc(db,'usuarios',user.uid));renderPostForm(user,(uSnap.exists()&&(uSnap.data().grupos||[]).includes(GID)))}
+      loadFeed();
+    });
+  </script>
+  <script type="module" src="auth-nav.js"></script>
+</body>
+</html>
