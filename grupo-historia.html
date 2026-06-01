@@ -245,6 +245,11 @@
           ]);
           renderJoinCard(user); renderPostForm(user, false);
         };
+        // Render post form for already-member with correct rol
+        getDoc(uRef).then(snap => {
+          const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
+          renderPostForm(user, true, rol);
+        }).catch(() => renderPostForm(user, true, 'alumno'));
       } else {
         card.innerHTML = `<p style="color:var(--text-muted);font-size:.88rem;text-align:center;margin:0 0 .75rem">Únete para participar en las discusiones</p><button id="joinBtn" style="width:100%;padding:.85rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#d97706,#b45309);color:#fff;font-weight:700;cursor:pointer;font-size:.95rem">Unirse al grupo</button>`;
         document.getElementById('joinBtn').onclick = async () => {
@@ -256,7 +261,10 @@
               setDoc(gRef, { nombre:GNAME, icon:GICON, color:GCOLOR, miembros: arrayUnion(user.uid) }, { merge: true })
             ]);
             card.innerHTML = `<p style="color:#16a34a;font-weight:700;text-align:center;margin:0">✓ Ya eres miembro</p>`;
-            renderPostForm(user, true);
+            getDoc(uRef).then(snap => {
+              const rol = snap.exists() ? (snap.data().rol || 'alumno') : 'alumno';
+              renderPostForm(user, true, rol);
+            }).catch(() => renderPostForm(user, true, 'alumno'));
           } catch(e) {
             btn.disabled = false; btn.textContent = 'Unirse al grupo';
           }
@@ -279,14 +287,22 @@
         document.getElementById('gpb').onclick = async () => {
           const t = document.getElementById('gpt').value.trim();
           if (!t) return;
-          await addDoc(collection(db,'grupos',GID,'posts'), {
-            autor: user.displayName||user.email.split('@')[0],
-            autorId: user.uid,
-            texto: t,
-            rol: 'docente',
-            createdAt: serverTimestamp()
-          });
-          document.getElementById('gpt').value = '';
+          const btn = document.getElementById('gpb');
+          btn.disabled = true; btn.textContent = '...';
+          try {
+            await addDoc(collection(db,'grupos',GID,'posts'), {
+              autor: user.displayName||user.email.split('@')[0],
+              autorId: user.uid,
+              texto: t,
+              rol: 'docente',
+              createdAt: serverTimestamp()
+            });
+            document.getElementById('gpt').value = '';
+          } catch(e) {
+            alert('Error al publicar. Intenta de nuevo.');
+          } finally {
+            btn.disabled = false; btn.textContent = 'Publicar';
+          }
         };
       } else {
         // Alumnos: solo pueden escribir en el tab Foro
