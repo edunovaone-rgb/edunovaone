@@ -408,13 +408,20 @@
         const shown = uids.slice(0, 8);
         const snaps = await Promise.all(shown.map(uid => getDoc(doc(db,'usuarios',uid)).catch(()=>null)));
         list.innerHTML = snaps.map((s, i) => {
-          const uid = shown[i];
-          const nombre = s && s.exists() ? (s.data().displayName || s.data().nombre || uid.slice(0,8)) : uid.slice(0,8);
-          const grado  = s && s.exists() ? (s.data().grado || '') : '';
+          const uid    = shown[i];
+          const data   = s && s.exists() ? s.data() : {};
+          const nombre = data.displayName || data.nombre || uid.slice(0,8);
+          const grado  = data.grado || '';
+          const rol    = data.rol || '';
           const ini    = nombre.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+          const esDocente = rol === 'docente';
+          const nameStyle = esDocente ? 'style="color:#f97316;font-weight:700;"' : '';
+          const tagDocente = esDocente
+            ? `<span style="display:inline-block;margin-top:.2rem;font-size:.7rem;background:rgba(249,115,22,0.12);color:#f97316;padding:.15rem .55rem;border-radius:999px;font-weight:700;">Docente</span>`
+            : '';
           return `<li class="miembro-item" data-uid="${uid}" data-nombre="${nombre}" data-grado="${grado}" style="cursor:pointer;">
             <div class="miembro-avatar"><img src="${avatarUrl(nombre)}" alt="${ini}" loading="lazy" /></div>
-            <div class="miembro-info"><strong>${nombre}</strong><span>${grado || 'Student'}</span></div>
+            <div class="miembro-info"><strong ${nameStyle}>${nombre}</strong><span>${grado || 'Student'}</span>${tagDocente}</div>
           </li>`;
         }).join('');
         list.querySelectorAll('.miembro-item[data-uid]').forEach(li => {
