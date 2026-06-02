@@ -29,10 +29,23 @@ onAuthStateChanged(_auth, async (user) => {
 
     const ref = doc(_db, 'usuarios', user.uid);
 
-    // setDoc con merge: actualiza lastSeen Y sincroniza el nombre de Auth → Firestore
-    // para que otros usuarios puedan ver el nombre real en la lista de miembros
+    // Leer el doc primero para no sobreescribir un nombre real ya guardado
+    let username = null;
+    let existingNombre = null;
+    try {
+      const snap = await getDoc(ref);
+      if (snap.exists()) {
+        username = snap.data().username || null;
+        existingNombre = snap.data().nombre || null;
+      }
+    } catch (_) {}
+
+    // Solo escribir nombre si el doc no tiene uno ya, o si el displayName de Auth
+    // es diferente al username (para no guardar el username técnico como nombre)
     const updatePayload = { lastSeen: Date.now() };
-    if (user.displayName) updatePayload.nombre = user.displayName;
+    if (user.displayName && (!existingNombre || existingNombre === username)) {
+      updatePayload.nombre = user.displayName;
+    }
     setDoc(ref, updatePayload, { merge: true }).catch(() => {});
 
     // Refrescar lastSeen cada 2 minutos para mantener el estado "Activo"
