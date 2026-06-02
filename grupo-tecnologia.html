@@ -408,11 +408,6 @@
         const shown = uids.slice(0, 8);
         const snaps = await Promise.all(shown.map(uid => getDoc(doc(db,'usuarios',uid)).catch(()=>null)));
         list.innerHTML = snaps.map((s, i) => {
-          const uid = shown[i];
-          const nombre = s && s.exists() ? (s.data().displayName || s.data().nombre || uid.slice(0,8)) : uid.slice(0,8);
-          const grado  = s && s.exists() ? (s.data().grado || '') : '';
-          const ini    = nombre.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-        list.innerHTML = snaps.map((s, i) => {
           const uid    = shown[i];
           const data   = s && s.exists() ? s.data() : {};
           const nombre = data.displayName || data.nombre || uid.slice(0,8);
