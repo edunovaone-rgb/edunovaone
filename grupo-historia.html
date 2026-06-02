@@ -414,7 +414,7 @@
           const data   = s && s.exists() ? s.data() : {};
           const rawNombre  = data.nombre || data.displayName || '';
           const rawUsername = data.username || '';
-          const nombre = (rawNombre && rawNombre !== rawUsername)
+          const nombre = (rawNombre && rawNombre.toLowerCase() !== rawUsername.toLowerCase())
             ? rawNombre
             : (rawUsername ? '@' + rawUsername : uid.slice(0,8));
           const grado  = data.grado || '';
