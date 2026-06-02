@@ -153,12 +153,21 @@
 .miembros-list  { display: grid; gap: .55rem; list-style: none; padding: 0; margin: 0; }
 .miembro-item   { display: flex; align-items: center; gap: .75rem; }
 .miembro-avatar {
+  position: relative;
   width: 2.4rem; height: 2.4rem; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: .8rem; font-weight: 700; color: #fff; flex-shrink: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 .miembro-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.miembro-presence {
+  position: absolute; bottom: 0; right: 0;
+  width: .65rem; height: .65rem; border-radius: 50%;
+  border: 2px solid #fff;
+  flex-shrink: 0;
+}
+.miembro-presence.online  { background: #22c55e; }
+.miembro-presence.offline { background: #94a3b8; }
 .miembro-info strong { font-size: .85rem; color: var(--text); display: block; }
 .miembro-info span   { font-size: .75rem; color: var(--text-muted); }
 
