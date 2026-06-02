@@ -456,6 +456,33 @@
     };
     const BANNER_COLORS = ['#7c3aed,#2563eb','#16a34a,#0f766e','#d97706,#b45309','#0284c7,#0369a1','#c026d3,#7c3aed','#2563eb,#1d4ed8'];
 
+    function applyStatus(lastSeen) {
+      const dot   = document.getElementById('perfilStatusDot');
+      const label = document.getElementById('perfilStatusLabel');
+      if (!lastSeen) {
+        dot.className = 'perfil-status-dot offline';
+        label.className = 'perfil-status-label offline';
+        label.textContent = '⬤  Sin actividad';
+        return;
+      }
+      const diffMin = Math.floor((Date.now() - lastSeen) / 60000);
+      if (diffMin < 5) {
+        dot.className   = 'perfil-status-dot online';
+        label.className = 'perfil-status-label online';
+        label.textContent = '⬤  Activo ahora';
+      } else if (diffMin < 30) {
+        dot.className   = 'perfil-status-dot idle';
+        label.className = 'perfil-status-label idle';
+        label.textContent = `⬤  Hace ${diffMin} min`;
+      } else {
+        dot.className   = 'perfil-status-dot offline';
+        label.className = 'perfil-status-label offline';
+        const h = Math.floor(diffMin / 60);
+        const txt = h < 1 ? `${diffMin} min` : h < 24 ? `${h}h` : `${Math.floor(h/24)}d`;
+        label.textContent = `⬤  Hace ${txt}`;
+      }
+    }
+
     async function openPerfilPopup(uid, fallbackNombre, fallbackGrado) {
       const overlay = document.getElementById('perfilOverlay');
       document.getElementById('perfilName').textContent = 'Cargando...';
@@ -465,7 +492,9 @@
       document.getElementById('perfilJuegos').textContent = '—';
       document.getElementById('perfilGrupos').innerHTML = '';
       document.getElementById('perfilInsignias').innerHTML = '';
+      applyStatus(null);
       overlay.classList.add('open');
+
       try {
         const snap = await getDoc(doc(db, 'usuarios', uid));
         if (!snap.exists()) {
@@ -492,6 +521,7 @@
         document.getElementById('perfilRacha').textContent = d.rachaActual ?? 0;
         document.getElementById('perfilHoras').textContent = d.horasEstudio ?? 0;
         document.getElementById('perfilJuegos').textContent = d.juegosCompletados ?? 0;
+        applyStatus(d.lastSeen || 0);
         const grupos = Array.isArray(d.grupos) ? d.grupos : [];
         document.getElementById('perfilGrupos').innerHTML = grupos.length
           ? grupos.map(g => `<span class="perfil-grupo-tag">${GRUPO_NOMBRES[g] || g}</span>`).join('')
