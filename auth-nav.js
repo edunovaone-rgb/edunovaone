@@ -53,12 +53,7 @@ onAuthStateChanged(_auth, async (user) => {
       setDoc(ref, { lastSeen: Date.now() }, { merge: true }).catch(() => {});
     }, 2 * 60 * 1000);
 
-    let username = null;
-    try {
-      const snap = await getDoc(ref);
-      if (snap.exists()) username = snap.data().username || null;
-    } catch (_) {}
-
+    // username ya fue leído arriba junto con el doc
     if (username) {
       btn.innerHTML = `
         <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;gap:1px;">
