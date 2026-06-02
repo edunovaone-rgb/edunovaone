@@ -1185,9 +1185,11 @@
       const statusDot   = document.getElementById('statusDot');
       const statusLabel = document.getElementById('statusLabel');
 
-      // Actualizar lastSeen del usuario actual
+      // Actualizar lastSeen del usuario actual (setDoc+merge funciona aunque no exista el doc)
       const nowTs = Date.now();
-      updateDoc(ref, { lastSeen: nowTs }).catch(() => {});
+      const presencePayload = { lastSeen: nowTs };
+      if (user.displayName) presencePayload.nombre = user.displayName;
+      setDoc(ref, presencePayload, { merge: true }).catch(() => {});
 
       function renderStatus(lastSeen) {
         if (!lastSeen) { statusDot.className = 'status-dot offline'; statusLabel.textContent = ''; return; }
