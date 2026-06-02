@@ -441,14 +441,14 @@
         list.innerHTML = snaps.map((s, i) => {
           const uid    = shown[i];
           const data   = s && s.exists() ? s.data() : {};
-          const nombre = data.displayName || data.nombre || uid.slice(0,8);
+          const nombre = data.nombre || data.displayName || data.username || uid.slice(0,8);
           const grado  = data.grado || '';
           const rol    = data.rol || '';
           const ini    = nombre.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
           const esDocente = rol === 'docente';
           const nameStyle = esDocente ? 'style="color:#f97316;font-weight:700;"' : '';
           const tagDocente = esDocente
-            ? `<span style="display:inline-block;margin-top:.2rem;font-size:.7rem;background:rgba(249,115,22,0.12);color:#f97316;padding:.15rem .55rem;border-radius:999px;font-weight:700;">Docente</span>`
+            ? `<span style="display:block;margin-top:.3rem;font-size:.7rem;background:rgba(249,115,22,0.12);color:#f97316;padding:.15rem .55rem;border-radius:999px;font-weight:700;width:fit-content;">Docente</span>`
             : '';
           return `<li class="miembro-item" data-uid="${uid}" data-nombre="${nombre}" data-grado="${grado}" style="cursor:pointer;">
             <div class="miembro-avatar"><img src="${avatarUrl(nombre)}" alt="${ini}" loading="lazy" /></div>
