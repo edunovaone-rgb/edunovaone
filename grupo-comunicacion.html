@@ -555,7 +555,7 @@
         const colorIdx = uid.charCodeAt(0) % BANNER_COLORS.length;
 
         document.getElementById('perfilBanner').style.background = `linear-gradient(135deg, ${BANNER_COLORS[colorIdx]})`;
-        document.getElementById('perfilAvatar').src = avatarUrl(nombre);
+        document.getElementById('perfilAvatar').src = avatarUrl(uid);
         document.getElementById('perfilName').textContent = nombre;
         document.getElementById('perfilGrado').textContent = [d.grado, d.colegio].filter(Boolean).join(' · ') || 'Estudiante';
         document.getElementById('perfilRacha').textContent = d.rachaActual ?? 0;
