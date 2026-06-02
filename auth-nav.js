@@ -1,7 +1,7 @@
 // auth-nav.js — actualiza el botón del navbar según sesión Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const _app = initializeApp({
   apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
@@ -27,19 +27,17 @@ onAuthStateChanged(_auth, async (user) => {
   if (user) {
     const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
 
-    // Actualizar lastSeen y leer username en paralelo
     const ref = doc(_db, 'usuarios', user.uid);
-    // setDoc con merge garantiza que funciona aunque no exista el doc aún
-    // y también sincroniza el nombre de Auth → Firestore para que otros usuarios lo vean
+
+    // setDoc con merge: actualiza lastSeen Y sincroniza el nombre de Auth → Firestore
+    // para que otros usuarios puedan ver el nombre real en la lista de miembros
     const updatePayload = { lastSeen: Date.now() };
     if (user.displayName) updatePayload.nombre = user.displayName;
-    import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")
-      .then(({ setDoc }) => setDoc(ref, updatePayload, { merge: true }))
-      .catch(() => {});
+    setDoc(ref, updatePayload, { merge: true }).catch(() => {});
 
     // Refrescar lastSeen cada 2 minutos para mantener el estado "Activo"
     _presenceInterval = setInterval(() => {
-      updateDoc(ref, { lastSeen: Date.now() }).catch(() => {});
+      setDoc(ref, { lastSeen: Date.now() }, { merge: true }).catch(() => {});
     }, 2 * 60 * 1000);
 
     let username = null;
