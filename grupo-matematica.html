@@ -424,9 +424,20 @@
           const tagDocente = esDocente
             ? `<span style="display:block;margin-top:.3rem;font-size:.7rem;background:rgba(249,115,22,0.12);color:#f97316;padding:.15rem .55rem;border-radius:999px;font-weight:700;width:fit-content;">Docente</span>`
             : '';
+          const lastSeen = data.lastSeen || 0;
+          const diffMin  = lastSeen ? Math.floor((Date.now() - lastSeen) / 60000) : 999;
+          const isOnline = diffMin < 5;
+          const presenceClass = isOnline ? 'online' : 'offline';
+          const presenceTitle = isOnline ? 'Activo ahora' : (lastSeen ? (diffMin < 60 ? `Activo hace ${diffMin} min` : `Activo hace ${Math.floor(diffMin/60)}h`) : 'Sin actividad');
+          const statusText = isOnline
+            ? `<span style="font-size:.7rem;color:#16a34a;margin-top:.15rem;display:block;">● Activo ahora</span>`
+            : `<span style="font-size:.7rem;color:var(--text-muted);margin-top:.15rem;display:block;">${presenceTitle}</span>`;
           return `<li class="miembro-item" data-uid="${uid}" data-nombre="${nombre}" data-grado="${grado}">
-            <div class="miembro-avatar"><img src="${avatarUrl(nombre)}" alt="${ini}" loading="lazy" /></div>
-            <div class="miembro-info"><strong ${nameStyle}>${nombre}</strong><span>${grado || 'Estudiante'}</span>${tagDocente}</div>
+            <div class="miembro-avatar">
+              <img src="${avatarUrl(nombre)}" alt="${ini}" loading="lazy" />
+              <span class="miembro-presence ${presenceClass}" title="${presenceTitle}"></span>
+            </div>
+            <div class="miembro-info"><strong ${nameStyle}>${nombre}</strong><span>${grado || 'Estudiante'}</span>${statusText}${tagDocente}</div>
           </li>`;
         }).join('');
         list.querySelectorAll('.miembro-item[data-uid]').forEach(li => {
