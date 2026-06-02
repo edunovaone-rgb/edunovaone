@@ -417,7 +417,12 @@
         list.innerHTML = snaps.map((s, i) => {
           const uid    = shown[i];
           const data   = s && s.exists() ? s.data() : {};
-          const nombre = data.nombre || data.displayName || data.username || uid.slice(0,8);
+          const rawNombre  = data.nombre || data.displayName || '';
+          const rawUsername = data.username || '';
+          // Si nombre es igual al username (o vacío), usar @username; si no hay nada, uid recortado
+          const nombre = (rawNombre && rawNombre !== rawUsername)
+            ? rawNombre
+            : (rawUsername ? '@' + rawUsername : uid.slice(0,8));
           const grado  = data.grado || '';
           const rol    = data.rol || '';
           const ini    = nombre.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
