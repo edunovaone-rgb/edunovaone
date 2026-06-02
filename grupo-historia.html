@@ -221,7 +221,7 @@
     const COLORS = ['#7c3aed','#2563eb','#16a34a','#d97706','#c026d3','#0f766e','#dc2626','#0284c7'];
     const colorFor = s => { let h=0; for(let c of s) h=(h*31+c.charCodeAt(0))%COLORS.length; return COLORS[h]; };
     const initials = n => n.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-    const avatarUrl = n => `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(n)}`;
+    const avatarUrl = uid => `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(uid)}`;
     const timeAgo = ts => {
       if (!ts) return 'Ahora';
       const d = ts.toDate ? ts.toDate() : new Date(ts);
