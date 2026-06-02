@@ -15,9 +15,14 @@ const _app = initializeApp({
 const _auth = getAuth(_app);
 const _db   = getFirestore(_app);
 
+let _presenceInterval = null;
+
 onAuthStateChanged(_auth, async (user) => {
   const btn = document.getElementById('navAuthBtn');
   if (!btn) return;
+
+  // Limpiar intervalo anterior si el usuario cambia
+  if (_presenceInterval) { clearInterval(_presenceInterval); _presenceInterval = null; }
 
   if (user) {
     const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
@@ -25,6 +30,11 @@ onAuthStateChanged(_auth, async (user) => {
     // Actualizar lastSeen y leer username en paralelo
     const ref = doc(_db, 'usuarios', user.uid);
     updateDoc(ref, { lastSeen: Date.now() }).catch(() => {});
+
+    // Refrescar lastSeen cada 2 minutos para mantener el estado "Activo"
+    _presenceInterval = setInterval(() => {
+      updateDoc(ref, { lastSeen: Date.now() }).catch(() => {});
+    }, 2 * 60 * 1000);
 
     let username = null;
     try {
