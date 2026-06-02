@@ -526,6 +526,7 @@
         document.getElementById('perfilRacha').textContent = d.rachaActual ?? 0;
         document.getElementById('perfilHoras').textContent = d.horasEstudio ?? 0;
         document.getElementById('perfilJuegos').textContent = d.juegosCompletados ?? 0;
+        applyStatus(d.lastSeen || 0);
         const grupos = Array.isArray(d.grupos) ? d.grupos : [];
         document.getElementById('perfilGrupos').innerHTML = grupos.length
           ? grupos.map(g => `<span class="perfil-grupo-tag">${GRUPO_NOMBRES[g] || g}</span>`).join('')
