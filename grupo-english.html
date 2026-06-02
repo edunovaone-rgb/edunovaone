@@ -435,7 +435,7 @@
             : `<span style="font-size:.7rem;color:var(--text-muted);margin-top:.15rem;display:block;">${presenceTitle}</span>`;
           return `<li class="miembro-item" data-uid="${uid}" data-nombre="${nombre}" data-grado="${grado}" style="cursor:pointer;">
             <div class="miembro-avatar">
-              <img src="${avatarUrl(nombre)}" alt="${ini}" loading="lazy" />
+              <img src="${avatarUrl(uid)}" alt="${ini}" loading="lazy" />
               <span class="miembro-presence ${presenceClass}" title="${presenceTitle}"></span>
             </div>
             <div class="miembro-info"><strong ${nameStyle}>${nombre}</strong><span>${grado || 'Student'}</span>${statusText}${tagDocente}</div>
