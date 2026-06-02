@@ -374,7 +374,7 @@
             ? `<span style="font-size:.7rem;background:rgba(59,130,246,0.1);color:#2563eb;padding:.15rem .5rem;border-radius:999px;font-weight:700;margin-left:.35rem;">Consulta</span>`
             : '';
           return `<div class="grupo-post">
-            <div class="grupo-post-avatar"><img src="${avatarUrl(p.autor||'U')}" alt="${ini}" loading="lazy" /></div>
+            <div class="grupo-post-avatar"><img src="${avatarUrl(p.autorId||p.autor||'U')}" alt="${ini}" loading="lazy" /></div>
             <div class="grupo-post-body"><strong>${p.autor}${badge} <small>· ${timeAgo(p.createdAt)}</small></strong><p>${p.texto}</p></div>
           </div>`;
         }).join('');
