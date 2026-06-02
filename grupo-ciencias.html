@@ -302,7 +302,7 @@
       if (rol === 'docente') {
         const ini = initials(user.displayName||user.email);
         f.innerHTML = `<div style="display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.75rem">
-          <div class="grupo-post-avatar"><img src="${avatarUrl(user.displayName||user.email)}" alt="${ini}" /></div>
+          <div class="grupo-post-avatar"><img src="${avatarUrl(user.uid)}" alt="${ini}" /></div>
           <div class="post-form" style="flex:1">
             <textarea id="gpt" placeholder="Comparte un tema con el grupo..."></textarea>
             <button id="gpb">Publicar</button>
