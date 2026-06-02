@@ -29,7 +29,13 @@ onAuthStateChanged(_auth, async (user) => {
 
     // Actualizar lastSeen y leer username en paralelo
     const ref = doc(_db, 'usuarios', user.uid);
-    updateDoc(ref, { lastSeen: Date.now() }).catch(() => {});
+    // setDoc con merge garantiza que funciona aunque no exista el doc aún
+    // y también sincroniza el nombre de Auth → Firestore para que otros usuarios lo vean
+    const updatePayload = { lastSeen: Date.now() };
+    if (user.displayName) updatePayload.nombre = user.displayName;
+    import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")
+      .then(({ setDoc }) => setDoc(ref, updatePayload, { merge: true }))
+      .catch(() => {});
 
     // Refrescar lastSeen cada 2 minutos para mantener el estado "Activo"
     _presenceInterval = setInterval(() => {
