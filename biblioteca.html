@@ -1059,40 +1059,7 @@
       }
     }
 
-    // ── Renderiza el historial en el panel ──
-    function renderHistorial(historial) {
-      const loading  = document.getElementById('actividadLoading');
-      const noAuth   = document.getElementById('actividadNoAuth');
-      const authDiv  = document.getElementById('actividadAuth');
-      const vacio    = document.getElementById('actividadVacio');
-      const list     = document.getElementById('historialList');
-
-      loading.style.display = 'none';
-      noAuth.style.display  = 'none';
-
-      if (!historial || historial.length === 0) {
-        authDiv.style.display = 'none';
-        vacio.style.display   = 'block';
-        return;
-      }
-
-      // Mostrar los últimos 5 vistos (más reciente primero)
-      const recientes = [...historial].reverse().slice(0, 5);
-      list.innerHTML = recientes.map(item => {
-        const icon = MATERIA_ICON[item.materia] || '📚';
-        return `<li><span class="activity-icon">${icon}</span>${item.titulo}</li>`;
-      }).join('');
-
-      authDiv.style.display = 'block';
-      vacio.style.display   = 'none';
-    }
-
-    // ── Guarda un libro en el historial del usuario ──
-    async function registrarLectura(user, bookData) {
-      if (!user) return;
-      try {
-        const ref = doc(_db, 'usuarios', user.uid);
-        const snap = await getDoc(ref);
+    // renderHistorial y registrarLectura reemplazados por historial localStorage (ver abajo)
 
         const entrada = {
           titulo:  bookData.titulo,
