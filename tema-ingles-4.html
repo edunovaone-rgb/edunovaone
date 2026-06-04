@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Inglés | 4° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-4.html">4° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Inglés</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">🇬🇧</div>
+          <div><h3>Inglés</h3><p>4° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Grammar</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Passive Voice</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Conditionals</a></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Relative Clauses</a></li>
+          <li><p class="toc-section-title">II. Writing & Vocabulary</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Academic Writing</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Technology Vocabulary</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-gram">
+          <div class="chapter-header" onclick="toggleChapter('ch-gram')">
+            <div class="chapter-num num-inter">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Grammar</p><h2>Passive Voice, Conditionals & Clauses</h2><p>Advanced grammar structures</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">📚</span><div><h3>Level up your grammar</h3><p>These structures are essential for B1-B2 level communication and academic English.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-english">🔄</div>
+                <div class="topic-book-info"><h4>Passive Voice</h4><p>be + past participle in all tenses</p>
+                  <div class="topic-tags"><span class="topic-tag">be + pp</span><span class="topic-tag">by agent</span><span class="topic-tag">All tenses</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🔄 Passive Voice</h3>
+                <p>The <strong>Passive Voice</strong> is used when the action is more important than who does it, or when we don't know who did it. It is formed with <strong>be + past participle</strong>. The "agent" (who did it) is introduced with "by".</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Passive in all tenses</h4>
+                    <ul>
+                      <li>Present Simple: "English <strong>is spoken</strong> worldwide."</li>
+                      <li>Past Simple: "The letter <strong>was written</strong> yesterday."</li>
+                      <li>Present Perfect: "The exam <strong>has been corrected</strong>."</li>
+                      <li>Future: "The building <strong>will be demolished</strong>."</li>
+                      <li>Modal: "The problem <strong>must be solved</strong>."</li>
+                      <li>By + agent (optional): "...was written <strong>by Shakespeare</strong>."</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Active to Passive</h4>
+                    <ul>
+                      <li>Active: "Scientists <strong>discovered</strong> a new planet."</li>
+                      <li>Passive: "A new planet <strong>was discovered</strong> (by scientists)."</li>
+                      <li>Active object → Passive subject</li>
+                      <li>Active verb → be (same tense) + past participle</li>
+                      <li>Active subject → by + agent (optional)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">S + be (tense) + Past Participle + (by + agent)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1 — Transform to Passive</strong>
+                      "They built this school in 1950." → Passive?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">"<strong>This school was built in 1950</strong> (by them)." — Past Simple passive: was + built. The agent "by them" is usually omitted when it's not specific.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2 — Fill in</strong>
+                      "The homework _______ (not/submit) yet." (Present Perfect Passive)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">"The homework <strong>has not been submitted</strong> yet." (Present Perfect Passive: have/has + been + past participle)</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 3</strong>
+                      Write 2 passive sentences: one about a product and one about a historical event.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">Samples: "The iPhone <strong>was designed</strong> by Apple." / "Machu Picchu <strong>was built</strong> by the Incas in the 15th century."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Close</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-english">🔀</div>
+                <div class="topic-book-info"><h4>Conditionals</h4><p>Zero, First and Second Conditionals</p>
+                  <div class="topic-tags"><span class="topic-tag">If clauses</span><span class="topic-tag">Would</span><span class="topic-tag">Real/Unreal</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🔀 Conditionals</h3>
+                <p><strong>Conditional sentences</strong> express situations that depend on a condition. The three main types (Zero, First, Second) differ in probability and time frame.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Three Types of Conditionals</h4>
+                    <ul>
+                      <li><strong>Zero:</strong> If + Present, Present — general truths, scientific facts: "If you heat water, it boils."</li>
+                      <li><strong>First:</strong> If + Present, will + inf — real, possible situation in future: "If it rains, I will stay home."</li>
+                      <li><strong>Second:</strong> If + Past Simple, would + inf — hypothetical, unlikely present/future: "If I had a million dollars, I would travel the world."</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Key points</h4>
+                    <ul>
+                      <li>The "if clause" can come first or second: "I would travel if I had money."</li>
+                      <li>Zero: certainty — always true</li>
+                      <li>First: real possibility — "maybe it will happen"</li>
+                      <li>Second: imaginary — "it probably won't happen"</li>
+                      <li>Second: "If I were you..." (formal: were for all persons)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">1st: If + present → will + inf | 2nd: If + past → would + inf</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1 — Identify the type</strong>
+                      "If I were a bird, I would fly to the mountains." Which type is it and why?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2"><strong>Second Conditional</strong> — It's imaginary/hypothetical (I'm not a bird). Structure: If + past simple (were) + would + infinitive (fly).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2 — Complete</strong>
+                      "If you study hard, you _______ (pass) the exam." Which type?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">"...you <strong>will pass</strong> the exam." — <strong>First Conditional</strong>: real, possible future situation. The speaker believes studying hard is possible and the result is likely.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Close</button>
+              </div>
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-english">🔗</div>
+                <div class="topic-book-info"><h4>Relative Clauses</h4><p>who, which, that, where, whose — defining vs non-defining</p>
+                  <div class="topic-tags"><span class="topic-tag">who/which</span><span class="topic-tag">Defining</span><span class="topic-tag">Non-defining</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🔗 Relative Clauses</h3>
+                <p><strong>Relative clauses</strong> give extra information about a noun using relative pronouns. Defining clauses identify the noun; non-defining clauses just add extra (non-essential) information.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Relative Pronouns</h4>
+                    <ul>
+                      <li><strong>who:</strong> for people — "The girl <em>who</em> won is my friend."</li>
+                      <li><strong>which:</strong> for things/animals — "The book <em>which</em> I read was great."</li>
+                      <li><strong>that:</strong> for people or things (defining only) — "The car <em>that</em> I want is red."</li>
+                      <li><strong>where:</strong> for places — "The city <em>where</em> I grew up is Lima."</li>
+                      <li><strong>whose:</strong> possession — "The student <em>whose</em> essay won is here."</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Defining vs Non-Defining</h4>
+                    <ul>
+                      <li><strong>Defining:</strong> essential information — no commas: "Students <em>who study</em> pass."</li>
+                      <li><strong>Non-defining:</strong> extra info — use commas: "My teacher, <em>who is from Canada</em>, speaks French."</li>
+                      <li>Non-defining: cannot use "that"</li>
+                      <li>Defining: can omit pronoun when object: "The book (that) I read..."</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Noun + relative pronoun (who/which/that/where/whose) + clause</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1 — Choose the right pronoun</strong>
+                      "The restaurant _______ we ate last night was excellent." (who/where/which)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">"The restaurant <strong>where</strong> we ate last night was excellent." (where = place) OR "The restaurant <strong>that/which</strong> we ate at last night was excellent." (that/which = thing + preposition at the end)</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Join: "I met a girl. Her brother is a famous singer." → Use whose.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">"I met a girl <strong>whose brother is a famous singer</strong>." (whose = possession/relationship)</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-write">
+          <div class="chapter-header" onclick="toggleChapter('ch-write')">
+            <div class="chapter-num num-advanced">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Writing & Vocabulary</p><h2>Academic Writing & Technology</h2><p>Argumentative essays and digital world vocabulary</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">💻</span><div><h3>Write and communicate</h3><p>Academic writing and technology vocabulary prepare you for higher education and the modern world.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-english">📄</div>
+                <div class="topic-book-info"><h4>Academic Writing</h4><p>Argumentative essay in English</p>
+                  <div class="topic-tags"><span class="topic-tag">Thesis</span><span class="topic-tag">Evidence</span><span class="topic-tag">Argumentative</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>📄 Academic Writing — Argumentative Essay</h3>
+                <p>An <strong>argumentative essay</strong> presents your position on a debatable topic and supports it with evidence and reasoning. It is the most common type of academic writing in English.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Essay Structure</h4>
+                    <ul>
+                      <li><strong>Introduction:</strong> Hook → Background → Thesis statement (your position)</li>
+                      <li><strong>Body §1:</strong> Topic sentence → Evidence → Analysis → Transition</li>
+                      <li><strong>Body §2:</strong> Topic sentence → Evidence → Analysis → Transition</li>
+                      <li><strong>Counter-argument (optional):</strong> Acknowledge + Refute</li>
+                      <li><strong>Conclusion:</strong> Restate thesis → Summary → Call to action/final thought</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Useful Academic Phrases</h4>
+                    <ul>
+                      <li><strong>Thesis:</strong> "This essay argues that..." / "It is clear that..."</li>
+                      <li><strong>Adding:</strong> "Furthermore," / "In addition to this,"</li>
+                      <li><strong>Evidence:</strong> "According to..." / "Research suggests that..."</li>
+                      <li><strong>Counter:</strong> "Although some argue... however..."</li>
+                      <li><strong>Conclusion:</strong> "In conclusion," / "To summarize,"</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Hook → Thesis → Evidence × 2-3 → Counter → Conclusion</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1 — Write a thesis</strong>
+                      Topic: "Should school uniforms be mandatory?" Write a thesis statement taking a clear position.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Samples: FOR: "School uniforms should be mandatory in all secondary schools because they reduce social inequality, improve discipline, and create a sense of belonging." AGAINST: "Mandatory school uniforms limit students' self-expression and do not effectively improve academic performance or school culture."</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Write one body paragraph (4-5 sentences) supporting the thesis about uniforms.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Sample: "One major benefit of school uniforms is that they reduce socioeconomic inequality among students. When all students wear the same clothing, it becomes harder to identify who comes from a wealthy or poor family. This reduces bullying related to fashion and branded clothing. According to a 2019 UNESCO report, schools with uniforms reported lower rates of clothing-related bullying. Therefore, uniforms create a more equal and respectful environment."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Close</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-english">💻</div>
+                <div class="topic-book-info"><h4>Technology & Society Vocabulary</h4><p>Gadgets, social media and digital world</p>
+                  <div class="topic-tags"><span class="topic-tag">Tech vocab</span><span class="topic-tag">Social media</span><span class="topic-tag">Digital</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>💻 Technology & Society Vocabulary</h3>
+                <p>Technology vocabulary is essential for discussing modern life in English. From gadgets to social media, knowing these terms helps you communicate in academic, professional and everyday contexts.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📱 Gadgets & Digital World</h4>
+                    <ul>
+                      <li><strong>gadget:</strong> pequeño dispositivo tecnológico</li>
+                      <li><strong>smartphone/wearable/tablet:</strong> dispositivos portátiles</li>
+                      <li><strong>app (application):</strong> aplicación de software</li>
+                      <li><strong>cloud computing:</strong> almacenamiento en internet</li>
+                      <li><strong>artificial intelligence (AI):</strong> inteligencia artificial</li>
+                      <li><strong>cybersecurity:</strong> seguridad informática</li>
+                      <li><strong>algorithm:</strong> conjunto de instrucciones para procesar datos</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌐 Social Media & Online Life</h4>
+                    <ul>
+                      <li><strong>post/share/like/comment/follow/unfollow</strong></li>
+                      <li><strong>viral content:</strong> contenido que se difunde masivamente</li>
+                      <li><strong>influencer:</strong> persona con gran audiencia online</li>
+                      <li><strong>digital footprint:</strong> rastro digital que dejamos</li>
+                      <li><strong>cyberbullying:</strong> acoso en línea</li>
+                      <li><strong>fake news:</strong> noticias falsas</li>
+                      <li><strong>privacy settings:</strong> configuración de privacidad</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Digital literacy = ability to use, evaluate and create digital content responsibly</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1 — Match</strong>
+                      Match: (a) cyberbullying, (b) viral, (c) digital footprint, (d) AI — with their definitions.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">(a) <strong>cyberbullying</strong> = online harassment targeting a person. (b) <strong>viral</strong> = content that spreads rapidly across the internet. (c) <strong>digital footprint</strong> = the data trail you leave when using the internet. (d) <strong>AI</strong> = systems that simulate human intelligence (e.g., ChatGPT).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2 — Discussion</strong>
+                      Write 3 sentences about how technology has changed education, using vocabulary from this topic.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Samples: "1. <strong>Apps</strong> and online platforms allow students to access educational content anytime. 2. <strong>AI</strong> tools can personalize learning by adapting to each student's pace and level. 3. However, <strong>cyberbullying</strong> and distractions from <strong>social media</strong> pose challenges for students using technology in school."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="tema-historia-4.html" class="button button-secondary">← Historia</a>
+      <a href="tema-arte-4.html" class="button button-primary">Arte →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(37,99,235);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ingles - 4 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Passive Voice',c:'Estructura: S + be (tense) + past participle + (by agent). Present: is/are done. Past: was/were done. Perfect: has/have been done. Future: will be done. Transform: active object > passive subject. By + agent = opcional.'},
+       {ti:'Conditionals',c:'Zero: If+present, present (general truths). First: If+present, will+inf (real, posible). Second: If+past, would+inf (hipotetico, improbable). "If I were you..." Second. If clause puede ir primero o segundo.'},
+       {ti:'Relative Clauses',c:'who (personas), which (cosas), that (personas/cosas, defining), where (lugares), whose (posesion). Defining: sin comas, esencial. Non-defining: con comas, informacion extra. No usar "that" en non-defining.'},
+       {ti:'Academic Writing',c:'Argumentative essay: hook+thesis (intro) + topic sentence+evidence (body) + counter-argument + conclusion. Phrases: This essay argues that... Furthermore... According to... In conclusion. Thesis: posicion clara sobre tema debatible.'},
+       {ti:'Technology Vocabulary',c:'Gadgets, smartphone, app, cloud computing, AI, cybersecurity, algorithm. Social media: post, share, viral, influencer, digital footprint, cyberbullying, fake news, privacy settings. Digital literacy: uso responsable de tecnologia.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[37,99,235]);t(x.c,10,false,[50,50,60]);y+=3;});
+      doc.save('Ingles-4-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
