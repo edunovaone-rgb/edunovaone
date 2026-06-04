@@ -731,37 +731,13 @@
           </div>
 
           <!-- Actividad reciente -->
-          <div class="profile-section-card">
-            <h3>Actividad reciente</h3>
-            <div class="activity-list">
-              <div class="activity-item">
-                <span class="activity-icon">📚</span>
-                <div class="activity-item-info">
-                  <strong>Leyó: Ecuaciones de 2° grado</strong>
-                  <time>Hoy, 10:30 a.m.</time>
-                </div>
-              </div>
-              <div class="activity-item">
-                <span class="activity-icon">🎮</span>
-                <div class="activity-item-info">
-                  <strong>Completó: Quiz de Historia</strong>
-                  <time>Ayer, 6:15 p.m.</time>
-                </div>
-              </div>
-              <div class="activity-item">
-                <span class="activity-icon">📄</span>
-                <div class="activity-item-info">
-                  <strong>Guardó: Resumen de Biología</strong>
-                  <time>Ayer, 4:30 p.m.</time>
-                </div>
-              </div>
-              <div class="activity-item">
-                <span class="activity-icon">⏱️</span>
-                <div class="activity-item-info">
-                  <strong>Usó Pomodoro</strong>
-                  <time>Ayer, 3:00 p.m.</time>
-                </div>
-              </div>
+          <div class="profile-section-card" id="recentCard">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+              <h3>📚 Vistos recientemente</h3>
+              <a href="historial-completo.html" class="see-all-link" style="margin-top:0;">Ver todo →</a>
+            </div>
+            <div id="recentList" class="activity-list">
+              <p style="color:var(--text-muted);font-size:.88rem;text-align:center;padding:.5rem 0;">Aún no has visitado ningún recurso.</p>
             </div>
           </div>
 
