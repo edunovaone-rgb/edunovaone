@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Aritmética Básica | 1° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Layout ── */
+    .book-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    /* ── Sidebar ── */
+    .book-sidebar {
+      position: sticky;
+      top: 1.5rem;
+      background: #fff;
+      border: 1px solid rgba(59,130,246,0.1);
+      border-radius: 1.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 16px 40px rgba(15,23,42,0.06);
+    }
+    .book-sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(59,130,246,0.08);
+    }
+    .book-cover-mini {
+      width: 3rem; height: 3rem;
+      border-radius: 0.85rem;
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .book-sidebar-header h3 { margin: 0; font-size: 0.92rem; color: var(--accent-strong); font-weight: 700; line-height: 1.3; }
+    .book-sidebar-header p  { margin: 0.15rem 0 0; font-size: 0.78rem; color: var(--text-muted); }
+
+    .toc-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.6rem; }
+    .toc-list  { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.15rem; }
+    .toc-list li a {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: background 0.18s, color 0.18s;
+    }
+    .toc-list li a:hover { background: rgba(99,102,241,0.07); color: var(--accent-strong); }
+    .toc-list li a.active { background: rgba(99,102,241,0.12); color: var(--accent-strong); font-weight: 700; }
+    .toc-list li a .toc-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.5rem; height: 1.5rem; border-radius: 50%;
+      background: rgba(99,102,241,0.1);
+      font-size: 0.72rem; font-weight: 700; color: var(--accent);
+      flex-shrink: 0;
+    }
+    .toc-section-title {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--accent-strong);
+      padding: 0.75rem 0.75rem 0.2rem;
+    }
+    .progress-block {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(59,130,246,0.08);
+    }
+    .progress-label { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+    .progress-bar { height: 6px; background: rgba(99,102,241,0.1); border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg,#7c3aed,#2563eb); border-radius: 99px; width: 0%; transition: width 0.4s; }
+
+    /* ── Main content ── */
+    .book-main { display: grid; gap: 1.75rem; }
+
+    /* Breadcrumb */
+    .breadcrumb-bar {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.88rem; color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .breadcrumb-bar a { color: var(--accent-strong); text-decoration: none; font-weight: 600; }
+    .breadcrumb-bar a:hover { text-decoration: underline; }
+    .breadcrumb-bar span { color: var(--text-muted); }
+
+    /* Chapter card */
+    .chapter-card {
+      background: #fff;
+      border: 1px solid rgba(59,130,246,0.08);
+      border-radius: 1.75rem;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.05);
+      scroll-margin-top: 1.5rem;
+    }
+    .chapter-header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(59,130,246,0.07);
+      cursor: pointer;
+      user-select: none;
+    }
+    .chapter-header:hover { background: rgba(99,102,241,0.02); }
+    .chapter-num {
+      width: 2.8rem; height: 2.8rem; border-radius: 0.9rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 900; color: #fff;
+    }
+    .num-basic    { background: linear-gradient(135deg,#7c3aed,#6366f1); }
+    .num-inter    { background: linear-gradient(135deg,#2563eb,#0ea5e9); }
+    .num-advanced { background: linear-gradient(135deg,#059669,#10b981); }
+
+    .chapter-header-text { flex: 1; }
+    .chapter-header-text .chapter-level {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.15rem;
+    }
+    .chapter-header-text h2 { margin: 0; font-size: 1.05rem; color: var(--text); }
+    .chapter-header-text p  { margin: 0.2rem 0 0; font-size: 0.85rem; color: var(--text-muted); }
+    .chapter-toggle { font-size: 1.1rem; color: var(--text-muted); transition: transform 0.25s; }
+    .chapter-card.open .chapter-toggle { transform: rotate(180deg); }
+
+    .chapter-body { display: none; padding: 0 1.5rem 1.5rem; }
+    .chapter-card.open .chapter-body { display: block; }
+
+    /* Topics inside chapter */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .topic-book {
+      border: 1.5px solid rgba(99,102,241,0.12);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      cursor: pointer;
+      background: #fff;
+    }
+    .topic-book:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(99,102,241,0.14);
+      border-color: var(--accent);
+    }
+    .topic-book-cover {
+      height: 110px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-math    { background: linear-gradient(135deg,rgba(124,58,237,0.12),rgba(99,102,241,0.06)); }
+    .cover-basic   { background: linear-gradient(135deg,rgba(124,58,237,0.1),rgba(167,139,250,0.08)); }
+    .cover-inter   { background: linear-gradient(135deg,rgba(37,99,235,0.1),rgba(96,165,250,0.08)); }
+    .cover-advanced{ background: linear-gradient(135deg,rgba(5,150,105,0.1),rgba(52,211,153,0.08)); }
+
+    .topic-book-info { padding: 0.9rem 1rem; }
+    .topic-book-info h4 { margin: 0 0 0.3rem; font-size: 0.92rem; color: var(--text); font-weight: 700; }
+    .topic-book-info p  { margin: 0 0 0.6rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+    .topic-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .topic-tag {
+      padding: 0.2rem 0.6rem; border-radius: 99px;
+      font-size: 0.72rem; font-weight: 700;
+      background: rgba(99,102,241,0.08); color: var(--accent-strong);
+    }
+
+    /* Topic detail modal / expanded panel */
+    .topic-detail {
+      display: none;
+      grid-column: 1 / -1;
+      background: #f8fbff;
+      border: 1.5px solid rgba(99,102,241,0.15);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin-top: 0.25rem;
+    }
+    .topic-detail.open { display: block; }
+    .topic-detail h3 { margin: 0 0 0.75rem; font-size: 1.05rem; color: var(--accent-strong); }
+    .topic-detail p  { margin: 0 0 0.75rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; }
+    .detail-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .detail-box {
+      background: #fff;
+      border: 1px solid rgba(59,130,246,0.1);
+      border-radius: 1rem;
+      padding: 1.1rem;
+    }
+    .detail-box h4 { margin: 0 0 0.6rem; font-size: 0.9rem; color: var(--text); font-weight: 700; }
+    .detail-box ul  { margin: 0; padding-left: 1.1rem; color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; }
+    .formula-display {
+      margin: 0.75rem 0;
+      padding: 0.85rem 1.25rem;
+      background: rgba(99,102,241,0.06);
+      border: 1.5px solid rgba(99,102,241,0.18);
+      border-radius: 0.85rem;
+      font-size: 1.05rem; font-style: italic;
+      font-weight: 700; color: var(--accent-strong);
+      text-align: center;
+    }
+    .example-block {
+      background: #fff;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 0.75rem 0.75rem 0;
+      padding: 0.85rem 1rem;
+      margin-top: 0.75rem;
+    }
+    .example-block strong { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+    .example-block p { margin: 0.35rem 0 0; font-size: 0.92rem; color: var(--text); }
+    .topic-image {
+      width: 100%; max-height: 180px; object-fit: cover;
+      border-radius: 0.85rem; margin-top: 0.75rem;
+      background: rgba(99,102,241,0.05);
+    }
+    .img-placeholder {
+      width: 100%; height: 140px;
+      border-radius: 0.85rem;
+      background: linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.06));
+      border: 1.5px dashed rgba(99,102,241,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.4rem;
+      color: var(--text-muted); font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .img-placeholder span { font-size: 2rem; }
+    .close-detail {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1rem;
+      padding: 0.5rem 1.1rem; border-radius: 99px;
+      background: rgba(99,102,241,0.08); color: var(--accent-strong);
+      font-size: 0.85rem; font-weight: 700; cursor: pointer; border: none;
+      transition: background 0.18s;
+    }
+    .close-detail:hover { background: rgba(99,102,241,0.15); }
+
+    /* Section banner */
+    .section-banner {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.1rem 1.5rem;
+      border-radius: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .banner-basic    { background: linear-gradient(135deg,rgba(124,58,237,0.08),rgba(167,139,250,0.05)); border: 1px solid rgba(124,58,237,0.12); }
+    .banner-inter    { background: linear-gradient(135deg,rgba(37,99,235,0.08),rgba(96,165,250,0.05));  border: 1px solid rgba(37,99,235,0.12); }
+    .banner-advanced { background: linear-gradient(135deg,rgba(5,150,105,0.08),rgba(52,211,153,0.05)); border: 1px solid rgba(5,150,105,0.12); }
+    .section-banner .banner-icon { font-size: 2rem; flex-shrink: 0; }
+    .section-banner h3 { margin: 0 0 0.15rem; font-size: 1rem; color: var(--text); font-weight: 700; }
+    .section-banner p  { margin: 0; font-size: 0.83rem; color: var(--text-muted); }
+
+    @media (max-width: 900px) {
+      .book-layout { grid-template-columns: 1fr; }
+      .book-sidebar { position: static; }
+      .detail-columns { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .topics-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a>
+      <span>›</span>
+      <a href="grado-1.html">1° Secundaria</a>
+      <span>›</span>
+      <span style="color:var(--text);font-weight:600">Aritmética Básica</span>
+    </nav>
+
+    <div class="book-layout">
+
+      <!-- ── Sidebar / TOC ── -->
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini">📐</div>
+          <div>
+            <h3>Aritmética Básica</h3>
+            <p>1° de Secundaria · Matemática</p>
+          </div>
+        </div>
+
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Nivel Básico</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Números Naturales y Enteros</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Sistema Decimal</a></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Criterios de Divisibilidad</a></li>
+          <li><p class="toc-section-title">II. Nivel Intermedio</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Primos y Compuestos</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>MCD y MCM</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Números Racionales</a></li>
+          <li><p class="toc-section-title">III. Nivel Avanzado</p></li>
+          <li><a href="#t7"><span class="toc-num">7</span>Números Decimales</a></li>
+          <li><a href="#t8"><span class="toc-num">8</span>Razones y Proporciones</a></li>
+          <li><a href="#t9"><span class="toc-num">9</span>Regla de Tres Simple</a></li>
+          <li><a href="#t10"><span class="toc-num">10</span>Porcentajes</a></li>
+        </ul>
+
+        <div class="progress-block">
+          <div class="progress-label">
+            <span>Tu progreso</span>
+            <span id="progressPct">0%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+      </aside>
+
+      <!-- ── Main ── -->
+      <div class="book-main">
+
+        <!-- NIVEL BÁSICO -->
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Bases y Numeración</h2>
+              <p>Operaciones fundamentales y sistemas numéricos</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">🔢</span>
+              <div>
+                <h3>¿Por qué empezar aquí?</h3>
+                <p>Los números son el lenguaje de las matemáticas. Dominar las operaciones básicas y entender cómo se organizan los números es la base de todo lo que viene.</p>
+              </div>
+            </div>
+
+            <div class="topics-grid">
+
+              <!-- Tema 1 -->
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1', this)">
+                <div class="topic-book-cover cover-basic">🔢</div>
+                <div class="topic-book-info">
+                  <h4>Números Naturales y Enteros</h4>
+                  <p>Operaciones básicas y sus propiedades en ℤ</p>
+                  <div class="topic-tags"><span class="topic-tag">Suma</span><span class="topic-tag">Resta</span><span class="topic-tag">✕ ÷</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>📖 Números Naturales y Enteros (ℤ)</h3>
+                <p>Los <strong>números naturales</strong> son los que usamos para contar: 1, 2, 3… Los <strong>números enteros</strong> incluyen además el cero y los negativos: …-3, -2, -1, 0, 1, 2, 3…</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🧮 Propiedades de las operaciones</h4>
+                    <ul>
+                      <li><strong>Conmutativa:</strong> a + b = b + a</li>
+                      <li><strong>Asociativa:</strong> (a+b)+c = a+(b+c)</li>
+                      <li><strong>Distributiva:</strong> a(b+c) = ab + ac</li>
+                      <li><strong>Elemento neutro suma:</strong> a + 0 = a</li>
+                      <li><strong>Elemento neutro producto:</strong> a × 1 = a</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>➕ Suma y resta de enteros</h4>
+                    <ul>
+                      <li>Mismo signo → sumas y conservas el signo</li>
+                      <li>Signos distintos → restas y pones el signo del mayor</li>
+                      <li>(+5) + (-3) = +2</li>
+                      <li>(-7) + (-2) = -9</li>
+                      <li>(-4) × (-3) = +12</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">(-a) × (-b) = +ab &nbsp;|&nbsp; (+a) × (-b) = -ab</div>
+                <div class="example-block">
+                  <strong>Ejemplo práctico</strong>
+                  <p>La temperatura bajó 5°C y luego otros 3°C: 0 + (-5) + (-3) = -8°C</p>
+                </div>
+                <div class="img-placeholder"><span>🌡️</span><span>Recta numérica de enteros</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t1', document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <!-- Tema 2 -->
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2', this)">
+                <div class="topic-book-cover cover-basic">🏛️</div>
+                <div class="topic-book-info">
+                  <h4>Sistema de Numeración Decimal</h4>
+                  <p>Valor posicional y lectura de números grandes</p>
+                  <div class="topic-tags"><span class="topic-tag">Valor posicional</span><span class="topic-tag">Millones</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>📖 Sistema de Numeración Decimal</h3>
+                <p>Nuestro sistema usa <strong>base 10</strong>: cada posición vale 10 veces más que la anterior. Entender el valor posicional te permite leer, escribir y operar con números grandes correctamente.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📍 Posiciones (de derecha a izquierda)</h4>
+                    <ul>
+                      <li>Unidades (U): ×1</li>
+                      <li>Decenas (D): ×10</li>
+                      <li>Centenas (C): ×100</li>
+                      <li>Unidades de mil (UM): ×1,000</li>
+                      <li>Decenas de mil (DM): ×10,000</li>
+                      <li>Centenas de mil (CM): ×100,000</li>
+                      <li>Millones (M): ×1,000,000</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>✏️ Ejemplo: 3,425,071</h4>
+                    <ul>
+                      <li>3 millones</li>
+                      <li>4 centenas de mil</li>
+                      <li>2 decenas de mil</li>
+                      <li>5 miles</li>
+                      <li>0 centenas</li>
+                      <li>7 decenas</li>
+                      <li>1 unidad</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Número = Σ (dígito × 10ⁿ)</div>
+                <div class="example-block">
+                  <strong>Ejercicio</strong>
+                  <p>Escribe en palabras: 2,307,085 → Dos millones trescientos siete mil ochenta y cinco.</p>
+                </div>
+                <div class="img-placeholder"><span>📊</span><span>Tabla de valor posicional</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t2', document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+              <!-- Tema 3 -->
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3', this)">
+                <div class="topic-book-cover cover-basic">✂️</div>
+                <div class="topic-book-info">
+                  <h4>Criterios de Divisibilidad</h4>
+                  <p>Reglas para saber si un número es divisible sin dividir</p>
+                  <div class="topic-tags"><span class="topic-tag">÷2</span><span class="topic-tag">÷3</span><span class="topic-tag">÷5</span><span class="topic-tag">÷10</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>📖 Criterios de Divisibilidad</h3>
+                <p>Son reglas rápidas para saber si un número es divisible por otro <strong>sin hacer la división</strong>. Son muy útiles para simplificar fracciones y hallar factores.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Reglas principales</h4>
+                    <ul>
+                      <li><strong>÷2:</strong> Termina en cifra par (0,2,4,6,8)</li>
+                      <li><strong>÷3:</strong> Suma de dígitos divisible por 3</li>
+                      <li><strong>÷4:</strong> Últimas 2 cifras divisibles por 4</li>
+                      <li><strong>÷5:</strong> Termina en 0 o 5</li>
+                      <li><strong>÷6:</strong> Divisible por 2 y por 3</li>
+                      <li><strong>÷9:</strong> Suma de dígitos divisible por 9</li>
+                      <li><strong>÷10:</strong> Termina en 0</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔍 Ejemplo: ¿3,456 es divisible por 3?</h4>
+                    <ul>
+                      <li>Suma los dígitos: 3+4+5+6 = 18</li>
+                      <li>18 ÷ 3 = 6 ✓</li>
+                      <li>¡Sí es divisible por 3!</li>
+                      <li></li>
+                      <li>¿Es divisible por 9? 18÷9=2 ✓ Sí también.</li>
+                      <li>¿Por 2? Termina en 6 (par) ✓ Sí.</li>
+                      <li>¿Por 6? Sí por 2 y por 3 ✓ Sí.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="example-block">
+                  <strong>Truco</strong>
+                  <p>Para el criterio del 7 no hay truco fácil — en ese caso conviene dividir directamente.</p>
+                </div>
+                <div class="img-placeholder"><span>🔢</span><span>Tabla de criterios de divisibilidad</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t3', document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+            </div><!-- /topics-grid basic -->
+          </div>
+        </div>
+
+        <!-- NIVEL INTERMEDIO -->
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Estructura de los Números</h2>
+              <p>Primos, MCD, MCM y fracciones</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">🧩</span>
+              <div>
+                <h3>¿Qué aprenderás aquí?</h3>
+                <p>Descubrirás cómo se "arman" los números por dentro: sus factores primos, y cómo los conceptos de MCD y MCM son la clave para operar con fracciones.</p>
+              </div>
+            </div>
+
+            <div class="topics-grid">
+
+              <!-- Tema 4 -->
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4', this)">
+                <div class="topic-book-cover cover-inter">🔬</div>
+                <div class="topic-book-info">
+                  <h4>Números Primos y Compuestos</h4>
+                  <p>Factorización y descomposición en factores primos</p>
+                  <div class="topic-tags"><span class="topic-tag">Primos</span><span class="topic-tag">Factorización</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>📖 Números Primos y Compuestos</h3>
+                <p>Un <strong>número primo</strong> solo tiene dos divisores: 1 y él mismo. Un <strong>compuesto</strong> tiene más de dos divisores. El 1 no es ni primo ni compuesto.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>⭐ Primos menores de 50</h4>
+                    <ul>
+                      <li>2, 3, 5, 7, 11, 13, 17, 19</li>
+                      <li>23, 29, 31, 37, 41, 43, 47</li>
+                      <li>El 2 es el único primo par</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔧 Factorización de 360</h4>
+                    <ul>
+                      <li>360 ÷ 2 = 180</li>
+                      <li>180 ÷ 2 = 90</li>
+                      <li>90 ÷ 2 = 45</li>
+                      <li>45 ÷ 3 = 15</li>
+                      <li>15 ÷ 3 = 5</li>
+                      <li>5 ÷ 5 = 1</li>
+                      <li>360 = 2³ × 3² × 5</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Todo número compuesto = producto de primos</div>
+                <div class="img-placeholder"><span>🌳</span><span>Árbol de factorización</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t4', document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <!-- Tema 5 -->
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5', this)">
+                <div class="topic-book-cover cover-inter">🔗</div>
+                <div class="topic-book-info">
+                  <h4>MCD y MCM</h4>
+                  <p>Máximo Común Divisor y Mínimo Común Múltiplo</p>
+                  <div class="topic-tags"><span class="topic-tag">MCD</span><span class="topic-tag">MCM</span><span class="topic-tag">Fracciones</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>📖 MCD y MCM</h3>
+                <p>El <strong>MCD</strong> es el mayor número que divide exactamente a dos o más números. El <strong>MCM</strong> es el menor múltiplo común. Ambos se calculan con la factorización prima.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📉 MCD de 24 y 36</h4>
+                    <ul>
+                      <li>24 = 2³ × 3</li>
+                      <li>36 = 2² × 3²</li>
+                      <li>MCD = factores comunes con menor exponente</li>
+                      <li>MCD = 2² × 3 = 12</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📈 MCM de 24 y 36</h4>
+                    <ul>
+                      <li>24 = 2³ × 3</li>
+                      <li>36 = 2² × 3²</li>
+                      <li>MCM = todos los factores con mayor exponente</li>
+                      <li>MCM = 2³ × 3² = 72</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">MCD × MCM = a × b</div>
+                <div class="example-block">
+                  <strong>Aplicación</strong>
+                  <p>Para sumar 1/24 + 1/36 necesitas el MCM = 72 como denominador común.</p>
+                </div>
+                <div class="img-placeholder"><span>🔗</span><span>Diagrama de Venn con factores</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t5', document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <!-- Tema 6 -->
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6', this)">
+                <div class="topic-book-cover cover-inter">🍕</div>
+                <div class="topic-book-info">
+                  <h4>Números Racionales (Fracciones)</h4>
+                  <p>Equivalencias, simplificación y operaciones</p>
+                  <div class="topic-tags"><span class="topic-tag">Fracciones</span><span class="topic-tag">Simplificar</span><span class="topic-tag">Operaciones</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>📖 Números Racionales ℚ — Fracciones</h3>
+                <p>Una <strong>fracción</strong> a/b representa partes de un entero. Los números racionales incluyen todas las fracciones donde b ≠ 0. Se pueden sumar, restar, multiplicar y dividir.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>✂️ Simplificar fracciones</h4>
+                    <ul>
+                      <li>Divides numerador y denominador por el MCD</li>
+                      <li>24/36 → MCD=12 → 2/3</li>
+                      <li>15/25 → MCD=5 → 3/5</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>➕ Suma de fracciones</h4>
+                    <ul>
+                      <li>Mismo denominador: a/c + b/c = (a+b)/c</li>
+                      <li>Distinto denominador: hallar el MCM</li>
+                      <li>1/4 + 1/6 → MCM=12 → 3/12 + 2/12 = 5/12</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">(a/b) × (c/d) = ac/bd &nbsp;|&nbsp; (a/b) ÷ (c/d) = ad/bc</div>
+                <div class="img-placeholder"><span>🍕</span><span>Representación visual de fracciones</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t6', document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+            </div><!-- /topics-grid inter -->
+          </div>
+        </div>
+
+        <!-- NIVEL AVANZADO -->
+        <div class="chapter-card" id="ch-adv">
+          <div class="chapter-header" onclick="toggleChapter('ch-adv')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Aplicaciones y Relaciones</h2>
+              <p>Decimales, proporciones, regla de tres y porcentajes</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">🚀</span>
+              <div>
+                <h3>Matemática aplicada a la vida real</h3>
+                <p>Estos temas aparecen en compras, descuentos, recetas, planos y muchos problemas cotidianos. ¡Son los más útiles del nivel!</p>
+              </div>
+            </div>
+
+            <div class="topics-grid">
+
+              <!-- Tema 7 -->
+              <div class="topic-book" id="t7" onclick="toggleTopic('detail-t7', this)">
+                <div class="topic-book-cover cover-advanced">💧</div>
+                <div class="topic-book-info">
+                  <h4>Números Decimales</h4>
+                  <p>Conversión con fracciones y operaciones</p>
+                  <div class="topic-tags"><span class="topic-tag">Decimales</span><span class="topic-tag">Conversión</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t7">
+                <h3>📖 Números Decimales</h3>
+                <p>Los decimales extienden el sistema posicional a la derecha del punto: décimas, centésimas, milésimas… Son la forma numérica de muchas fracciones.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔄 Fracción → Decimal</h4>
+                    <ul>
+                      <li>Divides numerador ÷ denominador</li>
+                      <li>3/4 = 0.75</li>
+                      <li>1/3 = 0.333… (periódico)</li>
+                      <li>7/8 = 0.875</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔄 Decimal → Fracción</h4>
+                    <ul>
+                      <li>0.5 = 5/10 = 1/2</li>
+                      <li>0.75 = 75/100 = 3/4</li>
+                      <li>0.125 = 125/1000 = 1/8</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">0.abc = abc / 1000</div>
+                <div class="img-placeholder"><span>📏</span><span>Recta numérica con decimales</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t7', document.getElementById('t7'))">✕ Cerrar</button>
+              </div>
+
+              <!-- Tema 8 -->
+              <div class="topic-book" id="t8" onclick="toggleTopic('detail-t8', this)">
+                <div class="topic-book-cover cover-advanced">⚖️</div>
+                <div class="topic-book-info">
+                  <h4>Razones y Proporciones</h4>
+                  <p>Magnitudes directa e inversamente proporcionales</p>
+                  <div class="topic-tags"><span class="topic-tag">Razón</span><span class="topic-tag">Proporción</span><span class="topic-tag">Directa/Inversa</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t8">
+                <h3>📖 Razones y Proporciones</h3>
+                <p>Una <strong>razón</strong> es la comparación entre dos cantidades (a:b). Una <strong>proporción</strong> dice que dos razones son iguales: a/b = c/d.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📈 Proporcionalidad directa</h4>
+                    <ul>
+                      <li>Si A aumenta, B también aumenta</li>
+                      <li>A/B = constante k</li>
+                      <li>Ej: velocidad constante → más tiempo = más distancia</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📉 Proporcionalidad inversa</h4>
+                    <ul>
+                      <li>Si A aumenta, B disminuye</li>
+                      <li>A × B = constante k</li>
+                      <li>Ej: más trabajadores → menos días para terminar</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">a/b = c/d &nbsp;⟹&nbsp; a×d = b×c (productos cruzados)</div>
+                <div class="img-placeholder"><span>⚖️</span><span>Gráficas de proporcionalidad</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t8', document.getElementById('t8'))">✕ Cerrar</button>
+              </div>
+
+              <!-- Tema 9 -->
+              <div class="topic-book" id="t9" onclick="toggleTopic('detail-t9', this)">
+                <div class="topic-book-cover cover-advanced">📐</div>
+                <div class="topic-book-info">
+                  <h4>Regla de Tres Simple</h4>
+                  <p>Directa e inversa para resolver problemas prácticos</p>
+                  <div class="topic-tags"><span class="topic-tag">Directa</span><span class="topic-tag">Inversa</span><span class="topic-tag">Problemas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t9">
+                <h3>📖 Regla de Tres Simple</h3>
+                <p>Es el método más usado para resolver problemas de proporcionalidad. Con tres datos conocidos encuentras el cuarto desconocido.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>➡️ Directa</h4>
+                    <ul>
+                      <li>3 cuadernos cuestan S/12</li>
+                      <li>¿Cuánto cuestan 7?</li>
+                      <li>3 → 12</li>
+                      <li>7 → x</li>
+                      <li>x = (7 × 12) / 3 = S/28</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>↩️ Inversa</h4>
+                    <ul>
+                      <li>4 obreros terminan en 6 días</li>
+                      <li>¿Cuántos días tardan 8 obreros?</li>
+                      <li>4 → 6</li>
+                      <li>8 → x</li>
+                      <li>x = (4 × 6) / 8 = 3 días</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Directa: x = (b × c) / a &nbsp;|&nbsp; Inversa: x = (a × b) / c</div>
+                <div class="img-placeholder"><span>📐</span><span>Esquema de regla de tres</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t9', document.getElementById('t9'))">✕ Cerrar</button>
+              </div>
+
+              <!-- Tema 10 -->
+              <div class="topic-book" id="t10" onclick="toggleTopic('detail-t10', this)">
+                <div class="topic-book-cover cover-advanced">🏷️</div>
+                <div class="topic-book-info">
+                  <h4>Porcentajes</h4>
+                  <p>Cálculo, descuentos y aumentos en la vida diaria</p>
+                  <div class="topic-tags"><span class="topic-tag">%</span><span class="topic-tag">Descuentos</span><span class="topic-tag">IGV</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t10">
+                <h3>📖 Porcentajes</h3>
+                <p>El porcentaje expresa una cantidad <strong>"por cada 100"</strong>. Es una de las herramientas matemáticas más usadas en la vida real: precios, descuentos, impuestos, calificaciones.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🧮 Calcular el % de un número</h4>
+                    <ul>
+                      <li>¿El 20% de 350?</li>
+                      <li>350 × 20/100 = 350 × 0.20 = 70</li>
+                      <li>¿El 15% de 200?</li>
+                      <li>200 × 0.15 = 30</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🏷️ Descuentos y aumentos</h4>
+                    <ul>
+                      <li>Descuento 30% en S/80:</li>
+                      <li>80 × 0.30 = 24 → pagas S/56</li>
+                      <li>Aumento del 18% (IGV) en S/100:</li>
+                      <li>100 × 1.18 = S/118</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">% de A = (% / 100) × A</div>
+                <div class="example-block">
+                  <strong>Truco mental</strong>
+                  <p>Para el 10%: mueve el punto decimal un lugar a la izquierda. El 10% de 250 = 25.</p>
+                </div>
+                <div class="img-placeholder"><span>🏷️</span><span>Infografía de descuentos y porcentajes</span></div>
+                <button class="close-detail" onclick="closeTopic('detail-t10', document.getElementById('t10'))">✕ Cerrar</button>
+              </div>
+
+            </div><!-- /topics-grid advanced -->
+          </div>
+        </div>
+
+        <!-- Navegación -->
+        <div style="display:flex;gap:1rem;justify-content:space-between;flex-wrap:wrap;margin-top:0.5rem">
+          <a href="biblioteca.html" class="button button-secondary">← Volver a Biblioteca</a>
+          <a href="libro-ciencias-1.html" class="button button-primary">Ciencias Naturales 1 →</a>
+        </div>
+
+      </div><!-- /book-main -->
+    </div><!-- /book-layout -->
+  </main>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script>
+    // Abrir/cerrar capítulos
+    function toggleChapter(id) {
+      document.getElementById(id).classList.toggle('open');
+    }
+
+    // Abrir/cerrar temas inline
+    function toggleTopic(detailId, bookEl) {
+      const detail = document.getElementById(detailId);
+      const isOpen = detail.classList.contains('open');
+      // Cierra todos los detalles del mismo grid
+      detail.closest('.topics-grid').querySelectorAll('.topic-detail').forEach(d => d.classList.remove('open'));
+      detail.closest('.topics-grid').querySelectorAll('.topic-book').forEach(b => b.style.borderColor = '');
+      if (!isOpen) {
+        detail.classList.add('open');
+        bookEl.style.borderColor = 'var(--accent)';
+        updateProgress();
+      }
+    }
+
+    function closeTopic(detailId, bookEl) {
+      document.getElementById(detailId).classList.remove('open');
+      if (bookEl) bookEl.style.borderColor = '';
+    }
+
+    // Progreso
+    const totalTopics = 10;
+    const opened = new Set();
+    function updateProgress() {
+      document.querySelectorAll('.topic-detail.open').forEach(d => opened.add(d.id));
+      const pct = Math.round((opened.size / totalTopics) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressPct').textContent = pct + '%';
+    }
+
+    // TOC activo con IntersectionObserver
+    const tocLinks = document.querySelectorAll('.toc-list a[href^="#"]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const link = document.querySelector('.toc-list a[href="#' + e.target.id + '"]');
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.topic-book[id]').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
