@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Filosofía / PFRH | 5° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-5.html">5° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Filosofía / PFRH</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#4338ca,#6366f1)">🧠</div>
+          <div><h3>Filosofía / PFRH</h3><p>5° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Introducción</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>¿Qué es la Filosofía?</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Grandes Filósofos</a></li>
+          <li><p class="toc-section-title">II. Ética y Lógica</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Ética y Moral</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Lógica Formal</a></li>
+          <li><p class="toc-section-title">III. Ciudadanía</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Ciudadanía y Democracia</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Básico</p><h2>Introducción a la Filosofía</h2><p>¿Qué es filosofía? y los grandes pensadores</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic"><span class="banner-icon">🤔</span><div><h3>La sabiduría que transforma</h3><p>Filosofía significa "amor a la sabiduría". No es solo una materia escolar — es una forma de pensar que te ayudará a tomar mejores decisiones, entender el mundo y vivir con más consciencia.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-basic">🤔</div>
+                <div class="topic-book-info"><h4>¿Qué es la Filosofía?</h4><p>Ramas: metafísica, epistemología, ética, lógica y estética</p>
+                  <div class="topic-tags"><span class="topic-tag">Metafísica</span><span class="topic-tag">Epistemología</span><span class="topic-tag">Ética</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🤔 ¿Qué es la Filosofía?</h3>
+                <p>La <strong>filosofía</strong> (del griego <em>philos</em> = amor, <em>sophia</em> = sabiduría) es la disciplina que se ocupa de las preguntas fundamentales sobre la existencia, el conocimiento, la moral y la belleza. A diferencia de la ciencia, usa el razonamiento racional y el argumento en lugar del experimento.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌿 Ramas de la Filosofía</h4>
+                    <ul>
+                      <li><strong>Metafísica:</strong> "¿Qué es la realidad?" — estudia la existencia, el ser, el tiempo y el espacio</li>
+                      <li><strong>Epistemología:</strong> "¿Cómo conocemos?" — naturaleza, origen y límites del conocimiento</li>
+                      <li><strong>Ética:</strong> "¿Cómo debemos actuar?" — estudio del bien, el mal y la moral</li>
+                      <li><strong>Lógica:</strong> "¿Cómo razonamos correctamente?" — principios del pensamiento válido</li>
+                      <li><strong>Estética:</strong> "¿Qué es la belleza?" — naturaleza del arte y la experiencia artística</li>
+                      <li><strong>Filosofía política:</strong> "¿Cómo debemos organizarnos?" — justicia, poder, Estado</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>❓ Las preguntas filosóficas</h4>
+                    <ul>
+                      <li>¿Existe Dios? (Teología filosófica)</li>
+                      <li>¿Qué es la conciencia? (Filosofía de la mente)</li>
+                      <li>¿El ser humano tiene libre albedrío? (Metafísica)</li>
+                      <li>¿Puede haber conocimiento objetivo? (Epistemología)</li>
+                      <li>¿Qué hace que una acción sea moralmente correcta? (Ética)</li>
+                      <li>¿La belleza es subjetiva u objetiva? (Estética)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Clasifica cada pregunta en la rama filosófica correspondiente: "¿Tenemos libre albedrío?" / "¿Cómo sé que el mundo externo existe?" / "¿Es justo robar para sobrevivir?"
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">"¿Tenemos libre albedrío?" → <strong>Metafísica</strong>. "¿Cómo sé que el mundo externo existe?" → <strong>Epistemología</strong>. "¿Es justo robar para sobrevivir?" → <strong>Ética</strong>.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la diferencia entre filosofía y ciencia? ¿Pueden coexistir?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">La <strong>ciencia</strong> responde preguntas mediante observación y experimento (verificable, falseable). La <strong>filosofía</strong> aborda preguntas que no pueden resolverse solo con experimentos — requiere razonamiento, argumento y reflexión. Sí pueden coexistir: la filosofía de la ciencia reflexiona sobre los fundamentos del método científico.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-basic">🏛️</div>
+                <div class="topic-book-info"><h4>Grandes Filósofos de la Historia</h4><p>Sócrates, Platón, Aristóteles, Descartes, Kant y Nietzsche</p>
+                  <div class="topic-tags"><span class="topic-tag">Sócrates</span><span class="topic-tag">Kant</span><span class="topic-tag">Nietzsche</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🏛️ Grandes Filósofos de la Historia</h3>
+                <p>La historia de la filosofía occidental abarca más de 2,500 años. Conocer a sus principales representantes te da acceso a las ideas que han moldeado la civilización, la ciencia, la política y la cultura.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🏛️ Filosofía Antigua y Medieval</h4>
+                    <ul>
+                      <li><strong>Sócrates (470-399 a.C.):</strong> "Solo sé que no sé nada." Método socrático: preguntas para llegar a la verdad. Fue condenado a muerte por corromper a la juventud</li>
+                      <li><strong>Platón (428-348 a.C.):</strong> Teoría de las Ideas — el mundo real es una copia de ideas perfectas. "El mito de la caverna" (República)</li>
+                      <li><strong>Aristóteles (384-322 a.C.):</strong> Lógica, ciencia, ética (virtud = justo medio), política</li>
+                      <li><strong>Santo Tomás de Aquino (1225-1274):</strong> síntesis entre fe cristiana y filosofía aristotélica</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔬 Filosofía Moderna y Contemporánea</h4>
+                    <ul>
+                      <li><strong>René Descartes (1596-1650):</strong> "Cogito, ergo sum" (Pienso, luego existo). Padre de la filosofía moderna, racionalismo</li>
+                      <li><strong>Immanuel Kant (1724-1804):</strong> "Actúa solo según la máxima que puedas desear que sea ley universal." Imperativo categórico. Síntesis del racionalismo y empirismo</li>
+                      <li><strong>Friedrich Nietzsche (1844-1900):</strong> "Dios ha muerto." Voluntad de poder, el Superhombre (Übermensch), crítica a la moral occidental</li>
+                      <li><strong>Karl Marx (1818-1883):</strong> materialismo histórico, lucha de clases, crítica al capitalismo</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">"Conócete a ti mismo" — Sócrates | "Cogito ergo sum" — Descartes</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Explica "El Mito de la Caverna" de Platón. ¿Qué representa cada elemento?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Prisioneros encadenados en una caverna ven sombras en la pared y creen que es la realidad. Si uno escapa y sale al sol (la verdad), descubre que lo que creía real era solo una sombra. <strong>La caverna</strong> = el mundo sensible (ilusorio). <strong>El sol</strong> = el Bien/la Verdad absoluta. <strong>El filósofo</strong> = el que escapa y regresa a liberar a los demás.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué significa el "Imperativo Categórico" de Kant? Da un ejemplo de cómo aplicarlo.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">El <strong>Imperativo Categórico</strong> dice: actúa solo siguiendo normas que podrías desear que todos los demás siguieran. Ejemplo: "¿Puedo mentir para salir de un problema?" → Pregunta kantiana: ¿y si todos mintieran cuando les convenga? La sociedad colapsaría. Por lo tanto, mentir es moralmente incorrecto según Kant.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Intermedio</p><h2>Ética y Lógica Formal</h2><p>Teorías éticas, dilemas morales y pensamiento lógico</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">⚖️</span><div><h3>Pensar bien para vivir bien</h3><p>La ética te da herramientas para tomar decisiones morales difíciles. La lógica te enseña a razonar sin caer en errores. Juntas forman el núcleo del pensamiento filosófico práctico.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-inter">⚖️</div>
+                <div class="topic-book-info"><h4>Ética y Moral</h4><p>Teorías éticas: utilitarismo, deontología y ética de la virtud</p>
+                  <div class="topic-tags"><span class="topic-tag">Utilitarismo</span><span class="topic-tag">Deontología</span><span class="topic-tag">Virtud</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>⚖️ Ética y Teorías Morales</h3>
+                <p>La <strong>ética</strong> es la rama filosófica que estudia la conducta humana en términos de bien y mal, correcto e incorrecto. La <strong>moral</strong> son las normas concretas de una sociedad. Las tres grandes teorías éticas ofrecen perspectivas distintas sobre qué hace que una acción sea buena.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Las tres grandes teorías éticas</h4>
+                    <ul>
+                      <li><strong>Utilitarismo (Mill, Bentham):</strong> una acción es buena si maximiza la felicidad para el mayor número de personas. "El fin justifica los medios" si el resultado es más felicidad total</li>
+                      <li><strong>Deontología (Kant):</strong> una acción es buena si sigue deberes morales universales, independientemente de las consecuencias. Hay acciones que son correctas o incorrectas en sí mismas</li>
+                      <li><strong>Ética de la virtud (Aristóteles):</strong> una acción es buena si la realizaría una persona virtuosa. El foco está en el carácter (coraje, justicia, prudencia)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🚃 El dilema del tranvía</h4>
+                    <ul>
+                      <li>Un tranvía descontrolado va hacia 5 personas. Puedes accionar una palanca que lo desvíe hacia 1 persona. ¿Lo haces?</li>
+                      <li><strong>Utilitarismo:</strong> SÍ — salvas 5, sacrificas 1 (mayor felicidad total)</li>
+                      <li><strong>Deontología:</strong> NO — usar a alguien como medio es moralmente incorrecto, aunque el resultado sea mejor</li>
+                      <li><strong>Virtud:</strong> ¿Qué haría una persona justa y valiente?</li>
+                      <li>No hay una respuesta "correcta" universal — el dilema muestra tensiones entre teorías</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Análisis</strong>
+                      Aplica las tres teorías éticas a este dilema: "Un médico tiene 5 pacientes que morirán sin trasplantes. Llega un paciente sano con todos los órganos compatibles. ¿Debe el médico sacrificarlo para salvar a los 5?"
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3"><strong>Utilitarismo:</strong> SÍ — 5 vidas > 1 vida (mayor bien para el mayor número). <strong>Deontología:</strong> NO — usar a un ser humano inocente como medio para salvar a otros viola su dignidad, aunque el resultado sea mejor. <strong>Virtud:</strong> una persona virtuosa (justa, compasiva, íntegra) no podría matar a un inocente — eso destruiría su carácter moral.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la diferencia entre ética y moral? ¿Son lo mismo?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">No exactamente. La <strong>moral</strong> son las normas y valores concretos de una comunidad o cultura ("no robar", "respetar a los mayores"). La <strong>ética</strong> es la reflexión filosófica sobre esas normas: ¿por qué son válidas? ¿son universales o relativas? La ética estudia la moral de forma crítica y racional.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-inter">🔣</div>
+                <div class="topic-book-info"><h4>Lógica Formal</h4><p>Proposiciones, tablas de verdad, silogismos y falacias</p>
+                  <div class="topic-tags"><span class="topic-tag">Proposición</span><span class="topic-tag">Silogismo</span><span class="topic-tag">Falacia</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🔣 Lógica Formal</h3>
+                <p>La <strong>lógica</strong> estudia los principios del razonamiento válido. Un argumento es válido si sus conclusiones se siguen necesariamente de las premisas. La lógica formal usa símbolos para analizar argumentos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Proposiciones y conectivos</h4>
+                    <ul>
+                      <li><strong>Proposición:</strong> oración declarativa verdadera o falsa (V/F)</li>
+                      <li><strong>Negación (¬p):</strong> "No p" — opuesto de p</li>
+                      <li><strong>Conjunción (p ∧ q):</strong> "p y q" — V solo si ambas son V</li>
+                      <li><strong>Disyunción (p ∨ q):</strong> "p o q" — F solo si ambas son F</li>
+                      <li><strong>Condicional (p → q):</strong> "Si p entonces q" — F solo si p=V y q=F</li>
+                      <li><strong>Bicondicional (p ↔ q):</strong> "p si y solo si q" — V si ambas iguales</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔮 Silogismos y Falacias</h4>
+                    <ul>
+                      <li><strong>Silogismo válido:</strong> "Todos los hombres son mortales. Sócrates es hombre. ∴ Sócrates es mortal."</li>
+                      <li><strong>Modus Ponens:</strong> Si p→q y p, entonces q</li>
+                      <li><strong>Modus Tollens:</strong> Si p→q y ¬q, entonces ¬p</li>
+                      <li><strong>Falacias comunes:</strong> ad hominem (atacar a la persona), hombre de paja (distorsionar el argumento), pendiente resbaladiza, apelación a la autoridad</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Modus Ponens: p→q, p ∴ q | Modus Tollens: p→q, ¬q ∴ ¬p</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Determina si el silogismo es válido: "Todos los peruanos son sudamericanos. Machu Picchu es peruano. Por lo tanto, Machu Picchu es sudamericano."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">El silogismo es <strong>válido formalmente</strong> (la conclusión se sigue lógicamente de las premisas), pero la segunda premisa es cuestionable: Machu Picchu es un lugar, no una persona peruana. Es un ejemplo de argumento formalmente válido con premisa problemática.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Identifica la falacia: "No puedes criticar mi propuesta sobre el medio ambiente porque tú también contaminas."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Es una <strong>falacia ad hominem</strong> (o "tu quoque"): en lugar de refutar el argumento, se ataca a la persona o se señala su supuesta hipocresía. El comportamiento del que critica no invalida la validez de los argumentos sobre el medio ambiente.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Avanzado</p><h2>Ciudadanía y Democracia</h2><p>Derechos humanos, Estado de Derecho y participación</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🗳️</span><div><h3>Ser ciudadano es un compromiso</h3><p>La democracia no es solo votar cada 5 años — es una forma de vida que requiere ciudadanos informados, críticos y comprometidos. La filosofía política te da las herramientas para participar activamente.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-advanced">🗳️</div>
+                <div class="topic-book-info"><h4>Ciudadanía y Democracia</h4><p>Derechos humanos, Estado de Derecho y participación ciudadana</p>
+                  <div class="topic-tags"><span class="topic-tag">DDHH</span><span class="topic-tag">Democracia</span><span class="topic-tag">Constitución</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🗳️ Ciudadanía, Democracia y Derechos Humanos</h3>
+                <p>La <strong>democracia</strong> (del griego: gobierno del pueblo) es el sistema donde el poder emana del pueblo. Los <strong>derechos humanos</strong> son derechos universales, inalienables e inherentes a toda persona por el hecho de existir.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌐 Derechos Humanos</h4>
+                    <ul>
+                      <li>Declaración Universal de los DDHH (ONU, 1948)</li>
+                      <li><strong>Civiles y políticos:</strong> vida, libertad, libre expresión, voto</li>
+                      <li><strong>Económicos, sociales y culturales:</strong> educación, salud, trabajo, cultura</li>
+                      <li><strong>Colectivos/Solidaridad:</strong> paz, medio ambiente, desarrollo</li>
+                      <li>Características: universales, inalienables, indivisibles, interdependientes</li>
+                      <li>En Perú: Capítulo I de la Constitución de 1993</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🏛️ Estado de Derecho y Democracia</h4>
+                    <ul>
+                      <li><strong>Estado de Derecho:</strong> todos, incluso el gobierno, están sometidos a la ley</li>
+                      <li><strong>División de poderes:</strong> Ejecutivo, Legislativo y Judicial — independientes y con controles mutuos</li>
+                      <li><strong>Sufragio universal:</strong> derecho de todos los ciudadanos a votar</li>
+                      <li><strong>Participación ciudadana:</strong> referéndums, iniciativa legislativa, revocatoria</li>
+                      <li><strong>Sociedad civil:</strong> ONGs, medios de comunicación, organizaciones comunitarias como contrapeso al poder</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué significa que los derechos humanos son "universales" e "inalienables"?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5"><strong>Universales:</strong> aplican a TODAS las personas del mundo, sin importar raza, género, religión, nacionalidad o condición social. <strong>Inalienables:</strong> no pueden quitarse, cederse ni venderse — ni el propio Estado puede privar a una persona de sus derechos fundamentales, salvo en circunstancias muy específicas y con procedimientos legales.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué la división de poderes es fundamental para la democracia?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Sin la separación de poderes, un solo órgano (o una persona) concentraría todo el poder político, generando autoritarismo. La división crea un sistema de <strong>pesos y contrapesos</strong>: el Legislativo hace las leyes, el Ejecutivo las aplica y el Judicial las interpreta y controla su constitucionalidad. Ninguno puede actuar sin el control de los otros dos.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3 — Reflexión</strong>
+                      "La democracia perfecta no existe, pero es el menos malo de todos los sistemas." ¿Estás de acuerdo? Argumenta tu posición.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t5">Respuesta personal con argumentos. Posible postura de acuerdo: la democracia tiene fallas (corrupción, populismo, baja participación), pero garantiza libertades fundamentales, permite cambiar gobiernos pacíficamente y protege los derechos humanos mejor que las alternativas históricas (dictaduras, monarquías absolutas, totalitarismos).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-5.html" class="button button-secondary">← 5° Secundaria</a>
+      <a href="biblioteca.html" class="button button-primary">Biblioteca →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(id,card){document.getElementById(id).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(tx,sz,b,c)=>{doc.setFontSize(sz);doc.setFont('helvetica',b?'bold':'normal');doc.setTextColor(...(c||[30,30,30]));doc.splitTextToSize(tx,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=sz*0.45;});y+=2;};
+      doc.setFillColor(67,56,202);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Filosofia / PFRH - 5 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Que es la Filosofia',c:'Amor a la sabiduria. Ramas: Metafisica (realidad), Epistemologia (conocimiento), Etica (bien/mal), Logica (razonamiento correcto), Estetica (belleza), Filosofia politica. Diferencia con ciencia: filosofia usa argumento, no experimento.'},
+       {ti:'Grandes Filosofos',c:'Socrates: metodo socratico, Solo se que no se nada. Platon: Teoria de las Ideas, Mito de la Caverna. Aristoteles: logica, etica de la virtud. Descartes: Cogito ergo sum. Kant: Imperativo categorico. Nietzsche: Dios ha muerto, voluntad de poder.'},
+       {ti:'Etica y Moral',c:'Utilitarismo (Mill): mayor felicidad para el mayor numero. Deontologia (Kant): hay deberes universales, el fin no justifica los medios. Virtud (Aristoteles): el justo medio, desarrollar virtudes. Dilema del tranvia ilustra tension entre teorias.'},
+       {ti:'Logica Formal',c:'Proposicion (V/F). Conectivos: negacion, conjuncion (y), disyuncion (o), condicional (si-entonces). Silogismo: premisas + conclusion. Modus Ponens: p->q, p .: q. Falacias: ad hominem, hombre de paja, pendiente resbaladiza.'},
+       {ti:'Ciudadania y Democracia',c:'DDHH: Declaracion Universal ONU 1948. Universales, inalienables, indivisibles. Tipos: civiles/politicos, economicos/sociales, colectivos. Estado de Derecho: todos bajo la ley. Division de poderes: Ejecutivo, Legislativo, Judicial.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[67,56,202]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Ejercicios de repaso',13,true,[67,56,202]);
+      ['1. Clasifica: Tenemos libre albedrio? / Como se que el mundo existe? / Es justo robar para sobrevivir?','2. Explica el Mito de la Caverna de Platon.','3. Aplica las 3 teorias eticas al dilema del tranvia.','4. Identifica la falacia: No puedes criticar el medioambiente si tu contaminas.','5. Que significa que los DDHH son universales e inalienables?'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Filosofia-5Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
