@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Comunicación | 5° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-5.html">5° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Comunicación</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#dc2626,#ef4444)">📖</div>
+          <div><h3>Comunicación</h3><p>5° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Lingüística</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Lingüística Textual</a></li>
+          <li><p class="toc-section-title">II. Comunicación Oral</p></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Oratoria y Debate</a></li>
+          <li><p class="toc-section-title">III. Literatura</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Posmodernismo Literario</a></li>
+          <li><p class="toc-section-title">IV. Vida y Carrera</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Comunicación Laboral</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Comprensión Lectora Avanzada</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-ling">
+          <div class="chapter-header" onclick="toggleChapter('ch-ling')">
+            <div class="chapter-num num-basic" style="background:linear-gradient(135deg,#dc2626,#ef4444)">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Lingüística y Comunicación Oral</p><h2>Texto, Oratoria y Debate</h2><p>Coherencia, cohesión y argumentación oral</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner" style="background:linear-gradient(135deg,rgba(220,38,38,0.07),rgba(252,165,165,0.04));border:1px solid rgba(220,38,38,0.12)">
+              <span class="banner-icon">📝</span><div><h3>La comunicación como herramienta de vida</h3><p>Dominar la lengua en sus dimensiones textual y oral es una competencia esencial para el siglo XXI.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-comm">📝</div>
+                <div class="topic-book-info"><h4>Lingüística Textual</h4><p>Coherencia, cohesión y tipos de textos</p>
+                  <div class="topic-tags"><span class="topic-tag">Coherencia</span><span class="topic-tag">Cohesión</span><span class="topic-tag">Progresión</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>📝 Lingüística Textual</h3>
+                <p>La <strong>lingüística textual</strong> estudia el texto como unidad comunicativa. Un buen texto no solo necesita oraciones correctas gramaticalmente, sino también coherencia y cohesión que lo conviertan en una unidad significativa.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Propiedades del texto</h4>
+                    <ul>
+                      <li><strong>Coherencia global:</strong> el texto trata sobre un mismo tema; hay unidad temática; cada parte aporta al tema central</li>
+                      <li><strong>Cohesión:</strong> los elementos del texto están enlazados mediante mecanismos lingüísticos (conectores, pronombres, sustitución, elipsis)</li>
+                      <li><strong>Progresión temática:</strong> el texto avanza; la información nueva se apoya en la ya conocida</li>
+                      <li><strong>Adecuación:</strong> el texto es apropiado para la situación comunicativa (registro, tono, propósito)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Mecanismos de cohesión</h4>
+                    <ul>
+                      <li><strong>Conectores:</strong> sin embargo, por lo tanto, además, aunque, así que, en consecuencia</li>
+                      <li><strong>Referencia:</strong> pronombres que sustituyen a sustantivos (anáfora: hacia atrás; catáfora: hacia adelante)</li>
+                      <li><strong>Sustitución léxica:</strong> sinónimos y términos generales</li>
+                      <li><strong>Elipsis:</strong> omisión de elementos sobrentendidos</li>
+                      <li><strong>Tipos de texto:</strong> narrativo, descriptivo, expositivo, argumentativo, instructivo</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Texto = Coherencia (unidad de sentido) + Cohesión (unión formal) + Adecuación</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuál es la diferencia entre coherencia y cohesión? Da un ejemplo de texto con cohesión pero sin coherencia.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1"><strong>Coherencia:</strong> unidad de sentido global (todos hablan del mismo tema). <strong>Cohesión:</strong> los elementos están enlazados formalmente (conectores, pronombres). Texto con cohesión pero sin coherencia: "El gato corrió rápidamente. Sin embargo, la economía peruana creció. Además, los dinosaurios eran reptiles." — Las oraciones están conectadas (sin embargo, además) pero no tienen relación temática.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Identifica el mecanismo de cohesión: "El presidente viajó a Europa. <u>Él</u> se reunió con varios líderes."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">"<strong>Él</strong>" es un mecanismo de <strong>referencia anafórica</strong>: el pronombre personal de tercera persona masculino singular retoma al sustantivo "el presidente" mencionado antes.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-comm">🎤</div>
+                <div class="topic-book-info"><h4>Oratoria y Debate</h4><p>Argumentación oral, estructura del debate y falacias</p>
+                  <div class="topic-tags"><span class="topic-tag">Oratoria</span><span class="topic-tag">Falacias</span><span class="topic-tag">Debate</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🎤 Oratoria y Debate</h3>
+                <p>La <strong>oratoria</strong> es el arte de hablar en público con claridad, persuasión y elegancia. El <strong>debate</strong> es una discusión formal sobre un tema, donde dos posiciones opuestas argumentan con evidencia y lógica.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Técnicas de oratoria</h4>
+                    <ul>
+                      <li><strong>Ethos:</strong> credibilidad del hablante</li>
+                      <li><strong>Pathos:</strong> apelación a las emociones del público</li>
+                      <li><strong>Logos:</strong> argumentos lógicos y racionales</li>
+                      <li>Estructura del discurso: exordio (captación), narración, argumentación, peroración (conclusión)</li>
+                      <li>Comunicación no verbal: postura, contacto visual, voz, gestos</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚠️ Falacias lógicas</h4>
+                    <ul>
+                      <li><strong>Ad hominem:</strong> atacar a la persona, no al argumento</li>
+                      <li><strong>Hombre de paja:</strong> distorsionar el argumento del oponente para atacarlo fácilmente</li>
+                      <li><strong>Pendiente resbaladiza:</strong> "si pasa A, inevitablemente pasará Z" (exageración)</li>
+                      <li><strong>Apelación a la autoridad:</strong> citar a alguien famoso sin relevancia</li>
+                      <li><strong>Falsa dicotomía:</strong> presentar solo dos opciones cuando hay más</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Debate: Tesis → Argumento + Evidencia → Refutación → Conclusión</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Identifica la falacia: "¡No puedes opinar sobre el reciclaje si tú tampoco reciclas!"
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Es una falacia <strong>ad hominem</strong> (o "tu quoque"): en lugar de refutar el argumento sobre el reciclaje, se ataca al hablante por su comportamiento personal. El argumento puede ser válido independientemente de quién lo diga.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué es el logos en la oratoria? Da un ejemplo de argumento que usa logos.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2b')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2b"><strong>Logos</strong> es la apelación a la razón y la lógica para persuadir. Usa datos, estadísticas y razonamientos. Ejemplo: "Según estudios de la OMS, los estudiantes que duermen 8 horas tienen un rendimiento académico un 25% superior a los que duermen menos de 6 horas. Por lo tanto, debemos priorizar el descanso."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-lit">
+          <div class="chapter-header" onclick="toggleChapter('ch-lit')">
+            <div class="chapter-num num-inter" style="background:linear-gradient(135deg,#dc2626,#7c3aed)">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Literatura y Vida</p><h2>Literatura, Comunicación Laboral y Lectura</h2><p>Literatura actual, habilidades para el futuro</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner" style="background:linear-gradient(135deg,rgba(220,38,38,0.06),rgba(124,58,237,0.04));border:1px solid rgba(124,58,237,0.1)">
+              <span class="banner-icon">🚀</span><div><h3>Listo para el futuro</h3><p>La literatura contemporánea y las habilidades comunicativas laborales son esenciales para tu vida universitaria y profesional.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-comm">📚</div>
+                <div class="topic-book-info"><h4>Literatura Posmoderna y Actual</h4><p>Tendencias y autores latinoamericanos contemporáneos</p>
+                  <div class="topic-tags"><span class="topic-tag">Posmodernismo</span><span class="topic-tag">Boom</span><span class="topic-tag">García Márquez</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>📚 Posmodernismo y Literatura Actual</h3>
+                <p>El <strong>posmodernismo literario</strong> cuestiona las grandes narrativas, mezcla géneros y estilos, rompe la linealidad temporal y reflexiona sobre la naturaleza de la ficción. El <strong>Boom latinoamericano</strong> fue el movimiento que proyectó la literatura en español al mundo.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📖 Boom latinoamericano y Realismo Mágico</h4>
+                    <ul>
+                      <li><strong>Boom (1960-70s):</strong> movimiento que renovó la narrativa latinoamericana; innovaciones técnicas (fragmentación, perspectivas múltiples)</li>
+                      <li><strong>Gabriel García Márquez (Colombia):</strong> "Cien años de soledad" (1967); realismo mágico; Premio Nobel 1982</li>
+                      <li><strong>Mario Vargas Llosa (Perú):</strong> "La ciudad y los perros" (1963); Premio Nobel 2010</li>
+                      <li><strong>Julio Cortázar (Argentina):</strong> "Rayuela" (1963); lectura no lineal</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Literatura peruana actual</h4>
+                    <ul>
+                      <li><strong>Cesar Vallejo:</strong> "Los heraldos negros" — modernismo y angustia existencial</li>
+                      <li><strong>Blanca Varela:</strong> poesía de introspección femenina</li>
+                      <li><strong>Alonso Cueto:</strong> narrativa sobre el conflicto armado peruano</li>
+                      <li><strong>Literatura de la violencia:</strong> obras sobre Sendero Luminoso y la CVR</li>
+                      <li><strong>Literatura joven:</strong> nuevas voces urbanas, afroperuanas, andinas</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Realismo mágico = realidad cotidiana + elementos fantásticos + naturalidad narrativa</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué es el realismo mágico? Da un ejemplo de "Cien años de soledad".
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">El <strong>realismo mágico</strong> es un estilo narrativo donde los eventos fantásticos ocurren en un entorno realista y son tratados con naturalidad. En "Cien años de soledad": (1) Remedios la Bella asciende al cielo mientras tendía ropa. (2) Una ola de insomnio y olvido azota al pueblo. (3) José Arcadio Buendía ve el fantasma de Prudencio Aguilar. Todo se narra como algo normal dentro de la historia.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué Mario Vargas Llosa es el escritor peruano más reconocido internacionalmente?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Mario Vargas Llosa (Arequipa, 1936) ganó el <strong>Premio Nobel de Literatura 2010</strong>, el único escritor peruano en hacerlo. Sus obras exploran temas como el poder, la corrupción, la identidad y la violencia en América Latina con técnicas narrativas innovadoras (perspectivas múltiples, tiempo fragmentado). "La ciudad y los perros", "Conversación en La Catedral" y "La fiesta del Chivo" son sus obras más importantes.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-comm">💼</div>
+                <div class="topic-book-info"><h4>Proyecto de Vida y Comunicación</h4><p>Carta, currículum y entrevista de trabajo</p>
+                  <div class="topic-tags"><span class="topic-tag">CV</span><span class="topic-tag">Carta</span><span class="topic-tag">Entrevista</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>💼 Comunicación Laboral y Proyecto de Vida</h3>
+                <p>La comunicación efectiva es una de las habilidades más valoradas en el mundo laboral. Saber redactar un currículum, escribir una carta de presentación y desempeñarse bien en una entrevista son competencias esenciales.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📄 Currículum Vitae (CV)</h4>
+                    <ul>
+                      <li><strong>Datos personales:</strong> nombre, contacto, LinkedIn (no incluir foto en muchos contextos)</li>
+                      <li><strong>Objetivo profesional:</strong> qué buscas y qué ofreces (2-3 líneas)</li>
+                      <li><strong>Educación:</strong> en orden cronológico inverso</li>
+                      <li><strong>Experiencia:</strong> trabajos, voluntariados, prácticas</li>
+                      <li><strong>Habilidades:</strong> idiomas, herramientas digitales, competencias</li>
+                      <li>Formato: 1 página, claro, sin errores ortográficos</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Carta y Entrevista</h4>
+                    <ul>
+                      <li><strong>Carta de presentación:</strong> complementa el CV; explica por qué eres el candidato ideal; tono formal y personalizado</li>
+                      <li><strong>Entrevista de trabajo:</strong> investigar la empresa; respuestas con método STAR (Situación, Tarea, Acción, Resultado)</li>
+                      <li>Preguntas frecuentes: fortalezas/debilidades, dónde te ves en 5 años, por qué esta empresa</li>
+                      <li>Comunicación no verbal: postura, contacto visual, tono de voz</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">CV exitoso = Claro + Sin errores + Enfocado en logros + Adaptado a la oferta</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Producción</strong>
+                      Redacta un párrafo de "objetivo profesional" para tu futuro CV.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Modelo: "Bachiller en [carrera] con sólida formación en [áreas]. Busco integrar un equipo dinámico donde pueda aplicar mis habilidades en [competencias] y contribuir al crecimiento de la organización, mientras continúo mi desarrollo profesional y personal." — El objetivo debe ser específico, mencionar tu perfil y lo que aportas.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cómo responderías a "¿Cuál es tu mayor debilidad?" en una entrevista?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Estrategia: ser honesto pero mostrar autoconciencia y mejora activa. Ejemplo: "Una de mis debilidades ha sido la dificultad para delegar tareas, ya que tiendo a querer asegurarme de que todo salga perfecto. Sin embargo, he trabajado en esto participando en proyectos de equipo donde aprendí a confiar en las capacidades de los demás y a comunicar claramente las expectativas."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-comm">🧠</div>
+                <div class="topic-book-info"><h4>Comprensión Lectora Avanzada</h4><p>Textos argumentativos, inferencias complejas, pensamiento crítico</p>
+                  <div class="topic-tags"><span class="topic-tag">Inferencias</span><span class="topic-tag">Crítico</span><span class="topic-tag">Argumentativo</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🧠 Comprensión Lectora Avanzada</h3>
+                <p>La comprensión lectora avanzada implica ir más allá del significado literal: hacer <strong>inferencias</strong>, identificar la intención del autor, evaluar la validez de los argumentos y tomar una postura crítica fundamentada.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Niveles de comprensión</h4>
+                    <ul>
+                      <li><strong>Literal:</strong> información explícita en el texto (¿qué dice?)</li>
+                      <li><strong>Inferencial:</strong> información implícita (¿qué no dice pero se puede deducir?)</li>
+                      <li><strong>Crítico-reflexivo:</strong> evaluar el texto, identificar sesgos, contrastar con otros puntos de vista</li>
+                      <li><strong>Intertextual:</strong> relacionar con otros textos o contextos culturales</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Estrategias de lectura</h4>
+                    <ul>
+                      <li><strong>Pre-lectura:</strong> activar conocimientos previos, predecir el contenido</li>
+                      <li><strong>Lectura activa:</strong> subrayar ideas clave, anotar al margen, formular preguntas</li>
+                      <li><strong>Identificar la tesis:</strong> la postura central del autor</li>
+                      <li><strong>Evaluar los argumentos:</strong> ¿son lógicos? ¿tienen evidencia? ¿hay falacias?</li>
+                      <li><strong>Post-lectura:</strong> resumir, sintetizar, tomar postura</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Comprensión crítica = Literal + Inferencial + Evaluación + Postura propia</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Inferencia</strong>
+                      Texto: "El supermercado estaba vacío. En las calles nadie caminaba. Los negocios tenían las persianas bajas." ¿Qué se puede inferir?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">Se puede inferir que es un <strong>día feriado o festivo</strong>, o bien que hay una <strong>situación de emergencia o toque de queda</strong>. El texto no lo dice explícitamente, pero los indicios (supermercado vacío, calles desiertas, negocios cerrados) apuntan a una ciudad sin actividad habitual.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Pensamiento crítico</strong>
+                      Un texto dice: "Las redes sociales son la principal causa de la depresión en los jóvenes." Evalúa este argumento.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">El argumento tiene problemas: (1) <strong>Generalización excesiva</strong>: "principal causa" es muy absoluto; la depresión tiene múltiples factores (genéticos, familiares, socioeconómicos). (2) <strong>Confunde correlación con causalidad</strong>: que las redes y la depresión coexistan no prueba que una cause la otra. (3) Falta evidencia científica citada. Una versión más rigurosa sería: "El uso excesivo de redes sociales se asocia con mayores índices de depresión en ciertos grupos de adolescentes, según estudios de..."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="tema-ciencias-5.html" class="button button-secondary">← Ciencias</a>
+      <a href="tema-historia-5.html" class="button button-primary">Historia →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(220,38,38);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Comunicacion - 5 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Lingui­stica Textual',c:'Coherencia: unidad tematica global. Cohesion: mecanismos de enlace (conectores, referencia, sustitucion, elipsis). Progresion tematica: informacion nueva se apoya en la conocida. Adecuacion: registro apropiado. Tipos: narrativo, descriptivo, argumentativo, expositivo.'},
+       {ti:'Oratoria y Debate',c:'Triada retorica: ethos (credibilidad), pathos (emocion), logos (logica). Estructura discurso: exordio, narracion, argumentacion, peroracion. Falacias: ad hominem, hombre de paja, pendiente resbaladiza, falsa dicotomia. Debate: tesis+argumento+refutacion.'},
+       {ti:'Literatura Posmoderna',c:'Boom latinoamericano (1960-70s): Garcia Marquez (Cien anios de soledad, Nobel 1982), Vargas Llosa (La ciudad y los perros, Nobel 2010), Cortazar (Rayuela). Realismo magico: fantasia en realidad cotidiana. Literatura peruana: Vallejo, Cueto.'},
+       {ti:'Comunicacion Laboral',c:'Curriculum Vitae: datos, objetivo, educacion, experiencia, habilidades. 1 pagina, sin errores. Carta de presentacion: por que eres el candidato ideal. Entrevista: metodo STAR, investigar empresa, debilidades con mejora activa. Comunicacion no verbal.'},
+       {ti:'Comprension Lectora Avanzada',c:'Niveles: literal (explicito), inferencial (implicito, deducir), critico-reflexivo (evaluar, sesgos), intertextual. Estrategias: pre-lectura, lectura activa, identificar tesis, evaluar argumentos, post-lectura. Distinguir correlacion de causalidad.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[220,38,38]);t(x.c,10,false,[50,50,60]);y+=3;});
+      doc.save('Comunicacion-5-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
