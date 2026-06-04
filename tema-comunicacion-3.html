@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Comunicación | 3° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-3.html">3° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Comunicación</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#dc2626,#ef4444)">📖</div>
+          <div><h3>Comunicación</h3><p>3° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Literatura</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Literatura Peruana</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Literatura Hispanoamericana</a></li>
+          <li><p class="toc-section-title">II. Análisis Literario</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Géneros y Figuras Literarias</a></li>
+          <li><p class="toc-section-title">III. Redacción</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Texto Argumentativo</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Texto Expositivo</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Básico</p><h2>Literatura Peruana e Hispanoamericana</h2><p>Autores, obras y movimientos literarios</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic"><span class="banner-icon">📚</span><div><h3>Nuestra identidad literaria</h3><p>La literatura es el espejo de una cultura. Conocer a nuestros grandes autores peruanos e hispanoamericanos es conocer nuestra historia, nuestra alma y nuestra manera de ver el mundo.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-comm">🇵🇪</div>
+                <div class="topic-book-info"><h4>Literatura Peruana</h4><p>Inca Garcilaso, Vallejo, Alegría y Vargas Llosa</p>
+                  <div class="topic-tags"><span class="topic-tag">Vallejo</span><span class="topic-tag">Alegría</span><span class="topic-tag">Arguedas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🇵🇪 Literatura Peruana — Principales Autores</h3>
+                <p>La literatura peruana abarca desde las tradiciones orales incas hasta la narrativa contemporánea. Tiene raíces en tres vertientes: la indígena, la española y la criolla.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>✍️ Autores clásicos peruanos</h4>
+                    <ul>
+                      <li><strong>Inca Garcilaso de la Vega (1539–1616):</strong> "Comentarios Reales" — primera crónica mestiza del Perú</li>
+                      <li><strong>Ricardo Palma (1833–1919):</strong> "Tradiciones Peruanas" — fundador del costumbrismo peruano</li>
+                      <li><strong>César Vallejo (1892–1938):</strong> "Los Heraldos Negros", "Trilce" — vanguardismo, dolor humano universal</li>
+                      <li><strong>Ciro Alegría (1909–1967):</strong> "El mundo es ancho y ajeno" — indigenismo</li>
+                      <li><strong>José María Arguedas (1911–1969):</strong> "Los ríos profundos" — mundo andino</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Autores contemporáneos</h4>
+                    <ul>
+                      <li><strong>Mario Vargas Llosa (1936–):</strong> Nobel de Literatura 2010. "La ciudad y los perros", "Conversación en La Catedral"</li>
+                      <li><strong>Alfredo Bryce Echenique (1939–):</strong> "Un mundo para Julius"</li>
+                      <li><strong>Blanca Varela (1926–2009):</strong> gran poetisa peruana</li>
+                      <li>Movimiento Indigenista: reivindicación del mundo andino</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué César Vallejo es considerado el poeta más importante del Perú? Menciona al menos dos características de su poesía.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">Vallejo es considerado el mayor poeta peruano porque: 1) Innovó el lenguaje poético con el <strong>vanguardismo</strong>, creando palabras nuevas y rompiendo la sintaxis tradicional (Trilce). 2) Expresó el <strong>dolor universal del ser humano</strong> con autenticidad y profundidad ("Los Heraldos Negros"). 3) Su poesía tiene dimensión social y denuncia la injusticia.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué distingue la narrativa indigenista de la criollista en la literatura peruana?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">La narrativa <strong>indigenista</strong> (Alegría, Arguedas) retrata el mundo andino, la realidad del campesino y la injusticia hacia el indígena. La <strong>criollista</strong> (Palma, Ribeyro) se centra en la vida urbana, la clase media limeña y las costumbres de la costa.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-comm">🌎</div>
+                <div class="topic-book-info"><h4>Literatura Hispanoamericana</h4><p>Boom latinoamericano y realismo mágico</p>
+                  <div class="topic-tags"><span class="topic-tag">García Márquez</span><span class="topic-tag">Borges</span><span class="topic-tag">Boom</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🌎 Literatura Hispanoamericana</h3>
+                <p>La literatura hispanoamericana alcanzó reconocimiento mundial en el siglo XX, especialmente con el <strong>Boom latinoamericano</strong> (1960–1970) y el <strong>Realismo mágico</strong>, que mezcla lo real con lo fantástico.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📚 El Boom latinoamericano</h4>
+                    <ul>
+                      <li>Movimiento literario de los años 60-70</li>
+                      <li><strong>Gabriel García Márquez</strong> (Colombia): "Cien años de soledad" — Nobel 1982</li>
+                      <li><strong>Julio Cortázar</strong> (Argentina): "Rayuela" — novela experimental</li>
+                      <li><strong>Carlos Fuentes</strong> (México): "La muerte de Artemio Cruz"</li>
+                      <li><strong>Mario Vargas Llosa</strong> (Perú): parte del Boom</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>✨ Realismo mágico</h4>
+                    <ul>
+                      <li>Mezcla eventos fantásticos con realidad cotidiana</li>
+                      <li>Los personajes aceptan lo sobrenatural como normal</li>
+                      <li>Raíces en las tradiciones orales latinoamericanas</li>
+                      <li>Obra cumbre: "Cien años de soledad" de García Márquez</li>
+                      <li>Otros: "La casa de los espíritus" de Isabel Allende</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Define el Realismo Mágico y da un ejemplo de un elemento "mágico" en la literatura hispanoamericana.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">El <strong>Realismo Mágico</strong> es un estilo literario donde eventos sobrenaturales ocurren en un contexto realista y los personajes los aceptan con naturalidad. Ejemplo: en "Cien años de soledad", Remedios la Bella asciende al cielo mientras tiende ropa, y ningún personaje lo cuestiona.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Intermedio</p><h2>Análisis Literario</h2><p>Géneros, figuras retóricas y análisis de textos</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">🔍</span><div><h3>Leer entre líneas</h3><p>El análisis literario te permite descubrir los recursos que usa el autor para crear efectos en el lector. Es una habilidad esencial para la comprensión profunda de textos.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-comm">🎭</div>
+                <div class="topic-book-info"><h4>Géneros y Figuras Literarias</h4><p>Lírico, narrativo, dramático y figuras retóricas</p>
+                  <div class="topic-tags"><span class="topic-tag">Metáfora</span><span class="topic-tag">Hipérbole</span><span class="topic-tag">Narrativo</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🎭 Géneros y Figuras Literarias</h3>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📚 Géneros literarios</h4>
+                    <ul>
+                      <li><strong>Lírico:</strong> expresa sentimientos del "yo" poético. Subgéneros: oda, elegía, soneto, himno</li>
+                      <li><strong>Narrativo:</strong> cuenta hechos con narrador. Subgéneros: novela, cuento, fábula, crónica</li>
+                      <li><strong>Dramático:</strong> escrito para representarse. Subgéneros: tragedia, comedia, drama</li>
+                      <li><strong>Ensayo:</strong> texto argumentativo con visión personal del autor</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>✨ Figuras retóricas principales</h4>
+                    <ul>
+                      <li><strong>Metáfora:</strong> comparación implícita. "Tus ojos son dos luceros"</li>
+                      <li><strong>Símil/Comparación:</strong> "como". "Corre como el viento"</li>
+                      <li><strong>Hipérbole:</strong> exageración. "Te lo dije mil veces"</li>
+                      <li><strong>Personificación:</strong> dar vida a lo inanimado. "El viento llora"</li>
+                      <li><strong>Anáfora:</strong> repetición al inicio de versos</li>
+                      <li><strong>Ironía:</strong> decir lo contrario de lo que se piensa</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Identifica la figura retórica: 1) "Eres un sol" 2) "Lloré un océano de lágrimas" 3) "El mar gritó furioso" 4) "Eres tan lento como una tortuga"
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">1) <strong>Metáfora</strong> (comparación implícita) · 2) <strong>Hipérbole</strong> (exageración) · 3) <strong>Personificación</strong> (el mar grita) · 4) <strong>Símil/Comparación</strong> (usa "como")</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Escribe una oración usando una metáfora y otra usando una hipérbole.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Metáfora: "Su risa es una melodía que alegra el alma." · Hipérbole: "Tengo tanta tarea que me voy a morir de cansancio."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Avanzado</p><h2>Redacción Académica</h2><p>Texto argumentativo y expositivo</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">✍️</span><div><h3>Escribe para convencer y explicar</h3><p>Los textos argumentativos y expositivos son los más usados en la vida académica y profesional. Dominarlos te permitirá comunicar tus ideas con claridad y persuasión.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-advanced">⚖️</div>
+                <div class="topic-book-info"><h4>Texto Argumentativo</h4><p>Estructura, tesis, argumentos y contraargumentos</p>
+                  <div class="topic-tags"><span class="topic-tag">Tesis</span><span class="topic-tag">Argumento</span><span class="topic-tag">Conclusión</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>⚖️ El Texto Argumentativo</h3>
+                <p>Un <strong>texto argumentativo</strong> defiende una postura (tesis) mediante argumentos sólidos y busca convencer al lector. Es el tipo de texto más importante en debates, ensayos y exámenes.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🏗️ Estructura</h4>
+                    <ul>
+                      <li><strong>Introducción:</strong> presentación del tema + tesis (postura)</li>
+                      <li><strong>Cuerpo argumentativo:</strong> 2-3 argumentos que apoyan la tesis + ejemplos + evidencia</li>
+                      <li><strong>Contraargumento:</strong> mencionar postura opuesta y rebatirla</li>
+                      <li><strong>Conclusión:</strong> reafirmar la tesis + síntesis de argumentos + llamado a la acción</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>💪 Tipos de argumentos</h4>
+                    <ul>
+                      <li><strong>Argumento de autoridad:</strong> citar a expertos o estudios</li>
+                      <li><strong>Argumento de causa-efecto:</strong> mostrar consecuencias</li>
+                      <li><strong>Argumento de ejemplificación:</strong> casos concretos</li>
+                      <li><strong>Argumento estadístico:</strong> datos y cifras</li>
+                      <li>Conectores: en primer lugar, además, sin embargo, por lo tanto</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Escritura</strong>
+                      Escribe un texto argumentativo breve (3 párrafos) sobre: "El uso del celular en clases debería estar prohibido". Incluye: tesis, 2 argumentos y conclusión.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Estructura esperada: <strong>Intro+Tesis:</strong> "El uso del celular en clases debe prohibirse porque perjudica el aprendizaje." <strong>Arg.1:</strong> Distracción: estudios muestran que los estudiantes que usan celular en clases obtienen notas 10% más bajas. <strong>Arg.2:</strong> Inequidad: no todos tienen el mismo celular. <strong>Conclusión:</strong> Por estos motivos, se debería regular su uso para mejorar el aprovechamiento escolar.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-advanced">📋</div>
+                <div class="topic-book-info"><h4>Texto Expositivo</h4><p>Estructura, tipos y redacción de textos informativos</p>
+                  <div class="topic-tags"><span class="topic-tag">Informar</span><span class="topic-tag">Objetividad</span><span class="topic-tag">Subtítulos</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>📋 El Texto Expositivo</h3>
+                <p>Un <strong>texto expositivo</strong> informa sobre un tema de manera objetiva y ordenada, sin emitir opiniones personales. Es el tipo de texto más común en libros de texto, artículos científicos y enciclopedias.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🏗️ Estructura y características</h4>
+                    <ul>
+                      <li><strong>Introducción:</strong> presentación del tema y subtemas</li>
+                      <li><strong>Desarrollo:</strong> información ordenada con subtítulos</li>
+                      <li><strong>Conclusión:</strong> síntesis de lo expuesto</li>
+                      <li>Lenguaje preciso y técnico</li>
+                      <li>Uso de definiciones, ejemplos, comparaciones</li>
+                      <li>Tercera persona ("se denomina", "existe")</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📊 Modos expositivos</h4>
+                    <ul>
+                      <li><strong>Definición:</strong> qué es algo</li>
+                      <li><strong>Clasificación:</strong> tipos o categorías</li>
+                      <li><strong>Comparación:</strong> semejanzas y diferencias</li>
+                      <li><strong>Causa-efecto:</strong> por qué ocurre algo</li>
+                      <li><strong>Problema-solución:</strong> plantea un problema y alternativas</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuál es la diferencia principal entre un texto argumentativo y uno expositivo?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">El texto <strong>expositivo</strong> informa de manera objetiva, sin emitir juicios ni buscar convencer. El texto <strong>argumentativo</strong> defiende una postura personal y busca persuadir al lector mediante argumentos.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Escritura</strong>
+                      Escribe un texto expositivo de 2 párrafos sobre "La contaminación del aire en Lima". Usa lenguaje objetivo y datos si los conoces.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Respuesta personal. Verificar: lenguaje en 3ª persona, sin opiniones personales, información ordenada, uso de al menos una definición o estadística.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-3.html" class="button button-secondary">← 3° Secundaria</a>
+      <a href="tema-historia-3.html" class="button button-primary">Historia →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(220,38,38);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Comunicacion - 3 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Literatura Peruana',c:'Garcilaso (Comentarios Reales), Palma (Tradiciones Peruanas), Vallejo (Los Heraldos Negros, Trilce - vanguardismo), Alegria (El mundo es ancho y ajeno - indigenismo), Arguedas (Los rios profundos), Vargas Llosa (Nobel 2010).'},
+       {ti:'Literatura Hispanoamericana - Boom',c:'Garcia Marquez: Cien anos de soledad (Nobel 1982). Cortazar: Rayuela. Fuentes: La muerte de Artemio Cruz. Realismo Magico: eventos sobrenaturales en contexto real, aceptados naturalmente.'},
+       {ti:'Generos y Figuras Literarias',c:'Generos: lirico (sentimientos), narrativo (hechos), dramatico (representacion), ensayo. Figuras: metafora (comparacion implícita), simil (como), hiperbole (exageracion), personificacion (vida a inanimado), anafora, ironia.'},
+       {ti:'Texto Argumentativo',c:'Estructura: introduccion+tesis, cuerpo (2-3 argumentos+evidencia), contraargumento, conclusion. Tipos de arg: autoridad, causa-efecto, ejemplificacion, estadistico. Conectores: ademas, sin embargo, por lo tanto.'},
+       {ti:'Texto Expositivo',c:'Informa objetivamente, sin opiniones. Estructura: intro, desarrollo con subtitulos, conclusion. Lenguaje: 3a persona, preciso y tecnico. Modos: definicion, clasificacion, comparacion, causa-efecto.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[220,38,38]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Ejercicios de repaso',13,true,[220,38,38]);
+      ['1. Por que Vallejo es el mayor poeta peruano? Dos caracteristicas de su poesia.','2. Define Realismo Magico y da un ejemplo.','3. Identifica la figura: "Eres un sol", "Llore un oceano", "El mar grito".','4. Diferencia entre texto argumentativo y expositivo.','5. Escribe un texto argumentativo corto sobre el uso del celular en clases.'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Comunicacion-3Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
