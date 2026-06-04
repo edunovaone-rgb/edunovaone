@@ -1147,20 +1147,125 @@
       }
     });
 
-    // ── Intercepta clics en "Leer" para registrar en historial ──
+    // ══════════════════════════════════════════════
+    // HISTORIAL LOCAL (localStorage) — funciona
+    // sin login. Máximo 5 en sidebar, FIFO.
+    // ══════════════════════════════════════════════
+    const HIST_KEY   = 'enu_historial';
+    const HIST_MAX   = 50;  // total guardado
+    const HIST_PANEL = 5;   // mostrado en sidebar
+
+    function histGet() {
+      try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch { return []; }
+    }
+    function histSet(arr) {
+      try { localStorage.setItem(HIST_KEY, JSON.stringify(arr)); } catch {}
+    }
+    function histAdd(entry) {
+      let arr = histGet().filter(e => e.id !== entry.id);
+      arr.unshift({ ...entry, ts: Date.now() });
+      if (arr.length > HIST_MAX) arr = arr.slice(0, HIST_MAX);
+      histSet(arr);
+      renderSidebarHistorial();
+      renderActividadInline();
+    }
+    function tiempoRel(ts) {
+      const d = Date.now() - ts, m = Math.floor(d/60000), h = Math.floor(d/3600000), dy = Math.floor(d/86400000);
+      if (m < 1) return 'Ahora';
+      if (m < 60) return `${m} min`;
+      if (h < 24) return `${h} h`;
+      if (dy === 1) return 'Ayer';
+      return `${dy} días`;
+    }
+
+    // Colores por materia
+    const MATERIA_COLOR = {
+      matematica:'#7c3aed', ciencia:'#059669', comunicacion:'#dc2626',
+      historia:'#d97706', ingles:'#2563eb', arte:'#c026d3',
+      tecnologia:'#0284c7', filosofia:'#4338ca'
+    };
+    const MATERIA_LETRA = {
+      matematica:'M', ciencia:'C', comunicacion:'C',
+      historia:'H', ingles:'I', arte:'A', tecnologia:'T', filosofia:'F'
+    };
+
+    function buildHistCard(entry) {
+      const color = MATERIA_COLOR[entry.materia] || '#6d28d9';
+      const letra = MATERIA_LETRA[entry.materia] || '📄';
+      return `<li style="display:flex;align-items:center;gap:.65rem;padding:.6rem .75rem;background:#f8fbff;border-radius:.85rem;text-decoration:none;">
+        <span style="width:2rem;height:2rem;border-radius:.6rem;background:${color}22;color:${color};font-size:.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${letra}</span>
+        <span style="flex:1;min-width:0;">
+          <a href="${entry.id}.html" style="display:block;font-size:.82rem;font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="${entry.titulo}">${entry.titulo}</a>
+          <span style="font-size:.72rem;color:var(--text-muted);">${entry.grado} · ${tiempoRel(entry.ts)}</span>
+        </span>
+      </li>`;
+    }
+
+    function renderSidebarHistorial() {
+      const list = document.getElementById('historialList');
+      if (!list) return;
+      const arr = histGet().slice(0, HIST_PANEL);
+      if (!arr.length) {
+        list.innerHTML = '<li style="color:var(--text-muted);font-size:.85rem;text-align:center;padding:.75rem 0;">Aún no has visto ningún recurso.</li>';
+        document.getElementById('verTodoLink').style.display = 'none';
+        return;
+      }
+      list.innerHTML = arr.map(buildHistCard).join('');
+      const verTodo = document.getElementById('verTodoLink');
+      if (verTodo) verTodo.style.display = histGet().length > HIST_PANEL ? 'block' : 'none';
+    }
+
+    // Sección inline encima de los grados
+    function renderActividadInline() {
+      const section = document.getElementById('actividadSection');
+      const grid    = document.getElementById('actividadGrid');
+      if (!section || !grid) return;
+      const arr = histGet().slice(0, HIST_PANEL);
+      if (!arr.length) { section.style.display = 'none'; return; }
+      section.style.display = 'block';
+      grid.innerHTML = arr.map(entry => {
+        const color = MATERIA_COLOR[entry.materia] || '#6d28d9';
+        const letra = MATERIA_LETRA[entry.materia] || '📄';
+        return `<article class="book-card" style="cursor:pointer;" onclick="location.href='${entry.id}.html'">
+          <div style="width:2.4rem;height:2.4rem;border-radius:.75rem;background:${color}22;color:${color};font-size:.9rem;font-weight:800;display:flex;align-items:center;justify-content:center;">${letra}</div>
+          <div><p class="book-category" style="color:${color};">${entry.materia}</p><h4 style="margin:0;font-size:.88rem;">${entry.titulo}</h4><p class="book-grade">${entry.grado}</p></div>
+          <div class="book-actions"><span style="font-size:.72rem;color:var(--text-muted);">${tiempoRel(entry.ts)}</span><a href="${entry.id}.html" class="button button-primary" style="font-size:.8rem;padding:.45rem .85rem;">Continuar</a></div>
+        </article>`;
+      }).join('');
+    }
+
+    // Intercepta clics en "Leer" para guardar en historial
     document.getElementById('booksSection').addEventListener('click', (e) => {
       const link = e.target.closest('a.button-primary');
       if (!link) return;
       const card = link.closest('.book-card');
-      if (!card || !currentUser) return;
-
-      registrarLectura(currentUser, {
-        titulo:  card.dataset.titulo  || 'Libro',
-        materia: card.dataset.materia || '',
-        grado:   card.dataset.grado   || '',
-        tipo:    card.dataset.tipo    || ''
+      if (!card) return;
+      const id = (link.getAttribute('href') || '').replace(/\.html$/, '').replace(/^\.\//, '');
+      if (!id || id === '#') return;
+      histAdd({
+        id,
+        titulo:  card.dataset.titulo  || 'Recurso',
+        materia: card.dataset.materia || 'general',
+        grado:   (card.dataset.grado ? card.dataset.grado + '° Secundaria' : ''),
+        tipo:    card.dataset.tipo    || 'PDF'
       });
+      // También guardar en Firebase si hay sesión (secundario, no bloquea)
+      if (currentUser) {
+        try {
+          const ref = doc(_db, 'usuarios', currentUser.uid);
+          getDoc(ref).then(snap => {
+            if (!snap.exists()) return;
+            const hist = (snap.data().historial || []).filter(h => h.titulo !== card.dataset.titulo);
+            hist.push({ titulo: card.dataset.titulo, materia: card.dataset.materia, grado: card.dataset.grado, fecha: new Date().toISOString() });
+            updateDoc(ref, { historial: hist.slice(-20) }).catch(() => {});
+          });
+        } catch {}
+      }
     });
+
+    // Init
+    renderSidebarHistorial();
+    renderActividadInline();
   </script>
 </body>
 </html>
