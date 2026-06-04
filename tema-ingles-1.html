@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Inglés | 1° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-1.html">1° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Inglés</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">🇬🇧</div>
+          <div><h3>Inglés</h3><p>1° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Vocabulario Básico</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Greetings & Introductions</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Numbers, Colors & Shapes</a></li>
+          <li><p class="toc-section-title">II. Gramática Elemental</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Verb To Be</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Present Simple</a></li>
+          <li><p class="toc-section-title">III. Comunicación</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Daily Routines</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Family & Descriptions</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <!-- CAP I -->
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Beginner Level</p>
+              <h2>Vocabulario Básico</h2>
+              <p>Saludos, presentaciones, números y colores</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">🗣️</span>
+              <div><h3>Start here!</h3><p>Every language journey begins with the basics. Master greetings, numbers and colors to start communicating in English from day one.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-english">👋</div>
+                <div class="topic-book-info">
+                  <h4>Greetings & Introductions</h4>
+                  <p>Saludos formales e informales, presentarse</p>
+                  <div class="topic-tags"><span class="topic-tag">Hello</span><span class="topic-tag">My name is</span><span class="topic-tag">Formal/Informal</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>👋 Greetings & Introductions</h3>
+                <p>En inglés existen saludos formales (para situaciones oficiales, con adultos o desconocidos) e informales (con amigos y conocidos). Aprender a presentarte correctamente es la base de la comunicación.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🤝 Formal Greetings</h4>
+                    <ul>
+                      <li>Good morning — Buenos días</li>
+                      <li>Good afternoon — Buenas tardes</li>
+                      <li>Good evening — Buenas noches (al llegar)</li>
+                      <li>Good night — Buenas noches (al despedirse)</li>
+                      <li>How do you do? — ¿Cómo está usted?</li>
+                      <li>How are you? — ¿Cómo está?</li>
+                      <li>Nice to meet you — Mucho gusto</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>😊 Informal Greetings</h4>
+                    <ul>
+                      <li>Hi / Hey — Hola</li>
+                      <li>What's up? — ¿Qué hay? / ¿Qué pasa?</li>
+                      <li>How are you doing? — ¿Cómo te va?</li>
+                      <li>See you later — Hasta luego</li>
+                      <li>Bye / Goodbye — Adiós</li>
+                      <li>Take care — Cuídate</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">My name is [nombre]. I am [edad] years old. I am from [ciudad/país].</div>
+                <div class="example-block">
+                  <strong>Diálogo de ejemplo</strong>
+                  <p>A: "Hi! My name is María. What's your name?"<br>
+                  B: "Hello! My name is Carlos. Nice to meet you, María!"<br>
+                  A: "Nice to meet you too! Where are you from?"<br>
+                  B: "I'm from Lima, Peru. And you?"</p>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Traduce al inglés: "Buenos días profesora. Mi nombre es Ana. Tengo 12 años y soy de Cusco."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">"Good morning, teacher. My name is Ana. I am 12 years old and I am from Cusco."</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      ¿Cuál es la diferencia entre "Good night" y "Good evening"?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1"><strong>Good evening</strong> se usa como saludo al llegar a un lugar por la noche. <strong>Good night</strong> se usa para despedirse cuando es de noche o cuando alguien va a dormir.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-english">🔢</div>
+                <div class="topic-book-info">
+                  <h4>Numbers, Colors & Shapes</h4>
+                  <p>Números 1-100, colores y figuras geométricas en inglés</p>
+                  <div class="topic-tags"><span class="topic-tag">1-100</span><span class="topic-tag">Colors</span><span class="topic-tag">Shapes</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🔢 Numbers, Colors & Shapes</h3>
+                <p>Los números, colores y formas son el vocabulario base de cualquier descripción. Dominarlos te permite participar en casi cualquier conversación básica en inglés.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔢 Numbers 1–20 (básicos)</h4>
+                    <ul>
+                      <li>1-one, 2-two, 3-three, 4-four, 5-five</li>
+                      <li>6-six, 7-seven, 8-eight, 9-nine, 10-ten</li>
+                      <li>11-eleven, 12-twelve, 13-thirteen, 14-fourteen, 15-fifteen</li>
+                      <li>16-sixteen, 17-seventeen, 18-eighteen, 19-nineteen, 20-twenty</li>
+                      <li>30-thirty, 40-forty, 50-fifty, 60-sixty</li>
+                      <li>70-seventy, 80-eighty, 90-ninety, 100-one hundred</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎨 Colors & Shapes</h4>
+                    <ul>
+                      <li>Red (rojo) · Blue (azul) · Yellow (amarillo)</li>
+                      <li>Green (verde) · Orange (naranja) · Purple (morado)</li>
+                      <li>White (blanco) · Black (negro) · Gray (gris)</li>
+                      <li>Circle (círculo) · Square (cuadrado) · Triangle (triángulo)</li>
+                      <li>Rectangle (rectángulo) · Star (estrella)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Escribe en inglés: 15, 27, 43, 68, 99.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">fifteen · twenty-seven · forty-three · sixty-eight · ninety-nine.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Traduce al español: "The big red circle is next to the small blue square."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">"El gran círculo rojo está al lado del pequeño cuadrado azul."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP II -->
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Elementary Level</p>
+              <h2>Gramática Elemental</h2>
+              <p>Verb To Be y Present Simple</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">📐</span>
+              <div><h3>Grammar is the skeleton of language</h3><p>The verb "to be" and the present simple are the most used structures in English. Master them and you'll be able to describe anything.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-english">🔵</div>
+                <div class="topic-book-info">
+                  <h4>Verb To Be</h4>
+                  <p>Am / Is / Are — afirmativo, negativo e interrogativo</p>
+                  <div class="topic-tags"><span class="topic-tag">Am</span><span class="topic-tag">Is</span><span class="topic-tag">Are</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🔵 Verb To Be — Am / Is / Are</h3>
+                <p>El verbo <strong>to be</strong> (ser/estar) es el verbo más fundamental del inglés. Se usa para identificar personas, describir características y expresar estados.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>✅ Affirmative (Afirmativo)</h4>
+                    <ul>
+                      <li>I <strong>am</strong> a student. (Soy estudiante)</li>
+                      <li>You <strong>are</strong> tall. (Eres alto)</li>
+                      <li>He/She/It <strong>is</strong> happy. (Él/Ella/Ello es feliz)</li>
+                      <li>We/You/They <strong>are</strong> friends. (Somos amigos)</li>
+                      <li>Contracciones: I'm, You're, He's, She's, We're, They're</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>❌ Negative & ❓ Questions</h4>
+                    <ul>
+                      <li>I <strong>am not</strong> tired. (I'm not tired)</li>
+                      <li>She <strong>is not</strong> here. (She isn't here)</li>
+                      <li>They <strong>are not</strong> late. (They aren't late)</li>
+                      <li><strong>Am</strong> I right? — Yes, you are / No, you're not.</li>
+                      <li><strong>Is</strong> he a teacher? — Yes, he is / No, he isn't.</li>
+                      <li><strong>Are</strong> they students? — Yes, they are.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Subject + am/is/are + [complement] | Am/Is/Are + subject + [complement]?</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Completa con am, is o are: She ___ a doctor. We ___ students. I ___ from Peru. They ___ not happy. ___ you ready?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">She <strong>is</strong> a doctor. We <strong>are</strong> students. I <strong>am</strong> from Peru. They <strong>are</strong> not happy. <strong>Are</strong> you ready?</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Convierte a negativa y pregunta: "Pedro is my brother."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Negativa: "Pedro <strong>is not (isn't) my brother</strong>." Pregunta: "<strong>Is</strong> Pedro your brother?"</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-english">📅</div>
+                <div class="topic-book-info">
+                  <h4>Present Simple</h4>
+                  <p>Rutinas, hábitos y verdades universales</p>
+                  <div class="topic-tags"><span class="topic-tag">Daily habits</span><span class="topic-tag">Do/Does</span><span class="topic-tag">S en 3ª</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>📅 Present Simple</h3>
+                <p>El <strong>Present Simple</strong> (Presente Simple) se usa para hablar de rutinas, hábitos, hechos permanentes y verdades científicas. Es el tiempo verbal más usado en inglés.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Estructura</h4>
+                    <ul>
+                      <li><strong>Afirmativo:</strong> I/You/We/They + verb | He/She/It + verb+s/es</li>
+                      <li>I <em>eat</em> lunch at 1pm. She <em>eats</em> at 2pm.</li>
+                      <li><strong>Negativo:</strong> don't / doesn't + verb</li>
+                      <li>I <em>don't</em> like coffee. He <em>doesn't</em> play tennis.</li>
+                      <li><strong>Pregunta:</strong> Do/Does + subject + verb?</li>
+                      <li><em>Do</em> you speak English? <em>Does</em> she like music?</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⏰ Time expressions</h4>
+                    <ul>
+                      <li>always (siempre) · usually (usualmente)</li>
+                      <li>often (frecuentemente) · sometimes (a veces)</li>
+                      <li>rarely (raramente) · never (nunca)</li>
+                      <li>every day/week/month (cada día/semana/mes)</li>
+                      <li>on Mondays, in the morning, at night</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Escribe la forma correcta: She (study) ___ every day. They (not watch) ___ TV at night. (Do/Does) ___ he like pizza?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">She <strong>studies</strong> every day. They <strong>don't watch</strong> TV at night. <strong>Does</strong> he like pizza?</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Escribe 4 oraciones sobre tus hábitos diarios en inglés usando el Present Simple.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Respuesta personal. Ejemplo: "I wake up at 6am every day. I usually have breakfast with my family. I go to school by bus. I don't watch TV on weekdays."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP III -->
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Pre-Intermediate Level</p>
+              <h2>Comunicación Práctica</h2>
+              <p>Rutinas diarias, familia y descripciones</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">💬</span>
+              <div><h3>Use English in real life!</h3><p>Now that you know the grammar basics, let's apply them to real situations: talking about your day, your family, and describing people.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-english">⏰</div>
+                <div class="topic-book-info">
+                  <h4>Daily Routines</h4>
+                  <p>Vocabulario de rutinas diarias y expresiones de tiempo</p>
+                  <div class="topic-tags"><span class="topic-tag">Wake up</span><span class="topic-tag">At noon</span><span class="topic-tag">Before/After</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>⏰ Daily Routines — Rutinas Diarias</h3>
+                <p>Describir tu rutina diaria es uno de los temas más comunes en el inglés básico. Combina el Present Simple con expresiones de tiempo para hablar con naturalidad.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌅 Routine vocabulary</h4>
+                    <ul>
+                      <li>wake up / get up — despertar/levantarse</li>
+                      <li>brush my teeth — cepillarme los dientes</li>
+                      <li>have breakfast/lunch/dinner — desayunar/almorzar/cenar</li>
+                      <li>go to school — ir al colegio</li>
+                      <li>study / do homework — estudiar / hacer tareas</li>
+                      <li>watch TV / play games — ver TV / jugar</li>
+                      <li>go to bed — irse a la cama</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🕐 Time expressions</h4>
+                    <ul>
+                      <li>in the morning (por la mañana)</li>
+                      <li>in the afternoon (por la tarde)</li>
+                      <li>in the evening (al atardecer)</li>
+                      <li>at night (por la noche)</li>
+                      <li>at noon (al mediodía)</li>
+                      <li>at [hora]: at 7am, at half past three</li>
+                      <li>before/after breakfast</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Ordena la rutina de menor a mayor frecuencia usual: go to bed, have lunch, wake up, go to school, have dinner.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">Orden típico: wake up → go to school → have lunch → have dinner → go to bed.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Describe tu rutina de mañana en 5 oraciones en inglés.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Respuesta personal. Ejemplo: "I wake up at 6:30am. I brush my teeth and take a shower. Then I have breakfast with my family. I go to school at 7:15am. I usually arrive at 7:30am."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-english">👨‍👩‍👧‍👦</div>
+                <div class="topic-book-info">
+                  <h4>Family & Descriptions</h4>
+                  <p>Vocabulario familiar y cómo describir personas</p>
+                  <div class="topic-tags"><span class="topic-tag">Family</span><span class="topic-tag">Adjectives</span><span class="topic-tag">He/She has</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>👨‍👩‍👧‍👦 Family & Descriptions</h3>
+                <p>Describe a tu familia y a las personas que te rodean usando el vocabulario familiar y adjetivos descriptivos con la estructura <strong>have/has</strong> para características físicas.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>👨‍👩‍👧 Family vocabulary</h4>
+                    <ul>
+                      <li>father/dad (padre) · mother/mom (madre)</li>
+                      <li>brother (hermano) · sister (hermana)</li>
+                      <li>grandfather/grandpa · grandmother/grandma</li>
+                      <li>uncle (tío) · aunt (tía)</li>
+                      <li>cousin (primo/a) · nephew (sobrino) · niece (sobrina)</li>
+                      <li>only child — hijo único</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>👤 Physical descriptions</h4>
+                    <ul>
+                      <li>He/She <strong>is</strong> tall/short/medium height</li>
+                      <li>He/She <strong>has</strong> short/long/curly/straight hair</li>
+                      <li>He/She <strong>has</strong> blue/brown/green eyes</li>
+                      <li>He/She <strong>is</strong> young/old/middle-aged</li>
+                      <li>He/She <strong>is</strong> thin/slim/heavy</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="example-block">
+                  <strong>Example</strong>
+                  <p>"My mother is tall and slim. She has long, black hair and brown eyes. She is 40 years old and she is a teacher."</p>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      ¿Cómo se llaman en inglés: el hijo del hermano de tu papá, la mamá de tu mamá, el hermano de tu mamá?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">El hijo del hermano de tu papá = <strong>cousin</strong> (primo). La mamá de tu mamá = <strong>grandmother</strong>. El hermano de tu mamá = <strong>uncle</strong>.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Describe a un miembro de tu familia en 4–5 oraciones en inglés.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t6">Respuesta personal. Verificar uso correcto de: is/has para descripción, adjetivos en posición correcta, nombre del familiar en inglés.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-1.html" class="button button-secondary">← 1° Secundaria</a>
+      <a href="grado-2.html" class="button button-primary">2° Secundaria →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=6,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),margin=15,pageW=210,pageH=297;let y=margin;
+      const addText=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));const lines=doc.splitTextToSize(text,pageW-margin*2);lines.forEach(line=>{if(y>pageH-margin){doc.addPage();y=margin;}doc.text(line,margin,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(37,99,235);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ingles - 1 Secundaria',margin,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',margin,20);y=38;
+      [{t:'Greetings & Introductions',c:'Formal: Good morning/afternoon/evening/night, How do you do, Nice to meet you. Informal: Hi, Hey, What\'s up, See you later, Bye. Presentacion: My name is [name]. I am [age] years old. I am from [city].'},
+       {t:'Numbers, Colors & Shapes',c:'1-one, 2-two...20-twenty, 30-thirty...100-one hundred. Colors: red, blue, yellow, green, orange, purple, white, black. Shapes: circle, square, triangle, rectangle, star.'},
+       {t:'Verb To Be',c:'I am, You are, He/She/It is, We/You/They are. Negativo: am not, is not (isn\'t), are not (aren\'t). Pregunta: Am I? Is he? Are they?'},
+       {t:'Present Simple',c:'I/You/We/They + verb. He/She/It + verb+s. Negativo: don\'t / doesn\'t + verb. Pregunta: Do/Does + subject + verb? Time expressions: always, usually, often, sometimes, never, every day.'},
+       {t:'Daily Routines',c:'wake up, brush teeth, have breakfast, go to school, study, do homework, watch TV, go to bed. Time: in the morning, in the afternoon, at night, at noon, at [hora].'},
+       {t:'Family & Descriptions',c:'father, mother, brother, sister, grandparents, uncle, aunt, cousin. Descriptions: He/She is tall/short. He/She has long/short/curly hair. He/She has blue/brown/green eyes.'},
+      ].forEach((t,i)=>{addText(`${i+1}. ${t.t}`,13,true,[37,99,235]);addText(t.c,10,false,[50,50,60]);y+=3;});
+      y+=5;addText('Exercises',13,true,[37,99,235]);
+      ['1. Traduce: Buenos dias maestra, mi nombre es Luis, tengo 12 anos y soy de Lima.',
+       '2. Escribe los numeros en ingles: 15, 27, 43, 68, 99.',
+       '3. Completa: She ___ a teacher. They ___ not ready. ___ you from Peru?',
+       '4. Escribe 5 oraciones sobre tu rutina diaria en Present Simple.',
+       '5. Describe a un familiar en 4 oraciones usando is/has y adjetivos.',
+      ].forEach(ex=>addText(ex,10,false,[50,50,60]));
+      doc.save('Ingles-1Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
