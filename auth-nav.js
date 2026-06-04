@@ -3,6 +3,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+// ── Limpiar .html de la URL en la barra del navegador ──
+(function () {
+  const loc = window.location;
+  if (loc.pathname.endsWith('.html')) {
+    const clean = loc.pathname.slice(0, -5);
+    history.replaceState(null, '', clean + loc.search + loc.hash);
+  }
+})();
+
 const _app = initializeApp({
   apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
   authDomain: "edunova-library.firebaseapp.com",
