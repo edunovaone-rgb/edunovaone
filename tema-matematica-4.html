@@ -11,11 +11,8 @@
 </head>
 <body>
   <nav class="uni-nav">
-    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
-    <ul class="uni-nav-links">
-      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
-      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
-    </ul>
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
     <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
   </nav>
   <main class="page-content">
@@ -33,12 +30,12 @@
         <ul class="toc-list">
           <li><p class="toc-section-title">I. Álgebra</p></li>
           <li><a href="#t1" class="active"><span class="toc-num">1</span>Factorización</a></li>
-          <li><a href="#t2"><span class="toc-num">2</span>Inecuaciones</a></li>
-          <li><p class="toc-section-title">II. Geometría Analítica</p></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Inecuaciones Lineales</a></li>
+          <li><p class="toc-section-title">II. Geometría y Trigonometría</p></li>
           <li><a href="#t3"><span class="toc-num">3</span>Geometría Analítica</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Trigonometría Avanzada</a></li>
           <li><p class="toc-section-title">III. Estadística y Probabilidad</p></li>
-          <li><a href="#t4"><span class="toc-num">4</span>Probabilidades</a></li>
-          <li><a href="#t5"><span class="toc-num">5</span>Trigonometría</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Probabilidades</a></li>
           <li><a href="#t6"><span class="toc-num">6</span>Estadística Inferencial</a></li>
         </ul>
         <div class="progress-block">
@@ -49,70 +46,67 @@
       </aside>
       <div class="book-main">
 
-        <!-- CH I -->
-        <div class="chapter-card open" id="ch-alg">
-          <div class="chapter-header" onclick="toggleChapter('ch-alg')">
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
             <div class="chapter-num num-basic">I</div>
-            <div class="chapter-header-text"><p class="chapter-level">Álgebra</p><h2>Factorización e Inecuaciones</h2><p>Técnicas algebraicas fundamentales</p></div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Básico</p><h2>Álgebra Avanzada</h2><p>Factorización e inecuaciones</p></div>
             <span class="chapter-toggle">▼</span>
           </div>
           <div class="chapter-body">
-            <div class="section-banner banner-basic"><span class="banner-icon">🔣</span><div><h3>El lenguaje del álgebra</h3><p>La factorización es una herramienta esencial para simplificar expresiones y resolver ecuaciones.</p></div></div>
+            <div class="section-banner banner-basic"><span class="banner-icon">🔢</span><div><h3>Descomponer para comprender</h3><p>La factorización es una herramienta esencial del álgebra. Te permite simplificar expresiones, resolver ecuaciones y analizar funciones.</p></div></div>
             <div class="topics-grid">
 
               <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
-                <div class="topic-book-cover cover-basic">🔣</div>
-                <div class="topic-book-info"><h4>Factorización</h4><p>Factor común, diferencia de cuadrados, trinomio, aspa</p>
-                  <div class="topic-tags"><span class="topic-tag">Factor común</span><span class="topic-tag">Dif. cuadrados</span><span class="topic-tag">Aspa</span></div>
+                <div class="topic-book-cover cover-basic">🔩</div>
+                <div class="topic-book-info"><h4>Factorización</h4><p>Factor común, diferencia de cuadrados, trinomio perfecto y aspa simple</p>
+                  <div class="topic-tags"><span class="topic-tag">Factor común</span><span class="topic-tag">a²-b²</span><span class="topic-tag">Aspa</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t1">
-                <h3>🔣 Factorización Algebraica</h3>
-                <p>Factorizar es expresar un polinomio como <strong>producto de factores</strong> más simples. Es la operación inversa del desarrollo algebraico y es fundamental para resolver ecuaciones.</p>
+                <h3>🔩 Factorización de Polinomios</h3>
+                <p>Factorizar un polinomio es escribirlo como producto de factores más simples. Es la operación inversa de la multiplicación de polinomios y es fundamental para simplificar fracciones algebraicas y resolver ecuaciones.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Métodos de factorización</h4>
+                    <h4>📋 Métodos de factorización</h4>
                     <ul>
-                      <li><strong>Factor común:</strong> ax + ay = a(x+y) → 6x²+9x = 3x(2x+3)</li>
-                      <li><strong>Diferencia de cuadrados:</strong> a²-b² = (a+b)(a-b) → x²-25 = (x+5)(x-5)</li>
-                      <li><strong>Trinomio cuadrado perfecto:</strong> a²±2ab+b² = (a±b)² → x²+6x+9 = (x+3)²</li>
-                      <li><strong>Aspa simple:</strong> para ax²+bx+c; buscar factores de a·c que sumen b</li>
-                      <li><strong>Suma/Dif. de cubos:</strong> a³±b³ = (a±b)(a²∓ab+b²)</li>
+                      <li><strong>Factor común:</strong> ax + ay = a(x+y). Ej: 6x²+9x = 3x(2x+3)</li>
+                      <li><strong>Diferencia de cuadrados:</strong> a²-b² = (a+b)(a-b). Ej: x²-25 = (x+5)(x-5)</li>
+                      <li><strong>Trinomio cuadrado perfecto:</strong> a²±2ab+b² = (a±b)². Ej: x²+6x+9 = (x+3)²</li>
+                      <li><strong>Aspa simple:</strong> x²+bx+c = (x+p)(x+q) donde p+q=b y p·q=c</li>
+                      <li><strong>Suma/diferencia de cubos:</strong> a³±b³ = (a±b)(a²∓ab+b²)</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Método del Aspa Simple</h4>
+                    <h4>🔧 Ejemplos resueltos</h4>
                     <ul>
-                      <li>Factorizar: x²+5x+6</li>
-                      <li>Buscar a, b tal que: a·b = 6 y a+b = 5</li>
-                      <li>a=2, b=3 (2×3=6; 2+3=5) ✓</li>
-                      <li>Resultado: (x+2)(x+3)</li>
-                      <li>Verificar: (x+2)(x+3)=x²+5x+6 ✓</li>
-                      <li>Ejemplo 2: x²-7x+12 → (x-3)(x-4)</li>
+                      <li>x²-9 = (x+3)(x-3) [dif. cuadrados]</li>
+                      <li>x²+5x+6: busco p+q=5, pq=6 → p=2, q=3 → (x+2)(x+3)</li>
+                      <li>x²-7x+12: p+q=-7, pq=12 → p=-3, q=-4 → (x-3)(x-4)</li>
+                      <li>4x²-12x+9 = (2x-3)² [trinomio cuadrado perfecto]</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">a²−b² = (a+b)(a−b) | a²+2ab+b² = (a+b)² | ax²+bx+c = (px+q)(rx+s)</div>
+                <div class="formula-display">a²-b² = (a+b)(a-b) | x²+(p+q)x+pq = (x+p)(x+q)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Factoriza: a) 4x²−9 &nbsp; b) x²+8x+16 &nbsp; c) 2x²+7x+3
+                      Factoriza: a) x²-16 b) x²+7x+12 c) 2x²+8x d) x²-8x+16
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t1">a) 4x²−9 = (2x)²−3² = <strong>(2x+3)(2x−3)</strong> · b) x²+8x+16 = (x+4)² = <strong>(x+4)²</strong> · c) 2x²+7x+3: buscar factores → (2x+1)(x+3) → verificar: 2x²+6x+x+3 = <strong>2x²+7x+3 ✓</strong></div>
+                      <div class="answer-box" id="ans1-t1">a) (x+4)(x-4) · b) (x+3)(x+4) · c) 2x(x+4) · d) (x-4)²</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Factoriza completamente: 3x³−12x
+                      Factoriza por aspa simple: 2x²+5x+3
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t1">Primero saco factor común: 3x³−12x = 3x(x²−4) = 3x·(x+2)(x−2) → Respuesta: <strong>3x(x+2)(x−2)</strong></div>
+                      <div class="answer-box" id="ans2-t1">Aspa doble: buscar (2x+a)(x+b) donde 2b+a=5, ab=3. a=3, b=1 → <strong>(2x+3)(x+1)</strong>. Verificar: 2x²+2x+3x+3 = 2x²+5x+3 ✓</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 3</strong>
-                      Factoriza: x²−x−12
+                      Simplifica la fracción: (x²-4)/(x²+4x+4)
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans3-t1">Busco a·b = −12 y a+b = −1 → a=−4, b=3 (−4×3=−12; −4+3=−1) → <strong>(x−4)(x+3)</strong></div>
+                      <div class="answer-box" id="ans3-t1">Numerador: x²-4 = (x+2)(x-2). Denominador: x²+4x+4 = (x+2)². Simplificando: <strong>(x-2)/(x+2)</strong></div>
                     </li>
                   </ul>
                 </div>
@@ -120,51 +114,50 @@
               </div>
 
               <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
-                <div class="topic-book-cover cover-basic">⚖️</div>
-                <div class="topic-book-info"><h4>Inecuaciones Lineales</h4><p>Inecuaciones simples y sistemas de inecuaciones</p>
+                <div class="topic-book-cover cover-basic">📏</div>
+                <div class="topic-book-info"><h4>Inecuaciones Lineales</h4><p>Resolución, representación en recta y sistemas</p>
                   <div class="topic-tags"><span class="topic-tag">&lt; &gt; ≤ ≥</span><span class="topic-tag">Intervalo</span><span class="topic-tag">Sistema</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t2">
-                <h3>⚖️ Inecuaciones Lineales</h3>
-                <p>Una <strong>inecuación</strong> es una desigualdad que expresa la relación entre dos expresiones algebraicas. Se resuelve igual que una ecuación, con una regla especial: al multiplicar o dividir por un número negativo, se invierte el signo de desigualdad.</p>
+                <h3>📏 Inecuaciones Lineales</h3>
+                <p>Una <strong>inecuación</strong> es una desigualdad algebraica. Su solución es un conjunto de valores (un intervalo) en lugar de un valor único como en las ecuaciones.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Reglas de inecuaciones</h4>
+                    <h4>📋 Reglas de inecuaciones</h4>
                     <ul>
-                      <li>Se puede sumar o restar igual a ambos lados</li>
-                      <li>Se puede multiplicar/dividir por positivo sin cambiar el signo</li>
-                      <li><strong>Si multiplicas/divides por negativo: cambia el signo</strong></li>
-                      <li>Ejemplo: −2x &lt; 6 → x &gt; −3 (se invirtió &lt; por &gt;)</li>
-                      <li>Solución: un intervalo, se representa en recta numérica</li>
+                      <li>Se pueden sumar/restar cualquier número en ambos lados</li>
+                      <li>Se puede multiplicar/dividir por un positivo → el signo NO cambia</li>
+                      <li><strong>Multiplicar/dividir por negativo → el signo CAMBIA</strong></li>
+                      <li>Ej: -2x &lt; 8 → x &gt; -4 (divide por -2, cambia &lt; a &gt;)</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Sistemas de inecuaciones</h4>
+                    <h4>🔧 Ejemplo resuelto</h4>
                     <ul>
-                      <li>Sistema: resolver cada inecuación y encontrar la intersección</li>
-                      <li>Ej: x+2 &gt; 5 → x &gt; 3 · 2x−1 ≤ 9 → x ≤ 5</li>
-                      <li>Solución: 3 &lt; x ≤ 5 (intervalo: (3, 5])</li>
-                      <li>Notación de intervalos: [a,b], (a,b), [a,b), (a,b]</li>
-                      <li>[: incluye el extremo | (: no incluye el extremo</li>
+                      <li>Resolver: 3x - 2 ≤ 7</li>
+                      <li>3x ≤ 9</li>
+                      <li>x ≤ 3</li>
+                      <li>Solución: (-∞, 3]</li>
+                      <li>En recta numérica: punto cerrado en 3, flecha a la izquierda</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Si c &lt; 0: ax &lt; b → x &gt; b/a (invertir signo)</div>
+                <div class="formula-display">Si a &lt; b y c &lt; 0 → ac &gt; bc (el signo se invierte)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Resuelve: 3x−5 &gt; 7
+                      Resuelve y representa en la recta: 2x + 3 &gt; 9
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t2">3x−5 &gt; 7 → 3x &gt; 12 → x &gt; 4. Solución: <strong>x &gt; 4</strong> ó intervalo <strong>(4, +∞)</strong></div>
+                      <div class="answer-box" id="ans1-t2">2x &gt; 6 → x &gt; 3. Solución: (3, +∞). En recta: punto abierto en 3, flecha a la derecha.</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Resuelve el sistema: 2x+1 ≥ 5 y x−3 &lt; 2
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2b')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t2b">Primera: 2x+1≥5 → 2x≥4 → x≥2. Segunda: x−3&lt;2 → x&lt;5. Intersección: <strong>2 ≤ x &lt; 5</strong>, intervalo <strong>[2, 5)</strong></div>
+                      Resuelve: -4x + 1 ≥ -7
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">-4x ≥ -8 → dividir por -4 (cambia signo) → x ≤ 2. Solución: <strong>(-∞, 2]</strong></div>
                     </li>
                   </ul>
                 </div>
@@ -175,183 +168,177 @@
           </div>
         </div>
 
-        <!-- CH II -->
-        <div class="chapter-card" id="ch-geo">
-          <div class="chapter-header" onclick="toggleChapter('ch-geo')">
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
             <div class="chapter-num num-inter">II</div>
-            <div class="chapter-header-text"><p class="chapter-level">Geometría Analítica</p><h2>Plano Cartesiano y Recta</h2><p>Distancias, puntos medios y ecuación de la recta</p></div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Intermedio</p><h2>Geometría Analítica y Trigonometría</h2><p>Plano cartesiano, ecuaciones y ley de senos/cosenos</p></div>
             <span class="chapter-toggle">▼</span>
           </div>
           <div class="chapter-body">
-            <div class="section-banner banner-inter"><span class="banner-icon">📍</span><div><h3>La geometría en coordenadas</h3><p>La geometría analítica une el álgebra con la geometría usando el plano cartesiano.</p></div></div>
+            <div class="section-banner banner-inter"><span class="banner-icon">📡</span><div><h3>La geometría con álgebra</h3><p>La geometría analítica une el plano cartesiano con las ecuaciones algebraicas, permitiendo describir figuras geométricas con fórmulas matemáticas precisas.</p></div></div>
             <div class="topics-grid">
+
               <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
                 <div class="topic-book-cover cover-inter">📍</div>
-                <div class="topic-book-info"><h4>Geometría Analítica</h4><p>Plano cartesiano, distancia, punto medio, recta</p>
-                  <div class="topic-tags"><span class="topic-tag">Distancia</span><span class="topic-tag">Punto medio</span><span class="topic-tag">y=mx+b</span></div>
+                <div class="topic-book-info"><h4>Geometría Analítica</h4><p>Distancia, punto medio, ecuación de la recta</p>
+                  <div class="topic-tags"><span class="topic-tag">Distancia</span><span class="topic-tag">Punto medio</span><span class="topic-tag">Recta</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t3">
-                <h3>📍 Geometría Analítica</h3>
-                <p>La <strong>geometría analítica</strong> estudia figuras geométricas mediante coordenadas en el plano cartesiano. Las fórmulas de distancia, punto medio y ecuación de la recta son las herramientas fundamentales.</p>
+                <h3>📍 Geometría Analítica en el Plano</h3>
+                <p>La <strong>geometría analítica</strong> estudia las figuras geométricas mediante coordenadas y ecuaciones algebraicas. El plano cartesiano permite representar puntos, rectas y curvas con ecuaciones.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
                     <h4>📐 Fórmulas esenciales</h4>
                     <ul>
-                      <li><strong>Distancia:</strong> d = √[(x₂−x₁)²+(y₂−y₁)²]</li>
-                      <li><strong>Punto medio:</strong> M = ((x₁+x₂)/2 , (y₁+y₂)/2)</li>
-                      <li><strong>Pendiente:</strong> m = (y₂−y₁)/(x₂−x₁)</li>
-                      <li><strong>Ec. de la recta (punto-pendiente):</strong> y−y₁ = m(x−x₁)</li>
-                      <li><strong>Forma pendiente-intersección:</strong> y = mx+b</li>
-                      <li><strong>Forma general:</strong> Ax+By+C = 0</li>
+                      <li><strong>Distancia entre P₁(x₁,y₁) y P₂(x₂,y₂):</strong><br>d = √[(x₂-x₁)²+(y₂-y₁)²]</li>
+                      <li><strong>Punto medio M:</strong><br>M = ((x₁+x₂)/2, (y₁+y₂)/2)</li>
+                      <li><strong>Pendiente:</strong> m = (y₂-y₁)/(x₂-x₁)</li>
+                      <li><strong>Ecuación de la recta:</strong> y-y₁ = m(x-x₁)</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Ejemplo resuelto</h4>
+                    <h4>🔧 Ejemplo</h4>
                     <ul>
-                      <li>A(1,2) y B(4,6)</li>
-                      <li>d = √[(4−1)²+(6−2)²] = √[9+16] = √25 = 5</li>
+                      <li>P₁(1,2) y P₂(4,6):</li>
+                      <li>d = √[(4-1)²+(6-2)²] = √[9+16] = √25 = 5</li>
                       <li>M = ((1+4)/2, (2+6)/2) = (2.5, 4)</li>
-                      <li>m = (6−2)/(4−1) = 4/3</li>
-                      <li>Ecuación: y−2 = (4/3)(x−1) → y = (4/3)x + 2/3</li>
+                      <li>m = (6-2)/(4-1) = 4/3</li>
+                      <li>Recta: y-2 = (4/3)(x-1) → y = (4/3)x + 2/3</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">d = √[(x₂−x₁)²+(y₂−y₁)²] | M = ((x₁+x₂)/2, (y₁+y₂)/2)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Halla la distancia y el punto medio entre P(−2, 3) y Q(4, −5).
+                      Halla la distancia y el punto medio entre A(0,0) y B(6,8).
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t3">d = √[(4−(−2))²+(−5−3)²] = √[36+64] = √100 = <strong>10</strong>. M = ((−2+4)/2, (3+(−5))/2) = (1, −1) → <strong>M = (1, −1)</strong></div>
+                      <div class="answer-box" id="ans1-t3">d = √(36+64) = √100 = <strong>10</strong>. M = (3, 4)</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Halla la ecuación de la recta que pasa por (2, 1) y (5, 7).
+                      Halla la ecuación de la recta que pasa por (2,1) con pendiente m=3.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t3">m = (7−1)/(5−2) = 6/3 = 2. y−1 = 2(x−2) → y−1 = 2x−4 → <strong>y = 2x − 3</strong></div>
+                      <div class="answer-box" id="ans2-t3">y-1 = 3(x-2) → y = 3x-6+1 → <strong>y = 3x-5</strong></div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CH III -->
-        <div class="chapter-card" id="ch-est">
-          <div class="chapter-header" onclick="toggleChapter('ch-est')">
-            <div class="chapter-num num-advanced">III</div>
-            <div class="chapter-header-text"><p class="chapter-level">Probabilidad y Estadística</p><h2>Probabilidades, Trigonometría y Estadística</h2><p>Azar, triángulos y datos</p></div>
-            <span class="chapter-toggle">▼</span>
-          </div>
-          <div class="chapter-body">
-            <div class="section-banner banner-advanced"><span class="banner-icon">🎲</span><div><h3>Matemática aplicada</h3><p>La probabilidad, trigonometría y estadística tienen aplicaciones directas en ciencias, negocios y la vida cotidiana.</p></div></div>
-            <div class="topics-grid">
 
               <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
-                <div class="topic-book-cover cover-advanced">🎲</div>
-                <div class="topic-book-info"><h4>Probabilidades</h4><p>Espacio muestral, eventos y regla de Laplace</p>
-                  <div class="topic-tags"><span class="topic-tag">P(A)</span><span class="topic-tag">Laplace</span><span class="topic-tag">Complemento</span></div>
+                <div class="topic-book-cover cover-inter">📡</div>
+                <div class="topic-book-info"><h4>Trigonometría Avanzada</h4><p>Ley de senos, ley de cosenos e identidades</p>
+                  <div class="topic-tags"><span class="topic-tag">Ley senos</span><span class="topic-tag">Ley cosenos</span><span class="topic-tag">Identidades</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t4">
-                <h3>🎲 Probabilidades</h3>
-                <p>La <strong>probabilidad</strong> mide la posibilidad de que ocurra un evento. Se basa en el concepto de <strong>experimento aleatorio</strong>: un proceso cuyo resultado no puede predecirse con certeza.</p>
+                <h3>📡 Trigonometría Avanzada</h3>
+                <p>Más allá del triángulo rectángulo, la <strong>ley de senos y cosenos</strong> permite resolver cualquier triángulo, sea o no rectángulo. Son herramientas esenciales en topografía, astronomía e ingeniería.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Conceptos clave</h4>
+                    <h4>📏 Ley de Senos</h4>
                     <ul>
-                      <li><strong>Experimento aleatorio:</strong> lanzar un dado, sacar una carta</li>
-                      <li><strong>Espacio muestral (S):</strong> conjunto de todos los resultados posibles</li>
-                      <li><strong>Evento (A):</strong> subconjunto del espacio muestral</li>
-                      <li><strong>Regla de Laplace:</strong> P(A) = casos favorables / casos totales</li>
-                      <li>0 ≤ P(A) ≤ 1 siempre</li>
-                      <li>P(evento seguro) = 1, P(evento imposible) = 0</li>
+                      <li>a/sen(A) = b/sen(B) = c/sen(C)</li>
+                      <li>Usar cuando conocemos: un lado y dos ángulos (ALA), o dos lados y el ángulo opuesto (LAL opuesto)</li>
+                      <li>Ejemplo: a=8, A=30°, B=45° → b = a·sen(B)/sen(A) = 8·sen(45°)/sen(30°) = 8·0.707/0.5 ≈ 11.3</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Propiedades</h4>
+                    <h4>📐 Ley de Cosenos</h4>
                     <ul>
-                      <li><strong>Complemento:</strong> P(A') = 1 − P(A)</li>
-                      <li><strong>Unión:</strong> P(A∪B) = P(A)+P(B)−P(A∩B)</li>
-                      <li><strong>Independientes:</strong> P(A∩B) = P(A)·P(B)</li>
-                      <li>Ejemplo: dado → S = {1,2,3,4,5,6}</li>
-                      <li>P(par) = 3/6 = 1/2</li>
-                      <li>P(mayor que 4) = 2/6 = 1/3</li>
+                      <li>c² = a² + b² - 2ab·cos(C)</li>
+                      <li>Usar cuando conocemos: tres lados (LLL), o dos lados y el ángulo entre ellos (LAL)</li>
+                      <li>Ejemplo: a=5, b=7, C=60° → c²=25+49-2(5)(7)cos(60°) = 74-35 = 39 → c≈6.24</li>
+                      <li>Nota: si C=90°, se reduce al Teorema de Pitágoras</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">P(A) = n(A)/n(S) | P(A) + P(A') = 1</div>
+                <div class="formula-display">c² = a² + b² - 2ab·cos(C) | a/sen(A) = b/sen(B)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Se lanza un dado. ¿Cuál es la probabilidad de obtener un número primo?
+                      En un triángulo, a=10, b=8, C=60°. Halla el lado c.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t4">S = {1,2,3,4,5,6}. Primos: {2,3,5} → 3 casos favorables. P(primo) = 3/6 = <strong>1/2 = 0.5 = 50%</strong></div>
+                      <div class="answer-box" id="ans1-t4">c² = 100+64-2(10)(8)cos(60°) = 164-160(0.5) = 164-80 = 84. c = √84 ≈ <strong>9.17</strong></div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      En una bolsa hay 4 bolas rojas, 3 azules y 5 verdes. ¿Cuál es la P(no roja)?
+                      En un triángulo A=45°, B=75°, a=6. Halla b.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t4">Total = 12. P(roja) = 4/12 = 1/3. P(no roja) = 1 − 1/3 = <strong>2/3 ≈ 0.667</strong> (azul o verde: 8/12 = 2/3 ✓)</div>
+                      <div class="answer-box" id="ans2-t4">Ley de senos: b/sen(75°) = 6/sen(45°). b = 6·sen(75°)/sen(45°) = 6·0.966/0.707 ≈ <strong>8.20</strong></div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
               </div>
 
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Avanzado</p><h2>Probabilidades y Estadística Inferencial</h2><p>Probabilidad clásica e interpretación estadística</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🎲</span><div><h3>La matemática del azar</h3><p>La probabilidad nos permite cuantificar la incertidumbre y tomar mejores decisiones. Está en seguros, medicina, deportes, economía y cualquier situación con incertidumbre.</p></div></div>
+            <div class="topics-grid">
+
               <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
-                <div class="topic-book-cover cover-advanced">📐</div>
-                <div class="topic-book-info"><h4>Trigonometría</h4><p>Ley de senos, cosenos e identidades</p>
-                  <div class="topic-tags"><span class="topic-tag">Ley senos</span><span class="topic-tag">Ley cosenos</span><span class="topic-tag">Identidades</span></div>
+                <div class="topic-book-cover cover-advanced">🎲</div>
+                <div class="topic-book-info"><h4>Probabilidades</h4><p>Espacio muestral, eventos, regla de la adición y multiplicación</p>
+                  <div class="topic-tags"><span class="topic-tag">P(A)</span><span class="topic-tag">Complemento</span><span class="topic-tag">Eventos</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t5">
-                <h3>📐 Trigonometría</h3>
-                <p>Las <strong>leyes de senos y cosenos</strong> permiten resolver triángulos no rectángulos. Las identidades trigonométricas son igualdades que se cumplen para cualquier ángulo.</p>
+                <h3>🎲 Probabilidades</h3>
+                <p>La <strong>probabilidad</strong> mide la posibilidad de que ocurra un evento. Va de 0 (imposible) a 1 (seguro). La probabilidad clásica asume que todos los resultados tienen igual posibilidad.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Leyes trigonométricas</h4>
+                    <h4>📋 Conceptos y fórmulas</h4>
                     <ul>
-                      <li><strong>Ley de senos:</strong> a/sen(A) = b/sen(B) = c/sen(C)</li>
-                      <li>Úsala cuando conoces: AAS, ASA, o SSA</li>
-                      <li><strong>Ley de cosenos:</strong> a² = b²+c²−2bc·cos(A)</li>
-                      <li>Úsala cuando conoces: SSS o SAS</li>
-                      <li>Si A=90°: ley de cosenos → Pitágoras (cos90°=0)</li>
+                      <li><strong>Experimento aleatorio:</strong> resultado no predecible (lanzar dado)</li>
+                      <li><strong>Espacio muestral (S):</strong> todos los resultados posibles</li>
+                      <li><strong>Evento (A):</strong> subconjunto del espacio muestral</li>
+                      <li><strong>P(A) = casos favorables / total de casos</strong></li>
+                      <li><strong>Complemento:</strong> P(A') = 1 - P(A)</li>
+                      <li><strong>Adición:</strong> P(A∪B) = P(A)+P(B)-P(A∩B)</li>
+                      <li><strong>Multiplicación (independientes):</strong> P(A∩B) = P(A)·P(B)</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Identidades trigonométricas</h4>
+                    <h4>🎯 Ejemplos</h4>
                     <ul>
-                      <li><strong>Pitagórica:</strong> sen²(x)+cos²(x)=1</li>
-                      <li>1+tan²(x) = sec²(x)</li>
-                      <li>1+cot²(x) = csc²(x)</li>
-                      <li><strong>Ángulo doble:</strong> sen(2x)=2sen(x)cos(x)</li>
-                      <li>cos(2x)=cos²(x)−sen²(x)</li>
+                      <li>Dado: S={1,2,3,4,5,6}, n(S)=6</li>
+                      <li>P(par) = 3/6 = 1/2</li>
+                      <li>P(mayor que 4) = 2/6 = 1/3</li>
+                      <li>P(no sacar 6) = 1-P(6) = 1-1/6 = 5/6</li>
+                      <li>Mazo de 52 cartas: P(as) = 4/52 = 1/13</li>
+                      <li>P(corazón) = 13/52 = 1/4</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">a/sen A = b/sen B = c/sen C | a² = b²+c²−2bc·cos A</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      En un triángulo: A=30°, B=45°, a=10. Halla b usando la ley de senos.
+                      Al lanzar dos dados, ¿cuál es la probabilidad de obtener suma 7?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t5">a/sen(A) = b/sen(B) → 10/sen(30°) = b/sen(45°) → 10/0.5 = b/(√2/2) → 20 = b/(0.707) → b = 20×0.707 = <strong>b ≈ 14.14</strong></div>
+                      <div class="answer-box" id="ans1-t5">Total de resultados: 6×6=36. Casos favorables con suma 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 casos. P = 6/36 = <strong>1/6 ≈ 16.7%</strong></div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Verifica la identidad: sen²(x)+cos²(x)=1 para x=60°.
+                      Una bolsa tiene 4 bolas rojas y 6 azules. Se sacan 2 sin reposición. ¿P(ambas rojas)?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t5">sen(60°)=√3/2 → sen²(60°)=3/4. cos(60°)=1/2 → cos²(60°)=1/4. Suma: 3/4+1/4 = <strong>4/4 = 1 ✓</strong></div>
+                      <div class="answer-box" id="ans2-t5">P(1ª roja) = 4/10. P(2ª roja | 1ª roja) = 3/9. P(ambas rojas) = (4/10)×(3/9) = 12/90 = <strong>2/15 ≈ 13.3%</strong></div>
                     </li>
                   </ul>
                 </div>
@@ -360,51 +347,44 @@
 
               <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
                 <div class="topic-book-cover cover-advanced">📊</div>
-                <div class="topic-book-info"><h4>Estadística Inferencial</h4><p>Muestras, distribución normal e interpretación</p>
-                  <div class="topic-tags"><span class="topic-tag">Muestra</span><span class="topic-tag">Distribución</span><span class="topic-tag">Normal</span></div>
+                <div class="topic-book-info"><h4>Estadística Inferencial</h4><p>Muestras, distribución normal e interpretación de gráficos</p>
+                  <div class="topic-tags"><span class="topic-tag">Muestra</span><span class="topic-tag">Normal</span><span class="topic-tag">Gráficos</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t6">
-                <h3>📊 Estadística Inferencial Básica</h3>
-                <p>La <strong>estadística inferencial</strong> usa datos de una muestra para hacer conclusiones sobre una población. La <strong>distribución normal</strong> es fundamental: es simétrica, con forma de campana.</p>
+                <h3>📊 Estadística Inferencial</h3>
+                <p>La <strong>estadística inferencial</strong> extrae conclusiones sobre una población a partir de una muestra. A diferencia de la estadística descriptiva (que solo describe datos), la inferencial generaliza resultados.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Conceptos clave</h4>
+                    <h4>📋 Conceptos clave</h4>
                     <ul>
-                      <li><strong>Población:</strong> conjunto total de individuos u objetos</li>
+                      <li><strong>Población:</strong> conjunto total de elementos de estudio</li>
                       <li><strong>Muestra:</strong> subconjunto representativo de la población</li>
-                      <li><strong>Distribución Normal:</strong> simétrica, media=mediana=moda</li>
-                      <li>68% de datos: entre μ−σ y μ+σ</li>
-                      <li>95% de datos: entre μ−2σ y μ+2σ</li>
-                      <li>99.7% de datos: entre μ−3σ y μ+3σ</li>
+                      <li><strong>Parámetro:</strong> valor que describe la población (μ, σ)</li>
+                      <li><strong>Estadístico:</strong> valor calculado de la muestra (x̄, s)</li>
+                      <li><strong>Distribución normal:</strong> campana de Gauss — simétrica respecto a la media</li>
+                      <li><strong>Regla empírica 68-95-99.7:</strong> el 68% de datos está a ±1σ de la media</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Interpretación de gráficas</h4>
+                    <h4>📈 Tipos de gráficos estadísticos</h4>
                     <ul>
-                      <li><strong>Histograma:</strong> barras que representan frecuencias</li>
-                      <li><strong>Polígono de frecuencias:</strong> línea que une los puntos medios</li>
-                      <li><strong>Ojiva:</strong> frecuencias acumuladas</li>
-                      <li><strong>Diagrama de caja (boxplot):</strong> muestra Q1, mediana, Q3, extremos</li>
-                      <li>La forma de la distribución indica si hay sesgo</li>
+                      <li><strong>Histograma:</strong> frecuencias de datos continuos en barras</li>
+                      <li><strong>Diagrama de barras:</strong> comparar categorías</li>
+                      <li><strong>Diagrama circular (pastel):</strong> porcentajes del total</li>
+                      <li><strong>Polígono de frecuencias:</strong> tendencia de datos</li>
+                      <li><strong>Diagrama de caja:</strong> mediana, cuartiles y outliers</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Distribución Normal: μ±σ (68%) | μ±2σ (95%) | μ±3σ (99.7%)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Las notas de un examen siguen distribución normal con media=14 y desviación estándar=2. ¿Qué porcentaje de alumnos tiene nota entre 12 y 16?
+                      Una empresa mide las alturas de 1000 empleados. La media es 170cm y la desviación estándar es 8cm. ¿Qué porcentaje mide entre 162 y 178cm?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t6">μ=14, σ=2. El intervalo [12, 16] = [μ−σ, μ+σ]. Por la regla empírica, entre μ−σ y μ+σ se encuentra el <strong>68%</strong> de los datos.</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Ejercicio 2</strong>
-                      ¿Cuál es la diferencia entre población y muestra? Da un ejemplo.
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t6"><strong>Población:</strong> todos los individuos del grupo de interés. <strong>Muestra:</strong> un subconjunto elegido para estudiar. Ejemplo: si queremos saber las notas de todos los alumnos del Perú (población), encuestamos 5000 alumnos de diversas escuelas (muestra) y usamos esos datos para inferir sobre todos.</div>
+                      <div class="answer-box" id="ans1-t6">162 = 170-8 = μ-σ y 178 = 170+8 = μ+σ. Aplicando la regla empírica 68-95-99.7: entre μ±σ está el <strong>68%</strong> de los datos.</div>
                     </li>
                   </ul>
                 </div>
@@ -428,23 +408,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
-    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
-    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(id,card){document.getElementById(id).classList.remove('open');if(card)card.style.borderColor='';}
     function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
     const totalTopics=6,opened=new Set();
-    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
     function downloadPDF(){
       const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
-      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      const t=(tx,sz,b,c)=>{doc.setFontSize(sz);doc.setFont('helvetica',b?'bold':'normal');doc.setTextColor(...(c||[30,30,30]));doc.splitTextToSize(tx,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=sz*0.45;});y+=2;};
       doc.setFillColor(124,58,237);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Matematica - 4 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
-      [{ti:'Factorizacion',c:'Factor comun: ax+ay=a(x+y). Diferencia cuadrados: a2-b2=(a+b)(a-b). Trinomio cuadrado perfecto: (a+b)2=a2+2ab+b2. Aspa simple: buscar factores de c que sumen b. Ej: x2+5x+6=(x+2)(x+3).'},
-       {ti:'Inecuaciones',c:'Reglas: si multiplicas por negativo, invierte el signo. Solucion: intervalo en recta numerica. Ej: -2x<6 => x>-3. Sistemas: resolver cada una y encontrar interseccion. Notacion: [a,b] incluye extremos, (a,b) no incluye.'},
-       {ti:'Geometria Anali­tica',c:'Distancia: d=raiz[(x2-x1)2+(y2-y1)2]. Punto medio: M=((x1+x2)/2,(y1+y2)/2). Pendiente: m=(y2-y1)/(x2-x1). Ecuacion recta: y=mx+b o y-y1=m(x-x1). Ejemplo: A(1,2) B(4,6): d=5, M=(2.5,4).'},
-       {ti:'Probabilidades',c:'P(A) = casos favorables / total. 0<=P<=1. Complemento: P(A)=1-P(A). Union: P(AuB)=P(A)+P(B)-P(AnB). Independientes: P(AnB)=P(A)*P(B). Ej: dado, P(primo)=3/6=1/2.'},
-       {ti:'Trigonometri­a',c:'Ley senos: a/senA=b/senB=c/senC. Ley cosenos: a2=b2+c2-2bc*cosA. Identidad pitagorica: sen2+cos2=1. Angulo doble: sen(2x)=2senx*cosx. Usar senos en AAS/ASA; cosenos en SSS/SAS.'},
-       {ti:'Estadi­stica Inferencial',c:'Poblacion vs muestra. Distribucion normal: campana simetrica, media=mediana=moda. Regla empirica: 68% en mu+-sigma, 95% en mu+-2sigma, 99.7% en mu+-3sigma. Graficas: histograma, ojiva, boxplot.'},
+      [{ti:'Factorizacion',c:'Factor comun: ax+ay=a(x+y). Diferencia cuadrados: a2-b2=(a+b)(a-b). Trinomio perfecto: a2+2ab+b2=(a+b)2. Aspa simple: x2+bx+c=(x+p)(x+q) donde p+q=b, pq=c.'},
+       {ti:'Inecuaciones',c:'Como ecuaciones pero con desigualdad. Al multiplicar/dividir por negativo el signo cambia. Solucion es un intervalo. Ej: 3x-2<=7 -> x<=3 -> (-inf, 3].'},
+       {ti:'Geometria Analitica',c:'Distancia: d=raiz[(x2-x1)2+(y2-y1)2]. Punto medio: M=((x1+x2)/2,(y1+y2)/2). Pendiente: m=(y2-y1)/(x2-x1). Ecuacion recta: y-y1=m(x-x1).'},
+       {ti:'Trigonometria Avanzada',c:'Ley de cosenos: c2=a2+b2-2ab*cos(C). Ley de senos: a/sen(A)=b/sen(B)=c/sen(C). Usar cuando el triangulo no es rectangulo.'},
+       {ti:'Probabilidades',c:'P(A)=casos favorables/total. P(A)+P(A)=1. Adicion: P(AUB)=P(A)+P(B)-P(A^B). Multiplicacion independientes: P(A^B)=P(A)*P(B). Dos dados, suma 7: P=6/36=1/6.'},
+       {ti:'Estadistica Inferencial',c:'Poblacion vs muestra. Parametro (mu, sigma) vs estadistico (x-barra, s). Distribucion normal: campana simetrica. Regla 68-95-99.7: 68% datos en mu+-sigma.'},
       ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[124,58,237]);t(x.c,10,false,[50,50,60]);y+=3;});
-      doc.save('Matematica-4-Secundaria-EduNovaOne.pdf');
+      y+=5;t('Ejercicios de repaso',13,true,[124,58,237]);
+      ['1. Factoriza: x2-16, x2+7x+12, 2x2+8x, x2-8x+16','2. Resuelve: 2x+3>9 y representa en recta numerica','3. Distancia y punto medio entre A(0,0) y B(6,8)','4. En triangulo a=10, b=8, C=60 grados. Halla c.','5. Al lanzar 2 dados, P(suma=7)?','6. Bolsa: 4 rojas y 6 azules. P(2 rojas sin reposicion)?'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Matematica-4Secundaria-EduNovaOne.pdf');
     }
   </script>
 </body>
