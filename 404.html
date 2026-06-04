@@ -2,21 +2,225 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>EduNovaOne</title>
-  <script>
-    // GitHub Pages SPA redirect trick
-    // Guarda la ruta limpia y redirige a index.html para procesarla
-    var path = window.location.pathname;
-    // Si la ruta no tiene extensión, añadir .html para redirigir al archivo real
-    var hasExt = path.split('/').pop().indexOf('.') !== -1;
-    if (!hasExt && path !== '/') {
-      var target = path.replace(/\/$/, '') + '.html' + window.location.search + window.location.hash;
-      window.location.replace(target);
-    } else {
-      // Página realmente no encontrada
-      window.location.replace('/');
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Inter, system-ui, sans-serif;
+      background: radial-gradient(ellipse at 30% 20%, #e8b4f8 0%, #f3c6fa 25%, #fce4ec 55%, #e8d5f5 80%, #dbbdf7 100%);
+      overflow: hidden;
+      position: relative;
     }
-  </script>
+
+    /* Orbes de fondo suaves */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(216, 143, 245, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(197, 120, 240, 0.35) 0%, transparent 40%),
+        radial-gradient(circle at 55% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 35%);
+      pointer-events: none;
+    }
+
+    /* ---- Escena central ---- */
+    .scene {
+      position: relative;
+      width: 560px;
+      height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---- Tarjeta central ---- */
+    .card-center {
+      position: relative;
+      z-index: 10;
+      background: #fff;
+      border-radius: 28px;
+      padding: 2.2rem 3rem;
+      text-align: center;
+      box-shadow: 0 8px 48px rgba(140, 80, 200, 0.18), 0 2px 8px rgba(0,0,0,0.06);
+      min-width: 220px;
+    }
+
+    .card-center .book-emoji {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-center .brand-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #1a4bcc;
+      letter-spacing: -0.02em;
+    }
+
+    .card-center .tagline {
+      font-size: 0.95rem;
+      color: #666;
+      font-style: italic;
+      margin-top: 0.2rem;
+    }
+
+    /* ---- Tarjetas flotantes ---- */
+    .card-float {
+      position: absolute;
+      background: #fff;
+      border-radius: 20px;
+      padding: 1.1rem 1.3rem;
+      text-align: center;
+      box-shadow: 0 6px 32px rgba(140, 80, 200, 0.14), 0 1px 4px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      min-width: 110px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .card-float .icon { font-size: 1.9rem; line-height: 1; }
+
+    .card-float .label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1a4bcc;
+    }
+
+    /* Posiciones */
+    .card-float.biblioteca  { top: 20px;  left: 20px;  animation-delay: 0s; }
+    .card-float.juegos      { top: 20px;  right: 20px; animation-delay: 1s; }
+    .card-float.herramientas{ bottom: 30px; left: 10px; animation-delay: 2s; }
+    .card-float.comunidad   { bottom: 30px; right: 10px; animation-delay: 1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* ---- Texto 404 ---- */
+    .error-block {
+      position: relative;
+      z-index: 5;
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    .error-block .code-404 {
+      font-size: clamp(5rem, 14vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #a855f7, #6366f1, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.04em;
+      opacity: 0.25;
+      position: absolute;
+      top: -3.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .error-block h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #2d1b6e;
+      margin-bottom: 0.5rem;
+    }
+
+    .error-block p {
+      font-size: 0.95rem;
+      color: #7c5ca8;
+      max-width: 320px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.5;
+    }
+
+    .btn-home {
+      display: inline-block;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .btn-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .scene { width: 340px; height: 320px; }
+      .card-center { padding: 1.5rem 2rem; }
+      .card-center .brand-name { font-size: 1.25rem; }
+      .card-float { padding: 0.8rem 0.9rem; min-width: 85px; }
+      .card-float .icon { font-size: 1.5rem; }
+      .card-float .label { font-size: 0.72rem; }
+    }
+  </style>
 </head>
-<body></body>
+<body>
+
+  <!-- Escena con tarjetas flotantes -->
+  <div class="scene">
+
+    <div class="card-float biblioteca">
+      <span class="icon">📚</span>
+      <span class="label">Biblioteca</span>
+    </div>
+
+    <div class="card-float juegos">
+      <span class="icon">🎮</span>
+      <span class="label">Juegos</span>
+    </div>
+
+    <!-- Centro -->
+    <div class="card-center">
+      <div class="book-emoji">📖</div>
+      <div class="brand-name">EduNovaOne</div>
+      <div class="tagline">Aprende sin límites</div>
+    </div>
+
+    <div class="card-float herramientas">
+      <span class="icon">🔧</span>
+      <span class="label">Herramientas</span>
+    </div>
+
+    <div class="card-float comunidad">
+      <span class="icon">👥</span>
+      <span class="label">Comunidad</span>
+    </div>
+
+  </div>
+
+  <!-- Mensaje de error -->
+  <div class="error-block">
+    <span class="code-404">404</span>
+    <h2>Página no encontrada</h2>
+    <p>Esta página no existe o fue movida. Vuelve al inicio y sigue aprendiendo.</p>
+    <a href="index.html" class="btn-home">Volver al inicio</a>
+  </div>
+
+</body>
 </html>
