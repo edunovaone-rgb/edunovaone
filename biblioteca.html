@@ -466,11 +466,22 @@
 
         <div class="books-section" id="booksSection">
 
+          <!-- ── Tu actividad (historial reciente) ── -->
+          <div id="actividadSection" style="margin-bottom:1.75rem;display:none;">
+            <div class="grade-header">
+              <div class="grade-badge" style="font-size:1rem;">🕐</div>
+              <h3>Tu actividad reciente</h3>
+              <a href="historial-completo.html" id="verTodoHistorial" style="margin-left:auto;font-size:.82rem;color:var(--accent-strong);font-weight:700;text-decoration:none;white-space:nowrap;">Ver todo →</a>
+            </div>
+            <div class="books-grid grade-grid" id="actividadGrid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));"></div>
+          </div>
+
           <!-- ── 1° Secundaria ── -->
           <div class="grade-section" id="grade-1">
             <div class="grade-header">
               <div class="grade-badge">1°</div>
               <h3>1° de Secundaria</h3>
+              <a href="grado-1.html" style="margin-left:auto;font-size:.82rem;color:var(--accent-strong);font-weight:700;text-decoration:none;">Ver grado →</a>
             </div>
             <div class="books-grid grade-grid">
               <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Aritmética Básica" data-grado="1">
@@ -478,25 +489,30 @@
                 <div><p class="book-category">Matemática</p><h4>Aritmética Básica</h4><p class="book-grade">1° Secundaria</p></div>
                 <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro-aritmetica-1.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Ciencias Naturales 1" data-grado="1">
+              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Ciencia y Tecnología 1" data-grado="1">
                 <div class="book-icon book-science">C</div>
-                <div><p class="book-category">Ciencia</p><h4>Ciencias Naturales 1</h4><p class="book-grade">1° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Ciencia</p><h4>Ciencia y Tecnología 1</h4><p class="book-grade">1° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ciencias-1.html" class="button button-primary">Leer</a></div>
               </article>
               <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Comunicación 1" data-grado="1">
                 <div class="book-icon book-comm">C</div>
                 <div><p class="book-category">Comunicación</p><h4>Comunicación 1</h4><p class="book-grade">1° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-comunicacion-1.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="historia" data-tipo="Libro" data-titulo="Historia del Perú 1" data-grado="1">
+              <article class="book-card" data-materia="historia" data-tipo="PDF" data-titulo="Historia, Geografía y Economía 1" data-grado="1">
                 <div class="book-icon book-history">H</div>
-                <div><p class="book-category">Historia</p><h4>Historia del Perú 1</h4><p class="book-grade">1° Secundaria</p></div>
-                <div class="book-actions"><span>Libro</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Historia</p><h4>Historia, Geografía y Economía 1</h4><p class="book-grade">1° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-historia-1.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ingles" data-tipo="Video" data-titulo="Inglés Starter" data-grado="1">
+              <article class="book-card" data-materia="ingles" data-tipo="PDF" data-titulo="Inglés 1" data-grado="1">
                 <div class="book-icon book-english">I</div>
-                <div><p class="book-category">Inglés</p><h4>Inglés Starter</h4><p class="book-grade">1° Secundaria</p></div>
-                <div class="book-actions"><span>Video</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Inglés</p><h4>Inglés 1</h4><p class="book-grade">1° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ingles-1.html" class="button button-primary">Leer</a></div>
+              </article>
+              <article class="book-card" data-materia="tecnologia" data-tipo="PDF" data-titulo="Educación para el Trabajo 1" data-grado="1">
+                <div class="book-icon book-tech" style="background:rgba(2,132,199,0.12);color:#0284c7;">T</div>
+                <div><p class="book-category">Ed. para el Trabajo</p><h4>Educación para el Trabajo 1</h4><p class="book-grade">1° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-trabajo-1.html" class="button button-primary">Leer</a></div>
               </article>
             </div>
           </div>
@@ -506,27 +522,33 @@
             <div class="grade-header">
               <div class="grade-badge">2°</div>
               <h3>2° de Secundaria</h3>
+              <a href="grado-2.html" style="margin-left:auto;font-size:.82rem;color:var(--accent-strong);font-weight:700;text-decoration:none;">Ver grado →</a>
             </div>
             <div class="books-grid grade-grid">
-              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Álgebra Básica" data-grado="2">
+              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Matemática 2" data-grado="2">
                 <div class="book-icon book-math">M</div>
-                <div><p class="book-category">Matemática</p><h4>Álgebra Básica</h4><p class="book-grade">2° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Matemática</p><h4>Matemática 2</h4><p class="book-grade">2° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-matematica-2.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Biología General" data-grado="2">
+              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Ciencia y Tecnología 2" data-grado="2">
                 <div class="book-icon book-science">C</div>
-                <div><p class="book-category">Ciencia</p><h4>Biología General</h4><p class="book-grade">2° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Ciencia</p><h4>Ciencia y Tecnología 2</h4><p class="book-grade">2° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ciencias-2.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Comunicación Integral 2" data-grado="2">
+              <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Comunicación 2" data-grado="2">
                 <div class="book-icon book-comm">C</div>
-                <div><p class="book-category">Comunicación</p><h4>Comunicación Integral 2</h4><p class="book-grade">2° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Comunicación</p><h4>Comunicación 2</h4><p class="book-grade">2° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-comunicacion-2.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ingles" data-tipo="Video" data-titulo="Inglés Básico" data-grado="2">
+              <article class="book-card" data-materia="historia" data-tipo="PDF" data-titulo="Historia, Geografía y Economía 2" data-grado="2">
+                <div class="book-icon book-history">H</div>
+                <div><p class="book-category">Historia</p><h4>Historia, Geografía y Economía 2</h4><p class="book-grade">2° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-historia-2.html" class="button button-primary">Leer</a></div>
+              </article>
+              <article class="book-card" data-materia="ingles" data-tipo="PDF" data-titulo="Inglés 2" data-grado="2">
                 <div class="book-icon book-english">I</div>
-                <div><p class="book-category">Inglés</p><h4>Inglés Básico</h4><p class="book-grade">2° Secundaria</p></div>
-                <div class="book-actions"><span>Video</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Inglés</p><h4>Inglés 2</h4><p class="book-grade">2° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ingles-2.html" class="button button-primary">Leer</a></div>
               </article>
             </div>
           </div>
@@ -536,27 +558,38 @@
             <div class="grade-header">
               <div class="grade-badge">3°</div>
               <h3>3° de Secundaria</h3>
+              <a href="grado-3.html" style="margin-left:auto;font-size:.82rem;color:var(--accent-strong);font-weight:700;text-decoration:none;">Ver grado →</a>
             </div>
             <div class="books-grid grade-grid">
-              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Geometría y Trigonometría" data-grado="3">
+              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Matemática 3" data-grado="3">
                 <div class="book-icon book-math">M</div>
-                <div><p class="book-category">Matemática</p><h4>Geometría y Trigonometría</h4><p class="book-grade">3° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Matemática</p><h4>Matemática 3</h4><p class="book-grade">3° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-matematica-3.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Química Inorgánica" data-grado="3">
+              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Ciencia y Tecnología 3" data-grado="3">
                 <div class="book-icon book-science">C</div>
-                <div><p class="book-category">Ciencia</p><h4>Química Inorgánica</h4><p class="book-grade">3° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Ciencia</p><h4>Ciencia y Tecnología 3</h4><p class="book-grade">3° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ciencias-3.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="historia" data-tipo="Libro" data-titulo="Historia del Perú 3" data-grado="3">
+              <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Comunicación 3" data-grado="3">
+                <div class="book-icon book-comm">C</div>
+                <div><p class="book-category">Comunicación</p><h4>Comunicación 3</h4><p class="book-grade">3° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-comunicacion-3.html" class="button button-primary">Leer</a></div>
+              </article>
+              <article class="book-card" data-materia="historia" data-tipo="PDF" data-titulo="Historia, Geografía y Economía 3" data-grado="3">
                 <div class="book-icon book-history">H</div>
-                <div><p class="book-category">Historia</p><h4>Historia del Perú 3</h4><p class="book-grade">3° Secundaria</p></div>
-                <div class="book-actions"><span>Libro</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Historia</p><h4>Historia, Geografía y Economía 3</h4><p class="book-grade">3° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-historia-3.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ingles" data-tipo="PDF" data-titulo="Inglés Intermedio" data-grado="3">
+              <article class="book-card" data-materia="ingles" data-tipo="PDF" data-titulo="Inglés 3" data-grado="3">
                 <div class="book-icon book-english">I</div>
-                <div><p class="book-category">Inglés</p><h4>Inglés Intermedio</h4><p class="book-grade">3° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Inglés</p><h4>Inglés 3</h4><p class="book-grade">3° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ingles-3.html" class="button button-primary">Leer</a></div>
+              </article>
+              <article class="book-card" data-materia="arte" data-tipo="PDF" data-titulo="Arte y Cultura 3" data-grado="3">
+                <div class="book-icon" style="background:rgba(192,38,211,0.12);color:#c026d3;font-size:1rem;font-weight:800;display:flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;border-radius:.75rem;">A</div>
+                <div><p class="book-category">Arte</p><h4>Arte y Cultura 3</h4><p class="book-grade">3° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-arte-3.html" class="button button-primary">Leer</a></div>
               </article>
             </div>
           </div>
@@ -566,27 +599,38 @@
             <div class="grade-header">
               <div class="grade-badge">4°</div>
               <h3>4° de Secundaria</h3>
+              <a href="grado-4.html" style="margin-left:auto;font-size:.82rem;color:var(--accent-strong);font-weight:700;text-decoration:none;">Ver grado →</a>
             </div>
             <div class="books-grid grade-grid">
-              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Álgebra Avanzada" data-grado="4">
+              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Matemática 4" data-grado="4">
                 <div class="book-icon book-math">M</div>
-                <div><p class="book-category">Matemática</p><h4>Álgebra Avanzada</h4><p class="book-grade">4° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Matemática</p><h4>Matemática 4</h4><p class="book-grade">4° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-matematica-4.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Física Fundamental" data-grado="4">
-                <div class="book-icon book-physics">F</div>
-                <div><p class="book-category">Ciencia</p><h4>Física Fundamental</h4><p class="book-grade">4° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Ciencia y Tecnología 4" data-grado="4">
+                <div class="book-icon book-science">C</div>
+                <div><p class="book-category">Ciencia</p><h4>Ciencia y Tecnología 4</h4><p class="book-grade">4° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ciencias-4.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Literatura Peruana" data-grado="4">
+              <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Comunicación 4" data-grado="4">
                 <div class="book-icon book-comm">C</div>
-                <div><p class="book-category">Comunicación</p><h4>Literatura Peruana</h4><p class="book-grade">4° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Comunicación</p><h4>Comunicación 4</h4><p class="book-grade">4° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-comunicacion-4.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="historia" data-tipo="Libro" data-titulo="Historia Universal 4" data-grado="4">
+              <article class="book-card" data-materia="historia" data-tipo="PDF" data-titulo="Historia, Geografía y Economía 4" data-grado="4">
                 <div class="book-icon book-history">H</div>
-                <div><p class="book-category">Historia</p><h4>Historia Universal 4</h4><p class="book-grade">4° Secundaria</p></div>
-                <div class="book-actions"><span>Libro</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Historia</p><h4>Historia, Geografía y Economía 4</h4><p class="book-grade">4° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-historia-4.html" class="button button-primary">Leer</a></div>
+              </article>
+              <article class="book-card" data-materia="ingles" data-tipo="PDF" data-titulo="Inglés 4" data-grado="4">
+                <div class="book-icon book-english">I</div>
+                <div><p class="book-category">Inglés</p><h4>Inglés 4</h4><p class="book-grade">4° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ingles-4.html" class="button button-primary">Leer</a></div>
+              </article>
+              <article class="book-card" data-materia="arte" data-tipo="PDF" data-titulo="Arte y Cultura 4" data-grado="4">
+                <div class="book-icon" style="background:rgba(192,38,211,0.12);color:#c026d3;font-size:1rem;font-weight:800;display:flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;border-radius:.75rem;">A</div>
+                <div><p class="book-category">Arte</p><h4>Arte y Cultura 4</h4><p class="book-grade">4° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-arte-4.html" class="button button-primary">Leer</a></div>
               </article>
             </div>
           </div>
@@ -596,22 +640,23 @@
             <div class="grade-header">
               <div class="grade-badge">5°</div>
               <h3>5° de Secundaria</h3>
+              <a href="grado-5.html" style="margin-left:auto;font-size:.82rem;color:var(--accent-strong);font-weight:700;text-decoration:none;">Ver grado →</a>
             </div>
             <div class="books-grid grade-grid">
-              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Pre-Cálculo" data-grado="5">
+              <article class="book-card" data-materia="matematica" data-tipo="PDF" data-titulo="Matemática 5" data-grado="5">
                 <div class="book-icon book-math">M</div>
-                <div><p class="book-category">Matemática</p><h4>Pre-Cálculo</h4><p class="book-grade">5° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Matemática</p><h4>Matemática 5</h4><p class="book-grade">5° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-matematica-5.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Física y Química 5" data-grado="5">
-                <div class="book-icon book-physics">F</div>
-                <div><p class="book-category">Ciencia</p><h4>Física y Química 5</h4><p class="book-grade">5° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+              <article class="book-card" data-materia="ciencia" data-tipo="PDF" data-titulo="Ciencia y Tecnología 5" data-grado="5">
+                <div class="book-icon book-science">C</div>
+                <div><p class="book-category">Ciencia</p><h4>Ciencia y Tecnología 5</h4><p class="book-grade">5° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-ciencias-5.html" class="button button-primary">Leer</a></div>
               </article>
-              <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Comunicación Integral 5" data-grado="5">
+              <article class="book-card" data-materia="comunicacion" data-tipo="PDF" data-titulo="Comunicación 5" data-grado="5">
                 <div class="book-icon book-comm">C</div>
-                <div><p class="book-category">Comunicación</p><h4>Comunicación Integral 5</h4><p class="book-grade">5° Secundaria</p></div>
-                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="libro.html" class="button button-primary">Leer</a></div>
+                <div><p class="book-category">Comunicación</p><h4>Comunicación 5</h4><p class="book-grade">5° Secundaria</p></div>
+                <div class="book-actions"><span>PDF</span><span>🔖</span><a href="tema-comunicacion-5.html" class="button button-primary">Leer</a></div>
               </article>
               <article class="book-card" data-materia="historia" data-tipo="Libro" data-titulo="Historia del Perú 5" data-grado="5">
                 <div class="book-icon book-history">H</div>
