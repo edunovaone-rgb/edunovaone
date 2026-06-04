@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Historia, Geografía y Economía | 1° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-1.html">1° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Historia, Geografía y Economía</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#d97706,#f59e0b)">🏛️</div>
+          <div><h3>Historia, Geografía y Economía</h3><p>1° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Historia Antigua</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Prehistoria</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Civilizaciones Antiguas</a></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Culturas Andinas Antiguas</a></li>
+          <li><p class="toc-section-title">II. Geografía</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Geografía del Perú</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Las Regiones Naturales</a></li>
+          <li><p class="toc-section-title">III. Economía</p></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Nociones de Economía</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <!-- CAP I -->
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Historia Antigua</h2>
+              <p>Prehistoria, civilizaciones antiguas y culturas andinas</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">🏛️</span>
+              <div><h3>Los cimientos de la humanidad</h3><p>Conocer el pasado nos permite entender el presente. Las civilizaciones antiguas sentaron las bases de la ciencia, el arte, la política y la economía modernas.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-history">🗿</div>
+                <div class="topic-book-info">
+                  <h4>Prehistoria</h4>
+                  <p>Evolución humana, Paleolítico, Mesolítico y Neolítico</p>
+                  <div class="topic-tags"><span class="topic-tag">Paleolítico</span><span class="topic-tag">Neolítico</span><span class="topic-tag">Hominización</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🗿 La Prehistoria</h3>
+                <p>La <strong>Prehistoria</strong> es el período que va desde la aparición del ser humano (~3 millones de años) hasta la invención de la escritura (~3500 a.C.). Se divide en tres grandes etapas: Paleolítico, Mesolítico y Neolítico.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🪨 Etapas de la Prehistoria</h4>
+                    <ul>
+                      <li><strong>Paleolítico</strong> ("piedra antigua"): nomadismo, caza y recolección, uso del fuego, pinturas rupestres (Altamira, Lascaux)</li>
+                      <li><strong>Mesolítico:</strong> transición, inicio de la domesticación de animales</li>
+                      <li><strong>Neolítico</strong> ("piedra nueva"): sedentarismo, agricultura, ganadería, cerámica, primeras aldeas</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🧬 Hominización</h4>
+                    <ul>
+                      <li><strong>Australopithecus:</strong> ~4 millones años, bipedismo</li>
+                      <li><strong>Homo habilis:</strong> ~2.5 M años, primeras herramientas</li>
+                      <li><strong>Homo erectus:</strong> ~1.8 M años, dominio del fuego</li>
+                      <li><strong>Homo sapiens:</strong> ~300,000 años, lenguaje complejo, arte</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Paleolítico → Mesolítico → Neolítico → Edad de los Metales → Historia</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuál fue la revolución más importante del Neolítico y por qué cambió la vida humana?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">La <strong>revolución agrícola</strong>. Al aprender a cultivar plantas y domesticar animales, los humanos abandonaron el nomadismo y se volvieron sedentarios. Esto permitió formar aldeas, acumular alimentos y especializar el trabajo, sentando las bases para las primeras civilizaciones.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué diferencia al Homo sapiens de sus antecesores?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">El Homo sapiens desarrolló un <strong>lenguaje simbólico complejo</strong>, mayor capacidad craneal, expresión artística (pinturas rupestres, esculturas) y pensamiento abstracto, lo que le permitió transmitir conocimiento de generación en generación.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-history">🏺</div>
+                <div class="topic-book-info">
+                  <h4>Civilizaciones Antiguas</h4>
+                  <p>Mesopotamia, Egipto, Grecia y Roma</p>
+                  <div class="topic-tags"><span class="topic-tag">Mesopotamia</span><span class="topic-tag">Egipto</span><span class="topic-tag">Grecia</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🏺 Civilizaciones del Mundo Antiguo</h3>
+                <p>Las primeras civilizaciones surgieron en torno a grandes ríos: el Nilo (Egipto), el Tigris y Éufrates (Mesopotamia), el Indo (India) y el Huang He (China). Cada una aportó avances fundamentales a la humanidad.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌙 Mesopotamia (3500–539 a.C.)</h4>
+                    <ul>
+                      <li>Entre el Tigris y el Éufrates (actual Iraq)</li>
+                      <li>Invención de la escritura cuneiforme (~3500 a.C.)</li>
+                      <li>Código de Hammurabi (primera legislación)</li>
+                      <li>Civilizaciones: Sumeria, Babilonia, Asiria</li>
+                      <li>Zigurat: templo escalonado</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🏛️ Egipto (3100–30 a.C.)</h4>
+                    <ul>
+                      <li>"Don del Nilo" — agricultura gracias a las inundaciones</li>
+                      <li>Escritura jeroglífica, papiro</li>
+                      <li>Faraón: rey-dios</li>
+                      <li>Pirámides: tumbas monumentales (Guiza ~2560 a.C.)</li>
+                      <li>Momificación: creencia en la vida después de la muerte</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué el Nilo era tan importante para la civilización egipcia?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Las <strong>inundaciones anuales del Nilo</strong> depositaban limo (barro fértil) en sus orillas, permitiendo la agricultura en medio del desierto. Además, servía como vía de transporte y comunicación. Sin el Nilo, Egipto habría sido un desierto inhabitable.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Comparación</strong>
+                      Compara Mesopotamia y Egipto: menciona una semejanza y una diferencia.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2"><strong>Semejanza:</strong> ambas surgieron junto a ríos y desarrollaron la escritura y las primeras ciudades. <strong>Diferencia:</strong> Mesopotamia fue invadida por múltiples pueblos y tuvo gobiernos cambiantes, mientras que Egipto se mantuvo relativamente unificado bajo la figura del faraón durante siglos.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-history">🌄</div>
+                <div class="topic-book-info">
+                  <h4>Culturas Andinas Antiguas</h4>
+                  <p>Chavín, Nazca, Moche y otras culturas peruanas</p>
+                  <div class="topic-tags"><span class="topic-tag">Chavín</span><span class="topic-tag">Nazca</span><span class="topic-tag">Moche</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🌄 Culturas Andinas Antiguas del Perú</h3>
+                <p>El territorio peruano fue hogar de brillantes civilizaciones antes del Imperio Inca. Cada cultura desarrolló aportes únicos en arte, arquitectura, agricultura y organización social.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🦁 Chavín (900–200 a.C.)</h4>
+                    <ul>
+                      <li>Cultura-horizonte que unificó los Andes</li>
+                      <li>Centro religioso: Chavín de Huántar (Áncash)</li>
+                      <li>Arte: estilo estilizado, dios jaguar-cóndor-serpiente</li>
+                      <li>Difundió tecnología agrícola y tejidos</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎨 Nazca y Moche (200 a.C.–600 d.C.)</h4>
+                    <ul>
+                      <li><strong>Nazca:</strong> Líneas de Nazca (geoglifos), cerámica polícroma</li>
+                      <li><strong>Moche:</strong> cerámica retrato (huacos), pirámide del Sol y la Luna</li>
+                      <li>Canales de irrigación para superar las condiciones del desierto</li>
+                      <li>Huacos eróticos: testimonio de su vida cotidiana</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué se considera a Chavín una "cultura-horizonte"?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Porque su influencia se extendió por toda la región andina, difundiendo un estilo artístico, tecnologías y creencias religiosas comunes. Funcionó como un centro unificador cultural en los Andes.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué son las Líneas de Nazca y cuál es la hipótesis más aceptada sobre su función?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Son <strong>geoglifos</strong> (dibujos en el suelo) de la cultura Nazca, visibles solo desde el aire. La hipótesis más aceptada es que tuvieron una <strong>función calendárica y religiosa</strong>, relacionada con el agua y los rituales agrícolas.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP II -->
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Geografía del Perú</h2>
+              <p>Ubicación, regiones naturales y recursos</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">🗺️</span>
+              <div><h3>Nuestro territorio</h3><p>El Perú es uno de los países con mayor diversidad geográfica del mundo. Conocer su territorio es esencial para entender su historia y su economía.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-history">🗺️</div>
+                <div class="topic-book-info">
+                  <h4>Geografía del Perú</h4>
+                  <p>Ubicación, límites y división política</p>
+                  <div class="topic-tags"><span class="topic-tag">Costa</span><span class="topic-tag">Sierra</span><span class="topic-tag">Selva</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🗺️ Geografía del Perú</h3>
+                <p>El Perú está ubicado en América del Sur, en la zona tropical. Con 1,285,216 km², es el tercer país más grande de Sudamérica. Limita con Ecuador, Colombia, Brasil, Bolivia y Chile.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📍 Datos esenciales</h4>
+                    <ul>
+                      <li><strong>Capital:</strong> Lima</li>
+                      <li><strong>Superficie:</strong> 1,285,216 km²</li>
+                      <li><strong>Población:</strong> ~33 millones de hab.</li>
+                      <li><strong>Regiones:</strong> 25 + Provincia Constitucional del Callao</li>
+                      <li><strong>Mar:</strong> Océano Pacífico (3,079 km de costa)</li>
+                      <li><strong>Montaña más alta:</strong> Huascarán (6,768 m)</li>
+                      <li><strong>Río principal:</strong> Amazonas (nace en el Perú)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌊 Las tres regiones naturales</h4>
+                    <ul>
+                      <li><strong>Costa:</strong> franja desértica costera, 10.6% del territorio, 52% de la población</li>
+                      <li><strong>Sierra:</strong> cordillera de los Andes, 30% del territorio, 35% de la población</li>
+                      <li><strong>Selva:</strong> Amazonía, 59.4% del territorio, 13% de la población</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Con qué cinco países limita el Perú? Menciona la dirección de cada límite.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Norte: Ecuador y Colombia · Este: Brasil y Bolivia · Sur: Chile · Oeste: Océano Pacífico.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué la Costa tiene mayor densidad poblacional si es la región más pequeña?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Porque concentra las principales ciudades (Lima, Trujillo, Arequipa), los puertos, las industrias y los servicios. Lima sola alberga más del 30% de la población nacional.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-history">🏔️</div>
+                <div class="topic-book-info">
+                  <h4>Las Regiones Naturales</h4>
+                  <p>Las 8 regiones de Pulgar Vidal y sus características</p>
+                  <div class="topic-tags"><span class="topic-tag">Chala</span><span class="topic-tag">Yunga</span><span class="topic-tag">Quechua</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🏔️ Las 8 Regiones Naturales de Javier Pulgar Vidal</h3>
+                <p>El geógrafo peruano <strong>Javier Pulgar Vidal</strong> dividió el Perú en 8 regiones naturales basándose en la altitud, clima, flora y fauna. Esta clasificación es clave para el currículo peruano.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌊 Regiones 1 a 4</h4>
+                    <ul>
+                      <li><strong>1. Chala (Costa):</strong> 0–500 m, desierto costero, anchoveta</li>
+                      <li><strong>2. Yunga:</strong> 500–2,300 m, valles cálidos, frutales</li>
+                      <li><strong>3. Quechua:</strong> 2,300–3,500 m, zona templada, maíz, trigo</li>
+                      <li><strong>4. Suni o Jalca:</strong> 3,500–4,000 m, papa, oca, quinua</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🏔️ Regiones 5 a 8</h4>
+                    <ul>
+                      <li><strong>5. Puna:</strong> 4,000–4,800 m, frío intenso, camélidos</li>
+                      <li><strong>6. Janca o Cordillera:</strong> +4,800 m, nieves perpetuas</li>
+                      <li><strong>7. Rupa Rupa (Selva Alta):</strong> 400–1,000 m, nubosa</li>
+                      <li><strong>8. Omagua (Selva Baja):</strong> 80–400 m, Amazonía</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿En qué región natural de Pulgar Vidal se cultivan más productos andinos (papa, quinua, oca)?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">Principalmente en la <strong>Suni o Jalca</strong> (3,500–4,000 m), aunque la Quechua también produce papa y maíz. Estos cultivos están adaptados al frío y la baja presión de oxígeno de la altura.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP III -->
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Nociones de Economía</h2>
+              <p>Necesidades, recursos y actividades económicas</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">💰</span>
+              <div><h3>La economía en tu vida</h3><p>La economía no es solo para expertos. Cada decisión de compra, ahorro o trabajo involucra conceptos económicos básicos que todos debemos conocer.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-history">💰</div>
+                <div class="topic-book-info">
+                  <h4>Nociones de Economía</h4>
+                  <p>Necesidades, bienes, servicios y sectores económicos</p>
+                  <div class="topic-tags"><span class="topic-tag">Bienes</span><span class="topic-tag">Servicios</span><span class="topic-tag">Sectores</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>💰 Nociones Básicas de Economía</h3>
+                <p>La <strong>economía</strong> estudia cómo las personas, empresas y gobiernos toman decisiones para satisfacer necesidades con recursos limitados. La escasez es el problema fundamental de la economía.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🛒 Necesidades y bienes</h4>
+                    <ul>
+                      <li><strong>Necesidades primarias:</strong> alimentación, vestido, vivienda</li>
+                      <li><strong>Necesidades secundarias:</strong> educación, salud, transporte</li>
+                      <li><strong>Bienes:</strong> objetos tangibles (pan, ropa, computadora)</li>
+                      <li><strong>Servicios:</strong> intangibles (educación, medicina, internet)</li>
+                      <li><strong>Bienes libres:</strong> abundantes, sin costo (aire)</li>
+                      <li><strong>Bienes económicos:</strong> escasos, tienen precio</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚙️ Sectores productivos</h4>
+                    <ul>
+                      <li><strong>Primario:</strong> extrae recursos naturales (agricultura, minería, pesca)</li>
+                      <li><strong>Secundario:</strong> transforma materia prima (industria, manufactura)</li>
+                      <li><strong>Terciario:</strong> ofrece servicios (comercio, turismo, educación)</li>
+                      <li>Perú: economía basada en sectores primario y terciario</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Clasifica como bien o servicio: libro, consulta médica, pan, transporte en bus, zapatos, clases de inglés.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6"><strong>Bienes:</strong> libro, pan, zapatos. <strong>Servicios:</strong> consulta médica, transporte en bus, clases de inglés.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿A qué sector económico pertenece cada actividad: pesca, fabricar ropa, trabajar en un hotel?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t6">Pesca: <strong>sector primario</strong> · Fabricar ropa: <strong>sector secundario</strong> · Trabajar en un hotel: <strong>sector terciario</strong>.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-1.html" class="button button-secondary">← 1° Secundaria</a>
+      <a href="tema-ingles-1.html" class="button button-primary">Inglés →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=6,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),margin=15,pageW=210,pageH=297;let y=margin;
+      const addText=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));const lines=doc.splitTextToSize(text,pageW-margin*2);lines.forEach(line=>{if(y>pageH-margin){doc.addPage();y=margin;}doc.text(line,margin,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(217,119,6);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Historia, Geografía y Economía — 1° Sec.',margin,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne · Material de estudio completo',margin,20);y=38;
+      [
+        {t:'Prehistoria',c:'Etapas: Paleolítico (nomadismo, fuego, pinturas rupestres), Mesolítico (transición), Neolítico (agricultura, sedentarismo, cerámica). Hominización: Australopithecus → H. habilis → H. erectus → H. sapiens.'},
+        {t:'Civilizaciones Antiguas',c:'Mesopotamia: escritura cuneiforme, Código de Hammurabi, Sumeria/Babilonia/Asiria. Egipto: Nilo, faraón-dios, jeroglíficos, pirámides de Guiza, momificación.'},
+        {t:'Culturas Andinas Antiguas',c:'Chavín: cultura-horizonte, centro en Chavín de Huántar. Nazca: líneas geoglíficas, cerámica polícroma. Moche: cerámica retrato (huacos), Pirámide del Sol.'},
+        {t:'Geografía del Perú',c:'Superficie: 1,285,216 km². Límites: Ecuador/Colombia (N), Brasil/Bolivia (E), Chile (S), Pacífico (O). Tres regiones: Costa (10.6%), Sierra (30%), Selva (59.4%).'},
+        {t:'Regiones de Pulgar Vidal',c:'8 regiones por altitud: 1.Chala, 2.Yunga, 3.Quechua, 4.Suni, 5.Puna, 6.Janca, 7.Rupa Rupa, 8.Omagua.'},
+        {t:'Nociones de Economía',c:'Necesidades primarias/secundarias. Bienes vs servicios. Sectores: primario (extracción), secundario (industria), terciario (servicios).'},
+      ].forEach((t,i)=>{addText(`${i+1}. ${t.t}`,13,true,[217,119,6]);addText(t.c,10,false,[50,50,60]);y+=3;});
+      y+=5;addText('Ejercicios de repaso',13,true,[217,119,6]);
+      ['1. ¿Qué es la revolución neolítica y por qué fue importante?','2. ¿Por qué se llama a Egipto "el don del Nilo"?','3. ¿Qué son las Líneas de Nazca?','4. ¿Con qué países limita el Perú?','5. Enumera las 8 regiones naturales de Pulgar Vidal.','6. Clasifica como bien o servicio: pan, transporte, ropa, consulta médica.'].forEach(ex=>addText(ex,10,false,[50,50,60]));
+      doc.save('HistoriaGeografiaEconomia-1Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
