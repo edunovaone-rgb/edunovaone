@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Historia | 4° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-4.html">4° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Historia, Geografía y Economía</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#d97706,#f59e0b)">🌍</div>
+          <div><h3>Historia, Geografía y Economía</h3><p>4° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Historia del Perú</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Perú en el Siglo XX</a></li>
+          <li><p class="toc-section-title">II. Historia Universal</p></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Guerras Mundiales</a></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Guerra Fría</a></li>
+          <li><p class="toc-section-title">III. Mundo Contemporáneo</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Globalización</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Recursos Hídricos</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-peru">
+          <div class="chapter-header" onclick="toggleChapter('ch-peru')">
+            <div class="chapter-num" style="background:linear-gradient(135deg,#d97706,#f59e0b)">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Historia del Perú S.XX</p><h2>Perú en el Siglo XX</h2><p>De la aristocrática república a la democracia moderna</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner" style="background:linear-gradient(135deg,rgba(217,119,6,0.08),rgba(251,191,36,0.05));border:1px solid rgba(217,119,6,0.15)">
+              <span class="banner-icon">🏛️</span><div><h3>Un siglo de cambios profundos</h3><p>El siglo XX en el Perú estuvo marcado por alternancia entre democracia y dictadura, y por la búsqueda de un modelo de desarrollo propio.</p></div>
+            </div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-history">🏛️</div>
+                <div class="topic-book-info"><h4>Perú en el Siglo XX</h4><p>Aristocracia, Oncenio de Leguía, APRA, Odría</p>
+                  <div class="topic-tags"><span class="topic-tag">Leguía</span><span class="topic-tag">APRA</span><span class="topic-tag">S.XX</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🏛️ El Perú en el Siglo XX</h3>
+                <p>El siglo XX peruano se inicia con la <strong>República Aristocrática</strong> (1895-1919), dominada por la oligarquía agroexportadora. Le siguieron períodos de dictadura, movimientos populares y búsqueda democrática.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Períodos clave</h4>
+                    <ul>
+                      <li><strong>República Aristocrática (1895-1919):</strong> dominio oligárquico, partidos Civil y Demócrata</li>
+                      <li><strong>Oncenio de Leguía (1919-1930):</strong> 11 años de gobierno de Augusto B. Leguía; obras públicas, endeudamiento externo</li>
+                      <li><strong>Fundación del APRA (1924):</strong> Víctor Raúl Haya de la Torre; partido populista, representó a clases medias y trabajadores</li>
+                      <li><strong>Odría (1948-1956):</strong> dictadura militar, obras de infraestructura (hospitales), represión del APRA</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Desarrollo industrial y social</h4>
+                    <ul>
+                      <li>Industrialización de Lima en los años 50-60</li>
+                      <li>Reforma Agraria de Velasco Alvarado (1969): expropiación de haciendas</li>
+                      <li>Belaúnde Terry: obras de infraestructura, Carretera Marginal</li>
+                      <li>Crisis económica de los 80s: hiperinflación bajo García</li>
+                      <li>Fujimori (1990-2000): autogolpe (1992), Constitución 1993, derrota del terrorismo</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">República Aristocrática → Oncenio → Democracia/Dictaduras alternadas → Reforma Agraria → S.XXI</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué fue el Oncenio de Leguía y cuáles fueron sus principales características?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">El <strong>Oncenio de Leguía</strong> (1919-1930) fue el gobierno de 11 años de Augusto B. Leguía. Se caracterizó por: obras de infraestructura pública (carreteras, Lima moderna), endeudamiento externo masivo, la "Patria Nueva" (modernización), represión de la oposición y acercamiento a EE.UU. Terminó con el golpe de Sánchez Cerro en 1930, durante la crisis mundial.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Quién fundó el APRA y cuáles eran sus principios básicos?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">El <strong>APRA</strong> (Alianza Popular Revolucionaria Americana) fue fundado en 1924 por <strong>Víctor Raúl Haya de la Torre</strong>. Sus cinco puntos eran: (1) acción contra el imperialismo yanqui, (2) unidad política de América Latina, (3) nacionalización de tierras e industrias, (4) internacionalización del Canal de Panamá, (5) solidaridad con los pueblos oprimidos.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-world">
+          <div class="chapter-header" onclick="toggleChapter('ch-world')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Historia Universal</p><h2>Guerras y Guerra Fría</h2><p>Los conflictos que cambiaron el mundo</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">🌏</span><div><h3>El mundo en conflicto</h3><p>Las dos guerras mundiales y la Guerra Fría redefinieron el orden internacional y crearon el mundo en que vivimos.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-history">⚔️</div>
+                <div class="topic-book-info"><h4>Guerras Mundiales</h4><p>Causas, desarrollo, Holocausto y la ONU</p>
+                  <div class="topic-tags"><span class="topic-tag">1914-1918</span><span class="topic-tag">1939-1945</span><span class="topic-tag">ONU</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>⚔️ Primera y Segunda Guerra Mundial</h3>
+                <p>Las dos guerras mundiales del siglo XX fueron los conflictos más destructivos de la historia humana, con millones de muertos y consecuencias geopolíticas que duran hasta hoy.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Primera Guerra Mundial (1914-1918)</h4>
+                    <ul>
+                      <li><strong>Detonante:</strong> asesinato del archiduque Francisco Fernando en Sarajevo (1914)</li>
+                      <li><strong>Causas profundas:</strong> imperialismo, nacionalismo, carrera armamentista, sistema de alianzas</li>
+                      <li><strong>Bandos:</strong> Triple Entente (Francia, Reino Unido, Rusia) vs Triple Alianza (Alemania, Austria-Hungría, Italia)</li>
+                      <li><strong>Consecuencias:</strong> derrumbe de imperios (alemán, austro-húngaro, otomano, ruso), Tratado de Versalles, Revolución Rusa</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Segunda Guerra Mundial (1939-1945)</h4>
+                    <ul>
+                      <li><strong>Causas:</strong> humillación alemana (Versalles), crisis económica, ascenso del nazismo (Hitler)</li>
+                      <li><strong>Holocausto:</strong> genocidio de ~6 millones de judíos y otros grupos por los nazis</li>
+                      <li><strong>Hitos:</strong> invasión de Polonia (1939), batalla de Stalingrado, desembarco de Normandía (1944), bombas atómicas sobre Japón (1945)</li>
+                      <li><strong>ONU:</strong> creada en 1945 para preservar la paz mundial; 193 miembros actuales</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">PGM (1914-1918) → Versalles → Crisis + Nazismo → SGM (1939-1945) → ONU (1945)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué el Tratado de Versalles (1919) se considera una de las causas de la Segunda Guerra Mundial?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">El Tratado de Versalles impuso condiciones muy humillantes a Alemania: (1) reconocimiento de culpabilidad total por la guerra, (2) pago de enormes reparaciones económicas, (3) pérdida de territorios y colonias, (4) reducción drástica del ejército. Esto generó resentimiento y crisis económica en Alemania, creando el caldo de cultivo para el ascenso de Hitler y el nazismo.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué fue el Holocausto y por qué es importante recordarlo?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">El <strong>Holocausto</strong> fue el genocidio sistemático de aproximadamente 6 millones de judíos y otros grupos (gitanos, discapacitados, homosexuales, opositores políticos) por el régimen nazi entre 1941 y 1945. Se organizó en campos de concentración y exterminio (Auschwitz). Es importante recordarlo para que nunca se repita y como afirmación de la dignidad humana universal.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-history">🌐</div>
+                <div class="topic-book-info"><h4>Guerra Fría</h4><p>EE.UU. vs URSS, OTAN, carrera espacial, Muro</p>
+                  <div class="topic-tags"><span class="topic-tag">Bipolar</span><span class="topic-tag">OTAN</span><span class="topic-tag">1947-1991</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🌐 La Guerra Fría (1947–1991)</h3>
+                <p>La <strong>Guerra Fría</strong> fue la tensión geopolítica entre EE.UU. (capitalismo) y la URSS (comunismo) tras la Segunda Guerra Mundial. Nunca hubo conflicto armado directo entre ellos, pero sí guerras por poderes, carrera armamentista y carrera espacial.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Bloques y Alianzas</h4>
+                    <ul>
+                      <li><strong>Bloque Occidental:</strong> EE.UU. + aliados; OTAN (1949)</li>
+                      <li><strong>Bloque Oriental:</strong> URSS + países comunistas; Pacto de Varsovia (1955)</li>
+                      <li><strong>Doctrina Truman:</strong> EE.UU. apoyará a países amenazados por el comunismo</li>
+                      <li><strong>Plan Marshall:</strong> ayuda económica de EE.UU. a Europa occidental</li>
+                      <li><strong>Muro de Berlín:</strong> construido en 1961, símbolo de la división; cayó en 1989</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🚀 Hitos de la Guerra Fría</h4>
+                    <ul>
+                      <li><strong>Carrera nuclear:</strong> EE.UU. bomba atómica (1945); URSS (1949)</li>
+                      <li><strong>Carrera espacial:</strong> Sputnik soviético (1957); Neil Armstrong en la Luna (1969, EE.UU.)</li>
+                      <li><strong>Crisis de los Misiles (1962):</strong> Cuba; el momento más cercano a guerra nuclear</li>
+                      <li><strong>Guerra de Vietnam (1955-1975):</strong> EE.UU. derrota ante Vietnam del Norte</li>
+                      <li><strong>Fin:</strong> caída del Muro (1989) y disolución de la URSS (1991)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Guerra Fría: Capitalismo (EE.UU.) vs Comunismo (URSS) → Caída del Muro 1989</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué se llama "Guerra Fría" si nunca hubo un combate directo entre EE.UU. y la URSS?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Se llama "fría" porque el conflicto nunca llegó a una guerra directa ("caliente") entre las dos superpotencias, principalmente por el <strong>miedo a la destrucción nuclear mutua asegurada (MAD)</strong>. En su lugar, se manifestó en: espionaje, propaganda, carrera armamentista, guerras indirectas en terceros países (Korea, Vietnam), y bloqueos económicos.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Menciona tres consecuencias de la caída del Muro de Berlín en 1989.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">(1) <strong>Reunificación de Alemania</strong> (1990): Alemania Oriental y Occidental se unieron. (2) <strong>Fin de la Guerra Fría</strong> y derrumbe del bloque soviético en Europa del Este. (3) <strong>Disolución de la URSS</strong> (1991) en 15 repúblicas independientes, con Rusia como principal sucesora.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-glob">
+          <div class="chapter-header" onclick="toggleChapter('ch-glob')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Mundo Contemporáneo</p><h2>Globalización y Recursos Hídricos</h2><p>El mundo interconectado y el agua</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🌐</span><div><h3>El mundo hoy</h3><p>La globalización y los recursos hídricos son temas clave para comprender los desafíos del siglo XXI.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-science">🌐</div>
+                <div class="topic-book-info"><h4>Globalización</h4><p>Concepto, etapas, impactos económicos y culturales</p>
+                  <div class="topic-tags"><span class="topic-tag">Global</span><span class="topic-tag">Economía</span><span class="topic-tag">Cultura</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🌐 Globalización</h3>
+                <p>La <strong>globalización</strong> es el proceso de integración económica, política, cultural y tecnológica a escala mundial. Se aceleró con el fin de la Guerra Fría y la revolución de las comunicaciones (internet).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Dimensiones de la globalización</h4>
+                    <ul>
+                      <li><strong>Económica:</strong> libre mercado, corporaciones multinacionales, FMI, OMC, Banco Mundial</li>
+                      <li><strong>Tecnológica:</strong> internet, redes sociales, transferencia instantánea de información</li>
+                      <li><strong>Cultural:</strong> "aldea global" (McLuhan); difusión y homogeneización cultural; pérdida de identidades locales</li>
+                      <li><strong>Ambiental:</strong> emisiones globales, cambio climático, contaminación transfronteriza</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚖️ Ventajas y desventajas</h4>
+                    <ul>
+                      <li><strong>Ventajas:</strong> acceso a productos y tecnología, reducción de pobreza extrema, comunicación global, avances médicos compartidos</li>
+                      <li><strong>Desventajas:</strong> desigualdad entre países, pérdida cultural, dependencia tecnológica, contaminación, crisis financieras contagiosas</li>
+                      <li><strong>Antiglobalización:</strong> movimientos que critican sus efectos (Foro Social Mundial)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Globalización: integración de economías + culturas + tecnologías a escala mundial</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Da un ejemplo de la globalización en tu vida cotidiana.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Ejemplos de globalización cotidiana: (1) Usar un smartphone fabricado con componentes de varios países (diseño EE.UU., chips Taiwan, ensamblaje China). (2) Ver series de Netflix de otros países. (3) Comprar ropa de marcas internacionales. (4) Usar WhatsApp o TikTok para comunicarse con personas del mundo. (5) Comer en McDonald's o KFC en Lima.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cómo afecta la globalización a la identidad cultural del Perú?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">La globalización impacta la identidad cultural peruana de dos formas: <strong>positiva:</strong> la gastronomía peruana (ceviche, lomo saltado) se ha difundido globalmente, valorando nuestra cultura. <strong>Negativa:</strong> la influencia de la cultura pop anglosajona puede desplazar tradiciones locales (idiomas nativos, música andina). El reto es aprovechar la globalización sin perder la identidad cultural propia.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-science">💧</div>
+                <div class="topic-book-info"><h4>Recursos Hídricos</h4><p>Ciclo del agua, cuencas, glaciares y problemas</p>
+                  <div class="topic-tags"><span class="topic-tag">Ciclo del agua</span><span class="topic-tag">Glaciares</span><span class="topic-tag">Cuencas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>💧 Recursos Hídricos del Perú</h3>
+                <p>El agua es un recurso vital y escaso. El Perú tiene una enorme riqueza hídrica gracias a sus glaciares andinos y la cuenca amazónica, pero enfrenta problemas de distribución desigual y amenazas por el cambio climático.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔄 Ciclo del Agua y Cuencas</h4>
+                    <ul>
+                      <li><strong>Ciclo hidrológico:</strong> evaporación → condensación → precipitación → escorrentía → infiltración</li>
+                      <li><strong>3 vertientes del Perú:</strong> Pacífico (escasez), Atlántico (abundancia), Titicaca</li>
+                      <li>Perú: 71% de los glaciares tropicales del mundo</li>
+                      <li>Ríos importantes: Amazonas, Ucayali, Marañón, Mantaro, Rímac</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚠️ Problemas hídricos</h4>
+                    <ul>
+                      <li><strong>Retroceso glaciar:</strong> el Pastoruri (Áncash) ha perdido el 40% de su masa</li>
+                      <li><strong>Distribución desigual:</strong> la costa árida tiene el 54% de la población pero solo el 2% del agua</li>
+                      <li><strong>Contaminación:</strong> minería ilegal, residuos industriales y domésticos en ríos</li>
+                      <li><strong>El Niño:</strong> fenómeno climático que altera los patrones de lluvia</li>
+                      <li><strong>Estrés hídrico:</strong> Lima depende del río Rímac y acuíferos en riesgo</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Estrés hídrico: disponibilidad &lt; 1700 m³/persona/año | Perú global: 74,546 m³/persona/año</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué Lima tiene problemas de agua si el Perú es un país con grandes recursos hídricos?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">La paradoja hídrica del Perú se explica por la <strong>distribución geográfica desigual</strong>: el 97% del agua superficial está en la cuenca amazónica (selva y sierra), pero la costa alberga a más del 50% de la población y la actividad económica. Lima está en un desierto costero y depende del río Rímac y glaciares andinos que se reducen por el cambio climático.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Describe el ciclo hidrológico en 4 pasos.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">(1) <strong>Evaporación:</strong> el sol calienta el agua de mares, ríos y lagos, convirtiéndola en vapor. (2) <strong>Condensación:</strong> el vapor sube, se enfría y forma nubes. (3) <strong>Precipitación:</strong> el agua cae como lluvia, nieve o granizo. (4) <strong>Escorrentía e infiltración:</strong> el agua fluye por ríos hacia el mar o se infiltra en el suelo (agua subterránea), y el ciclo comienza de nuevo.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="tema-comunicacion-4.html" class="button button-secondary">← Comunicación</a>
+      <a href="tema-ingles-4.html" class="button button-primary">Inglés →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(217,119,6);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Historia, Geografi­a y Economi­a - 4 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Peru en el Siglo XX',c:'Republica Aristocratica (1895-1919). Oncenio Leguia (1919-1930): obras, endeudamiento. APRA (1924): Haya de la Torre. Odria (1948-56): dictadura. Reforma Agraria Velasco (1969). Fujimori (1990-2000): autogolpe 1992.'},
+       {ti:'Primera y Segunda Guerra Mundial',c:'PGM (1914-18): detonante en Sarajevo, Triple Entente vs Triple Alianza, Tratado Versalles. SGM (1939-45): nazismo, Holocausto (6M judios), D-Day, bomba atomica. ONU creada 1945. Causas SGM: humillacion por Versalles.'},
+       {ti:'Guerra Fri­a (1947-1991)',c:'EE.UU. (capitalismo) vs URSS (comunismo). OTAN (1949) vs Pacto Varsovia (1955). Doctrina Truman, Plan Marshall. Muro Berlin (1961-1989). Crisis misiles Cuba 1962. Carrera espacial: Sputnik 1957, Luna 1969. Caida muro 1989.'},
+       {ti:'Globalizacion',c:'Proceso de integracion mundial economica, cultural y tecnologica. Dimensiones: economica (FMI, OMC), tecnologica (internet), cultural (aldea global), ambiental. Ventajas: acceso, comunicacion. Desventajas: desigualdad, perdida cultural.'},
+       {ti:'Recursos Hi­dricos',c:'Ciclo hidrologico: evaporacion, condensacion, precipitacion, escorrentia. Peru: 71% glaciares tropicales mundiales. 3 vertientes. Problemas: retroceso glaciar (Pastoruri -40%), distribucion desigual (costa: 54% poblacion, 2% agua), contaminacion.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[217,119,6]);t(x.c,10,false,[50,50,60]);y+=3;});
+      doc.save('Historia-4-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
