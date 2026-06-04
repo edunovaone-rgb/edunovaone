@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Ciencia y Tecnología | 4° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-4.html">4° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Ciencia y Tecnología</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#059669,#10b981)">⚗️</div>
+          <div><h3>Ciencia y Tecnología</h3><p>4° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Biología</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Genética y Herencia</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Evolución</a></li>
+          <li><p class="toc-section-title">II. Química</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Química Orgánica</a></li>
+          <li><p class="toc-section-title">III. Física</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Electricidad</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Ondas y Sonido</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-bio">
+          <div class="chapter-header" onclick="toggleChapter('ch-bio')">
+            <div class="chapter-num num-advanced">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Biología</p><h2>Genética y Evolución</h2><p>ADN, herencia, Darwin y selección natural</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🧬</span><div><h3>El código de la vida</h3><p>La genética y la evolución explican por qué los seres vivos son como son y cómo cambian a lo largo del tiempo.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-science">🧬</div>
+                <div class="topic-book-info"><h4>Genética y Herencia</h4><p>ADN, genes, cromosomas, Mendel y Punnett</p>
+                  <div class="topic-tags"><span class="topic-tag">ADN</span><span class="topic-tag">Mendel</span><span class="topic-tag">Punnett</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🧬 Genética y Herencia</h3>
+                <p>La <strong>genética</strong> estudia cómo se transmiten los caracteres hereditarios de padres a hijos. El <strong>ADN</strong> es la molécula que contiene toda la información genética organizada en genes y cromosomas.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔬 Conceptos fundamentales</h4>
+                    <ul>
+                      <li><strong>ADN:</strong> ácido desoxirribonucleico; doble hélice con bases A-T-C-G</li>
+                      <li><strong>Gen:</strong> segmento de ADN que codifica una proteína o característica</li>
+                      <li><strong>Cromosoma:</strong> estructura compacta de ADN; humanos: 46 cromosomas (23 pares)</li>
+                      <li><strong>Alelo:</strong> variante de un gen (dominante D o recesivo d)</li>
+                      <li><strong>Genotipo:</strong> constitución genética (DD, Dd, dd)</li>
+                      <li><strong>Fenotipo:</strong> característica observable (color de ojos, altura)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📊 Leyes de Mendel y Cuadro de Punnett</h4>
+                    <ul>
+                      <li><strong>1ª Ley (Uniformidad):</strong> F1 de padres puros es uniforme</li>
+                      <li><strong>2ª Ley (Segregación):</strong> los alelos se separan en la meiosis</li>
+                      <li><strong>Cuadro de Punnett Dd × Dd:</strong></li>
+                      <li>Resultado: 25% DD, 50% Dd, 25% dd</li>
+                      <li>Fenotipo: 75% dominante, 25% recesivo</li>
+                      <li>Dominancia: el alelo D siempre se expresa sobre d</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Dd × Dd → 1DD : 2Dd : 1dd (proporción 3:1 en fenotipo)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Si A (ojos oscuros) es dominante y a (ojos claros) es recesivo. ¿Qué probabilidad hay de ojos claros en un cruce Aa × Aa?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">Cuadro de Punnett Aa×Aa: AA, Aa, Aa, aa → 1 AA : 2 Aa : 1 aa. Ojos claros (aa) = 1/4 = <strong>25%</strong>. Ojos oscuros (AA o Aa) = 3/4 = 75%.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuántos cromosomas tiene una célula humana somática y una gamética?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">Célula somática (muscular, piel, etc.): <strong>46 cromosomas</strong> (2n, diploide). Célula gamética (espermatozoide, óvulo): <strong>23 cromosomas</strong> (n, haploide). Al fusionarse en la fecundación: 23+23 = 46.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-science">🦎</div>
+                <div class="topic-book-info"><h4>Evolución</h4><p>Darwin, selección natural, evidencias y adaptación</p>
+                  <div class="topic-tags"><span class="topic-tag">Darwin</span><span class="topic-tag">Selección</span><span class="topic-tag">Adaptación</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🦎 Teoría de la Evolución</h3>
+                <p>Charles <strong>Darwin</strong> propuso la teoría de la <strong>selección natural</strong> en 1859 ("El origen de las especies"). La evolución explica la diversidad de la vida y cómo las especies cambian a lo largo de millones de años.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔍 Principios de Darwin</h4>
+                    <ul>
+                      <li><strong>Variabilidad:</strong> los individuos de una especie son diferentes entre sí</li>
+                      <li><strong>Herencia:</strong> las variaciones se transmiten a la descendencia</li>
+                      <li><strong>Selección natural:</strong> los individuos mejor adaptados sobreviven y se reproducen más</li>
+                      <li><strong>Adaptación:</strong> rasgos que mejoran la sobrevivencia en un ambiente</li>
+                      <li><strong>Especiación:</strong> formación de nuevas especies por aislamiento y selección</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📚 Evidencias de la evolución</h4>
+                    <ul>
+                      <li><strong>Fósiles:</strong> registro de formas de vida pasadas (trilobites, dinosaurios)</li>
+                      <li><strong>Anatomía comparada:</strong> estructuras homólogas (brazo humano = aleta de ballena)</li>
+                      <li><strong>Embriología:</strong> embriones de especies distintas son similares</li>
+                      <li><strong>Biogeografía:</strong> distribución geográfica de las especies</li>
+                      <li><strong>Genética molecular:</strong> similitudes en el ADN entre especies</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Variación + Herencia + Selección Natural = Evolución de las especies</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Explica el concepto de selección natural con un ejemplo concreto.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Ejemplo clásico: las jirafas. Cuando había escasez de hojas bajas, las jirafas con cuello más largo llegaban a hojas más altas, sobrevivían y se reproducían más. Sus crías heredaban el cuello largo. Con el tiempo, la población tuvo jirafas de cuello cada vez más largo. Así, el ambiente "seleccionó" el cuello largo.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué son las estructuras homólogas? Da un ejemplo.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2b')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2b">Las <strong>estructuras homólogas</strong> son órganos con la misma estructura básica y origen evolutivo común, aunque tengan funciones diferentes. Ejemplo: el brazo humano, la aleta de una ballena y el ala de un murciélago tienen los mismos huesos (húmero, radio, cúbito), lo que indica un ancestro común.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-quim">
+          <div class="chapter-header" onclick="toggleChapter('ch-quim')">
+            <div class="chapter-num num-basic" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Química</p><h2>Química Orgánica</h2><p>Carbono, alcanos, alcoholes y ácidos</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">⚗️</span><div><h3>El carbono: base de la vida</h3><p>Los compuestos orgánicos son la base de todos los seres vivos y de muchos materiales industriales.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-inter">⚗️</div>
+                <div class="topic-book-info"><h4>Química Orgánica</h4><p>Carbono, alcanos, alcoholes y ácidos carboxílicos</p>
+                  <div class="topic-tags"><span class="topic-tag">Alcanos</span><span class="topic-tag">Alcoholes</span><span class="topic-tag">Ácidos</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>⚗️ Química Orgánica</h3>
+                <p>La <strong>química orgánica</strong> estudia los compuestos que contienen carbono. El carbono es único: puede formar 4 enlaces, crear cadenas largas y anillos, generando millones de compuestos diferentes.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔗 Compuestos orgánicos principales</h4>
+                    <ul>
+                      <li><strong>Alcanos (CₙH₂ₙ₊₂):</strong> solo enlaces simples C-C; metano (CH₄), etano (C₂H₆), propano (C₃H₈), butano (C₄H₁₀)</li>
+                      <li><strong>Alquenos (CₙH₂ₙ):</strong> un doble enlace C=C; etileno (C₂H₄)</li>
+                      <li><strong>Alquinos (CₙH₂ₙ₋₂):</strong> un triple enlace C≡C; acetileno (C₂H₂)</li>
+                      <li><strong>Benceno (C₆H₆):</strong> anillo aromático, base de perfumes y medicamentos</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🧪 Grupos funcionales</h4>
+                    <ul>
+                      <li><strong>Alcoholes (−OH):</strong> etanol (C₂H₅OH), metanol (CH₃OH)</li>
+                      <li><strong>Ácidos carboxílicos (−COOH):</strong> ácido acético (vinagre), ácido cítrico</li>
+                      <li><strong>Ésteres:</strong> fragancias y sabores artificiales</li>
+                      <li><strong>Aminas (−NH₂):</strong> aminoácidos, proteínas</li>
+                      <li><strong>Aldehídos/cetonas (−C=O):</strong> formaldehído, acetona</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Alcanos: CₙH₂ₙ₊₂ | Alcoholes: R−OH | Ácidos: R−COOH</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuál es la fórmula del propano y del butano? Clasifícalos.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Usando CₙH₂ₙ₊₂: Propano (n=3): C₃H₈ — <strong>C₃H₈</strong>. Butano (n=4): C₄H₁₀ — <strong>C₄H₁₀</strong>. Ambos son <strong>alcanos</strong> (solo enlaces simples, saturados).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué el etanol (alcohol de bebidas) y el metanol son peligrosos de confundir?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Aunque ambos son alcoholes, el <strong>metanol (CH₃OH)</strong> es altamente tóxico: el organismo lo convierte en formaldehído y ácido fórmico, causando ceguera y muerte. El <strong>etanol (C₂H₅OH)</strong> es el alcohol de las bebidas, menos tóxico pero igualmente perjudicial en exceso. Son peligrosos de confundir porque son inodoros y similares visualmente.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-fis">
+          <div class="chapter-header" onclick="toggleChapter('ch-fis')">
+            <div class="chapter-num num-inter">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Física</p><h2>Electricidad y Ondas</h2><p>Ley de Ohm, circuitos y propiedades de las ondas</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">⚡</span><div><h3>El mundo eléctrico y ondulatorio</h3><p>La electricidad y las ondas son fenómenos físicos que están en todos los aparatos tecnológicos que usamos.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-inter">⚡</div>
+                <div class="topic-book-info"><h4>Electricidad</h4><p>Carga, Coulomb, corriente, voltaje, Ohm y circuitos</p>
+                  <div class="topic-tags"><span class="topic-tag">Ley de Ohm</span><span class="topic-tag">V=IR</span><span class="topic-tag">Circuitos</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>⚡ Electricidad</h3>
+                <p>La electricidad se basa en el movimiento de cargas eléctricas. La <strong>Ley de Ohm</strong> relaciona voltaje, corriente y resistencia, siendo fundamental para entender los circuitos eléctricos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Conceptos eléctricos</h4>
+                    <ul>
+                      <li><strong>Carga eléctrica (Q):</strong> propiedad de la materia; positiva (+) o negativa (−); unidad: Coulomb (C)</li>
+                      <li><strong>Ley de Coulomb:</strong> F = k·q₁·q₂/r² (fuerza entre cargas)</li>
+                      <li><strong>Corriente (I):</strong> flujo de cargas por segundo; unidad: Ampere (A)</li>
+                      <li><strong>Voltaje (V):</strong> diferencia de potencial; unidad: Volt (V)</li>
+                      <li><strong>Resistencia (R):</strong> oposición al flujo de corriente; unidad: Ohm (Ω)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔌 Ley de Ohm y Circuitos</h4>
+                    <ul>
+                      <li><strong>Ley de Ohm:</strong> V = I × R</li>
+                      <li>I = V/R | R = V/I</li>
+                      <li><strong>Potencia:</strong> P = V×I = I²×R = V²/R (Watts)</li>
+                      <li><strong>Serie:</strong> R_total = R₁+R₂+... | misma corriente</li>
+                      <li><strong>Paralelo:</strong> 1/R_total = 1/R₁+1/R₂+... | mismo voltaje</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">V = I × R | P = V × I | F = k·q₁·q₂/r²</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Una bombilla tiene resistencia de 240Ω y está conectada a 120V. ¿Cuánta corriente pasa?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">I = V/R = 120/240 = <strong>0.5 A</strong>. Potencia: P = V×I = 120×0.5 = <strong>60 W</strong> (bombilla de 60 vatios).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la resistencia total de 3Ω y 6Ω en paralelo?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">1/R_total = 1/3 + 1/6 = 2/6 + 1/6 = 3/6 = 1/2 → R_total = <strong>2 Ω</strong> (menor que la menor resistencia individual, típico del paralelo).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-inter">🔊</div>
+                <div class="topic-book-info"><h4>Ondas y Sonido</h4><p>Tipos, propiedades: amplitud, frecuencia, longitud</p>
+                  <div class="topic-tags"><span class="topic-tag">Frecuencia</span><span class="topic-tag">Amplitud</span><span class="topic-tag">v=f·λ</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🔊 Ondas y Sonido</h3>
+                <p>Una <strong>onda</strong> es una perturbación que transporta energía sin transportar materia. Las ondas se clasifican en mecánicas (necesitan medio, como el sonido) y electromagnéticas (viajan en el vacío, como la luz).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Propiedades de las ondas</h4>
+                    <ul>
+                      <li><strong>Amplitud (A):</strong> altura máxima de la onda; relacionada con la energía</li>
+                      <li><strong>Frecuencia (f):</strong> número de ciclos por segundo; unidad: Hz (Hertz)</li>
+                      <li><strong>Período (T):</strong> tiempo de un ciclo; T = 1/f</li>
+                      <li><strong>Longitud de onda (λ):</strong> distancia entre dos crestas consecutivas</li>
+                      <li><strong>Velocidad (v):</strong> v = f × λ</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔉 El Sonido</h4>
+                    <ul>
+                      <li>Onda mecánica longitudinal (necesita medio material)</li>
+                      <li>Velocidad en aire: ~340 m/s (varía con temperatura)</li>
+                      <li><strong>Pitch (tono):</strong> determinado por la frecuencia</li>
+                      <li><strong>Volumen:</strong> determinado por la amplitud</li>
+                      <li>Rango audible humano: 20 Hz – 20,000 Hz</li>
+                      <li>Ultrasonido: &gt;20,000 Hz (ecografías)</li>
+                      <li>Infrasido: &lt;20 Hz (terremotos, elefantes)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">v = f × λ | T = 1/f | E ∝ A² (energía proporcional a amplitud al cuadrado)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Una onda sonora tiene frecuencia de 440 Hz (nota La). Si la velocidad del sonido es 340 m/s, ¿cuál es su longitud de onda?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">λ = v/f = 340/440 ≈ <strong>0.77 m</strong> (77 cm). Período: T = 1/f = 1/440 ≈ 0.00227 s = 2.27 ms.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué el sonido no puede viajar en el espacio exterior?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">El sonido es una <strong>onda mecánica</strong>: necesita un medio material (sólido, líquido o gas) para propagarse. En el espacio exterior hay <strong>vacío</strong> (casi no hay partículas de materia), por lo que el sonido no tiene medio para transmitir las vibraciones. Las ondas electromagnéticas (como la luz y las ondas de radio) sí viajan en el vacío.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="tema-matematica-4.html" class="button button-secondary">← Matemática</a>
+      <a href="tema-comunicacion-4.html" class="button button-primary">Comunicación →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(5,150,105);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ciencia y Tecnologi­a - 4 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Genetica y Herencia',c:'ADN: doble helice, bases A-T-C-G. Gen: segmento ADN. Cromosomas: 46 en humanos (23 pares). Alelo: variante de gen (D dominante, d recesivo). Leyes de Mendel. Cuadro Punnett Dd x Dd: 1DD:2Dd:1dd, fenotipo 3:1.'},
+       {ti:'Evolucion',c:'Darwin (1859): variabilidad, herencia, seleccion natural. Los mejor adaptados sobreviven y se reproducen. Evidencias: fosiles, estructuras homologas, embriologia, biogeografia, ADN. Especiacion: nuevas especies por aislamiento.'},
+       {ti:'Quimica Organica',c:'Carbono: 4 enlaces, cadenas y anillos. Alcanos CnH2n+2: metano, etano, propano, butano. Alcoholes (-OH): etanol, metanol. Acidos carboxilicos (-COOH): acetico, citrico. Esteres: fragancias. Aminas: aminoacidos.'},
+       {ti:'Electricidad',c:'Carga (C), Corriente (A), Voltaje (V), Resistencia (Ohm). Ley Ohm: V=I*R. Potencia P=V*I. Ley Coulomb: F=kq1q2/r2. Serie: R_total=R1+R2. Paralelo: 1/R=1/R1+1/R2. Ej: 120V, 240ohm -> I=0.5A, P=60W.'},
+       {ti:'Ondas y Sonido',c:'Onda: perturbacion que transporta energia. Propiedades: amplitud, frecuencia (Hz), periodo T=1/f, longitud de onda lambda. v=f*lambda. Sonido: mecanica longitudinal, 340m/s en aire. Audible: 20-20000Hz. Ultrasonido >20kHz.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[5,150,105]);t(x.c,10,false,[50,50,60]);y+=3;});
+      doc.save('Ciencias-4-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
