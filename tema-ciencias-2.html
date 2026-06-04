@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Ciencia y Tecnología | 2° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-2.html">2° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Ciencia y Tecnología</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#059669,#10b981)">🧬</div>
+          <div><h3>Ciencia y Tecnología</h3><p>2° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Biología Celular</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Mitosis y Meiosis</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>ADN y Genoma</a></li>
+          <li><p class="toc-section-title">II. Genética y Ecosistemas</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Genética y Herencia</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Ecosistemas y Biodiversidad</a></li>
+          <li><p class="toc-section-title">III. Química y Física Básica</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Tabla Periódica y Enlaces</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Movimiento y Cinemática</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <!-- CAPÍTULO I -->
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Biología Celular</h2>
+              <p>División celular, ADN y reproducción</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">🧬</span>
+              <div><h3>La danza de los cromosomas</h3><p>La división celular es el proceso más fundamental de la vida. Sin mitosis no hay crecimiento; sin meiosis no hay reproducción sexual ni diversidad genética.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-science">🔬</div>
+                <div class="topic-book-info">
+                  <h4>Mitosis y Meiosis</h4>
+                  <p>División celular: crecimiento y reproducción sexual</p>
+                  <div class="topic-tags"><span class="topic-tag">Mitosis</span><span class="topic-tag">Meiosis</span><span class="topic-tag">Cromosomas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🔬 Mitosis y Meiosis</h3>
+                <p>La <strong>mitosis</strong> es la división celular que produce dos células hijas idénticas (diploides) a partir de una célula madre. Permite el crecimiento, la renovación y la cicatrización. La <strong>meiosis</strong> produce cuatro células hijas haploides (con la mitad de cromosomas) y es la base de la reproducción sexual.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔁 Fases de la Mitosis</h4>
+                    <ul>
+                      <li><strong>Profase:</strong> los cromosomas se condensan y se hacen visibles</li>
+                      <li><strong>Metafase:</strong> cromosomas se alinean en el ecuador celular</li>
+                      <li><strong>Anafase:</strong> cromátidas se separan hacia los polos</li>
+                      <li><strong>Telofase:</strong> se forman dos núcleos; la célula se divide</li>
+                      <li><strong>Resultado:</strong> 2 células diploides (2n) idénticas</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚙️ Meiosis vs Mitosis</h4>
+                    <ul>
+                      <li><strong>Meiosis I:</strong> separa cromosomas homólogos</li>
+                      <li><strong>Meiosis II:</strong> separa cromátidas (como mitosis)</li>
+                      <li><strong>Resultado:</strong> 4 células haploides (n)</li>
+                      <li><strong>Crossing over:</strong> intercambio de fragmentos → variabilidad genética</li>
+                      <li>Ocurre en: óvulos y espermatozoides</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Mitosis: 2n → 2n + 2n | Meiosis: 2n → n + n + n + n</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿En qué fase de la mitosis se alinean los cromosomas en el ecuador de la célula?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">En la <strong>Metafase</strong>. Los cromosomas se alinean en la placa ecuatorial, facilitando su posterior separación hacia los polos.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Una célula humana tiene 46 cromosomas. ¿Cuántos tendrá cada célula hija tras la mitosis? ¿Y tras la meiosis?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">Tras la <strong>mitosis</strong>: cada célula hija tendrá <strong>46 cromosomas</strong> (igual que la madre). Tras la <strong>meiosis</strong>: cada célula tendrá <strong>23 cromosomas</strong> (haploide).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Explica por qué el crossing-over durante la meiosis es importante para la evolución.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">El crossing-over genera <strong>nuevas combinaciones genéticas</strong> en los gametos, aumentando la variabilidad de los descendientes. Esto permite a las poblaciones adaptarse mejor al ambiente y es motor de la evolución.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-science">🧬</div>
+                <div class="topic-book-info">
+                  <h4>ADN y Genoma</h4>
+                  <p>Estructura del ADN, replicación y código genético básico</p>
+                  <div class="topic-tags"><span class="topic-tag">ADN</span><span class="topic-tag">Gen</span><span class="topic-tag">Cromosoma</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🧬 ADN y Genoma</h3>
+                <p>El <strong>ADN</strong> (Ácido Desoxirribonucleico) es la molécula que contiene la información genética de todos los seres vivos. Tiene estructura de doble hélice, descubierta por Watson y Crick en 1953. Cada segmento de ADN que codifica una proteína se llama <strong>gen</strong>. El conjunto completo de genes de un organismo es su <strong>genoma</strong>.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔗 Estructura del ADN</h4>
+                    <ul>
+                      <li><strong>Nucleótido:</strong> fosfato + azúcar (desoxirribosa) + base nitrogenada</li>
+                      <li><strong>Bases:</strong> Adenina (A), Timina (T), Guanina (G), Citosina (C)</li>
+                      <li><strong>Complementariedad:</strong> A con T, G con C</li>
+                      <li><strong>Doble hélice:</strong> dos cadenas antiparalelas unidas por puentes de hidrógeno</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📋 Genoma humano</h4>
+                    <ul>
+                      <li>~3,000 millones de pares de bases</li>
+                      <li>~20,000-25,000 genes</li>
+                      <li>Organizado en 46 cromosomas (23 pares)</li>
+                      <li>Proyecto Genoma Humano: completado en 2003</li>
+                      <li>Solo el ~2% del ADN codifica proteínas</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">ADN: Adenina-Timina | Guanina-Citosina (parejas complementarias)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Si una cadena de ADN tiene la secuencia: A-T-G-C-C-A, ¿cuál es la secuencia complementaria?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Aplicando las reglas de complementariedad (A-T, G-C): <strong>T-A-C-G-G-T</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la diferencia entre gen y genoma?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Un <strong>gen</strong> es un segmento específico de ADN que contiene la información para fabricar una proteína. El <strong>genoma</strong> es el conjunto completo de todo el material genético de un organismo, incluyendo todos sus genes.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAPÍTULO II -->
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Genética y Ecosistemas</h2>
+              <p>Herencia mendeliana, biodiversidad y cadenas tróficas</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">🌿</span>
+              <div><h3>Genes y ecosistemas</h3><p>Mendel descubrió las leyes de la herencia sin conocer el ADN. Hoy entendemos que los ecosistemas dependen de la diversidad genética de sus especies para sobrevivir.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-science">🫘</div>
+                <div class="topic-book-info">
+                  <h4>Genética y Herencia</h4>
+                  <p>Leyes de Mendel, dominancia y cuadros de Punnett</p>
+                  <div class="topic-tags"><span class="topic-tag">Mendel</span><span class="topic-tag">Dominante</span><span class="topic-tag">Fenotipo</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🫘 Genética y Leyes de Mendel</h3>
+                <p>Gregor Mendel (1822-1884) estudió la herencia en plantas de guisantes y formuló las bases de la genética moderna. Sus experimentos mostraron que los caracteres hereditarios se transmiten en unidades discretas (hoy llamadas genes) que pueden ser <strong>dominantes</strong> (se expresan siempre) o <strong>recesivos</strong> (se expresan solo si están en doble dosis).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📜 Leyes de Mendel</h4>
+                    <ul>
+                      <li><strong>1ª Ley (Uniformidad):</strong> Al cruzar dos razas puras distintas, todos los híbridos F1 son iguales</li>
+                      <li><strong>2ª Ley (Segregación):</strong> Los alelos se separan durante la formación de gametos</li>
+                      <li><strong>3ª Ley (Distribución independiente):</strong> Los genes de distintos caracteres se heredan de forma independiente</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🧮 Conceptos clave</h4>
+                    <ul>
+                      <li><strong>Alelo:</strong> versión alternativa de un gen</li>
+                      <li><strong>Homocigoto (AA, aa):</strong> dos alelos iguales</li>
+                      <li><strong>Heterocigoto (Aa):</strong> dos alelos diferentes</li>
+                      <li><strong>Genotipo:</strong> composición genética (Aa)</li>
+                      <li><strong>Fenotipo:</strong> característica observable (color)</li>
+                      <li><strong>F2 monohibridismo:</strong> proporción 3:1 (Dom:Rec)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Cruce Aa × Aa → 1 AA : 2 Aa : 1 aa (3 dominantes : 1 recesivo)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      En los guisantes, el color amarillo (A) es dominante sobre el verde (a). Cruza un guisante heterocigoto (Aa) con uno homocigoto recesivo (aa). ¿Cuál es la proporción genotípica y fenotípica?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Cruce Aa × aa: Genotipos: <strong>1 Aa : 1 aa</strong> (50% heterocigotos, 50% homocigotos recesivos). Fenotipos: <strong>1 amarillo : 1 verde</strong> (50% amarillos, 50% verdes).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué dos padres con ojos marrones pueden tener un hijo con ojos azules?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Porque ambos padres son <strong>heterocigotos (Aa)</strong>: tienen un alelo dominante (marrón) y uno recesivo (azul). El 25% de sus hijos puede ser homocigoto recesivo (aa) y tener <strong>ojos azules</strong>.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      ¿Cuál es la diferencia entre genotipo y fenotipo? Pon un ejemplo.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t3">El <strong>genotipo</strong> es la información genética (ej: Aa). El <strong>fenotipo</strong> es la característica visible resultado de ese genotipo más el ambiente (ej: ojos marrones). Dos individuos con genotipos AA y Aa tienen el mismo fenotipo (marrón).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-science">🌎</div>
+                <div class="topic-book-info">
+                  <h4>Ecosistemas y Biodiversidad</h4>
+                  <p>Cadenas tróficas, equilibrio ecológico y biodiversidad</p>
+                  <div class="topic-tags"><span class="topic-tag">Cadena trófica</span><span class="topic-tag">Biodiversidad</span><span class="topic-tag">Nicho</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🌎 Ecosistemas y Biodiversidad</h3>
+                <p>La <strong>biodiversidad</strong> es la variedad de formas de vida en la Tierra: diversidad de genes, especies y ecosistemas. Un ecosistema estable depende de su biodiversidad: a mayor diversidad, mayor resiliencia ante perturbaciones. Perú es uno de los 17 países <em>megadiversos</em> del mundo.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔗 Niveles tróficos y cadenas</h4>
+                    <ul>
+                      <li><strong>Productores:</strong> plantas, algas (fotosíntesis)</li>
+                      <li><strong>Consumidores primarios:</strong> herbívoros</li>
+                      <li><strong>Consumidores secundarios:</strong> carnívoros</li>
+                      <li><strong>Consumidores terciarios:</strong> superdepredadores</li>
+                      <li><strong>Descomponedores:</strong> hongos, bacterias</li>
+                      <li><strong>Regla del 10%:</strong> solo 10% de energía pasa al nivel siguiente</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌱 Biodiversidad en Perú</h4>
+                    <ul>
+                      <li>3 grandes regiones: Costa, Sierra, Selva</li>
+                      <li>~20,000 especies de plantas (10% del total mundial)</li>
+                      <li>~500 especies de mamíferos</li>
+                      <li>~1,800 especies de aves</li>
+                      <li>Amenazas: deforestación, minería ilegal, cambio climático</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Sol → Productores → C. Primario → C. Secundario → C. Terciario → Descomponedores</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      En la cadena: Pasto → Cuy → Zorro → Puma, ¿qué pasaría con el puma si los cuyes desaparecieran?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Si los cuyes desaparecen, los zorros tendrían menos alimento y disminuirían en número. Al haber menos zorros, la <strong>población de pumas también disminuiría</strong> por falta de presas. Esto muestra la interdependencia de los ecosistemas.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué la deforestación afecta la biodiversidad de un ecosistema?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">La deforestación elimina el <strong>hábitat</strong> de miles de especies, destruye los productores de la cadena trófica, altera los ciclos del agua y del carbono, y puede llevar a la <strong>extinción local</strong> de muchas especies animales y vegetales.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAPÍTULO III -->
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Química y Física Básica</h2>
+              <p>Tabla periódica, enlaces químicos y movimiento</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">⚗️</span>
+              <div><h3>Materia en movimiento</h3><p>La química y la física nos explican de qué está hecha la materia y cómo se mueve. Son las bases de la tecnología moderna y del entendimiento del universo.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-advanced">⚗️</div>
+                <div class="topic-book-info">
+                  <h4>Tabla Periódica y Enlaces</h4>
+                  <p>Elementos, grupos, periodos y tipos de enlace</p>
+                  <div class="topic-tags"><span class="topic-tag">Elemento</span><span class="topic-tag">Grupo</span><span class="topic-tag">Enlace iónico</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>⚗️ Tabla Periódica y Enlaces Químicos</h3>
+                <p>La <strong>tabla periódica</strong> organiza los 118 elementos conocidos según su número atómico (Z) y propiedades similares. Fue propuesta por Mendeleev en 1869. Los <strong>enlaces químicos</strong> son las fuerzas que mantienen unidos a los átomos para formar moléculas y compuestos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📊 Organización de la tabla periódica</h4>
+                    <ul>
+                      <li><strong>Grupos (columnas 1-18):</strong> elementos con propiedades similares</li>
+                      <li><strong>Periodos (filas 1-7):</strong> mismo número de capas electrónicas</li>
+                      <li><strong>Metales:</strong> izquierda (buena conductividad)</li>
+                      <li><strong>No metales:</strong> derecha (malos conductores)</li>
+                      <li><strong>Metaloides:</strong> propiedades intermedias (Si, Ge)</li>
+                      <li><strong>Gases nobles (Grupo 18):</strong> muy estables, casi inertes</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔗 Tipos de enlaces químicos</h4>
+                    <ul>
+                      <li><strong>Iónico:</strong> metal + no metal (cesión de electrones). Ej: NaCl</li>
+                      <li><strong>Covalente:</strong> no metal + no metal (compartir electrones). Ej: H₂O</li>
+                      <li><strong>Metálico:</strong> entre metales (electrones libres). Ej: Fe, Cu</li>
+                      <li>Iónico → sólidos cristalinos, alto punto de fusión</li>
+                      <li>Covalente → puede ser gas, líquido o sólido</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿En qué grupo y periodo se encuentra el sodio (Na, Z=11)?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">El sodio está en el <strong>Grupo 1</strong> (metales alcalinos) y en el <strong>Periodo 3</strong>. Tiene 11 electrones distribuidos en 3 capas: 2-8-1.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué tipo de enlace se forma entre Na y Cl? ¿Por qué?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Se forma un <strong>enlace iónico</strong>. El Na (metal) cede un electrón al Cl (no metal), formando Na⁺ y Cl⁻. Los iones de cargas opuestas se atraen formando el cristal de NaCl (sal común).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Clasifica: O₂, MgO, Cu, H₂O. ¿Qué tipo de enlace tiene cada uno?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t5">O₂: <strong>covalente</strong> (no metal-no metal) | MgO: <strong>iónico</strong> (metal-no metal) | Cu: <strong>metálico</strong> (solo metales) | H₂O: <strong>covalente polar</strong> (no metales)</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-advanced">🚀</div>
+                <div class="topic-book-info">
+                  <h4>Movimiento y Cinemática</h4>
+                  <p>Velocidad, aceleración y tipos de movimiento</p>
+                  <div class="topic-tags"><span class="topic-tag">Velocidad</span><span class="topic-tag">Aceleración</span><span class="topic-tag">MRU</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>🚀 Movimiento y Cinemática</h3>
+                <p>La <strong>cinemática</strong> estudia el movimiento sin considerar sus causas. Un objeto está en movimiento cuando cambia su posición respecto a un punto de referencia. Los conceptos clave son la <strong>velocidad</strong> (tasa de cambio de posición) y la <strong>aceleración</strong> (tasa de cambio de velocidad).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📐 Tipos de movimiento</h4>
+                    <ul>
+                      <li><strong>MRU</strong> (Movimiento Rectilíneo Uniforme): velocidad constante, aceleración = 0</li>
+                      <li><strong>MRUV</strong> (Movimiento Rectilíneo Uniformemente Variado): aceleración constante</li>
+                      <li><strong>Movimiento circular:</strong> trayectoria en círculo</li>
+                      <li><strong>Movimiento parabólico:</strong> proyectil (combinación)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔢 Fórmulas básicas</h4>
+                    <ul>
+                      <li><strong>Velocidad media:</strong> v = d/t (m/s)</li>
+                      <li><strong>Aceleración:</strong> a = Δv/t = (vf-vi)/t (m/s²)</li>
+                      <li><strong>MRU:</strong> d = v × t</li>
+                      <li><strong>MRUV:</strong> vf = vi + at</li>
+                      <li><strong>MRUV:</strong> d = vi·t + ½·a·t²</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">v = d/t | a = (vf - vi)/t | d = vi·t + ½·a·t²</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Un auto recorre 240 km en 3 horas. ¿Cuál es su velocidad media?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">v = d/t = 240/3 = <strong>80 km/h</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Un ciclista parte del reposo y alcanza 18 m/s en 6 segundos. ¿Cuál es su aceleración?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t6">a = (vf - vi)/t = (18 - 0)/6 = <strong>3 m/s²</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Un tren con aceleración de 2 m/s² parte del reposo. ¿Cuánto recorre en 10 segundos?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t6">d = vi·t + ½·a·t² = 0 + ½ × 2 × 100 = <strong>100 metros</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-2.html" class="button button-secondary">← 2° Secundaria</a>
+      <a href="tema-comunicacion-2.html" class="button button-primary">Comunicación →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=6,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),margin=15,pageW=210,pageH=297;let y=margin;
+      const addText=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));const lines=doc.splitTextToSize(text,pageW-margin*2);lines.forEach(line=>{if(y>pageH-margin){doc.addPage();y=margin;}doc.text(line,margin,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(5,150,105);doc.rect(0,0,210,28,'F');
+      doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');
+      doc.text('Ciencia y Tecnologia - 2 Secundaria',margin,12);
+      doc.setFontSize(10);doc.setFont('helvetica','normal');
+      doc.text('EduNovaOne - Material de estudio completo',margin,20);y=38;
+      const temas=[
+        {t:'Mitosis y Meiosis',c:'La mitosis produce 2 celulas hijas diploides identicas (2n). La meiosis produce 4 celulas haploides (n) para la reproduccion sexual. Fases: Profase, Metafase, Anafase, Telofase.'},
+        {t:'ADN y Genoma',c:'El ADN es una doble helice con bases complementarias (A-T, G-C). El genoma humano tiene ~20,000 genes en 46 cromosomas. Un gen es un segmento de ADN que codifica una proteina.'},
+        {t:'Genetica y Herencia',c:'Leyes de Mendel: Uniformidad, Segregacion, Distribucion independiente. Conceptos: alelo, homocigoto, heterocigoto, genotipo, fenotipo. Cruce Aa x Aa: proporcion 3:1.'},
+        {t:'Ecosistemas y Biodiversidad',c:'Niveles troficos: Productores, consumidores primarios/secundarios/terciarios, descomponedores. Regla del 10%. Peru es megadiverso: 20,000 especies vegetales.'},
+        {t:'Tabla Periodica y Enlaces',c:'La tabla periodica organiza 118 elementos por numero atomico. Tipos de enlace: ionico (Na-Cl), covalente (H2O), metalico (Cu). Grupos y periodos definen propiedades.'},
+        {t:'Movimiento y Cinematica',c:'Tipos: MRU (v constante), MRUV (a constante). Formulas: v=d/t, a=(vf-vi)/t, d=vi*t+1/2*a*t2. Velocidad en m/s, aceleracion en m/s2.'}
+      ];
+      temas.forEach((t,i)=>{addText(`${i+1}. ${t.t}`,13,true,[5,150,105]);addText(t.c,10,false,[50,50,60]);y+=3;});
+      y+=5;addText('Ejercicios de repaso',13,true,[5,150,105]);
+      ['1. Una celula con 46 cromosomas se divide por mitosis. ¿Cuantos cromosomas tendra cada hija? R: 46','2. Cruce Aa x Aa: ¿que proporcion fenotipica se obtiene? R: 3 dominantes : 1 recesivo','3. Un auto recorre 300 km en 4 h. ¿Cual es su velocidad media? R: 75 km/h','4. ¿Que tipo de enlace tiene NaCl? R: Enlace ionico'].forEach(ex=>addText(ex,10,false,[50,50,60]));
+      doc.save('ciencias-2-secundaria.pdf');
+    }
+  </script>
+</body>
+</html>
