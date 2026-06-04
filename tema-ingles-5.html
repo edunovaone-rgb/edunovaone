@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Inglés | 5° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-5.html">5° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Inglés</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">🇬🇧</div>
+          <div><h3>Inglés</h3><p>5° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Gramática Avanzada</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Mixed Conditionals & Wishes</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Advanced Passive & Causative</a></li>
+          <li><p class="toc-section-title">II. Inglés Profesional</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Business English</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Academic Writing</a></li>
+          <li><p class="toc-section-title">III. Preparación B2</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>B2 Exam Preparation</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Advanced Level</p><h2>Advanced Grammar</h2><p>Mixed Conditionals, Wishes y Passive Causative</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic"><span class="banner-icon">🎓</span><div><h3>Master complex structures!</h3><p>These advanced grammar structures distinguish B1 from B2 level English. Mastering them gives you the precision to express complex ideas about hypothetical situations and formal contexts.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-english">🔀</div>
+                <div class="topic-book-info"><h4>Mixed Conditionals & Wishes</h4><p>Condicionales mixtos y expresar deseos sobre el pasado y presente</p>
+                  <div class="topic-tags"><span class="topic-tag">If + Past Perfect</span><span class="topic-tag">Would have</span><span class="topic-tag">I wish</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🔀 Mixed Conditionals & Wish Structures</h3>
+                <p>Los <strong>condicionales mixtos</strong> combinan tiempos de dos condicionales distintos (2° y 3°) para hablar de situaciones donde el tiempo de la condición y el resultado son diferentes. <strong>Wish</strong> expresa deseos sobre situaciones que no son reales.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔀 Mixed Conditionals</h4>
+                    <ul>
+                      <li><strong>Tipo: Past → Present</strong> (condición pasada, resultado presente)</li>
+                      <li>If + Past Perfect, would + infinitive</li>
+                      <li>"If I <em>had studied</em> medicine, I <em>would be</em> a doctor now."</li>
+                      <li><strong>Tipo: Present → Past</strong> (condición presente, resultado pasado)</li>
+                      <li>If + Past Simple, would have + PP</li>
+                      <li>"If I <em>were</em> braver, I <em>would have asked</em> her out."</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>💫 Wish Structures</h4>
+                    <ul>
+                      <li><strong>Wish + Past Simple:</strong> deseo sobre el presente</li>
+                      <li>"I wish I <em>spoke</em> Chinese." (no hablo chino)</li>
+                      <li><strong>Wish + Past Perfect:</strong> lamento sobre el pasado</li>
+                      <li>"I wish I <em>had studied</em> harder." (no estudié)</li>
+                      <li><strong>Wish + would:</strong> deseo de cambio de comportamiento</li>
+                      <li>"I wish you <em>would stop</em> complaining."</li>
+                      <li><strong>If only:</strong> más énfasis → "If only I had more time!"</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">I wish I had [PP] = lamento del pasado | I wish I [Past] = deseo presente irreal</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Completa: I wish I ___ (know) English better — I can't understand the movie. If I ___ (study) more last year, I ___ (pass) the exam.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">I wish I <strong>knew</strong> English better. If I <strong>had studied</strong> more last year, I <strong>would have passed</strong> the exam.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Escribe 3 oraciones con wish: una sobre tu situación actual, una lamentando algo del pasado, y una pidiendo un cambio de comportamiento de alguien.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">Respuesta personal. Ej: "I wish I <strong>lived</strong> closer to the city center." (presente) / "I wish I <strong>had slept</strong> more last night." (pasado) / "I wish my classmates <strong>would be</strong> quieter during the exam." (cambio de conducta).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-english">🔧</div>
+                <div class="topic-book-info"><h4>Advanced Passive & Causative</h4><p>Voz pasiva en todos los tiempos y causativo have/get</p>
+                  <div class="topic-tags"><span class="topic-tag">be + PP</span><span class="topic-tag">have sth done</span><span class="topic-tag">All tenses</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🔧 Advanced Passive Voice & Causative</h3>
+                <p>La <strong>voz pasiva</strong> se usa cuando el sujeto recibe la acción, no la realiza. En inglés avanzado se usa en todos los tiempos. El <strong>causativo</strong> (have/get something done) indica que alguien hace algo por ti.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Passive in all tenses</h4>
+                    <ul>
+                      <li>Present Simple: The book <em>is written</em> by him</li>
+                      <li>Past Simple: It <em>was built</em> in 1900</li>
+                      <li>Present Perfect: It <em>has been repaired</em></li>
+                      <li>Future: The bridge <em>will be opened</em> next year</li>
+                      <li>Modal: It <em>must be done</em> immediately</li>
+                      <li>Estructura: be (conjugado) + Past Participle</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🛠️ Causative have/get</h4>
+                    <ul>
+                      <li><strong>have + object + PP:</strong> alguien hace algo por ti</li>
+                      <li>I <em>had</em> my car <em>repaired</em>. (lo repararon por mí)</li>
+                      <li>She <em>had</em> her hair <em>cut</em>. (se cortó el pelo — en peluquería)</li>
+                      <li><strong>get + object + PP:</strong> más informal</li>
+                      <li>I need to <em>get</em> my phone <em>fixed</em>.</li>
+                      <li><strong>Pasiva personal:</strong> They say he is rich → He <em>is said to be</em> rich.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Convierte a pasiva: "The company has delivered the packages." / "They will announce the results tomorrow."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">The packages <strong>have been delivered</strong> by the company. The results <strong>will be announced</strong> tomorrow.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Reescribe usando causativo: "A mechanic is repairing my car" / "A tailor made her dress".
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">I <strong>am having my car repaired</strong>. She <strong>had her dress made</strong> by a tailor.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Professional Level</p><h2>Inglés Profesional</h2><p>Business English y escritura académica</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">💼</span><div><h3>English for your career!</h3><p>Business English and academic writing are essential skills for university and the professional world. These structures will help you communicate formally, write papers, and succeed in international environments.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-english">💼</div>
+                <div class="topic-book-info"><h4>Business English</h4><p>Emails formales, reuniones, negociaciones y presentaciones</p>
+                  <div class="topic-tags"><span class="topic-tag">Formal emails</span><span class="topic-tag">Meetings</span><span class="topic-tag">Presentations</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>💼 Business English</h3>
+                <p>El <strong>Business English</strong> es el inglés utilizado en contextos profesionales y comerciales. Difiere del inglés cotidiano en su formalidad, precisión y vocabulario específico.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📧 Formal Email Structure</h4>
+                    <ul>
+                      <li><strong>Subject:</strong> claro y específico</li>
+                      <li><strong>Salutation:</strong> Dear Mr./Ms. [apellido], / To whom it may concern,</li>
+                      <li><strong>Opening:</strong> I am writing to... / With reference to...</li>
+                      <li><strong>Body:</strong> párrafos cortos y directos</li>
+                      <li><strong>Closing:</strong> I look forward to hearing from you.</li>
+                      <li><strong>Sign-off:</strong> Yours sincerely, / Best regards,</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🤝 Meetings & Negotiations</h4>
+                    <ul>
+                      <li>"Could we schedule a meeting for...?"</li>
+                      <li>"I'd like to raise the issue of..."</li>
+                      <li>"That's a fair point, however..."</li>
+                      <li>"We propose a compromise..."</li>
+                      <li>"Let me summarize what we've agreed..."</li>
+                      <li>"I'll get back to you on that."</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Write a formal email to a university requesting information about their English program. Include: subject, salutation, reason for writing, specific questions, closing.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Sample: Subject: Enquiry about English Language Program. Dear Sir/Madam, I am writing to request information about your English language programs for international students. I would be grateful if you could provide details regarding admission requirements, program duration, and tuition fees. I look forward to your reply. Yours faithfully, [Name]</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-english">📰</div>
+                <div class="topic-book-info"><h4>Academic Writing in English</h4><p>Research papers, argumentative essays y paráfrasis</p>
+                  <div class="topic-tags"><span class="topic-tag">Thesis</span><span class="topic-tag">References</span><span class="topic-tag">Paraphrase</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>📰 Academic Writing in English</h3>
+                <p>La escritura académica en inglés sigue convenciones específicas. En la universidad necesitarás escribir ensayos, reportes e investigaciones. El nivel B2 requiere dominar estas estructuras.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📝 Research Paper Structure</h4>
+                    <ul>
+                      <li><strong>Abstract:</strong> resumen de 150-250 palabras (problema, método, resultados)</li>
+                      <li><strong>Introduction:</strong> contexto + gap + thesis + outline</li>
+                      <li><strong>Literature Review:</strong> revisión de estudios previos</li>
+                      <li><strong>Methodology:</strong> cómo se realizó la investigación</li>
+                      <li><strong>Results & Discussion:</strong> hallazgos e interpretación</li>
+                      <li><strong>Conclusion:</strong> síntesis y recomendaciones</li>
+                      <li><strong>References:</strong> APA, MLA o Chicago</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔄 Paraphrase & Citation</h4>
+                    <ul>
+                      <li>Parafrasear: reescribir una idea con tus propias palabras</li>
+                      <li>Cita directa: usar "comillas" y citar autor, año, página</li>
+                      <li>Cita indirecta: According to Smith (2020), ...</li>
+                      <li>APA: (Autor, Año, p.#) en el texto</li>
+                      <li><strong>Plagiarism:</strong> copiar sin citar es una falta académica grave</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Paraphrase this sentence: "Climate change is the most pressing environmental challenge of the 21st century."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Sample paraphrase: "Among all environmental issues facing humanity today, global warming stands out as the most critical and urgent challenge of our time."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">B2 Exam Preparation</p><h2>Preparación para Exámenes de Inglés</h2><p>FCE, IELTS y estructuras clave de nivel B2</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🏆</span><div><h3>Aim for B2!</h3><p>A B2 certificate (FCE, IELTS 5.5, TOEFL 72) opens doors to universities worldwide. Many Peruvian universities require B2 for graduation. Start preparing now.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-english">🏆</div>
+                <div class="topic-book-info"><h4>B2 Exam Preparation</h4><p>Estrategias para FCE, IELTS y vocabulario avanzado</p>
+                  <div class="topic-tags"><span class="topic-tag">FCE</span><span class="topic-tag">IELTS</span><span class="topic-tag">Collocations</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🏆 B2 Level Exam Preparation</h3>
+                <p>El nivel B2 del Marco Europeo (CEFR) implica: comprender textos complejos, comunicarse con fluidez con nativos, escribir textos claros y detallados. Las certificaciones más valoradas son FCE (Cambridge), IELTS e TOEFL.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 B2 Grammar Checklist</h4>
+                    <ul>
+                      <li>✅ All tenses including Perfect Continuous</li>
+                      <li>✅ All conditional types + Mixed</li>
+                      <li>✅ Passive voice in all tenses</li>
+                      <li>✅ Reported speech (all tenses)</li>
+                      <li>✅ Modal perfects (must have, could have)</li>
+                      <li>✅ Relative clauses (defining/non-defining)</li>
+                      <li>✅ Wish/If only structures</li>
+                      <li>✅ Inversion for emphasis (Never have I...)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📚 B2 Vocabulary Strategies</h4>
+                    <ul>
+                      <li><strong>Collocations:</strong> make a decision, take a risk, do research</li>
+                      <li><strong>Phrasal verbs:</strong> give up, put off, carry out, look into</li>
+                      <li><strong>Academic vocabulary:</strong> furthermore, nevertheless, consequently</li>
+                      <li><strong>Word formation:</strong> prefixes (un-, dis-, mis-) and suffixes (-tion, -ness, -ful)</li>
+                      <li>Read English newspapers (BBC, The Guardian) daily</li>
+                      <li>Watch shows with subtitles in English (not Spanish)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="example-block">
+                  <strong>Exam tip: FCE Writing</strong>
+                  <p>In Cambridge FCE Writing, you have 2 tasks: a compulsory essay (Part 1) and a choice (Part 2: article, email, report, review). Use linking words, varied vocabulary and accurate grammar. Aim for 140-190 words each.</p>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1 — Word Formation</strong>
+                      Form the correct word: The ___ (decide) was difficult. Her ___ (achieve) impressed everyone. The project was ___ (success).
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">The <strong>decision</strong> was difficult. Her <strong>achievement</strong> impressed everyone. The project was <strong>successful</strong>.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2 — Use of English</strong>
+                      Rewrite using inversion: "I have never seen such a beautiful landscape."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5"><strong>"Never have I seen</strong> such a beautiful landscape." (Inversion with never: auxiliary before subject)</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 3 — IELTS-style Task 2</strong>
+                      Write a 4-paragraph essay (250 words): "Some people believe that technology has made people less social. To what extent do you agree?"
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t5">Structure: Intro (paraphrase + thesis: partially agree). Body 1 (how tech reduces face-to-face interaction: social media vs real conversations). Body 2 (counterargument: tech connects people across distances, especially during pandemic). Conclusion: Balance is key — technology is a tool; how we use it determines its social impact.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-5.html" class="button button-secondary">← 5° Secundaria</a>
+      <a href="tema-filosofia-5.html" class="button button-primary">Filosofía →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(id,card){document.getElementById(id).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(tx,sz,b,c)=>{doc.setFontSize(sz);doc.setFont('helvetica',b?'bold':'normal');doc.setTextColor(...(c||[30,30,30]));doc.splitTextToSize(tx,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=sz*0.45;});y+=2;};
+      doc.setFillColor(37,99,235);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ingles - 5 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Mixed Conditionals & Wish',c:'Mixed Cond. tipo 1: If + Past Perfect, would + inf. (pasado->presente). Tipo 2: If + Past Simple, would have + PP. Wish + Past Simple (deseo presente irreal). Wish + Past Perfect (lamento pasado). Wish + would (cambio conducta).'},
+       {ti:'Advanced Passive & Causative',c:'Passive: be (conjugado) + PP en todos los tiempos. Causativo: have/get + object + PP (alguien hace algo por ti). Pasiva personal: He is said to be... They are believed to...'},
+       {ti:'Business English',c:'Email formal: Subject, Dear Mr./Ms., I am writing to..., I look forward to..., Yours sincerely. Reuniones: Could we schedule...? That is a fair point, however... We propose a compromise...'},
+       {ti:'Academic Writing',c:'Research paper: Abstract, Introduction, Literature Review, Methodology, Results, Conclusion, References (APA). Paraphrase: reescribir con propias palabras + citar. Plagiarism = falta grave.'},
+       {ti:'B2 Exam Preparation',c:'B2 grammar: all tenses, conditionals, passive, reported speech, modal perfects, relative clauses, wish, inversion. Collocations: make a decision, take a risk. FCE Writing: 2 tasks, 140-190 words each. IELTS Task 2: 250 words.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[37,99,235]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Exercises',13,true,[37,99,235]);
+      ['1. Complete: I wish I ___(know) English better. If I ___(study) more, I ___(pass) the exam.','2. Passive: The company has delivered the packages.','3. Causative: A mechanic is repairing my car.','4. Write a formal email requesting university information.','5. IELTS-style: "Technology makes people less social." Do you agree? (4 paragraphs)'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Ingles-5Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
