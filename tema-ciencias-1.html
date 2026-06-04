@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Ciencia y Tecnología | 1° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a>
+      <span>›</span>
+      <a href="grado-1.html">1° Secundaria</a>
+      <span>›</span>
+      <span style="color:var(--text);font-weight:600">Ciencia y Tecnología</span>
+    </nav>
+
+    <div class="book-layout">
+      <!-- Sidebar -->
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#059669,#10b981)">🔬</div>
+          <div>
+            <h3>Ciencia y Tecnología</h3>
+            <p>1° de Secundaria</p>
+          </div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. El Ser Vivo</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>La Célula</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Tejidos y Órganos</a></li>
+          <li><a href="#t3"><span class="toc-num">3</span>El Cuerpo Humano</a></li>
+          <li><p class="toc-section-title">II. Ecosistemas</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Ecosistemas y Biomas</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Cadenas Alimenticias</a></li>
+          <li><p class="toc-section-title">III. Ciencia en Acción</p></li>
+          <li><a href="#t6"><span class="toc-num">6</span>El Método Científico</a></li>
+          <li><a href="#t7"><span class="toc-num">7</span>Materia y Sus Estados</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <!-- Main -->
+      <div class="book-main" id="contentArea">
+
+        <!-- CAPÍTULO I -->
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>El Ser Vivo</h2>
+              <p>Célula, tejidos, órganos y el cuerpo humano</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">🔬</span>
+              <div>
+                <h3>¿Por qué empezar aquí?</h3>
+                <p>Todo ser vivo está formado por células. Entender la célula es la clave para comprender la biología, la medicina y la vida misma.</p>
+              </div>
+            </div>
+            <div class="topics-grid">
+
+              <!-- T1 La célula -->
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1', this)">
+                <div class="topic-book-cover cover-science">🔬</div>
+                <div class="topic-book-info">
+                  <h4>La Célula</h4>
+                  <p>Unidad básica de la vida: estructura y funciones</p>
+                  <div class="topic-tags"><span class="topic-tag">Procariota</span><span class="topic-tag">Eucariota</span><span class="topic-tag">Orgánulos</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🔬 La Célula — Unidad de la Vida</h3>
+                <p>La <strong>célula</strong> es la unidad estructural y funcional de todos los seres vivos. Fue descubierta por Robert Hooke en 1665. Existen dos grandes tipos: <strong>procariota</strong> (sin núcleo definido, ej. bacterias) y <strong>eucariota</strong> (con núcleo, ej. células humanas, vegetales, hongos).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🧫 Partes de la célula animal</h4>
+                    <ul>
+                      <li><strong>Membrana plasmática:</strong> controla el paso de sustancias</li>
+                      <li><strong>Citoplasma:</strong> líquido gelatinoso donde flotan los orgánulos</li>
+                      <li><strong>Núcleo:</strong> contiene el ADN (información genética)</li>
+                      <li><strong>Mitocondria:</strong> produce energía (ATP)</li>
+                      <li><strong>Ribosomas:</strong> fabrican proteínas</li>
+                      <li><strong>Retículo endoplasmático:</strong> transporte interno</li>
+                      <li><strong>Aparato de Golgi:</strong> empaqueta y exporta sustancias</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌿 Célula vegetal (diferencias)</h4>
+                    <ul>
+                      <li><strong>Pared celular:</strong> de celulosa, da rigidez</li>
+                      <li><strong>Cloroplastos:</strong> realizan la fotosíntesis</li>
+                      <li><strong>Vacuola central grande:</strong> almacena agua y nutrientes</li>
+                      <li>No tiene centriolos (usados en división celular animal)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Célula = Membrana + Citoplasma + Núcleo + Orgánulos</div>
+                <div class="example-block">
+                  <strong>Dato curioso</strong>
+                  <p>El cuerpo humano tiene aproximadamente 37 billones de células. ¡Si las pusieras en fila, darían la vuelta a la Tierra más de 100 veces!</p>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuál es la diferencia principal entre una célula procariota y una eucariota?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">La célula procariota <strong>no tiene núcleo definido</strong> (el ADN está libre en el citoplasma), mientras que la eucariota tiene un núcleo rodeado por membrana nuclear.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Nombra el orgánulo encargado de producir energía y explica brevemente su función.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">La <strong>mitocondria</strong>. Realiza la respiración celular: convierte glucosa y oxígeno en ATP (energía), dióxido de carbono y agua.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      ¿Qué dos estructuras tienen las células vegetales que no tienen las animales?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">La <strong>pared celular</strong> (de celulosa) y los <strong>cloroplastos</strong> (donde ocurre la fotosíntesis).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1', document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <!-- T2 Tejidos y Órganos -->
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2', this)">
+                <div class="topic-book-cover cover-science">🫀</div>
+                <div class="topic-book-info">
+                  <h4>Tejidos y Órganos</h4>
+                  <p>Organización del cuerpo: de célula a sistema</p>
+                  <div class="topic-tags"><span class="topic-tag">Tejidos</span><span class="topic-tag">Órganos</span><span class="topic-tag">Sistemas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🫀 Tejidos, Órganos y Sistemas</h3>
+                <p>Los organismos complejos se organizan en niveles de complejidad creciente: <strong>células → tejidos → órganos → sistemas → organismo</strong>. Cada nivel tiene funciones específicas.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🧬 Tipos de tejidos animales</h4>
+                    <ul>
+                      <li><strong>Epitelial:</strong> cubre superficies (piel, mucosas)</li>
+                      <li><strong>Conectivo:</strong> sostén y unión (hueso, cartílago, sangre)</li>
+                      <li><strong>Muscular:</strong> contracción y movimiento</li>
+                      <li><strong>Nervioso:</strong> transmite señales eléctricas</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔗 Sistemas del cuerpo humano</h4>
+                    <ul>
+                      <li>Digestivo · Respiratorio · Circulatorio</li>
+                      <li>Nervioso · Endocrino · Reproductor</li>
+                      <li>Esquelético · Muscular · Excretor</li>
+                      <li>Inmunológico · Linfático</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Célula → Tejido → Órgano → Sistema → Organismo</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué tipo de tejido transmite señales eléctricas por el cuerpo?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">El <strong>tejido nervioso</strong>, compuesto principalmente por neuronas.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Ordena de menor a mayor complejidad: sistema, célula, tejido, órgano, organismo.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Célula → Tejido → Órgano → Sistema → Organismo.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2', document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+              <!-- T3 Cuerpo Humano -->
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3', this)">
+                <div class="topic-book-cover cover-science">🧠</div>
+                <div class="topic-book-info">
+                  <h4>El Cuerpo Humano</h4>
+                  <p>Sistema digestivo, respiratorio y circulatorio</p>
+                  <div class="topic-tags"><span class="topic-tag">Digestión</span><span class="topic-tag">Respiración</span><span class="topic-tag">Corazón</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🧠 El Cuerpo Humano — Sistemas Principales</h3>
+                <p>Los tres sistemas más estudiados en 1° son el <strong>digestivo</strong>, el <strong>respiratorio</strong> y el <strong>circulatorio</strong>. Trabajan en equipo para nutrir cada célula del cuerpo.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🍽️ Sistema Digestivo</h4>
+                    <ul>
+                      <li>Boca → Faringe → Esófago → Estómago</li>
+                      <li>Intestino delgado (absorción de nutrientes)</li>
+                      <li>Intestino grueso (absorción de agua)</li>
+                      <li>Recto → Ano (eliminación)</li>
+                      <li>Órganos auxiliares: hígado, páncreas, vesícula</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>💨 Sistema Respiratorio</h4>
+                    <ul>
+                      <li>Fosas nasales → Faringe → Laringe</li>
+                      <li>Tráquea → Bronquios → Bronquiolos</li>
+                      <li>Alvéolos: intercambio O₂/CO₂</li>
+                      <li>Pulmones: 300 millones de alvéolos</li>
+                      <li>Diafragma: músculo principal de la respiración</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Glucosa + O₂ → CO₂ + H₂O + Energía (ATP)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Dónde se absorben la mayoría de los nutrientes durante la digestión?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">En el <strong>intestino delgado</strong>, gracias a las vellosidades intestinales que aumentan la superficie de absorción.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué gases se intercambian en los alvéolos pulmonares?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Se incorpora <strong>oxígeno (O₂)</strong> desde el aire a la sangre, y se elimina <strong>dióxido de carbono (CO₂)</strong> desde la sangre al aire.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3 — Análisis</strong>
+                      Explica por qué el corazón se considera una bomba de doble circuito.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t3">Porque impulsa la sangre por dos circuitos: la <strong>circulación pulmonar</strong> (corazón–pulmones–corazón, para oxigenar la sangre) y la <strong>circulación sistémica</strong> (corazón–cuerpo–corazón, para llevar O₂ a todos los tejidos).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3', document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAPÍTULO II -->
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Ecosistemas y Medio Ambiente</h2>
+              <p>Biomas, cadenas tróficas y equilibrio ecológico</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">🌿</span>
+              <div>
+                <h3>El mundo que nos rodea</h3>
+                <p>Los seres vivos no existen aislados: forman redes complejas de relaciones con su entorno. Entender los ecosistemas es clave para cuidar el planeta.</p>
+              </div>
+            </div>
+            <div class="topics-grid">
+
+              <!-- T4 Ecosistemas -->
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4', this)">
+                <div class="topic-book-cover cover-science">🌎</div>
+                <div class="topic-book-info">
+                  <h4>Ecosistemas y Biomas</h4>
+                  <p>Componentes, tipos y características de los ecosistemas</p>
+                  <div class="topic-tags"><span class="topic-tag">Biótico</span><span class="topic-tag">Abiótico</span><span class="topic-tag">Bioma</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🌎 Ecosistemas y Biomas</h3>
+                <p>Un <strong>ecosistema</strong> es el conjunto de seres vivos (componente <em>biótico</em>) y su entorno físico (componente <em>abiótico</em>: agua, suelo, clima, luz) que interactúan entre sí. Un <strong>bioma</strong> es un ecosistema extendido a gran escala geográfica.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌡️ Principales biomas</h4>
+                    <ul>
+                      <li><strong>Selva tropical:</strong> alta biodiversidad, lluvia constante</li>
+                      <li><strong>Desierto:</strong> escasas lluvias, gran amplitud térmica</li>
+                      <li><strong>Sabana:</strong> pastizales con árboles dispersos</li>
+                      <li><strong>Taiga:</strong> bosques de coníferas, clima frío</li>
+                      <li><strong>Tundra:</strong> sin árboles, suelo congelado (permafrost)</li>
+                      <li><strong>Océano:</strong> mayor ecosistema del planeta</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔄 Ciclos biogeoquímicos</h4>
+                    <ul>
+                      <li><strong>Ciclo del agua:</strong> evaporación, condensación, precipitación</li>
+                      <li><strong>Ciclo del carbono:</strong> fotosíntesis, respiración, descomposición</li>
+                      <li><strong>Ciclo del nitrógeno:</strong> fijación, nitrificación, desnitrificación</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Clasifica los siguientes factores como bióticos o abióticos: temperatura, hongos, lluvia, árboles, suelo, peces.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4"><strong>Abióticos:</strong> temperatura, lluvia, suelo. <strong>Bióticos:</strong> hongos, árboles, peces.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué bioma tiene la mayor biodiversidad del planeta y por qué?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">La <strong>selva tropical</strong> (como el Amazonas), porque tiene lluvias abundantes, altas temperaturas y luz solar constante durante todo el año, condiciones ideales para el desarrollo de miles de especies.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4', document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <!-- T5 Cadenas alimenticias -->
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5', this)">
+                <div class="topic-book-cover cover-science">🦁</div>
+                <div class="topic-book-info">
+                  <h4>Cadenas y Redes Alimenticias</h4>
+                  <p>Productores, consumidores y descomponedores</p>
+                  <div class="topic-tags"><span class="topic-tag">Trófico</span><span class="topic-tag">Productor</span><span class="topic-tag">Depredador</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🦁 Cadenas y Redes Alimenticias</h3>
+                <p>Una <strong>cadena alimenticia</strong> muestra la transferencia de energía de un organismo a otro. La energía fluye en un solo sentido: desde los productores hacia los consumidores. La <strong>red alimenticia</strong> es el conjunto de cadenas interconectadas.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌱 Niveles tróficos</h4>
+                    <ul>
+                      <li><strong>Productores:</strong> plantas, algas (fotosíntesis)</li>
+                      <li><strong>Consumidores primarios:</strong> herbívoros (come plantas)</li>
+                      <li><strong>Consumidores secundarios:</strong> carnívoros (come herbívoros)</li>
+                      <li><strong>Consumidores terciarios:</strong> superdepredadores</li>
+                      <li><strong>Descomponedores:</strong> bacterias, hongos (reciclan materia)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚡ Regla del 10%</h4>
+                    <ul>
+                      <li>Solo el 10% de la energía pasa de un nivel al siguiente</li>
+                      <li>El 90% se pierde como calor</li>
+                      <li>Por eso hay menos depredadores que presas</li>
+                      <li>Ejemplo: 1000 kg de pasto → 100 kg de conejos → 10 kg de zorros</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Planta → Saltamontes → Rana → Serpiente → Águila</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      En la cadena: Hierba → Conejo → Zorro → Puma. ¿Quién es el consumidor secundario?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">El <strong>zorro</strong>. Come al conejo (consumidor primario), por lo tanto ocupa el segundo nivel de consumo.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Si un ecosistema tiene 10,000 kcal disponibles en las plantas, ¿cuántas kcal llegan al nivel de los carnívoros secundarios (tercer nivel)?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Aplicando la regla del 10%: Plantas (10,000 kcal) → Herbívoros (1,000 kcal) → Carnívoros primarios (100 kcal) → <strong>Carnívoros secundarios: 10 kcal</strong>.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5', document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAPÍTULO III -->
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Ciencia en Acción</h2>
+              <p>Método científico y estados de la materia</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">🧪</span>
+              <div>
+                <h3>Piensa como un científico</h3>
+                <p>La ciencia no es solo memorizar datos, es un método de pensar, cuestionar y experimentar. Aquí aprenderás las herramientas del pensamiento científico.</p>
+              </div>
+            </div>
+            <div class="topics-grid">
+
+              <!-- T6 Método científico -->
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6', this)">
+                <div class="topic-book-cover cover-advanced">🧪</div>
+                <div class="topic-book-info">
+                  <h4>El Método Científico</h4>
+                  <p>Pasos para investigar y resolver problemas con rigor</p>
+                  <div class="topic-tags"><span class="topic-tag">Hipótesis</span><span class="topic-tag">Experimento</span><span class="topic-tag">Conclusión</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>🧪 El Método Científico</h3>
+                <p>El <strong>método científico</strong> es el conjunto de pasos que los científicos siguen para investigar fenómenos de manera objetiva y reproducible. Es la base del conocimiento científico moderno.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔢 Pasos del método científico</h4>
+                    <ul>
+                      <li><strong>1. Observación:</strong> percibir un fenómeno</li>
+                      <li><strong>2. Pregunta/Problema:</strong> formular la duda</li>
+                      <li><strong>3. Hipótesis:</strong> posible respuesta (si… entonces…)</li>
+                      <li><strong>4. Experimentación:</strong> diseñar y realizar pruebas</li>
+                      <li><strong>5. Análisis de datos:</strong> interpretar resultados</li>
+                      <li><strong>6. Conclusión:</strong> confirmar o rechazar la hipótesis</li>
+                      <li><strong>7. Comunicación:</strong> publicar los hallazgos</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📊 Variables en un experimento</h4>
+                    <ul>
+                      <li><strong>Variable independiente:</strong> la que cambia el científico</li>
+                      <li><strong>Variable dependiente:</strong> la que se mide</li>
+                      <li><strong>Variables controladas:</strong> las que se mantienen fijas</li>
+                      <li><strong>Grupo control:</strong> sin la variable independiente</li>
+                      <li><strong>Grupo experimental:</strong> con la variable independiente</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="example-block">
+                  <strong>Ejemplo</strong>
+                  <p>Experimento: "¿Afecta la cantidad de luz al crecimiento de las plantas?"<br>
+                  Variable independiente: cantidad de luz · Variable dependiente: altura de la planta · Variables controladas: agua, tierra, temperatura.</p>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Una estudiante nota que las plantas crecen más cerca de la ventana. Formula una hipótesis para esta observación.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">Posible hipótesis: <em>"Si las plantas reciben más luz solar directa, entonces crecerán más rápido y serán más altas."</em></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué es importante tener un grupo control en un experimento?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t6">El grupo control sirve como <strong>punto de comparación</strong>. Sin él, no podemos saber si los cambios observados en el grupo experimental se deben a la variable independiente o a otros factores.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6', document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+              <!-- T7 Materia y estados -->
+              <div class="topic-book" id="t7" onclick="toggleTopic('detail-t7', this)">
+                <div class="topic-book-cover cover-advanced">⚗️</div>
+                <div class="topic-book-info">
+                  <h4>La Materia y Sus Estados</h4>
+                  <p>Sólido, líquido, gaseoso y plasma — propiedades y cambios</p>
+                  <div class="topic-tags"><span class="topic-tag">Sólido</span><span class="topic-tag">Líquido</span><span class="topic-tag">Gas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t7">
+                <h3>⚗️ La Materia y Sus Estados</h3>
+                <p>La <strong>materia</strong> es todo lo que tiene masa y ocupa espacio. Se presenta en cuatro estados fundamentales: sólido, líquido, gaseoso y plasma. Los cambios de estado ocurren al variar la temperatura o presión.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🧊 Propiedades por estado</h4>
+                    <ul>
+                      <li><strong>Sólido:</strong> forma y volumen definidos, partículas muy juntas y vibran</li>
+                      <li><strong>Líquido:</strong> volumen definido pero forma variable, partículas próximas y se deslizan</li>
+                      <li><strong>Gaseoso:</strong> forma y volumen variables, partículas muy separadas y se mueven rápido</li>
+                      <li><strong>Plasma:</strong> gas ionizado (ej. relámpagos, Sol)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔄 Cambios de estado</h4>
+                    <ul>
+                      <li><strong>Fusión:</strong> sólido → líquido (calor)</li>
+                      <li><strong>Solidificación:</strong> líquido → sólido (frío)</li>
+                      <li><strong>Evaporación:</strong> líquido → gas (calor)</li>
+                      <li><strong>Condensación:</strong> gas → líquido (frío)</li>
+                      <li><strong>Sublimación:</strong> sólido → gas (directo)</li>
+                      <li><strong>Deposición:</strong> gas → sólido (directo)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Agua: fusión a 0°C · ebullición a 100°C (a nivel del mar)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué cambio de estado ocurre cuando la ropa mojada se seca al sol?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t7')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t7"><strong>Evaporación:</strong> el agua líquida de la ropa se convierte en vapor de agua (gas) al absorber energía del sol.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      El hielo seco (CO₂ sólido) pasa directamente a gas sin convertirse en líquido. ¿Cómo se llama este cambio de estado?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t7')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t7"><strong>Sublimación.</strong> Es el paso directo de estado sólido a gaseoso sin pasar por el estado líquido.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Clasifica estas sustancias según su estado a temperatura ambiente: hierro, oxígeno, mercurio, sal de mesa, vapor de agua.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t7')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t7"><strong>Sólidos:</strong> hierro, sal de mesa. <strong>Líquidos:</strong> mercurio. <strong>Gaseosos:</strong> oxígeno, vapor de agua.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t7', document.getElementById('t7'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /book-main -->
+    </div><!-- /book-layout -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-1.html" class="button button-secondary">← 1° Secundaria</a>
+      <a href="tema-comunicacion-1.html" class="button button-primary">Comunicación →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    // ── Chapter toggle ──
+    function toggleChapter(id) {
+      document.getElementById(id).classList.toggle('open');
+    }
+
+    // ── Topic toggle ──
+    function toggleTopic(detailId, card) {
+      const detail = document.getElementById(detailId);
+      const isOpen = detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d => d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c => c.style.borderColor = '');
+      if (!isOpen) {
+        detail.classList.add('open');
+        card.style.borderColor = 'var(--accent)';
+        detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        updateProgress();
+      }
+    }
+
+    function closeTopic(detailId, card) {
+      document.getElementById(detailId).classList.remove('open');
+      if (card) card.style.borderColor = '';
+    }
+
+    // ── Answer toggle ──
+    function toggleAnswer(id) {
+      const box = document.getElementById(id);
+      box.classList.toggle('open');
+    }
+
+    // ── Progress ──
+    const totalTopics = 7;
+    const opened = new Set();
+    function updateProgress() {
+      document.querySelectorAll('.topic-detail.open').forEach(d => opened.add(d.id));
+      const pct = Math.round((opened.size / totalTopics) * 100);
+      document.getElementById('progressPct').textContent = pct + '%';
+      document.getElementById('progressFill').style.width = pct + '%';
+    }
+
+    // ── TOC active ──
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector('.toc-list a[href="#' + e.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('.topic-book').forEach(t => observer.observe(t));
+
+    // ── PDF Download ──
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      const margin = 15;
+      const pageW = 210;
+      const pageH = 297;
+      let y = margin;
+
+      const addText = (text, size, bold, color) => {
+        doc.setFontSize(size);
+        doc.setFont('helvetica', bold ? 'bold' : 'normal');
+        doc.setTextColor(...(color || [30, 30, 30]));
+        const lines = doc.splitTextToSize(text, pageW - margin * 2);
+        lines.forEach(line => {
+          if (y > pageH - margin) { doc.addPage(); y = margin; }
+          doc.text(line, margin, y);
+          y += size * 0.45;
+        });
+        y += 2;
+      };
+
+      // Header
+      doc.setFillColor(124, 58, 237);
+      doc.rect(0, 0, 210, 28, 'F');
+      doc.setTextColor(255,255,255);
+      doc.setFontSize(18); doc.setFont('helvetica','bold');
+      doc.text('Ciencia y Tecnología — 1° Secundaria', margin, 12);
+      doc.setFontSize(10); doc.setFont('helvetica','normal');
+      doc.text('EduNovaOne · Material de estudio completo', margin, 20);
+      y = 38;
+
+      const topics = [
+        { title: 'La Célula', content: 'La célula es la unidad estructural y funcional de todos los seres vivos. Tipos: procariota (sin núcleo, ej. bacterias) y eucariota (con núcleo, ej. células humanas). Partes principales: membrana plasmática, citoplasma, núcleo, mitocondria, ribosomas, retículo endoplasmático, aparato de Golgi. La célula vegetal añade pared celular y cloroplastos.' },
+        { title: 'Tejidos y Órganos', content: 'Niveles de organización: Célula → Tejido → Órgano → Sistema → Organismo. Tejidos animales: epitelial (piel), conectivo (hueso, sangre), muscular (movimiento), nervioso (señales). El cuerpo humano tiene 11 sistemas principales.' },
+        { title: 'El Cuerpo Humano', content: 'Sistema digestivo: boca → esófago → estómago → intestino delgado (absorción) → intestino grueso → ano. Sistema respiratorio: fosas nasales → tráquea → bronquios → alvéolos (intercambio O₂/CO₂). Sistema circulatorio: corazón de doble circuito (pulmonar y sistémico).' },
+        { title: 'Ecosistemas y Biomas', content: 'Un ecosistema = componente biótico (seres vivos) + componente abiótico (agua, suelo, clima). Principales biomas: selva tropical, desierto, sabana, taiga, tundra, océano. Ciclos biogeoquímicos: del agua, del carbono y del nitrógeno.' },
+        { title: 'Cadenas Alimenticias', content: 'Niveles tróficos: Productores → Consumidores primarios (herbívoros) → Consumidores secundarios → Consumidores terciarios → Descomponedores. Regla del 10%: solo el 10% de la energía pasa al siguiente nivel. Ejemplo: 10,000 kcal de plantas → 1,000 kcal herbívoros → 100 kcal carnívoros.' },
+        { title: 'El Método Científico', content: 'Pasos: 1. Observación, 2. Pregunta, 3. Hipótesis (si…entonces…), 4. Experimentación, 5. Análisis, 6. Conclusión, 7. Comunicación. Variables: independiente (causa), dependiente (efecto), controladas (constantes). Grupo control vs grupo experimental.' },
+        { title: 'La Materia y Sus Estados', content: 'Sólido: forma y volumen definidos. Líquido: volumen fijo, forma variable. Gaseoso: sin forma ni volumen fijos. Plasma: gas ionizado. Cambios: fusión, solidificación, evaporación, condensación, sublimación, deposición. Agua: fusión 0°C, ebullición 100°C.' },
+      ];
+
+      topics.forEach((t, i) => {
+        addText(`${i+1}. ${t.title}`, 13, true, [37, 99, 235]);
+        addText(t.content, 10, false, [50, 50, 60]);
+        y += 3;
+      });
+
+      y += 5;
+      addText('Ejercicios de repaso', 13, true, [124, 58, 237]);
+      const exercises = [
+        '1. ¿Cuál es la diferencia entre célula procariota y eucariota?',
+        '2. Nombra y explica el orgánulo que produce energía en la célula.',
+        '3. Ordena de menor a mayor complejidad: sistema, tejido, célula, organismo, órgano.',
+        '4. Clasifica como biótico o abiótico: temperatura, hongos, lluvia, árboles, suelo.',
+        '5. En la cadena Hierba→Conejo→Zorro→Puma, ¿quién es el consumidor secundario?',
+        '6. Aplica la regla del 10%: si las plantas tienen 50,000 kcal, ¿cuántas llegan a los carnívoros secundarios?',
+        '7. Formula una hipótesis para: "Las plantas con mayor riego crecen más."',
+        '8. ¿Qué cambio de estado ocurre cuando el hielo se derrite?',
+      ];
+      exercises.forEach(ex => addText(ex, 10, false, [50,50,60]));
+
+      doc.save('CienciaTecnologia-1Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
