@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Matemática | 3° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-3.html">3° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Matemática</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#7c3aed,#6366f1)">📐</div>
+          <div><h3>Matemática</h3><p>3° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Geometría Plana</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Polígonos y Áreas</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Círculo y Circunferencia</a></li>
+          <li><p class="toc-section-title">II. Trigonometría</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Razones Trigonométricas</a></li>
+          <li><p class="toc-section-title">III. Álgebra Avanzada</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Sistemas de Ecuaciones</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Funciones Lineales</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Estadística Básica</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Básico</p><h2>Geometría Plana</h2><p>Polígonos, áreas y el círculo</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic"><span class="banner-icon">📐</span><div><h3>La geometría está en todas partes</h3><p>Desde las baldosas del piso hasta los edificios, la geometría plana describe el mundo que nos rodea. Aprenderás a calcular áreas y perímetros de todas las figuras.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-basic">🔷</div>
+                <div class="topic-book-info"><h4>Polígonos y Áreas</h4><p>Triángulos, cuadriláteros y polígonos regulares</p>
+                  <div class="topic-tags"><span class="topic-tag">Área</span><span class="topic-tag">Perímetro</span><span class="topic-tag">Pitágoras</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🔷 Polígonos y Cálculo de Áreas</h3>
+                <p>Un <strong>polígono</strong> es una figura plana cerrada formada por segmentos de línea. Conocer sus fórmulas de área y perímetro es fundamental en geometría, arquitectura e ingeniería.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📏 Fórmulas de área</h4>
+                    <ul>
+                      <li><strong>Cuadrado:</strong> A = L²</li>
+                      <li><strong>Rectángulo:</strong> A = b × h</li>
+                      <li><strong>Triángulo:</strong> A = (b × h) / 2</li>
+                      <li><strong>Paralelogramo:</strong> A = b × h</li>
+                      <li><strong>Trapecio:</strong> A = (B + b) × h / 2</li>
+                      <li><strong>Rombo:</strong> A = (d₁ × d₂) / 2</li>
+                      <li><strong>Polígono regular:</strong> A = (P × apotema) / 2</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📐 Teorema de Pitágoras</h4>
+                    <ul>
+                      <li>En triángulo rectángulo: c² = a² + b²</li>
+                      <li>c = hipotenusa (frente al ángulo recto)</li>
+                      <li>a, b = catetos</li>
+                      <li>Terna pitagórica clásica: 3-4-5, 5-12-13, 8-15-17</li>
+                      <li>Ejemplo: a=6, b=8 → c=√(36+64)=√100=10</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">c² = a² + b² &nbsp;|&nbsp; a² = c² − b²</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Calcula el área y perímetro de un rectángulo de 8m de base y 5m de altura.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">Área = 8 × 5 = <strong>40 m²</strong> · Perímetro = 2(8+5) = 2×13 = <strong>26 m</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Un triángulo rectángulo tiene catetos de 9 cm y 12 cm. ¿Cuánto mide la hipotenusa?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">c² = 9² + 12² = 81 + 144 = 225 → c = √225 = <strong>15 cm</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      ¿Cuál es el área de un trapecio con bases de 10 m y 6 m, y altura de 4 m?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">A = (10+6) × 4 / 2 = 16 × 4 / 2 = 64/2 = <strong>32 m²</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-basic">⭕</div>
+                <div class="topic-book-info"><h4>Círculo y Circunferencia</h4><p>Radio, diámetro, área y longitud de arco</p>
+                  <div class="topic-tags"><span class="topic-tag">π</span><span class="topic-tag">Área</span><span class="topic-tag">Longitud</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>⭕ Círculo y Circunferencia</h3>
+                <p>La <strong>circunferencia</strong> es el conjunto de puntos equidistantes de un centro. El <strong>círculo</strong> es la región plana delimitada por la circunferencia. El número π (pi ≈ 3.14159) relaciona el diámetro con la longitud de la circunferencia.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📏 Fórmulas esenciales</h4>
+                    <ul>
+                      <li><strong>Longitud (perímetro):</strong> L = 2πr = πd</li>
+                      <li><strong>Área del círculo:</strong> A = πr²</li>
+                      <li><strong>Longitud de arco:</strong> l = (α/360°) × 2πr</li>
+                      <li><strong>Área de sector circular:</strong> A = (α/360°) × πr²</li>
+                      <li>Donde r = radio, d = diámetro, α = ángulo central</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔢 Ejemplo resuelto</h4>
+                    <ul>
+                      <li>Círculo con radio r = 7 cm:</li>
+                      <li>L = 2π×7 = 14π ≈ 43.98 cm</li>
+                      <li>A = π×7² = 49π ≈ 153.94 cm²</li>
+                      <li>Arco de 90°: l = (90/360)×14π = (1/4)×14π ≈ 11 cm</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">A = πr² &nbsp;|&nbsp; L = 2πr &nbsp;|&nbsp; π ≈ 3.14159</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Halla el área y longitud de una circunferencia con radio 10 cm. (Usa π = 3.14)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Área = π×10² = 3.14×100 = <strong>314 cm²</strong> · Longitud = 2×3.14×10 = <strong>62.8 cm</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es el área de un sector circular con r=6m y ángulo de 120°?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">A = (120/360)×π×36 = (1/3)×36π = 12π ≈ <strong>37.7 m²</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Intermedio</p><h2>Trigonometría Básica</h2><p>Razones trigonométricas en el triángulo rectángulo</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">📡</span><div><h3>El lenguaje de los triángulos</h3><p>La trigonometría permite calcular distancias y ángulos que no podemos medir directamente. La usan ingenieros, navegantes y astrónomos.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-inter">📡</div>
+                <div class="topic-book-info"><h4>Razones Trigonométricas</h4><p>Seno, coseno, tangente y sus aplicaciones</p>
+                  <div class="topic-tags"><span class="topic-tag">Sen</span><span class="topic-tag">Cos</span><span class="topic-tag">Tan</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>📡 Razones Trigonométricas</h3>
+                <p>Las <strong>razones trigonométricas</strong> son relaciones entre los lados de un triángulo rectángulo y sus ángulos. El mnemónico <strong>SOH-CAH-TOA</strong> ayuda a recordarlas.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📐 SOH-CAH-TOA</h4>
+                    <ul>
+                      <li><strong>SOH:</strong> sen(α) = Opuesto / Hipotenusa</li>
+                      <li><strong>CAH:</strong> cos(α) = Adyacente / Hipotenusa</li>
+                      <li><strong>TOA:</strong> tan(α) = Opuesto / Adyacente</li>
+                      <li>Relación: tan(α) = sen(α) / cos(α)</li>
+                      <li>Identidad: sen²(α) + cos²(α) = 1</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📊 Valores especiales</h4>
+                    <ul>
+                      <li>sen 30° = 1/2 · cos 30° = √3/2 · tan 30° = √3/3</li>
+                      <li>sen 45° = √2/2 · cos 45° = √2/2 · tan 45° = 1</li>
+                      <li>sen 60° = √3/2 · cos 60° = 1/2 · tan 60° = √3</li>
+                      <li>sen 90° = 1 · cos 90° = 0 · tan 90° = indefinido</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">sen(α) = CO/H · cos(α) = CA/H · tan(α) = CO/CA</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Un triángulo rectángulo tiene hipotenusa de 10 y ángulo de 30°. Halla los dos catetos.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Cateto opuesto = H×sen(30°) = 10×0.5 = <strong>5</strong> · Cateto adyacente = H×cos(30°) = 10×(√3/2) ≈ 10×0.866 = <strong>8.66</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Una escalera de 6m apoyada contra una pared forma 60° con el suelo. ¿A qué altura llega en la pared?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Altura = 6 × sen(60°) = 6 × (√3/2) = 6 × 0.866 ≈ <strong>5.20 m</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Avanzado</p><h2>Álgebra y Estadística</h2><p>Sistemas de ecuaciones, funciones y estadística</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">📊</span><div><h3>Matemática aplicada</h3><p>Los sistemas de ecuaciones, las funciones y la estadística son herramientas matemáticas con aplicaciones directas en economía, ciencias y tecnología.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-advanced">⚖️</div>
+                <div class="topic-book-info"><h4>Sistemas de Ecuaciones</h4><p>Métodos de sustitución, igualación y determinantes</p>
+                  <div class="topic-tags"><span class="topic-tag">Sustitución</span><span class="topic-tag">Reducción</span><span class="topic-tag">Determinantes</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>⚖️ Sistemas de Ecuaciones Lineales</h3>
+                <p>Un <strong>sistema de ecuaciones</strong> es un conjunto de dos o más ecuaciones con las mismas incógnitas. Se resuelve hallando los valores que satisfacen todas las ecuaciones simultáneamente.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔧 Método de sustitución</h4>
+                    <ul>
+                      <li>Sistema: 2x + y = 7 · x − y = 2</li>
+                      <li>De la 2ª: x = y + 2</li>
+                      <li>Sustituir en 1ª: 2(y+2) + y = 7</li>
+                      <li>2y + 4 + y = 7 → 3y = 3 → y = 1</li>
+                      <li>x = 1 + 2 = 3</li>
+                      <li>Solución: x = 3, y = 1</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔧 Método de reducción (Gauss)</h4>
+                    <ul>
+                      <li>Sistema: 3x + 2y = 12 · x − 2y = 0</li>
+                      <li>Sumamos ambas ecuaciones:</li>
+                      <li>(3x+x) + (2y−2y) = 12+0</li>
+                      <li>4x = 12 → x = 3</li>
+                      <li>3−2y = 0 → y = 3/2 = 1.5</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Resuelve por sustitución: x + y = 10 · 2x − y = 2
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">x = 10−y. 2(10−y)−y=2 → 20−3y=2 → y=6. x=10−6=<strong>4</strong>. Solución: <strong>x=4, y=6</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Planteamiento</strong>
+                      La suma de dos números es 25. El doble del mayor menos el menor es 29. ¿Cuáles son los números?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">x+y=25 · 2x−y=29. Suma: 3x=54 → x=18, y=7. Los números son <strong>18 y 7</strong>.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-advanced">📈</div>
+                <div class="topic-book-info"><h4>Funciones Lineales</h4><p>Plano cartesiano, pendiente e intersecciones</p>
+                  <div class="topic-tags"><span class="topic-tag">y=mx+b</span><span class="topic-tag">Pendiente</span><span class="topic-tag">Gráfica</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>📈 Funciones Lineales</h3>
+                <p>Una <strong>función lineal</strong> tiene la forma y = mx + b, donde m es la pendiente (inclinación) y b es la ordenada al origen (punto donde cruza el eje y).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📊 Elementos clave</h4>
+                    <ul>
+                      <li><strong>Pendiente (m):</strong> m = (y₂−y₁)/(x₂−x₁) = Δy/Δx</li>
+                      <li>m > 0: función creciente (sube de izquierda a derecha)</li>
+                      <li>m &lt; 0: función decreciente (baja)</li>
+                      <li>m = 0: función constante (horizontal)</li>
+                      <li><strong>Ordenada al origen (b):</strong> donde cruza el eje y</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🖊️ Graficar y = 2x + 1</h4>
+                    <ul>
+                      <li>b = 1: punto (0, 1) en el eje y</li>
+                      <li>m = 2: por cada 1 que avanza x, y sube 2</li>
+                      <li>Otro punto: x=1 → y=3 → (1, 3)</li>
+                      <li>Otro punto: x=2 → y=5 → (2, 5)</li>
+                      <li>Trazar la recta por esos puntos</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">y = mx + b &nbsp;|&nbsp; m = Δy/Δx = (y₂−y₁)/(x₂−x₁)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Halla la pendiente y ordenada al origen de: y = -3x + 5. ¿Es creciente o decreciente?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">m = <strong>-3</strong> (decreciente, m &lt; 0) · b = <strong>5</strong> (cruza el eje y en (0,5))</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Halla la ecuación de la recta que pasa por (0, 2) y (3, 8).
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">m = (8−2)/(3−0) = 6/3 = 2 · b = 2 (ordenada al origen = y cuando x=0) · Ecuación: <strong>y = 2x + 2</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-advanced">📊</div>
+                <div class="topic-book-info"><h4>Estadística Básica</h4><p>Media, mediana, moda, varianza y gráficos</p>
+                  <div class="topic-tags"><span class="topic-tag">Media</span><span class="topic-tag">Mediana</span><span class="topic-tag">Moda</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>📊 Estadística Descriptiva</h3>
+                <p>La <strong>estadística</strong> estudia la recolección, organización e interpretación de datos. Las medidas de tendencia central (media, mediana, moda) resumen un conjunto de datos en un solo valor representativo.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📈 Medidas de tendencia central</h4>
+                    <ul>
+                      <li><strong>Media aritmética (x̄):</strong> suma de datos / cantidad de datos</li>
+                      <li><strong>Mediana (Me):</strong> valor central al ordenar los datos</li>
+                      <li><strong>Moda (Mo):</strong> valor que más se repite</li>
+                      <li>Datos: 3, 7, 7, 9, 4</li>
+                      <li>Media = (3+7+7+9+4)/5 = 30/5 = 6</li>
+                      <li>Mediana (ordenados: 3,4,7,7,9) = 7</li>
+                      <li>Moda = 7 (se repite 2 veces)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📉 Medidas de dispersión</h4>
+                    <ul>
+                      <li><strong>Rango:</strong> Dato máx − Dato mín</li>
+                      <li><strong>Varianza (σ²):</strong> promedio de las desviaciones al cuadrado</li>
+                      <li><strong>Desviación estándar (σ):</strong> √varianza</li>
+                      <li>σ pequeña: datos concentrados cerca de la media</li>
+                      <li>σ grande: datos muy dispersos</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Calcula la media, mediana y moda de: 5, 8, 6, 9, 8, 7, 8, 4, 6.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">Media = (5+8+6+9+8+7+8+4+6)/9 = 61/9 ≈ <strong>6.78</strong> · Ordenados: 4,5,6,6,7,8,8,8,9 → Mediana = <strong>7</strong> · Moda = <strong>8</strong> (aparece 3 veces)</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-3.html" class="button button-secondary">← 3° Secundaria</a>
+      <a href="tema-ciencias-3.html" class="button button-primary">Ciencias →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=6,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(124,58,237);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Matematica - 3 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Poligonos y Areas',c:'Cuadrado: L2. Rectangulo: b*h. Triangulo: b*h/2. Trapecio: (B+b)*h/2. Pitagoras: c2=a2+b2. Terna 3-4-5, 5-12-13.'},
+       {ti:'Circulo y Circunferencia',c:'L=2pir. A=pir2. Arco=(alpha/360)*2pir. Sector=(alpha/360)*pir2. pi=3.14159. Ejemplo r=10: A=314cm2, L=62.8cm.'},
+       {ti:'Razones Trigonometricas',c:'SOH-CAH-TOA. sen=CO/H, cos=CA/H, tan=CO/CA. Valores: sen30=0.5, cos45=raiz(2)/2, tan60=raiz(3). Identidad: sen2+cos2=1.'},
+       {ti:'Sistemas de Ecuaciones',c:'Sustitucion: despejar una variable y reemplazar. Reduccion: sumar ecuaciones para eliminar variable. Ejemplo: x+y=10, 2x-y=2 => x=4, y=6.'},
+       {ti:'Funciones Lineales',c:'y=mx+b. m=pendiente (Dy/Dx). b=ordenada al origen. m>0 creciente, m<0 decreciente. Graficar: punto (0,b), luego usar pendiente.'},
+       {ti:'Estadistica Basica',c:'Media: suma/n. Mediana: valor central (ordenar primero). Moda: el que mas se repite. Rango: max-min. Desviacion estandar: dispersión respecto a la media.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[124,58,237]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Ejercicios de repaso',13,true,[124,58,237]);
+      ['1. Area y perimetro de rectangulo 8x5m.','2. Hipotenusa si catetos son 9 y 12 cm.','3. Triangulo con H=10 y angulo=30°, halla los catetos.','4. Resuelve: x+y=10, 2x-y=2.','5. Pendiente y ecuacion de recta por (0,2) y (3,8).','6. Media, mediana y moda de: 5,8,6,9,8,7,8,4,6.'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Matematica-3Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
