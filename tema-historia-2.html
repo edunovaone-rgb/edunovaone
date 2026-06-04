@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Historia, Geografía y Economía | 2° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-2.html">2° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Historia, Geografía y Economía</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#d97706,#f59e0b)">🌍</div>
+          <div><h3>Historia, Geografía y Economía</h3><p>2° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Historia Medieval</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>La Edad Media</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Imperio Inca</a></li>
+          <li><p class="toc-section-title">II. Civilizaciones Americanas</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Aztecas y Mayas</a></li>
+          <li><p class="toc-section-title">III. Geografía Económica</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Geografía Económica del Perú</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Actividades Económicas</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Historia Medieval y Andina</h2>
+              <p>Edad Media e Imperio Inca</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">🏰</span>
+              <div><h3>El mundo entre siglos</h3><p>La Edad Media y el Imperio Inca representan dos grandes momentos de la humanidad que ocurrieron en paralelo. Conocer ambos te da una visión global de la historia.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-history">🏰</div>
+                <div class="topic-book-info">
+                  <h4>La Edad Media</h4>
+                  <p>Europa feudal, Iglesia y Cruzadas (siglos V–XV)</p>
+                  <div class="topic-tags"><span class="topic-tag">Feudalismo</span><span class="topic-tag">Cruzadas</span><span class="topic-tag">Islam</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🏰 La Edad Media (476 d.C. – 1492 d.C.)</h3>
+                <p>La <strong>Edad Media</strong> es el período histórico que va desde la caída del Imperio Romano de Occidente (476 d.C.) hasta la llegada de Colón a América (1492). Se divide en Alta Edad Media (476–1000) y Baja Edad Media (1000–1492).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🏯 El Feudalismo</h4>
+                    <ul>
+                      <li><strong>Rey:</strong> máxima autoridad, cede tierras a nobles</li>
+                      <li><strong>Señores feudales (vasallos):</strong> reciben tierras a cambio de lealtad militar</li>
+                      <li><strong>Caballeros:</strong> protegen el feudo del señor</li>
+                      <li><strong>Siervos/Campesinos:</strong> trabajan la tierra, pagan tributo</li>
+                      <li><strong>Iglesia:</strong> poder paralelo al rey, controlaba la educación</li>
+                      <li><strong>Feudo:</strong> unidad económica y política básica</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚔️ Las Cruzadas (1096–1291)</h4>
+                    <ul>
+                      <li>Guerras religiosas convocadas por el Papa</li>
+                      <li>Objetivo: recuperar Tierra Santa (Jerusalén) del Islam</li>
+                      <li>8 cruzadas en total, solo la 1ª logró su objetivo</li>
+                      <li>Consecuencias: apertura comercial con Oriente, expansión cultural</li>
+                      <li>Contribuyeron a la crisis del feudalismo</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Rey → Señores feudales → Caballeros → Siervos (pirámide feudal)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Describe la relación entre el señor feudal y sus siervos. ¿Era justa? Justifica tu respuesta.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">Los siervos trabajaban las tierras del señor, le pagaban tributos y dependían de su protección. A cambio, el señor les permitía vivir en el feudo. Era una relación <strong>desigual</strong>: los siervos no eran esclavos pero tampoco eran libres, no podían abandonar el feudo sin permiso.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál fue el principal objetivo de las Cruzadas y cuál fue su resultado?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">El objetivo fue recuperar <strong>Jerusalén</strong> y Tierra Santa del control musulmán. Solo la Primera Cruzada (1099) logró tomarlo temporalmente. A largo plazo, las Cruzadas fracasaron militarmente pero abrieron rutas comerciales con Oriente que enriquecieron a Europa.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-history">🦙</div>
+                <div class="topic-book-info">
+                  <h4>El Imperio Inca</h4>
+                  <p>Tahuantinsuyo: organización, economía y cultura</p>
+                  <div class="topic-tags"><span class="topic-tag">Sapa Inca</span><span class="topic-tag">Mita</span><span class="topic-tag">Quipu</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🦙 El Imperio Inca — Tahuantinsuyo</h3>
+                <p>El <strong>Tahuantinsuyo</strong> ("las cuatro regiones del mundo" en quechua) fue el mayor imperio precolombino de América. Se extendió por 4,000 km a lo largo de los Andes, desde Colombia hasta Argentina.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>👑 Organización política</h4>
+                    <ul>
+                      <li><strong>Sapa Inca:</strong> emperador, considerado hijo del Sol (Inti)</li>
+                      <li><strong>Coya:</strong> esposa principal del Inca</li>
+                      <li><strong>Auquis:</strong> príncipes, hijos del Inca</li>
+                      <li><strong>Ayllus:</strong> comunidades familiares, base de la sociedad</li>
+                      <li><strong>4 suyos:</strong> Chinchaysuyo, Antisuyo, Collasuyo, Contisuyo</li>
+                      <li>Capital: Cusco ("ombligo del mundo")</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚙️ Economía y tecnología</h4>
+                    <ul>
+                      <li><strong>Mita:</strong> trabajo obligatorio en obras públicas</li>
+                      <li><strong>Caminos (Qhapaq Ñan):</strong> 40,000 km de red vial</li>
+                      <li><strong>Quipu:</strong> sistema de registro con cuerdas y nudos</li>
+                      <li><strong>Andenes:</strong> terrazas agrícolas en las laderas</li>
+                      <li><strong>Colcas:</strong> almacenes de alimentos</li>
+                      <li><strong>Sin moneda:</strong> economía de redistribución</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="example-block">
+                  <strong>Dato importante</strong>
+                  <p>Machu Picchu, construido hacia 1450 d.C. durante el reinado de Pachacútec, es la obra arquitectónica más famosa del Imperio Inca y Patrimonio de la Humanidad (UNESCO, 1983).</p>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué era el quipu y para qué lo usaban los incas?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">El <strong>quipu</strong> era un sistema de registro inca formado por cuerdas de distintos colores con nudos. Se usaba para registrar datos numéricos (censos, tributos, almacenes) y posiblemente narrativos. Lo manejaban funcionarios llamados quipucamayocs.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cómo funcionaba la mita y cómo beneficiaba al Estado inca?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">La <strong>mita</strong> era la obligación de trabajo que cada comunidad (ayllu) debía al Estado. Los mitayos construían caminos, templos, terrazas y almacenes. El Estado les daba alimento, herramientas y ropa. Era la base de las grandes obras públicas incas.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Civilizaciones Americanas Precolombinas</h2>
+              <p>Aztecas y Mayas</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">🌽</span>
+              <div><h3>América antes de Colón</h3><p>Los aztecas y mayas desarrollaron civilizaciones extraordinarias en Mesoamérica, con sistemas astronómicos, matemáticos y arquitectónicos que asombraron al mundo.</p></div>
+            </div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-history">🌽</div>
+                <div class="topic-book-info">
+                  <h4>Aztecas y Mayas</h4>
+                  <p>Organización, religión, astronomía y escritura</p>
+                  <div class="topic-tags"><span class="topic-tag">Tenochtitlan</span><span class="topic-tag">Calendario Maya</span><span class="topic-tag">Chichén Itzá</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🌽 Aztecas y Mayas</h3>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🦅 Aztecas (Mexicas) — s. XIV-XVI</h4>
+                    <ul>
+                      <li>Capital: Tenochtitlan (actual Ciudad de México), fundada en 1325</li>
+                      <li>Gobierno: monarquía teocrática — el tlatoani gobernaba con poder religioso</li>
+                      <li>Religión politeísta: Huitzilopochtli (sol y guerra), Quetzalcóatl (serpiente emplumada)</li>
+                      <li>Sacrificios humanos para alimentar al sol</li>
+                      <li>Chinampas: islas artificiales flotantes para agricultura</li>
+                      <li>Caída: 1521, conquistados por Hernán Cortés</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔭 Mayas — s. III-X d.C. (Clásico)</h4>
+                    <ul>
+                      <li>Ciudades-estado: Tikal, Chichén Itzá, Palenque, Uxmal</li>
+                      <li>Matemáticas: usaron el 0 antes que Europa</li>
+                      <li>Astronomía avanzada: calendario solar (365 días) y ritual (260 días)</li>
+                      <li>Escritura jeroglífica — ya descifrada parcialmente</li>
+                      <li>Colapso maya: s. IX-X, causas debatidas (sequía, guerras, sobreexplotación)</li>
+                      <li>Descendientes mayas viven hoy en México y Guatemala</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Comparación</strong>
+                      Menciona dos semejanzas y dos diferencias entre los aztecas y los mayas.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3"><strong>Semejanzas:</strong> ambos construyeron pirámides escalonadas y tenían religiones politeístas con rituales a sus dioses. <strong>Diferencias:</strong> los mayas desarrollaron la escritura jeroglífica y el concepto del cero; los aztecas dominaron por la guerra y los sacrificios humanos a gran escala.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué el descubrimiento del "cero" por los mayas fue tan importante para las matemáticas?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">El cero permitió el <strong>sistema posicional</strong>: el valor de un número depende de su posición. Sin el cero no podríamos distinguir 10 de 1, ni 100 de 10. Es fundamental para todas las matemáticas modernas, la informática y la ciencia.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Geografía Económica del Perú</h2>
+              <p>Recursos naturales y actividades económicas</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">💎</span>
+              <div><h3>La riqueza de nuestro país</h3><p>El Perú es uno de los países más ricos en recursos naturales del mundo. Entender su geografía económica te permite comprender el desarrollo del país.</p></div>
+            </div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-history">🗺️</div>
+                <div class="topic-book-info">
+                  <h4>Geografía Económica del Perú</h4>
+                  <p>Recursos naturales por región y su aprovechamiento</p>
+                  <div class="topic-tags"><span class="topic-tag">Minería</span><span class="topic-tag">Pesca</span><span class="topic-tag">Agricultura</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🗺️ Geografía Económica del Perú</h3>
+                <p>El Perú posee una enorme diversidad de recursos naturales distribuidos en sus tres regiones. Es el 1° productor mundial de plata, 2° de cobre y zinc, y uno de los principales pesqueros del mundo.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>💎 Recursos por región</h4>
+                    <ul>
+                      <li><strong>Costa:</strong> pesca (anchoveta, pota), caña de azúcar, algodón, espárragos</li>
+                      <li><strong>Sierra:</strong> minería (oro, plata, cobre, zinc), agricultura andina (papa, quinua)</li>
+                      <li><strong>Selva:</strong> petróleo y gas, madera, biodiversidad, café, cacao</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📊 Exportaciones principales</h4>
+                    <ul>
+                      <li>🥇 Minería: ~60% de exportaciones</li>
+                      <li>🐟 Harina de pescado: 1° exportador mundial</li>
+                      <li>☕ Café y cacao: productos estrella de exportación</li>
+                      <li>🌿 Espárragos: líder en Latinoamérica</li>
+                      <li>🛢️ Gas de Camisea: proyecto energético clave</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué la minería es tan importante para la economía peruana? ¿Qué ventajas y desventajas tiene?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4"><strong>Ventajas:</strong> genera el 60% de las exportaciones, ingresos fiscales, empleo en regiones remotas. <strong>Desventajas:</strong> conflictos sociales con comunidades, impacto ambiental (contaminación de agua y suelos), economía dependiente de precios internacionales de metales.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-history">🏭</div>
+                <div class="topic-book-info">
+                  <h4>Actividades Económicas</h4>
+                  <p>Sectores productivos, PBI y comercio internacional</p>
+                  <div class="topic-tags"><span class="topic-tag">PBI</span><span class="topic-tag">Comercio</span><span class="topic-tag">Exportaciones</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🏭 Actividades Económicas del Perú</h3>
+                <p>El <strong>Producto Bruto Interno (PBI)</strong> es el valor total de bienes y servicios producidos en un país durante un año. Es el principal indicador del tamaño de una economía.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📈 PBI y crecimiento</h4>
+                    <ul>
+                      <li>Perú: economía emergente en América Latina</li>
+                      <li>PBI nominal: ~240 mil millones USD (2023)</li>
+                      <li>Sectores que más aportan al PBI: servicios (52%), manufactura (16%), minería (14%)</li>
+                      <li>Pobreza monetaria: ~27% de la población (2023)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌐 Comercio internacional</h4>
+                    <ul>
+                      <li><strong>Principales socios:</strong> China (1°), EE.UU., Unión Europea</li>
+                      <li><strong>TLCs vigentes:</strong> con 22 socios comerciales</li>
+                      <li><strong>Exportaciones:</strong> minería, agroindustria, textiles</li>
+                      <li><strong>Importaciones:</strong> maquinaria, combustibles, insumos industriales</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué es el PBI y por qué es importante para medir el desarrollo de un país?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">El <strong>PBI (Producto Bruto Interno)</strong> es el valor total de todos los bienes y servicios producidos en un país en un año. Es importante porque indica el tamaño de la economía, permite comparar con otros países y mide el crecimiento económico. Un PBI en crecimiento generalmente significa más empleos y mejores condiciones de vida.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-2.html" class="button button-secondary">← 2° Secundaria</a>
+      <a href="tema-ingles-2.html" class="button button-primary">Inglés →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(217,119,6);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');doc.text('Historia, Geografia y Economia - 2 Sec.',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'La Edad Media',c:'476-1492 d.C. Feudalismo: Rey > Senores > Caballeros > Siervos. Cruzadas (1096-1291): 8 guerras para recuperar Jerusalen. Solo la 1a tuvo exito. Abrieron rutas comerciales con Oriente.'},
+       {ti:'El Imperio Inca - Tahuantinsuyo',c:'4 suyos, capital Cusco. Sapa Inca = hijo del Sol. Mita (trabajo obligatorio), Quipu (registro con cuerdas), Qhapaq Nan (40,000km de caminos), Andenes (terrazas), Colcas (almacenes). Sin moneda, economia de redistribucion.'},
+       {ti:'Aztecas y Mayas',c:'Aztecas: Tenochtitlan (1325), tlatoani, sacrificios humanos, chinampas. Caida 1521. Mayas: ciudades-estado (Tikal, Chichen Itza), inventaron el 0, calendario solar (365 dias) y ritual (260 dias), escritura jeroglifica.'},
+       {ti:'Geografia Economica del Peru',c:'Costa: pesca (anchoveta), caña, algodon. Sierra: mineria (oro, plata, cobre), papa, quinua. Selva: petroleo, madera, cafe, cacao. Exportaciones: mineria 60%, harina de pescado 1er exportador mundial.'},
+       {ti:'Actividades Economicas',c:'PBI peruano: ~240 mil millones USD. Sectores: servicios (52%), manufactura (16%), mineria (14%). Socios: China (1er), EE.UU., UE. TLCs con 22 socios. Exporta: minerales, agroindustria, textiles.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[217,119,6]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Ejercicios de repaso',13,true,[217,119,6]);
+      ['1. Describe la piramide feudal de mayor a menor jerarquia.',
+       '2. Que era el quipu y para que lo usaban los incas?',
+       '3. Dos semejanzas y dos diferencias entre aztecas y mayas.',
+       '4. Por que la mineria es importante para Peru? Menciona una ventaja y una desventaja.',
+       '5. Que es el PBI?'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('HistoriaGeografiaEconomia-2Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
