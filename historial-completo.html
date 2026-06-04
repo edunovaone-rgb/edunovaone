@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Historial de lectura | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hist-header-card {
+      background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.75rem;
+      padding:1.5rem 2rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+      margin-bottom:1.5rem;
+    }
+    .hist-header-card h1{margin:0;font-size:1.4rem;color:var(--accent-strong);}
+    .hist-header-card p{margin:.25rem 0 0;color:var(--text-muted);font-size:.9rem;}
+    .hist-stats{display:flex;gap:1rem;flex-wrap:wrap;}
+    .hist-stat{padding:.5rem 1.1rem;border-radius:999px;background:rgba(99,102,241,0.08);
+      color:var(--accent-strong);font-size:.85rem;font-weight:700;}
+
+    /* Filtros */
+    .hist-filters{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center;}
+    .hist-filter-btn{padding:.45rem 1rem;border-radius:999px;border:1.5px solid rgba(99,102,241,0.2);
+      background:#fff;color:var(--text-muted);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;}
+    .hist-filter-btn:hover{border-color:var(--accent);color:var(--accent-strong);}
+    .hist-filter-btn.active{background:linear-gradient(135deg,#7c3aed,#2563eb);border-color:transparent;color:#fff;font-weight:700;}
+    #histSearch{flex:1;min-width:180px;max-width:300px;padding:.5rem 1rem;border:1.5px solid rgba(148,163,184,0.25);
+      border-radius:999px;font-size:.88rem;font-family:inherit;outline:none;background:#fafbff;}
+    #histSearch:focus{border-color:var(--accent);}
+
+    /* Grid */
+    .hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+    .hist-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;
+      padding:1.1rem 1.25rem;display:flex;align-items:center;gap:1rem;
+      box-shadow:0 8px 20px rgba(15,23,42,0.04);transition:transform .2s,box-shadow .2s;
+      text-decoration:none;cursor:pointer;}
+    .hist-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(99,102,241,0.12);border-color:rgba(99,102,241,0.3);}
+    .hist-card-icon{width:3rem;height:3rem;border-radius:1rem;display:flex;align-items:center;
+      justify-content:center;font-size:1.1rem;font-weight:800;flex-shrink:0;}
+    .hist-card-body{flex:1;min-width:0;}
+    .hist-card-body strong{display:block;font-size:.92rem;color:var(--text);font-weight:700;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .hist-card-body span{font-size:.78rem;color:var(--text-muted);}
+    .hist-card-time{font-size:.72rem;color:var(--text-muted);white-space:nowrap;flex-shrink:0;}
+
+    .hist-empty{text-align:center;padding:4rem 2rem;color:var(--text-muted);}
+    .hist-empty .hist-empty-icon{font-size:3.5rem;margin-bottom:1rem;}
+    .hist-empty p{font-size:.95rem;margin:0 0 1.25rem;}
+
+    .clear-btn{padding:.5rem 1.2rem;border-radius:999px;border:1.5px solid rgba(239,68,68,0.3);
+      background:transparent;color:#ef4444;font-size:.85rem;font-weight:700;cursor:pointer;transition:background .2s;}
+    .clear-btn:hover{background:rgba(239,68,68,0.07);}
+
+    /* Confirm modal */
+    .confirm-overlay{position:fixed;inset:0;background:rgba(15,23,42,0.45);backdrop-filter:blur(4px);
+      z-index:1000;display:none;align-items:center;justify-content:center;}
+    .confirm-overlay.open{display:flex;}
+    .confirm-box{background:#fff;border-radius:1.5rem;padding:2rem;max-width:360px;width:90%;
+      box-shadow:0 32px 64px rgba(15,23,42,0.18);display:grid;gap:1rem;text-align:center;}
+    .confirm-box h3{margin:0;color:var(--text);}
+    .confirm-box p{margin:0;color:var(--text-muted);font-size:.9rem;line-height:1.6;}
+    .confirm-actions{display:flex;gap:.75rem;justify-content:center;}
+  </style>
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne"/>
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn"
+         style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="perfil.html">Mi Perfil</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Historial completo</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="hist-header-card">
+      <div>
+        <h1>🕐 Historial de lectura</h1>
+        <p>Todos los recursos que has visitado, ordenados del más reciente al más antiguo.</p>
+      </div>
+      <div class="hist-stats">
+        <span class="hist-stat" id="statTotal">0 recursos</span>
+        <span class="hist-stat" id="statMaterias">0 materias</span>
+        <button class="clear-btn" id="clearBtn">🗑 Limpiar historial</button>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="hist-filters">
+      <input type="search" id="histSearch" placeholder="🔍 Buscar en historial..." />
+      <button class="hist-filter-btn active" data-materia="">Todos</button>
+      <button class="hist-filter-btn" data-materia="matematica">Matemática</button>
+      <button class="hist-filter-btn" data-materia="ciencia">Ciencias</button>
+      <button class="hist-filter-btn" data-materia="comunicacion">Comunicación</button>
+      <button class="hist-filter-btn" data-materia="historia">Historia</button>
+      <button class="hist-filter-btn" data-materia="ingles">Inglés</button>
+      <button class="hist-filter-btn" data-materia="arte">Arte</button>
+      <button class="hist-filter-btn" data-materia="filosofia">Filosofía</button>
+    </div>
+
+    <!-- Grid de historial -->
+    <div class="hist-grid" id="histGrid"></div>
+
+    <!-- Empty state -->
+    <div class="hist-empty" id="histEmpty" style="display:none;">
+      <div class="hist-empty-icon">📭</div>
+      <p>No hay recursos en tu historial<br>que coincidan con el filtro.</p>
+      <a href="biblioteca.html" class="button button-primary">Explorar la biblioteca</a>
+    </div>
+
+  </main>
+
+  <!-- Confirm modal -->
+  <div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-box">
+      <div style="font-size:2.5rem;">🗑️</div>
+      <h3>¿Borrar historial?</h3>
+      <p>Se eliminarán todos los registros de tu historial de lectura. Esta acción no se puede deshacer.</p>
+      <div class="confirm-actions">
+        <button class="button button-secondary" id="confirmCancel">Cancelar</button>
+        <button class="button button-primary" id="confirmOk" style="background:linear-gradient(135deg,#ef4444,#dc2626);">Sí, borrar todo</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script>
+    // ── Historial localStorage ──
+    const KEY = 'enu_historial';
+    const getHist = () => { try { return JSON.parse(localStorage.getItem(KEY)||'[]'); } catch { return []; } };
+    const setHist = arr => { try { localStorage.setItem(KEY, JSON.stringify(arr)); } catch {} };
+
+    const COLORS = {
+      matematica:'#7c3aed', ciencia:'#059669', comunicacion:'#dc2626',
+      historia:'#d97706', ingles:'#2563eb', arte:'#c026d3',
+      tecnologia:'#0284c7', filosofia:'#4338ca'
+    };
+    const LETRA = {
+      matematica:'M', ciencia:'C', comunicacion:'C', historia:'H',
+      ingles:'I', arte:'A', tecnologia:'T', filosofia:'F'
+    };
+
+    function tiempoRel(ts) {
+      const d=Date.now()-ts, m=Math.floor(d/60000), h=Math.floor(d/3600000), dy=Math.floor(d/86400000);
+      if (m<1) return 'Ahora mismo';
+      if (m<60) return `Hace ${m} min`;
+      if (h<24) return `Hace ${h} h`;
+      if (dy===1) return 'Ayer';
+      if (dy<7) return `Hace ${dy} días`;
+      return new Date(ts).toLocaleDateString('es-PE',{day:'numeric',month:'short',year:'numeric'});
+    }
+
+    let filtroMateria = '';
+    let filtroBusqueda = '';
+
+    function renderGrid() {
+      const all  = getHist();
+      const grid = document.getElementById('histGrid');
+      const empty = document.getElementById('histEmpty');
+
+      // Filtrar
+      const filtered = all.filter(e => {
+        const matchM = !filtroMateria || e.materia === filtroMateria;
+        const matchB = !filtroBusqueda || e.titulo.toLowerCase().includes(filtroBusqueda.toLowerCase());
+        return matchM && matchB;
+      });
+
+      // Stats
+      const materias = [...new Set(all.map(e => e.materia).filter(Boolean))];
+      document.getElementById('statTotal').textContent    = `${all.length} recurso${all.length!==1?'s':''}`;
+      document.getElementById('statMaterias').textContent = `${materias.length} materia${materias.length!==1?'s':''}`;
+
+      if (!filtered.length) {
+        grid.innerHTML = '';
+        empty.style.display = 'flex';
+        empty.style.flexDirection = 'column';
+        empty.style.alignItems = 'center';
+        return;
+      }
+      empty.style.display = 'none';
+
+      grid.innerHTML = filtered.map(e => {
+        const color = COLORS[e.materia] || '#6d28d9';
+        const letra = LETRA[e.materia]  || '📄';
+        return `<a href="${e.id}.html" class="hist-card" onclick="void(0)">
+          <div class="hist-card-icon" style="background:${color}1a;color:${color};">${letra}</div>
+          <div class="hist-card-body">
+            <strong title="${e.titulo}">${e.titulo}</strong>
+            <span>${e.grado || ''}${e.grado && e.materia ? ' · ' : ''}${e.materia || ''}</span>
+          </div>
+          <span class="hist-card-time">${tiempoRel(e.ts)}</span>
+        </a>`;
+      }).join('');
+    }
+
+    // Filtros de materia
+    document.querySelectorAll('.hist-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.hist-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filtroMateria = btn.dataset.materia;
+        renderGrid();
+      });
+    });
+
+    // Búsqueda
+    document.getElementById('histSearch').addEventListener('input', e => {
+      filtroBusqueda = e.target.value.trim();
+      renderGrid();
+    });
+
+    // Limpiar historial
+    const overlay = document.getElementById('confirmOverlay');
+    document.getElementById('clearBtn').addEventListener('click', () => overlay.classList.add('open'));
+    document.getElementById('confirmCancel').addEventListener('click', () => overlay.classList.remove('open'));
+    document.getElementById('confirmOk').addEventListener('click', () => {
+      setHist([]);
+      overlay.classList.remove('open');
+      renderGrid();
+    });
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+
+    // Init
+    renderGrid();
+  </script>
+</body>
+</html>
