@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Arte y Cultura | 3° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-3.html">3° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Arte y Cultura</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#c026d3,#e879f9)">🎨</div>
+          <div><h3>Arte y Cultura</h3><p>3° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Historia del Arte</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Arte Universal</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Arte Peruano y Patrimonio</a></li>
+          <li><p class="toc-section-title">II. Expresión Artística</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Música y Expresión</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Técnicas de Dibujo y Pintura</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-hist">
+          <div class="chapter-header" onclick="toggleChapter('ch-hist')">
+            <div class="chapter-num" style="background:linear-gradient(135deg,#c026d3,#e879f9)">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Historia del Arte</p><h2>Arte Universal y Peruano</h2><p>Desde la Prehistoria hasta el arte moderno</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner" style="background:linear-gradient(135deg,rgba(192,38,211,0.08),rgba(233,168,245,0.05));border:1px solid rgba(192,38,211,0.12)">
+              <span class="banner-icon">🖼️</span><div><h3>El arte: espejo de la humanidad</h3><p>A través de todas las épocas, el arte ha reflejado los valores, creencias y emociones de cada cultura.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-art">🖼️</div>
+                <div class="topic-book-info"><h4>Historia del Arte Universal</h4><p>Prehistoria → Renacimiento → Barroco → Impresionismo → Arte Moderno</p>
+                  <div class="topic-tags"><span class="topic-tag">Renacimiento</span><span class="topic-tag">Barroco</span><span class="topic-tag">Moderno</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🖼️ Historia del Arte Universal</h3>
+                <p>El arte ha acompañado al ser humano desde sus orígenes. Cada período histórico ha generado estilos únicos que reflejan la visión del mundo de su época, desde las pinturas rupestres hasta las instalaciones contemporáneas.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🏛️ Períodos principales</h4>
+                    <ul>
+                      <li><strong>Prehistoria:</strong> pinturas rupestres (Altamira, Lascaux), Venus de Willendorf</li>
+                      <li><strong>Arte Clásico (Grecia/Roma):</strong> armonía, proporción, escultura (Venus de Milo, Discóbolo)</li>
+                      <li><strong>Arte Medieval:</strong> arte religioso, mosaicos, vidrieras góticas</li>
+                      <li><strong>Renacimiento (S.XV-XVI):</strong> Da Vinci (Mona Lisa), Miguel Ángel, Rafael; perspectiva y humanismo</li>
+                      <li><strong>Barroco (S.XVII):</strong> dramatismo, luz y sombra (chiaroscuro), Caravaggio, Rembrandt, Velázquez</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎨 Arte Moderno y Contemporáneo</h4>
+                    <ul>
+                      <li><strong>Impresionismo (S.XIX):</strong> captura la luz y el movimiento; Monet, Renoir</li>
+                      <li><strong>Post-impresionismo:</strong> Van Gogh, Cézanne, Gauguin</li>
+                      <li><strong>Cubismo (S.XX):</strong> Picasso — múltiples perspectivas simultáneas</li>
+                      <li><strong>Surrealismo:</strong> Salvador Dalí — el inconsciente y los sueños</li>
+                      <li><strong>Arte abstracto:</strong> Kandinsky, Mondrian — formas y colores sin representación real</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Arte = Forma + Contenido + Contexto histórico-cultural</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuáles son las características principales del Renacimiento? Menciona al menos 3 artistas del período.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1"><strong>Características del Renacimiento:</strong> retorno a los ideales clásicos griegos y romanos, uso de la perspectiva lineal, humanismo (el hombre como centro), estudio anatómico del cuerpo humano, equilibrio y armonía. <strong>Artistas:</strong> Leonardo da Vinci (Mona Lisa), Miguel Ángel (La Creación de Adán, estatua de David), Rafael (Las Escuelas de Atenas).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Análisis</strong>
+                      ¿Qué diferencia al Impresionismo del Barroco? Menciona un artista de cada período.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1"><strong>Barroco:</strong> dramatismo, contrastes extremos de luz y sombra (chiaroscuro), temas religiosos e históricos; artista: Caravaggio o Velázquez. <strong>Impresionismo:</strong> captura la luz natural y el momento, pinceladas visibles, temas cotidianos al aire libre; artista: Claude Monet.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-art">🏺</div>
+                <div class="topic-book-info"><h4>Arte Peruano y Patrimonio Cultural</h4><p>Textiles incas, cerámica, arquitectura y Machu Picchu</p>
+                  <div class="topic-tags"><span class="topic-tag">Incas</span><span class="topic-tag">Patrimonio</span><span class="topic-tag">UNESCO</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🏺 Arte Peruano y Patrimonio Cultural</h3>
+                <p>El arte peruano tiene miles de años de historia, desde las culturas preincas hasta el arte virreinal y contemporáneo. El Perú posee 13 bienes inscritos en la Lista del <strong>Patrimonio Mundial de la UNESCO</strong>, siendo Machu Picchu el más famoso.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🧵 Expresiones artísticas andinas</h4>
+                    <ul>
+                      <li><strong>Textiles incas:</strong> los más finos del mundo prehispánico; quipus (comunicación), tocapus (diseños con significados)</li>
+                      <li><strong>Cerámica:</strong> Nazca (policroma), Moche (huacos retratos, escenas de vida), Tiahuanaco</li>
+                      <li><strong>Arquitectura inca:</strong> piedra tallada sin argamasa (sillarío), terrazas (andenes), canales de irrigación</li>
+                      <li><strong>Orfebrería:</strong> trabajo en oro y plata; el Señor de Sipán</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌟 Patrimonio Mundial UNESCO en Perú</h4>
+                    <ul>
+                      <li><strong>Machu Picchu (1983):</strong> ciudadela inca, Patrimonio Cultural y Natural</li>
+                      <li><strong>Líneas de Nazca:</strong> geoglifos misteriosos en el desierto costero</li>
+                      <li><strong>Centro Histórico de Lima:</strong> arquitectura virreinal</li>
+                      <li><strong>Sitio arqueológico de Chavín:</strong> cultura preinca</li>
+                      <li><strong>Chan Chan:</strong> ciudad de adobe más grande de América, cultura Chimú</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Patrimonio Cultural = Material (monumentos, sitios) + Inmaterial (danzas, tradiciones, lenguas)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué Machu Picchu fue declarado Patrimonio de la Humanidad? ¿En qué año?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Machu Picchu fue declarado Patrimonio de la Humanidad por la UNESCO en <strong>1983</strong>. Se le reconoció por su <strong>excepcional valor universal</strong>: es una obra maestra de la arquitectura inca, construida sin argamasa en piedra con precisión milimétrica, integrada armoniosamente con el paisaje natural andino. También es Patrimonio Natural por su biodiversidad.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Análisis artístico</strong>
+                      Describe las características de la cerámica Moche (Mochica). ¿Por qué se llaman "huacos retratos"?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">La cerámica Moche (100 a.C.-800 d.C.) destaca por sus <strong>huacos retratos</strong>: vasijas con forma de cara humana con rasgos tan precisos que parecen retratos individuales de personas reales. También representaban escenas de caza, pesca, guerra y rituales. Se fabricaban con técnicas avanzadas de molde y se decoraban con pigmentos de dos colores (rojo y blanco).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-expr">
+          <div class="chapter-header" onclick="toggleChapter('ch-expr')">
+            <div class="chapter-num" style="background:linear-gradient(135deg,#7c3aed,#c026d3)">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Expresión Artística</p><h2>Música y Técnicas Visuales</h2><p>Música peruana y técnicas de dibujo y pintura</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(192,38,211,0.05));border:1px solid rgba(124,58,237,0.12)">
+              <span class="banner-icon">🎵</span><div><h3>Crear y expresar</h3><p>El arte no es solo contemplar: es también crear, expresar emociones y desarrollar la sensibilidad estética.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-art">🎵</div>
+                <div class="topic-book-info"><h4>Música y Expresión</h4><p>Vals peruano, marinera, huayno — elementos musicales</p>
+                  <div class="topic-tags"><span class="topic-tag">Vals</span><span class="topic-tag">Marinera</span><span class="topic-tag">Ritmo</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🎵 Música Peruana y Elementos Musicales</h3>
+                <p>La <strong>música peruana</strong> es rica y diversa, reflejo de la mezcla de culturas andinas, africanas y europeas. Los géneros más representativos son el vals criollo, la marinera y el huayno.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🎶 Géneros musicales peruanos</h4>
+                    <ul>
+                      <li><strong>Vals criollo:</strong> origen europeo adaptado en Lima; melancólico y romántico; instrumentos: guitarra, cajón</li>
+                      <li><strong>Marinera:</strong> baile nacional del Perú (Decreto Supremo); representa el cortejo; la marinera norteña es la más vistosa</li>
+                      <li><strong>Huayno:</strong> música andina; instrumentos: quena, charango, zampoña; origen prehispánico</li>
+                      <li><strong>Festejo:</strong> música afroperuana, ritmo percusivo del cajón</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎼 Elementos musicales básicos</h4>
+                    <ul>
+                      <li><strong>Ritmo:</strong> organización del tiempo en la música; pulso y compás</li>
+                      <li><strong>Melodía:</strong> sucesión de sonidos de distintas alturas que forman una frase musical</li>
+                      <li><strong>Armonía:</strong> combinación simultánea de sonidos (acordes)</li>
+                      <li><strong>Timbre:</strong> cualidad del sonido que distingue diferentes instrumentos</li>
+                      <li><strong>Dinámica:</strong> variación de intensidad (fuerte/suave)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Música = Ritmo + Melodía + Armonía + Timbre + Forma</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué es la marinera y por qué es importante para el Perú?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">La <strong>marinera</strong> es el baile nacional del Perú, declarado como tal por Decreto Supremo. Es un baile de pareja que representa el cortejo amoroso, con el uso elegante del pañuelo. Tiene variantes: norteña (Trujillo, la más famosa), limeña y sureña. Cada año se realiza el Concurso Nacional de Marinera en Trujillo. Es símbolo de identidad cultural peruana.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Análisis</strong>
+                      Explica la diferencia entre ritmo y melodía con ejemplos.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3"><strong>Ritmo:</strong> es el patrón de tiempos y duraciones en la música. Ejemplo: el tac-tac-tac del cajón en el festejo. <strong>Melodía:</strong> es la sucesión de notas musicales que reconocemos como "la canción". Ejemplo: la línea de voz que cantamos en un vals. Podemos palmar el ritmo, pero cantamos la melodía.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-art">✏️</div>
+                <div class="topic-book-info"><h4>Técnicas de Dibujo y Pintura</h4><p>Perspectiva, proporción, acuarela, óleo y boceto</p>
+                  <div class="topic-tags"><span class="topic-tag">Perspectiva</span><span class="topic-tag">Proporción</span><span class="topic-tag">Técnicas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>✏️ Técnicas de Dibujo y Pintura</h3>
+                <p>El dibujo y la pintura son formas de expresión visual que requieren dominar técnicas específicas. La <strong>perspectiva</strong> crea la ilusión de profundidad y la <strong>proporción</strong> asegura que las partes de una figura guarden relación correcta entre sí.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📐 Perspectiva y Proporción</h4>
+                    <ul>
+                      <li><strong>Perspectiva lineal:</strong> uso de líneas que convergen en un punto de fuga para crear profundidad</li>
+                      <li><strong>Perspectiva de 1 punto de fuga:</strong> para paisajes frontales</li>
+                      <li><strong>Perspectiva de 2 puntos:</strong> para esquinas de edificios</li>
+                      <li><strong>Proporción áurea:</strong> relación matemática que genera armonía visual (φ ≈ 1.618)</li>
+                      <li><strong>Proporción del cuerpo humano:</strong> la figura adulta mide ~8 cabezas de alto</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎨 Técnicas de Pintura</h4>
+                    <ul>
+                      <li><strong>Boceto:</strong> dibujo rápido y preliminar a lápiz, para planificar la composición</li>
+                      <li><strong>Acuarela:</strong> pigmentos solubles en agua; transparencia y luminosidad; difícil de corregir</li>
+                      <li><strong>Gouache:</strong> acuarela opaca; permite correcciones</li>
+                      <li><strong>Óleo:</strong> pigmentos mezclados con aceite; permite capas, correcciones y texturas; el más usado en historia del arte</li>
+                      <li><strong>Acrílico:</strong> de secado rápido, versátil, puede imitar óleo o acuarela</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Boceto → Composición → Color base → Detalle → Acabado</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Creativo</strong>
+                      Describe los pasos para crear un boceto de un paisaje con perspectiva de 1 punto de fuga.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Pasos: (1) Trazar la <strong>línea del horizonte</strong> horizontalmente. (2) Marcar el <strong>punto de fuga</strong> en el centro de esa línea. (3) Trazar líneas diagonales desde el punto de fuga hacia los bordes del papel (estas crean el efecto de profundidad). (4) Dibujar los objetos (edificios, árboles) siguiendo esas líneas guía. (5) Agregar detalles y sombreado para aumentar el realismo.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Comparación</strong>
+                      ¿Cuándo elegirías acuarela y cuándo óleo para una pintura? Explica las ventajas de cada técnica.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4"><strong>Acuarela:</strong> ideal para paisajes luminosos, efectos de agua y cielos; rápida; pero difícil de corregir. <strong>Óleo:</strong> ideal para retratos y obras complejas; permite trabajar en capas, mezclar colores lentamente y corregir errores; pero demora días en secar. Elegiría acuarela para un paisaje rápido al aire libre, y óleo para un retrato detallado en taller.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="tema-ingles-3.html" class="button button-secondary">← Inglés</a>
+      <a href="grado-4.html" class="button button-primary">4° Secundaria →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=4,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(192,38,211);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Arte y Cultura - 3 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Historia del Arte Universal',c:'Prehistoria: pinturas rupestres. Clasico: proporcion y armonia. Renacimiento: Da Vinci, Miguel Angel, perspectiva. Barroco: Caravaggio, chiaroscuro. Impresionismo: Monet, captura la luz. Cubismo: Picasso. Surrealismo: Dali.'},
+       {ti:'Arte Peruano y Patrimonio',c:'Textiles incas: los mas finos prehispanicos. Ceramica: Nazca (policroma), Moche (huacos retratos). Arquitectura inca: piedra sin argamasa. Machu Picchu: Patrimonio UNESCO 1983. Chan Chan: adobe, cultura Chimu. Lineas de Nazca: geoglifos.'},
+       {ti:'Musica y Expresion',c:'Vals criollo: guitarra y cajon, Lima. Marinera: baile nacional, panuelo, Trujillo. Huayno: andino, quena y charango. Festejo: afroperuano. Elementos: ritmo (pulso), melodia (altura de notas), armonia (acordes), timbre, dinamica.'},
+       {ti:'Tecnicas de Dibujo y Pintura',c:'Perspectiva lineal: punto de fuga, linea de horizonte. Proporcion aurea: 1.618. Boceto: dibujo preliminar. Acuarela: transparente, agua. Oleo: capas, lento secado, corregible. Acrilico: versatil, secado rapido. Proceso: boceto > composicion > color > detalle.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[192,38,211]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Ejercicios de repaso',13,true,[192,38,211]);
+      ['1. Caracteristicas del Renacimiento y 3 artistas.','2. Diferencia entre Barroco e Impresionismo.','3. ?Que es la marinera y por que es importante?','4. Pasos para dibujar en perspectiva de 1 punto.','5. Ventajas del oleo vs acuarela.'].forEach(e=>t(e,10,false));
+      doc.save('Arte-Cultura-3-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
