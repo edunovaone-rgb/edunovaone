@@ -1061,57 +1061,11 @@
 
     // renderHistorial y registrarLectura reemplazados por historial localStorage (ver abajo)
 
-        const entrada = {
-          titulo:  bookData.titulo,
-          materia: bookData.materia,
-          grado:   bookData.grado,
-          tipo:    bookData.tipo,
-          fecha:   new Date().toISOString()
-        };
-
-        if (snap.exists()) {
-          // Evitar duplicados: quitar entrada anterior con mismo título y agregar la nueva al final
-          const historialActual = snap.data().historial || [];
-          const sinDuplicado = historialActual.filter(h => h.titulo !== entrada.titulo);
-          sinDuplicado.push(entrada);
-          // Guardar solo los últimos 20
-          const historialFinal = sinDuplicado.slice(-20);
-          await updateDoc(ref, { historial: historialFinal });
-          renderHistorial(historialFinal);
-        }
-      } catch (err) {
-        console.warn('No se pudo guardar en historial:', err);
-      }
-    }
-
-    // ── Carga el historial del usuario ──
-    async function cargarHistorial(user) {
-      try {
-        const snap = await getDoc(doc(_db, 'usuarios', user.uid));
-        const historial = snap.exists() ? (snap.data().historial || []) : [];
-        renderHistorial(historial);
-      } catch (err) {
-        console.warn('No se pudo cargar el historial:', err);
-        renderHistorial([]);
-      }
-    }
-
     // ── Escucha cambios de sesión ──
     let currentUser = null;
-
     onAuthStateChanged(_auth, (user) => {
       currentUser = user;
       updateNavBtn(user);
-
-      const loading = document.getElementById('actividadLoading');
-      const noAuth  = document.getElementById('actividadNoAuth');
-
-      if (user) {
-        cargarHistorial(user);
-      } else {
-        loading.style.display = 'none';
-        noAuth.style.display  = 'block';
-      }
     });
 
     // ══════════════════════════════════════════════
