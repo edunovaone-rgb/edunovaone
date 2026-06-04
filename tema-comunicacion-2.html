@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Comunicación | 2° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-2.html">2° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Comunicación</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#dc2626,#f87171)">📖</div>
+          <div><h3>Comunicación</h3><p>2° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Tipos de Textos</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Textos Expositivos y Argumentativos</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Narración y Descripción Avanzada</a></li>
+          <li><p class="toc-section-title">II. Comprensión y Gramática</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Comprensión Lectora Inferencial</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Gramática: La Oración y sus Partes</a></li>
+          <li><p class="toc-section-title">III. Redacción</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Redacción Académica</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <!-- CAPÍTULO I -->
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Tipos de Textos</h2>
+              <p>Expositivo, argumentativo e instructivo</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">📄</span>
+              <div><h3>Las palabras tienen poder</h3><p>Cada tipo de texto cumple una función comunicativa diferente. Reconocerlos te permite leer con mayor comprensión y escribir con mayor precisión y eficacia.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-comm">📄</div>
+                <div class="topic-book-info">
+                  <h4>Textos Expositivos y Argumentativos</h4>
+                  <p>Características, estructura y diferencias</p>
+                  <div class="topic-tags"><span class="topic-tag">Expositivo</span><span class="topic-tag">Argumentativo</span><span class="topic-tag">Instructivo</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>📄 Tipos de Textos según su Intención</h3>
+                <p>Los textos se clasifican según su <strong>intención comunicativa</strong>. El texto <strong>expositivo</strong> informa objetivamente; el <strong>argumentativo</strong> convence o persuade; el <strong>instructivo</strong> guía acciones paso a paso. Identificar el tipo es clave para la comprensión lectora.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Texto Expositivo</h4>
+                    <ul>
+                      <li><strong>Propósito:</strong> informar, explicar, divulgar</li>
+                      <li><strong>Lenguaje:</strong> objetivo, claro, preciso</li>
+                      <li><strong>Estructura:</strong> introducción, desarrollo, conclusión</li>
+                      <li><strong>Recursos:</strong> definiciones, ejemplos, comparaciones, datos</li>
+                      <li><strong>Ejemplos:</strong> artículos científicos, enciclopedias, informes</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>💬 Texto Argumentativo</h4>
+                    <ul>
+                      <li><strong>Propósito:</strong> convencer, persuadir, defender una postura</li>
+                      <li><strong>Estructura:</strong> tesis, argumentos, refutación, conclusión</li>
+                      <li><strong>Tipos de argumento:</strong> de autoridad, causal, de ejemplo, analógico</li>
+                      <li><strong>Conectores:</strong> por eso, sin embargo, aunque, en consecuencia</li>
+                      <li><strong>Ejemplos:</strong> editoriales, ensayos, artículos de opinión</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Expositivo: informa | Argumentativo: convence | Instructivo: guía</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Lee: "El calentamiento global es el mayor problema de nuestro tiempo. Los gobiernos deben actuar ya, pues los datos científicos son irrefutables." ¿Qué tipo de texto es?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">Es un <strong>texto argumentativo</strong>. Presenta una tesis ("el mayor problema") y la defiende con datos ("datos científicos irrefutables"). Su propósito es convencer al lector.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la diferencia principal entre un texto instructivo y uno expositivo?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">El <strong>instructivo</strong> guía al lector para realizar una acción (receta, manual de uso), usa verbos en imperativo y secuencia ordenada. El <strong>expositivo</strong> solo informa o explica, sin pedirle al lector que haga algo.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Escribe una tesis y un argumento de apoyo sobre el uso del celular en el colegio.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">Ejemplo — Tesis: "El uso del celular en el colegio debe ser regulado, no prohibido." Argumento: "Permite acceder a información educativa instantánea y desarrollar habilidades digitales necesarias para el siglo XXI."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-comm">✍️</div>
+                <div class="topic-book-info">
+                  <h4>Narración y Descripción Avanzada</h4>
+                  <p>Narrador, tiempo narrativo y técnicas descriptivas</p>
+                  <div class="topic-tags"><span class="topic-tag">Narrador</span><span class="topic-tag">Descripción</span><span class="topic-tag">Prosopografía</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>✍️ Narración y Descripción Avanzada</h3>
+                <p>La <strong>narración</strong> es el relato de hechos que suceden en un tiempo y espacio determinados. La <strong>descripción</strong> pinta con palabras características de personas, lugares u objetos. Ambas técnicas se complementan en la literatura para crear mundos vívidos y creíbles.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📖 Tipos de narrador</h4>
+                    <ul>
+                      <li><strong>Omnisciente:</strong> sabe todo (3ª persona), conoce pensamientos</li>
+                      <li><strong>Protagonista:</strong> es el personaje principal (1ª persona)</li>
+                      <li><strong>Testigo:</strong> observa pero no participa (1ª persona)</li>
+                      <li><strong>Tiempo narrativo:</strong> cronológico, in medias res, flash-back</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎨 Tipos de descripción</h4>
+                    <ul>
+                      <li><strong>Prosopografía:</strong> rasgos físicos de una persona</li>
+                      <li><strong>Etopeya:</strong> rasgos morales/psicológicos</li>
+                      <li><strong>Retrato:</strong> físico + psicológico</li>
+                      <li><strong>Topografía:</strong> descripción de un lugar</li>
+                      <li><strong>Cronografía:</strong> descripción de una época o tiempo</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      "Yo no sabía lo que estaba por ocurrir aquella tarde de verano..." ¿Qué tipo de narrador es?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Es un <strong>narrador protagonista</strong> (primera persona). El "yo" que narra es el mismo personaje que vive los hechos, con perspectiva interna y subjetiva.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      "Era alto, de cabello negro azabache y ojos color miel." ¿Qué tipo de descripción es?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Es una <strong>prosopografía</strong>, ya que describe exclusivamente los rasgos físicos (altura, color de cabello y ojos) de una persona.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAPÍTULO II -->
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Comprensión y Gramática</h2>
+              <p>Lectura inferencial y análisis de la oración</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">🔍</span>
+              <div><h3>Leer entre líneas</h3><p>La comprensión lectora va más allá de entender lo que dice el texto: implica deducir lo que no está escrito. La gramática, por su parte, es la arquitectura del lenguaje.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-comm">🔍</div>
+                <div class="topic-book-info">
+                  <h4>Comprensión Lectora Inferencial</h4>
+                  <p>Niveles de comprensión: literal, inferencial y crítico</p>
+                  <div class="topic-tags"><span class="topic-tag">Inferencia</span><span class="topic-tag">Literal</span><span class="topic-tag">Crítico</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🔍 Comprensión Lectora Inferencial</h3>
+                <p>La comprensión lectora opera en tres niveles: el <strong>literal</strong> (lo que dice el texto), el <strong>inferencial</strong> (lo que el texto implica o sugiere) y el <strong>crítico</strong> (evaluación y juicio del lector sobre el texto). El nivel inferencial es el más evaluado en los exámenes.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📚 Niveles de comprensión</h4>
+                    <ul>
+                      <li><strong>Literal:</strong> identifica datos explícitos (¿qué dice?)</li>
+                      <li><strong>Inferencial:</strong> deduce información implícita (¿qué se puede concluir?)</li>
+                      <li><strong>Crítico:</strong> evalúa, opina, relaciona con el contexto</li>
+                      <li><strong>Idea principal:</strong> núcleo del texto, puede ser explícita o implícita</li>
+                      <li><strong>Idea secundaria:</strong> complementa o ejemplifica la principal</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎯 Estrategias inferenciales</h4>
+                    <ul>
+                      <li>Buscar el significado de palabras por contexto</li>
+                      <li>Identificar causas y consecuencias implícitas</li>
+                      <li>Deducir intención del autor</li>
+                      <li>Completar información que el autor asume como conocida</li>
+                      <li>Reconocer el tema global del texto</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Texto</strong>
+                      "El anciano llegó tarde al banco. Al entrar, los empleados ya estaban apagando las luces." ¿Qué se puede inferir?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Se puede inferir que el banco estaba a punto de cerrar (o ya había cerrado) y que el anciano <strong>no pudo realizar su trámite</strong>. La información no está explícita pero se deduce por el contexto.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la diferencia entre encontrar la "idea principal" y el "tema" de un texto?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">El <strong>tema</strong> se expresa en una o dos palabras (ej: "la amistad"). La <strong>idea principal</strong> es una oración completa que sintetiza lo más importante que el texto dice sobre ese tema (ej: "La amistad verdadera se demuestra en los momentos difíciles").</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      ¿Qué estrategia usarías si encuentras una palabra desconocida en un texto de examen?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t3">Se usa la estrategia del <strong>contexto semántico</strong>: leer las oraciones anteriores y siguientes para deducir el significado por las palabras que rodean a la desconocida. También se pueden buscar prefijos o raíces latinas/griegas conocidas.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-comm">🔠</div>
+                <div class="topic-book-info">
+                  <h4>Gramática: La Oración y sus Partes</h4>
+                  <p>Sujeto, predicado, sintagmas y tipos de oraciones</p>
+                  <div class="topic-tags"><span class="topic-tag">Sujeto</span><span class="topic-tag">Predicado</span><span class="topic-tag">Sintagma</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🔠 Gramática: La Oración y sus Partes</h3>
+                <p>La <strong>oración</strong> es la unidad mínima con sentido completo que tiene un verbo conjugado. Se divide en dos partes fundamentales: el <strong>sujeto</strong> (de quién o qué se habla) y el <strong>predicado</strong> (lo que se dice del sujeto). Analizar oraciones nos ayuda a escribir mejor y a evitar errores gramaticales.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>👤 El Sujeto</h4>
+                    <ul>
+                      <li><strong>Núcleo del sujeto:</strong> siempre es un sustantivo o pronombre</li>
+                      <li><strong>Sujeto expreso:</strong> aparece en la oración. Ej: "Los niños juegan"</li>
+                      <li><strong>Sujeto tácito:</strong> se sobreentiende. Ej: "Corren velozmente" (ellos)</li>
+                      <li><strong>Modificadores:</strong> artículo, adjetivo, complemento del nombre</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🗣️ El Predicado</h4>
+                    <ul>
+                      <li><strong>Núcleo del predicado:</strong> siempre es el verbo</li>
+                      <li><strong>Predicado verbal:</strong> el verbo tiene significado pleno. Ej: "corre"</li>
+                      <li><strong>Predicado nominal:</strong> verbo copulativo (ser, estar, parecer) + atributo</li>
+                      <li><strong>Complementos:</strong> directo (CD), indirecto (CI), circunstancial (CC)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Oración = Sujeto (núcleo: sustantivo) + Predicado (núcleo: verbo)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Analiza la oración: "La maestra inteligente explicó la lección con mucha paciencia."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Sujeto: <strong>"La maestra inteligente"</strong> (núcleo: maestra; modificador: inteligente). Predicado verbal: <strong>"explicó la lección con mucha paciencia"</strong> (núcleo: explicó; CD: la lección; CC de modo: con mucha paciencia).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Identifica el sujeto tácito de: "Llegaron tarde a la reunión."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Sujeto tácito: <strong>Ellos / Ellas</strong>. El verbo "llegaron" está en 3ª persona del plural, lo que indica que el sujeto no aparece explícito pero se sobreentiende.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAPÍTULO III -->
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Redacción Académica</h2>
+              <p>Planificación, coherencia y cohesión textual</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">✒️</span>
+              <div><h3>Escribe con claridad y fuerza</h3><p>La redacción académica es una habilidad fundamental para el éxito escolar y profesional. No se trata de escribir mucho, sino de escribir bien: con claridad, coherencia y organización.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-advanced">✒️</div>
+                <div class="topic-book-info">
+                  <h4>Redacción Académica</h4>
+                  <p>Planificación, coherencia, cohesión y revisión</p>
+                  <div class="topic-tags"><span class="topic-tag">Coherencia</span><span class="topic-tag">Cohesión</span><span class="topic-tag">Conectores</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>✒️ Redacción Académica</h3>
+                <p>Un texto académico de calidad debe tener <strong>coherencia</strong> (las ideas se relacionan lógicamente), <strong>cohesión</strong> (las oraciones están bien conectadas con palabras de enlace) y <strong>adecuación</strong> (el registro y vocabulario son apropiados para el contexto). El proceso de escritura sigue tres etapas: planificación, redacción y revisión.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📝 Etapas de la escritura</h4>
+                    <ul>
+                      <li><strong>1. Planificación:</strong> lluvia de ideas, esquema, propósito, audiencia</li>
+                      <li><strong>2. Redacción:</strong> introducción (presentar el tema), desarrollo (argumentar/explicar), conclusión (síntesis)</li>
+                      <li><strong>3. Revisión:</strong> ortografía, gramática, claridad, conectores</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔗 Conectores textuales</h4>
+                    <ul>
+                      <li><strong>Adición:</strong> además, también, asimismo, igualmente</li>
+                      <li><strong>Contraste:</strong> sin embargo, pero, aunque, a pesar de</li>
+                      <li><strong>Causa:</strong> porque, ya que, puesto que, dado que</li>
+                      <li><strong>Consecuencia:</strong> por eso, entonces, por lo tanto, en consecuencia</li>
+                      <li><strong>Orden:</strong> primero, luego, finalmente, en primer lugar</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Reescribe usando el conector adecuado: "No estudió. Desaprobó el examen."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">"No estudió, <strong>por lo tanto</strong> desaprobó el examen." (conector de consecuencia) / "Como no estudió, desaprobó el examen." (conector de causa)</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Escribe una introducción para un texto sobre "La importancia de leer".
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Ejemplo: "En una era dominada por las redes sociales, la lectura sigue siendo una de las actividades más enriquecedoras para el desarrollo humano. Leer no solo amplía el vocabulario, sino que fortalece el pensamiento crítico y fomenta la empatía hacia otras realidades."</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      ¿Cuál es la diferencia entre coherencia y cohesión textual?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t5"><strong>Coherencia:</strong> las ideas del texto tienen sentido lógico y están organizadas (fondo). <strong>Cohesión:</strong> las palabras y oraciones están bien conectadas con pronombres, sinónimos y conectores (forma). Un texto puede ser cohesivo sin ser coherente, y viceversa.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-2.html" class="button button-secondary">← 2° Secundaria</a>
+      <a href="tema-historia-2.html" class="button button-primary">Historia →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),margin=15,pageW=210,pageH=297;let y=margin;
+      const addText=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));const lines=doc.splitTextToSize(text,pageW-margin*2);lines.forEach(line=>{if(y>pageH-margin){doc.addPage();y=margin;}doc.text(line,margin,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(220,38,38);doc.rect(0,0,210,28,'F');
+      doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');
+      doc.text('Comunicacion - 2 Secundaria',margin,12);
+      doc.setFontSize(10);doc.setFont('helvetica','normal');
+      doc.text('EduNovaOne - Material de estudio completo',margin,20);y=38;
+      const temas=[
+        {t:'Textos Expositivos y Argumentativos',c:'Expositivo: informa objetivamente. Argumentativo: defiende una tesis con argumentos. Instructivo: guia acciones paso a paso.'},
+        {t:'Narracion y Descripcion Avanzada',c:'Tipos de narrador: omnisciente, protagonista, testigo. Descripcion: prosopografia (rasgos fisicos), etopeya (rasgos morales), retrato (ambos), topografia (lugar).'},
+        {t:'Comprension Lectora Inferencial',c:'Niveles: literal (lo explicito), inferencial (lo implicito), critico (evaluacion). Estrategia: contexto semantico para palabras desconocidas.'},
+        {t:'Gramatica: La Oracion y sus Partes',c:'Oracion = Sujeto (nucleo: sustantivo) + Predicado (nucleo: verbo). Tipos: sujeto expreso y tacito. Complementos: CD, CI, CC.'},
+        {t:'Redaccion Academica',c:'Etapas: planificacion, redaccion, revision. Propiedades: coherencia (ideas logicas) y cohesion (conectores). Tipos de conectores: adicion, contraste, causa, consecuencia, orden.'}
+      ];
+      temas.forEach((t,i)=>{addText(`${i+1}. ${t.t}`,13,true,[220,38,38]);addText(t.c,10,false,[50,50,60]);y+=3;});
+      y+=5;addText('Ejercicios de repaso',13,true,[220,38,38]);
+      ['1. ¿Que tipo de texto defiende una postura con argumentos? R: Argumentativo','2. ¿Que tipo de descripcion habla de rasgos fisicos? R: Prosopografia','3. Lee: "El tren ya habia salido". ¿Que se infiere? R: El viajero llego tarde','4. Conecta con el conector correcto: "Llovia. Sali con paraguas." R: Llovía, por lo tanto sali con paraguas'].forEach(ex=>addText(ex,10,false,[50,50,60]));
+      doc.save('comunicacion-2-secundaria.pdf');
+    }
+  </script>
+</body>
+</html>
