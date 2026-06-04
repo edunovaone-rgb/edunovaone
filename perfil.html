@@ -830,6 +830,55 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // ── Historial localStorage (máx 10 en perfil) ──
+    const HIST_KEY_P = 'enu_historial';
+    const HIST_MAX_PERFIL = 10;
+    const COLORS_P = {
+      matematica:'#7c3aed', ciencia:'#059669', comunicacion:'#dc2626',
+      historia:'#d97706', ingles:'#2563eb', arte:'#c026d3',
+      tecnologia:'#0284c7', filosofia:'#4338ca'
+    };
+    const LETRA_P = {
+      matematica:'M', ciencia:'C', comunicacion:'C', historia:'H',
+      ingles:'I', arte:'A', tecnologia:'T', filosofia:'F'
+    };
+    function tiempoRelP(ts) {
+      const d=Date.now()-ts, m=Math.floor(d/60000), h=Math.floor(d/3600000), dy=Math.floor(d/86400000);
+      if (m<1) return 'Ahora mismo';
+      if (m<60) return `Hace ${m} min`;
+      if (h<24) return `Hace ${h} h`;
+      if (dy===1) return 'Ayer';
+      if (dy<7) return `Hace ${dy} días`;
+      return new Date(ts).toLocaleDateString('es-PE',{day:'numeric',month:'short'});
+    }
+    function renderRecentPerfil() {
+      const list = document.getElementById('recentList');
+      if (!list) return;
+      let arr = [];
+      try { arr = JSON.parse(localStorage.getItem(HIST_KEY_P)||'[]'); } catch {}
+      const recientes = arr.slice(0, HIST_MAX_PERFIL);
+      if (!recientes.length) {
+        list.innerHTML = '<p style="color:var(--text-muted);font-size:.88rem;text-align:center;padding:.5rem 0;">Aún no has visitado ningún recurso.<br><a href="biblioteca.html" style="color:var(--accent-strong);font-weight:700;">Ir a la biblioteca →</a></p>';
+        return;
+      }
+      list.innerHTML = recientes.map(e => {
+        const color = COLORS_P[e.materia] || '#6d28d9';
+        const letra = LETRA_P[e.materia]  || '📄';
+        return `<div class="activity-item" style="cursor:pointer;" onclick="location.href='${e.id}.html'">
+          <span class="activity-icon" style="width:2.2rem;height:2.2rem;border-radius:.75rem;background:${color}1a;
+            color:${color};display:inline-flex;align-items:center;justify-content:center;
+            font-size:.85rem;font-weight:800;flex-shrink:0;">${letra}</span>
+          <div class="activity-item-info" style="flex:1;min-width:0;">
+            <strong style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;">${e.titulo}</strong>
+            <time>${e.grado || ''}${e.grado && e.materia?' · ':''}${e.materia||''} · ${tiempoRelP(e.ts)}</time>
+          </div>
+          <a href="${e.id}.html" style="font-size:1rem;color:var(--accent);text-decoration:none;flex-shrink:0;" title="Abrir">→</a>
+        </div>`;
+      }).join('');
+    }
+    renderRecentPerfil();
+  </script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
