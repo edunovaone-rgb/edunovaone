@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
-  <title>Historia | 3° Secundaria | EduNovaOne</title>
+  <title>Historia, Geografía y Economía | 3° Secundaria | EduNovaOne</title>
   <link rel="icon" href="assets/Icono.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="tema-shared.css" />
@@ -12,10 +12,7 @@
 <body>
   <nav class="uni-nav">
     <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
-    <ul class="uni-nav-links">
-      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
-      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
-    </ul>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
     <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
   </nav>
   <main class="page-content">
@@ -31,13 +28,14 @@
         </div>
         <p class="toc-label">Contenido</p>
         <ul class="toc-list">
-          <li><p class="toc-section-title">I. Historia del Perú</p></li>
-          <li><a href="#t1" class="active"><span class="toc-num">1</span>Perú Colonial</a></li>
-          <li><a href="#t2"><span class="toc-num">2</span>Independencia del Perú</a></li>
-          <li><a href="#t3"><span class="toc-num">3</span>Perú Republicano S.XIX</a></li>
-          <li><p class="toc-section-title">II. Geografía</p></li>
-          <li><a href="#t4"><span class="toc-num">4</span>Geografía Física del Perú</a></li>
-          <li><a href="#t5"><span class="toc-num">5</span>Demografía y Migración</a></li>
+          <li><p class="toc-section-title">I. Perú Colonial</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>La Conquista</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>El Virreinato</a></li>
+          <li><p class="toc-section-title">II. Independencia</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Independencia del Perú</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Perú Republicano s. XIX</a></li>
+          <li><p class="toc-section-title">III. Geografía</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Geografía Física del Perú</a></li>
         </ul>
         <div class="progress-block">
           <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
@@ -47,309 +45,297 @@
       </aside>
       <div class="book-main">
 
-        <!-- CAPÍTULO I -->
-        <div class="chapter-card open" id="ch-hist">
-          <div class="chapter-header" onclick="toggleChapter('ch-hist')">
-            <div class="chapter-num num-basic" style="background:linear-gradient(135deg,#d97706,#f59e0b)">I</div>
-            <div class="chapter-header-text"><p class="chapter-level">Historia del Perú</p><h2>Colonia e Independencia</h2><p>Del virreinato a la república</p></div>
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Básico</p><h2>El Perú Colonial</h2><p>Conquista y Virreinato (1532–1821)</p></div>
             <span class="chapter-toggle">▼</span>
           </div>
           <div class="chapter-body">
-            <div class="section-banner banner-basic" style="background:linear-gradient(135deg,rgba(217,119,6,0.08),rgba(251,191,36,0.05));border-color:rgba(217,119,6,0.15)">
-              <span class="banner-icon">⚔️</span><div><h3>El Perú bajo el dominio español</h3><p>Durante 300 años el Perú fue parte del Imperio Español. Conocer este período es esencial para entender nuestra identidad.</p></div>
-            </div>
+            <div class="section-banner banner-basic"><span class="banner-icon">⚔️</span><div><h3>Un nuevo mundo</h3><p>La llegada de los españoles transformó radicalmente el mundo andino. Comprender este período es clave para entender la identidad peruana actual: mestiza, diversa y compleja.</p></div></div>
             <div class="topics-grid">
 
-              <!-- T1 -->
               <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
                 <div class="topic-book-cover cover-history">⚔️</div>
-                <div class="topic-book-info"><h4>Perú Colonial</h4><p>Conquista, virreinato y sociedad colonial</p>
-                  <div class="topic-tags"><span class="topic-tag">Virreinato</span><span class="topic-tag">Encomienda</span><span class="topic-tag">Castas</span></div>
+                <div class="topic-book-info"><h4>La Conquista del Perú</h4><p>Pizarro, la captura de Atahualpa y la caída del Tahuantinsuyo (1532)</p>
+                  <div class="topic-tags"><span class="topic-tag">Pizarro</span><span class="topic-tag">Cajamarca</span><span class="topic-tag">1532</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t1">
-                <h3>⚔️ El Perú Colonial (1532–1821)</h3>
-                <p>La <strong>conquista española</strong> inició en 1532 cuando Francisco Pizarro capturó al Inca Atahualpa en Cajamarca. El Virreinato del Perú se estableció en 1542, convirtiéndose en el centro político y económico de Sudamérica. La sociedad colonial se organizó en una rígida jerarquía racial.</p>
+                <h3>⚔️ La Conquista del Perú (1532)</h3>
+                <p>La conquista del Perú fue un proceso violento mediante el cual España sometió al Imperio Inca entre 1532 y 1572. Francisco Pizarro lideró la expedición con apenas 168 soldados, aprovechando la guerra civil inca entre Huáscar y Atahualpa.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>🏛️ Instituciones coloniales</h4>
+                    <h4>🗓️ Etapas de la conquista</h4>
                     <ul>
-                      <li><strong>Encomienda:</strong> entrega de indígenas a un español para trabajar a cambio de evangelización</li>
-                      <li><strong>Mita colonial:</strong> trabajo obligatorio de indígenas en minas (Potosí, Huancavelica)</li>
-                      <li><strong>Virreinato:</strong> máxima autoridad el Virrey, representante del rey</li>
-                      <li><strong>Cabildo:</strong> gobierno local de las ciudades</li>
-                      <li><strong>Audiencia:</strong> tribunal de justicia superior</li>
-                      <li><strong>Inquisición:</strong> tribunal eclesiástico que juzgaba la herejía</li>
+                      <li><strong>1532 — Batalla de Cajamarca:</strong> captura de Atahualpa. Los españoles mataron a miles de indígenas desarmados</li>
+                      <li><strong>El rescate de Atahualpa:</strong> una habitación llena de oro y plata a cambio de su libertad (8 toneladas de oro)</li>
+                      <li><strong>1533 — Ejecución de Atahualpa:</strong> Pizarro lo ejecuta por garrote pese al rescate pagado</li>
+                      <li><strong>1533 — Toma del Cusco:</strong> capital inca ocupada por españoles</li>
+                      <li><strong>1535 — Fundación de Lima:</strong> nueva capital del poder colonial</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>👥 Sociedad colonial — Castas</h4>
+                    <h4>🔍 ¿Por qué cayó el Tahuantinsuyo?</h4>
                     <ul>
-                      <li><strong>Peninsulares:</strong> españoles nacidos en España (elite)</li>
-                      <li><strong>Criollos:</strong> hijos de españoles nacidos en América</li>
-                      <li><strong>Mestizos:</strong> mezcla de español e indígena</li>
-                      <li><strong>Indígenas:</strong> pagaban tributo y mita</li>
-                      <li><strong>Negros esclavos:</strong> traídos de África para trabajo forzado</li>
-                      <li><strong>Mulatos/Zambos:</strong> mezclas con africanos</li>
+                      <li><strong>Guerra civil:</strong> Huáscar vs Atahualpa debilitó al Imperio</li>
+                      <li><strong>Armas europeas:</strong> acero, pólvora, caballos — desconocidos para los incas</li>
+                      <li><strong>Enfermedades:</strong> viruela y sarampión mataron hasta el 90% de la población indígena</li>
+                      <li><strong>Alianzas estratégicas:</strong> Pizarro se alió con pueblos sometidos por los incas (huancas, cañaris)</li>
+                      <li><strong>Elemento sorpresa:</strong> los españoles actuaron de forma imprevista y brutal</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Virreinato del Perú (1542) → Capital: Lima "Ciudad de los Reyes"</div>
+                <div class="formula-display">1532: Cajamarca → 1533: Ejecución Atahualpa → 1535: Lima fundada</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      ¿Cuál es la diferencia entre la encomienda y la mita colonial? Explica cada institución.
+                      ¿Por qué la guerra civil entre Huáscar y Atahualpa facilitó la conquista española?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t1"><strong>Encomienda:</strong> Un español (encomendero) recibía indígenas para trabajar en sus tierras; debía evangelizarlos y pagarles. <strong>Mita colonial:</strong> Trabajo obligatorio rotativo de indígenas en minas; era mucho más duro y causó gran mortalidad. La encomienda era de tierra, la mita era minera.</div>
+                      <div class="answer-box" id="ans1-t1">La guerra civil dividió al Imperio Inca y agotó sus recursos militares y humanos. Muchos pueblos sometidos por los incas aprovecharon la llegada española para liberarse, aliándose con Pizarro. El Imperio no pudo presentar una defensa unificada.</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Ordena de mayor a menor poder en la sociedad colonial: mestizos, criollos, peninsulares, indígenas.
+                      Menciona tres ventajas militares y tecnológicas que tuvieron los españoles sobre los incas.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t1">1° <strong>Peninsulares</strong> (máximo poder) → 2° <strong>Criollos</strong> → 3° <strong>Mestizos</strong> → 4° <strong>Indígenas</strong> (base de la pirámide, pagaban tributos y realizaban la mita)</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Ejercicio 3</strong>
-                      ¿Por qué Lima fue tan importante en el Virreinato del Perú?
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans3-t1">Lima era la <strong>capital virreinal</strong>, sede del Virrey, la Real Audiencia y el Arzobispado. Controlaba el comercio con España a través del puerto del Callao y era el centro político, económico y religioso de toda Sudamérica hispana.</div>
+                      <div class="answer-box" id="ans2-t1">1) <strong>Armaduras y armas de acero</strong> (espadas, lanzas de hierro) frente a las armas de piedra, madera y bronce incas. 2) <strong>Caballos</strong>: desconocidos en América, aterrorizaban a los guerreros indígenas. 3) <strong>Armas de fuego</strong> (arcabuces y cañones) cuyo estruendo y poder destructor eran desconocidos.</div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
               </div>
 
-              <!-- T2 -->
               <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
-                <div class="topic-book-cover cover-history">🗽</div>
-                <div class="topic-book-info"><h4>Independencia del Perú y América</h4><p>Causas, proceres, batallas y proclamación</p>
-                  <div class="topic-tags"><span class="topic-tag">1821</span><span class="topic-tag">San Martín</span><span class="topic-tag">Bolívar</span></div>
+                <div class="topic-book-cover cover-history">🏛️</div>
+                <div class="topic-book-info"><h4>El Virreinato del Perú</h4><p>Organización colonial, mita, encomienda y sociedad de castas</p>
+                  <div class="topic-tags"><span class="topic-tag">Virrey</span><span class="topic-tag">Mita</span><span class="topic-tag">Castas</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t2">
-                <h3>🗽 Independencia del Perú y América (1820–1824)</h3>
-                <p>La <strong>independencia del Perú</strong> fue el resultado de un largo proceso impulsado por causas internas (descontento criollo, rebeliones indígenas) y externas (Ilustración, independencia de EE.UU., Revolución Francesa). Fue proclamada el <strong>28 de julio de 1821</strong> por José de San Martín.</p>
+                <h3>🏛️ El Virreinato del Perú (1542–1821)</h3>
+                <p>El <strong>Virreinato del Perú</strong> fue la principal unidad administrativa española en América del Sur. Lima fue el centro político, económico y cultural del virreinato durante casi tres siglos.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>⚡ Causas de la Independencia</h4>
+                    <h4>⚙️ Instituciones coloniales</h4>
                     <ul>
-                      <li><strong>Internas:</strong> discriminación a criollos, impuestos abusivos, mita, rebeliones (Túpac Amaru II, 1780)</li>
-                      <li><strong>Externas:</strong> Ilustración europea, independencia de EE.UU. (1776), Revolución Francesa (1789)</li>
-                      <li><strong>Coyunturales:</strong> invasión napoleónica a España (1808), crisis de la monarquía española</li>
+                      <li><strong>Virrey:</strong> máxima autoridad, representaba al rey de España</li>
+                      <li><strong>Real Audiencia:</strong> tribunal de justicia colonial</li>
+                      <li><strong>Cabildo:</strong> gobierno municipal de las ciudades</li>
+                      <li><strong>Encomienda:</strong> indígenas encomendados a un español para trabajar a cambio de evangelización (en teoría)</li>
+                      <li><strong>Mita colonial:</strong> trabajo obligatorio en minas (Potosí, Huancavelica). Mató a millones de indígenas</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>⚔️ Batallas decisivas</h4>
+                    <h4>👥 Sociedad de castas</h4>
                     <ul>
-                      <li><strong>Junín (6 agosto 1824):</strong> batalla de caballería, victoria patriota bajo Bolívar y Sucre</li>
-                      <li><strong>Ayacucho (9 dic. 1824):</strong> batalla final, capitulación realista. Independencia definitiva de América del Sur</li>
-                      <li><strong>San Martín:</strong> proclamó la independencia (28/07/1821)</li>
-                      <li><strong>Bolívar:</strong> consolidó la independencia con sus victorias militares</li>
+                      <li><strong>Españoles peninsulares:</strong> nacidos en España, elite política</li>
+                      <li><strong>Criollos:</strong> hijos de españoles nacidos en América, elite económica pero sin poder político</li>
+                      <li><strong>Mestizos:</strong> hijos de español e indígena</li>
+                      <li><strong>Indígenas:</strong> tributaban y hacían la mita</li>
+                      <li><strong>Africanos esclavizados:</strong> traídos forzosamente, trabajaban en haciendas costeras</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">28 de julio de 1821 → Proclamación de la Independencia del Perú — San Martín</div>
+                <div class="example-block">
+                  <strong>Dato: Las minas de Potosí</strong>
+                  <p>El cerro Rico de Potosí (actual Bolivia) produjo el 60% de la plata mundial entre 1545 y 1800. Se estima que murieron más de 8 millones de indígenas y africanos en sus minas. Con esa plata España financió sus guerras europeas durante dos siglos.</p>
+                </div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      ¿Cuál fue la diferencia entre el rol de San Martín y el de Bolívar en la independencia del Perú?
+                      ¿Cuál era la diferencia entre un español peninsular y un criollo? ¿Por qué esta diferencia fue importante para la independencia?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t2"><strong>San Martín:</strong> Proclamó la Independencia el 28/07/1821, organizó el gobierno inicial (Protectorado). <strong>Bolívar:</strong> Llegó en 1823, dirigió las batallas de Junín y Ayacucho (1824) que consolidaron definitivamente la independencia. San Martín inició el proceso; Bolívar lo completó militarmente.</div>
+                      <div class="answer-box" id="ans1-t2">El <strong>peninsular</strong> nació en España y ocupaba los altos cargos políticos (virrey, obispos, oidores). El <strong>criollo</strong> nació en América de padres españoles, tenía riqueza pero no poder político. Esta discriminación generó el resentimiento criollo que impulsó el movimiento independentista.</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Menciona 3 causas internas y 2 externas de la independencia del Perú.
+                      ¿Qué fue la mita colonial y en qué se diferenciaba de la mita inca?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t2"><strong>Internas:</strong> (1) Discriminación a los criollos en cargos públicos, (2) Impuestos excesivos y mita, (3) Rebelión de Túpac Amaru II (1780). <strong>Externas:</strong> (1) La Ilustración y sus ideas de libertad e igualdad, (2) La crisis de la monarquía española por la invasión napoleónica.</div>
+                      <div class="answer-box" id="ans2-t2">La <strong>mita colonial</strong> era trabajo forzado en minas (principalmente Potosí y Huancavelica) bajo condiciones mortales, a cambio de un salario mínimo. La <strong>mita inca</strong> era trabajo comunitario para el Estado (caminos, templos) a cambio de alimentación y ropa, con fines redistributivos. La colonial era mucho más brutal y tuvo consecuencias demográficas catastróficas.</div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
               </div>
 
-              <!-- T3 -->
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Intermedio</p><h2>Independencia y República</h2><p>La emancipación americana y el Perú del siglo XIX</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">🇵🇪</span><div><h3>Nace el Perú libre</h3><p>La independencia del Perú fue el resultado de un largo proceso que combinó la crisis del Imperio español, el pensamiento ilustrado y la acción de militares libertadores de toda América.</p></div></div>
+            <div class="topics-grid">
+
               <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
-                <div class="topic-book-cover cover-history">🏅</div>
-                <div class="topic-book-info"><h4>Perú Republicano Siglo XIX</h4><p>Caudillismo, Castilla, guano y prosperidad falaz</p>
-                  <div class="topic-tags"><span class="topic-tag">Caudillos</span><span class="topic-tag">Guano</span><span class="topic-tag">Castilla</span></div>
+                <div class="topic-book-cover cover-history">🗽</div>
+                <div class="topic-book-info"><h4>Independencia del Perú</h4><p>Causas, San Martín, Bolívar y la proclamación de 1821</p>
+                  <div class="topic-tags"><span class="topic-tag">1821</span><span class="topic-tag">San Martín</span><span class="topic-tag">Ayacucho</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t3">
-                <h3>🏅 El Perú Republicano en el Siglo XIX</h3>
-                <p>Tras la independencia, el Perú enfrentó décadas de inestabilidad política dominada por <strong>caudillos militares</strong>. El descubrimiento del <strong>guano</strong> generó una gran prosperidad económica que, sin embargo, no se tradujo en desarrollo duradero: la llamada "prosperidad falaz".</p>
+                <h3>🗽 Independencia del Perú</h3>
+                <p>El Perú proclamó su independencia el <strong>28 de julio de 1821</strong>, pero la consolidación militar llegó con las batallas de Junín y Ayacucho en 1824, que pusieron fin al dominio español en América del Sur.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>⚔️ Caudillismo y Ramón Castilla</h4>
+                    <h4>📋 Causas de la Independencia</h4>
                     <ul>
-                      <li><strong>Caudillismo:</strong> líderes militares que tomaban el poder por la fuerza tras la independencia</li>
-                      <li><strong>Ramón Castilla:</strong> presidente en dos ocasiones (1845-51 y 1854-62)</li>
-                      <li>Abolió la esclavitud (1854) y el tributo indígena</li>
-                      <li>Estableció el primer presupuesto de la República</li>
-                      <li>Construyó el primer ferrocarril del Perú (Lima-Callao, 1851)</li>
+                      <li><strong>Internas:</strong> discriminación a criollos, abusos coloniales, influencia de la Ilustración</li>
+                      <li><strong>Externas:</strong> Revolución francesa (1789), Independencia de EE.UU. (1776), invasión napoleónica a España (1808)</li>
+                      <li><strong>Precursores peruanos:</strong> Juan Pablo Vizcardo (carta a los criollos), Toribio Rodríguez de Mendoza, hipólito Unanue</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>💰 El Guano y la Prosperidad Falaz</h4>
+                    <h4>⚔️ Proceso de independencia</h4>
                     <ul>
-                      <li><strong>Guano:</strong> excremento de aves marinas, excelente fertilizante</li>
-                      <li>Exportado masivamente hacia Europa (1840-1880)</li>
-                      <li><strong>Consignación:</strong> sistema de explotación entregado a empresas privadas</li>
-                      <li>Ingresos no se invirtieron en desarrollo productivo</li>
-                      <li>Se gastaron en burocracia, deudas y obras sin impacto económico duradero</li>
-                      <li><strong>Consecuencia:</strong> al acabarse el guano, el Perú quedó endeudado</li>
+                      <li><strong>1820:</strong> desembarco de San Martín en Paracas</li>
+                      <li><strong>28 julio 1821:</strong> Proclamación de la Independencia en Lima</li>
+                      <li><strong>1823:</strong> llegada de Simón Bolívar al Perú</li>
+                      <li><strong>6 agosto 1824:</strong> Batalla de Junín (caballería)</li>
+                      <li><strong>9 diciembre 1824:</strong> Batalla de Ayacucho — fin del dominio español</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Prosperidad Falaz: abundancia de guano → derroche → deuda → crisis y Guerra del Pacífico</div>
+                <div class="formula-display">28 julio 1821: Proclamación · 9 dic 1824: Batalla de Ayacucho</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      ¿Por qué se llama "prosperidad falaz" al período del auge del guano?
+                      Explica el papel de San Martín y Bolívar en la independencia del Perú. ¿En qué se diferenciaron sus estrategias?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t3">Se llama "falaz" (engañosa) porque aunque el guano generó grandes ingresos para el Estado, este dinero no se invirtió en industria, educación ni infraestructura productiva. Se gastó en pagar deudas externas, burocracia y obras suntuosas. Cuando el guano se agotó (años 1870s), el Perú quedó endeudado y sin base económica sólida, lo que lo dejó vulnerable ante la Guerra del Pacífico (1879).</div>
+                      <div class="answer-box" id="ans1-t3"><strong>San Martín</strong> llegó desde el sur (Argentina-Chile), proclamó la independencia en 1821 pero no pudo derrotar al ejército realista en las sierras. <strong>Bolívar</strong> llegó desde el norte con el ejército del norte de Sudamérica. Su estrategia fue más agresiva y culminó con las victorias decisivas de Junín y Ayacucho (1824).</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Menciona dos reformas importantes de Ramón Castilla y explica su significado.
+                      ¿Por qué se considera que la Batalla de Ayacucho fue más importante que la Proclamación del 28 de julio?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t3">(1) <strong>Abolición de la esclavitud (1854):</strong> liberó a miles de esclavos africanos y afrodescendientes, reconociendo su dignidad humana. (2) <strong>Eliminación del tributo indígena (1854):</strong> eliminó el impuesto que pagaban los indígenas desde la Colonia, reduciendo la discriminación fiscal.</div>
+                      <div class="answer-box" id="ans2-t3">La Proclamación del 28 de julio fue una declaración política, pero el ejército realista seguía controlando la sierra y podía reconquistar Lima. <strong>Ayacucho</strong> fue la victoria militar que destruyó definitivamente al ejército real, garantizando la independencia efectiva no solo del Perú sino de toda América del Sur.</div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
               </div>
 
-            </div>
-          </div>
-        </div>
-
-        <!-- CAPÍTULO II -->
-        <div class="chapter-card" id="ch-geo">
-          <div class="chapter-header" onclick="toggleChapter('ch-geo')">
-            <div class="chapter-num num-inter" style="background:linear-gradient(135deg,#059669,#10b981)">II</div>
-            <div class="chapter-header-text"><p class="chapter-level">Geografía del Perú</p><h2>Geografía Física y Demografía</h2><p>Relieve, cuencas, población y migración</p></div>
-            <span class="chapter-toggle">▼</span>
-          </div>
-          <div class="chapter-body">
-            <div class="section-banner banner-advanced">
-              <span class="banner-icon">🗺️</span><div><h3>El Perú: una geografía diversa</h3><p>El Perú posee una de las geografías más variadas del mundo, con tres grandes regiones naturales y una enorme biodiversidad.</p></div>
-            </div>
-            <div class="topics-grid">
-
-              <!-- T4 -->
               <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
-                <div class="topic-book-cover cover-science">🏔️</div>
-                <div class="topic-book-info"><h4>Geografía Física del Perú</h4><p>Relieve, cordilleras, cuencas y volcanes</p>
-                  <div class="topic-tags"><span class="topic-tag">Andes</span><span class="topic-tag">Cuencas</span><span class="topic-tag">Nevados</span></div>
+                <div class="topic-book-cover cover-history">🪙</div>
+                <div class="topic-book-info"><h4>Perú Republicano Siglo XIX</h4><p>Caudillismo, Ramón Castilla, guano y prosperidad falaz</p>
+                  <div class="topic-tags"><span class="topic-tag">Castilla</span><span class="topic-tag">Guano</span><span class="topic-tag">Caudillismo</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t4">
-                <h3>🏔️ Geografía Física del Perú</h3>
-                <p>El Perú cuenta con tres grandes <strong>regiones naturales</strong>: Costa (árida), Sierra (andina) y Selva (amazónica). El relieve está dominado por la <strong>Cordillera de los Andes</strong>, que atraviesa el país de norte a sur.</p>
+                <h3>🪙 El Perú Republicano en el Siglo XIX</h3>
+                <p>Los primeros años de la República se caracterizaron por la inestabilidad política ("<strong>caudillismo</strong>") y la dependencia económica. El descubrimiento del guano como fertilizante generó una riqueza enorme pero mal administrada.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>⛰️ Relieve y Cordilleras</h4>
+                    <h4>🏇 El Caudillismo (1821–1845)</h4>
                     <ul>
-                      <li><strong>Cordillera Occidental:</strong> volcanes (Misti, Ubinas, Sabancaya)</li>
-                      <li><strong>Cordillera Central:</strong> Huascarán (6768 m, nevado más alto del Perú)</li>
-                      <li><strong>Cordillera Oriental:</strong> yacimientos mineros importantes</li>
-                      <li><strong>Nudo de Pasco:</strong> divide las cuencas del Atlántico y Pacífico</li>
-                      <li><strong>Nudo de Vilcanota:</strong> origen del río Vilcanota-Urubamba</li>
-                      <li><strong>Lago Titicaca:</strong> 3812 m.s.n.m., lago navegable más alto del mundo</li>
+                      <li>Caudillo: líder militar que toma el poder por la fuerza</li>
+                      <li>Perú tuvo más de 20 cambios de gobierno en 20 años</li>
+                      <li>Causa: inexperiencia política, ejércitos de la independencia sin misión</li>
+                      <li>La economía heredó una deuda enorme de la guerra</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>🌊 Cuencas Hidrográficas</h4>
+                    <h4>🦟 La Era del Guano (1845–1879)</h4>
                     <ul>
-                      <li><strong>Vertiente del Pacífico:</strong> ríos cortos y torrentosos (Rímac, Chira, Piura)</li>
-                      <li><strong>Vertiente del Atlántico:</strong> ríos largos y caudalosos (Amazonas, Ucayali, Marañón)</li>
-                      <li><strong>Vertiente del Titicaca:</strong> ríos que desembocan en el lago (Ramis, Coata)</li>
-                      <li>Río Amazonas: el más largo del mundo (6400 km aprox.)</li>
-                      <li>El Perú tiene el 71% de la cubierta glaciar tropical del mundo</li>
+                      <li>Guano: excremento de aves marinas, valioso fertilizante agrícola</li>
+                      <li>Perú tenía millones de toneladas en las islas del Pacífico</li>
+                      <li><strong>Ramón Castilla:</strong> usó el guano para abolir la esclavitud (1854) y el tributo indígena</li>
+                      <li><strong>Prosperidad falaz:</strong> ingresos enormes mal gastados en deuda y lujos</li>
+                      <li>Contrato Dreyfus (1869): monopolio al banquero Dreyfus</li>
+                      <li><strong>Guerra del Pacífico (1879):</strong> derrota ante Chile, perdida de Tarapacá</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">3 Vertientes: Pacífico (62 ríos) | Atlántico (44 ríos) | Titicaca (9 ríos)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      ¿Cuál es la diferencia entre los ríos de la vertiente del Pacífico y del Atlántico en el Perú?
+                      ¿Por qué se denomina "prosperidad falaz" al período del guano?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t4"><strong>Pacífico:</strong> ríos cortos (promedio 200 km), torrentosos, de régimen irregular, importantes para riego costero. <strong>Atlántico:</strong> ríos largos y caudalosos, navegables, forman la cuenca amazónica; el principal es el Amazonas que nace en el Perú (río Apurímac-Ucayali).</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Ejercicio 2</strong>
-                      Nombra el nevado más alto del Perú y en qué cordillera se encuentra.
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t4">El nevado más alto es el <strong>Huascarán</strong>, con 6768 m.s.n.m., ubicado en la <strong>Cordillera Blanca</strong>, en la región Áncash. Es también la cumbre más alta de toda la zona tropical del mundo.</div>
+                      <div class="answer-box" id="ans1-t4">Porque los enormes ingresos del guano no se invirtieron en desarrollar la industria o la agricultura del país, sino que se gastaron en pagar deudas antiguas, importar lujos y financiar guerras civiles. Cuando se agotó el guano, el Perú quedó más endeudado que al inicio.</div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
               </div>
 
-              <!-- T5 -->
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Avanzado</p><h2>Geografía Física del Perú</h2><p>Relieve, cuencas hidrográficas y demografía</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🏔️</span><div><h3>El territorio peruano</h3><p>Conocer la geografía física del Perú — sus montañas, ríos y recursos — es fundamental para entender su historia, economía y los desafíos que enfrenta como país.</p></div></div>
+            <div class="topics-grid">
               <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
-                <div class="topic-book-cover cover-science">👥</div>
-                <div class="topic-book-info"><h4>Demografía y Migración</h4><p>Población peruana, urbanización y migración campo-ciudad</p>
-                  <div class="topic-tags"><span class="topic-tag">Demografía</span><span class="topic-tag">Migración</span><span class="topic-tag">Urbanización</span></div>
+                <div class="topic-book-cover cover-history">🏔️</div>
+                <div class="topic-book-info"><h4>Geografía Física del Perú</h4><p>Relieve, cordilleras, cuencas hidrográficas y clima</p>
+                  <div class="topic-tags"><span class="topic-tag">Andes</span><span class="topic-tag">Amazonas</span><span class="topic-tag">Cuencas</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t5">
-                <h3>👥 Demografía y Migración en el Perú</h3>
-                <p>La <strong>demografía</strong> estudia la estructura y dinámica de la población. El Perú tiene aproximadamente <strong>33 millones</strong> de habitantes (2023), con una fuerte tendencia a la urbanización. Lima concentra más de 10 millones de personas.</p>
+                <h3>🏔️ Geografía Física del Perú</h3>
+                <p>El Perú tiene una geografía excepcional por su variedad y complejidad. La Cordillera de los Andes divide el territorio y determina los climas, los ríos y la vida de millones de peruanos.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📊 Población Peruana</h4>
+                    <h4>⛰️ El Relieve Peruano</h4>
                     <ul>
-                      <li><strong>Población total:</strong> ~33 millones (2023)</li>
-                      <li><strong>Distribución:</strong> 77% urbana, 23% rural</li>
-                      <li><strong>Lima Metropolitana:</strong> ~10.9 millones (33% del total)</li>
-                      <li><strong>Tasa de crecimiento:</strong> ~1.1% anual</li>
-                      <li><strong>Grupos étnicos:</strong> mestizos (60%), quechuas (25%), aimaras, amazónicos, afrodescendientes, blancos</li>
-                      <li><strong>Esperanza de vida:</strong> ~76 años</li>
+                      <li><strong>Cordillera Occidental:</strong> seca, volcanes activos al sur (Misti, Ubinas)</li>
+                      <li><strong>Cordillera Central:</strong> la más alta, nudo de Pasco</li>
+                      <li><strong>Cordillera Oriental:</strong> con yungas y selva alta al este</li>
+                      <li><strong>Nevado Huascarán:</strong> 6,768 m — la cima más alta del Perú</li>
+                      <li><strong>Lago Titicaca:</strong> 3,812 m — el lago navegable más alto del mundo</li>
+                      <li><strong>Llanos costeros:</strong> estrechos valles entre el Pacífico y los Andes</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>🚶 Migración Campo-Ciudad</h4>
+                    <h4>🌊 Cuencas Hidrográficas</h4>
                     <ul>
-                      <li><strong>Causas:</strong> pobreza rural, falta de servicios (salud, educación), búsqueda de trabajo</li>
-                      <li><strong>Época de mayor migración:</strong> 1950-1980 (industrialización de Lima)</li>
-                      <li><strong>Consecuencias:</strong> surgimiento de "barriadas" o pueblos jóvenes</li>
-                      <li><strong>Macrocefalia urbana:</strong> exceso de concentración en Lima</li>
-                      <li><strong>Despoblamiento rural:</strong> abandono de comunidades andinas y amazónicas</li>
+                      <li><strong>Cuenca del Pacífico:</strong> ríos cortos, torrenciales, de descarga al mar</li>
+                      <li><strong>Cuenca del Atlántico:</strong> la más extensa — el Amazonas nace en el Perú (Andes de Arequipa)</li>
+                      <li><strong>Cuenca del Titicaca:</strong> ríos que descargan al lago Titicaca (sistema endorreico)</li>
+                      <li>Río Ucayali + río Marañón = Río Amazonas</li>
+                      <li>El Amazonas es el más largo y caudaloso del mundo</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Tasa de crecimiento = (Natalidad − Mortalidad) + Saldo migratorio</div>
+                <div class="formula-display">3 cuencas: Pacífico · Atlántico (Amazonas) · Titicaca</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      ¿Por qué se produjo una gran migración campo-ciudad en el Perú durante el siglo XX?
+                      ¿Cuáles son las tres cuencas hidrográficas del Perú y cuál es la más importante? ¿Por qué?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t5">La migración campo-ciudad se produjo principalmente por: (1) <strong>Pobreza y falta de oportunidades</strong> en el campo. (2) <strong>Industrialización de Lima</strong> y las ciudades que ofrecían trabajo. (3) <strong>Falta de servicios</strong> (hospitales, escuelas) en zonas rurales. (4) El terrorismo de Sendero Luminoso en los años 80 también impulsó migración masiva.</div>
+                      <div class="answer-box" id="ans1-t5">Las tres cuencas son: <strong>Pacífico</strong> (ríos cortos al oeste), <strong>Atlántico</strong> (Amazonas y sus afluentes, al este) y <strong>Titicaca</strong> (lago Titicaca). La más importante es la del <strong>Atlántico</strong> porque ocupa el 97% del agua del país, contiene el río más caudaloso del mundo y alberga la mayor biodiversidad del Perú.</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      ¿Qué porcentaje de la población peruana vive en zonas urbanas? ¿Qué problema genera esto?
+                      ¿Por qué los ríos de la cuenca del Pacífico son más cortos y de menor caudal que los de la cuenca del Atlántico?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t5">El <strong>77%</strong> vive en zonas urbanas. Esto genera el problema de <strong>macrocefalia urbana</strong>: concentración excesiva en Lima, lo que produce hacinamiento, desigualdad, saturación de servicios, tráfico y contaminación en la capital, mientras el interior del país se despuebla.</div>
+                      <div class="answer-box" id="ans2-t5">Porque nacen en los Andes occidentales y desembocan rápidamente en el Pacífico, recorriendo solo la franja costera (muy estrecha). Los del Atlántico descienden desde los Andes orientales, tienen un recorrido mucho más largo hasta el océano Atlántico y reciben lluvias amazónicas abundantes.</div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
               </div>
-
             </div>
           </div>
         </div>
@@ -367,24 +353,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
-    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
-    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(id,card){document.getElementById(id).classList.remove('open');if(card)card.style.borderColor='';}
     function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
     const totalTopics=5,opened=new Set();
-    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
     function downloadPDF(){
       const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
-      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
-      doc.setFillColor(217,119,6);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Historia, Geografi­a y Economi­a - 3 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
-      [{ti:'Peru Colonial',c:'Conquista 1532. Virreinato 1542. Instituciones: encomienda (trabajo a cambio de evangelizacion), mita colonial (trabajo en minas). Castas: peninsulares > criollos > mestizos > indigenas. Lima: capital virreinal.'},
-       {ti:'Independencia del Peru',c:'Causas internas: discriminacion criolla, impuestos, Tupac Amaru II (1780). Causas externas: Ilustracion, independencia EE.UU. (1776). Proclamacion: 28/07/1821 por San Martin. Consolidacion: batallas de Junin y Ayacucho (1824) por Bolivar.'},
-       {ti:'Peru Republicano S.XIX',c:'Caudillismo: inestabilidad politica tras la independencia. Ramon Castilla: abolio esclavitud e impuesto indigena (1854), primer ferrocarril Lima-Callao (1851). Guano: fertilizante exportado masivamente. Prosperidad falaz: ingresos mal invertidos, deuda, crisis.'},
-       {ti:'Geografi­a Fi­sica del Peru',c:'3 regiones: Costa, Sierra, Selva. Cordilleras: Occidental (volcanes), Central (Huascaran 6768m), Oriental. Cuencas: Pacifico (rios cortos), Atlantico (rios largos: Amazonas), Titicaca. Lago Titicaca: 3812 msnm, mas alto navegable.'},
-       {ti:'Democrafi­a y Migracion',c:'Poblacion: ~33 millones. 77% urbana, 23% rural. Lima: ~10.9 millones (33%). Migracion campo-ciudad: siglo XX por pobreza, industrializacion, falta de servicios. Consecuencias: barriadas, macrocefalia urbana, despoblamiento rural.'},
+      const t=(tx,sz,b,c)=>{doc.setFontSize(sz);doc.setFont('helvetica',b?'bold':'normal');doc.setTextColor(...(c||[30,30,30]));doc.splitTextToSize(tx,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=sz*0.45;});y+=2;};
+      doc.setFillColor(217,119,6);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');doc.text('Historia, Geo y Economia - 3 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'La Conquista',c:'1532: Cajamarca, captura de Atahualpa (168 soldados). Factores: guerra civil inca, armas europeas (acero, caballos, polvo), enfermedades (viruela mato al 90%), alianzas. 1533: ejecucion Atahualpa. 1535: fundacion Lima.'},
+       {ti:'El Virreinato',c:'1542-1821. Virrey, Real Audiencia, Cabildo. Encomienda: trabajo a cambio de evangelizacion. Mita colonial: trabajo forzado en minas (Potosi, Huancavelica). Sociedad de castas: peninsulares > criollos > mestizos > indigenas > esclavos.'},
+       {ti:'Independencia del Peru',c:'Causas: discriminacion criolla, Ilustracion, Rev.Francesa, invasion napoleonica. San Martin: desembarco Paracas 1820, proclamacion 28 julio 1821. Bolivar: batallas de Junin (6 ago 1824) y Ayacucho (9 dic 1824) - fin del dominio espanol.'},
+       {ti:'Peru Republicano s.XIX',c:'Caudillismo: 20 gobiernos en 20 anos. Ramon Castilla: abolio esclavitud y tributo indigena con dinero del guano (1854). Prosperidad falaz: ingresos del guano mal gastados. Guerra del Pacifico 1879: derrota ante Chile.'},
+       {ti:'Geografia Fisica del Peru',c:'3 cordilleras (Occidental, Central, Oriental). Huascaran 6768m. Lago Titicaca 3812m. 3 cuencas: Pacifico (rios cortos), Atlantico (Amazonas, el mas caudaloso), Titicaca (endorreica). Ucayali + Maranon = Amazonas.'},
       ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[217,119,6]);t(x.c,10,false,[50,50,60]);y+=3;});
       y+=5;t('Ejercicios de repaso',13,true,[217,119,6]);
-      ['1. Diferencia entre encomienda y mita colonial.','2. Causas internas y externas de la independencia.','3. ?Por que se llama "prosperidad falaz" al periodo del guano?','4. Diferencia entre rios del Pacifico y del Atlantico.','5. Causas y consecuencias de la migracion campo-ciudad.'].forEach(e=>t(e,10,false));
-      doc.save('Historia-3-Secundaria-EduNovaOne.pdf');
+      ['1. Por que cayo el Tahuantinsuyo? Menciona 3 causas.','2. Diferencia entre mita inca y mita colonial.','3. Que fue la prosperidad falaz?','4. Explica el papel de San Martin y Bolivar en la independencia.','5. Cuales son las 3 cuencas hidrograficas del Peru?'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('HistoriaGeoEconomia-3Secundaria-EduNovaOne.pdf');
     }
   </script>
 </body>
