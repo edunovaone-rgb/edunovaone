@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Arte y Cultura | 4° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-4.html">4° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Arte y Cultura</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#c026d3,#e879f9)">🎨</div>
+          <div><h3>Arte y Cultura</h3><p>4° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Arte del S.XX</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Vanguardias Artísticas</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Diseño Gráfico</a></li>
+          <li><p class="toc-section-title">II. Patrimonio y Música</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Patrimonio Cultural del Perú</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Música Peruana Contemporánea</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-van">
+          <div class="chapter-header" onclick="toggleChapter('ch-van')">
+            <div class="chapter-num" style="background:linear-gradient(135deg,#c026d3,#7c3aed)">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Arte del Siglo XX</p><h2>Vanguardias y Diseño</h2><p>Cubismo, Surrealismo y diseño gráfico moderno</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner" style="background:linear-gradient(135deg,rgba(192,38,211,0.08),rgba(124,58,237,0.05));border:1px solid rgba(192,38,211,0.12)">
+              <span class="banner-icon">🖼️</span><div><h3>El arte que rompió las reglas</h3><p>Las vanguardias del siglo XX desafiaron todas las convenciones artísticas y crearon el arte moderno tal como lo conocemos.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-art">🎭</div>
+                <div class="topic-book-info"><h4>Vanguardias Artísticas del S.XX</h4><p>Cubismo, Surrealismo, Expresionismo, Pop Art</p>
+                  <div class="topic-tags"><span class="topic-tag">Cubismo</span><span class="topic-tag">Dalí</span><span class="topic-tag">Pop Art</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🎭 Vanguardias Artísticas del Siglo XX</h3>
+                <p>Las <strong>vanguardias</strong> son movimientos artísticos que rompieron radicalmente con las tradiciones anteriores. Surgieron principalmente en Europa entre 1905 y 1940, y transformaron definitivamente el arte occidental.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🎨 Principales movimientos</h4>
+                    <ul>
+                      <li><strong>Cubismo (1907):</strong> Picasso y Braque — múltiples perspectivas simultáneas en un solo plano; "Las señoritas de Avignon"</li>
+                      <li><strong>Expresionismo (1905):</strong> emociones intensas, distorsión de la realidad; Munch ("El grito"), Kirchner</li>
+                      <li><strong>Surrealismo (1924):</strong> el inconsciente y los sueños; Salvador Dalí ("La persistencia de la memoria"), Magritte</li>
+                      <li><strong>Abstraccionismo:</strong> Kandinsky, Mondrian — formas y colores sin referencia real</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎨 Pop Art y Arte Contemporáneo</h4>
+                    <ul>
+                      <li><strong>Pop Art (1950-60s):</strong> Andy Warhol, Roy Lichtenstein — imágenes de la cultura popular y consumismo; latas de sopa Campbell, retratos de Marilyn Monroe</li>
+                      <li><strong>Arte conceptual:</strong> la idea es más importante que la forma</li>
+                      <li><strong>Arte digital:</strong> uso de computadoras y medios digitales</li>
+                      <li>Cada vanguardia reaccionó al contexto histórico y social de su época</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Vanguardia = ruptura + innovación + manifiesto + contexto histórico</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué características tiene el Cubismo? ¿Por qué fue revolucionario?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">El <strong>Cubismo</strong> fue revolucionario porque rompió con la perspectiva única del Renacimiento. Sus características: (1) representar un objeto desde múltiples ángulos simultáneamente, (2) descomposición de las formas en planos geométricos, (3) paleta de colores neutra (grises, marrones). Fue radical porque abandonó la representación realista que dominaba el arte desde el s.XV.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Análisis</strong>
+                      Describe una obra surrealista y explica qué elementos la hacen surrealista.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">"<strong>La persistencia de la memoria</strong>" de Dalí (1931): muestra relojes derretidos en un paisaje desértico. Es surrealista porque: (1) combina objetos reales (relojes, mesa) en situaciones imposibles (derritiéndose), (2) proviene del mundo de los sueños e inconsciente, (3) crea una sensación de misterio y absurdo. El mensaje puede interpretarse como la relatividad o la inutilidad del tiempo.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-art">🖥️</div>
+                <div class="topic-book-info"><h4>Diseño Gráfico y Comunicación Visual</h4><p>Línea, color, tipografía y composición</p>
+                  <div class="topic-tags"><span class="topic-tag">Diseño</span><span class="topic-tag">Tipografía</span><span class="topic-tag">Color</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🖥️ Diseño Gráfico y Comunicación Visual</h3>
+                <p>El <strong>diseño gráfico</strong> es la disciplina que combina imágenes y texto para comunicar mensajes de forma efectiva. Usa elementos visuales fundamentales: línea, color, forma, textura y tipografía.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📐 Elementos del diseño</h4>
+                    <ul>
+                      <li><strong>Línea:</strong> crea dirección, movimiento y contornos; puede ser recta, curva, gruesa, fina</li>
+                      <li><strong>Color:</strong> círculo cromático; colores primarios, secundarios, complementarios; psicología del color</li>
+                      <li><strong>Tipografía:</strong> arte de diseñar letras; serif vs sans-serif; fuente, tamaño, interlineado</li>
+                      <li><strong>Forma:</strong> geométrica (círculos, rectángulos) o orgánica (naturaleza)</li>
+                      <li><strong>Textura:</strong> superficie visual o táctil</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Principios de composición</h4>
+                    <ul>
+                      <li><strong>Regla de los tercios:</strong> dividir el espacio en 9 partes; situar elementos clave en intersecciones</li>
+                      <li><strong>Jerarquía visual:</strong> lo más importante debe verse primero</li>
+                      <li><strong>Equilibrio:</strong> simétrico (formal) vs asimétrico (dinámico)</li>
+                      <li><strong>Contraste:</strong> diferencias que destacan elementos</li>
+                      <li><strong>Espacio en blanco:</strong> área vacía que da respiro y enfoca la atención</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Diseño = Forma + Función + Mensaje | Color + Tipografía + Composición = Comunicación</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Analiza el logo de una marca conocida. ¿Qué elementos de diseño usa?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Ejemplo con el logo de Nike (Swoosh): (1) <strong>Línea:</strong> curva simple que evoca movimiento y velocidad. (2) <strong>Color:</strong> negro (seriedad, elegancia, poder). (3) <strong>Forma:</strong> orgánica, dinámica. (4) <strong>Simplicidad:</strong> altamente reconocible y memorable. (5) <strong>Concepto:</strong> la "manzana" curva representa el ala de la diosa griega Nike (Victoria).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Creativo</strong>
+                      Diseña mentalmente un cartel para tu colegio. Describe qué elementos visuales usarías y por qué.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Ejemplo: "Usaría <strong>colores del colegio</strong> para identidad institucional. La <strong>tipografía</strong> del título sería grande y sans-serif para legibilidad. Aplicaría la <strong>regla de los tercios</strong> poniendo el logo en el tercio superior. El fondo tendría <strong>espacio en blanco</strong> para no saturar. El <strong>contraste</strong> entre el fondo claro y el texto oscuro garantizará legibilidad."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-pat">
+          <div class="chapter-header" onclick="toggleChapter('ch-pat')">
+            <div class="chapter-num" style="background:linear-gradient(135deg,#d97706,#c026d3)">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Patrimonio y Música</p><h2>Patrimonio Cultural y Música Peruana</h2><p>Gestión patrimonial y fusiones musicales</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner" style="background:linear-gradient(135deg,rgba(217,119,6,0.07),rgba(192,38,211,0.04));border:1px solid rgba(192,38,211,0.12)">
+              <span class="banner-icon">🏺</span><div><h3>Nuestra identidad cultural</h3><p>El patrimonio y la música son expresiones vivas de nuestra identidad como peruanos.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-art">🏺</div>
+                <div class="topic-book-info"><h4>Patrimonio Cultural del Perú</h4><p>Material, inmaterial, gestión y amenazas</p>
+                  <div class="topic-tags"><span class="topic-tag">UNESCO</span><span class="topic-tag">Material</span><span class="topic-tag">Inmaterial</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🏺 Patrimonio Cultural del Perú</h3>
+                <p>El <strong>patrimonio cultural</strong> es el conjunto de bienes, tradiciones y expresiones heredadas del pasado que una sociedad valora y quiere preservar para las generaciones futuras.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Clasificación del Patrimonio</h4>
+                    <ul>
+                      <li><strong>Material:</strong> tiene existencia física</li>
+                      <li>— <em>Mueble:</em> objetos transportables (cerámica, textiles, pinturas)</li>
+                      <li>— <em>Inmueble:</em> no se puede mover (Machu Picchu, Chan Chan, iglesias coloniales)</li>
+                      <li><strong>Inmaterial:</strong> tradiciones, saberes y prácticas vivas</li>
+                      <li>— Danzas (marinera, huayno), gastronomía, lenguas nativas, festividades</li>
+                      <li>— UNESCO lista de Patrimonio Inmaterial: Danza de las Tijeras, Huaconada de Mito</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚠️ Gestión y Amenazas</h4>
+                    <ul>
+                      <li><strong>Ministerio de Cultura:</strong> entidad peruana a cargo del patrimonio</li>
+                      <li><strong>UNESCO:</strong> organismo internacional que lista el patrimonio mundial</li>
+                      <li><strong>Amenazas:</strong> tráfico ilícito de bienes culturales, turismo no sostenible, cambio climático, vandalismo, falta de fondos</li>
+                      <li><strong>Ley 28296:</strong> Ley del Patrimonio Cultural del Perú</li>
+                      <li>El huaqueo (saqueo arqueológico) es delito grave</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Patrimonio = Material (físico) + Inmaterial (vivo) | Conservar = responsabilidad de todos</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Da dos ejemplos de patrimonio material y dos de patrimonio inmaterial del Perú.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3"><strong>Material:</strong> (1) Machu Picchu (inmueble, patrimonio UNESCO). (2) Los huacos Moche del Museo Larco (mueble). <strong>Inmaterial:</strong> (1) La Danza de las Tijeras (patrimonio UNESCO inmaterial). (2) El ceviche como expresión culinaria y cultural peruana.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuáles son las principales amenazas al patrimonio cultural en el Perú?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">(1) <strong>Huaqueo:</strong> saqueo ilegal de sitios arqueológicos para vender piezas en el mercado negro. (2) <strong>Tráfico ilícito:</strong> exportación ilegal de bienes culturales. (3) <strong>Turismo no sostenible:</strong> exceso de visitantes daña sitios como Machu Picchu. (4) <strong>Cambio climático:</strong> lluvia ácida y huracanes erosionan monumentos. (5) <strong>Urbanización:</strong> construcciones ilegales sobre sitios arqueológicos.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-art">🎸</div>
+                <div class="topic-book-info"><h4>Música Peruana Contemporánea</h4><p>Fusiones, rock peruano y música andina contemporánea</p>
+                  <div class="topic-tags"><span class="topic-tag">Fusión</span><span class="topic-tag">Rock peruano</span><span class="topic-tag">Chicha</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🎸 Música Peruana Contemporánea</h3>
+                <p>La música peruana del siglo XX y XXI ha experimentado una rica <strong>fusión</strong> entre los géneros tradicionales (huayno, vals) y los ritmos modernos (rock, cumbia, jazz, electrónica), creando géneros únicos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🎵 Géneros y fusiones</h4>
+                    <ul>
+                      <li><strong>Chicha:</strong> fusión de huayno andino + cumbia colombiana; surgió en los 70s con migrantes andinos en Lima; "Los Shapis"</li>
+                      <li><strong>Rock peruano:</strong> movimiento de los 60s-70s; Los Saicos (primer punk del mundo, 1965), Traffic Sound, We All Together</li>
+                      <li><strong>Música andina contemporánea:</strong> nuevos arreglos de huaynos con instrumentos modernos; Renata Flores, Los Mirlos</li>
+                      <li><strong>Cumbia peruana:</strong> ritmo tropical adaptado al gusto peruano</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎤 Artistas representativos</h4>
+                    <ul>
+                      <li><strong>Chabuca Granda:</strong> vals criollo, "La flor de la canela"</li>
+                      <li><strong>Susana Baca:</strong> música afroperuana, ganadora del Grammy</li>
+                      <li><strong>Renata Flores:</strong> hip-hop en quechua, fusión andina-urbana</li>
+                      <li><strong>Pedro Suárez-Vértiz:</strong> rock pop peruano moderno</li>
+                      <li><strong>Los Shapis:</strong> chicha, fenómeno social</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Fusión musical = Tradición andina/criolla/afroperuana + Géneros modernos globales</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué es la chicha y cuál es su importancia sociológica en el Perú?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">La <strong>chicha</strong> es un género musical que fusiona el huayno andino con la cumbia colombiana. Surgió en Lima en los años 70s, creada por migrantes andinos que llegaron a la capital. Su importancia sociológica: (1) fue la expresión musical de los migrantes en Lima ("el boom demográfico"), (2) mezcló culturas andina y costeña, (3) ayudó a los migrantes a mantener su identidad en la ciudad. "Los Shapis" son sus máximos representantes.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Reflexión</strong>
+                      ¿Por qué es importante que artistas jóvenes como Renata Flores fusionen el quechua con el hip-hop?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Es importante porque: (1) <strong>revitaliza el quechua</strong>, idioma en riesgo, acercándolo a los jóvenes a través de un género moderno. (2) Demuestra que las <strong>lenguas y culturas andinas son dinámicas</strong>, no estáticas. (3) <strong>Revaloriza</strong> la identidad andina en el contexto global. (4) Crea un diálogo entre la tradición milenaria y la cultura contemporánea, mostrando que no son opuestos.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="tema-ingles-4.html" class="button button-secondary">← Inglés</a>
+      <a href="grado-5.html" class="button button-primary">5° Secundaria →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=4,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(192,38,211);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Arte y Cultura - 4 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Vanguardias Arti­sticas S.XX',c:'Cubismo (Picasso): multiples perspectivas simultaneas. Expresionismo (Munch): emociones intensas. Surrealismo (Dali): inconsciente y suenos. Pop Art (Warhol): cultura popular y consumismo. Cada movimiento = ruptura con tradicion anterior.'},
+       {ti:'Diseno Grafico',c:'Elementos: linea (movimiento), color (psicologia), tipografia (serif/sans-serif), forma, textura. Principios: regla de tercios, jerarquia visual, equilibrio, contraste, espacio en blanco. Diseno = forma + funcion + mensaje.'},
+       {ti:'Patrimonio Cultural',c:'Material: mueble (ceramica, textiles) e inmueble (Machu Picchu, Chan Chan). Inmaterial: danzas, gastronomia, lenguas nativas (Danza de Tijeras, Huaconada). Amenazas: huaqueo, trafico ilicito, turismo no sostenible. Ministerio de Cultura + UNESCO.'},
+       {ti:'Musica Peruana Contemporanea',c:'Chicha: huayno + cumbia, Los Shapis, migrantes andinos en Lima. Rock peruano: Los Saicos (1965, primer punk mundial). Fusion andina: Renata Flores (hip-hop en quechua). Susana Baca: afroepruano, Grammy. Chabuca Granda: vals criollo.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[192,38,211]);t(x.c,10,false,[50,50,60]);y+=3;});
+      doc.save('Arte-Cultura-4-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
