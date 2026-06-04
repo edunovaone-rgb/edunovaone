@@ -713,26 +713,11 @@
         </div>
         <div class="panel-card" id="actividadPanel">
           <h3>Tu actividad</h3>
-          <!-- Estado: no logueado -->
-          <div id="actividadNoAuth" style="display:none;text-align:center;padding:1rem 0;">
-            <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:0.75rem;">Inicia sesión para ver tu historial de lectura.</p>
-            <a href="login.html" class="button button-primary" style="font-size:0.85rem;padding:0.55rem 1.1rem;">Iniciar sesión</a>
-          </div>
-          <!-- Estado: cargando -->
-          <div id="actividadLoading" style="text-align:center;padding:1rem 0;color:var(--text-muted);font-size:0.88rem;">
-            Cargando...
-          </div>
-          <!-- Estado: logueado con historial -->
-          <div id="actividadAuth" style="display:none;">
-            <div class="activity-group">
-              <p class="panel-label">Vistos recientemente</p>
-              <ul id="historialList">
-                <!-- Se llena dinámicamente -->
-              </ul>
-            </div>
-            <a href="perfil.html" class="button button-secondary" style="margin-top:0.5rem;">Ver historial completo</a>
-          </div>
-          <!-- Estado: logueado sin historial -->
+          <p class="panel-label" style="margin-bottom:.5rem;">Vistos recientemente</p>
+          <ul id="historialList" style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;">
+            <li style="color:var(--text-muted);font-size:.85rem;text-align:center;padding:.75rem 0;">Aún no has visto ningún recurso.</li>
+          </ul>
+          <a href="historial-completo.html" id="verTodoLink" class="button button-secondary" style="margin-top:.75rem;display:none;">Ver historial completo</a>
           <div id="actividadVacio" style="display:none;text-align:center;padding:1rem 0;">
             <p style="color:var(--text-muted);font-size:0.88rem;">Aún no has leído ningún libro.<br>¡Empieza ahora!</p>
           </div>
