@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>EduNova Library</title>
+  <script>
+    // GitHub Pages SPA redirect trick
+    // Guarda la ruta limpia y redirige a index.html para procesarla
+    var path = window.location.pathname;
+    // Si la ruta no tiene extensión, añadir .html para redirigir al archivo real
+    var hasExt = path.split('/').pop().indexOf('.') !== -1;
+    if (!hasExt && path !== '/') {
+      var target = path.replace(/\/$/, '') + '.html' + window.location.search + window.location.hash;
+      window.location.replace(target);
+    } else {
+      // Página realmente no encontrada
+      window.location.replace('/');
+    }
+  </script>
+</head>
+<body></body>
+</html>
