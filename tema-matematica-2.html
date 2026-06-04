@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Matemática | 2° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-2.html">2° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Matemática</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#7c3aed,#6366f1)">📐</div>
+          <div><h3>Matemática</h3><p>2° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Álgebra Básica</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Expresiones Algebraicas</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Ecuaciones de 1er Grado</a></li>
+          <li><p class="toc-section-title">II. Potencias y Raíces</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Potenciación</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Radicación</a></li>
+          <li><p class="toc-section-title">III. Proporcionalidad</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Proporcionalidad Directa</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Proporcionalidad Inversa</a></li>
+          <li><a href="#t7"><span class="toc-num">7</span>Porcentajes Aplicados</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Álgebra Básica</h2>
+              <p>Expresiones algebraicas y ecuaciones de primer grado</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">🔡</span>
+              <div><h3>Del número a la letra</h3><p>El álgebra generaliza la aritmética usando letras para representar números desconocidos. Es el puente entre la aritmética y el pensamiento matemático avanzado.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-basic">🔡</div>
+                <div class="topic-book-info">
+                  <h4>Expresiones Algebraicas</h4>
+                  <p>Monomios, polinomios, términos y operaciones</p>
+                  <div class="topic-tags"><span class="topic-tag">Monomio</span><span class="topic-tag">Polinomio</span><span class="topic-tag">Semejantes</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🔡 Expresiones Algebraicas</h3>
+                <p>Una <strong>expresión algebraica</strong> combina números, letras (variables) y operaciones. Las letras representan valores desconocidos o variables. Ejemplos: 3x, 2a+5b, x²-4x+3.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📝 Tipos de expresiones</h4>
+                    <ul>
+                      <li><strong>Monomio:</strong> un solo término. Ej: 5x², -3ab</li>
+                      <li><strong>Binomio:</strong> dos términos. Ej: 2x+3</li>
+                      <li><strong>Trinomio:</strong> tres términos. Ej: x²+5x-6</li>
+                      <li><strong>Polinomio:</strong> cuatro o más términos</li>
+                      <li><strong>Términos semejantes:</strong> misma variable y exponente (3x y -7x)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>➕ Operaciones con polinomios</h4>
+                    <ul>
+                      <li><strong>Suma:</strong> agrupar términos semejantes: 3x+5x = 8x</li>
+                      <li><strong>Resta:</strong> cambiar signo y sumar: (5x+3)-(2x-1) = 3x+4</li>
+                      <li><strong>Multiplicación por monomio:</strong> distribuir: 2(3x+4) = 6x+8</li>
+                      <li><strong>Grado de un polinomio:</strong> mayor exponente de la variable</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Simplifica: 4x + 7 - 2x + 3 - x
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">Agrupando semejantes: (4x - 2x - x) + (7 + 3) = <strong>x + 10</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Si P = 3x² + 2x - 5 y Q = x² - 4x + 7, halla P + Q y P - Q.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">P + Q = 4x² - 2x + 2 · P - Q = (3x²+2x-5) - (x²-4x+7) = <strong>2x² + 6x - 12</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Expande: 3x(2x - 5) + 2(x² + 4x - 1)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">6x² - 15x + 2x² + 8x - 2 = <strong>8x² - 7x - 2</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-basic">⚖️</div>
+                <div class="topic-book-info">
+                  <h4>Ecuaciones de 1er Grado</h4>
+                  <p>Resolución de ecuaciones lineales con una variable</p>
+                  <div class="topic-tags"><span class="topic-tag">Linear</span><span class="topic-tag">Despejar</span><span class="topic-tag">Verificar</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>⚖️ Ecuaciones de Primer Grado</h3>
+                <p>Una <strong>ecuación de primer grado</strong> (lineal) tiene la forma ax + b = c, donde x es la incógnita. Resolverla significa encontrar el valor de x que hace verdadera la igualdad.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔧 Método de resolución</h4>
+                    <ul>
+                      <li><strong>1.</strong> Eliminar paréntesis (distribuir)</li>
+                      <li><strong>2.</strong> Agrupar términos con x a un lado</li>
+                      <li><strong>3.</strong> Agrupar números al otro lado</li>
+                      <li><strong>4.</strong> Dividir por el coeficiente de x</li>
+                      <li><strong>5.</strong> Verificar la solución</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🧮 Ejemplo resuelto</h4>
+                    <ul>
+                      <li>2x + 7 = 13</li>
+                      <li>2x = 13 - 7</li>
+                      <li>2x = 6</li>
+                      <li>x = 3</li>
+                      <li>Verificar: 2(3)+7 = 6+7 = 13 ✓</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">ax + b = c → x = (c - b) / a</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Resuelve: 3x - 5 = 16
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">3x = 16+5 = 21 → <strong>x = 7</strong>. Verificación: 3(7)-5 = 21-5 = 16 ✓</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Resuelve: 2(x+3) = 5x - 9
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">2x+6 = 5x-9 → 6+9 = 5x-2x → 15 = 3x → <strong>x = 5</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3 — Planteamiento</strong>
+                      El triple de un número aumentado en 8 es igual a 29. ¿Cuál es el número?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t2">Ecuación: 3x + 8 = 29 → 3x = 21 → <strong>x = 7</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Potencias y Raíces</h2>
+              <p>Potenciación y radicación con enteros y fracciones</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">⚡</span>
+              <div><h3>La potencia de los exponentes</h3><p>Las potencias y raíces son fundamentales en geometría, física y álgebra. Dominarlas abre la puerta a la notación científica, el cálculo y más.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-inter">⚡</div>
+                <div class="topic-book-info">
+                  <h4>Potenciación</h4>
+                  <p>Propiedades de las potencias y cálculo</p>
+                  <div class="topic-tags"><span class="topic-tag">Aⁿ</span><span class="topic-tag">Propiedades</span><span class="topic-tag">Notación científica</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>⚡ Potenciación</h3>
+                <p>La <strong>potenciación</strong> es la multiplicación repetida de un número por sí mismo: aⁿ = a × a × a… (n veces). Se llama a = base, n = exponente.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Propiedades de las potencias</h4>
+                    <ul>
+                      <li>Producto: aᵐ · aⁿ = aᵐ⁺ⁿ</li>
+                      <li>Cociente: aᵐ ÷ aⁿ = aᵐ⁻ⁿ (a≠0)</li>
+                      <li>Potencia de potencia: (aᵐ)ⁿ = aᵐⁿ</li>
+                      <li>Exponente cero: a⁰ = 1 (a≠0)</li>
+                      <li>Exponente negativo: a⁻ⁿ = 1/aⁿ</li>
+                      <li>Potencia de producto: (ab)ⁿ = aⁿbⁿ</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔬 Notación científica</h4>
+                    <ul>
+                      <li>Forma: a × 10ⁿ (donde 1 ≤ a &lt; 10)</li>
+                      <li>300,000,000 = 3 × 10⁸</li>
+                      <li>0.00045 = 4.5 × 10⁻⁴</li>
+                      <li>Velocidad de la luz: 3 × 10⁸ m/s</li>
+                      <li>Útil en ciencias: astronomía, química</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Simplifica: 2³ × 2⁵ ÷ 2²
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">2³⁺⁵⁻² = 2⁶ = <strong>64</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Simplifica: (3²)³ × 3⁰
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">(3²)³ = 3⁶ = 729 · 3⁰ = 1 · Resultado: <strong>729 × 1 = 729</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Escribe en notación científica: 4,700,000 y 0.000082
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t3">4,700,000 = <strong>4.7 × 10⁶</strong> · 0.000082 = <strong>8.2 × 10⁻⁵</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-inter">√</div>
+                <div class="topic-book-info">
+                  <h4>Radicación</h4>
+                  <p>Raíz cuadrada, cúbica y propiedades</p>
+                  <div class="topic-tags"><span class="topic-tag">√</span><span class="topic-tag">³√</span><span class="topic-tag">Simplificación</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>√ Radicación</h3>
+                <p>La <strong>radicación</strong> es la operación inversa de la potenciación. La raíz n-ésima de a (ⁿ√a) es el número que elevado a n da a. La más usada es la raíz cuadrada (√).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Propiedades de las raíces</h4>
+                    <ul>
+                      <li>√(ab) = √a · √b</li>
+                      <li>√(a/b) = √a / √b</li>
+                      <li>(√a)² = a (para a ≥ 0)</li>
+                      <li>√(a²) = |a|</li>
+                      <li>Simplificar: √12 = √(4·3) = 2√3</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🧮 Raíces exactas frecuentes</h4>
+                    <ul>
+                      <li>√1=1, √4=2, √9=3, √16=4, √25=5</li>
+                      <li>√36=6, √49=7, √64=8, √81=9, √100=10</li>
+                      <li>³√8=2, ³√27=3, ³√64=4, ³√125=5</li>
+                      <li>Irracionales: √2≈1.414, √3≈1.732, √5≈2.236</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Simplifica: √75 + 2√12 - √27
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">√75=5√3 · 2√12=2·2√3=4√3 · √27=3√3 → 5√3+4√3-3√3 = <strong>6√3</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Calcula: ³√(8 × 27)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">³√216 = ³√(8×27) = ³√8 × ³√27 = 2 × 3 = <strong>6</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Proporcionalidad</h2>
+              <p>Proporcionalidad directa, inversa y porcentajes aplicados</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">⚖️</span>
+              <div><h3>Proporcionar el mundo</h3><p>La proporcionalidad está en todas partes: recetas, mapas, tasas, descuentos, velocidades. Aprenderla te permite resolver problemas de la vida real con facilidad.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-advanced">📈</div>
+                <div class="topic-book-info">
+                  <h4>Proporcionalidad Directa</h4>
+                  <p>Razones, proporciones y regla de tres directa</p>
+                  <div class="topic-tags"><span class="topic-tag">y=kx</span><span class="topic-tag">Razón</span><span class="topic-tag">Regla de 3</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>📈 Proporcionalidad Directa</h3>
+                <p>Dos magnitudes son <strong>directamente proporcionales</strong> cuando al multiplicar (o dividir) una, la otra se multiplica (o divide) por el mismo factor. La relación es y = kx, donde k es la constante de proporcionalidad.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔗 Características</h4>
+                    <ul>
+                      <li>Si A aumenta → B aumenta</li>
+                      <li>Si A disminuye → B disminuye</li>
+                      <li>La razón y/x = k (constante)</li>
+                      <li>Ejemplos: velocidad-distancia, precio-cantidad, horas-salario</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🧮 Regla de tres simple directa</h4>
+                    <ul>
+                      <li>Si 5 kg cuestan S/ 20, ¿cuánto cuestan 8 kg?</li>
+                      <li>5 kg → 20</li>
+                      <li>8 kg → x</li>
+                      <li>x = (8 × 20) / 5 = <strong>S/ 32</strong></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">a/b = c/d → ad = bc (propiedad fundamental)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Si 4 obreros tardan 6 días en terminar un trabajo, ¿cuánto tarda 1 obrero? (¿Es proporcionalidad directa o inversa?)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">Es <strong>proporcionalidad inversa</strong> (más obreros = menos tiempo). 1 obrero tarda 4×6 = <strong>24 días</strong>.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Un auto recorre 180 km en 3 horas. ¿Cuántos km recorre en 5 horas a la misma velocidad?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Proporcionalidad directa: 3h→180km · 5h→x km. x = (5×180)/3 = <strong>300 km</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-advanced">📉</div>
+                <div class="topic-book-info">
+                  <h4>Proporcionalidad Inversa</h4>
+                  <p>Relación inversamente proporcional y regla de tres inversa</p>
+                  <div class="topic-tags"><span class="topic-tag">xy=k</span><span class="topic-tag">Inversa</span><span class="topic-tag">Velocidad</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>📉 Proporcionalidad Inversa</h3>
+                <p>Dos magnitudes son <strong>inversamente proporcionales</strong> cuando al multiplicar una por n, la otra se divide por n. Su producto es constante: x · y = k.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔗 Características</h4>
+                    <ul>
+                      <li>Si A aumenta → B disminuye</li>
+                      <li>Si A disminuye → B aumenta</li>
+                      <li>El producto x × y = k (constante)</li>
+                      <li>Ejemplos: velocidad-tiempo, trabajadores-días, tubos-llenado</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🧮 Regla de tres inversa</h4>
+                    <ul>
+                      <li>6 máquinas producen 120 piezas en 4h</li>
+                      <li>¿Cuántas máquinas producen lo mismo en 3h?</li>
+                      <li>Razón inversa: 4/3 × 6 = <strong>8 máquinas</strong></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Si 8 personas tardan 15 días en construir una pared, ¿cuánto tardan 12 personas?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">Inversa: 8×15 = 12×x → x = 120/12 = <strong>10 días</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t7" onclick="toggleTopic('detail-t7',this)">
+                <div class="topic-book-cover cover-advanced">💯</div>
+                <div class="topic-book-info">
+                  <h4>Porcentajes Aplicados</h4>
+                  <p>Descuentos, aumentos, interés simple y problemas reales</p>
+                  <div class="topic-tags"><span class="topic-tag">Descuento</span><span class="topic-tag">Aumento</span><span class="topic-tag">Interés</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t7">
+                <h3>💯 Porcentajes Aplicados</h3>
+                <p>Un <strong>porcentaje</strong> es una fracción con denominador 100. Se usa en descuentos, impuestos, estadísticas, intereses bancarios y muchas situaciones cotidianas.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🛒 Descuentos y aumentos</h4>
+                    <ul>
+                      <li>Descuento: Precio final = P × (1 - r/100)</li>
+                      <li>Aumento: Precio final = P × (1 + r/100)</li>
+                      <li>Ej: S/200 con 15% descuento = 200×0.85 = S/170</li>
+                      <li>Ej: S/300 con 10% aumento = 300×1.10 = S/330</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🏦 Interés Simple</h4>
+                    <ul>
+                      <li>I = C × r × t</li>
+                      <li>C = capital, r = tasa (decimal), t = tiempo</li>
+                      <li>Monto = C + I</li>
+                      <li>Ej: S/1000 al 8% anual por 2 años</li>
+                      <li>I = 1000 × 0.08 × 2 = S/160</li>
+                      <li>Monto = S/1160</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Una zapatilla cuesta S/180 y tiene 25% de descuento. ¿Cuánto pagas?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t7')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t7">Descuento = 180 × 0.25 = 45. Precio final = 180 - 45 = <strong>S/ 135</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Depositas S/5000 al 6% anual de interés simple. ¿Cuánto tienes después de 3 años?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t7')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t7">I = 5000 × 0.06 × 3 = 900. Monto = 5000 + 900 = <strong>S/ 5,900</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t7',document.getElementById('t7'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-2.html" class="button button-secondary">← 2° Secundaria</a>
+      <a href="tema-ciencias-2.html" class="button button-primary">Ciencias →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=7,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),margin=15,pageW=210,pageH=297;let y=margin;
+      const addText=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));const lines=doc.splitTextToSize(text,pageW-margin*2);lines.forEach(line=>{if(y>pageH-margin){doc.addPage();y=margin;}doc.text(line,margin,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(124,58,237);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Matematica - 2 Secundaria',margin,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',margin,20);y=38;
+      [{t:'Expresiones Algebraicas',c:'Monomio (1 termino), binomio (2), trinomio (3), polinomio (4+). Terminos semejantes: misma variable y exponente. Operaciones: agrupar semejantes. Ejemplo: 4x+7-2x+3-x = x+10.'},
+       {t:'Ecuaciones de 1er Grado',c:'Forma: ax+b=c. Metodo: eliminar parentesis, agrupar x en un lado, numeros al otro, dividir. Ejemplo: 3x-5=16 -> x=7. Verificar siempre.'},
+       {t:'Potenciacion',c:'a^n = a*a*...*n veces. Propiedades: a^m * a^n = a^(m+n), (a^m)^n = a^(mn), a^0=1, a^(-n)=1/a^n. Notacion cientifica: 4,700,000 = 4.7x10^6.'},
+       {t:'Radicacion',c:'Operacion inversa de potencia. Propiedades: sqrt(ab)=sqrt(a)*sqrt(b). Simplificar: sqrt(12)=2sqrt(3). Raices exactas: sqrt(4)=2, sqrt(9)=3, etc. Irracionales: sqrt(2)=1.414.'},
+       {t:'Proporcionalidad Directa',c:'y=kx. Al aumentar uno, el otro aumenta. Regla de 3 directa: si 5kg->S/20, entonces 8kg->x: x=(8*20)/5=32.'},
+       {t:'Proporcionalidad Inversa',c:'xy=k. Al aumentar uno, el otro disminuye. Regla de 3 inversa. Ejemplo: 8 personas tardan 15 dias -> 12 personas tardan 10 dias.'},
+       {t:'Porcentajes Aplicados',c:'Descuento: P*(1-r/100). Aumento: P*(1+r/100). Interes simple: I=C*r*t, Monto=C+I. Ejemplo: S/1000 al 8% por 2 anos: I=160, Monto=1160.'},
+      ].forEach((t,i)=>{addText(`${i+1}. ${t.t}`,13,true,[124,58,237]);addText(t.c,10,false,[50,50,60]);y+=3;});
+      y+=5;addText('Ejercicios de repaso',13,true,[124,58,237]);
+      ['1. Simplifica: 4x+7-2x+3-x','2. Resuelve: 2(x+3)=5x-9','3. Simplifica: 2^3 x 2^5 / 2^2','4. Simplifica: sqrt(75)+2sqrt(12)-sqrt(27)','5. Un auto recorre 180km en 3h. ¿Cuantos km en 5h?','6. Una zapatilla cuesta S/180 con 25% descuento. ¿Cuanto pagas?','7. Depositas S/5000 al 6% anual. ¿Cuanto tienes en 3 anos?'].forEach(ex=>addText(ex,10,false,[50,50,60]));
+      doc.save('Matematica-2Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
