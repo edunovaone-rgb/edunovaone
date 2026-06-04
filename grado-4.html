@@ -4,10 +4,126 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
-  <title>4° Secundaria | EduNovaOneOne</title>
+  <meta name="description" content="Recursos educativos para 4° de Secundaria en EduNovaOne." />
+  <title>4° Secundaria | EduNovaOne</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .grado-hero{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(37,99,235,0.06));border-radius:2rem;padding:2rem;margin-bottom:1.75rem;display:flex;align-items:center;gap:1.5rem}
+    .grado-hero-badge{width:5rem;height:5rem;border-radius:1.5rem;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:2rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .grado-hero-info h1{margin:0 0 .4rem;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--accent-strong)}
+    .grado-hero-info p{margin:0;color:var(--text-muted);font-size:.95rem}
+    .materias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+    .materia-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.75rem;padding:1.5rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.75rem;transition:transform .2s,box-shadow .2s}
+    .materia-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(99,102,241,0.12)}
+    .materia-icon{width:3rem;height:3rem;border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+    .materia-card h3{margin:0;font-size:1rem;color:var(--accent-strong)}
+    .materia-card p{margin:0;font-size:.88rem;color:var(--text-muted);line-height:1.5;flex:1}
+    .materia-recursos{display:flex;gap:.5rem;flex-wrap:wrap}
+    .recurso-tag{padding:.25rem .7rem;border-radius:999px;font-size:.75rem;font-weight:700;background:rgba(99,102,241,0.08);color:var(--accent-strong)}
+    .materia-actions{display:flex;gap:.65rem;margin-top:.25rem}
+    .section-title{font-size:1.1rem;font-weight:700;color:var(--text);margin:0 0 1rem}
+    .tips-card{background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(37,99,235,0.04));border:1px solid rgba(16,185,129,0.15);border-radius:1.5rem;padding:1.4rem}
+    .tips-list{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
+    .tips-list li{display:flex;align-items:flex-start;gap:.65rem;font-size:.9rem;color:var(--text-muted)}
+    .tips-list li span{font-size:1rem;flex-shrink:0}
+  </style>
 </head>
 <body>
-  <!-- Contenido de 4° Secundaria — pendiente -->
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+
+  <main class="page-content">
+    <nav style="margin-bottom:1rem;font-size:.9rem">
+      <a href="biblioteca.html" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a Biblioteca</a>
+    </nav>
+
+    <div class="grado-hero">
+      <div class="grado-hero-badge">4°</div>
+      <div class="grado-hero-info">
+        <h1>4° de Secundaria</h1>
+        <p>Recursos, libros y materiales para tu cuarto año de secundaria.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Materias disponibles</h2>
+    <div class="materias-grid">
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(124,58,237,0.1)">📐</div>
+        <h3>Matemática</h3>
+        <p>Factorización, inecuaciones, geometría analítica, trigonometría avanzada, probabilidades y estadística.</p>
+        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">6 temas</span></div>
+        <div class="materia-actions"><a href="tema-matematica-4.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(16,185,129,0.1)">🧬</div>
+        <h3>Ciencia y Tecnología</h3>
+        <p>Genética y herencia, teoría de la evolución, química orgánica, electricidad y ondas.</p>
+        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">5 temas</span></div>
+        <div class="materia-actions"><a href="tema-ciencias-4.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(239,68,68,0.1)">📖</div>
+        <h3>Comunicación</h3>
+        <p>Pragmática, variedad lingüística, el ensayo, literatura universal y medios de comunicación.</p>
+        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">5 temas</span></div>
+        <div class="materia-actions"><a href="tema-comunicacion-4.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(217,119,6,0.1)">🌍</div>
+        <h3>Historia, Geografía y Economía</h3>
+        <p>Perú siglo XX, Primera y Segunda Guerra Mundial, Guerra Fría, globalización y recursos hídricos.</p>
+        <div class="materia-recursos"><span class="recurso-tag">Libro</span><span class="recurso-tag">5 temas</span></div>
+        <div class="materia-actions"><a href="tema-historia-4.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(37,99,235,0.1)">🇬🇧</div>
+        <h3>Inglés</h3>
+        <p>Voz pasiva, condicionales, cláusulas relativas, escritura académica y vocabulario de tecnología.</p>
+        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">5 temas</span></div>
+        <div class="materia-actions"><a href="tema-ingles-4.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      </div>
+
+      <div class="materia-card">
+        <div class="materia-icon" style="background:rgba(192,38,211,0.1)">🎨</div>
+        <h3>Arte y Cultura</h3>
+        <p>Vanguardias artísticas del siglo XX, diseño gráfico, patrimonio cultural y música contemporánea.</p>
+        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">4 temas</span></div>
+        <div class="materia-actions"><a href="tema-arte-4.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      </div>
+
+    </div>
+
+    <div class="tips-card" style="margin-top:2rem">
+      <h3 class="section-title" style="margin-bottom:.85rem">💡 Consejos para 4° de Secundaria</h3>
+      <ul class="tips-list">
+        <li><span>🧮</span>En matemática, practica la factorización todos los días — es la base del álgebra avanzada.</li>
+        <li><span>🔬</span>En genética, usa cuadros de Punnett para visualizar los cruces antes de calcular.</li>
+        <li><span>📚</span>Lee las obras de literatura universal completas — los clásicos te forman intelectualmente.</li>
+        <li><span>🌍</span>Relaciona los eventos históricos del siglo XX con la realidad actual del Perú.</li>
+        <li><span>🇬🇧</span>Practica el inglés con series y películas en versión original — aprenderás vocabulario natural.</li>
+        <li><span>🎯</span>4° es el año donde debes empezar a pensar en tu vocación y especialidad universitaria.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-3.html" class="button button-secondary">← 3° Secundaria</a>
+      <a href="grado-5.html" class="button button-primary">5° Secundaria →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
 </body>
 </html>
