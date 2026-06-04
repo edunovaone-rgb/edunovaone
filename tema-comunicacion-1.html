@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Comunicación | 1° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a>
+      <span>›</span>
+      <a href="grado-1.html">1° Secundaria</a>
+      <span>›</span>
+      <span style="color:var(--text);font-weight:600">Comunicación</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#dc2626,#ef4444)">📖</div>
+          <div>
+            <h3>Comunicación</h3>
+            <p>1° de Secundaria</p>
+          </div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Lenguaje y Comunicación</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>La Comunicación</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Comprensión Lectora</a></li>
+          <li><p class="toc-section-title">II. Gramática y Ortografía</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Clases de Palabras</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Ortografía Básica</a></li>
+          <li><p class="toc-section-title">III. Producción de Textos</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>El Párrafo</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Narración y Descripción</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main" id="contentArea">
+
+        <!-- CAP I -->
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Lenguaje y Comunicación</h2>
+              <p>Elementos del proceso comunicativo y comprensión lectora</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">💬</span>
+              <div>
+                <h3>La base de todo</h3>
+                <p>La comunicación es el proceso fundamental de la interacción humana. Dominar sus elementos te permitirá expresarte con claridad y entender cualquier texto.</p>
+              </div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-comm">💬</div>
+                <div class="topic-book-info">
+                  <h4>La Comunicación</h4>
+                  <p>Proceso, elementos y tipos de comunicación</p>
+                  <div class="topic-tags"><span class="topic-tag">Emisor</span><span class="topic-tag">Receptor</span><span class="topic-tag">Mensaje</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>💬 La Comunicación — Proceso y Elementos</h3>
+                <p>La <strong>comunicación</strong> es el proceso mediante el cual un emisor transmite un mensaje a un receptor a través de un canal, usando un código compartido. Roman Jakobson identificó los seis elementos esenciales.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📡 Elementos de la comunicación</h4>
+                    <ul>
+                      <li><strong>Emisor:</strong> quien envía el mensaje</li>
+                      <li><strong>Receptor:</strong> quien recibe el mensaje</li>
+                      <li><strong>Mensaje:</strong> información transmitida</li>
+                      <li><strong>Canal:</strong> medio por el que viaja (voz, papel, internet)</li>
+                      <li><strong>Código:</strong> sistema de signos (idioma, señales)</li>
+                      <li><strong>Referente:</strong> contexto o realidad a la que alude</li>
+                      <li><strong>Retroalimentación (feedback):</strong> respuesta del receptor</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🗣️ Tipos de comunicación</h4>
+                    <ul>
+                      <li><strong>Verbal:</strong> usa palabras (oral o escrita)</li>
+                      <li><strong>No verbal:</strong> gestos, posturas, miradas, tono de voz</li>
+                      <li><strong>Formal:</strong> académica, laboral, oficial</li>
+                      <li><strong>Informal:</strong> cotidiana, coloquial</li>
+                      <li><strong>Unilateral:</strong> solo un emisor (radio, TV)</li>
+                      <li><strong>Bilateral:</strong> intercambio de roles (diálogo)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Emisor → Mensaje (Canal/Código) → Receptor → Feedback</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      En la oración "Tu profesor escribe las instrucciones en la pizarra para que las copies", identifica: emisor, receptor, mensaje, canal y código.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1"><strong>Emisor:</strong> el profesor · <strong>Receptor:</strong> el estudiante · <strong>Mensaje:</strong> las instrucciones · <strong>Canal:</strong> la pizarra (visual) · <strong>Código:</strong> el idioma español escrito.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la diferencia entre comunicación verbal y no verbal? Da un ejemplo de cada una.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1"><strong>Verbal:</strong> usa palabras. Ej: "Me alegra verte." <strong>No verbal:</strong> usa gestos o expresiones. Ej: sonreír al saludar a alguien.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-comm">📚</div>
+                <div class="topic-book-info">
+                  <h4>Comprensión Lectora</h4>
+                  <p>Niveles de lectura e inferencias</p>
+                  <div class="topic-tags"><span class="topic-tag">Literal</span><span class="topic-tag">Inferencial</span><span class="topic-tag">Crítico</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>📚 Comprensión Lectora — Niveles</h3>
+                <p>Leer con comprensión implica ir más allá de descifrar letras. Existen tres niveles progresivos de comprensión que debes dominar para analizar cualquier texto.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📖 Los tres niveles</h4>
+                    <ul>
+                      <li><strong>Nivel literal:</strong> lo que dice directamente el texto. "¿Qué pasó? ¿Quién lo hizo?"</li>
+                      <li><strong>Nivel inferencial:</strong> lo que se deduce o interpreta. "¿Por qué? ¿Qué significa esto?"</li>
+                      <li><strong>Nivel crítico:</strong> opinión y valoración personal. "¿Estoy de acuerdo? ¿Es válido el argumento?"</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔍 Estrategias de lectura</h4>
+                    <ul>
+                      <li><strong>Prelectura:</strong> mirar título, subtítulos e imágenes antes de leer</li>
+                      <li><strong>Subrayado:</strong> marcar ideas principales</li>
+                      <li><strong>Resumen:</strong> sintetizar con tus palabras</li>
+                      <li><strong>Mapa conceptual:</strong> organizar visualmente las ideas</li>
+                      <li><strong>Relectura:</strong> volver a leer partes confusas</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Lee y responde</strong>
+                      <em>"Pedro llegó a casa empapado, sin paraguas y con los zapatos llenos de barro."</em><br>
+                      Nivel inferencial: ¿Qué tiempo hacía afuera?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Estaba <strong>lloviendo</strong>. La evidencia son las palabras "empapado", "sin paraguas" y "zapatos llenos de barro".</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué diferencia hay entre parafrasear y copiar literalmente un texto?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2"><strong>Parafrasear</strong> es reescribir las ideas del texto con tus propias palabras, manteniendo el significado. <strong>Copiar</strong> es reproducir exactamente las mismas palabras del autor.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP II -->
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Gramática y Ortografía</h2>
+              <p>Clases de palabras y reglas ortográficas básicas</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">✏️</span>
+              <div><h3>La estructura del idioma</h3><p>Conocer las clases de palabras y la ortografía te permite construir oraciones correctas y expresar ideas con precisión.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-comm">🔤</div>
+                <div class="topic-book-info">
+                  <h4>Clases de Palabras</h4>
+                  <p>Sustantivo, adjetivo, verbo, adverbio y más</p>
+                  <div class="topic-tags"><span class="topic-tag">Sustantivo</span><span class="topic-tag">Verbo</span><span class="topic-tag">Adjetivo</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🔤 Clases de Palabras (Morfología)</h3>
+                <p>La <strong>morfología</strong> estudia la estructura y clasificación de las palabras. Hay 9 clases gramaticales principales en español.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Las 9 clases gramaticales</h4>
+                    <ul>
+                      <li><strong>Sustantivo:</strong> nombra personas, cosas, lugares (niño, mesa, Lima)</li>
+                      <li><strong>Adjetivo:</strong> califica al sustantivo (alto, bonito, frío)</li>
+                      <li><strong>Verbo:</strong> expresa acción, estado o proceso (correr, ser, pensar)</li>
+                      <li><strong>Adverbio:</strong> modifica al verbo o adjetivo (bien, hoy, muy)</li>
+                      <li><strong>Pronombre:</strong> sustituye al sustantivo (yo, tú, él, este)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📋 Palabras de enlace</h4>
+                    <ul>
+                      <li><strong>Artículo:</strong> acompaña al sustantivo (el, la, los, un)</li>
+                      <li><strong>Preposición:</strong> relaciona palabras (de, en, con, por)</li>
+                      <li><strong>Conjunción:</strong> une oraciones o palabras (y, pero, porque)</li>
+                      <li><strong>Interjección:</strong> expresa emoción (¡ay!, ¡bravo!, ¡oh!)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="example-block">
+                  <strong>Análisis de oración</strong>
+                  <p>"El niño (sust.) pequeño (adj.) corre (verbo) muy (adv.) rápido (adv.) por (prep.) el parque (sust.)."</p>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Clasifica cada palabra: "La mariposa azul vuela suavemente sobre las flores."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">La (artículo) / mariposa (sustantivo) / azul (adjetivo) / vuela (verbo) / suavemente (adverbio) / sobre (preposición) / las (artículo) / flores (sustantivo).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Escribe una oración usando: un sustantivo, un adjetivo, un verbo y un adverbio.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Ejemplo: "El perro (sust.) juguetón (adj.) corre (verbo) rápidamente (adv.)."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-comm">✍️</div>
+                <div class="topic-book-info">
+                  <h4>Ortografía Básica</h4>
+                  <p>Acentuación, uso de b/v, c/s/z y signos de puntuación</p>
+                  <div class="topic-tags"><span class="topic-tag">Tilde</span><span class="topic-tag">Puntuación</span><span class="topic-tag">b/v</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>✍️ Ortografía Básica</h3>
+                <p>La <strong>ortografía</strong> garantiza que la escritura sea correcta y comprensible. Incluye el uso de tildes, signos de puntuación y la distinción entre letras de sonido similar.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>´ Reglas de acentuación</h4>
+                    <ul>
+                      <li><strong>Agudas:</strong> acento en última sílaba → tilde si termina en n, s o vocal (camión, café)</li>
+                      <li><strong>Llanas/Graves:</strong> acento en penúltima → tilde si NO termina en n, s o vocal (árbol, lápiz)</li>
+                      <li><strong>Esdrújulas:</strong> acento en antepenúltima → siempre tilde (música, rápido)</li>
+                      <li><strong>Sobreesdrújulas:</strong> antes de la antepenúltima → siempre tilde (dígamelo)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔤 Uso de b y v</h4>
+                    <ul>
+                      <li><strong>B:</strong> verbos terminados en -bir (escribir), después de m (también), palabras con bl/br</li>
+                      <li><strong>V:</strong> después de n (enviar), adjetivos en -ivo/-iva (activo), verbos ir/andar/estar en pasado (estuve)</li>
+                      <li>Recuerda: bo-bo-bo (bicho bobo bebe), ve-ve-ve (vaca, vivir, volver)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Tildación</strong>
+                      Coloca la tilde donde corresponda: camion, arbol, musica, lapiz, cafe, examen, corazon, util.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">camión (aguda, termina en n) · árbol (llana, no termina en n/s/vocal) · música (esdrújula) · lápiz (llana, no termina en n/s/vocal) · café (aguda, termina en vocal) · examen (llana, termina en n → sin tilde) · corazón (aguda, termina en n) · útil (llana, termina en l → tilde).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Completa con b o v: _aca, en_olver, descri_ir, _arco, ad_ertir, mo_ilizar.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Vaca · envolver · describir · barco · advertir · movilizar.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CAP III -->
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Producción de Textos</h2>
+              <p>El párrafo, la narración y la descripción</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">📝</span>
+              <div><h3>Escribe con claridad</h3><p>La producción de textos es la habilidad más valorada en la vida académica y profesional. Aquí aprenderás las bases para escribir bien.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-comm">📄</div>
+                <div class="topic-book-info">
+                  <h4>El Párrafo</h4>
+                  <p>Estructura, tipos y cohesión en el párrafo</p>
+                  <div class="topic-tags"><span class="topic-tag">Idea principal</span><span class="topic-tag">Coherencia</span><span class="topic-tag">Cohesión</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>📄 El Párrafo</h3>
+                <p>Un <strong>párrafo</strong> es una unidad de escritura formada por varias oraciones relacionadas que desarrollan una sola idea central. Se reconoce porque empieza con sangría o con una línea en blanco.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🏗️ Estructura del párrafo</h4>
+                    <ul>
+                      <li><strong>Oración tópica:</strong> presenta la idea principal (generalmente al inicio)</li>
+                      <li><strong>Oraciones de desarrollo:</strong> amplían, explican o ejemplifican la idea</li>
+                      <li><strong>Oración de cierre:</strong> resume o concluye</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔗 Conectores lógicos</h4>
+                    <ul>
+                      <li><strong>Adición:</strong> además, también, asimismo</li>
+                      <li><strong>Contraste:</strong> sin embargo, pero, aunque</li>
+                      <li><strong>Causa:</strong> porque, ya que, debido a</li>
+                      <li><strong>Consecuencia:</strong> por lo tanto, así que, entonces</li>
+                      <li><strong>Orden:</strong> primero, luego, finalmente</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Identifica la oración tópica: "El agua es vital para la vida. Sin ella, ningún organismo puede sobrevivir. Además, regula la temperatura del cuerpo y transporta nutrientes."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">La oración tópica es: <strong>"El agua es vital para la vida."</strong> Las demás oraciones la explican y amplían.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Escritura</strong>
+                      Escribe un párrafo de 4 oraciones sobre "los beneficios de leer", usando al menos dos conectores lógicos.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Ejemplo: "Leer trae múltiples beneficios para el desarrollo personal. <strong>En primer lugar</strong>, amplía el vocabulario y mejora la expresión escrita. <strong>Además</strong>, estimula la imaginación y reduce el estrés. <strong>Por lo tanto</strong>, cultivar el hábito de la lectura es una inversión para toda la vida."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-comm">🖊️</div>
+                <div class="topic-book-info">
+                  <h4>Narración y Descripción</h4>
+                  <p>Características, estructura y tipos de estos textos</p>
+                  <div class="topic-tags"><span class="topic-tag">Narrador</span><span class="topic-tag">Personaje</span><span class="topic-tag">Descripción</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>🖊️ Narración y Descripción</h3>
+                <p>La <strong>narración</strong> cuenta hechos reales o imaginarios que ocurren en un tiempo y espacio determinados. La <strong>descripción</strong> presenta las características de personas, objetos o lugares de manera detallada.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📖 Elementos de la narración</h4>
+                    <ul>
+                      <li><strong>Narrador:</strong> quien cuenta la historia (1ª o 3ª persona)</li>
+                      <li><strong>Personajes:</strong> principales y secundarios</li>
+                      <li><strong>Tiempo:</strong> cuándo ocurren los hechos</li>
+                      <li><strong>Espacio:</strong> dónde ocurren</li>
+                      <li><strong>Estructura:</strong> inicio → nudo → desenlace</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎨 Tipos de descripción</h4>
+                    <ul>
+                      <li><strong>Prosopografía:</strong> describe rasgos físicos</li>
+                      <li><strong>Etopeya:</strong> describe rasgos de personalidad</li>
+                      <li><strong>Retrato:</strong> combina ambas</li>
+                      <li><strong>Topografía:</strong> describe un lugar</li>
+                      <li>Usa los 5 sentidos: vista, oído, tacto, olfato, gusto</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1 — Escritura creativa</strong>
+                      Escribe una narración breve (5–6 oraciones) con inicio, nudo y desenlace sobre "el primer día en una escuela nueva".
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">Ejemplo: "<strong>Inicio:</strong> María llegó nerviosa a su nueva escuela, mirando con asombro los pasillos llenos de estudiantes desconocidos. <strong>Nudo:</strong> A la hora del recreo, no sabía con quién sentarse; se quedó sola junto a una palmera, observando a los grupos de amigos. De pronto, una chica de trenzas se acercó y le preguntó si quería unirse a su grupo. <strong>Desenlace:</strong> Al final del día, María regresó a casa sonriendo: había encontrado su primera amiga nueva."</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Escribe una descripción de tu salón de clases usando al menos 3 sentidos distintos.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t6">Respuesta personal. Verificar que use: <strong>vista</strong> (colores, formas), <strong>oído</strong> (ruidos, voces), <strong>olfato</strong> (marcadores, madera), y adjetivos variados para describir el ambiente.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-1.html" class="button button-secondary">← 1° Secundaria</a>
+      <a href="tema-historia-1.html" class="button button-primary">Historia →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id) { document.getElementById(id).classList.toggle('open'); }
+    function toggleTopic(detailId, card) {
+      const detail = document.getElementById(detailId);
+      const isOpen = detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d => d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c => c.style.borderColor = '');
+      if (!isOpen) { detail.classList.add('open'); card.style.borderColor = 'var(--accent)'; detail.scrollIntoView({behavior:'smooth',block:'nearest'}); updateProgress(); }
+    }
+    function closeTopic(detailId, card) { document.getElementById(detailId).classList.remove('open'); if(card) card.style.borderColor=''; }
+    function toggleAnswer(id) { document.getElementById(id).classList.toggle('open'); }
+    const totalTopics = 6; const opened = new Set();
+    function updateProgress() {
+      document.querySelectorAll('.topic-detail.open').forEach(d => opened.add(d.id));
+      const pct = Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent = pct+'%';
+      document.getElementById('progressFill').style.width = pct+'%';
+    }
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({orientation:'p',unit:'mm',format:'a4'});
+      const margin=15, pageW=210, pageH=297; let y=margin;
+      const addText=(text,size,bold,color)=>{
+        doc.setFontSize(size); doc.setFont('helvetica',bold?'bold':'normal'); doc.setTextColor(...(color||[30,30,30]));
+        const lines=doc.splitTextToSize(text,pageW-margin*2);
+        lines.forEach(line=>{ if(y>pageH-margin){doc.addPage();y=margin;} doc.text(line,margin,y); y+=size*0.45; }); y+=2;
+      };
+      doc.setFillColor(220,38,38); doc.rect(0,0,210,28,'F');
+      doc.setTextColor(255,255,255); doc.setFontSize(18); doc.setFont('helvetica','bold');
+      doc.text('Comunicación — 1° Secundaria',margin,12);
+      doc.setFontSize(10); doc.setFont('helvetica','normal');
+      doc.text('EduNovaOne · Material de estudio completo',margin,20); y=38;
+      const topics=[
+        {title:'La Comunicación',content:'Elementos: emisor, receptor, mensaje, canal, código, referente, retroalimentación. Tipos: verbal (oral/escrita), no verbal (gestos, posturas), formal, informal, unilateral, bilateral.'},
+        {title:'Comprensión Lectora',content:'Nivel literal: lo que dice el texto. Nivel inferencial: lo que se deduce. Nivel crítico: valoración personal. Estrategias: prelectura, subrayado, resumen, mapa conceptual.'},
+        {title:'Clases de Palabras',content:'Sustantivo (cosa/persona), adjetivo (califica), verbo (acción), adverbio (modifica), pronombre (sustituye), artículo, preposición, conjunción, interjección.'},
+        {title:'Ortografía Básica',content:'Agudas: tilde si termina en n/s/vocal. Llanas: tilde si NO termina en n/s/vocal. Esdrújulas: siempre tilde. B: verbos en -bir, tras m, con bl/br. V: tras n, adjetivos -ivo/-iva.'},
+        {title:'El Párrafo',content:'Oración tópica (idea principal) + oraciones de desarrollo + cierre. Conectores: además, sin embargo, por lo tanto, en primer lugar, finalmente.'},
+        {title:'Narración y Descripción',content:'Narración: narrador, personajes, tiempo, espacio. Estructura: inicio-nudo-desenlace. Descripción: prosopografía (físico), etopeya (personalidad), topografía (lugar). Usa los 5 sentidos.'},
+      ];
+      topics.forEach((t,i)=>{ addText(`${i+1}. ${t.title}`,13,true,[220,38,38]); addText(t.content,10,false,[50,50,60]); y+=3; });
+      y+=5; addText('Ejercicios de repaso',13,true,[220,38,38]);
+      ['1. Identifica los elementos en: "Ana llama a su mamá para decirle que llegará tarde."',
+       '2. ¿Cuál es la diferencia entre nivel inferencial y literal?',
+       '3. Clasifica las palabras: "El gato negro duerme tranquilamente."',
+       '4. Pon tilde donde corresponda: camion, arbol, musica, examen.',
+       '5. Escribe un párrafo de 4 oraciones sobre "el deporte" con 2 conectores.',
+       '6. Escribe una narración corta con inicio, nudo y desenlace.'].forEach(ex=>addText(ex,10,false,[50,50,60]));
+      doc.save('Comunicacion-1Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
