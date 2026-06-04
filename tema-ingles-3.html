@@ -11,11 +11,8 @@
 </head>
 <body>
   <nav class="uni-nav">
-    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
-    <ul class="uni-nav-links">
-      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
-      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
-    </ul>
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
     <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
   </nav>
   <main class="page-content">
@@ -31,13 +28,14 @@
         </div>
         <p class="toc-label">Contenido</p>
         <ul class="toc-list">
-          <li><p class="toc-section-title">I. Grammar</p></li>
-          <li><a href="#t1" class="active"><span class="toc-num">1</span>Past Continuous vs Simple</a></li>
+          <li><p class="toc-section-title">I. Tiempos Verbales</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Past Continuous</a></li>
           <li><a href="#t2"><span class="toc-num">2</span>Present Perfect</a></li>
+          <li><p class="toc-section-title">II. Gramática Avanzada</p></li>
           <li><a href="#t3"><span class="toc-num">3</span>Modal Verbs</a></li>
-          <li><p class="toc-section-title">II. Communication</p></li>
           <li><a href="#t4"><span class="toc-num">4</span>Reported Speech</a></li>
-          <li><a href="#t5"><span class="toc-num">5</span>Essay Writing</a></li>
+          <li><p class="toc-section-title">III. Escritura</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Essay Structure</a></li>
         </ul>
         <div class="progress-block">
           <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
@@ -47,309 +45,292 @@
       </aside>
       <div class="book-main">
 
-        <div class="chapter-card open" id="ch-gram">
-          <div class="chapter-header" onclick="toggleChapter('ch-gram')">
-            <div class="chapter-num num-inter">I</div>
-            <div class="chapter-header-text"><p class="chapter-level">Grammar</p><h2>Verb Tenses & Modals</h2><p>Past tenses, present perfect and modal verbs</p></div>
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Intermediate Level</p><h2>Tiempos Verbales</h2><p>Past Continuous y Present Perfect</p></div>
             <span class="chapter-toggle">▼</span>
           </div>
           <div class="chapter-body">
-            <div class="section-banner banner-inter">
-              <span class="banner-icon">🔤</span><div><h3>Master the tenses</h3><p>Understanding different tenses allows you to express actions in the past, present experiences, and obligations clearly.</p></div>
-            </div>
+            <div class="section-banner banner-basic"><span class="banner-icon">⏳</span><div><h3>More tenses = more expression</h3><p>The Past Continuous describes ongoing past actions, while the Present Perfect connects past events to the present. Together, they let you tell rich, nuanced stories.</p></div></div>
             <div class="topics-grid">
 
               <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
-                <div class="topic-book-cover cover-english">⏱️</div>
-                <div class="topic-book-info"><h4>Past Continuous vs Past Simple</h4><p>Actions in progress vs completed actions</p>
-                  <div class="topic-tags"><span class="topic-tag">was/were</span><span class="topic-tag">while/when</span><span class="topic-tag">interrupted</span></div>
+                <div class="topic-book-cover cover-english">🔄</div>
+                <div class="topic-book-info"><h4>Past Continuous</h4><p>Acciones en progreso en un momento del pasado</p>
+                  <div class="topic-tags"><span class="topic-tag">was/were + ing</span><span class="topic-tag">while/when</span><span class="topic-tag">Interrupted action</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t1">
-                <h3>⏱️ Past Continuous vs Past Simple</h3>
-                <p>The <strong>Past Simple</strong> expresses completed actions in the past. The <strong>Past Continuous</strong> (was/were + verb-ing) describes an action <em>in progress</em> at a specific moment in the past. They are often used together to show an interrupted action.</p>
+                <h3>🔄 Past Continuous</h3>
+                <p>El <strong>Past Continuous</strong> describe una acción que estaba en progreso en un momento específico del pasado. Muy frecuentemente se combina con el <strong>Past Simple</strong> para narrar una acción interrumpida.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Structure & Uses</h4>
+                    <h4>📋 Estructura</h4>
                     <ul>
-                      <li><strong>Past Simple:</strong> Subject + V(past) — "She <em>walked</em> to school."</li>
-                      <li><strong>Past Continuous:</strong> Subject + was/were + V-ing — "She <em>was walking</em> to school."</li>
-                      <li><strong>Interrupted action:</strong> "I was reading <em>when</em> the phone rang."</li>
-                      <li><strong>Parallel actions:</strong> "She was cooking <em>while</em> he was sleeping."</li>
-                      <li>Keywords: while, when, at that moment, at 8 o'clock yesterday</li>
+                      <li>Subject + <strong>was/were</strong> + verb-ing</li>
+                      <li>I/He/She/It → <strong>was</strong> studying</li>
+                      <li>You/We/They → <strong>were</strong> playing</li>
+                      <li>Negativo: was/were + <strong>not</strong> + -ing</li>
+                      <li>Pregunta: <strong>Was/Were</strong> + subject + -ing?</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Examples</h4>
+                    <h4>🕐 Usos y combinaciones</h4>
                     <ul>
-                      <li>"It <strong>was raining</strong> when I <strong>left</strong> the house."</li>
-                      <li>"They <strong>were playing</strong> football when Maria <strong>arrived</strong>."</li>
-                      <li>"While I <strong>was studying</strong>, my brother <strong>was watching</strong> TV."</li>
-                      <li>Past Simple = short, completed action (the interruption)</li>
-                      <li>Past Continuous = longer background action (what was happening)</li>
+                      <li>Acción en progreso: "At 8pm, I <em>was watching</em> TV"</li>
+                      <li>Acción interrumpida (while/when):<br>"She <em>was sleeping</em> when the phone rang."</li>
+                      <li>Dos acciones simultáneas:<br>"While I <em>was cooking</em>, he <em>was reading</em>."</li>
+                      <li><strong>While</strong> + Past Continuous · <strong>When</strong> + Past Simple</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">was/were + V-ing (background) | V-past (interruption)</div>
+                <div class="formula-display">While + [was/were doing] · When + [Past Simple action happened]</div>
                 <div class="exercises-section">
                   <h4>✏️ Exercises</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
-                      <strong>Exercise 1 — Fill in the blanks</strong>
-                      Complete: "I _______ (study) when my friend _______ (call) me."
+                      <strong>Exercise 1</strong>
+                      Completa con Past Continuous o Past Simple: While I ___ (study), my sister ___ (call) me. They ___ (play) football when it ___ (start) to rain.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t1">"I <strong>was studying</strong> when my friend <strong>called</strong> me." — Past Continuous for the background action + Past Simple for the interruption.</div>
+                      <div class="answer-box" id="ans1-t1">While I <strong>was studying</strong>, my sister <strong>called</strong> me. They <strong>were playing</strong> football when it <strong>started</strong> to rain.</div>
                     </li>
                     <li class="exercise-item">
-                      <strong>Exercise 2 — Transform</strong>
-                      Rewrite using "while": "She cooked dinner. He fixed the car." (both at the same time)
+                      <strong>Exercise 2</strong>
+                      Describe qué estabas haciendo ayer a las 7pm usando Past Continuous.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t1">"<strong>While she was cooking dinner, he was fixing the car.</strong>" or "<strong>She was cooking dinner while he was fixing the car.</strong>"</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Exercise 3</strong>
-                      Write 2 sentences of your own using Past Continuous and Past Simple together.
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans3-t1">Sample answers: (1) "I <strong>was walking</strong> home when it <strong>started</strong> to rain." (2) "They <strong>were having</strong> lunch when the teacher <strong>entered</strong> the room."</div>
+                      <div class="answer-box" id="ans2-t1">Respuesta personal. Ej: "At 7pm yesterday, I was having dinner with my family. My brother was watching TV and my mother was washing the dishes."</div>
                     </li>
                   </ul>
                 </div>
-                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Close</button>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
               </div>
 
               <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
                 <div class="topic-book-cover cover-english">✅</div>
-                <div class="topic-book-info"><h4>Present Perfect</h4><p>have/has + past participle — experiences and recent actions</p>
-                  <div class="topic-tags"><span class="topic-tag">have/has</span><span class="topic-tag">since/for</span><span class="topic-tag">already/yet</span></div>
+                <div class="topic-book-info"><h4>Present Perfect</h4><p>Experiencias de vida y acciones con relevancia presente</p>
+                  <div class="topic-tags"><span class="topic-tag">have/has + PP</span><span class="topic-tag">since/for</span><span class="topic-tag">already/yet/just</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t2">
                 <h3>✅ Present Perfect</h3>
-                <p>The <strong>Present Perfect</strong> connects the past with the present. It is formed with <strong>have/has + past participle</strong>. It is used for experiences, recent actions, and situations that started in the past and continue now.</p>
+                <p>El <strong>Present Perfect</strong> conecta el pasado con el presente. Se usa para experiencias de vida, acciones recientes y situaciones que empezaron en el pasado y siguen en el presente.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Uses & Keywords</h4>
+                    <h4>📋 Estructura</h4>
                     <ul>
-                      <li><strong>Experiences:</strong> "I have visited Paris." (sometime in life)</li>
-                      <li><strong>Recent actions:</strong> "She has just arrived."</li>
-                      <li><strong>Unfinished time:</strong> "We have lived here for 5 years."</li>
-                      <li><strong>Since:</strong> specific point — "since 2020", "since Monday"</li>
-                      <li><strong>For:</strong> duration — "for 3 years", "for a long time"</li>
-                      <li><strong>Already:</strong> (+) action done — "I have already eaten."</li>
-                      <li><strong>Yet:</strong> (?) / (−) — "Have you finished yet? / I haven't finished yet."</li>
-                      <li><strong>Just:</strong> very recently — "He has just left."</li>
+                      <li>Subject + <strong>have/has</strong> + Past Participle (PP)</li>
+                      <li>I/You/We/They → <strong>have</strong> visited</li>
+                      <li>He/She/It → <strong>has</strong> eaten</li>
+                      <li>Negativo: haven't / hasn't + PP</li>
+                      <li>Pregunta: Have/Has + subject + PP?</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Common Irregular Past Participles</h4>
+                    <h4>🔑 Signal words</h4>
                     <ul>
-                      <li>go → gone | eat → eaten | see → seen</li>
-                      <li>write → written | do → done | be → been</li>
-                      <li>have → had | make → made | take → taken</li>
-                      <li>come → come | run → run | buy → bought</li>
-                      <li>speak → spoken | know → known | give → given</li>
+                      <li><strong>since</strong>: punto de inicio → "I've lived here <em>since</em> 2018"</li>
+                      <li><strong>for</strong>: duración → "I've known her <em>for</em> 5 years"</li>
+                      <li><strong>already</strong>: afirmativo → "I've <em>already</em> finished"</li>
+                      <li><strong>yet</strong>: negativo/pregunta → "I haven't started <em>yet</em>"</li>
+                      <li><strong>just</strong>: muy reciente → "She's <em>just</em> arrived"</li>
+                      <li><strong>ever/never</strong>: experiencias</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">have/has + past participle | since (point) / for (duration)</div>
                 <div class="exercises-section">
                   <h4>✏️ Exercises</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
-                      <strong>Exercise 1 — Fill in</strong>
-                      "She _______ (not/finish) her homework yet."
+                      <strong>Exercise 1</strong>
+                      Completa: She ___ (live) in Lima since 2015. We ___ (not finish) the project yet. ___ you ever ___ (be) to Machu Picchu?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t2">"She <strong>has not finished / hasn't finished</strong> her homework yet."</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Exercise 2 — Since or For?</strong>
-                      Choose: "I have studied English _______ three years." / "We have been friends _______ primary school."
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t2">"...English <strong>for</strong> three years." (duration) / "...friends <strong>since</strong> primary school." (specific starting point)</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Exercise 3 — Write sentences</strong>
-                      Write one sentence with "already" and one with "just".
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans3-t2">Samples: "I have <strong>already</strong> done my homework." / "She has <strong>just</strong> called me." (just = very recently)</div>
-                    </li>
-                  </ul>
-                </div>
-                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Close</button>
-              </div>
-
-              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
-                <div class="topic-book-cover cover-english">💬</div>
-                <div class="topic-book-info"><h4>Modal Verbs</h4><p>can, must, should, may and their uses</p>
-                  <div class="topic-tags"><span class="topic-tag">can/could</span><span class="topic-tag">must</span><span class="topic-tag">should</span></div>
-                </div>
-              </div>
-              <div class="topic-detail" id="detail-t3">
-                <h3>💬 Modal Verbs</h3>
-                <p><strong>Modal verbs</strong> are auxiliary verbs that add meaning to the main verb, expressing ability, permission, obligation, possibility, or advice. They are followed by the base form of the verb (infinitive without "to").</p>
-                <div class="detail-columns">
-                  <div class="detail-box">
-                    <h4>📌 Main Modal Verbs</h4>
-                    <ul>
-                      <li><strong>can:</strong> ability — "I can swim."</li>
-                      <li><strong>could:</strong> past ability / polite request — "Could you help me?"</li>
-                      <li><strong>must:</strong> strong obligation — "You must wear a seatbelt."</li>
-                      <li><strong>have to:</strong> external obligation — "I have to go to school."</li>
-                      <li><strong>should / ought to:</strong> advice — "You should study more."</li>
-                      <li><strong>may:</strong> formal permission / possibility — "May I leave early?"</li>
-                      <li><strong>might:</strong> weak possibility — "It might rain tomorrow."</li>
-                    </ul>
-                  </div>
-                  <div class="detail-box">
-                    <h4>📝 Negatives & Questions</h4>
-                    <ul>
-                      <li>can't / cannot — "She can't drive."</li>
-                      <li>mustn't — prohibition: "You mustn't smoke here."</li>
-                      <li>don't have to — no obligation: "You don't have to come."</li>
-                      <li>shouldn't — bad advice: "You shouldn't eat that."</li>
-                      <li>Question: Modal + Subject + Verb? — "Can you swim?"</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="formula-display">Subject + modal + base verb | must ≠ mustn't | have to ≠ don't have to</div>
-                <div class="exercises-section">
-                  <h4>✏️ Exercises</h4>
-                  <ul class="exercise-list">
-                    <li class="exercise-item">
-                      <strong>Exercise 1 — Choose the correct modal</strong>
-                      "You _______ (obligation) eat vegetables every day." / "It _______ (possibility) snow tomorrow."
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t3">"You <strong>should / must</strong> eat vegetables every day." / "It <strong>might / may</strong> snow tomorrow."</div>
+                      <div class="answer-box" id="ans1-t2">She <strong>has lived</strong> in Lima since 2015. We <strong>haven't finished</strong> the project yet. <strong>Have</strong> you ever <strong>been</strong> to Machu Picchu?</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Exercise 2</strong>
-                      What is the difference between "must" and "have to"? Give one example of each.
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t3"><strong>Must:</strong> internal obligation or strong rule — "I must finish this report today." (my own decision/strong feeling). <strong>Have to:</strong> external obligation, rule from others — "I have to wear a uniform at school." (school rule)</div>
+                      Escribe 3 experiencias de tu vida usando "I have never..." y "I have already..."
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Respuesta personal. Ej: "I have never been abroad." / "I have already visited Cusco twice." / "I have never eaten sushi." / "I have already finished secondary school chapters 1-3."</div>
                     </li>
                   </ul>
                 </div>
-                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Close</button>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
               </div>
 
             </div>
           </div>
         </div>
 
-        <div class="chapter-card" id="ch-comm">
-          <div class="chapter-header" onclick="toggleChapter('ch-comm')">
-            <div class="chapter-num num-advanced">II</div>
-            <div class="chapter-header-text"><p class="chapter-level">Communication Skills</p><h2>Reported Speech & Writing</h2><p>Indirect speech and essay structure</p></div>
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Upper Intermediate</p><h2>Gramática Avanzada</h2><p>Modal Verbs y Reported Speech</p></div>
             <span class="chapter-toggle">▼</span>
           </div>
           <div class="chapter-body">
-            <div class="section-banner banner-advanced">
-              <span class="banner-icon">✍️</span><div><h3>Communicate effectively</h3><p>Learn to report what others said and structure your writing clearly to express your ideas in English.</p></div>
-            </div>
+            <div class="section-banner banner-inter"><span class="banner-icon">🎓</span><div><h3>Express ideas with precision!</h3><p>Modal verbs add nuance to your English — ability, obligation, possibility. Reported speech lets you retell what others said accurately.</p></div></div>
             <div class="topics-grid">
 
-              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
-                <div class="topic-book-cover cover-english">🗣️</div>
-                <div class="topic-book-info"><h4>Reported Speech básico</h4><p>say/tell, pronoun changes and tense backshifting</p>
-                  <div class="topic-tags"><span class="topic-tag">say/tell</span><span class="topic-tag">backshift</span><span class="topic-tag">pronouns</span></div>
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-english">🎯</div>
+                <div class="topic-book-info"><h4>Modal Verbs</h4><p>Can, must, should, may y sus diferencias</p>
+                  <div class="topic-tags"><span class="topic-tag">Can/Could</span><span class="topic-tag">Must</span><span class="topic-tag">Should</span></div>
                 </div>
               </div>
-              <div class="topic-detail" id="detail-t4">
-                <h3>🗣️ Reported Speech</h3>
-                <p><strong>Reported speech</strong> is used to tell what someone said without quoting them directly. The tense usually "backshifts" (goes one step back in time), and pronouns and time expressions change.</p>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🎯 Modal Verbs</h3>
+                <p>Los <strong>verbos modales</strong> modifican el significado del verbo principal para expresar habilidad, obligación, permiso, posibilidad o consejo. Nunca llevan -s en 3ª persona y van seguidos de infinitivo sin "to".</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Tense Backshifting</h4>
+                    <h4>📋 Modales principales</h4>
                     <ul>
-                      <li>Present Simple → Past Simple</li>
-                      <li>Present Continuous → Past Continuous</li>
-                      <li>Past Simple → Past Perfect</li>
-                      <li>will → would | can → could | may → might</li>
-                      <li>Direct: "I <strong>am</strong> tired." → Reported: She said she <strong>was</strong> tired.</li>
-                      <li>Direct: "I <strong>will</strong> call you." → She said she <strong>would</strong> call me.</li>
+                      <li><strong>can/could:</strong> habilidad/posibilidad. "I <em>can</em> swim. <em>Could</em> you help me?"</li>
+                      <li><strong>must:</strong> obligación fuerte (interna). "You <em>must</em> study."</li>
+                      <li><strong>have to:</strong> obligación externa. "I <em>have to</em> wear uniform."</li>
+                      <li><strong>should/ought to:</strong> consejo. "You <em>should</em> eat vegetables."</li>
+                      <li><strong>may/might:</strong> posibilidad. "It <em>might</em> rain tomorrow."</li>
+                      <li><strong>mustn't vs don't have to:</strong> prohibición vs no necesario</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 say vs tell</h4>
+                    <h4>🔄 Pasado de modales</h4>
                     <ul>
-                      <li><strong>say:</strong> no object needed — "He said (that) he was hungry."</li>
-                      <li><strong>tell:</strong> needs an object (a person) — "He told me he was hungry."</li>
-                      <li>Pronoun changes: I→he/she, we→they, my→his/her, you→I/he</li>
-                      <li>Time: now→then, today→that day, tomorrow→the next day</li>
+                      <li>can → could · must → had to · should → should have</li>
+                      <li>"She <em>could</em> speak French as a child."</li>
+                      <li>"I <em>had to</em> work late yesterday."</li>
+                      <li>"You <em>should have studied</em> more." (reproche)</li>
+                      <li>"He <em>might have</em> missed the bus." (posibilidad pasada)</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">He said (that) + reported clause | She told me (that) + reported clause</div>
                 <div class="exercises-section">
                   <h4>✏️ Exercises</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
-                      <strong>Exercise 1 — Transform to Reported Speech</strong>
-                      "I love football." (John said...)
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t4">John said (that) he <strong>loved</strong> football. (love → loved; I → he)</div>
+                      <strong>Exercise 1</strong>
+                      Elige el modal correcto: You ___ (must/should) wear a seatbelt — it's the law. You ___ (mustn't/don't have to) come if you don't want to — it's optional.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">You <strong>must</strong> wear a seatbelt (obligación legal). You <strong>don't have to</strong> come (no es necesario, pero no está prohibido).</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Exercise 2</strong>
-                      "We will finish the project tomorrow." (They told us...)
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t4">They told us (that) they <strong>would</strong> finish the project <strong>the next day</strong>. (will→would; we→they; tomorrow→the next day)</div>
+                      Da un consejo a un amigo que tiene exámenes la próxima semana usando should, must y shouldn't.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Ej: "You <strong>should</strong> start studying now. You <strong>must</strong> review all your notes. You <strong>shouldn't</strong> stay up all night before the exam."</div>
                     </li>
                   </ul>
                 </div>
-                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Close</button>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
               </div>
 
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-english">💬</div>
+                <div class="topic-book-info"><h4>Reported Speech</h4><p>Cómo reportar lo que alguien dijo</p>
+                  <div class="topic-tags"><span class="topic-tag">say/tell</span><span class="topic-tag">Backshift</span><span class="topic-tag">Pronombres</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>💬 Reported Speech (Estilo Indirecto)</h3>
+                <p>El <strong>Reported Speech</strong> se usa para reportar lo que alguien dijo sin citar sus palabras exactas. Los tiempos verbales se "retroceden" (backshift) y cambian los pronombres y referencias de tiempo.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔄 Cambios de tiempo verbal</h4>
+                    <ul>
+                      <li>Present Simple → Past Simple: "I <em>like</em> coffee" → She said she <em>liked</em> coffee</li>
+                      <li>Present Continuous → Past Continuous: "I <em>am working</em>" → He said he <em>was working</em></li>
+                      <li>Past Simple → Past Perfect: "I <em>finished</em>" → She said she <em>had finished</em></li>
+                      <li>Will → Would · Can → Could · Must → Had to</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📍 Cambios de expresiones</h4>
+                    <ul>
+                      <li>today → that day · yesterday → the day before</li>
+                      <li>tomorrow → the next day · now → then</li>
+                      <li>here → there · this → that</li>
+                      <li><strong>say</strong>: no necesita objeto ("He <em>said</em> he was tired")</li>
+                      <li><strong>tell</strong>: necesita objeto ("He <em>told me</em> he was tired")</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Direct: "I am happy." → Reported: She said (that) she was happy.</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Convierte a estilo indirecto: "I will come tomorrow." (He said...) / "We are studying now." (They said...) / "I can't help you." (She told me...)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">He said he <strong>would come the next day</strong>. They said they <strong>were studying then</strong>. She told me she <strong>couldn't help me</strong>.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Advanced Level</p><h2>Writing — Essay Structure</h2><p>Cómo escribir un essay en inglés</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">✍️</span><div><h3>Write like a pro!</h3><p>Essay writing is one of the most important skills for university and life. Learn to structure your ideas clearly, support them with evidence, and conclude persuasively.</p></div></div>
+            <div class="topics-grid">
               <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
                 <div class="topic-book-cover cover-english">📄</div>
-                <div class="topic-book-info"><h4>Essay Structure</h4><p>Introduction, body paragraphs and conclusion</p>
+                <div class="topic-book-info"><h4>Essay Structure in English</h4><p>Introduction, body paragraphs y conclusion</p>
                   <div class="topic-tags"><span class="topic-tag">Thesis</span><span class="topic-tag">Topic sentence</span><span class="topic-tag">Conclusion</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t5">
-                <h3>📄 Essay Writing Structure</h3>
-                <p>A well-structured <strong>essay</strong> in English has three main parts: introduction, body, and conclusion. Each part has a specific function and helps communicate your ideas clearly and logically.</p>
+                <h3>📄 How to Write an Essay in English</h3>
+                <p>A well-structured essay has three main parts: <strong>introduction</strong> (presents the topic and thesis), <strong>body</strong> (develops arguments with evidence), and <strong>conclusion</strong> (summarizes and reinforces the thesis).</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Essay Structure</h4>
+                    <h4>📖 Essay Structure</h4>
                     <ul>
-                      <li><strong>Introduction:</strong> Hook (attention-grabber) + Background + Thesis statement (main argument)</li>
-                      <li><strong>Body Paragraph 1:</strong> Topic sentence + Evidence/Example + Explanation</li>
-                      <li><strong>Body Paragraph 2:</strong> Topic sentence + Evidence/Example + Explanation</li>
-                      <li><strong>Conclusion:</strong> Restate thesis + Summary of points + Closing thought</li>
+                      <li><strong>Introduction:</strong> hook (attention-grabber) + background + thesis statement</li>
+                      <li><strong>Body paragraph 1:</strong> topic sentence + evidence + analysis + transition</li>
+                      <li><strong>Body paragraph 2:</strong> topic sentence + evidence + analysis</li>
+                      <li><strong>Conclusion:</strong> restate thesis + summary + final thought</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Useful Linking Words</h4>
+                    <h4>🔗 Useful linking words</h4>
                     <ul>
-                      <li><strong>Adding:</strong> Furthermore, Moreover, In addition, Also</li>
-                      <li><strong>Contrasting:</strong> However, On the other hand, Although, Despite</li>
-                      <li><strong>Cause/Effect:</strong> Therefore, As a result, Consequently, Because of</li>
-                      <li><strong>Conclusion:</strong> In conclusion, To summarize, Overall</li>
+                      <li><strong>Addition:</strong> furthermore, in addition, moreover, also</li>
+                      <li><strong>Contrast:</strong> however, on the other hand, although, despite</li>
+                      <li><strong>Cause/Effect:</strong> therefore, consequently, as a result</li>
+                      <li><strong>Examples:</strong> for example, for instance, such as</li>
+                      <li><strong>Conclusion:</strong> in conclusion, to sum up, overall</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Introduction → Body (2-3 paragraphs) → Conclusion</div>
                 <div class="exercises-section">
                   <h4>✏️ Exercises</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
-                      <strong>Exercise 1 — Identify the parts</strong>
-                      Label: (a) "In conclusion, social media has both benefits and drawbacks." (b) "Social media has transformed how we communicate." (c) "Firstly, it allows people to connect instantly worldwide."
+                      <strong>Exercise 1</strong>
+                      Write a thesis statement for the topic: "Social media has a negative impact on teenagers."
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t5">(a) <strong>Conclusion sentence</strong> (b) <strong>Thesis statement / Introduction</strong> (c) <strong>Topic sentence of body paragraph 1</strong></div>
+                      <div class="answer-box" id="ans1-t5">Sample thesis: "Although social media can help teenagers stay connected, its negative effects on mental health, academic performance, and sleep habits outweigh the benefits."</div>
                     </li>
                     <li class="exercise-item">
-                      <strong>Exercise 2 — Creative writing</strong>
-                      Write a short introduction (3-4 sentences) for the topic: "Technology in education."
+                      <strong>Exercise 2 — Writing</strong>
+                      Write a 4-paragraph essay (introduction + 2 body paragraphs + conclusion) about: "Technology in education: benefits and challenges."
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t5">Sample: "Technology has become an essential part of our daily lives. In recent years, schools around the world have begun using digital tools to improve learning. However, the impact of technology on education is a topic of great debate. <strong>This essay will argue that technology, when used correctly, greatly enhances the learning experience.</strong>" (last sentence = thesis)</div>
+                      <div class="answer-box" id="ans2-t5">Estructura esperada: <strong>Intro:</strong> hook sobre tecnología en aulas + thesis con postura. <strong>Párrafo 1:</strong> beneficios (acceso a información, motivación, personalización). <strong>Párrafo 2:</strong> desafíos (distracción, desigualdad de acceso, salud visual). <strong>Conclusión:</strong> balance — tecnología es útil si se usa con guía del docente.</div>
                     </li>
                   </ul>
                 </div>
-                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Close</button>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
               </div>
-
             </div>
           </div>
         </div>
@@ -359,7 +340,7 @@
   </main>
   <footer class="site-footer">
     <div class="footer-actions">
-      <a href="tema-historia-3.html" class="button button-secondary">← Historia</a>
+      <a href="grado-3.html" class="button button-secondary">← 3° Secundaria</a>
       <a href="tema-arte-3.html" class="button button-primary">Arte →</a>
     </div>
   </footer>
@@ -367,24 +348,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
-    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
-    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(id,card){document.getElementById(id).classList.remove('open');if(card)card.style.borderColor='';}
     function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
     const totalTopics=5,opened=new Set();
-    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
     function downloadPDF(){
       const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
-      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      const t=(tx,sz,b,c)=>{doc.setFontSize(sz);doc.setFont('helvetica',b?'bold':'normal');doc.setTextColor(...(c||[30,30,30]));doc.splitTextToSize(tx,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=sz*0.45;});y+=2;};
       doc.setFillColor(37,99,235);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ingles - 3 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
-      [{ti:'Past Continuous vs Past Simple',c:'Past Simple: accion completada. Past Continuous: was/were + V-ing (accion en progreso). Juntos: I was reading when the phone rang. while = acciones paralelas, when = accion interrumpida.'},
-       {ti:'Present Perfect',c:'have/has + past participle. Usos: experiencias, acciones recientes, situaciones que continuan. Keywords: since (punto), for (duracion), already, yet, just. Participios irregulares: go-gone, eat-eaten, see-seen.'},
-       {ti:'Modal Verbs',c:'can = habilidad. must/have to = obligacion. should = consejo. may/might = posibilidad. could = habilidad pasada/solicitud cortés. Negacion: cant, mustnt, shouldnt, dont have to. Estructura: modal + infinitivo sin to.'},
-       {ti:'Reported Speech',c:'Backshift: present > past, will > would, can > could. say (sin objeto) vs tell (con objeto). Cambios: I > he/she, we > they, now > then, tomorrow > the next day. Ej: She said she was tired.'},
-       {ti:'Essay Structure',c:'Introduccion: hook + background + thesis. Cuerpo: topic sentence + evidencia + explicacion (2-3 parrafos). Conclusion: restate thesis + resumen + cierre. Conectores: Furthermore, However, Therefore, In conclusion.'},
+      [{ti:'Past Continuous',c:'Subject + was/were + verb-ing. Accion en progreso en el pasado. Combinacion: While + Past Cont. (accion larga) + When + Past Simple (accion corta que interrumpe). Ej: She was sleeping when the phone rang.'},
+       {ti:'Present Perfect',c:'Subject + have/has + PP. Usos: experiencias (ever/never), acciones recientes (just), acciones no completadas (yet), acciones con resultado presente. Since (punto inicio) vs For (duracion). Already (afirm) vs Yet (neg/preg).'},
+       {ti:'Modal Verbs',c:'can/could (habilidad), must/have to (obligacion), should/ought to (consejo), may/might (posibilidad). Mustn\'t (prohibicion) vs Don\'t have to (no necesario). Formas pasadas: could, had to, should have + PP.'},
+       {ti:'Reported Speech',c:'Backshift: Present->Past, Past->Past Perfect, Will->Would, Can->Could. Cambios: today->that day, tomorrow->the next day, here->there. Say (sin objeto) vs Tell (con objeto: told me).'},
+       {ti:'Essay Structure',c:'4 partes: Intro (hook+thesis), Body 1 (topic sentence+evidence+analysis), Body 2, Conclusion (restate+summary). Linking words: furthermore, however, therefore, for example, in conclusion.'},
       ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[37,99,235]);t(x.c,10,false,[50,50,60]);y+=3;});
-      y+=5;t('Review Exercises',13,true,[37,99,235]);
-      ['1. Complete: I __ (study) when she __ (call).','2. Choose since/for: three years / primary school.','3. Transform: "I love football." (John said...)','4. Write a thesis statement about social media.','5. Identify: should, must, might in sentences.'].forEach(e=>t(e,10,false));
-      doc.save('Ingles-3-Secundaria-EduNovaOne.pdf');
+      y+=5;t('Exercises',13,true,[37,99,235]);
+      ['1. Complete: While I ___(study), my sister ___(call) me.','2. Complete: She ___(live) here since 2015. I ___(not finish) yet.','3. Choose modal: You ___ wear seatbelt (obligation). You ___ come (not necessary).','4. Reported: "I will come tomorrow." -> He said...','5. Write a thesis statement for: Social media and teenagers.'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Ingles-3Secundaria-EduNovaOne.pdf');
     }
   </script>
 </body>
