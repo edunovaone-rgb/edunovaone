@@ -11,11 +11,8 @@
 </head>
 <body>
   <nav class="uni-nav">
-    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
-    <ul class="uni-nav-links">
-      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
-      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
-    </ul>
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
     <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
   </nav>
   <main class="page-content">
@@ -38,7 +35,7 @@
           <li><a href="#t3"><span class="toc-num">3</span>El Ensayo</a></li>
           <li><p class="toc-section-title">III. Literatura</p></li>
           <li><a href="#t4"><span class="toc-num">4</span>Literatura Universal</a></li>
-          <li><a href="#t5"><span class="toc-num">5</span>Medios de Comunicación</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Periodismo y Medios</a></li>
         </ul>
         <div class="progress-block">
           <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
@@ -48,63 +45,57 @@
       </aside>
       <div class="book-main">
 
-        <div class="chapter-card open" id="ch-ling">
-          <div class="chapter-header" onclick="toggleChapter('ch-ling')">
-            <div class="chapter-num num-basic" style="background:linear-gradient(135deg,#dc2626,#ef4444)">I</div>
-            <div class="chapter-header-text"><p class="chapter-level">Lingüística</p><h2>Pragmática y Variedad Lingüística</h2><p>Actos de habla, dialectos y registros</p></div>
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Lingüística Avanzada</p><h2>Pragmática y Variedad Lingüística</h2><p>El contexto y la diversidad del español</p></div>
             <span class="chapter-toggle">▼</span>
           </div>
           <div class="chapter-body">
-            <div class="section-banner" style="background:linear-gradient(135deg,rgba(220,38,38,0.07),rgba(252,165,165,0.04));border:1px solid rgba(220,38,38,0.12)">
-              <span class="banner-icon">🗣️</span><div><h3>El lenguaje en uso</h3><p>La pragmática estudia cómo usamos el lenguaje en contextos reales, más allá de la gramática.</p></div>
-            </div>
+            <div class="section-banner banner-basic"><span class="banner-icon">🗣️</span><div><h3>El lenguaje en contexto</h3><p>La pragmática estudia cómo el contexto determina el significado real de lo que decimos. El mismo enunciado puede tener significados muy distintos según quién lo dice, a quién y cuándo.</p></div></div>
             <div class="topics-grid">
 
               <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
-                <div class="topic-book-cover cover-comm">🗣️</div>
-                <div class="topic-book-info"><h4>Pragmática y Contexto</h4><p>Actos de habla: locucionario, ilocucionario, perlocucionario</p>
-                  <div class="topic-tags"><span class="topic-tag">Actos de habla</span><span class="topic-tag">Deixis</span><span class="topic-tag">Austin</span></div>
+                <div class="topic-book-cover cover-comm">🎯</div>
+                <div class="topic-book-info"><h4>Pragmática y Actos de Habla</h4><p>Qué hacemos cuando hablamos: actos locucionarios, ilocucionarios, perlocucionarios</p>
+                  <div class="topic-tags"><span class="topic-tag">Actos de habla</span><span class="topic-tag">Deixis</span><span class="topic-tag">Implicatura</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t1">
-                <h3>🗣️ Pragmática y Actos de Habla</h3>
-                <p>La <strong>pragmática</strong> es la rama de la lingüística que estudia el uso del lenguaje en contexto. J.L. Austin propuso la teoría de los <strong>actos de habla</strong>: toda emisión lingüística implica tres actos simultáneos.</p>
+                <h3>🎯 Pragmática — El Lenguaje en Acción</h3>
+                <p>La <strong>pragmática</strong> estudia cómo el contexto influye en la interpretación del lenguaje. John Austin y John Searle desarrollaron la teoría de los <strong>actos de habla</strong>: cuando hablamos, hacemos algo.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Actos de habla (Austin/Searle)</h4>
+                    <h4>🗣️ Actos de habla (Austin/Searle)</h4>
                     <ul>
-                      <li><strong>Locucionario:</strong> el acto físico de decir algo; el contenido literal</li>
-                      <li><strong>Ilocucionario:</strong> la intención del hablante al decirlo (ordenar, prometer, preguntar)</li>
-                      <li><strong>Perlocucionario:</strong> el efecto que produce en el oyente</li>
-                      <li>Ejemplo: "Hace frío aquí" → locucionario: descripción del clima; ilocucionario: petición de cerrar la ventana; perlocucionario: el oyente cierra la ventana</li>
+                      <li><strong>Acto locucionario:</strong> el enunciado en sí mismo — las palabras pronunciadas. "Hace frío aquí."</li>
+                      <li><strong>Acto ilocucionario:</strong> la intención del hablante — pedir, ordenar, prometer. "Hace frío aquí" = petición de cerrar la ventana</li>
+                      <li><strong>Acto perlocucionario:</strong> el efecto producido en el oyente — la ventana se cierra</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Deixis y contexto</h4>
+                    <h4>📍 Deixis e Implicatura</h4>
                     <ul>
-                      <li><strong>Deixis:</strong> elementos lingüísticos cuyo significado depende del contexto</li>
-                      <li><strong>Deixis personal:</strong> yo, tú, él (cambia según quién habla)</li>
-                      <li><strong>Deixis espacial:</strong> aquí, allí, este, ese, aquel</li>
-                      <li><strong>Deixis temporal:</strong> ahora, ayer, mañana, entonces</li>
-                      <li><strong>Principio de cooperación (Grice):</strong> cantidad, calidad, relación y modo</li>
+                      <li><strong>Deixis:</strong> palabras cuyo significado depende del contexto: yo, tú, aquí, ahora, esto</li>
+                      <li><strong>Implicatura (Grice):</strong> lo que se sugiere sin decirse explícitamente. "¿Tienes hora?" → No pregunta si tienes reloj, pide que digas la hora</li>
+                      <li><strong>Máximas de Grice:</strong> cantidad, calidad, relación, manera</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Acto locucionario → Acto ilocucionario → Acto perlocucionario</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Analiza los tres actos de habla en: "¿Puedes pasarme la sal?"
+                      Identifica el acto ilocucionario en: "Sería bueno que llegaras a tiempo mañana." (dicho por el jefe al empleado)
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t1"><strong>Locucionario:</strong> pregunta sobre la capacidad física del oyente de pasar la sal. <strong>Ilocucionario:</strong> en realidad es una petición/solicitud cortés de que le pase la sal. <strong>Perlocucionario:</strong> el oyente pasa la sal (efecto en la conducta del receptor).</div>
+                      <div class="answer-box" id="ans1-t1">Aunque gramaticalmente es una sugerencia (condicional), el acto ilocucionario es una <strong>orden o advertencia</strong>. La relación de poder entre jefe y empleado determina que no es solo una sugerencia educada.</div>
                     </li>
                     <li class="exercise-item">
                       <strong>Ejercicio 2</strong>
-                      Identifica el tipo de deixis en: "Ese libro que tienes ahí es de mi amigo."
+                      ¿Qué es la deixis? Da 3 ejemplos de palabras deícticas.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t1">"<strong>Ese</strong>" → deixis espacial (indica distancia media del hablante). "<strong>ahí</strong>" → deixis espacial (lugar cerca del oyente). "<strong>mi</strong>" → deixis personal (se refiere al hablante).</div>
+                      <div class="answer-box" id="ans2-t1">La deixis son expresiones cuyo significado solo se entiende en contexto. Ejemplos: <strong>yo</strong> (persona que habla), <strong>aquí</strong> (lugar del hablante), <strong>ahora</strong> (momento del habla), <strong>esto</strong> (objeto cercano al hablante).</div>
                     </li>
                   </ul>
                 </div>
@@ -112,49 +103,43 @@
               </div>
 
               <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
-                <div class="topic-book-cover cover-comm">🌍</div>
-                <div class="topic-book-info"><h4>Variedad Lingüística</h4><p>Dialectos, sociolectos, registros y jergas</p>
-                  <div class="topic-tags"><span class="topic-tag">Dialecto</span><span class="topic-tag">Sociolecto</span><span class="topic-tag">Registro</span></div>
+                <div class="topic-book-cover cover-comm">🗺️</div>
+                <div class="topic-book-info"><h4>Variedad Lingüística</h4><p>Dialectos, sociolectos, registros y el español en el Perú</p>
+                  <div class="topic-tags"><span class="topic-tag">Dialecto</span><span class="topic-tag">Registro</span><span class="topic-tag">Jerga</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t2">
-                <h3>🌍 Lengua y Variedad Lingüística</h3>
-                <p>El español no se habla igual en todos los lugares ni en todas las situaciones. Las <strong>variedades lingüísticas</strong> son las distintas formas en que se usa una misma lengua según factores geográficos, sociales y situacionales.</p>
+                <h3>🗺️ Variedad Lingüística del Español</h3>
+                <p>El español no es uniforme. Existe una enorme variedad geográfica, social y situacional. Conocer estas variedades es importante para comunicarse eficazmente en distintos contextos.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Tipos de variedades</h4>
+                    <h4>🌍 Tipos de variedades</h4>
                     <ul>
-                      <li><strong>Dialecto:</strong> variedad geográfica; el español peruano, el español rioplatense, el castellano de España</li>
-                      <li><strong>Sociolecto:</strong> variedad social; relacionada con clase, edad, profesión o grupo</li>
-                      <li><strong>Idiolecto:</strong> variedad individual; forma única de hablar de cada persona</li>
-                      <li><strong>Cronolecto:</strong> variedad por edad (lenguaje de jóvenes vs adultos mayores)</li>
+                      <li><strong>Dialecto:</strong> variedad geográfica. El español de Lima, Cusco, Buenos Aires o México tienen diferencias</li>
+                      <li><strong>Sociolecto:</strong> variedad social. El habla de distintos grupos socioeconómicos o generacionales</li>
+                      <li><strong>Jerga/Argot:</strong> vocabulario especializado de un grupo (jerga estudiantil, médica, criminal)</li>
+                      <li><strong>Idiolecto:</strong> la forma personal y única de hablar de cada individuo</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Registros y Jergas</h4>
+                    <h4>🎭 Registros lingüísticos</h4>
                     <ul>
-                      <li><strong>Registro formal:</strong> situaciones oficiales, académicas; vocabulario preciso, sin contracciones</li>
-                      <li><strong>Registro informal/coloquial:</strong> conversaciones cotidianas entre amigos o familiares</li>
-                      <li><strong>Jerga:</strong> vocabulario especial de un grupo (jerga juvenil, jerga médica, argot criminal)</li>
-                      <li>La elección del registro depende del contexto, interlocutor y propósito</li>
+                      <li><strong>Formal/culto:</strong> situaciones académicas, profesionales, oficiales. Vocabulario preciso, sintaxis cuidada</li>
+                      <li><strong>Estándar:</strong> comunicación cotidiana neutra</li>
+                      <li><strong>Coloquial/informal:</strong> conversación entre amigos y familia. Abreviaciones, expresiones informales</li>
+                      <li><strong>Vulgar:</strong> palabras soeces, nivel sociocultural bajo</li>
+                      <li>Saber cambiar de registro = competencia comunicativa</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Variedad lingüística = geográfica (dialecto) + social (sociolecto) + situacional (registro)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Reescribe en registro formal: "Oye, tío, ¿qué onda? Te llamo para que me expliques eso del examen."
+                      Reescribe la siguiente oración en registro formal: "Oye, la clase de mate estuvo super complicada, no entendí na."
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t2">Registro formal: "Estimado profesor, me comunico con usted para solicitarle una explicación adicional sobre los temas del examen."</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Ejercicio 2</strong>
-                      ¿Cuál es la diferencia entre dialecto y jerga? Da un ejemplo de cada uno en Perú.
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t2"><strong>Dialecto:</strong> variedad regional; en Perú, el español andino incluye entonación y palabras quechuas ("lonche", "jato"), diferente al español limeño. <strong>Jerga:</strong> vocabulario de un grupo específico; jerga juvenil limeña: "causa" (amigo), "arriba" (bien), "de ley" (de acuerdo).</div>
+                      <div class="answer-box" id="ans1-t2">Formal: "La clase de Matemática resultó particularmente difícil de comprender en su totalidad." o "Tuve dificultades para comprender el contenido de la clase de Matemática."</div>
                     </li>
                   </ul>
                 </div>
@@ -165,112 +150,105 @@
           </div>
         </div>
 
-        <div class="chapter-card" id="ch-prod">
-          <div class="chapter-header" onclick="toggleChapter('ch-prod')">
-            <div class="chapter-num num-inter" style="background:linear-gradient(135deg,#dc2626,#f97316)">II</div>
-            <div class="chapter-header-text"><p class="chapter-level">Producción de Textos y Literatura</p><h2>Ensayo y Literatura Universal</h2><p>Argumentación escrita y grandes clásicos</p></div>
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Producción Textual</p><h2>El Ensayo Académico</h2><p>Tipos, estructura y técnicas de argumentación</p></div>
             <span class="chapter-toggle">▼</span>
           </div>
           <div class="chapter-body">
-            <div class="section-banner" style="background:linear-gradient(135deg,rgba(220,38,38,0.06),rgba(249,115,22,0.04));border:1px solid rgba(220,38,38,0.1)">
-              <span class="banner-icon">✍️</span><div><h3>Escribir y leer el mundo</h3><p>El ensayo y la literatura universal desarrollan el pensamiento crítico y la sensibilidad hacia el lenguaje.</p></div>
-            </div>
+            <div class="section-banner banner-inter"><span class="banner-icon">✍️</span><div><h3>Escribe con autoridad</h3><p>El ensayo es el género más exigido en la universidad. Dominarlo implica organizar ideas con rigor, argumentar con evidencia y escribir con estilo propio.</p></div></div>
             <div class="topics-grid">
-
               <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
                 <div class="topic-book-cover cover-comm">📝</div>
-                <div class="topic-book-info"><h4>El Ensayo</h4><p>Estructura, tipos y técnicas de argumentación</p>
-                  <div class="topic-tags"><span class="topic-tag">Tesis</span><span class="topic-tag">Argumentación</span><span class="topic-tag">Conclusión</span></div>
+                <div class="topic-book-info"><h4>El Ensayo</h4><p>Tipos de ensayo, estructura y técnicas de argumentación avanzada</p>
+                  <div class="topic-tags"><span class="topic-tag">Tesis</span><span class="topic-tag">Evidencia</span><span class="topic-tag">Contra-argumento</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t3">
-                <h3>📝 El Ensayo</h3>
-                <p>El <strong>ensayo</strong> es un género literario en prosa que expone y argumenta ideas del autor sobre un tema. A diferencia de otros textos, permite la subjetividad del autor y su visión personal del mundo.</p>
+                <h3>📝 El Ensayo Académico</h3>
+                <p>El <strong>ensayo</strong> es un texto en prosa que desarrolla una tesis sobre un tema con argumentos propios. A diferencia del texto expositivo, el ensayo tiene una voz personal y una postura definida. Es el género predominante en la universidad.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Estructura del ensayo</h4>
+                    <h4>📚 Tipos de ensayo</h4>
                     <ul>
-                      <li><strong>Introducción:</strong> presentación del tema, tesis (postura del autor)</li>
-                      <li><strong>Desarrollo:</strong> argumentos que sustentan la tesis, evidencias, ejemplos, contraargumentos</li>
-                      <li><strong>Conclusión:</strong> síntesis, reafirmación de la tesis, reflexión final</li>
-                      <li><strong>Tipos:</strong> académico (riguroso, objetivo), periodístico (accesible, opinativo), literario (subjetivo, estético)</li>
+                      <li><strong>Ensayo académico/científico:</strong> rigurosamente argumentado, con citas y bibliografía</li>
+                      <li><strong>Ensayo periodístico:</strong> columna de opinión, más informal</li>
+                      <li><strong>Ensayo literario:</strong> reflexión sobre una obra o autor</li>
+                      <li><strong>Ensayo filosófico:</strong> análisis de conceptos o ideas</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Técnicas de argumentación</h4>
+                    <h4>🏗️ Estructura del ensayo</h4>
                     <ul>
-                      <li><strong>Argumento de autoridad:</strong> citar expertos o fuentes confiables</li>
-                      <li><strong>Argumento por analogía:</strong> comparar con casos similares</li>
-                      <li><strong>Argumento causal:</strong> explicar causa-efecto</li>
-                      <li><strong>Argumento por ejemplificación:</strong> usar casos concretos</li>
-                      <li><strong>Contraargumento:</strong> mencionar la postura contraria para refutarla</li>
+                      <li><strong>Introducción:</strong> contextualización + tesis clara + plan del ensayo</li>
+                      <li><strong>Desarrollo (3-5 párrafos):</strong> cada párrafo = 1 argumento + evidencia + análisis</li>
+                      <li><strong>Contra-argumento:</strong> rebatir la postura opuesta fortalece la tesis</li>
+                      <li><strong>Conclusión:</strong> síntesis + reflexión final + proyección</li>
+                      <li>Cada párrafo comienza con oración tópica</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Ensayo: Tesis → Argumentos → (Contraargumentos) → Conclusión</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
-                      <strong>Ejercicio 1 — Identificación</strong>
-                      Lee y clasifica: "Según el Dr. García, el uso del celular en clase reduce el rendimiento académico en un 20%." ¿Qué tipo de argumento es?
+                      <strong>Ejercicio 1 — Escritura</strong>
+                      Escribe un ensayo de 4 párrafos sobre: "La educación en línea es superior a la educación presencial." Incluye tesis, 2 argumentos, 1 contra-argumento y conclusión.
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t3">Es un <strong>argumento de autoridad</strong> (se cita a un experto: "el Dr. García") combinado con un <strong>dato estadístico</strong> (20%). Es efectivo porque apela a una fuente confiable y una cifra concreta.</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Ejercicio 2 — Producción</strong>
-                      Escribe una tesis y un argumento sobre el tema: "El deporte en la educación".
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t3"><strong>Tesis:</strong> "El deporte debería ser obligatorio en todos los colegios secundarios del Perú." <strong>Argumento:</strong> "La práctica regular de deporte mejora no solo la salud física sino también el rendimiento académico, ya que la actividad física incrementa el flujo sanguíneo al cerebro, favoreciendo la concentración y la memoria."</div>
+                      <div class="answer-box" id="ans1-t3">Estructura esperada: <strong>Intro+Tesis:</strong> afirmar o negar la superioridad. <strong>Arg 1:</strong> flexibilidad horaria y acceso global. <strong>Arg 2</strong> o <strong>Contra-arg:</strong> falta de socialización, brechas digitales, menos motivación. <strong>Conclusión:</strong> balance — ambas modalidades tienen fortalezas complementarias.</div>
                     </li>
                   </ul>
                 </div>
                 <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Literatura y Medios</p><h2>Literatura Universal y Periodismo</h2><p>Los grandes clásicos y los géneros periodísticos</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">📚</span><div><h3>Las obras que cambiaron el mundo</h3><p>Algunos libros transformaron para siempre la manera en que la humanidad se ve a sí misma. Conocer los grandes clásicos de la literatura universal es parte de toda formación cultural sólida.</p></div></div>
+            <div class="topics-grid">
 
               <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
-                <div class="topic-book-cover cover-comm">📚</div>
-                <div class="topic-book-info"><h4>Literatura Universal — Clásicos</h4><p>Homero, Shakespeare, Cervantes: las grandes obras</p>
+                <div class="topic-book-cover cover-comm">📜</div>
+                <div class="topic-book-info"><h4>Literatura Universal — Clásicos</h4><p>Homero, Shakespeare, Cervantes y la novela moderna</p>
                   <div class="topic-tags"><span class="topic-tag">Homero</span><span class="topic-tag">Shakespeare</span><span class="topic-tag">Cervantes</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t4">
-                <h3>📚 Literatura Universal — Grandes Clásicos</h3>
-                <p>Los <strong>clásicos de la literatura universal</strong> son obras que han resistido el paso del tiempo por su valor estético, filosófico y humano. Conocerlos es fundamental para comprender la cultura occidental.</p>
+                <h3>📜 Grandes Clásicos de la Literatura Universal</h3>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📖 Las grandes obras</h4>
+                    <h4>🏛️ Literatura Griega y Renacentista</h4>
                     <ul>
-                      <li><strong>Homero (S.VIII a.C.):</strong> Ilíada (Guerra de Troya, Aquiles) y Odisea (regreso de Ulises); épica griega; origen de la narrativa occidental</li>
-                      <li><strong>Shakespeare (1564-1616):</strong> Hamlet (la indecisión y la traición), Otelo, Romeo y Julieta; teatro isabelino inglés; humanismo renacentista</li>
-                      <li><strong>Cervantes (1547-1616):</strong> Don Quijote de la Mancha; primera novela moderna; crítica al idealismo; símbolo del español universal</li>
+                      <li><strong>Homero (s.VIII a.C.):</strong> "La Ilíada" (guerra de Troya, ira de Aquiles) y "La Odisea" (viaje de Odiseo a Ítaca). Epopeyas fundadoras de la literatura occidental</li>
+                      <li><strong>Cervantes (1547-1616):</strong> "Don Quijote de la Mancha" (1605/1615). Primera novela moderna. Parodia de los libros de caballerías. Don Quijote y Sancho Panza como contraste idealismo/realismo</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>💡 Temas universales</h4>
+                    <h4>🎭 Shakespeare y la Novela</h4>
                     <ul>
-                      <li><strong>Ilíada:</strong> la guerra, el honor, la ira (Aquiles), la gloria efímera</li>
-                      <li><strong>Odisea:</strong> el viaje como búsqueda, la lealtad (Penélope), el regreso al hogar</li>
-                      <li><strong>Hamlet:</strong> "Ser o no ser..."; dilema existencial, venganza, locura, traición</li>
-                      <li><strong>Don Quijote:</strong> ilusión vs realidad, locura noble, el ideal caballeresco en decadencia</li>
+                      <li><strong>William Shakespeare (1564-1616):</strong> "Hamlet" (venganza, duda, locura), "Romeo y Julieta" (amor trágico), "Macbeth" (ambición), "Otelo" (celos). El mayor dramaturgo del idioma inglés</li>
+                      <li><strong>Franz Kafka:</strong> "La metamorfosis" — alienación moderna</li>
+                      <li><strong>Fyodor Dostoievski:</strong> "Crimen y castigo" — psicología del crimen</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Clásico = obra que permanece vigente a través del tiempo y las culturas</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      ¿Cuál es la diferencia temática entre la Ilíada y la Odisea?
+                      ¿Por qué se considera a Don Quijote la primera novela moderna?
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t4"><strong>Ilíada:</strong> narra la Guerra de Troya, centrada en la ira de Aquiles y la batalla; temas de guerra, honor militar y gloria. <strong>Odisea:</strong> narra el viaje de regreso de Ulises (Odiseo) a Ítaca, con múltiples aventuras; temas de astucia, lealtad, hogar y superación de obstáculos.</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Ejercicio 2 — Análisis</strong>
-                      ¿Por qué Don Quijote es considerada la primera novela moderna?
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t4">Don Quijote (1605, 1615) de Cervantes es la primera novela moderna porque: (1) tiene un personaje psicológicamente complejo con evolución interior, (2) usa la parodia y la metaficción (la novela habla de sí misma), (3) presenta el conflicto entre ilusión y realidad de forma sofisticada, y (4) su prosa narrativa en prosa estableció el modelo de la novela occidental.</div>
+                      <div class="answer-box" id="ans1-t4">Porque es la primera obra que presenta un protagonista complejo con <strong>psicología interior</strong>, cuyo punto de vista subjetivo choca con la realidad objetiva. Además, reflexiona sobre la propia naturaleza de la ficción y la escritura, características que definen a la novela moderna.</div>
                     </li>
                   </ul>
                 </div>
@@ -279,47 +257,40 @@
 
               <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
                 <div class="topic-book-cover cover-comm">📰</div>
-                <div class="topic-book-info"><h4>Medios de Comunicación</h4><p>Noticia, reportaje, crónica y editorial</p>
+                <div class="topic-book-info"><h4>Periodismo y Medios de Comunicación</h4><p>Géneros periodísticos: noticia, reportaje, crónica, editorial</p>
                   <div class="topic-tags"><span class="topic-tag">Noticia</span><span class="topic-tag">Reportaje</span><span class="topic-tag">Crónica</span></div>
                 </div>
               </div>
               <div class="topic-detail" id="detail-t5">
-                <h3>📰 Medios de Comunicación y Periodismo</h3>
-                <p>Los <strong>medios de comunicación</strong> informan, forman opinión y entretienen. El <strong>periodismo</strong> produce distintos tipos de textos según su propósito: informar, interpretar o argumentar.</p>
+                <h3>📰 Periodismo y Géneros Periodísticos</h3>
+                <p>El <strong>periodismo</strong> informa a la sociedad sobre hechos de interés público. Existe una variedad de géneros periodísticos que combinan distintos niveles de objetividad, interpretación y opinión.</p>
                 <div class="detail-columns">
                   <div class="detail-box">
-                    <h4>📌 Géneros periodísticos informativos</h4>
+                    <h4>📋 Géneros informativos</h4>
                     <ul>
-                      <li><strong>Noticia:</strong> hechos actuales y objetivos; pirámide invertida (lo más importante primero); 5 W: qué, quién, cuándo, dónde, por qué</li>
-                      <li><strong>Reportaje:</strong> investigación profunda sobre un tema; incluye testimonios, datos y análisis; más extenso que la noticia</li>
-                      <li><strong>Crónica:</strong> narración de hechos en orden cronológico; con estilo literario; mezcla información y narración</li>
+                      <li><strong>Noticia:</strong> relato objetivo de un hecho reciente. Estructura: pirámide invertida (lo más importante primero). Responde: qué, quién, cuándo, dónde, cómo, por qué</li>
+                      <li><strong>Reportaje:</strong> tratamiento en profundidad de un tema. Mezcla información, testimonios y análisis</li>
+                      <li><strong>Entrevista:</strong> diálogo estructurado para obtener declaraciones</li>
                     </ul>
                   </div>
                   <div class="detail-box">
-                    <h4>📝 Géneros de opinión</h4>
+                    <h4>📋 Géneros de opinión</h4>
                     <ul>
-                      <li><strong>Editorial:</strong> postura oficial del medio sobre un tema; sin firma; representa a la institución</li>
-                      <li><strong>Columna de opinión:</strong> opinión firmada de un periodista o analista</li>
-                      <li><strong>Artículo de fondo:</strong> análisis profundo con argumentación</li>
-                      <li>Diferencia clave: informativos = hechos; opinión = interpretación y juicio de valor</li>
+                      <li><strong>Editorial:</strong> postura del medio de comunicación sobre un hecho. Sin firma, voz institucional</li>
+                      <li><strong>Columna de opinión:</strong> punto de vista personal de un periodista. Con firma</li>
+                      <li><strong>Crónica:</strong> mezcla narración e información. Más subjetiva, con estilo literario</li>
+                      <li><strong>Fake news:</strong> noticias falsas — siempre verificar la fuente</li>
                     </ul>
                   </div>
                 </div>
-                <div class="formula-display">Noticia: ¿Qué? ¿Quién? ¿Cuándo? ¿Dónde? ¿Por qué? ¿Cómo? (las 6 W)</div>
                 <div class="exercises-section">
                   <h4>✏️ Ejercicios</h4>
                   <ul class="exercise-list">
                     <li class="exercise-item">
                       <strong>Ejercicio 1</strong>
-                      Clasifica: "El presidente inauguró ayer la nueva planta solar en Arequipa." ¿Es noticia, crónica o editorial?
+                      Escribe el titular y el primer párrafo de una noticia sobre: "Un equipo de científicos peruanos descubre una nueva especie de orquídea en la Amazonía."
                       <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans1-t5">Es una <strong>noticia</strong>: presenta hechos objetivos recientes (inauguración), responde las 6 W (qué: inauguró planta solar; quién: el presidente; cuándo: ayer; dónde: Arequipa) y no incluye opinión del autor.</div>
-                    </li>
-                    <li class="exercise-item">
-                      <strong>Ejercicio 2</strong>
-                      ¿Cuál es la diferencia entre reportaje y noticia? Da un ejemplo de tema para cada uno.
-                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
-                      <div class="answer-box" id="ans2-t5"><strong>Noticia:</strong> informa brevemente sobre un hecho actual. Ejemplo: "Incendio destruye mercado en Lima." <strong>Reportaje:</strong> investiga en profundidad, con contexto, testimonios y análisis. Ejemplo: "Crisis de incendios en mercados populares: causas, víctimas y soluciones pendientes" (con entrevistas a bomberos, comerciantes, expertos).</div>
+                      <div class="answer-box" id="ans1-t5"><strong>Titular:</strong> "Científicos peruanos descubren nueva especie de orquídea en la Amazonía peruana." <strong>Primer párrafo:</strong> "Un equipo de investigadores de la Universidad Nacional Mayor de San Marcos anunció hoy el hallazgo de una nueva especie de orquídea (Epidendrum amazonicus) en la región de Loreto, en el corazón de la Amazonía peruana. El descubrimiento, publicado en la revista Phytotaxa, es el resultado de tres años de expediciones científicas en la zona."</div>
                     </li>
                   </ul>
                 </div>
@@ -335,7 +306,7 @@
   </main>
   <footer class="site-footer">
     <div class="footer-actions">
-      <a href="tema-ciencias-4.html" class="button button-secondary">← Ciencias</a>
+      <a href="grado-4.html" class="button button-secondary">← 4° Secundaria</a>
       <a href="tema-historia-4.html" class="button button-primary">Historia →</a>
     </div>
   </footer>
@@ -343,22 +314,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
-    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
-    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(id,card){document.getElementById(id).classList.remove('open');if(card)card.style.borderColor='';}
     function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
     const totalTopics=5,opened=new Set();
-    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
     function downloadPDF(){
       const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
-      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      const t=(tx,sz,b,c)=>{doc.setFontSize(sz);doc.setFont('helvetica',b?'bold':'normal');doc.setTextColor(...(c||[30,30,30]));doc.splitTextToSize(tx,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=sz*0.45;});y+=2;};
       doc.setFillColor(220,38,38);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Comunicacion - 4 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
-      [{ti:'Pragmatica y Actos de Habla',c:'Austin/Searle. Locucionario: contenido literal. Ilocucionario: intencion del hablante (pedir, ordenar, prometer). Perlocucionario: efecto en el oyente. Deixis: personal (yo/tu), espacial (aqui/alli), temporal (ahora/ayer). Principios de Grice.'},
-       {ti:'Variedad Lingui­stica',c:'Dialecto: variedad geografica (español andino, rioplatense). Sociolecto: variedad social (edad, clase, profesion). Idiolecto: variedad individual. Registro formal: academico, oficial. Informal: cotidiano. Jerga: vocabulario de grupo especifico.'},
-       {ti:'El Ensayo',c:'Genero de opinion en prosa. Estructura: introduccion (tesis) + desarrollo (argumentos) + conclusion. Tipos: academico, periodistico, literario. Tecnicas: autoridad, analogia, causal, ejemplificacion, contraargumento.'},
-       {ti:'Literatura Universal',c:'Homero: Iliada (guerra Troya, Aquiles) y Odisea (regreso Ulises). Shakespeare: Hamlet (ser o no ser, traicion). Cervantes: Don Quijote (primera novela moderna, ilusion vs realidad). Temas universales: honor, amor, muerte, poder.'},
-       {ti:'Medios de Comunicacion',c:'Noticia: hechos objetivos, piramide invertida, 6W. Reportaje: investigacion profunda, testimonios, analisis. Cronica: orden cronologico, estilo literario. Editorial: postura del medio, sin firma. Columna de opinion: firmada, subjetiva.'},
+      [{ti:'Pragmatica y Actos de Habla',c:'Locucionario (enunciado) vs Ilocucionario (intencion: ordenar, pedir, prometer) vs Perlocucionario (efecto). Deixis: yo, aqui, ahora, esto. Implicatura (Grice): lo que se sugiere sin decirlo.'},
+       {ti:'Variedad Lingüistica',c:'Dialecto (variedad geografica). Sociolecto (variedad social). Jerga (vocabulario de grupo). Idiolecto (habla personal). Registros: formal (academico), estandar (cotidiano), coloquial (amigos), vulgar.'},
+       {ti:'El Ensayo Academico',c:'Tipos: academico, periodistico, literario, filosofico. Estructura: intro+tesis, desarrollo (argumento+evidencia), contra-argumento, conclusion. Voz personal, postura definida, bibliografía en academico.'},
+       {ti:'Literatura Universal',c:'Homero: Iliada (Aquiles, Troya) y Odisea (Odiseo). Cervantes: Don Quijote 1605 (primera novela moderna). Shakespeare: Hamlet (venganza), Romeo y Julieta, Macbeth.'},
+       {ti:'Periodismo y Generos',c:'Noticia: objetivo, piramide invertida (5W). Reportaje: profundidad. Editorial: opinion institucional sin firma. Columna: opinion firmada. Cronica: narración+informacion. Verificar siempre las fuentes.'},
       ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[220,38,38]);t(x.c,10,false,[50,50,60]);y+=3;});
-      doc.save('Comunicacion-4-Secundaria-EduNovaOne.pdf');
+      y+=5;t('Ejercicios de repaso',13,true,[220,38,38]);
+      ['1. Identifica el acto ilocucionario en: "Seria bueno que llegaras a tiempo."','2. Reescribe en registro formal: "la clase de mate estuvo super dificil"','3. Por que Don Quijote es la primera novela moderna?','4. Diferencia entre noticia y reportaje.','5. Escribe el titular de una noticia sobre un descubrimiento cientifico peruano.'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Comunicacion-4Secundaria-EduNovaOne.pdf');
     }
   </script>
 </body>
