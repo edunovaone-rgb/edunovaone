@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Historia, Geografía y Economía | 5° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links"><li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li></ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-5.html">5° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Historia, Geografía y Economía</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#d97706,#f59e0b)">🌍</div>
+          <div><h3>Historia, Geografía y Economía</h3><p>5° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Perú Contemporáneo</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Perú Siglo XXI</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Terrorismo y CVR</a></li>
+          <li><p class="toc-section-title">II. Economía Actual</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Economía Global y Peruana</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Geopolítica del Perú</a></li>
+          <li><p class="toc-section-title">III. Desarrollo Sostenible</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Medio Ambiente y ODS</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Básico</p><h2>Perú Contemporáneo</h2><p>El Perú del siglo XXI: democracia, crisis y memoria</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic"><span class="banner-icon">🇵🇪</span><div><h3>El Perú que vivimos</h3><p>Entender la historia reciente del Perú — la violencia política, la transición democrática y los desafíos actuales — es esencial para ser ciudadanos conscientes y comprometidos.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-history">🇵🇪</div>
+                <div class="topic-book-info"><h4>Perú Siglo XXI</h4><p>Gobiernos democráticos, bicentenario y crisis política</p>
+                  <div class="topic-tags"><span class="topic-tag">Democracia</span><span class="topic-tag">Bicentenario</span><span class="topic-tag">Crisis</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🇵🇪 El Perú en el Siglo XXI</h3>
+                <p>El Perú inició el siglo XXI con la caída de la dictadura de Fujimori (2000) y la transición democrática. Desde entonces, ha alternado entre gobiernos elegidos democráticamente y una profunda crisis política caracterizada por la corrupción e inestabilidad.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🗓️ Gobiernos 2000-2025</h4>
+                    <ul>
+                      <li><strong>Valentín Paniagua (2000-2001):</strong> gobierno de transición democrática</li>
+                      <li><strong>Alejandro Toledo (2001-2006):</strong> primer presidente indígena, crecimiento económico, casos de corrupción</li>
+                      <li><strong>Alan García — 2do gobierno (2006-2011):</strong> boom económico del commodity</li>
+                      <li><strong>Ollanta Humala (2011-2016):</strong> programas sociales, continuidad económica</li>
+                      <li><strong>PPK / Martín Vizcarra (2016-2020):</strong> crisis entre Ejecutivo y Congreso, 6 presidentes en 2 años (2018-2020)</li>
+                      <li><strong>Pedro Castillo (2021-2022):</strong> destituido por el Congreso</li>
+                      <li><strong>Dina Boluarte (2022-):	</strong> bicentenario y continuidad democrática</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🎂 Bicentenario 2021</h4>
+                    <ul>
+                      <li>200 años de la Proclamación de la Independencia (28 julio 1821)</li>
+                      <li>Contexto: pandemia COVID-19 y crisis política simultáneas</li>
+                      <li><strong>Logros en 200 años:</strong> reducción de la pobreza (de 60% en 2004 a 27% en 2023), crecimiento del PBI, expansión educativa</li>
+                      <li><strong>Desafíos:</strong> corrupción sistémica, desigualdad, informalidad (70% de la economía), conflictos sociales</li>
+                      <li>El Acuerdo Nacional (2002): 31 políticas de Estado consensuadas</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué el período 2018-2022 fue tan inestable políticamente en el Perú?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">Por el enfrentamiento entre el Poder Ejecutivo y el Congreso de la República. Ambos usaron sus facultades constitucionales en exceso: el Congreso vacó a varios presidentes por "incapacidad moral", y el Ejecutivo disolvió el Congreso en 2019. Además, el caso Lava Jato involucró a casi todos los expresidentes en actos de corrupción.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Menciona dos logros y dos desafíos del Perú a sus 200 años de independencia.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1"><strong>Logros:</strong> reducción de la pobreza extrema (de más del 60% al ~27%), mayor acceso a educación y salud pública. <strong>Desafíos:</strong> corrupción en todos los niveles del Estado, alta informalidad laboral y económica (~70%).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-history">☮️</div>
+                <div class="topic-book-info"><h4>Terrorismo en el Perú y CVR</h4><p>Sendero Luminoso, MRTA, la CVR y la memoria</p>
+                  <div class="topic-tags"><span class="topic-tag">Sendero</span><span class="topic-tag">CVR</span><span class="topic-tag">Memoria</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>☮️ El Terrorismo en el Perú (1980–2000)</h3>
+                <p>Entre 1980 y 2000, el Perú vivió un período de violencia extrema a manos de dos grupos terroristas: <strong>Sendero Luminoso</strong> y el <strong>MRTA</strong>. La Comisión de la Verdad y Reconciliación (CVR) investigó estos hechos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>💥 Sendero Luminoso y MRTA</h4>
+                    <ul>
+                      <li><strong>Sendero Luminoso (PCP-SL):</strong> fundado por Abimael Guzmán en Ayacucho, ideología maoísta. Inicio de acciones: 17 mayo 1980 (Chuschi, Ayacucho)</li>
+                      <li>Método: ataques a civiles, masacres de comunidades, atentados en ciudades</li>
+                      <li><strong>MRTA:</strong> Movimiento Revolucionario Túpac Amaru, más pequeño y de ideología castrista. Tomada de la Embajada Japonesa (1996)</li>
+                      <li>Captura de Guzmán: 12 setiembre 1992 — punto de inflexión del conflicto</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📋 Informe CVR (2003)</h4>
+                    <ul>
+                      <li>Creada en 2001 bajo el gobierno de Toledo</li>
+                      <li>Investigó el período 1980-2000</li>
+                      <li><strong>~69,280 personas muertas o desaparecidas</strong></li>
+                      <li>75% de víctimas eran de comunidades quechuahablantes</li>
+                      <li>Responsables: 54% Sendero Luminoso, 37% fuerzas del Estado, 1.5% MRTA</li>
+                      <li>Recomendó reparaciones, reformas institucionales y la educación en derechos humanos</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">~69,280 víctimas | 20 años de violencia | 40 provincias afectadas</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué es importante recordar el período del terrorismo peruano?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Recordar este período es fundamental para: 1) <strong>Honrar a las víctimas</strong> y sus familias. 2) <strong>Garantizar que no se repita</strong> — conocer las causas (pobreza, exclusión, manipulación ideológica) ayuda a prevenirlas. 3) <strong>Construir una democracia más justa</strong> que incluya a todos los peruanos, especialmente las comunidades andinas que más sufrieron.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué fue la CVR y cuáles fueron sus principales hallazgos?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">La <strong>Comisión de la Verdad y Reconciliación (CVR)</strong> fue creada en 2001 para investigar las violaciones de derechos humanos entre 1980-2000. Sus hallazgos: ~69,280 víctimas; Sendero Luminoso fue el principal responsable (54%); las fuerzas del Estado también cometieron graves violaciones (37%); las víctimas eran mayoritariamente campesinos quechuahablantes de Ayacucho, Huánuco y Apurímac.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Intermedio</p><h2>Economía y Geopolítica</h2><p>La economía peruana actual y las relaciones internacionales</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">💰</span><div><h3>Economía y poder en el mundo</h3><p>Comprender la economía y la geopolítica te permite leer el mundo con ojos críticos: por qué los precios suben, por qué hay conflictos entre países y cómo afectan tu vida cotidiana.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-history">📈</div>
+                <div class="topic-book-info"><h4>Economía Global y Peruana Actual</h4><p>Inflación, PBI, desigualdad y políticas económicas</p>
+                  <div class="topic-tags"><span class="topic-tag">Inflación</span><span class="topic-tag">PBI</span><span class="topic-tag">Desigualdad</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>📈 Economía Global y Peruana</h3>
+                <p>La economía peruana está integrada a la economía global. Los precios internacionales de los minerales, el dólar y la inflación mundial afectan directamente el bolsillo de los peruanos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📊 Indicadores económicos clave</h4>
+                    <ul>
+                      <li><strong>Inflación:</strong> aumento generalizado de precios. Meta del BCR: 1-3% anual</li>
+                      <li><strong>PBI per cápita:</strong> ingreso promedio por persona (~7,500 USD en Perú, 2023)</li>
+                      <li><strong>Coeficiente de Gini:</strong> mide desigualdad (0=igualdad total, 1=desigualdad máxima). Perú: ~0.43</li>
+                      <li><strong>Desempleo:</strong> Lima Metropolitana ~8%, mayor en jóvenes</li>
+                      <li><strong>Informalidad:</strong> ~70% de la PEA trabaja en el sector informal</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌐 Economía global: tendencias</h4>
+                    <ul>
+                      <li><strong>Superciclo de materias primas:</strong> China demanda minerales → beneficia al Perú</li>
+                      <li><strong>Inflación post-pandemia (2021-2023):</strong> ruptura de cadenas de suministro</li>
+                      <li><strong>Transición energética:</strong> demanda de cobre (autos eléctricos) — ventaja peruana</li>
+                      <li><strong>Reshoring:</strong> empresas vuelven a producir localmente por seguridad</li>
+                      <li><strong>Economías emergentes:</strong> Perú en el grupo de países de ingreso medio-alto</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Por qué la alta informalidad es un problema para la economía peruana?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">La informalidad es un problema porque: 1) Los trabajadores informales no tienen seguro de salud, pensiones ni protección laboral. 2) El Estado recauda menos impuestos, limitando el gasto en salud, educación e infraestructura. 3) Las empresas informales no pueden acceder a créditos ni crecer. 4) Se genera un círculo vicioso de baja productividad y pobreza.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-history">🗺️</div>
+                <div class="topic-book-info"><h4>Geopolítica del Perú</h4><p>Fronteras, Fallo de La Haya y relaciones internacionales</p>
+                  <div class="topic-tags"><span class="topic-tag">La Haya</span><span class="topic-tag">Fronteras</span><span class="topic-tag">OEA</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🗺️ Geopolítica del Perú</h3>
+                <p>La <strong>geopolítica</strong> estudia la relación entre el territorio y el poder político internacional. El Perú tiene 5 países vecinos, acceso al Pacífico y es miembro activo de organismos internacionales.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>⚖️ Fallo de La Haya 2014</h4>
+                    <ul>
+                      <li>La Corte Internacional de Justicia (CIJ) resolvió el diferendo marítimo Perú-Chile</li>
+                      <li>El Perú reclamaba la extensión de su frontera marítima hacia el suroeste</li>
+                      <li><strong>Resultado:</strong> el Perú ganó aproximadamente 50,000 km² de mar</li>
+                      <li>Fallo emitido el 27 enero 2014</li>
+                      <li>Demostró que los diferendos pueden resolverse pacíficamente</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌐 Relaciones internacionales</h4>
+                    <ul>
+                      <li><strong>OEA:</strong> Organización de Estados Americanos (sede en Washington)</li>
+                      <li><strong>ONU:</strong> el Perú es miembro fundador desde 1945</li>
+                      <li><strong>APEC:</strong> foro de cooperación Asia-Pacífico (Lima fue sede en 2008 y 2024)</li>
+                      <li><strong>Alianza del Pacífico:</strong> Perú, Chile, Colombia, México — libre comercio</li>
+                      <li><strong>CAN:</strong> Comunidad Andina de Naciones</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué fue el Fallo de La Haya de 2014 y cuál fue su importancia para el Perú?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Fue la resolución de la Corte Internacional de Justicia sobre el diferendo marítimo entre Perú y Chile. El Perú ganó ~50,000 km² de mar en el Pacífico sur. Su importancia: demostró que el Perú puede resolver conflictos internacionales por vías pacíficas y legales, y fortaleció la soberanía marítima del país.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Nivel Avanzado</p><h2>Medio Ambiente y Desarrollo Sostenible</h2><p>ODS, cambio climático y economía circular</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🌱</span><div><h3>El planeta que heredarás</h3><p>El cambio climático y el desarrollo sostenible son los desafíos más importantes de tu generación. El Perú es uno de los países más vulnerables y también uno de los que más puede contribuir a la solución.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-history">🌱</div>
+                <div class="topic-book-info"><h4>Medio Ambiente y ODS</h4><p>Objetivos de Desarrollo Sostenible, Acuerdo de París y economía circular</p>
+                  <div class="topic-tags"><span class="topic-tag">ODS</span><span class="topic-tag">París</span><span class="topic-tag">Reciclaje</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🌱 Medio Ambiente y Desarrollo Sostenible</h3>
+                <p>El <strong>desarrollo sostenible</strong> busca satisfacer las necesidades del presente sin comprometer la capacidad de las generaciones futuras de satisfacer las suyas (Brundtland, 1987). Requiere equilibrio entre economía, sociedad y medio ambiente.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🎯 ODS — Agenda 2030</h4>
+                    <ul>
+                      <li>17 Objetivos de Desarrollo Sostenible aprobados por la ONU en 2015</li>
+                      <li>Meta: lograrlos para el año 2030</li>
+                      <li>ODS 1: Fin de la pobreza · ODS 2: Hambre cero</li>
+                      <li>ODS 13: Acción por el clima · ODS 14: Vida submarina</li>
+                      <li>ODS 15: Vida de ecosistemas terrestres</li>
+                      <li>El Perú: prioriza ODS 1, 4, 6, 8, 16 en su Plan Nacional</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🌡️ Cambio climático y el Perú</h4>
+                    <ul>
+                      <li>Acuerdo de París (2015): limitar calentamiento a 1.5°C respecto al nivel preindustrial</li>
+                      <li>El Perú emite menos del 0.4% de GEI globales, pero es muy vulnerable</li>
+                      <li>Riesgos: retroceso de glaciares (70% en 50 años), sequías, inundaciones</li>
+                      <li><strong>Economía circular:</strong> reducir → reutilizar → reciclar (vs economía lineal: producir → usar → desechar)</li>
+                      <li>El Perú tiene NDC (contribuciones nacionales): reducir 30% emisiones al 2030</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué son los ODS y por qué son importantes para el Perú?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">Los <strong>ODS (Objetivos de Desarrollo Sostenible)</strong> son 17 metas globales de la ONU para lograr un mundo más justo y sostenible para 2030. Son importantes para el Perú porque guían las políticas públicas en áreas clave: reducir la pobreza (ODS 1), mejorar la educación (ODS 4), proteger el agua (ODS 6) y combatir el cambio climático (ODS 13), todos desafíos críticos para el país.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Explica la diferencia entre economía lineal y economía circular con un ejemplo.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5"><strong>Economía lineal:</strong> producir → usar → desechar. Ej: comprar una botella de plástico y tirarla a la basura. <strong>Economía circular:</strong> mantener los materiales en uso el mayor tiempo posible. Ej: usar la misma botella recargable, o reciclar el plástico para hacer nueva botella o ropa.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-5.html" class="button button-secondary">← 5° Secundaria</a>
+      <a href="tema-ingles-5.html" class="button button-primary">Inglés →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const d=document.getElementById(detailId),isOpen=d.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){d.classList.add('open');card.style.borderColor='var(--accent)';d.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(id,card){document.getElementById(id).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const p=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=p+'%';document.getElementById('progressFill').style.width=p+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(tx,sz,b,c)=>{doc.setFontSize(sz);doc.setFont('helvetica',b?'bold':'normal');doc.setTextColor(...(c||[30,30,30]));doc.splitTextToSize(tx,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=sz*0.45;});y+=2;};
+      doc.setFillColor(217,119,6);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');doc.text('Historia, Geo y Economia - 5 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Peru Siglo XXI',c:'Transicion democratica 2000 (caida Fujimori). Gobiernos: Toledo, Garcia, Humala, PPK/Vizcarra, Castillo, Boluarte. Bicentenario 2021: 200 anos de independencia. Logros: reduccion pobreza. Desafios: corrupcion, informalidad (70%).'},
+       {ti:'Terrorismo y CVR',c:'Sendero Luminoso (maoista, Abimael Guzman) desde 1980. MRTA (castrista). ~69,280 victimas. CVR (2003): 54% responsabilidad SL, 37% fuerzas del Estado. Mayoria victimas: campesinos quechuahablantes de Ayacucho.'},
+       {ti:'Economia Global y Peruana',c:'Inflacion: BCR meta 1-3%. PBI per capita Peru ~7,500USD. Gini 0.43. Informalidad 70%. Superciclo de materias primas beneficia al Peru. Transicion energetica: demanda de cobre.'},
+       {ti:'Geopolitica del Peru',c:'Fallo La Haya 2014: Peru gano ~50,000km2 de mar frente a Chile. Miembro: OEA, ONU (fundador 1945), APEC, Alianza del Pacifico, CAN. Fronteras: Ecuador/Colombia (N), Brasil/Bolivia (E), Chile (S), Pacifico (O).'},
+       {ti:'Medio Ambiente y ODS',c:'17 ODS Agenda 2030 (ONU 2015). Acuerdo de Paris: limitar calentamiento a 1.5C. Peru: 0.4% GEI pero muy vulnerable (glaciares retroceden 70%). Economia circular: reducir-reutilizar-reciclar. NDC Peru: -30% emisiones al 2030.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[217,119,6]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Ejercicios de repaso',13,true,[217,119,6]);
+      ['1. Menciona 2 logros y 2 desafios del Peru en su bicentenario.','2. Que fue la CVR y cuales fueron sus hallazgos principales?','3. Por que la informalidad es un problema economico?','4. Que fue el Fallo de La Haya 2014?','5. Diferencia entre economia lineal y circular.'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('HistoriaGeoEconomia-5Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
