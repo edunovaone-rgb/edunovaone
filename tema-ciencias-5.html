@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Ciencia y Tecnología | 5° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-5.html">5° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Ciencia y Tecnología</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#059669,#10b981)">⚗️</div>
+          <div><h3>Ciencia y Tecnología</h3><p>5° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Biología Avanzada</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Biología Molecular</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Ecología y Cambio Climático</a></li>
+          <li><p class="toc-section-title">II. Química</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Equilibrio y Termodinámica</a></li>
+          <li><p class="toc-section-title">III. Física Avanzada</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Electromagnetismo</a></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Termodinámica</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-bio">
+          <div class="chapter-header" onclick="toggleChapter('ch-bio')">
+            <div class="chapter-num num-advanced">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Biología</p><h2>Biología Molecular y Ecología</h2><p>ADN, biotecnología y cambio climático</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">🧬</span><div><h3>La vida a nivel molecular</h3><p>La biología molecular y la ecología son las ciencias más relevantes del siglo XXI para enfrentar los desafíos de la humanidad.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-science">🧬</div>
+                <div class="topic-book-info"><h4>Biología Molecular</h4><p>Replicación, transcripción, traducción y biotecnología</p>
+                  <div class="topic-tags"><span class="topic-tag">ADN</span><span class="topic-tag">ARN</span><span class="topic-tag">Proteínas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🧬 Biología Molecular</h3>
+                <p>El <strong>dogma central de la biología molecular</strong> describe el flujo de información genética: ADN → ARN → Proteína. Este proceso es esencial para entender cómo los genes controlan las características de los seres vivos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Dogma Central</h4>
+                    <ul>
+                      <li><strong>Replicación:</strong> ADN → ADN; copia del material genético antes de la división celular; enzima: ADN polimerasa</li>
+                      <li><strong>Transcripción:</strong> ADN → ARNm; en el núcleo; la información del ADN se copia en ARN mensajero; enzima: ARN polimerasa</li>
+                      <li><strong>Traducción:</strong> ARNm → Proteína; en los ribosomas; los codones del ARNm se leen para ensamblar aminoácidos</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔬 Biotecnología</h4>
+                    <ul>
+                      <li><strong>PCR:</strong> amplificación de fragmentos de ADN; usada en diagnósticos, COVID-19</li>
+                      <li><strong>CRISPR-Cas9:</strong> "tijeras moleculares" que editan genes; potencial para curar enfermedades genéticas</li>
+                      <li><strong>Organismos transgénicos:</strong> OGM con genes de otra especie (arroz dorado, vacas con insulina humana)</li>
+                      <li><strong>Terapia génica:</strong> reparar genes defectuosos para tratar enfermedades hereditarias</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">ADN → (transcripción) → ARNm → (traducción) → Proteína</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Explica la diferencia entre replicación y transcripción del ADN.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1"><strong>Replicación:</strong> copia el ADN completo para producir dos células hijas idénticas; ocurre antes de la división celular; produce ADN. <strong>Transcripción:</strong> copia la información de un gen específico en ARN mensajero; ocurre para fabricar proteínas; produce ARNm. La replicación duplica todo el genoma; la transcripción lee genes específicos.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué es CRISPR y cuáles son sus implicaciones éticas?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1"><strong>CRISPR-Cas9</strong> es una tecnología que permite editar genes con precisión, como tijeras moleculares. <strong>Potencial positivo:</strong> curar enfermedades genéticas (fibrosis quística, hemofilia), desarrollar cultivos resistentes. <strong>Dilemas éticos:</strong> bebés diseñados genéticamente (caso 2018, China), posible ampliación de desigualdades si solo ricos acceden, riesgo de cambios en la herencia humana permanente.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-science">🌍</div>
+                <div class="topic-book-info"><h4>Ecología y Cambio Climático</h4><p>Efecto invernadero, calentamiento global, impactos en Perú</p>
+                  <div class="topic-tags"><span class="topic-tag">CO₂</span><span class="topic-tag">Glaciares</span><span class="topic-tag">Biodiversidad</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🌍 Ecología y Cambio Climático</h3>
+                <p>El <strong>cambio climático</strong> es la alteración del sistema climático global causada principalmente por las emisiones de gases de efecto invernadero (GEI) de origen humano. El Perú es uno de los países más vulnerables a sus impactos.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🌡️ Efecto invernadero y Calentamiento</h4>
+                    <ul>
+                      <li><strong>Efecto invernadero natural:</strong> sin él, la Tierra tendría −18°C</li>
+                      <li><strong>GEI principales:</strong> CO₂ (combustibles fósiles), CH₄ (ganadería, vertederos), N₂O, vapor de agua</li>
+                      <li>Temperatura media global: +1.1°C desde época preindustrial (2023)</li>
+                      <li>Meta Acuerdo de París: no superar +1.5°C</li>
+                      <li><strong>Consecuencias:</strong> derretimiento de glaciares, suba del nivel del mar, eventos extremos más frecuentes</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🇵🇪 Impactos en el Perú</h4>
+                    <ul>
+                      <li><strong>Glaciares:</strong> retroceso del 57% en últimas décadas; Pastoruri, Quelccaya</li>
+                      <li><strong>Recursos hídricos:</strong> reducción de agua dulce para las ciudades costeras</li>
+                      <li><strong>Biodiversidad:</strong> cambio en distribución de especies (el nicho térmico se desplaza)</li>
+                      <li><strong>Fenómeno del Niño:</strong> intensificado por el cambio climático</li>
+                      <li><strong>Agricultura:</strong> pérdida de cultivos andinos por cambio en temperaturas y lluvias</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">CO₂ + CH₄ + N₂O → ↑Efecto invernadero → ↑Temperatura → Impactos</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuál es la diferencia entre el efecto invernadero natural y el intensificado?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2"><strong>Efecto invernadero natural:</strong> proceso que mantiene la Tierra a ~15°C (sin él: −18°C); esencial para la vida. <strong>Efecto invernadero intensificado:</strong> causado por el exceso de GEI emitidos por actividades humanas (quema de combustibles, deforestación), que retienen más calor del necesario, elevando la temperatura global y alterando el clima.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Menciona 3 acciones personales que reducen tu huella de carbono.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">(1) <strong>Reducir el consumo de carne</strong>, especialmente res (la ganadería emite mucho CH₄). (2) <strong>Usar transporte público o bicicleta</strong> en lugar de automóvil particular. (3) <strong>Reducir el consumo de energía:</strong> apagar luces, usar electrodomésticos eficientes, desconectar cargadores. (4) Consumir productos locales (menos transporte = menos CO₂).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-quim">
+          <div class="chapter-header" onclick="toggleChapter('ch-quim')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Química</p><h2>Equilibrio Químico y Termodinámica</h2><p>Le Chatelier, entalpía y entropía</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">⚗️</span><div><h3>Química de los procesos</h3><p>El equilibrio y la termodinámica explican por qué ocurren las reacciones químicas y en qué dirección.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-inter">⚗️</div>
+                <div class="topic-book-info"><h4>Equilibrio Químico y Termodinámica</h4><p>Le Chatelier, entalpía (ΔH) y entropía (ΔS)</p>
+                  <div class="topic-tags"><span class="topic-tag">Le Chatelier</span><span class="topic-tag">ΔH</span><span class="topic-tag">ΔG</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>⚗️ Equilibrio Químico y Termodinámica Básica</h3>
+                <p>El <strong>equilibrio químico</strong> se alcanza cuando las velocidades de la reacción directa e inversa son iguales. La <strong>termodinámica química</strong> estudia la energía involucrada en las reacciones.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Principio de Le Chatelier</h4>
+                    <ul>
+                      <li>Si el sistema en equilibrio es perturbado, se desplaza para contrarrestar la perturbación</li>
+                      <li><strong>↑ concentración de reactivos:</strong> equilibrio → productos</li>
+                      <li><strong>↑ temperatura (exotérmica):</strong> equilibrio → reactivos</li>
+                      <li><strong>↑ presión:</strong> equilibrio → lado con menos moles de gas</li>
+                      <li>Constante de equilibrio: Kc = [productos]/[reactivos]</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔥 Termodinámica básica</h4>
+                    <ul>
+                      <li><strong>Entalpía (ΔH):</strong> calor de reacción a presión constante</li>
+                      <li>ΔH &lt; 0: exotérmica (libera calor, combustión)</li>
+                      <li>ΔH &gt; 0: endotérmica (absorbe calor, fotosíntesis)</li>
+                      <li><strong>Entropía (ΔS):</strong> medida del desorden del sistema</li>
+                      <li>ΔS &gt; 0: aumenta el desorden</li>
+                      <li><strong>Energía de Gibbs:</strong> ΔG = ΔH − T·ΔS</li>
+                      <li>ΔG &lt; 0: reacción espontánea</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">ΔG = ΔH − T·ΔS | ΔG &lt; 0 → espontánea | Le Chatelier: el sistema se opone a los cambios</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      En la reacción N₂ + 3H₂ ⇌ 2NH₃ (exotérmica), ¿hacia dónde se desplaza el equilibrio si aumenta la temperatura?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">La reacción es exotérmica (libera calor). Al aumentar la temperatura, el sistema "siente" exceso de calor y se desplaza en la dirección que absorbe calor: hacia los <strong>reactivos</strong> (N₂ + H₂). Esto reduce la producción de NH₃.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Una reacción tiene ΔH = −50 kJ y ΔS = +100 J/K. ¿Es espontánea a 298 K?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">ΔG = ΔH − T·ΔS = −50,000 J − (298)(100 J/K) = −50,000 − 29,800 = <strong>−79,800 J = −79.8 kJ</strong>. Como ΔG &lt; 0, la reacción es <strong>espontánea</strong> a 298 K.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-fis">
+          <div class="chapter-header" onclick="toggleChapter('ch-fis')">
+            <div class="chapter-num num-basic" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Física Avanzada</p><h2>Electromagnetismo y Termodinámica</h2><p>Campos, inducción y leyes de la termodinámica</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">⚡</span><div><h3>Física del universo</h3><p>El electromagnetismo y la termodinámica son los pilares de la tecnología moderna: desde los motores hasta las centrales eléctricas.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-inter">🧲</div>
+                <div class="topic-book-info"><h4>Electromagnetismo</h4><p>Campo eléctrico, magnético, inducción y Maxwell</p>
+                  <div class="topic-tags"><span class="topic-tag">Campo E</span><span class="topic-tag">Inducción</span><span class="topic-tag">Maxwell</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🧲 Electromagnetismo</h3>
+                <p>El <strong>electromagnetismo</strong> unifica la electricidad y el magnetismo en un solo marco teórico, desarrollado por James Clerk Maxwell en el siglo XIX. Es la base de toda la tecnología eléctrica moderna.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Campo eléctrico y magnético</h4>
+                    <ul>
+                      <li><strong>Campo eléctrico (E):</strong> fuerza que ejerce una carga sobre otras; E = F/q = kQ/r²</li>
+                      <li><strong>Campo magnético (B):</strong> creado por cargas en movimiento (corriente eléctrica)</li>
+                      <li><strong>Fuerza de Lorentz:</strong> F = q(E + v×B)</li>
+                      <li>Corriente → campo magnético (Oersted, 1820)</li>
+                      <li>Campo magnético variable → corriente (Faraday, 1831)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Inducción electromagnética y Maxwell</h4>
+                    <ul>
+                      <li><strong>Ley de Faraday:</strong> emf = −dΦ/dt (cambio de flujo magnético induce voltaje)</li>
+                      <li><strong>Lenz:</strong> la corriente inducida se opone al cambio que la produce</li>
+                      <li><strong>Maxwell:</strong> 4 ecuaciones que unifican electricidad, magnetismo y luz</li>
+                      <li>Predicción: las ondas EM viajan a c = 3×10⁸ m/s (la velocidad de la luz)</li>
+                      <li><strong>Aplicaciones:</strong> generadores, transformadores, motores, antenas, microondas</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">E = kQ/r² | F = qvB·sen(θ) | emf = −N·dΦ/dt | c = 3×10⁸ m/s</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuál es el campo eléctrico a 0.2 m de una carga de 5×10⁻⁶ C? (k = 9×10⁹ Nm²/C²)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">E = kQ/r² = (9×10⁹)(5×10⁻⁶)/(0.2)² = (9×10⁹)(5×10⁻⁶)/0.04 = 45000/0.04 = <strong>1,125,000 N/C = 1.125×10⁶ N/C</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Explica el principio de un generador eléctrico usando la ley de Faraday.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">Un <strong>generador</strong> convierte energía mecánica en eléctrica usando la ley de Faraday: al girar una bobina dentro de un campo magnético, el flujo magnético a través de la bobina cambia constantemente. Ese cambio de flujo (dΦ/dt) induce una fuerza electromotriz (voltaje) en la bobina. Si se conecta un circuito, fluye corriente alterna (CA).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-inter">🔥</div>
+                <div class="topic-book-info"><h4>Termodinámica</h4><p>Leyes de la termodinámica y máquinas térmicas</p>
+                  <div class="topic-tags"><span class="topic-tag">ΔU=Q−W</span><span class="topic-tag">Entropía</span><span class="topic-tag">Carnot</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🔥 Termodinámica</h3>
+                <p>La <strong>termodinámica</strong> estudia la relación entre el calor y el trabajo mecánico. Sus leyes gobiernan el funcionamiento de motores, refrigeradoras, centrales de energía y el universo mismo.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Las Leyes de la Termodinámica</h4>
+                    <ul>
+                      <li><strong>Ley 0:</strong> equilibrio térmico; base del termómetro</li>
+                      <li><strong>1ª Ley:</strong> ΔU = Q − W; conservación de la energía (la energía no se crea ni destruye)</li>
+                      <li><strong>2ª Ley:</strong> la entropía del universo siempre aumenta (ΔS_universo ≥ 0)</li>
+                      <li><strong>3ª Ley:</strong> la entropía de un cristal puro a 0 K es cero</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚙️ Máquinas térmicas</h4>
+                    <ul>
+                      <li>Convierten calor en trabajo mecánico</li>
+                      <li><strong>Eficiencia:</strong> η = W/Q_H = 1 − Q_C/Q_H</li>
+                      <li><strong>Ciclo de Carnot:</strong> máxima eficiencia teórica: η = 1 − T_C/T_H</li>
+                      <li>Ningún motor real es tan eficiente como el de Carnot</li>
+                      <li><strong>Refrigerador:</strong> máquina térmica inversa; usa trabajo para extraer calor</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">ΔU = Q − W | η_Carnot = 1 − T_C/T_H | ΔS_universo ≥ 0</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Un motor recibe 1000 J de calor y realiza 300 J de trabajo. ¿Cuál es su eficiencia?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">η = W/Q_H = 300/1000 = 0.30 = <strong>30%</strong>. El motor "desecha" 700 J como calor a la fuente fría.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Por qué la eficiencia de una máquina real nunca puede ser 100%?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Por la <strong>2ª Ley de la Termodinámica</strong>: en todo proceso real hay aumento de entropía (fricción, disipación de calor). Para que un motor tuviera 100% de eficiencia, necesitaría convertir todo el calor en trabajo sin pérdidas, lo que requeriría reducir la entropía del universo, lo cual es imposible. Siempre se pierde algo de energía como calor al ambiente.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="tema-matematica-5.html" class="button button-secondary">← Matemática</a>
+      <a href="tema-comunicacion-5.html" class="button button-primary">Comunicación →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(5,150,105);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ciencia y Tecnologi­a - 5 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Biologi­a Molecular',c:'Dogma central: ADN>ARNm>Proteina. Replicacion: copia ADN (ADN polimerasa). Transcripcion: ADN>ARNm en nucleo. Traduccion: ARNm>proteina en ribosomas. Biotecnologia: PCR, CRISPR-Cas9 (edicion genica), OGM, terapia genica.'},
+       {ti:'Ecologi­a y Cambio Climatico',c:'GEI: CO2 (combustibles), CH4 (ganaderia), N2O. +1.1C desde era preindustrial. Meta Paris: <1.5C. En Peru: retroceso glaciar 57%, Pastoruri, recursos hidricos. Fenomeno del Nino intensificado. Biodiversidad en riesgo.'},
+       {ti:'Equilibrio Qui­mico y Termodinamica',c:'Le Chatelier: el sistema se opone a perturbaciones. Mayor reactivo>productos. Mayor T en exotermica>reactivos. Mayor presion>menos moles gas. Entalpi­a DH: <0 exotermica, >0 endotermica. Entropia DS. DG=DH-T*DS. DG<0: espontanea.'},
+       {ti:'Electromagnetismo',c:'Campo electrico E=kQ/r2. Campo magnetico: creado por corriente. Ley Faraday: cambio de flujo induce emf. Lenz: corriente inducida se opone al cambio. Maxwell: 4 ecuaciones unifican electricidad y magnetismo. c=3x10^8 m/s.'},
+       {ti:'Termodinamica',c:'1a Ley: DU=Q-W (conservacion energia). 2a Ley: entropi­a del universo siempre aumenta. Maquinas termicas: convierten calor en trabajo. Eficiencia: eta=W/Qh. Carnot (maxima): eta=1-Tc/Th. Refrigerador: maquina inversa.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[5,150,105]);t(x.c,10,false,[50,50,60]);y+=3;});
+      doc.save('Ciencias-5-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
