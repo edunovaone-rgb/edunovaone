@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Matemática | 5° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne" /><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+  </nav>
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span><a href="grado-5.html">5° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Matemática</span>
+    </nav>
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#7c3aed,#6366f1)">📐</div>
+          <div><h3>Matemática</h3><p>5° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Análisis</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Funciones Avanzadas</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Límites y Cálculo</a></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Números Complejos</a></li>
+          <li><p class="toc-section-title">II. Álgebra Discreta</p></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Combinatoria y Probabilidad</a></li>
+          <li><p class="toc-section-title">III. Geometría Avanzada</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Cónicas</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Trigonometría Avanzada</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()"><span class="pdf-icon">📄</span> Descargar PDF</button>
+      </aside>
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-anl">
+          <div class="chapter-header" onclick="toggleChapter('ch-anl')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text"><p class="chapter-level">Análisis Matemático</p><h2>Funciones, Límites y Complejos</h2><p>Precálculo y números del plano complejo</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic"><span class="banner-icon">📈</span><div><h3>El portal al cálculo</h3><p>Las funciones avanzadas y los límites son la base del cálculo diferencial e integral que estudiarás en la universidad.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-basic">📈</div>
+                <div class="topic-book-info"><h4>Funciones Avanzadas</h4><p>Cuadrática, exponencial, logarítmica</p>
+                  <div class="topic-tags"><span class="topic-tag">f(x)=ax²</span><span class="topic-tag">aˣ</span><span class="topic-tag">log</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>📈 Funciones Avanzadas</h3>
+                <p>Una <strong>función</strong> es una relación entre variables donde cada valor de entrada (x) tiene exactamente un valor de salida f(x). Las funciones cuadrática, exponencial y logarítmica modelan fenómenos reales importantes.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Función cuadrática: f(x) = ax²+bx+c</h4>
+                    <ul>
+                      <li>Gráfica: <strong>parábola</strong></li>
+                      <li>Vértice: V = (−b/2a, f(−b/2a))</li>
+                      <li>Si a&gt;0: abre hacia arriba (mínimo)</li>
+                      <li>Si a&lt;0: abre hacia abajo (máximo)</li>
+                      <li>Raíces: x = (−b ± √(b²−4ac)) / 2a</li>
+                      <li>Discriminante: b²−4ac → 2 reales, 1, o complejas</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📌 Exponencial y Logarítmica</h4>
+                    <ul>
+                      <li><strong>Exponencial:</strong> f(x) = aˣ (a&gt;0, a≠1); crecimiento/decrecimiento exponencial</li>
+                      <li>f(x) = eˣ: función exponencial natural (e ≈ 2.718)</li>
+                      <li><strong>Logarítmica:</strong> f(x) = log_a(x); inversa de la exponencial</li>
+                      <li>log_a(a^x) = x | a^(log_a x) = x</li>
+                      <li>log(xy) = log(x)+log(y)</li>
+                      <li>log(x/y) = log(x)−log(y)</li>
+                      <li>log(x^n) = n·log(x)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Vértice: V = (−b/2a, f(−b/2a)) | Inversa de aˣ es log_a(x)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Halla el vértice de f(x) = 2x²−8x+3.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">a=2, b=−8. x_v = −(−8)/(2×2) = 8/4 = 2. y_v = f(2) = 2(4)−8(2)+3 = 8−16+3 = −5. <strong>Vértice: V = (2, −5)</strong>. Como a=2&gt;0, la parábola abre hacia arriba y el vértice es el mínimo.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Resuelve: log₂(x) = 5
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">log₂(x) = 5 → 2⁵ = x → <strong>x = 32</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Simplifica: log(100) + log(0.01)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">log(100) = log(10²) = 2. log(0.01) = log(10⁻²) = −2. Suma: 2+(−2) = <strong>0</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-basic">♾️</div>
+                <div class="topic-book-info"><h4>Límites y noción de Cálculo</h4><p>Concepto intuitivo y límites básicos</p>
+                  <div class="topic-tags"><span class="topic-tag">lím</span><span class="topic-tag">Infinito</span><span class="topic-tag">Continuidad</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>♾️ Límites y Noción de Cálculo</h3>
+                <p>Un <strong>límite</strong> describe el comportamiento de una función cuando la variable se acerca a un valor determinado. Es la base fundamental del cálculo diferencial e integral.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Concepto de límite</h4>
+                    <ul>
+                      <li>lím(x→a) f(x) = L significa que f(x) se acerca a L cuando x se acerca a a</li>
+                      <li><strong>Límite lateral:</strong> por la izquierda (x→a⁻) y derecha (x→a⁺)</li>
+                      <li>El límite existe si los dos laterales son iguales</li>
+                      <li>Límites directos: si f es continua en a, lím = f(a)</li>
+                      <li>Formas indeterminadas: 0/0, ∞/∞ → factorizar o L'Hôpital</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Propiedades y ejemplos</h4>
+                    <ul>
+                      <li>lím(x→2) (x²−4)/(x−2) = lím(x→2) (x+2) = 4 (factorizando)</li>
+                      <li>lím(x→∞) 1/x = 0</li>
+                      <li>lím(x→0) sen(x)/x = 1 (límite notable)</li>
+                      <li><strong>Derivada:</strong> f'(x) = lím(h→0) [f(x+h)−f(x)]/h</li>
+                      <li>Derivada = pendiente de la tangente en un punto</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">lím(x→a) f(x) = L | f'(x) = lím(h→0) [f(x+h)−f(x)]/h</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Calcula: lím(x→3) (x²−9)/(x−3)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Factorizar: x²−9 = (x+3)(x−3). lím(x→3) (x+3)(x−3)/(x−3) = lím(x→3) (x+3) = 3+3 = <strong>6</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué es la derivada intuitivamente?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">Intuitivamente, la derivada f'(x) es la <strong>tasa de cambio instantánea</strong> de la función en el punto x. Geométricamente, es la <strong>pendiente de la recta tangente</strong> a la curva en ese punto. Si f'(x)&gt;0: la función crece; si f'(x)&lt;0: decrece; si f'(x)=0: hay un punto crítico (máximo o mínimo local).</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-basic">🌀</div>
+                <div class="topic-book-info"><h4>Números Complejos</h4><p>Forma binómica, operaciones, módulo y argumento</p>
+                  <div class="topic-tags"><span class="topic-tag">a+bi</span><span class="topic-tag">Módulo</span><span class="topic-tag">i²=−1</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🌀 Números Complejos</h3>
+                <p>Los <strong>números complejos</strong> extienden los números reales para incluir la raíz cuadrada de números negativos. Se usan en física, ingeniería eléctrica y procesamiento de señales.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Definición y operaciones</h4>
+                    <ul>
+                      <li>Unidad imaginaria: <strong>i = √(−1)</strong>, por lo tanto i² = −1</li>
+                      <li>Forma binómica: z = a + bi (a = parte real, b = parte imaginaria)</li>
+                      <li><strong>Suma:</strong> (a+bi)+(c+di) = (a+c)+(b+d)i</li>
+                      <li><strong>Producto:</strong> (a+bi)(c+di) = ac+adi+bci+bdi² = (ac−bd)+(ad+bc)i</li>
+                      <li><strong>Conjugado:</strong> z̄ = a−bi; z·z̄ = a²+b²</li>
+                      <li><strong>División:</strong> (a+bi)/(c+di) = (a+bi)(c−di)/(c²+d²)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Módulo y argumento</h4>
+                    <ul>
+                      <li><strong>Módulo:</strong> |z| = √(a²+b²) (distancia al origen en el plano complejo)</li>
+                      <li><strong>Argumento:</strong> θ = arctan(b/a) (ángulo con el eje real)</li>
+                      <li><strong>Forma polar:</strong> z = |z|(cos θ + i·sen θ)</li>
+                      <li>Potencias de i: i¹=i, i²=−1, i³=−i, i⁴=1 (ciclo de 4)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">z = a + bi | |z| = √(a²+b²) | i² = −1 | i⁴ = 1</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Calcula (2+3i)(1−2i).
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">(2+3i)(1−2i) = 2−4i+3i−6i² = 2−4i+3i−6(−1) = 2+6+(−4+3)i = <strong>8−i</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Halla el módulo de z = 3+4i.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">|z| = √(3²+4²) = √(9+16) = √25 = <strong>5</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-comb">
+          <div class="chapter-header" onclick="toggleChapter('ch-comb')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text"><p class="chapter-level">Álgebra Discreta</p><h2>Combinatoria y Probabilidad</h2><p>Conteo y probabilidad condicional</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter"><span class="banner-icon">🎲</span><div><h3>El arte de contar</h3><p>La combinatoria y la probabilidad están en los juegos de azar, la criptografía y la estadística.</p></div></div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-inter">🎲</div>
+                <div class="topic-book-info"><h4>Combinatoria y Probabilidad Avanzada</h4><p>Permutaciones, combinaciones, P condicional</p>
+                  <div class="topic-tags"><span class="topic-tag">nPr</span><span class="topic-tag">nCr</span><span class="topic-tag">P(A|B)</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🎲 Combinatoria y Probabilidad Avanzada</h3>
+                <p>La <strong>combinatoria</strong> cuenta el número de formas de organizar o seleccionar elementos. La <strong>probabilidad condicional</strong> mide la probabilidad de un evento dado que otro ya ocurrió.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Permutaciones y Combinaciones</h4>
+                    <ul>
+                      <li><strong>Permutación</strong> (importa el orden): P(n,r) = n!/(n−r)!</li>
+                      <li>¿De cuántas formas 3 personas ocupan 5 sillas? P(5,3) = 60</li>
+                      <li><strong>Combinación</strong> (no importa el orden): C(n,r) = n!/[r!(n−r)!]</li>
+                      <li>¿De cuántas formas elegir 3 de 5? C(5,3) = 10</li>
+                      <li><strong>Factorial:</strong> n! = n×(n−1)×...×2×1; 0!=1</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Probabilidad Condicional</h4>
+                    <ul>
+                      <li><strong>P(A|B):</strong> probabilidad de A dado que B ocurrió</li>
+                      <li>P(A|B) = P(A∩B) / P(B)</li>
+                      <li><strong>Eventos independientes:</strong> P(A|B) = P(A)</li>
+                      <li><strong>Teorema de Bayes:</strong> P(B|A) = P(A|B)·P(B)/P(A)</li>
+                      <li>Ejemplo: caja con 3 rojas y 2 azules. P(roja|2ª extracción, 1ª fue roja) = 2/4 = 1/2</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">P(n,r) = n!/(n−r)! | C(n,r) = n!/[r!(n−r)!] | P(A|B) = P(A∩B)/P(B)</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿De cuántas formas se pueden ordenar las letras de "PERU"?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">PERU tiene 4 letras todas diferentes. P(4,4) = 4! = 4×3×2×1 = <strong>24 formas</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Un comité de 3 personas se elige de 7 candidatos. ¿Cuántas combinaciones hay?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">C(7,3) = 7!/[3!×4!] = (7×6×5)/(3×2×1) = 210/6 = <strong>35 combinaciones</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-con">
+          <div class="chapter-header" onclick="toggleChapter('ch-con')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text"><p class="chapter-level">Geometría Avanzada</p><h2>Cónicas y Trigonometría</h2><p>Circunferencia, parábola, elipse y ecuaciones trig.</p></div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced"><span class="banner-icon">⭕</span><div><h3>Las curvas del universo</h3><p>Las cónicas describen órbitas de planetas, trayectorias de proyectiles y la forma de los espejos telescópicos.</p></div></div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-advanced">⭕</div>
+                <div class="topic-book-info"><h4>Cónicas</h4><p>Circunferencia, parábola y elipse</p>
+                  <div class="topic-tags"><span class="topic-tag">x²+y²=r²</span><span class="topic-tag">Parábola</span><span class="topic-tag">Elipse</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>⭕ Secciones Cónicas</h3>
+                <p>Las <strong>cónicas</strong> son curvas formadas por la intersección de un plano con un cono doble. Incluyen la circunferencia, la parábola, la elipse y la hipérbola.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📐 Circunferencia y Parábola</h4>
+                    <ul>
+                      <li><strong>Circunferencia:</strong> centro (h,k), radio r: (x−h)²+(y−k)² = r²</li>
+                      <li>Centro en origen: x²+y² = r²</li>
+                      <li><strong>Parábola vertical:</strong> y = a(x−h)²+k; vértice (h,k)</li>
+                      <li>Forma estándar: x² = 4py (foco en (0,p))</li>
+                      <li>Si p&gt;0: abre arriba; p&lt;0: abre abajo</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📐 Elipse e Hipérbola</h4>
+                    <ul>
+                      <li><strong>Elipse:</strong> x²/a²+y²/b² = 1 (a&gt;b)</li>
+                      <li>Semiejé mayor: a; semijee menor: b</li>
+                      <li>Focos: c² = a²−b²; distancia a focos: c</li>
+                      <li>Suma de distancias a focos = 2a (constante)</li>
+                      <li><strong>Hipérbola:</strong> x²/a²−y²/b² = 1</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Circunferencia: (x−h)²+(y−k)²=r² | Elipse: x²/a²+y²/b²=1 | Focos: c²=a²−b²</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Halla el centro y radio de: x²+y²−4x+6y−12 = 0
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">Completar cuadrado: (x²−4x+4)+(y²+6y+9) = 12+4+9 = 25 → (x−2)²+(y+3)² = 25. <strong>Centro: (2, −3); Radio: 5</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Halla los focos de la elipse: x²/25 + y²/9 = 1
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">a²=25, b²=9. c² = a²−b² = 25−9 = 16 → c = 4. Focos en el eje x: <strong>F₁(−4, 0) y F₂(4, 0)</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-advanced">🔭</div>
+                <div class="topic-book-info"><h4>Trigonometría Avanzada</h4><p>Identidades, ecuaciones trigonométricas</p>
+                  <div class="topic-tags"><span class="topic-tag">Identidades</span><span class="topic-tag">Ec. trig.</span><span class="topic-tag">Ángulo doble</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>🔭 Trigonometría Avanzada</h3>
+                <p>Las <strong>identidades trigonométricas</strong> son igualdades que se cumplen para cualquier ángulo. Las <strong>ecuaciones trigonométricas</strong> se resuelven usando estas identidades y el círculo unitario.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📌 Identidades fundamentales</h4>
+                    <ul>
+                      <li>sen²x + cos²x = 1</li>
+                      <li>1 + tan²x = sec²x</li>
+                      <li>1 + cot²x = csc²x</li>
+                      <li>Ángulo doble: sen(2x) = 2sen(x)cos(x)</li>
+                      <li>cos(2x) = cos²x−sen²x = 2cos²x−1 = 1−2sen²x</li>
+                      <li>Suma: sen(A+B) = senA·cosB + cosA·senB</li>
+                      <li>cos(A+B) = cosA·cosB − senA·senB</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📝 Ecuaciones trigonométricas</h4>
+                    <ul>
+                      <li>Resolver sen(x) = 1/2 en [0°, 360°]</li>
+                      <li>sen(x) = 1/2 → x = 30° o x = 150°</li>
+                      <li>2cos²x − 1 = 0 → cos²x = 1/2 → cosx = ±√2/2</li>
+                      <li>x = 45°, 135°, 225°, 315°</li>
+                      <li>Usar identidades para simplificar antes de resolver</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">sen(2x) = 2sen(x)cos(x) | cos(2x) = cos²x−sen²x | sen²x+cos²x=1</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Simplifica: sen²x + cos²x + tan²x
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">sen²x + cos²x = 1. Entonces: 1 + tan²x = sec²x. Resultado: <strong>sec²x</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Resuelve: 2sen(x) − 1 = 0 en [0°, 360°].
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t6">2sen(x) = 1 → sen(x) = 1/2. sen es positivo en Q1 y Q2. x = arcsen(1/2) = <strong>30°</strong> y x = 180°−30° = <strong>150°</strong></div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-5.html" class="button button-secondary">← 5° Secundaria</a>
+      <a href="tema-ciencias-5.html" class="button button-primary">Ciencias →</a>
+    </div>
+  </footer>
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}}
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=6,opened=new Set();
+    function updateProgress(){document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));const pct=Math.round((opened.size/totalTopics)*100);document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressFill').style.width=pct+'%';}
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(124,58,237);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Matematica - 5 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Funciones Avanzadas',c:'Cuadratica: f(x)=ax2+bx+c, vertice V=(-b/2a, f(-b/2a)), raices formula cuadratica. Exponencial: f(x)=ax. Logaritmica: f(x)=loga(x), inversa de ax. Propiedades: log(xy)=logx+logy, log(xn)=n*logx.'},
+       {ti:'Li­mites y Calculo',c:'Limite: comportamiento de f(x) cuando x->a. Directa sustitucion si f es continua. Formas indeterminadas 0/0: factorizar. lim(x->inf)1/x=0. lim(x->0)sen(x)/x=1. Derivada: f(x)=lim(h->0)[f(x+h)-f(x)]/h = pendiente tangente.'},
+       {ti:'Numeros Complejos',c:'i=raiz(-1), i2=-1. Forma binomica: z=a+bi. Suma: (a+bi)+(c+di)=(a+c)+(b+d)i. Producto: usar i2=-1. Conjugado: a-bi. Modulo: |z|=raiz(a2+b2). Potencias de i: i,i2=-1,i3=-i,i4=1 (ciclo 4).'},
+       {ti:'Combinatoria y Probabilidad',c:'Permutacion (orden importa): P(n,r)=n!/(n-r)!. Combinacion (sin orden): C(n,r)=n!/[r!(n-r)!]. Factorial: n! Probabilidad condicional: P(A|B)=P(AnB)/P(B). Bayes: P(B|A)=P(A|B)*P(B)/P(A).'},
+       {ti:'Conicas',c:'Circunferencia: (x-h)2+(y-k)2=r2. Parabola: y=a(x-h)2+k o x2=4py. Elipse: x2/a2+y2/b2=1, focos c2=a2-b2. Hiperbola: x2/a2-y2/b2=1. Completar cuadrado para identificar centro/radio.'},
+       {ti:'Trigonometri­a Avanzada',c:'Identidades: sen2+cos2=1, 1+tan2=sec2. Angulo doble: sen(2x)=2sen*cos, cos(2x)=cos2-sen2. Suma: sen(A+B)=senA*cosB+cosA*senB. Ecuaciones: resolver en [0,360] usando valores del circulo unitario.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[124,58,237]);t(x.c,10,false,[50,50,60]);y+=3;});
+      doc.save('Matematica-5-Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
