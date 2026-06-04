@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Educación para el Trabajo | 1° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-1.html">1° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Educación para el Trabajo</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#0284c7,#0ea5e9)">💻</div>
+          <div><h3>Educación para el Trabajo</h3><p>1° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Informática Básica</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>El Computador</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Sistema Operativo Windows</a></li>
+          <li><p class="toc-section-title">II. Herramientas Office</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>Procesador de Texto (Word)</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Internet y Seguridad</a></li>
+          <li><p class="toc-section-title">III. Ciudadanía Digital</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Ciudadanía Digital</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Básico</p>
+              <h2>Informática Básica</h2>
+              <p>Hardware, software y el sistema operativo</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">💻</span>
+              <div><h3>La herramienta del siglo XXI</h3><p>El manejo del computador es una habilidad esencial. Aprenderás desde cero cómo funciona y cómo usarlo de manera efectiva y segura.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-tech">🖥️</div>
+                <div class="topic-book-info">
+                  <h4>El Computador</h4>
+                  <p>Hardware, software y tipos de computadores</p>
+                  <div class="topic-tags"><span class="topic-tag">Hardware</span><span class="topic-tag">Software</span><span class="topic-tag">CPU</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🖥️ El Computador</h3>
+                <p>Un <strong>computador</strong> (o computadora) es una máquina electrónica capaz de procesar información. Se compone de dos elementos fundamentales: el <strong>hardware</strong> (partes físicas) y el <strong>software</strong> (programas e instrucciones).</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔩 Hardware — Partes físicas</h4>
+                    <ul>
+                      <li><strong>CPU (Unidad Central de Proceso):</strong> el "cerebro", procesa datos</li>
+                      <li><strong>Memoria RAM:</strong> memoria temporal de trabajo</li>
+                      <li><strong>Disco duro (HDD/SSD):</strong> almacenamiento permanente</li>
+                      <li><strong>Placa madre:</strong> conecta todos los componentes</li>
+                      <li><strong>Monitor:</strong> dispositivo de salida visual</li>
+                      <li><strong>Teclado y ratón:</strong> dispositivos de entrada</li>
+                      <li><strong>Impresora:</strong> salida en papel</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>💾 Software — Tipos</h4>
+                    <ul>
+                      <li><strong>Sistema operativo:</strong> Windows, macOS, Linux, Android</li>
+                      <li><strong>Aplicaciones:</strong> Word, Chrome, Photoshop, juegos</li>
+                      <li><strong>Utilitarios:</strong> antivirus, compresores, reproductores</li>
+                      <li><strong>Software libre:</strong> código abierto, gratuito (LibreOffice)</li>
+                      <li><strong>Software propietario:</strong> licencia de pago (Microsoft Office)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Computador = Hardware + Software + Datos</div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      Clasifica los siguientes como hardware o software: monitor, Windows 11, teclado, Microsoft Word, disco duro, antivirus.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1"><strong>Hardware:</strong> monitor, teclado, disco duro. <strong>Software:</strong> Windows 11, Microsoft Word, antivirus.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Cuál es la diferencia entre la memoria RAM y el disco duro?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">La <strong>RAM</strong> es memoria temporal: guarda datos mientras el computador está encendido y se borra al apagarse. El <strong>disco duro</strong> es almacenamiento permanente: guarda archivos aunque se apague el equipo.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 3</strong>
+                      Menciona 3 dispositivos de entrada y 3 de salida.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1"><strong>Entrada:</strong> teclado, ratón, micrófono. <strong>Salida:</strong> monitor, impresora, altavoces.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-tech">🪟</div>
+                <div class="topic-book-info">
+                  <h4>Sistema Operativo Windows</h4>
+                  <p>Escritorio, archivos, carpetas y configuración básica</p>
+                  <div class="topic-tags"><span class="topic-tag">Escritorio</span><span class="topic-tag">Archivos</span><span class="topic-tag">Carpetas</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>🪟 Sistema Operativo Windows</h3>
+                <p>Un <strong>sistema operativo (SO)</strong> es el software base que permite al usuario interactuar con el hardware y ejecutar aplicaciones. Windows es el más usado en el mundo en computadores de escritorio.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🖥️ Elementos del escritorio</h4>
+                    <ul>
+                      <li><strong>Escritorio:</strong> área principal de trabajo</li>
+                      <li><strong>Barra de tareas:</strong> muestra programas abiertos</li>
+                      <li><strong>Menú Inicio:</strong> acceso a programas y configuración</li>
+                      <li><strong>Iconos:</strong> accesos directos a archivos y programas</li>
+                      <li><strong>Papelera de reciclaje:</strong> archivos eliminados</li>
+                      <li><strong>Explorador de archivos:</strong> navegar por carpetas</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📁 Gestión de archivos</h4>
+                    <ul>
+                      <li>Crear carpeta: clic derecho → Nueva carpeta</li>
+                      <li>Copiar: Ctrl+C · Pegar: Ctrl+V · Cortar: Ctrl+X</li>
+                      <li>Renombrar: F2 o clic derecho → Cambiar nombre</li>
+                      <li>Eliminar: Suprimir (va a la papelera)</li>
+                      <li>Buscar: Windows + S o barra de búsqueda</li>
+                      <li>Extensiones: .docx, .pdf, .jpg, .mp4, .exe</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué combinación de teclas usas para copiar, cortar y pegar en Windows?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">Copiar: <strong>Ctrl+C</strong> · Cortar: <strong>Ctrl+X</strong> · Pegar: <strong>Ctrl+V</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué tipo de archivo es un .docx? ¿Y un .jpg?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">.docx = documento de Word (texto). .jpg = imagen fotográfica comprimida.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Intermedio</p>
+              <h2>Herramientas de Oficina</h2>
+              <p>Procesador de texto e Internet</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">📝</span>
+              <div><h3>Productividad digital</h3><p>Word e Internet son las herramientas más usadas en la vida escolar y laboral. Dominarlas te da una ventaja enorme en cualquier contexto.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-tech">📝</div>
+                <div class="topic-book-info">
+                  <h4>Procesador de Texto</h4>
+                  <p>Microsoft Word o Writer: crear y dar formato a documentos</p>
+                  <div class="topic-tags"><span class="topic-tag">Formato</span><span class="topic-tag">Párrafos</span><span class="topic-tag">Guardar</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>📝 Procesador de Texto — Microsoft Word</h3>
+                <p>Un <strong>procesador de texto</strong> es un programa para crear, editar y dar formato a documentos escritos. Microsoft Word y Google Docs son los más utilizados. Aprenderás las funciones esenciales para presentar trabajos escolares correctamente.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🖊️ Formato de texto</h4>
+                    <ul>
+                      <li><strong>Negrita:</strong> Ctrl+N (resalta palabras importantes)</li>
+                      <li><strong>Cursiva:</strong> Ctrl+K (títulos de libros, palabras extranjeras)</li>
+                      <li><strong>Subrayado:</strong> Ctrl+S</li>
+                      <li><strong>Tamaño de fuente:</strong> recomendado 12 pts para textos</li>
+                      <li><strong>Fuente:</strong> Arial o Times New Roman para trabajos formales</li>
+                      <li><strong>Alineación:</strong> izquierda, centrado, derecha, justificado</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>📄 Formato de página</h4>
+                    <ul>
+                      <li><strong>Márgenes:</strong> mínimo 2.5 cm en trabajos escolares</li>
+                      <li><strong>Interlineado:</strong> 1.5 o doble espacio para trabajos</li>
+                      <li><strong>Encabezado/pie:</strong> título, número de página, nombre</li>
+                      <li><strong>Guardar:</strong> Ctrl+G (guarda en .docx)</li>
+                      <li><strong>Guardar como PDF:</strong> Archivo → Guardar como → PDF</li>
+                      <li><strong>Imprimir:</strong> Ctrl+P</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué atajo de teclado usas para poner texto en negrita, cursiva y subrayado en Word?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Negrita: <strong>Ctrl+N</strong> · Cursiva: <strong>Ctrl+K</strong> · Subrayado: <strong>Ctrl+S</strong></div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2 — Práctico</strong>
+                      Abre Word y crea un documento con: tu nombre en negrita y centrado, un título con tamaño 16, y un párrafo justificado de al menos 5 líneas. Guárdalo en tu escritorio.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t3">Ejercicio práctico. Verificar: nombre en negrita y centrado (Ctrl+N + Ctrl+T), título tamaño 16, párrafo con alineación justificada (Ctrl+J), guardado con Ctrl+G.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-tech">🌐</div>
+                <div class="topic-book-info">
+                  <h4>Internet y Seguridad</h4>
+                  <p>Navegadores, búsqueda segura y riesgos en línea</p>
+                  <div class="topic-tags"><span class="topic-tag">Navegador</span><span class="topic-tag">Buscador</span><span class="topic-tag">Seguridad</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🌐 Internet y Seguridad Digital</h3>
+                <p><strong>Internet</strong> es una red global de computadores interconectados. Permite acceder a información, comunicarse y trabajar desde cualquier lugar. Pero también presenta riesgos que debes conocer para protegerte.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🔍 Búsqueda eficiente</h4>
+                    <ul>
+                      <li>Usa palabras clave específicas: "volcanes del Perú" no solo "volcanes"</li>
+                      <li>Comillas para frase exacta: "cambio climático en Perú"</li>
+                      <li>site: para buscar en un sitio: site:minedu.gob.pe matemática</li>
+                      <li>Evalúa fuentes: .edu y .gob son más confiables</li>
+                      <li>Verifica la fecha de publicación</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔒 Seguridad en línea</h4>
+                    <ul>
+                      <li><strong>Contraseña fuerte:</strong> mínimo 8 caracteres, mayúsculas, números y símbolos</li>
+                      <li><strong>No compartir:</strong> contraseñas, dirección, número de teléfono</li>
+                      <li><strong>Phishing:</strong> correos falsos que roban datos — no hacer clic en links sospechosos</li>
+                      <li><strong>Ciberbullying:</strong> acoso en línea — reportar y bloquear</li>
+                      <li><strong>Privacidad:</strong> revisar configuración de privacidad en redes</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Cuáles son las características de una contraseña segura?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4">Mínimo 8 caracteres, combina <strong>letras mayúsculas y minúsculas, números y símbolos</strong> (! @ # $). No uses tu nombre, fecha de nacimiento ni palabras del diccionario. Usa una distinta para cada cuenta.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      ¿Qué es el phishing y cómo puedes protegerte de él?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">El <strong>phishing</strong> es cuando alguien te envía un mensaje falso (email, SMS) fingiendo ser una empresa o persona conocida para robarte contraseñas o datos. Protección: no hacer clic en links sospechosos, verificar la dirección del remitente, nunca ingresar contraseñas desde links en correos.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Nivel Avanzado</p>
+              <h2>Ciudadanía Digital</h2>
+              <p>Ética, derechos y responsabilidades en el mundo digital</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">🛡️</span>
+              <div><h3>Sé un ciudadano digital responsable</h3><p>Usar la tecnología con responsabilidad y ética es tan importante como saber usarla técnicamente. Aquí aprenderás tus derechos y deberes en el mundo digital.</p></div>
+            </div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-tech">🛡️</div>
+                <div class="topic-book-info">
+                  <h4>Ciudadanía Digital</h4>
+                  <p>Ética digital, derechos de autor y huella digital</p>
+                  <div class="topic-tags"><span class="topic-tag">Ética</span><span class="topic-tag">Derechos de autor</span><span class="topic-tag">Huella digital</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>🛡️ Ciudadanía Digital</h3>
+                <p>Un <strong>ciudadano digital</strong> es quien usa responsablemente las tecnologías para participar en la sociedad, respetando leyes, derechos de otros y cuidando su propia reputación en línea.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Principios del ciudadano digital</h4>
+                    <ul>
+                      <li><strong>Respeto:</strong> tratar a otros con dignidad en línea</li>
+                      <li><strong>Responsabilidad:</strong> asumir consecuencias de lo que publicas</li>
+                      <li><strong>Derechos de autor:</strong> citar fuentes, no plagiar</li>
+                      <li><strong>Privacidad:</strong> respetar los datos de los demás</li>
+                      <li><strong>Veracidad:</strong> no difundir noticias falsas (fake news)</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>👣 Huella digital</h4>
+                    <ul>
+                      <li>Es el rastro que dejas en internet con cada acción</li>
+                      <li><strong>Activa:</strong> fotos, comentarios, publicaciones que tú haces</li>
+                      <li><strong>Pasiva:</strong> datos recopilados sin que lo sepas (cookies)</li>
+                      <li>Una vez publicado, es difícil borrar completamente</li>
+                      <li>Cuida lo que compartes: puede afectar tu futuro</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Ejercicios</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Ejercicio 1</strong>
+                      ¿Qué es la huella digital activa? Da dos ejemplos de tu propia huella digital activa.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">La huella digital activa son las acciones que <strong>tú decides hacer</strong> en internet. Ejemplos personales: subir una foto a Instagram, escribir un comentario en YouTube, publicar en WhatsApp.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Ejercicio 2</strong>
+                      Encuentras en Google una imagen perfecta para tu tarea. ¿Cómo la usas respetando los derechos de autor?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t5">Debes: 1) Buscar imágenes con licencia libre (Google → Herramientas → Derechos de uso: Creative Commons). 2) Citar la fuente: escribir debajo de la imagen el autor y la URL. 3) Nunca presentarla como tuya propia.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-1.html" class="button button-secondary">← 1° Secundaria</a>
+      <a href="grado-2.html" class="button button-primary">2° Secundaria →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=5,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(2,132,199);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ed. para el Trabajo - 1 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'El Computador',c:'Hardware (CPU, RAM, disco duro, monitor, teclado) vs Software (SO, aplicaciones, utilitarios). Entrada: teclado, raton, microfono. Salida: monitor, impresora, altavoces.'},
+       {ti:'Sistema Operativo Windows',c:'Escritorio, barra de tareas, Menu Inicio, Papelera. Atajos: Ctrl+C (copiar), Ctrl+X (cortar), Ctrl+V (pegar), F2 (renombrar). Extensiones: .docx, .pdf, .jpg, .mp4.'},
+       {ti:'Procesador de Texto',c:'Negrita: Ctrl+N. Cursiva: Ctrl+K. Subrayado: Ctrl+S. Fuente: Arial/Times 12pts. Margenes 2.5cm. Guardar: Ctrl+G. Guardar como PDF: Archivo > Guardar como > PDF.'},
+       {ti:'Internet y Seguridad',c:'Busqueda eficiente: palabras clave especificas, comillas para frases exactas, fuentes .edu y .gob. Seguridad: contrasena fuerte (8+ caracteres, mayus+num+simbolos), no compartir datos personales, cuidado con phishing.'},
+       {ti:'Ciudadania Digital',c:'Respeto, responsabilidad, derechos de autor, privacidad, veracidad. Huella digital activa (lo que publicas) vs pasiva (cookies). Lo publicado es dificil de borrar. Citar fuentes al usar imagenes.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[2,132,199]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Ejercicios de repaso',13,true,[2,132,199]);
+      ['1. Clasifica: monitor, Windows 11, teclado, Word, disco duro, antivirus (hardware/software)',
+       '2. Diferencia entre RAM y disco duro.',
+       '3. Atajos de teclado para copiar, cortar y pegar en Windows.',
+       '4. Caracteristicas de una contrasena segura.',
+       '5. Que es el phishing y como protegerse.',
+       '6. Diferencia entre huella digital activa y pasiva.'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('EducacionTrabajo-1Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
