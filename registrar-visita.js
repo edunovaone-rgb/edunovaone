@@ -1,30 +1,31 @@
 /**
  * registrar-visita.js — EduNovaOne
- * Se incluye en cada página de tema (tema-*.html y libro-*.html).
- * Lee los meta-tags del documento y registra la visita en el historial.
- *
- * Meta-tags requeridos en el <head> de la página de tema:
- *   <meta name="enu:titulo"  content="Aritmética Básica" />
- *   <meta name="enu:materia" content="Matemática" />
- *   <meta name="enu:grado"   content="1° Secundaria" />
- *   <meta name="enu:icono"   content="📐" />
+ * Script standalone que registra la visita actual en el historial localStorage.
+ * Se incluye como <script src="registrar-visita.js"> en cada página de tema.
+ * Lee los meta-tags enu:* del <head> para obtener los datos del recurso.
  */
-
-import { registrarVisita } from './historial.js';
-
 (function () {
-  const getMeta = name => {
-    const el = document.querySelector(`meta[name="${name}"]`);
+  const KEY = 'enu_historial';
+  const MAX = 50;
+
+  function getMeta(name) {
+    const el = document.querySelector('meta[name="' + name + '"]');
     return el ? el.getAttribute('content') : '';
-  };
+  }
 
   const titulo  = getMeta('enu:titulo')  || document.title.split('|')[0].trim();
   const materia = getMeta('enu:materia') || '';
   const grado   = getMeta('enu:grado')   || '';
-  const icono   = getMeta('enu:icono')   || '📄';
+  const icono   = getMeta('enu:icono')   || 'doc';
   const id      = location.pathname.replace(/\.html$/, '').split('/').pop();
 
-  if (titulo) {
-    registrarVisita({ id, titulo, materia, grado, icono });
-  }
+  if (!titulo) return;
+
+  try {
+    let hist = JSON.parse(localStorage.getItem(KEY) || '[]');
+    hist = hist.filter(function(e) { return e.id !== id; });
+    hist.unshift({ id: id, titulo: titulo, materia: materia, grado: grado, icono: icono, ts: Date.now() });
+    if (hist.length > MAX) hist = hist.slice(0, MAX);
+    localStorage.setItem(KEY, JSON.stringify(hist));
+  } catch(e) {}
 })();
