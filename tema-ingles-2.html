@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Inglés | 2° Secundaria | EduNovaOne</title>
+  <link rel="icon" href="assets/Icono.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tema-shared.css" />
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.png" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav class="breadcrumb-bar" style="margin-bottom:1.25rem">
+      <a href="biblioteca.html">Biblioteca</a><span>›</span>
+      <a href="grado-2.html">2° Secundaria</a><span>›</span>
+      <span style="color:var(--text);font-weight:600">Inglés</span>
+    </nav>
+
+    <div class="book-layout">
+      <aside class="book-sidebar">
+        <div class="book-sidebar-header">
+          <div class="book-cover-mini" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">🇬🇧</div>
+          <div><h3>Inglés</h3><p>2° de Secundaria</p></div>
+        </div>
+        <p class="toc-label">Contenido</p>
+        <ul class="toc-list">
+          <li><p class="toc-section-title">I. Gramática</p></li>
+          <li><a href="#t1" class="active"><span class="toc-num">1</span>Present Continuous</a></li>
+          <li><a href="#t2"><span class="toc-num">2</span>Past Simple</a></li>
+          <li><p class="toc-section-title">II. Vocabulario</p></li>
+          <li><a href="#t3"><span class="toc-num">3</span>School & Places</a></li>
+          <li><a href="#t4"><span class="toc-num">4</span>Food & Health</a></li>
+          <li><p class="toc-section-title">III. Comunicación</p></li>
+          <li><a href="#t5"><span class="toc-num">5</span>Comparatives & Superlatives</a></li>
+          <li><a href="#t6"><span class="toc-num">6</span>Making Plans (Future)</a></li>
+        </ul>
+        <div class="progress-block">
+          <div class="progress-label"><span>Tu progreso</span><span id="progressPct">0%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button class="pdf-download-btn" onclick="downloadPDF()">
+          <span class="pdf-icon">📄</span> Descargar PDF
+        </button>
+      </aside>
+
+      <div class="book-main">
+
+        <div class="chapter-card open" id="ch-basic">
+          <div class="chapter-header" onclick="toggleChapter('ch-basic')">
+            <div class="chapter-num num-basic">I</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Elementary Level</p>
+              <h2>Gramática — Tiempos Verbales</h2>
+              <p>Present Continuous y Past Simple</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-basic">
+              <span class="banner-icon">⏳</span>
+              <div><h3>Time matters in English!</h3><p>Knowing when something happens is key. The Present Continuous talks about now, while the Past Simple describes completed actions. Master both and you'll communicate much more clearly.</p></div>
+            </div>
+            <div class="topics-grid">
+
+              <div class="topic-book" id="t1" onclick="toggleTopic('detail-t1',this)">
+                <div class="topic-book-cover cover-english">🔄</div>
+                <div class="topic-book-info">
+                  <h4>Present Continuous</h4>
+                  <p>Acciones en progreso ahora mismo</p>
+                  <div class="topic-tags"><span class="topic-tag">Am/Is/Are + ing</span><span class="topic-tag">Right now</span><span class="topic-tag">Future plans</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t1">
+                <h3>🔄 Present Continuous</h3>
+                <p>El <strong>Present Continuous</strong> (Presente Continuo) describe acciones que ocurren <em>ahora mismo</em> o en este período de tiempo, y también se usa para hablar de planes futuros ya confirmados.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Estructura</h4>
+                    <ul>
+                      <li><strong>Afirmativo:</strong> Subject + am/is/are + verb-ing</li>
+                      <li>I <em>am studying</em> now.</li>
+                      <li>She <em>is watching</em> TV.</li>
+                      <li>They <em>are playing</em> soccer.</li>
+                      <li><strong>Negativo:</strong> am/is/are + not + verb-ing</li>
+                      <li>He <em>is not sleeping</em>. (He isn't sleeping)</li>
+                      <li><strong>Pregunta:</strong> Am/Is/Are + subject + verb-ing?</li>
+                      <li><em>Are</em> you listening?</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>✏️ Reglas del -ing</h4>
+                    <ul>
+                      <li>Verbo normal: study → studying</li>
+                      <li>Termina en -e muda: write → writing (quita la e)</li>
+                      <li>CVC corto: run → running (dobla la consonante)</li>
+                      <li>Termina en -ie: lie → lying (ie → y)</li>
+                      <li>Signal words: now, right now, at the moment, look!, listen!</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="formula-display">Subject + am/is/are + [verb+ing] + complement</div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Escribe la forma -ing de: run, write, study, swim, make, sit.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t1">running · writing · studying · swimming · making · sitting</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Completa con Present Continuous: She ___ (read) a book. They ___ (not play) outside. ___ he ___ (eat) lunch?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t1">She <strong>is reading</strong> a book. They <strong>are not playing</strong> outside. <strong>Is</strong> he <strong>eating</strong> lunch?</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 3</strong>
+                      Describe 3 cosas que están pasando en tu clase ahora mismo usando Present Continuous.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans3-t1')">Ver respuesta</button>
+                      <div class="answer-box" id="ans3-t1">Respuesta personal. Ej: "The teacher is writing on the board. My classmates are taking notes. I am reading the exercise."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t1',document.getElementById('t1'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t2" onclick="toggleTopic('detail-t2',this)">
+                <div class="topic-book-cover cover-english">⏪</div>
+                <div class="topic-book-info">
+                  <h4>Past Simple</h4>
+                  <p>Acciones completadas en el pasado — regulares e irregulares</p>
+                  <div class="topic-tags"><span class="topic-tag">-ed</span><span class="topic-tag">Irregular</span><span class="topic-tag">Did/Didn't</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t2">
+                <h3>⏪ Past Simple</h3>
+                <p>El <strong>Past Simple</strong> (Pasado Simple) se usa para hablar de acciones <em>completadas en un tiempo específico del pasado</em>. Es uno de los tiempos verbales más importantes del inglés.</p>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📋 Verbos regulares (+ed)</h4>
+                    <ul>
+                      <li>Afirmativo: verb + ed (para todos los sujetos)</li>
+                      <li>I <em>walked</em> to school yesterday.</li>
+                      <li>She <em>studied</em> all night.</li>
+                      <li>Negativo: <strong>didn't</strong> + verb (infinitivo)</li>
+                      <li>He <em>didn't watch</em> TV last night.</li>
+                      <li>Pregunta: <strong>Did</strong> + subject + verb?</li>
+                      <li><em>Did</em> you finish your homework?</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🔀 Verbos irregulares comunes</h4>
+                    <ul>
+                      <li>go → went · come → came · see → saw</li>
+                      <li>eat → ate · drink → drank · buy → bought</li>
+                      <li>have → had · make → made · take → took</li>
+                      <li>write → wrote · read → read · give → gave</li>
+                      <li>Signal words: yesterday, last (week/month/year), ago, in 2020</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Escribe el pasado simple de: go, eat, write, study, buy, come.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t2">went · ate · wrote · studied · bought · came</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Completa: I ___ (go) to the market yesterday. She ___ (not study) last night. ___ they ___ (see) the movie?
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t2')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t2">I <strong>went</strong> to the market yesterday. She <strong>didn't study</strong> last night. <strong>Did</strong> they <strong>see</strong> the movie?</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t2',document.getElementById('t2'))">✕ Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-inter">
+          <div class="chapter-header" onclick="toggleChapter('ch-inter')">
+            <div class="chapter-num num-inter">II</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Intermediate Level</p>
+              <h2>Vocabulario Temático</h2>
+              <p>Escuela, lugares, comida y salud</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-inter">
+              <span class="banner-icon">📚</span>
+              <div><h3>Build your vocabulary!</h3><p>Knowing more words lets you express more ideas. Focus on vocabulary related to school and daily life — you'll use these words every day.</p></div>
+            </div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t3" onclick="toggleTopic('detail-t3',this)">
+                <div class="topic-book-cover cover-english">🏫</div>
+                <div class="topic-book-info">
+                  <h4>School & Places</h4>
+                  <p>Vocabulario de la escuela y lugares de la ciudad</p>
+                  <div class="topic-tags"><span class="topic-tag">Classroom</span><span class="topic-tag">Prepositions</span><span class="topic-tag">Directions</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t3">
+                <h3>🏫 School & Places in the City</h3>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🏫 School vocabulary</h4>
+                    <ul>
+                      <li>classroom (aula) · library (biblioteca) · gym (gimnasio)</li>
+                      <li>cafeteria (comedor) · playground (patio) · office (oficina)</li>
+                      <li>teacher (profesor) · student (estudiante) · principal (director)</li>
+                      <li>blackboard/whiteboard · desk (escritorio) · chair · textbook</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🏙️ Places in the city + Directions</h4>
+                    <ul>
+                      <li>bank (banco) · hospital · supermarket · park (parque)</li>
+                      <li>pharmacy (farmacia) · bus stop · museum · mall</li>
+                      <li>Turn left/right — Gira a la izquierda/derecha</li>
+                      <li>Go straight — Sigue recto</li>
+                      <li>It's next to / opposite / between / on the corner</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Da indicaciones en inglés desde tu escuela hasta el parque más cercano (usa turn left, go straight, etc.)
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t3')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t3">Respuesta personal. Ej: "Go out of school and turn left. Go straight for two blocks. Turn right at the corner. The park is on the left, opposite the supermarket."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t3',document.getElementById('t3'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t4" onclick="toggleTopic('detail-t4',this)">
+                <div class="topic-book-cover cover-english">🥗</div>
+                <div class="topic-book-info">
+                  <h4>Food & Health</h4>
+                  <p>Comida, dieta saludable y cuidado del cuerpo</p>
+                  <div class="topic-tags"><span class="topic-tag">Countable</span><span class="topic-tag">Some/Any</span><span class="topic-tag">Healthy food</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t4">
+                <h3>🥗 Food & Health</h3>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>🍎 Food vocabulary + Countable/Uncountable</h4>
+                    <ul>
+                      <li><strong>Countable:</strong> apple, egg, potato, sandwich (puedes contar)</li>
+                      <li><strong>Uncountable:</strong> water, milk, rice, bread, sugar (no puedes contar)</li>
+                      <li><strong>Some:</strong> afirmativo (I want some milk)</li>
+                      <li><strong>Any:</strong> negativo/pregunta (There isn't any sugar. Do you have any eggs?)</li>
+                      <li><strong>How much:</strong> incontable · <strong>How many:</strong> contable</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>💪 Healthy habits</h4>
+                    <ul>
+                      <li>You <strong>should</strong> eat vegetables every day.</li>
+                      <li>You <strong>shouldn't</strong> eat too much sugar.</li>
+                      <li>You <strong>must</strong> drink 8 glasses of water.</li>
+                      <li>You <strong>mustn't</strong> skip breakfast.</li>
+                      <li>Healthy food: fruits, vegetables, whole grains, lean protein</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Clasifica como countable o uncountable: apple, water, egg, milk, sandwich, rice, orange, sugar.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t4"><strong>Countable:</strong> apple, egg, sandwich, orange. <strong>Uncountable:</strong> water, milk, rice, sugar.</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Completa con some o any: I need ___ milk. Do you have ___ apples? There isn't ___ bread.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t4')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t4">I need <strong>some</strong> milk. Do you have <strong>any</strong> apples? There isn't <strong>any</strong> bread.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t4',document.getElementById('t4'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-card" id="ch-advanced">
+          <div class="chapter-header" onclick="toggleChapter('ch-advanced')">
+            <div class="chapter-num num-advanced">III</div>
+            <div class="chapter-header-text">
+              <p class="chapter-level">Pre-Intermediate Level</p>
+              <h2>Comunicación Avanzada</h2>
+              <p>Comparativos, superlativos y planes futuros</p>
+            </div>
+            <span class="chapter-toggle">▼</span>
+          </div>
+          <div class="chapter-body">
+            <div class="section-banner banner-advanced">
+              <span class="banner-icon">🚀</span>
+              <div><h3>Level up your English!</h3><p>Comparatives and superlatives help you compare people and things. Learning to make future plans lets you talk about your dreams and goals.</p></div>
+            </div>
+            <div class="topics-grid">
+              <div class="topic-book" id="t5" onclick="toggleTopic('detail-t5',this)">
+                <div class="topic-book-cover cover-english">📊</div>
+                <div class="topic-book-info">
+                  <h4>Comparatives & Superlatives</h4>
+                  <p>Comparar personas, objetos y lugares</p>
+                  <div class="topic-tags"><span class="topic-tag">-er/more</span><span class="topic-tag">-est/most</span><span class="topic-tag">Than/The</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t5">
+                <h3>📊 Comparatives & Superlatives</h3>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📈 Comparative (más... que)</h4>
+                    <ul>
+                      <li>1 sílaba: adj + -er + than → tall → taller than</li>
+                      <li>2+ sílabas: more + adj + than → more beautiful than</li>
+                      <li>Irregular: good → better · bad → worse · far → farther</li>
+                      <li>Lima is <em>bigger than</em> Cusco.</li>
+                      <li>English is <em>more important than</em> ever.</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>🏆 Superlative (el más...)</h4>
+                    <ul>
+                      <li>1 sílaba: the + adj + -est → the tallest</li>
+                      <li>2+ sílabas: the most + adj → the most beautiful</li>
+                      <li>Irregular: good → the best · bad → the worst</li>
+                      <li>Mount Everest is <em>the highest</em> mountain.</li>
+                      <li>She is <em>the most intelligent</em> student.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Completa con el comparativo o superlativo: Peru is ___ (big) than Chile. The Amazon is ___ (long) river in South America. She is ___ (good) student in the class.
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t5')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t5">Peru is <strong>bigger than</strong> Chile. The Amazon is <strong>the longest</strong> river in South America. She is <strong>the best</strong> student in the class.</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t5',document.getElementById('t5'))">✕ Cerrar</button>
+              </div>
+
+              <div class="topic-book" id="t6" onclick="toggleTopic('detail-t6',this)">
+                <div class="topic-book-cover cover-english">🗓️</div>
+                <div class="topic-book-info">
+                  <h4>Making Plans — Future</h4>
+                  <p>Going to y Will para hablar del futuro</p>
+                  <div class="topic-tags"><span class="topic-tag">Going to</span><span class="topic-tag">Will</span><span class="topic-tag">Future plans</span></div>
+                </div>
+              </div>
+              <div class="topic-detail" id="detail-t6">
+                <h3>🗓️ Talking About the Future</h3>
+                <div class="detail-columns">
+                  <div class="detail-box">
+                    <h4>📅 Be going to (planes decididos)</h4>
+                    <ul>
+                      <li>Usar para: planes ya decididos, predicciones con evidencia</li>
+                      <li>I <em>am going to study</em> medicine.</li>
+                      <li>She <em>is going to travel</em> to Europe next year.</li>
+                      <li>Look at those clouds! It <em>is going to rain</em>.</li>
+                      <li>Negativo: is/am/are + not going to + verb</li>
+                    </ul>
+                  </div>
+                  <div class="detail-box">
+                    <h4>⚡ Will (decisión espontánea)</h4>
+                    <ul>
+                      <li>Usar para: decisiones en el momento, promesas, predicciones</li>
+                      <li>A: "I'm cold." B: "I <em>will</em> close the window."</li>
+                      <li>I <em>will call</em> you tonight, I promise.</li>
+                      <li>In 2050, robots <em>will do</em> most jobs.</li>
+                      <li>Contracción: I'll, She'll, They'll</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="exercises-section">
+                  <h4>✏️ Exercises</h4>
+                  <ul class="exercise-list">
+                    <li class="exercise-item">
+                      <strong>Exercise 1</strong>
+                      Elige going to o will: "I already have my ticket — I ___ visit Machu Picchu in July." / "The phone is ringing. I ___ answer it!"
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans1-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans1-t6">I <strong>am going to visit</strong> Machu Picchu (plan ya decidido). I <strong>will answer</strong> it! (decisión espontánea).</div>
+                    </li>
+                    <li class="exercise-item">
+                      <strong>Exercise 2</strong>
+                      Escribe 3 planes que tengas para este fin de semana usando "going to".
+                      <br><button class="answer-toggle-btn" onclick="toggleAnswer('ans2-t6')">Ver respuesta</button>
+                      <div class="answer-box" id="ans2-t6">Respuesta personal. Ej: "I am going to do my homework on Saturday morning. I am going to watch a movie with my family. I am going to play football with my friends."</div>
+                    </li>
+                  </ul>
+                </div>
+                <button class="close-detail" onclick="closeTopic('detail-t6',document.getElementById('t6'))">✕ Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="grado-2.html" class="button button-secondary">← 2° Secundaria</a>
+      <a href="grado-3.html" class="button button-primary">3° Secundaria →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function toggleChapter(id){document.getElementById(id).classList.toggle('open');}
+    function toggleTopic(detailId,card){
+      const detail=document.getElementById(detailId),isOpen=detail.classList.contains('open');
+      document.querySelectorAll('.topic-detail.open').forEach(d=>d.classList.remove('open'));
+      document.querySelectorAll('.topic-book').forEach(c=>c.style.borderColor='');
+      if(!isOpen){detail.classList.add('open');card.style.borderColor='var(--accent)';detail.scrollIntoView({behavior:'smooth',block:'nearest'});updateProgress();}
+    }
+    function closeTopic(detailId,card){document.getElementById(detailId).classList.remove('open');if(card)card.style.borderColor='';}
+    function toggleAnswer(id){document.getElementById(id).classList.toggle('open');}
+    const totalTopics=6,opened=new Set();
+    function updateProgress(){
+      document.querySelectorAll('.topic-detail.open').forEach(d=>opened.add(d.id));
+      const pct=Math.round((opened.size/totalTopics)*100);
+      document.getElementById('progressPct').textContent=pct+'%';
+      document.getElementById('progressFill').style.width=pct+'%';
+    }
+    function downloadPDF(){
+      const{jsPDF}=window.jspdf,doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'}),m=15,W=210,H=297;let y=m;
+      const t=(text,size,bold,color)=>{doc.setFontSize(size);doc.setFont('helvetica',bold?'bold':'normal');doc.setTextColor(...(color||[30,30,30]));doc.splitTextToSize(text,W-m*2).forEach(l=>{if(y>H-m){doc.addPage();y=m;}doc.text(l,m,y);y+=size*0.45;});y+=2;};
+      doc.setFillColor(37,99,235);doc.rect(0,0,210,28,'F');doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Ingles - 2 Secundaria',m,12);doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text('EduNovaOne - Material de estudio completo',m,20);y=38;
+      [{ti:'Present Continuous',c:'Subject + am/is/are + verb-ing. Reglas -ing: CVC dobla consonante (running), termina en -e muda quita la e (writing). Signal words: now, at the moment, right now.'},
+       {ti:'Past Simple',c:'Verbos regulares: +ed. Irregulares: go-went, eat-ate, see-saw, have-had. Negativo: didn\'t + infinitivo. Pregunta: Did + subject + infinitivo? Signal words: yesterday, last week, ago.'},
+       {ti:'School & Places',c:'Classroom, library, gym, cafeteria. Places: bank, hospital, supermarket, park, pharmacy. Directions: turn left/right, go straight, next to, opposite, between.'},
+       {ti:'Food & Health',c:'Countable (apples, eggs) vs Uncountable (water, rice). Some (afirmativo), Any (negativo/pregunta). How many (contable) vs How much (incontable). Should/Shouldn\'t, Must/Mustn\'t para habitos.'},
+       {ti:'Comparatives & Superlatives',c:'Comparativo: adj+er+than (taller than) / more+adj+than. Superlativo: the+adj+est / the most+adj. Irregulares: good-better-best, bad-worse-worst.'},
+       {ti:'Future: Going to vs Will',c:'Going to: planes decididos, predicciones con evidencia. Will: decisiones espontaneas, promesas, predicciones generales. Contraccion: I\'ll, She\'ll, They\'ll.'},
+      ].forEach((x,i)=>{t(`${i+1}. ${x.ti}`,13,true,[37,99,235]);t(x.c,10,false,[50,50,60]);y+=3;});
+      y+=5;t('Exercises',13,true,[37,99,235]);
+      ['1. Escribe la forma -ing de: run, write, study, swim.',
+       '2. Escribe el pasado de: go, eat, write, buy, come.',
+       '3. Completa: Peru is ___ (big) than Chile. The Amazon is ___ (long) river.',
+       '4. Clasifica: apple, water, egg, milk, rice (countable/uncountable).',
+       '5. Elige going to o will: tengo un plan para julio / el telefono suena y contestas.'].forEach(e=>t(e,10,false,[50,50,60]));
+      doc.save('Ingles-2Secundaria-EduNovaOne.pdf');
+    }
+  </script>
+</body>
+</html>
