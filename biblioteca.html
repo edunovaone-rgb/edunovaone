@@ -762,27 +762,25 @@
                   <button class="button button-primary" id="guardarResumenBtn" style="font-size:.85rem;padding:.55rem 1.2rem;">✏️ Guardar resumen</button>
                 </div>
 
-                <!-- Tabs internas -->
+                <!-- Contenido según pestaña seleccionada en la sidebar -->
                 <div class="resumenes-tabs-card">
-                  <div style="border-bottom:1px solid rgba(148,163,184,0.15);margin-bottom:1.25rem;display:flex;gap:.25rem;">
-                    <button class="bib-tab-btn active" data-innertab="resumen" style="border-radius:.5rem .5rem 0 0;padding:.55rem 1.1rem;">📝 Resumen</button>
-                    <button class="bib-tab-btn" data-innertab="flashcards" style="border-radius:.5rem .5rem 0 0;padding:.55rem 1.1rem;">🃏 Flashcards</button>
-                    <button class="bib-tab-btn" data-innertab="formulas" style="border-radius:.5rem .5rem 0 0;padding:.55rem 1.1rem;">⚡ Fórmulas</button>
-                  </div>
-
-                  <!-- Tab resumen -->
                   <div class="tab-panel active" id="tab-resumen">
                     <div id="areaContent"></div>
                   </div>
 
-                  <!-- Tab flashcards -->
                   <div class="tab-panel" id="tab-flashcards">
                     <div id="flashcardsContent" style="display:grid;gap:1rem;"></div>
                   </div>
 
-                  <!-- Tab fórmulas -->
                   <div class="tab-panel" id="tab-formulas">
                     <div id="formulasContent" style="display:grid;gap:.75rem;"></div>
+                  </div>
+
+                  <div class="tab-panel" id="tab-mapa">
+                    <div style="text-align:center;padding:3rem 1rem;color:var(--text-muted);">
+                      <div style="font-size:3rem;margin-bottom:.75rem;">🗺️</div>
+                      <p style="font-size:.95rem;margin:0;">El mapa conceptual estará disponible próximamente.</p>
+                    </div>
                   </div>
                 </div>
               </div>
