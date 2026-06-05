@@ -804,12 +804,24 @@
         </div>
         <div class="panel-card" id="actividadPanel">
           <h3>Tu actividad</h3>
+          <!-- Stats de actividad -->
+          <div id="actividadStats" style="display:none;margin-bottom:.85rem;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
+              <div style="background:rgba(99,102,241,0.07);border-radius:.85rem;padding:.65rem .75rem;text-align:center;">
+                <div id="statRecursos" style="font-size:1.3rem;font-weight:800;color:var(--accent-strong);">0</div>
+                <div style="font-size:.72rem;color:var(--text-muted);font-weight:600;">recursos vistos</div>
+              </div>
+              <div style="background:rgba(5,150,105,0.07);border-radius:.85rem;padding:.65rem .75rem;text-align:center;">
+                <div id="statMaterias" style="font-size:1.3rem;font-weight:800;color:#059669;">0</div>
+                <div style="font-size:.72rem;color:var(--text-muted);font-weight:600;">materias</div>
+              </div>
+            </div>
+          </div>
           <p class="panel-label" style="margin-bottom:.5rem;">Vistos recientemente</p>
           <ul id="historialList" style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;">
             <li style="color:var(--text-muted);font-size:.85rem;text-align:center;padding:.75rem 0;">Aún no has visto ningún recurso.</li>
           </ul>
           <a href="historial-completo.html" id="verTodoLink" class="button button-secondary" style="margin-top:.75rem;display:none;">Ver historial completo</a>
-          <div id="actividadVacio" style="display:none;"></div>
         </div>
       </aside>
     </div>
