@@ -1061,10 +1061,6 @@
           e.preventDefault();
           document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(l => l.classList.remove('active'));
           link.classList.add('active');
-          // También sincronizar los botones innertab
-          document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(b => b.classList.remove('active'));
-          const innerBtn = document.querySelector(`.bib-tab-btn[data-innertab="${link.dataset.tab}"]`);
-          if (innerBtn) innerBtn.classList.add('active');
           document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
           const tab = document.getElementById('tab-' + link.dataset.tab);
           if (tab) tab.classList.add('active');
