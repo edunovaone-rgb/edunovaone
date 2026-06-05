@@ -984,47 +984,68 @@
 
       let currentAreaBib = null;
 
-      document.querySelectorAll('.area-card').forEach(btn => {
-        btn.addEventListener('click', () => {
-          currentAreaBib = btn.dataset.area;
-          const data = RESUMENES_BIB[currentAreaBib];
-          const savedGrado = parseInt(localStorage.getItem('edunova_grado') || '1');
-          areaSelector.style.display = 'none';
-          if (resumePanel) resumePanel.style.display = 'grid';
-          const breadcrumb = document.getElementById('breadcrumbArea');
-          if (breadcrumb && data) breadcrumb.textContent = data.nombre;
-          const areaContent = document.getElementById('areaContent');
-          if (areaContent) areaContent.innerHTML = gradeBtnsHTML(currentAreaBib, savedGrado);
-          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-          const tabRes = document.getElementById('tab-resumen');
-          if (tabRes) tabRes.classList.add('active');
+      function showArea(area) {
+        currentAreaBib = area;
+        const data = RESUMENES_BIB[area];
+        const savedGrado = parseInt(localStorage.getItem('edunova_grado') || '1');
+        areaSelector.style.display = 'none';
+        if (resumePanel) resumePanel.style.display = 'grid';
+        const breadcrumb = document.getElementById('breadcrumbArea');
+        if (breadcrumb && data) breadcrumb.textContent = data.nombre;
 
-          document.querySelectorAll('.res-grade-btn').forEach(gb => {
-            gb.addEventListener('click', () => {
-              document.querySelectorAll('.res-grade-btn').forEach(b => b.classList.remove('active'));
-              gb.classList.add('active');
-              const grado = parseInt(gb.dataset.grado);
-              localStorage.setItem('edunova_grado', grado);
-              const gc = document.querySelector('.grade-content');
-              if (gc) gc.innerHTML = renderResumenBib(currentAreaBib, grado);
-            });
+        // Resumen tab
+        const areaContent = document.getElementById('areaContent');
+        if (areaContent) areaContent.innerHTML = gradeBtnsHTML(area, savedGrado);
+
+        // Flashcards
+        renderFlashcards(area, savedGrado);
+        // Fórmulas
+        renderFormulas(area, savedGrado);
+
+        // Tab resumen activo
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(b => b.classList.remove('active'));
+        const tabRes = document.getElementById('tab-resumen');
+        if (tabRes) tabRes.classList.add('active');
+        const innerBtn = document.querySelector('.bib-tab-btn[data-innertab="resumen"]');
+        if (innerBtn) innerBtn.classList.add('active');
+
+        // Botones de grado
+        document.querySelectorAll('.res-grade-btn').forEach(gb => {
+          gb.addEventListener('click', () => {
+            document.querySelectorAll('.res-grade-btn').forEach(b => b.classList.remove('active'));
+            gb.classList.add('active');
+            const grado = parseInt(gb.dataset.grado);
+            localStorage.setItem('edunova_grado', grado);
+            const gc = document.querySelector('.grade-content');
+            if (gc) gc.innerHTML = renderResumenBib(currentAreaBib, grado);
+            renderFlashcards(currentAreaBib, grado);
+            renderFormulas(currentAreaBib, grado);
           });
-        });
-      });
-
-      const backBtn = document.getElementById('backToAreas');
-      if (backBtn) {
-        backBtn.addEventListener('click', () => {
-          if (resumePanel) resumePanel.style.display = 'none';
-          areaSelector.style.display = 'grid';
         });
       }
 
+      function goBackToAreas() {
+        if (resumePanel) resumePanel.style.display = 'none';
+        areaSelector.style.display = 'grid';
+      }
+
+      document.querySelectorAll('.area-card').forEach(btn => {
+        btn.addEventListener('click', () => showArea(btn.dataset.area));
+      });
+
+      const backBtn = document.getElementById('backToAreas');
+      if (backBtn) backBtn.addEventListener('click', (e) => { e.preventDefault(); goBackToAreas(); });
+
+      const backBtn2 = document.getElementById('backToAreas2');
+      if (backBtn2) backBtn2.addEventListener('click', (e) => { e.preventDefault(); goBackToAreas(); });
+
+      // Sidebar back (vuelve a tab libros)
       const sidebarBackBtn = document.querySelector('#resumenesContent .sidebar-back');
       if (sidebarBackBtn) {
         sidebarBackBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.bib-tab-btn[data-bibtab]').forEach(b => b.classList.remove('active'));
           document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
           const libBtn = document.querySelector('.bib-tab-btn[data-bibtab="libros"]');
           if (libBtn) libBtn.classList.add('active');
@@ -1033,17 +1054,73 @@
         });
       }
 
+      // Sidebar nav links
       document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
           document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(l => l.classList.remove('active'));
           link.classList.add('active');
+          // También sincronizar los botones innertab
+          document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(b => b.classList.remove('active'));
+          const innerBtn = document.querySelector(`.bib-tab-btn[data-innertab="${link.dataset.tab}"]`);
+          if (innerBtn) innerBtn.classList.add('active');
           document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
           const tab = document.getElementById('tab-' + link.dataset.tab);
           if (tab) tab.classList.add('active');
         });
       });
-    }
+
+      // Flashcards renderer
+      function renderFlashcards(area, grado) {
+        const container = document.getElementById('flashcardsContent');
+        if (!container) return;
+        const data = RESUMENES_BIB[area];
+        const tema = data && data.temas[parseInt(grado)];
+        if (!tema) { container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;">Sin contenido para este grado.</p>'; return; }
+        const color = { matematica:'#7c3aed', ciencia:'#059669', historia:'#d97706', comunicacion:'#dc2626', ingles:'#2563eb' }[area] || '#6d28d9';
+        container.innerHTML = `
+          <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 .5rem;">Haz clic en cada tarjeta para ver la explicación.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.85rem;">
+          ${tema.resumen.map((b, i) => `
+            <div class="flashcard-item" style="background:#f8fbff;border:1.5px solid rgba(99,102,241,0.12);border-radius:1.25rem;padding:1.1rem;cursor:pointer;transition:box-shadow .2s;" onclick="this.querySelector('.fc-back').style.display=this.querySelector('.fc-back').style.display==='none'?'block':'none'">
+              <div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.6rem;">
+                <span style="width:2rem;height:2rem;border-radius:.6rem;background:${color}22;color:${color};font-size:.85rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">${i+1}</span>
+                <strong style="font-size:.92rem;color:var(--accent-strong);">${b.titulo}</strong>
+              </div>
+              <div class="fc-back" style="display:none;font-size:.88rem;color:var(--text-muted);line-height:1.6;">${b.texto}</div>
+              <span style="font-size:.75rem;color:${color};font-weight:600;">Toca para ver ▼</span>
+            </div>`).join('')}
+          </div>
+          <div style="margin-top:1rem;background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.1);border-radius:1rem;padding:1rem;">
+            <p style="margin:0 0 .5rem;font-size:.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">Conceptos clave</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;">${tema.conceptos.map(c => `<span class="concept-tag">${c}</span>`).join('')}</div>
+          </div>`;
+      }
+
+      // Fórmulas renderer
+      function renderFormulas(area, grado) {
+        const container = document.getElementById('formulasContent');
+        if (!container) return;
+        const data = RESUMENES_BIB[area];
+        const tema = data && data.temas[parseInt(grado)];
+        if (!tema) { container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;">Sin fórmulas para este grado.</p>'; return; }
+        const ej = tema.ejemplo;
+        const pasos = ej.pasos.map((p,i) =>
+          `<li style="display:flex;align-items:flex-start;gap:.75rem;font-size:.9rem;color:var(--text-muted);margin-bottom:.5rem;">
+            <span style="width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">${i+1}</span>${p}</li>`
+        ).join('');
+        container.innerHTML = `
+          <div style="display:grid;gap:.65rem;">
+            ${tema.formulas.map(f => `<div style="padding:.85rem 1.25rem;background:rgba(99,102,241,0.06);border:1.5px solid rgba(99,102,241,0.18);border-radius:1rem;font-family:monospace;font-size:.95rem;color:var(--accent-strong);font-weight:700;">${f}</div>`).join('')}
+          </div>
+          <div style="background:#f8fbff;border:1px solid rgba(59,130,246,0.12);border-radius:1.25rem;padding:1.25rem;margin-top:.5rem;">
+            <p style="margin:0 0 .75rem;font-size:.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">🧪 Ejemplo resuelto</p>
+            <p style="margin:0 0 .75rem;font-size:.92rem;color:var(--text);font-weight:600;">${ej.enunciado}</p>
+            <ol style="list-style:none;padding:0;margin:0;">${pasos}</ol>
+            <div style="display:inline-block;padding:.55rem 1.2rem;background:rgba(99,102,241,0.08);border:1.5px solid rgba(99,102,241,0.22);border-radius:.75rem;font-size:1.05rem;font-weight:700;color:var(--accent-strong);font-style:italic;margin-top:.75rem;">${ej.resultado}</div>
+          </div>`;
+      }
+
 
     // ── Filtros rápidos ──
     // Orden definido para cada criterio (índice = posición preferida)
