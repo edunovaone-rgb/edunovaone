@@ -861,16 +861,7 @@
       });
     });
 
-    // ── Tabs internas del panel Resúmenes ──
-    document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        const tab = document.getElementById('tab-' + btn.dataset.innertab);
-        if (tab) tab.classList.add('active');
-      });
-    });
+    // ── Tabs internas del panel Resúmenes — controladas por la sidebar nav ──
 
     function initResumenes() {
       // ── Datos de resúmenes (5 cursos × 5 grados) ──
