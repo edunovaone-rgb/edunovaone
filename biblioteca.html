@@ -833,38 +833,6 @@
       });
     }
 
-    // ── Tabs Libros | Resúmenes ──
-    let resumenesLoaded = false;
-
-    function activarTabResumenes() {
-      document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
-      const btn = document.querySelector('.bib-tab-btn[data-bibtab="resumenes"]');
-      if (btn) btn.classList.add('active');
-      const panel = document.getElementById('bibtab-resumenes');
-      if (panel) panel.classList.add('active');
-      if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      if (!resumenesLoaded) {
-        resumenesLoaded = true;
-        fetch('resumenes.html')
-          .then(r => r.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const grid = doc.querySelector('.resumenes-grid');
-            if (grid) {
-              document.getElementById('resumenesContent').innerHTML = grid.outerHTML;
-              initResumenes();
-            }
-          })
-          .catch(() => {
-            document.getElementById('resumenesContent').innerHTML =
-              '<p style="text-align:center;color:var(--text-muted);padding:2rem;">No se pudo cargar los resúmenes.</p>';
-          });
-      }
-    }
-
     // ── Tabs principales Libros | Resúmenes ──
     let resumenesLoaded = false;
 
