@@ -865,9 +865,12 @@
       }
     }
 
-    document.querySelectorAll('.bib-tab-btn').forEach(btn => {
+    // ── Tabs principales Libros | Resúmenes ──
+    let resumenesLoaded = false;
+
+    document.querySelectorAll('.bib-tab-btn[data-bibtab]').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.bib-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.bib-tab-btn[data-bibtab]').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.bib-tab-panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         const panel = document.getElementById('bibtab-' + btn.dataset.bibtab);
@@ -875,22 +878,19 @@
 
         if (btn.dataset.bibtab === 'resumenes' && !resumenesLoaded) {
           resumenesLoaded = true;
-          fetch('resumenes.html')
-            .then(r => r.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const doc = parser.parseFromString(html, 'text/html');
-              const grid = doc.querySelector('.resumenes-grid');
-              if (grid) {
-                document.getElementById('resumenesContent').innerHTML = grid.outerHTML;
-                initResumenes();
-              }
-            })
-            .catch(() => {
-              document.getElementById('resumenesContent').innerHTML =
-                '<p style="text-align:center;color:var(--text-muted);padding:2rem;">No se pudo cargar los resúmenes.</p>';
-            });
+          initResumenes();
         }
+      });
+    });
+
+    // ── Tabs internas del panel Resúmenes ──
+    document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        const tab = document.getElementById('tab-' + btn.dataset.innertab);
+        if (tab) tab.classList.add('active');
       });
     });
 
