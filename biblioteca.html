@@ -1005,11 +1005,11 @@
 
         // Tab resumen activo
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.bib-tab-btn[data-innertab]').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(b => b.classList.remove('active'));
         const tabRes = document.getElementById('tab-resumen');
         if (tabRes) tabRes.classList.add('active');
-        const innerBtn = document.querySelector('.bib-tab-btn[data-innertab="resumen"]');
-        if (innerBtn) innerBtn.classList.add('active');
+        const sidebarResumen = document.querySelector('.resumenes-sidebar nav a[data-tab="resumen"]');
+        if (sidebarResumen) sidebarResumen.classList.add('active');
 
         // Botones de grado
         document.querySelectorAll('.res-grade-btn').forEach(gb => {
