@@ -1097,6 +1097,54 @@
       e.currentTarget.textContent = '✅ ¡Guardado!';
       setTimeout(() => { e.currentTarget.innerHTML = '🔖 Guardar resumen'; }, 2000);
     });
+
+    // ── Leer parámetros de URL para pre-seleccionar área y grado ──
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const areaParam  = params.get('area');
+      const gradoParam = parseInt(params.get('grado') || '0');
+      if (!areaParam || !RESUMENES[areaParam]) return;
+
+      // Simular clic en el area-card correspondiente
+      const areaBtn = document.querySelector(`.area-card[data-area="${areaParam}"]`);
+      if (!areaBtn) return;
+
+      const data = RESUMENES[areaParam];
+      currentArea = areaParam;
+      currentGrado = gradoParam || (parseInt(localStorage.getItem('edunova_grado')) || 1);
+
+      document.getElementById('areaSelector').style.display = 'none';
+      document.getElementById('resumePanel').style.display  = 'grid';
+      document.getElementById('breadcrumbArea').textContent = data.nombre;
+
+      // Generar selector de grado con el grado activo
+      const btns = [1,2,3,4,5].map(g =>
+        `<button class="res-grade-btn ${g === currentGrado ? 'active' : ''}" data-grado="${g}">${g}°</button>`
+      ).join('');
+      document.getElementById('areaContent').innerHTML = `
+        <div class="grade-selector">
+          <span class="grade-selector-label">Selecciona tu grado:</span>
+          <div class="grade-btns-row">${btns}</div>
+        </div>
+        <div class="grade-content">${renderResumen(areaParam, currentGrado)}</div>`;
+
+      // Activar tab resumen
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-resumen').classList.add('active');
+      document.querySelectorAll('.resumenes-sidebar nav a[data-tab]').forEach(l => l.classList.remove('active'));
+      document.querySelector('.resumenes-sidebar nav a[data-tab="resumen"]').classList.add('active');
+
+      // Eventos de botones de grado
+      document.querySelectorAll('.res-grade-btn').forEach(gb => {
+        gb.addEventListener('click', () => {
+          document.querySelectorAll('.res-grade-btn').forEach(b => b.classList.remove('active'));
+          gb.classList.add('active');
+          currentGrado = parseInt(gb.dataset.grado);
+          localStorage.setItem('edunova_grado', currentGrado);
+          document.querySelector('.grade-content').innerHTML = renderResumen(currentArea, currentGrado);
+        });
+      });
+    })();
   </script>
   <script type="module" src="auth-nav.js"></script>
 </body>

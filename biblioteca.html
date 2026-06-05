@@ -685,7 +685,108 @@
         <!-- ── Panel: Resúmenes ── -->
         <div class="bib-tab-panel" id="bibtab-resumenes">
           <div id="resumenesContent">
-            <p style="text-align:center;color:var(--text-muted);padding:1rem;">Cargando resúmenes...</p>
+            <!-- Selector de áreas -->
+            <div id="areaSelector">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem;">
+                <div>
+                  <h2 style="margin:0 0 .2rem;font-size:1.2rem;color:var(--accent-strong);">📝 Resúmenes por curso</h2>
+                  <p style="margin:0;font-size:.88rem;color:var(--text-muted);">Selecciona un área para ver los resúmenes organizados por temas y grado.</p>
+                </div>
+              </div>
+              <div class="area-grid">
+                <div class="area-card" data-area="matematica">
+                  <div class="area-icon" style="background:rgba(124,58,237,0.12);color:#7c3aed;">∑</div>
+                  <strong>Matemática</strong>
+                  <span>Aritmética, álgebra, geometría, funciones y cálculo</span>
+                </div>
+                <div class="area-card" data-area="ciencia">
+                  <div class="area-icon" style="background:rgba(5,150,105,0.12);color:#059669;">⚗️</div>
+                  <strong>Ciencia y Tecnología</strong>
+                  <span>Biología, química, física y astronomía</span>
+                </div>
+                <div class="area-card" data-area="historia">
+                  <div class="area-icon" style="background:rgba(217,119,6,0.12);color:#d97706;">🏛️</div>
+                  <strong>Historia, Geografía y Economía</strong>
+                  <span>Civilizaciones, Perú, República y globalización</span>
+                </div>
+                <div class="area-card" data-area="comunicacion">
+                  <div class="area-icon" style="background:rgba(220,38,38,0.12);color:#dc2626;">📖</div>
+                  <strong>Comunicación</strong>
+                  <span>Comprensión, literatura, gramática y argumentación</span>
+                </div>
+                <div class="area-card" data-area="ingles">
+                  <div class="area-icon" style="background:rgba(37,99,235,0.12);color:#2563eb;">🇬🇧</div>
+                  <strong>Inglés</strong>
+                  <span>Gramática, vocabulario y escritura en inglés</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel de resumen (oculto hasta seleccionar área) -->
+            <div id="resumePanel" style="display:none;" class="resumenes-grid">
+              <aside class="resumenes-sidebar">
+                <a href="#" class="sidebar-back" id="backToAreas">← Volver a áreas</a>
+                <nav>
+                  <a href="#" data-tab="resumen" class="active">
+                    <span class="nav-icon" style="width:1.8rem;height:1.8rem;border-radius:.6rem;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;">📝</span>
+                    Resumen
+                  </a>
+                  <a href="#" data-tab="flashcards">
+                    <span class="nav-icon" style="width:1.8rem;height:1.8rem;border-radius:.6rem;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;">🃏</span>
+                    Flashcards
+                  </a>
+                  <a href="#" data-tab="mapa">
+                    <span class="nav-icon" style="width:1.8rem;height:1.8rem;border-radius:.6rem;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;">🗺️</span>
+                    Mapa conceptual
+                  </a>
+                  <a href="#" data-tab="formulas">
+                    <span class="nav-icon" style="width:1.8rem;height:1.8rem;border-radius:.6rem;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;">🔢</span>
+                    Fórmulas
+                  </a>
+                </nav>
+                <div class="sidebar-promo">
+                  <div class="sidebar-promo-icon">🎯</div>
+                  <strong>Practica lo que aprendiste</strong>
+                  <a href="juegos.html" class="button button-primary" style="font-size:.82rem;padding:.55rem 1.1rem;">Ir a Juegos</a>
+                </div>
+              </aside>
+
+              <div class="resumenes-main">
+                <!-- Topbar con breadcrumb -->
+                <div class="resumenes-topbar">
+                  <div class="breadcrumb">
+                    <a href="#" id="backToAreas2">← Áreas</a>
+                    <span>›</span>
+                    <span id="breadcrumbArea" style="color:var(--accent-strong);">—</span>
+                  </div>
+                  <button class="button button-primary" id="guardarResumenBtn" style="font-size:.85rem;padding:.55rem 1.2rem;">✏️ Guardar resumen</button>
+                </div>
+
+                <!-- Tabs internas -->
+                <div class="resumenes-tabs-card">
+                  <div style="border-bottom:1px solid rgba(148,163,184,0.15);margin-bottom:1.25rem;display:flex;gap:.25rem;">
+                    <button class="bib-tab-btn active" data-innertab="resumen" style="border-radius:.5rem .5rem 0 0;padding:.55rem 1.1rem;">📝 Resumen</button>
+                    <button class="bib-tab-btn" data-innertab="flashcards" style="border-radius:.5rem .5rem 0 0;padding:.55rem 1.1rem;">🃏 Flashcards</button>
+                    <button class="bib-tab-btn" data-innertab="formulas" style="border-radius:.5rem .5rem 0 0;padding:.55rem 1.1rem;">⚡ Fórmulas</button>
+                  </div>
+
+                  <!-- Tab resumen -->
+                  <div class="tab-panel active" id="tab-resumen">
+                    <div id="areaContent"></div>
+                  </div>
+
+                  <!-- Tab flashcards -->
+                  <div class="tab-panel" id="tab-flashcards">
+                    <div id="flashcardsContent" style="display:grid;gap:1rem;"></div>
+                  </div>
+
+                  <!-- Tab fórmulas -->
+                  <div class="tab-panel" id="tab-formulas">
+                    <div id="formulasContent" style="display:grid;gap:.75rem;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -794,44 +895,138 @@
     });
 
     function initResumenes() {
-      const AREAS = {
-        matematica:   { nombre: 'Matemática' },
-        ciencia:      { nombre: 'Ciencia' },
-        historia:     { nombre: 'Historia' },
-        comunicacion: { nombre: 'Comunicación' },
-        ingles:       { nombre: 'Inglés' }
+      // ── Datos de resúmenes (5 cursos × 5 grados) ──
+      const RESUMENES_BIB = {
+        matematica: {
+          nombre: 'Matemática', icono: '∑',
+          temas: {
+            1: { titulo:'Aritmética y Números Enteros', conceptos:['Números naturales y enteros','Fracciones y decimales','Operaciones básicas','Potencias y raíces','MCM y MCD'], resumen:[{titulo:'📐 Números Enteros',texto:'Los números enteros incluyen positivos, negativos y el cero. Para sumar enteros con igual signo se suman los valores absolutos y se conserva el signo; con distinto signo se resta el menor del mayor y se pone el signo del mayor.'},{titulo:'➗ Fracciones',texto:'Una fracción a/b representa a partes de un total de b. Para sumar fracciones con diferente denominador se halla el MCM. Para multiplicar se multiplican numeradores y denominadores por separado.'},{titulo:'🔢 MCM y MCD',texto:'El MCM es el menor número divisible entre dos o más. El MCD es el mayor divisor común. Ambos se calculan mediante la descomposición en factores primos.'}], formulas:['MCM = producto de factores primos con mayor exponente','MCD = producto de factores primos comunes con menor exponente','Fracción = Numerador ÷ Denominador'], ejemplo:{enunciado:'Halla el MCM de 12 y 18',pasos:['12 = 2² × 3','18 = 2 × 3²','MCM = 2² × 3² = 36'],resultado:'MCM(12, 18) = 36'} },
+            2: { titulo:'Álgebra y Ecuaciones', conceptos:['Expresiones algebraicas','Polinomios','Ecuaciones de 1er grado','Sistemas de ecuaciones','Factorización'], resumen:[{titulo:'🔡 Expresiones Algebraicas',texto:'Una expresión algebraica combina números y letras con operaciones. Un monomio tiene un solo término (3x²); un polinomio tiene varios (2x² + 3x − 5). El grado es el exponente más alto.'},{titulo:'⚖️ Ecuaciones de 1er Grado',texto:'Para resolverla se aplican operaciones inversas en ambos lados. Lo que se suma en un lado se resta en el otro. La solución hace verdadera la igualdad.'},{titulo:'🔗 Sistemas de Ecuaciones',texto:'Se resuelven por sustitución o igualación. Si las rectas se cruzan hay solución única; si son paralelas no hay solución.'}], formulas:['ax + b = 0 → x = −b/a','a² − b² = (a+b)(a−b)','(a±b)² = a² ± 2ab + b²'], ejemplo:{enunciado:'Resuelve: 3x − 7 = 11',pasos:['3x = 11 + 7','3x = 18','x = 6'],resultado:'x = 6'} },
+            3: { titulo:'Geometría y Trigonometría', conceptos:['Triángulos y clasificación','Teorema de Pitágoras','Razones trigonométricas','Perímetro y área','Ángulos'], resumen:[{titulo:'📏 Triángulos',texto:'Un triángulo tiene 3 lados y 3 ángulos que suman 180°. Se clasifican por lados (equilátero, isósceles, escaleno) y por ángulos (acutángulo, rectángulo, obtusángulo). Área = (base × altura) / 2.'},{titulo:'📐 Teorema de Pitágoras',texto:'En un triángulo rectángulo, c² = a² + b². La hipotenusa es el lado opuesto al ángulo recto. Permite calcular cualquier lado desconocido.'},{titulo:'📡 Razones Trigonométricas',texto:'Seno = cateto opuesto / hipotenusa. Coseno = cateto adyacente / hipotenusa. Tangente = cateto opuesto / cateto adyacente.'}], formulas:['c² = a² + b² (Pitágoras)','sen θ = opuesto/hipotenusa','cos θ = adyacente/hipotenusa','tan θ = opuesto/adyacente'], ejemplo:{enunciado:'Triángulo rectángulo: a=3, b=4. Halla c',pasos:['c² = 3² + 4²','c² = 9 + 16 = 25','c = √25'],resultado:'c = 5'} },
+            4: { titulo:'Funciones y Estadística', conceptos:['Función lineal y cuadrática','Dominio y rango','Gráficas','Media, mediana y moda','Probabilidad básica'], resumen:[{titulo:'📈 Funciones',texto:'La función lineal f(x) = mx + b genera una recta; m es la pendiente y b la intersección con y. La cuadrática f(x) = ax² + bx + c genera una parábola.'},{titulo:'📊 Estadística',texto:'La media es la suma dividida entre la cantidad. La mediana es el dato central al ordenar. La moda es el dato que más se repite.'},{titulo:'🎲 Probabilidad',texto:'P(A) = casos favorables / casos posibles. Va de 0 (imposible) a 1 (seguro). P(A) + P(A\') = 1.'}], formulas:['f(x) = mx + b','Media = Σx / n','P(A) = favorables / posibles'], ejemplo:{enunciado:'Datos: 4, 7, 7, 9, 3. Halla media y moda',pasos:['Media = (4+7+7+9+3)/5 = 30/5','Media = 6','Moda = 7 (se repite 2 veces)'],resultado:'Media = 6 | Moda = 7'} },
+            5: { titulo:'Cálculo Introductorio y Vectores', conceptos:['Límites básicos','Derivadas elementales','Integrales simples','Vectores en el plano','Matrices'], resumen:[{titulo:'∞ Límites',texto:'Un límite describe el valor al que se acerca una función sin llegar a él. lím(x→a) f(x) = L. Son la base del cálculo diferencial.'},{titulo:"d/dx Derivadas",texto:"La derivada mide la tasa de cambio instantánea. Regla de la potencia: si f(x) = xⁿ, entonces f'(x) = n·xⁿ⁻¹."},{titulo:'→ Vectores',texto:'Un vector tiene módulo, dirección y sentido. La suma se hace componente a componente. Módulo |v| = √(x² + y²).'}], formulas:["d/dx(xⁿ) = n·xⁿ⁻¹",'∫xⁿ dx = xⁿ⁺¹/(n+1) + C','|v| = √(x² + y²)'], ejemplo:{enunciado:"f(x) = 3x² + 2x. Halla f'(x)",pasos:["Derivar 3x²: 3·2·x = 6x","Derivar 2x: 2","Sumar términos"],resultado:"f'(x) = 6x + 2"} }
+          }
+        },
+        ciencia: {
+          nombre: 'Ciencia y Tecnología', icono: '⚗️',
+          temas: {
+            1: { titulo:'Biología y el Ser Vivo', conceptos:['La célula y sus partes','Funciones vitales','Ecosistemas','El cuerpo humano','Reino animal y vegetal'], resumen:[{titulo:'🦠 La Célula',texto:'La célula es la unidad básica de la vida. Las procariotas (bacterias) no tienen núcleo. Las eucariotas (animales, plantas, hongos) sí. Partes: membrana, citoplasma, núcleo, mitocondria.'},{titulo:'🌿 Ecosistemas',texto:'Un ecosistema combina seres vivos y su entorno. Las cadenas alimenticias van de productores (plantas) a consumidores primarios, secundarios y descomponedores.'},{titulo:'🫀 El Cuerpo Humano',texto:'Sistemas principales: digestivo, circulatorio, respiratorio, nervioso y reproductor. Cada uno tiene órganos especializados que trabajan en conjunto.'}], formulas:['Fotosíntesis: 6CO₂ + 6H₂O + luz → C₆H₁₂O₆ + 6O₂','Respiración celular: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP'], ejemplo:{enunciado:'Clasifica: perro, rosa, hongo, bacteria',pasos:['Perro → animal (eucariota)','Rosa → planta (eucariota)','Hongo → fungi (eucariota)','Bacteria → procariota'],resultado:'3 eucariotas, 1 procariota'} },
+            2: { titulo:'Química Básica', conceptos:['Materia y sus estados','Tabla periódica','Enlaces químicos','Reacciones químicas','Ácidos y bases'], resumen:[{titulo:'⚛️ Materia y Átomos',texto:'El átomo tiene núcleo con protones (+) y neutrones (0), rodeado de electrones (−). El número atómico es la cantidad de protones e identifica el elemento.'},{titulo:'🧪 Tabla Periódica',texto:'Ordenada por número atómico creciente. Filas = periodos, columnas = grupos. Metales a la izquierda, no metales a la derecha. Gases nobles (grupo 18) son muy estables.'},{titulo:'⚗️ Reacciones Químicas',texto:'Reactivos → Productos. Ley de conservación de la masa: la masa no cambia. Las ecuaciones deben estar balanceadas (igual número de átomos en ambos lados).'}], formulas:['pH = −log[H⁺]','n = masa / masa molar','PV = nRT (gases ideales)'], ejemplo:{enunciado:'Balancea: H₂ + O₂ → H₂O',pasos:['H₂ + O₂ → H₂O (sin balancear)','2H₂ + O₂ → 2H₂O','4H y 2O en cada lado ✓'],resultado:'2H₂ + O₂ → 2H₂O'} },
+            3: { titulo:'Física: Movimiento y Fuerzas', conceptos:['Cinemática','Leyes de Newton','Trabajo y energía','Ondas','Presión'], resumen:[{titulo:'🏃 Cinemática',texto:'MRU: velocidad constante, d = v × t. MRUA: aceleración constante, v = v₀ + at y d = v₀t + ½at².'},{titulo:'⚡ Leyes de Newton',texto:'1ª: inercia (sin fuerza neta, el movimiento no cambia). 2ª: F = m × a. 3ª: acción-reacción (toda fuerza tiene una igual y opuesta).'},{titulo:'🔋 Energía',texto:'Ec = ½mv² (cinética). Ep = mgh (potencial). La energía no se crea ni destruye, solo se transforma.'}], formulas:['d = v × t (MRU)','F = m × a','Ec = ½mv²','Ep = mgh','W = F × d'], ejemplo:{enunciado:'Auto: v=20 m/s, m=1000 kg. Halla Ec',pasos:['Ec = ½ × m × v²','Ec = ½ × 1000 × 400','Ec = 200 000 J'],resultado:'Ec = 200 000 J'} },
+            4: { titulo:'Química Orgánica e Inorgánica', conceptos:['Compuestos orgánicos','Hidrocarburos','Grupos funcionales','Nomenclatura inorgánica','Estequiometría'], resumen:[{titulo:'🧬 Química Orgánica',texto:'Estudia compuestos basados en carbono. Hidrocarburos: alcanos (C−C), alquenos (C=C), alquinos (C≡C). Los grupos funcionales (−OH, −COOH) determinan las propiedades.'},{titulo:'🔬 Estequiometría',texto:'Calcula cantidades exactas en reacciones. El reactivo limitante se agota primero y determina cuánto producto se forma.'},{titulo:'🧲 Química Inorgánica',texto:'Óxidos (metal + O₂), hidróxidos (óxido + H₂O), ácidos (H + no metal), sales (ácido + base). La nomenclatura IUPAC da nombres sistemáticos.'}], formulas:['Alcanos: CₙH₂ₙ₊₂','Alquenos: CₙH₂ₙ','Rendimiento = (real/teórico) × 100%'], ejemplo:{enunciado:'¿Cuántos moles en 36g de agua (M=18)?',pasos:['n = masa / masa molar','n = 36 / 18'],resultado:'n = 2 moles de H₂O'} },
+            5: { titulo:'Física Moderna y Astronomía', conceptos:['Relatividad básica','Física nuclear','El Sistema Solar','Estrellas y galaxias','Tecnología y ciencia'], resumen:[{titulo:'🌌 Astronomía',texto:'El Sistema Solar tiene 8 planetas. Los interiores (Mercurio, Venus, Tierra, Marte) son rocosos; los exteriores (Júpiter, Saturno, Urano, Neptuno) son gaseosos o helados.'},{titulo:'☢️ Física Nuclear',texto:'La fisión divide núcleos pesados liberando energía. La fusión une núcleos ligeros (como en el Sol). Vida media: tiempo en que se desintegra la mitad de una muestra.'},{titulo:'🚀 Relatividad',texto:'La velocidad de la luz (c = 3×10⁸ m/s) es el límite universal. E = mc²: una pequeña masa produce energía enorme.'}], formulas:['E = mc²','c = 3 × 10⁸ m/s','T² ∝ r³ (Kepler)'], ejemplo:{enunciado:'Masa convertida: m = 1 kg',pasos:['E = mc²','E = 1 × (3×10⁸)²','E = 9×10¹⁶ J'],resultado:'E = 9 × 10¹⁶ J'} }
+          }
+        },
+        historia: {
+          nombre: 'Historia, Geografía y Economía', icono: '🏛️',
+          temas: {
+            1: { titulo:'Civilizaciones Antiguas y Perú', conceptos:['Mesopotamia y Egipto','Grecia y Roma','Culturas preíncas','El Perú geográfico','Regiones naturales'], resumen:[{titulo:'🏺 Mesopotamia y Egipto',texto:'Mesopotamia fue cuna de la primera escritura cuneiforme. Egipto se desarrolló en torno al Nilo; construyeron pirámides como tumbas para los faraones. Ambas tenían escritura, leyes y comercio.'},{titulo:'🏛️ Grecia y Roma',texto:'Grecia inventó la democracia en Atenas. Sus aportes: filosofía, matemáticas y arte. Roma fundó un gran imperio con Derecho Romano que influyó en el mundo occidental.'},{titulo:'🗺️ Geografía del Perú',texto:'El Perú tiene 3 regiones: Costa (árida), Sierra (Andes) y Selva (Amazonía). Tiene 24 departamentos y Lima es la capital en la costa central.'}], formulas:['8 regiones de Pulgar Vidal: chala, yunga, quechua, suni, puna, janca, rupa-rupa, omagua'], ejemplo:{enunciado:'Ubica cronológicamente: Roma, Egipto, Mesopotamia',pasos:['Mesopotamia: ~3500 a.C.','Egipto: ~3100 a.C.','Roma: 753 a.C. − 476 d.C.'],resultado:'Mesopotamia → Egipto → Roma'} },
+            2: { titulo:'Imperio Inca y Conquista', conceptos:['El Tahuantinsuyo','Organización inca','La Conquista española','Virreinato del Perú','Economía colonial'], resumen:[{titulo:'🏔️ El Tahuantinsuyo',texto:'El Imperio Inca fue el mayor de América, desde Colombia hasta Chile. Capital: Cusco. Dividido en 4 suyos: Chinchaysuyo, Collasuyo, Antisuyo y Contisuyo.'},{titulo:'⚔️ La Conquista',texto:'Francisco Pizarro llegó en 1532. Capturó a Atahualpa en Cajamarca. A pesar del rescate en oro, fue ejecutado en 1533. Superioridad militar y epidemias facilitaron la conquista.'},{titulo:'🏰 El Virreinato',texto:'Creado en 1542. Lima fue su capital. La economía giraba en torno a la minería (plata de Potosí). La mita era el trabajo forzado indígena.'}], formulas:['Suyos: Chinchay + Colla + Anti + Conti = Tahuantinsuyo'], ejemplo:{enunciado:'Ordena: Virreinato, Conquista, Tahuantinsuyo',pasos:['Tahuantinsuyo: 1438−1533','Conquista: 1532−1542','Virreinato: 1542−1821'],resultado:'Tahuantinsuyo → Conquista → Virreinato'} },
+            3: { titulo:'Independencia y República', conceptos:['Causas de la independencia','San Martín y Bolívar','La República del Perú','Siglo XIX','Economía republicana'], resumen:[{titulo:'🗽 Causas',texto:'Externas: independencia de EE.UU. (1776), Revolución Francesa (1789). Internas: abusos coloniales, impuestos, discriminación a criollos y rebeliones como la de Túpac Amaru II (1780).'},{titulo:'⚔️ Proceso',texto:'San Martín proclamó la independencia el 28 de julio de 1821. Bolívar completó la independencia con las batallas de Junín y Ayacucho (1824).'},{titulo:'🇵🇪 La República',texto:'El Perú nació como república presidencialista. El siglo XIX fue inestable: guerras civiles y la Guerra del Pacífico (1879−1884).'}], formulas:['28 de julio de 1821 = Independencia del Perú','9 de diciembre de 1824 = Batalla de Ayacucho'], ejemplo:{enunciado:'Ubica los hechos claves',pasos:['1780: Rebelión Túpac Amaru II','1821: Proclamación Independencia','1824: Batalla de Ayacucho'],resultado:'Rebelión → Independencia → Consolidación'} },
+            4: { titulo:'Perú en el Siglo XX', conceptos:['República Aristocrática','APRA','Gobiernos militares','Terrorismo','Economía del siglo XX'], resumen:[{titulo:'🏛️ Primeras Décadas',texto:'La "República Aristocrática" (1895−1919) fue dominada por la élite. El Oncenio de Leguía (1919−1930) modernizó el país. El APRA fue el partido popular más importante del siglo XX.'},{titulo:'🪖 Velasco',texto:'Juan Velasco Alvarado (1968−1975) realizó la Reforma Agraria, distribuyó tierras y nacionalizó empresas cambiando el modelo económico.'},{titulo:'💣 El Terrorismo',texto:'Sendero Luminoso y el MRTA causaron más de 69 000 muertos en los 80−90. Fujimori capturó a Abimael Guzmán en 1992, marcando el fin del grupo.'}], formulas:['Reforma Agraria: 1969 (D.L. 17716)','Captura de Guzmán: 12 de septiembre de 1992'], ejemplo:{enunciado:'Ubica: APRA, Velasco, Sendero',pasos:['APRA fundado: 1924','Velasco: 1968−1975','Sendero activo: 1980−1992'],resultado:'APRA → Velasco → Sendero'} },
+            5: { titulo:'Globalización y Mundo Actual', conceptos:['Guerra Fría','ONU','Globalización','Economía mundial','Perú hoy'], resumen:[{titulo:'🌐 La Guerra Fría',texto:'EE.UU. (capitalismo) vs URSS (comunismo) tras la 2ª Guerra Mundial. Nunca hubo guerra directa. Terminó con la caída del Muro de Berlín (1989) y la disolución de la URSS (1991).'},{titulo:'🏢 ONU y Globalización',texto:'La ONU (1945) mantiene la paz mundial. La globalización integra economías, culturas y tecnologías a nivel mundial, generando oportunidades y desigualdades.'},{titulo:'🇵🇪 Perú en el Mundo',texto:'Perú es miembro de ONU, OEA, APEC y Alianza del Pacífico. Economía basada en minería, agricultura y turismo. Alta biodiversidad.'}], formulas:['ONU fundada: 24 de octubre de 1945','Caída del Muro de Berlín: 9 de noviembre de 1989'], ejemplo:{enunciado:'Ubica: ONU, Muro de Berlín, URSS disuelta',pasos:['ONU: 1945','Muro: 1989','URSS: 1991'],resultado:'ONU → Muro → URSS'} }
+          }
+        },
+        comunicacion: {
+          nombre: 'Comunicación', icono: '📖',
+          temas: {
+            1: { titulo:'Comprensión y Producción de Textos', conceptos:['Tipos de texto','Idea principal','Conectores','Ortografía básica','El párrafo'], resumen:[{titulo:'📄 Tipos de Texto',texto:'Narrativos (cuentan hechos), descriptivos (describen características), argumentativos (defienden una posición) e instructivos (dan pasos). Cada uno tiene estructura y propósito distinto.'},{titulo:'💡 Idea Principal',texto:'Puede estar explícita (escrita) o implícita (hay que deducirla). Las ideas secundarias apoyan a la principal. Para hallarla: ¿de qué trata principalmente el texto?'},{titulo:'🔗 Conectores',texto:'De adición (además, también). De causa (porque, ya que). De consecuencia (por lo tanto). De contraste (pero, sin embargo). Articulan las ideas del texto.'}], formulas:['Texto = Párrafos con coherencia y cohesión','Párrafo = Oración principal + desarrollo + cierre'], ejemplo:{enunciado:'Identifica la idea principal',pasos:['Leer el párrafo completo','Identificar el tema general','Buscar la oración que resume todo'],resultado:'La oración que engloba todas las demás'} },
+            2: { titulo:'Literatura y Géneros Literarios', conceptos:['Narrativa','Lírica','Dramática','Figuras literarias','Literatura peruana'], resumen:[{titulo:'📚 Géneros Literarios',texto:'Narrativo: cuenta historias (cuento, novela, fábula). Lírico: expresa sentimientos en poesía con ritmo y rima. Dramático: escrito para representarse en escena (tragedia, comedia).'},{titulo:'✍️ Figuras Literarias',texto:'Metáfora: comparación sin "como" (tus ojos son estrellas). Símil: usa "como" (corre como el viento). Hipérbole: exageración. Personificación: cualidades humanas a cosas.'},{titulo:'🇵🇪 Literatura Peruana',texto:'Etapas: prehispánica (oral, Ollantay), colonial y republicana. Autores: Ricardo Palma (Tradiciones Peruanas), César Vallejo (Trilce), Mario Vargas Llosa (Premio Nobel 2010).'}], formulas:['Poema = estrofas | Estrofa = versos | Verso = sílabas con acento y rima'], ejemplo:{enunciado:'Identifica la figura: "El sol sonreía"',pasos:['El sol no puede sonreír','Se le atribuye cualidad humana','Es una personificación'],resultado:'Figura: Personificación'} },
+            3: { titulo:'Gramática y Sintaxis', conceptos:['Morfología','Partes de la oración','Oración simple y compuesta','Verbos','Ortografía avanzada'], resumen:[{titulo:'🔤 Partes de la Oración',texto:'Sustantivo (nombra). Adjetivo (califica). Verbo (acción o estado). Adverbio (modifica al verbo). Preposición (une palabras). Conjunción (conecta proposiciones).'},{titulo:'📝 Oración y sus partes',texto:'Sujeto (quién realiza la acción) y predicado (lo que se dice). Oración simple: un verbo. Compuesta: dos o más verbos.'},{titulo:'🔡 Ortografía',texto:'Verbos en -bir llevan b. Tilde diacrítica: él/el, tú/tu, sí/si. La coma separa series; el punto finaliza; los dos puntos introducen enumeraciones.'}], formulas:['Oración = Sujeto + Predicado','Sujeto → Núcleo (sustantivo) + modificadores','Predicado → Núcleo (verbo) + complementos'], ejemplo:{enunciado:'Analiza: "Los alumnos estudian mucho"',pasos:['Sujeto: Los alumnos (núcleo: alumnos)','Predicado: estudian mucho (núcleo: estudian)','CC modo: mucho'],resultado:'S: Los alumnos | P: estudian mucho'} },
+            4: { titulo:'Argumentación y Ensayo', conceptos:['Texto argumentativo','Ensayo','Debate','Recursos retóricos','Medios de comunicación'], resumen:[{titulo:'💬 Texto Argumentativo',texto:'Objetivo: persuadir. Tiene tesis (posición), argumentos (razones) y conclusión. Los argumentos pueden ser de autoridad, de ejemplo o de causa-efecto.'},{titulo:'✍️ El Ensayo',texto:'Texto en prosa con tesis y argumentos personales. Es subjetivo, bien estructurado (introducción, desarrollo, conclusión) y usa lenguaje culto y preciso.'},{titulo:'📺 Medios de Comunicación',texto:'Prensa, radio, TV e internet. Influyen en la opinión pública. El análisis crítico identifica el emisor, propósito, público y recursos usados.'}], formulas:['Ensayo: Introducción → Tesis → Argumentos → Contraargumentos → Conclusión'], ejemplo:{enunciado:'Argumenta a favor del deporte',pasos:['Tesis: El deporte mejora la salud','Argumento: reduce el sedentarismo','Ejemplo: estudios sobre obesidad'],resultado:'Argumento completo y válido'} },
+            5: { titulo:'Comunicación y Lenguaje Audiovisual', conceptos:['Lenguaje audiovisual','Publicidad','Comunicación digital','Ética en medios','Proyecto de vida'], resumen:[{titulo:'🎬 Lenguaje Audiovisual',texto:'Combina imagen y sonido. Planos: general, medio, primer plano. Ángulos: picado, contrapicado, normal. Cada elección transmite un mensaje y genera emociones distintas.'},{titulo:'📢 Publicidad',texto:'La publicidad vende un producto; la propaganda cambia actitudes. Recursos: repetición, testimonio de famosos, apelación emocional y eslóganes pegajosos.'},{titulo:'💻 Comunicación Digital',texto:'El "prosumidor" produce y consume contenidos. Exige responsabilidad: respeto, privacidad, verificación de fuentes y prevención de ciberacoso y fake news.'}], formulas:['Planos: PG → PM → PP → PPP (primerísimo)'], ejemplo:{enunciado:'Analiza: "Refresco XYZ: sé feliz"',pasos:['Emisor: empresa refresquera','Recurso: asociar felicidad con producto','Técnica: apelación emocional'],resultado:'Usa apelación emocional para vender'} }
+          }
+        },
+        ingles: {
+          nombre: 'Inglés', icono: '🇬🇧',
+          temas: {
+            1: { titulo:'Basic English: Greetings & Vocabulary', conceptos:['Greetings and farewells','Numbers and colors','Verb to be','Classroom objects','Days and months'], resumen:[{titulo:'👋 Greetings',texto:'Use "Hello/Hi" informally. "Good morning/afternoon/evening" are formal. "How are you?" → "Fine, thanks." Farewells: "Goodbye", "Bye", "See you later", "Good night."'},{titulo:'🔵 Verb "To Be"',texto:'I am, You are, He/She/It is, We are, They are. Negative: I am not (I\'m not). Question: Are you…? Is he…? "She is a student." / "They are not happy."'},{titulo:'🔢 Numbers & Colors',texto:'Cardinal: one, two, three... twenty, one hundred. Colors: red (rojo), blue (azul), green (verde), yellow (amarillo), black (negro), white (blanco).'}], formulas:['Subject + am/is/are + complement','Is/Are + subject + ? → Yes, … is/are. / No, … isn\'t/aren\'t.'], ejemplo:{enunciado:'Complete: "She ___ a teacher."',pasos:['Subject: She (3rd person)','Verb to be for She = is','Add complement'],resultado:'"She is a teacher."'} },
+            2: { titulo:'Present Simple & Daily Routines', conceptos:['Present simple','Adverbs of frequency','Daily activities','Prepositions of time','Do/Does questions'], resumen:[{titulo:'📅 Present Simple',texto:'Habitos, rutinas y hechos generales. Para 3ª persona singular añadir -s/-es: "She works." Negativo: don\'t/doesn\'t + verbo base. "I don\'t eat meat."'},{titulo:'⏰ Adverbs of Frequency',texto:'always > usually > often > sometimes > rarely > never. Van antes del verbo principal, después de "to be". "I always brush my teeth." / "She is never late."'},{titulo:'❓ Questions',texto:'Do/Does + subject + verb? "Do you like pizza?" → Yes, I do. Wh-: What, Where, When, Who, Why, How. "Where do you live?"'}], formulas:['(+) S + verb(s/es)','(-) S + don\'t/doesn\'t + verb','(?) Do/Does + S + verb?'], ejemplo:{enunciado:'Make a question: "He plays football."',pasos:['Use "does" for he','Put does at the beginning','Remove -s from verb'],resultado:'"Does he play football?"'} },
+            3: { titulo:'Past Simple & Irregular Verbs', conceptos:['Past simple regular','Irregular verbs','Time expressions','Past questions','Narrative writing'], resumen:[{titulo:'🕐 Past Simple',texto:'Acciones completadas. Regulares: add -ed (walk→walked). Irregulares cambian: go→went, eat→ate, see→saw, have→had, buy→bought. Time: yesterday, last week, ago.'},{titulo:'📋 Irregular Verbs',texto:'be→was/were, do→did, come→came, take→took, give→gave, make→made, say→said, know→knew, think→thought. Negative: didn\'t + base verb.'},{titulo:'❓ Past Questions',texto:'Did + subject + verb? "Did you eat breakfast?" → Yes, I did. Wh-: "Where did you go?" Siempre usar base form después de did/didn\'t.'}], formulas:['(+) S + verb(past)','(-) S + didn\'t + verb(base)','(?) Did + S + verb(base)?'], ejemplo:{enunciado:'"I (go) to the market yesterday."',pasos:['Past simple needed','go → went (irregular)','Add time expression'],resultado:'"I went to the market yesterday."'} },
+            4: { titulo:'Future Tenses & Modal Verbs', conceptos:['Will vs Going to','Modal verbs','Conditionals type 1','Reported speech','Formal writing'], resumen:[{titulo:'🔮 Will vs Going to',texto:'"Will": decisiones espontáneas, predicciones y promesas. "Going to": planes ya decididos y predicciones con evidencia. "I\'m going to study medicine." / "It will rain (prediction without evidence)."'},{titulo:'🔧 Modal Verbs',texto:'Can/Could (ability). Should (advice). Must (obligation). May/Might (possibility). Would (conditional). Rule: modal + base verb (no to). "She can swim." / "You should study."'},{titulo:'🔀 Conditional Type 1',texto:'Real future conditions. If + present simple, will + base verb. "If you study, you will pass." / "If it rains, we will stay home."'}], formulas:['Will: S + will + verb','Going to: S + am/is/are + going to + verb','Cond.1: If + present, will + verb'], ejemplo:{enunciado:'I ___ visit Paris. I already have tickets.',pasos:['Already planned = going to','Evidence of plan','Use: I\'m going to visit Paris'],resultado:'"I\'m going to visit Paris."'} },
+            5: { titulo:'Advanced Grammar & Writing', conceptos:['Perfect tenses','Passive voice','Relative clauses','Academic writing','Vocabulary in context'], resumen:[{titulo:'✅ Present Perfect',texto:'Have/has + past participle. Experiencias, acciones recientes y estados continuos. Key words: ever, never, already, yet, just, since, for. "I have visited Paris." / "She has just finished."'},{titulo:'🔄 Passive Voice',texto:'To be + past participle. "The book was written by Vargas Llosa." Mover el objeto al sujeto, añadir "to be" en el tiempo correcto, usar participio pasado.'},{titulo:'🔗 Relative Clauses',texto:'Who (people), which (things), where (places). Defining (no commas): "The student who won..." Non-defining (commas): "Lima, which is the capital, is big."'}], formulas:['Present Perfect: S + have/has + pp','Passive: S + to be + pp (+ by + agent)','Relative: noun + who/which/where + clause'], ejemplo:{enunciado:'Make passive: "They build houses every year."',pasos:['Object "houses" → new subject','Use "are" (present, plural)','Past participle of build = built'],resultado:'"Houses are built every year."'} }
+          }
+        }
       };
 
-      function gradeBtnsHTML() {
+      function renderResumenBib(area, grado) {
+        const data = RESUMENES_BIB[area];
+        if (!data) return '<div class="placeholder-panel">📝 Área no encontrada.</div>';
+        const tema = data.temas[parseInt(grado)];
+        if (!tema) return '<div class="placeholder-panel">📝 Contenido en preparación para este grado.</div>';
+
+        const bloques = tema.resumen.map(b => `
+          <div style="background:#f8fbff;border:1px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1.25rem;display:grid;gap:.6rem;">
+            <h4 style="margin:0;font-size:1rem;color:var(--accent-strong);">${b.titulo}</h4>
+            <p style="margin:0;color:var(--text-muted);font-size:.92rem;line-height:1.7;">${b.texto}</p>
+          </div>`).join('');
+
+        const formulas = tema.formulas.map(f =>
+          `<span class="concept-tag" style="font-family:monospace;font-size:.82rem;">${f}</span>`
+        ).join('');
+
+        const conceptos = tema.conceptos.map(c =>
+          `<span class="concept-tag">${c}</span>`
+        ).join('');
+
+        const ej = tema.ejemplo;
+        const pasos = ej.pasos.map((p,i) =>
+          `<li style="display:flex;align-items:flex-start;gap:.85rem;font-size:.92rem;color:var(--text-muted);line-height:1.5;margin-bottom:.6rem;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;flex-shrink:0;">${i+1}</span>${p}</li>`
+        ).join('');
+
+        return `
+          <div style="display:grid;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
+              <h3 style="margin:0;font-size:1.1rem;color:var(--accent-strong);">${tema.titulo}</h3>
+              <span style="font-size:.8rem;color:var(--text-muted);background:rgba(99,102,241,0.08);padding:.25rem .75rem;border-radius:999px;">${grado}° Secundaria</span>
+            </div>
+            <div>
+              <p style="margin:0 0 .5rem;font-size:.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">Temas del grado</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.6rem;">${conceptos}</div>
+            </div>
+            <div style="display:grid;gap:.85rem;">${bloques}</div>
+            <div style="background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.12);border-radius:1.25rem;padding:1.25rem;">
+              <p style="margin:0 0 .75rem;font-size:.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">⚡ Fórmulas y datos clave</p>
+              <div style="display:flex;flex-wrap:wrap;gap:.6rem;">${formulas}</div>
+            </div>
+            <div style="background:#f8fbff;border:1px solid rgba(59,130,246,0.12);border-radius:1.25rem;padding:1.25rem;">
+              <p style="margin:0 0 .75rem;font-size:.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">🧪 Ejemplo resuelto</p>
+              <p style="margin:0 0 .75rem;font-size:.92rem;color:var(--text);font-weight:600;">${ej.enunciado}</p>
+              <ol style="list-style:none;padding:0;margin:0;">${pasos}</ol>
+              <div style="display:inline-block;padding:.55rem 1.2rem;background:rgba(99,102,241,0.08);border:1.5px solid rgba(99,102,241,0.22);border-radius:.75rem;font-size:1.05rem;font-weight:700;color:var(--accent-strong);font-style:italic;margin-top:.75rem;">${ej.resultado}</div>
+            </div>
+          </div>`;
+      }
+
+      function gradeBtnsHTML(area, gradoActivo) {
+        const btns = [1,2,3,4,5].map(g =>
+          `<button class="res-grade-btn ${g === gradoActivo ? 'active' : ''}" data-grado="${g}">${g}°</button>`
+        ).join('');
         return `<div class="grade-selector">
           <span class="grade-selector-label">Selecciona tu grado:</span>
-          <div class="grade-btns-row">
-            <button class="res-grade-btn active" data-grado="1">1°</button>
-            <button class="res-grade-btn" data-grado="2">2°</button>
-            <button class="res-grade-btn" data-grado="3">3°</button>
-            <button class="res-grade-btn" data-grado="4">4°</button>
-            <button class="res-grade-btn" data-grado="5">5°</button>
-          </div>
+          <div class="grade-btns-row">${btns}</div>
         </div>
-        <div class="grade-content">
-          <div class="placeholder-panel">📝 El contenido de este grado estará disponible próximamente.</div>
-        </div>`;
+        <div class="grade-content">${renderResumenBib(area, gradoActivo)}</div>`;
       }
 
       const areaSelector = document.getElementById('areaSelector');
       const resumePanel  = document.getElementById('resumePanel');
       if (!areaSelector) return;
 
+      let currentAreaBib = null;
+
       document.querySelectorAll('.area-card').forEach(btn => {
         btn.addEventListener('click', () => {
-          const area = btn.dataset.area;
-          const data = AREAS[area];
+          currentAreaBib = btn.dataset.area;
+          const data = RESUMENES_BIB[currentAreaBib];
+          const savedGrado = parseInt(localStorage.getItem('edunova_grado') || '1');
           areaSelector.style.display = 'none';
-          if (resumePanel) resumePanel.style.display  = 'grid';
+          if (resumePanel) resumePanel.style.display = 'grid';
           const breadcrumb = document.getElementById('breadcrumbArea');
           if (breadcrumb && data) breadcrumb.textContent = data.nombre;
           const areaContent = document.getElementById('areaContent');
-          if (areaContent) areaContent.innerHTML = gradeBtnsHTML();
+          if (areaContent) areaContent.innerHTML = gradeBtnsHTML(currentAreaBib, savedGrado);
           document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
           const tabRes = document.getElementById('tab-resumen');
           if (tabRes) tabRes.classList.add('active');
@@ -840,9 +1035,10 @@
             gb.addEventListener('click', () => {
               document.querySelectorAll('.res-grade-btn').forEach(b => b.classList.remove('active'));
               gb.classList.add('active');
+              const grado = parseInt(gb.dataset.grado);
+              localStorage.setItem('edunova_grado', grado);
               const gc = document.querySelector('.grade-content');
-              if (gc) gc.innerHTML =
-                `<div class="placeholder-panel">📝 El contenido de ${data.nombre} para ${gb.dataset.grado}° grado estará disponible próximamente.</div>`;
+              if (gc) gc.innerHTML = renderResumenBib(currentAreaBib, grado);
             });
           });
         });
@@ -851,12 +1047,11 @@
       const backBtn = document.getElementById('backToAreas');
       if (backBtn) {
         backBtn.addEventListener('click', () => {
-          if (resumePanel) resumePanel.style.display  = 'none';
+          if (resumePanel) resumePanel.style.display = 'none';
           areaSelector.style.display = 'grid';
         });
       }
 
-      // "← Volver" del sidebar de resúmenes: vuelve a la pestaña Libros
       const sidebarBackBtn = document.querySelector('#resumenesContent .sidebar-back');
       if (sidebarBackBtn) {
         sidebarBackBtn.addEventListener('click', (e) => {
