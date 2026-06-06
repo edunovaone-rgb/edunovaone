@@ -187,6 +187,11 @@ const BANCO = {
       { p: 'La relatividad especial la propuso:', ops: ['Newton','Darwin','Einstein','Bohr'], r: 2 },
       { p: 'La fusión nuclear:', ops: ['Divide átomos pesados','Une núcleos ligeros liberando energía','Es una reacción química','Produce radioactividad alfa'], r: 1 },
       { p: 'El año luz es medida de:', ops: ['Tiempo','Distancia','Velocidad','Masa'], r: 1 },
+      { p: 'La galaxia donde está el Sistema Solar se llama:', ops: ['Andrómeda','Vía Láctea','Elíptica','Espiral Sur'], r: 1 },
+      { p: 'La fuerza entre dos masas es estudiada por la ley de:', ops: ['Boyle','Coulomb','Gravitación Universal','Newton 2da'], r: 2 },
+      { p: 'El Big Bang es la teoría sobre:', ops: ['La formación de los planetas','El origen del universo','La fisión nuclear','El movimiento de los átomos'], r: 1 },
+      { p: 'La partícula con carga positiva en el núcleo es:', ops: ['Electrón','Neutrón','Protón','Fotón'], r: 2 },
+      { p: 'La radioactividad fue descubierta por:', ops: ['Einstein','Curie','Newton','Darwin'], r: 1 },
     ],
   },
   historia: {
