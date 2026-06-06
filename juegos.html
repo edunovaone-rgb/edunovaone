@@ -4,112 +4,110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
-  <meta name="description" content="Juegos educativos en EduNova para aprender de forma divertida." />
+  <meta name="description" content="Juegos educativos en EduNovaOne para aprender de forma divertida." />
   <title>EduNovaOne | Juegos</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .juegos-grid {
-      display: grid;
-      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
-      gap: 1.75rem;
-      align-items: start;
-      margin-top: 1.5rem;
-    }
-    .juegos-sidebar {
-      background: #ffffff;
-      border: 1px solid rgba(59,130,246,0.08);
-      border-radius: 2rem;
-      padding: 1.5rem;
-      box-shadow: 0 24px 50px rgba(15,23,42,0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .juegos-main { display: grid; gap: 1.5rem; }
+    /* ── Layout ── */
+    .juegos-grid { display:grid; grid-template-columns:minmax(220px,260px) minmax(0,1fr); gap:1.75rem; align-items:start; margin-top:1.5rem; }
+    .juegos-sidebar { background:#fff; border:1px solid rgba(59,130,246,0.08); border-radius:2rem; padding:1.5rem; box-shadow:0 24px 50px rgba(15,23,42,0.06); display:flex; flex-direction:column; gap:0; }
+    .juegos-main { display:grid; gap:1.5rem; }
 
-    .games-hero-card {
-      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(37,99,235,0.05));
-      border: 1px solid rgba(99,102,241,0.14);
-      border-radius: 2rem;
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: center;
-    }
-    .games-hero-card h2 { margin: 0 0 0.75rem; color: var(--accent-strong); font-size: clamp(1.4rem,2vw,2rem); }
-    .games-hero-card p  { margin: 0 0 1.25rem; color: var(--text-muted); line-height: 1.7; }
-    .games-hero-img { width: 140px; height: 140px; }
+    /* ── Hero ── */
+    .games-hero-card { background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.05)); border:1px solid rgba(99,102,241,0.14); border-radius:2rem; padding:2rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; }
+    .games-hero-card h2 { margin:0 0 .75rem; color:var(--accent-strong); font-size:clamp(1.4rem,2vw,2rem); }
+    .games-hero-card p  { margin:0 0 1.25rem; color:var(--text-muted); line-height:1.7; }
+    .games-hero-img { width:140px; height:140px; }
 
-    .games-section-title { margin: 0 0 1rem; font-size: 1.1rem; color: var(--text); }
+    /* ── Selector de materia ── */
+    .materia-tabs { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .materia-tab { padding:.45rem 1.1rem; border-radius:999px; border:1.5px solid rgba(99,102,241,0.2); background:#fff; color:var(--text-muted); font-size:.88rem; font-weight:600; cursor:pointer; transition:all .2s; }
+    .materia-tab:hover { border-color:var(--accent); color:var(--accent-strong); }
+    .materia-tab.active { background:linear-gradient(135deg,#7c3aed,#2563eb); border-color:transparent; color:#fff; font-weight:700; }
 
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-    .game-card {
-      background: #ffffff;
-      border: 1px solid rgba(59,130,246,0.1);
-      border-radius: 1.75rem;
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      box-shadow: 0 16px 32px rgba(15,23,42,0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .game-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px rgba(15,23,42,0.1); }
-    .game-icon {
-      width: 3rem; height: 3rem;
-      border-radius: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-    }
-    .game-icon.purple { background: rgba(124,58,237,0.12); }
-    .game-icon.blue   { background: rgba(37,99,235,0.12); }
-    .game-icon.green  { background: rgba(16,185,129,0.12); }
-    .game-icon.orange { background: rgba(249,115,22,0.12); }
-    .game-card h4 { margin: 0; font-size: 1rem; color: var(--accent-strong); }
-    .game-card p  { margin: 0; font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
-    .game-meta {
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 0.82rem; color: var(--text-muted);
-    }
-    .game-badge {
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(99,102,241,0.08);
-      color: var(--accent-strong);
-      font-weight: 700;
-      font-size: 0.8rem;
-    }
+    /* ── Cards de juego ── */
+    .games-section-title { margin:0 0 1rem; font-size:1.1rem; color:var(--text); font-weight:700; }
+    .games-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; }
+    .game-card { background:#fff; border:1px solid rgba(59,130,246,0.1); border-radius:1.75rem; padding:1.4rem; display:flex; flex-direction:column; gap:.75rem; box-shadow:0 16px 32px rgba(15,23,42,0.05); transition:transform .2s,box-shadow .2s; }
+    .game-card:hover { transform:translateY(-3px); box-shadow:0 24px 48px rgba(15,23,42,0.1); }
+    .game-icon { width:3rem; height:3rem; border-radius:1rem; display:flex; align-items:center; justify-content:center; font-size:1.4rem; }
+    .game-card h4 { margin:0; font-size:1rem; color:var(--accent-strong); }
+    .game-card p  { margin:0; font-size:.88rem; color:var(--text-muted); line-height:1.6; flex:1; }
+    .game-meta { display:flex; align-items:center; justify-content:space-between; font-size:.82rem; color:var(--text-muted); }
+    .game-badge { padding:.3rem .75rem; border-radius:999px; background:rgba(99,102,241,0.08); color:var(--accent-strong); font-weight:700; font-size:.8rem; }
+    .game-card[data-hidden="true"] { display:none; }
 
-    .advantages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .advantage-card {
-      background: #ffffff;
-      border: 1px solid rgba(59,130,246,0.1);
-      border-radius: 1.5rem;
-      padding: 1.25rem;
-      box-shadow: 0 12px 28px rgba(15,23,42,0.05);
-    }
-    .advantage-card h4 { margin: 0 0 0.4rem; color: var(--accent-strong); font-size: 0.95rem; }
-    .advantage-card p  { margin: 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+    /* ── Modal de juego ── */
+    .game-overlay { position:fixed; inset:0; background:rgba(15,23,42,0.5); backdrop-filter:blur(6px); z-index:1000; display:none; align-items:center; justify-content:center; padding:1rem; }
+    .game-overlay.open { display:flex; }
+    .game-modal { background:#fff; border-radius:2rem; width:100%; max-width:680px; max-height:90vh; overflow-y:auto; padding:2rem; box-shadow:0 40px 80px rgba(15,23,42,0.2); display:grid; gap:1.25rem; }
+    .game-modal-header { display:flex; align-items:center; justify-content:space-between; }
+    .game-modal-header h3 { margin:0; font-size:1.2rem; color:var(--accent-strong); }
+    .game-close { background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--text-muted); padding:.25rem .5rem; border-radius:.5rem; }
+    .game-close:hover { background:rgba(148,163,184,0.12); }
 
-    @media (max-width: 1080px) {
-      .juegos-grid { grid-template-columns: 1fr; }
-      .games-hero-card { grid-template-columns: 1fr; }
-      .games-hero-img { display: none; }
-      .advantages-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .advantages-grid { grid-template-columns: 1fr; }
-      .games-grid { grid-template-columns: 1fr; }
-    }
+    /* ── Quiz ── */
+    .quiz-progress-bar { height:6px; border-radius:999px; background:rgba(99,102,241,0.12); overflow:hidden; }
+    .quiz-progress-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#7c3aed,#2563eb); transition:width .4s; }
+    .quiz-meta { display:flex; justify-content:space-between; font-size:.82rem; color:var(--text-muted); font-weight:600; }
+    .quiz-question { font-size:1.05rem; font-weight:700; color:var(--text); line-height:1.6; }
+    .quiz-options { display:grid; gap:.65rem; }
+    .quiz-option { padding:.85rem 1.1rem; border:1.5px solid rgba(99,102,241,0.18); border-radius:1rem; background:#f8fbff; cursor:pointer; font-size:.93rem; color:var(--text); text-align:left; transition:all .18s; font-weight:500; }
+    .quiz-option:hover:not(:disabled) { border-color:var(--accent); background:rgba(99,102,241,0.06); }
+    .quiz-option.correct { border-color:#10b981; background:rgba(16,185,129,0.1); color:#065f46; font-weight:700; }
+    .quiz-option.wrong   { border-color:#ef4444; background:rgba(239,68,68,0.08); color:#991b1b; }
+    .quiz-option:disabled { cursor:default; }
+    .quiz-feedback { font-size:.9rem; font-weight:700; padding:.65rem 1rem; border-radius:.85rem; }
+    .quiz-feedback.ok  { background:rgba(16,185,129,0.1); color:#065f46; }
+    .quiz-feedback.bad { background:rgba(239,68,68,0.08); color:#991b1b; }
+    .quiz-score-card { text-align:center; padding:1rem; background:linear-gradient(135deg,rgba(124,58,237,0.07),rgba(37,99,235,0.04)); border-radius:1.5rem; border:1px solid rgba(99,102,241,0.14); }
+    .quiz-score-big { font-size:3.5rem; font-weight:900; color:var(--accent-strong); line-height:1; }
+    .timer-circle { width:2.6rem; height:2.6rem; border-radius:50%; border:3px solid rgba(99,102,241,0.2); display:flex; align-items:center; justify-content:center; font-size:.88rem; font-weight:800; color:var(--accent-strong); flex-shrink:0; transition:border-color .3s; }
+    .timer-circle.urgent { border-color:#ef4444; color:#ef4444; }
+
+    /* ── Flashcards ── */
+    .fc-scene { perspective:800px; width:100%; max-width:460px; margin:0 auto; height:240px; cursor:pointer; }
+    .fc-card { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.4,0,.2,1); border-radius:1.75rem; }
+    .fc-card.flipped { transform:rotateY(180deg); }
+    .fc-face { position:absolute; inset:0; backface-visibility:hidden; border-radius:1.75rem; display:flex; align-items:center; justify-content:center; padding:2rem; text-align:center; border:1.5px solid rgba(99,102,241,0.14); box-shadow:0 16px 36px rgba(15,23,42,0.08); }
+    .fc-front { background:linear-gradient(135deg,#7c3aed,#2563eb); color:#fff; }
+    .fc-back  { background:#fff; color:var(--accent-strong); transform:rotateY(180deg); }
+    .fc-word  { font-size:2rem; font-weight:900; }
+    .fc-hint  { font-size:.82rem; opacity:.75; margin-top:.35rem; }
+    .fc-meaning { font-size:1.1rem; font-weight:700; }
+    .fc-example { font-size:.85rem; color:var(--text-muted); margin-top:.5rem; font-style:italic; }
+    .fc-nav { display:flex; align-items:center; justify-content:center; gap:1.5rem; }
+    .fc-nav button { padding:.6rem 1.4rem; border-radius:999px; border:1.5px solid rgba(99,102,241,0.2); background:#fff; color:var(--accent-strong); font-weight:700; cursor:pointer; transition:all .2s; }
+    .fc-nav button:hover { background:linear-gradient(135deg,#7c3aed,#2563eb); color:#fff; border-color:transparent; }
+    .fc-counter { font-size:.88rem; color:var(--text-muted); font-weight:700; }
+
+    /* ── Ordenar pasos ── */
+    .sort-list { display:grid; gap:.55rem; }
+    .sort-item { padding:.8rem 1.1rem; background:#f8fbff; border:1.5px solid rgba(99,102,241,0.14); border-radius:1rem; cursor:grab; font-size:.92rem; display:flex; align-items:center; gap:.75rem; transition:box-shadow .18s; user-select:none; }
+    .sort-item.dragging { opacity:.5; box-shadow:0 8px 20px rgba(99,102,241,0.2); }
+    .sort-item.dragover { border-color:var(--accent); background:rgba(99,102,241,0.06); }
+    .sort-handle { color:var(--text-muted); font-size:1rem; }
+    .sort-result { font-size:.9rem; font-weight:700; padding:.65rem 1rem; border-radius:.85rem; display:none; }
+    .sort-result.ok  { background:rgba(16,185,129,0.1); color:#065f46; display:block; }
+    .sort-result.bad { background:rgba(239,68,68,0.08); color:#991b1b; display:block; }
+
+    /* ── Completar fórmula ── */
+    .formula-game { display:grid; gap:1rem; }
+    .formula-row { background:#f8fbff; border:1px solid rgba(99,102,241,0.1); border-radius:1.25rem; padding:1rem 1.25rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; }
+    .formula-row .fpart { font-size:1rem; font-weight:700; color:var(--accent-strong); font-family:monospace; }
+    .formula-input { border:1.5px solid rgba(99,102,241,0.25); border-radius:.65rem; padding:.4rem .75rem; font-size:.95rem; font-family:monospace; font-weight:700; color:var(--accent-strong); width:90px; text-align:center; outline:none; background:#fff; }
+    .formula-input:focus { border-color:var(--accent); }
+    .formula-input.ok  { border-color:#10b981; background:rgba(16,185,129,0.07); color:#065f46; }
+    .formula-input.bad { border-color:#ef4444; background:rgba(239,68,68,0.06); color:#991b1b; }
+
+    /* ── Ventajas ── */
+    .advantages-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .advantage-card { background:#fff; border:1px solid rgba(59,130,246,0.1); border-radius:1.5rem; padding:1.25rem; box-shadow:0 12px 28px rgba(15,23,42,0.05); }
+    .advantage-card h4 { margin:0 0 .4rem; color:var(--accent-strong); font-size:.95rem; }
+    .advantage-card p  { margin:0; color:var(--text-muted); font-size:.88rem; line-height:1.6; }
+
+    @media (max-width:1080px) { .juegos-grid { grid-template-columns:1fr; } .games-hero-card { grid-template-columns:1fr; } .games-hero-img { display:none; } .advantages-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:600px)  { .advantages-grid { grid-template-columns:1fr; } .games-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -120,13 +118,12 @@
     </a>
     <ul class="uni-nav-links">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="biblioteca.html">Biblioteca</a></li>      <li><a href="juegos.html" class="active">Juegos</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>
+      <li><a href="juegos.html" class="active">Juegos</a></li>
       <li><a href="herramientas.html">Herramientas</a></li>
       <li><a href="comunidad.html">Comunidad</a></li>
     </ul>
     <div class="uni-nav-actions">
-      <button class="uni-icon-btn" aria-label="Buscar">🔍</button>
-      <button class="uni-icon-btn" aria-label="Notificaciones">🔔</button>
       <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
     </div>
   </nav>
@@ -137,16 +134,12 @@
       <!-- Sidebar -->
       <aside class="juegos-sidebar library-sidebar">
         <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebarCollapsible">
-          <span class="nav-icon">🎮</span> Menú
-          <span class="toggle-arrow">▼</span>
+          <span class="nav-icon">🎮</span> Menú <span class="toggle-arrow">▼</span>
         </button>
         <div class="sidebar-collapsible" id="sidebarCollapsible">
           <div class="sidebar-brand">
             <img src="assets/Icono.png" alt="EduNovaOne" />
-            <div>
-              <p class="eyebrow">EduNovaOne</p>
-              <h2>Menú</h2>
-            </div>
+            <div><p class="eyebrow">EduNovaOne</p><h2>Juegos</h2></div>
           </div>
           <nav class="sidebar-nav">
             <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
@@ -156,10 +149,10 @@
             <a href="comunidad.html"><span class="nav-icon">👥</span>Comunidad</a>
             <a href="perfil.html"><span class="nav-icon">👤</span>Mi Perfil</a>
           </nav>
-          <div class="sidebar-card">
-            <strong>¡Reto del día!</strong>
-            <p>Completa el quiz de hoy y gana puntos extra.</p>
-            <a href="#" class="button button-primary">Jugar ahora</a>
+          <div class="sidebar-card" style="margin-top:1rem;">
+            <strong>🏆 Puntos totales</strong>
+            <p style="font-size:2rem;font-weight:900;color:var(--accent-strong);margin:.25rem 0 0;" id="totalPuntos">0</p>
+            <p style="font-size:.8rem;color:var(--text-muted);margin:.1rem 0 0;">acumulados hoy</p>
           </div>
         </div>
       </aside>
@@ -170,73 +163,111 @@
         <div class="games-hero-card">
           <div>
             <h2>Minijuegos educativos para reforzar tus conocimientos</h2>
-            <p>Aprende conceptos clave mientras te diviertes con actividades interactivas basadas en tu materia.</p>
+            <p>Quizzes, flashcards y retos interactivos para cada materia y grado. Gana puntos y sube tu nivel.</p>
             <a href="#juegos" class="button button-primary">Ver todos los juegos</a>
           </div>
           <img src="assets/juegos.svg" alt="Juegos" class="games-hero-img" loading="lazy" />
         </div>
 
+        <!-- Filtro por materia -->
+        <div>
+          <p style="margin:0 0 .75rem;font-size:.88rem;font-weight:700;color:var(--text-muted);">Filtrar por materia:</p>
+          <div class="materia-tabs">
+            <button class="materia-tab active" data-materia="">Todos</button>
+            <button class="materia-tab" data-materia="matematica">Matemática</button>
+            <button class="materia-tab" data-materia="ciencia">Ciencias</button>
+            <button class="materia-tab" data-materia="historia">Historia</button>
+            <button class="materia-tab" data-materia="comunicacion">Comunicación</button>
+            <button class="materia-tab" data-materia="ingles">Inglés</button>
+          </div>
+        </div>
+
+        <!-- Cards de juegos -->
         <div id="juegos">
           <h3 class="games-section-title">Juegos disponibles</h3>
-          <div class="games-grid">
-            <div class="game-card">
-              <div class="game-icon purple">🧮</div>
+          <div class="games-grid" id="gamesGrid">
+
+            <div class="game-card" data-materia="matematica" data-juego="quiz-mat">
+              <div class="game-icon" style="background:rgba(124,58,237,0.12);">🧮</div>
               <h4>Quiz de Matemática</h4>
-              <p>Pon a prueba tus conocimientos con preguntas de álgebra, geometría y más.</p>
-              <div class="game-meta">
-                <span>10 preguntas</span>
-                <span class="game-badge">Fácil</span>
-              </div>
-              <a href="#" class="button button-primary">Jugar</a>
+              <p>10 preguntas de aritmética, álgebra, geometría y más. Tienes 15 segundos por pregunta.</p>
+              <div class="game-meta"><span>10 preguntas · 15 s</span><span class="game-badge">Fácil</span></div>
+              <button class="button button-primary" onclick="abrirJuego('quiz-mat')">Jugar</button>
             </div>
-            <div class="game-card">
-              <div class="game-icon blue">🌍</div>
+
+            <div class="game-card" data-materia="matematica" data-juego="formulas-mat">
+              <div class="game-icon" style="background:rgba(124,58,237,0.12);">📐</div>
+              <h4>Completa la Fórmula</h4>
+              <p>Rellena los espacios en blanco con el término correcto de cada fórmula matemática.</p>
+              <div class="game-meta"><span>8 fórmulas</span><span class="game-badge">Medio</span></div>
+              <button class="button button-primary" onclick="abrirJuego('formulas-mat')">Jugar</button>
+            </div>
+
+            <div class="game-card" data-materia="ciencia" data-juego="quiz-cien">
+              <div class="game-icon" style="background:rgba(5,150,105,0.12);">🔬</div>
+              <h4>Quiz de Ciencias</h4>
+              <p>Biología, química y física. Preguntas de todos los grados de secundaria.</p>
+              <div class="game-meta"><span>10 preguntas · 15 s</span><span class="game-badge">Medio</span></div>
+              <button class="button button-primary" onclick="abrirJuego('quiz-cien')">Jugar</button>
+            </div>
+
+            <div class="game-card" data-materia="ciencia" data-juego="orden-cien">
+              <div class="game-icon" style="background:rgba(5,150,105,0.12);">🧬</div>
+              <h4>Ordena los Pasos</h4>
+              <p>Arrastra y suelta para ordenar correctamente los pasos de un proceso científico.</p>
+              <div class="game-meta"><span>3 rondas</span><span class="game-badge">Fácil</span></div>
+              <button class="button button-primary" onclick="abrirJuego('orden-cien')">Jugar</button>
+            </div>
+
+            <div class="game-card" data-materia="historia" data-juego="quiz-hist">
+              <div class="game-icon" style="background:rgba(217,119,6,0.12);">🏛️</div>
               <h4>Trivia de Historia</h4>
-              <p>Responde preguntas sobre eventos históricos y personajes importantes.</p>
-              <div class="game-meta">
-                <span>15 preguntas</span>
-                <span class="game-badge">Medio</span>
-              </div>
-              <a href="#" class="button button-primary">Jugar</a>
+              <p>Fechas, personajes y eventos clave del Perú y el mundo. ¿Cuántas sabes?</p>
+              <div class="game-meta"><span>10 preguntas · 15 s</span><span class="game-badge">Medio</span></div>
+              <button class="button button-primary" onclick="abrirJuego('quiz-hist')">Jugar</button>
             </div>
-            <div class="game-card">
-              <div class="game-icon green">🔬</div>
-              <h4>Ciencia en Acción</h4>
-              <p>Experimenta con conceptos de biología, química y física de forma interactiva.</p>
-              <div class="game-meta">
-                <span>12 preguntas</span>
-                <span class="game-badge">Medio</span>
-              </div>
-              <a href="#" class="button button-primary">Jugar</a>
+
+            <div class="game-card" data-materia="historia" data-juego="orden-hist">
+              <div class="game-icon" style="background:rgba(217,119,6,0.12);">📅</div>
+              <h4>Línea de Tiempo</h4>
+              <p>Ordena cronológicamente los eventos históricos más importantes del Perú.</p>
+              <div class="game-meta"><span>3 rondas</span><span class="game-badge">Fácil</span></div>
+              <button class="button button-primary" onclick="abrirJuego('orden-hist')">Jugar</button>
             </div>
-            <div class="game-card">
-              <div class="game-icon orange">📖</div>
-              <h4>Vocabulario Inglés</h4>
-              <p>Aprende palabras nuevas en inglés con tarjetas y ejercicios de asociación.</p>
-              <div class="game-meta">
-                <span>20 palabras</span>
-                <span class="game-badge">Fácil</span>
-              </div>
-              <a href="#" class="button button-primary">Jugar</a>
+
+            <div class="game-card" data-materia="comunicacion" data-juego="quiz-com">
+              <div class="game-icon" style="background:rgba(220,38,38,0.12);">📖</div>
+              <h4>Quiz de Comunicación</h4>
+              <p>Gramática, figuras literarias, tipos de texto y comprensión lectora.</p>
+              <div class="game-meta"><span>10 preguntas · 15 s</span><span class="game-badge">Fácil</span></div>
+              <button class="button button-primary" onclick="abrirJuego('quiz-com')">Jugar</button>
             </div>
+
+            <div class="game-card" data-materia="ingles" data-juego="flash-ing">
+              <div class="game-icon" style="background:rgba(37,99,235,0.12);">🇬🇧</div>
+              <h4>Flashcards de Inglés</h4>
+              <p>Voltea las tarjetas para ver la traducción, la pronunciación y una oración de ejemplo.</p>
+              <div class="game-meta"><span>20 palabras</span><span class="game-badge">Fácil</span></div>
+              <button class="button button-primary" onclick="abrirJuego('flash-ing')">Jugar</button>
+            </div>
+
+            <div class="game-card" data-materia="ingles" data-juego="quiz-ing">
+              <div class="game-icon" style="background:rgba(37,99,235,0.12);">✏️</div>
+              <h4>Quiz de Inglés</h4>
+              <p>Verbos irregulares, present simple, tiempos verbales y vocabulario esencial.</p>
+              <div class="game-meta"><span>10 preguntas · 15 s</span><span class="game-badge">Medio</span></div>
+              <button class="button button-primary" onclick="abrirJuego('quiz-ing')">Jugar</button>
+            </div>
+
           </div>
         </div>
 
         <div>
           <h3 class="games-section-title">Ventajas de estudiar jugando</h3>
           <div class="advantages-grid">
-            <div class="advantage-card">
-              <h4>🎯 Método activo</h4>
-              <p>Participa en retos que hacen el estudio más entretenido y efectivo.</p>
-            </div>
-            <div class="advantage-card">
-              <h4>🧠 Memoria visual</h4>
-              <p>Recordar es más fácil con ejercicios prácticos e interactivos.</p>
-            </div>
-            <div class="advantage-card">
-              <h4>📈 Progreso</h4>
-              <p>Controla tu avance con puntuaciones, logros y rachas diarias.</p>
-            </div>
+            <div class="advantage-card"><h4>🎯 Método activo</h4><p>Retos interactivos que hacen el estudio más entretenido y efectivo.</p></div>
+            <div class="advantage-card"><h4>🧠 Memoria</h4><p>Recordar es más fácil con ejercicios prácticos y retroalimentación inmediata.</p></div>
+            <div class="advantage-card"><h4>📈 Progreso</h4><p>Gana puntos en cada juego y acumula tu puntaje del día.</p></div>
           </div>
         </div>
 
@@ -244,22 +275,505 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <p>EduNovaOne · Biblioteca Digital para Estudiantes</p>
-  </footer>
+  <!-- ══ MODAL DE JUEGO ══ -->
+  <div class="game-overlay" id="gameOverlay">
+    <div class="game-modal" id="gameModal">
+      <div class="game-modal-header">
+        <h3 id="gameTitle">Juego</h3>
+        <button class="game-close" onclick="cerrarJuego()" aria-label="Cerrar">✕</button>
+      </div>
+      <div id="gameBody"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer"><p>EduNovaOne · Biblioteca Digital para Estudiantes</p></footer>
 
   <script src="script.js"></script>
+  <script type="module" src="auth-nav.js"></script>
   <script>
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebarCollapsible = document.getElementById('sidebarCollapsible');
-    if (sidebarToggle && sidebarCollapsible) {
-      sidebarToggle.addEventListener('click', () => {
-        const isOpen = sidebarCollapsible.classList.toggle('open');
-        sidebarToggle.classList.toggle('open', isOpen);
-        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+  // ══════════════════════════════════════════
+  // DATOS
+  // ══════════════════════════════════════════
+
+  const QUIZZES = {
+    'quiz-mat': {
+      titulo: '🧮 Quiz de Matemática',
+      preguntas: [
+        { p:'¿Cuánto es el MCM de 4 y 6?', ops:['8','12','24','6'], r:1 },
+        { p:'¿Cuál es el resultado de 3² + 4²?', ops:['25','49','7','14'], r:0 },
+        { p:'Si x + 5 = 12, ¿cuánto es x?', ops:['6','7','8','17'], r:1 },
+        { p:'¿Cuál es el área de un rectángulo de 5 cm × 8 cm?', ops:['26 cm²','40 cm²','13 cm','80 cm²'], r:1 },
+        { p:'¿Cuánto es el 30% de 200?', ops:['30','50','60','6'], r:2 },
+        { p:'La media de 4, 8, 12 es:', ops:['6','8','10','12'], r:1 },
+        { p:'¿Cuánto es √144?', ops:['11','12','13','14'], r:1 },
+        { p:'¿Qué tipo de triángulo tiene todos sus lados iguales?', ops:['Isósceles','Escaleno','Equilátero','Rectángulo'], r:2 },
+        { p:'f(x) = 2x + 3. ¿Cuánto es f(4)?', ops:['10','11','8','14'], r:1 },
+        { p:'La probabilidad de sacar cara en una moneda es:', ops:['1/3','1/4','1/2','2/3'], r:2 },
+      ]
+    },
+    'quiz-cien': {
+      titulo: '🔬 Quiz de Ciencias',
+      preguntas: [
+        { p:'¿Cuál es la unidad básica de la vida?', ops:['El átomo','La célula','El tejido','El órgano'], r:1 },
+        { p:'¿Qué gas producen las plantas en la fotosíntesis?', ops:['CO₂','N₂','O₂','H₂'], r:2 },
+        { p:'La Ley de Newton F = m × a corresponde a la:', ops:['Primera ley','Segunda ley','Tercera ley','Ley de gravedad'], r:1 },
+        { p:'¿Cuántos protones tiene el oxígeno?', ops:['6','7','8','9'], r:2 },
+        { p:'¿Qué tipo de célula NO tiene núcleo?', ops:['Animal','Vegetal','Procariota','Eucariota'], r:2 },
+        { p:'La fórmula del agua es:', ops:['H₂O₂','CO₂','H₂O','NaCl'], r:2 },
+        { p:'¿Qué mide el pH?', ops:['Temperatura','Acidez/basicidad','Presión','Densidad'], r:1 },
+        { p:'¿Cuántos planetas tiene el Sistema Solar?', ops:['7','8','9','10'], r:1 },
+        { p:'La energía cinética se calcula con:', ops:['E=mgh','E=mc²','Ec=½mv²','F=ma'], r:2 },
+        { p:'E = mc² es la fórmula de:', ops:['Energía cinética','Energía potencial','Equivalencia masa-energía','Presión'], r:2 },
+      ]
+    },
+    'quiz-hist': {
+      titulo: '🏛️ Trivia de Historia',
+      preguntas: [
+        { p:'¿En qué año se proclamó la independencia del Perú?', ops:['1810','1821','1824','1819'], r:1 },
+        { p:'¿Quién capturó a Atahualpa en Cajamarca?', ops:['Hernán Cortés','Sebastián de Benalcázar','Francisco Pizarro','Diego de Almagro'], r:2 },
+        { p:'¿Cuál fue la capital del Imperio Inca?', ops:['Lima','Machu Picchu','Cusco','Cajamarca'], r:2 },
+        { p:'¿Qué batalla consolidó la independencia de Sudamérica?', ops:['Junín','Ayacucho','Chacabuco','Pichincha'], r:1 },
+        { p:'La Reforma Agraria en Perú fue realizada por:', ops:['Fujimori','Velasco Alvarado','Belaúnde','García'], r:1 },
+        { p:'¿En qué año comenzó la Segunda Guerra Mundial?', ops:['1935','1939','1941','1945'], r:1 },
+        { p:'¿Qué civilización construyó las pirámides de Giza?', ops:['Griega','Romana','Egipcia','Mesopotámica'], r:2 },
+        { p:'La ONU fue fundada en:', ops:['1939','1945','1948','1950'], r:1 },
+        { p:'Abimael Guzmán fue capturado en:', ops:['1990','1991','1992','1993'], r:2 },
+        { p:'¿Cuántos suyos tenía el Tahuantinsuyo?', ops:['2','3','4','5'], r:2 },
+      ]
+    },
+    'quiz-com': {
+      titulo: '📖 Quiz de Comunicación',
+      preguntas: [
+        { p:'"Tus ojos son dos luceros" es un ejemplo de:', ops:['Símil','Metáfora','Hipérbole','Personificación'], r:1 },
+        { p:'¿Qué parte de la oración expresa la acción o estado del sujeto?', ops:['Sustantivo','Adjetivo','Verbo','Adverbio'], r:2 },
+        { p:'Un texto que defiende una posición con argumentos es:', ops:['Narrativo','Descriptivo','Argumentativo','Instructivo'], r:2 },
+        { p:'La idea principal de un texto puede ser:', ops:['Solo explícita','Solo implícita','Explícita o implícita','Siempre al final'], r:2 },
+        { p:'"Corre como el viento" es un:', ops:['Metáfora','Símil','Hipérbole','Anáfora'], r:1 },
+        { p:'Ricardo Palma es autor de:', ops:['Trilce','Tradiciones Peruanas','Cien años de soledad','El señor Presidente'], r:1 },
+        { p:'¿Qué género literario se escribe para ser representado en escena?', ops:['Narrativo','Lírico','Dramático','Ensayístico'], r:2 },
+        { p:'Oración simple es aquella que tiene:', ops:['Dos verbos','Un verbo','Sin verbo','Tres cláusulas'], r:1 },
+        { p:'El conector "por lo tanto" indica:', ops:['Contraste','Adición','Consecuencia','Causa'], r:2 },
+        { p:'Mario Vargas Llosa recibió el Premio Nobel en:', ops:['2000','2005','2010','2015'], r:2 },
+      ]
+    },
+    'quiz-ing': {
+      titulo: '✏️ Quiz de Inglés',
+      preguntas: [
+        { p:'Irregular past of "go":', ops:['goed','gone','went','goes'], r:2 },
+        { p:'Which is correct? "She ___ a teacher."', ops:['am','is','are','be'], r:1 },
+        { p:'"They build houses." → Passive voice:', ops:['Houses built they.','Houses are built.','They are built houses.','Built are houses.'], r:1 },
+        { p:'Adverb of frequency that means "siempre":', ops:['never','sometimes','often','always'], r:3 },
+        { p:'"I have visited Paris." This tense is:', ops:['Past simple','Present perfect','Future simple','Present continuous'], r:1 },
+        { p:'Question for: "She plays football."', ops:['Does she plays football?','Do she play football?','Does she play football?','Did she play football?'], r:2 },
+        { p:'"If you study, you ___ pass."', ops:['would','will','might','should'], r:1 },
+        { p:'Irregular past of "buy":', ops:['buyed','byed','bought','buyed'], r:2 },
+        { p:'Modal verb for "habilidad":', ops:['must','should','can','will'], r:2 },
+        { p:'"The student ___ won the prize is from Lima." (relative clause)', ops:['which','where','who','whom'], r:2 },
+      ]
+    },
+  };
+
+  const FLASHCARDS_ING = [
+    { word:'Achievement', pron:'/əˈtʃiːvmənt/', meaning:'Logro, conquista', example:'Getting good grades is a great achievement.' },
+    { word:'Challenge', pron:'/ˈtʃælɪndʒ/', meaning:'Desafío, reto', example:'Learning a new language is a big challenge.' },
+    { word:'Knowledge', pron:'/ˈnɒlɪdʒ/', meaning:'Conocimiento, saber', example:'Knowledge is power.' },
+    { word:'Responsibility', pron:'/rɪˌspɒnsəˈbɪlɪti/', meaning:'Responsabilidad', example:'It's your responsibility to study.' },
+    { word:'Environment', pron:'/ɪnˈvaɪrənmənt/', meaning:'Medio ambiente, entorno', example:'We must protect our environment.' },
+    { word:'Opportunity', pron:'/ˌɒpəˈtjuːnɪti/', meaning:'Oportunidad', example:'This is a great opportunity to learn.' },
+    { word:'Behaviour', pron:'/bɪˈheɪvjə/', meaning:'Comportamiento, conducta', example:'Good behaviour is expected in class.' },
+    { word:'Consequence', pron:'/ˈkɒnsɪkwəns/', meaning:'Consecuencia', example:'Every action has a consequence.' },
+    { word:'Influence', pron:'/ˈɪnfluəns/', meaning:'Influencia', example:'Music has a great influence on mood.' },
+    { word:'Vocabulary', pron:'/vəˈkæbjʊləri/', meaning:'Vocabulario', example:'Expand your vocabulary every day.' },
+    { word:'Sentence', pron:'/ˈsentəns/', meaning:'Oración, frase', example:'Write a sentence using past simple.' },
+    { word:'Paragraph', pron:'/ˈpærəɡrɑːf/', meaning:'Párrafo', example:'Each paragraph should have one main idea.' },
+    { word:'Frequently', pron:'/ˈfriːkwəntli/', meaning:'Frecuentemente', example:'She frequently visits the library.' },
+    { word:'Schedule', pron:'/ˈʃedjuːl/', meaning:'Horario, programa', example:'Check your schedule for tomorrow.' },
+    { word:'Encourage', pron:'/ɪnˈkʌrɪdʒ/', meaning:'Animar, alentar', example:'Teachers encourage students to read.' },
+    { word:'Improve', pron:'/ɪmˈpruːv/', meaning:'Mejorar', example:'Practice every day to improve your English.' },
+    { word:'Achieve', pron:'/əˈtʃiːv/', meaning:'Lograr, alcanzar', example:'You can achieve anything you set your mind to.' },
+    { word:'Confident', pron:'/ˈkɒnfɪdənt/', meaning:'Seguro, confiado', example:'Be confident when you speak English.' },
+    { word:'Research', pron:'/rɪˈsɜːtʃ/', meaning:'Investigación', example:'The research shows that reading helps memory.' },
+    { word:'Significant', pron:'/sɪɡˈnɪfɪkənt/', meaning:'Significativo, importante', example:'This is a significant discovery.' },
+  ];
+
+  const ORDENAR = {
+    'orden-cien': {
+      titulo: '🧬 Ordena los Pasos',
+      rondas: [
+        {
+          enunciado: 'Ordena los pasos de la FOTOSÍNTESIS:',
+          correcto: ['La planta absorbe CO₂ y H₂O', 'Los cloroplastos captan la luz solar', 'Se producen glucosa y O₂', 'La glucosa se usa como energía'],
+        },
+        {
+          enunciado: 'Ordena los pasos del MÉTODO CIENTÍFICO:',
+          correcto: ['Observación del fenómeno', 'Formulación de hipótesis', 'Experimentación y recogida de datos', 'Análisis y conclusión'],
+        },
+        {
+          enunciado: 'Ordena el ciclo del AGUA:',
+          correcto: ['Evaporación del agua del mar', 'Condensación en nubes', 'Precipitación (lluvia/nieve)', 'Infiltración y escorrentía'],
+        },
+      ]
+    },
+    'orden-hist': {
+      titulo: '📅 Línea de Tiempo',
+      rondas: [
+        {
+          enunciado: 'Ordena cronológicamente estos eventos del PERÚ:',
+          correcto: ['Fundación del Imperio Inca (1438)', 'Conquista española - Cajamarca (1532)', 'Independencia del Perú (1821)', 'Batalla de Ayacucho (1824)'],
+        },
+        {
+          enunciado: 'Ordena estos eventos del MUNDO ANTIGUO:',
+          correcto: ['Surgimiento de Mesopotamia (~3500 a.C.)', 'Civilización Egipcia (~3100 a.C.)', 'Democracia en Atenas (~508 a.C.)', 'Fundación de Roma (753 a.C.)'],
+        },
+        {
+          enunciado: 'Ordena estos eventos del SIGLO XX:',
+          correcto: ['Primera Guerra Mundial (1914)', 'Fundación de la ONU (1945)', 'Reforma Agraria de Velasco (1969)', 'Caída del Muro de Berlín (1989)'],
+        },
+      ]
+    },
+  };
+
+  const FORMULAS_MAT = {
+    titulo: '📐 Completa la Fórmula',
+    items: [
+      { partes: ['Área rectángulo = base × ', '____'], respuesta: 'altura', pista: 'A = b × ?' },
+      { partes: ['Pitágoras: c² = a² + ', '____'], respuesta: 'b²', pista: 'c² = a² + ?' },
+      { partes: ['Media = Σx ÷ ', '____'], respuesta: 'n', pista: 'suma ÷ cantidad' },
+      { partes: ['Área triángulo = (base × altura) ÷ ', '____'], respuesta: '2', pista: '(b × h) ÷ ?' },
+      { partes: ['P(A) = favorables ÷ ', '____'], respuesta: 'posibles', pista: 'P = favorables ÷ ?' },
+      { partes: ['Pendiente m = (y₂ − y₁) ÷ (', '____ − x₁)'], respuesta: 'x₂', pista: 'm = Δy ÷ Δx' },
+      { partes: ['Volumen cubo = lado', '____'], respuesta: '³', pista: 'V = L?' },
+      { partes: ['sen θ = opuesto ÷ ', '____'], respuesta: 'hipotenusa', pista: 'SOH: opuesto ÷ ?' },
+    ]
+  };
+
+  // ══════════════════════════════════════════
+  // ESTADO
+  // ══════════════════════════════════════════
+  const PUNTOS_KEY = 'enu_puntos_hoy';
+  let puntosHoy = 0;
+
+  function getPuntos() {
+    const d = new Date().toDateString();
+    try { const s = JSON.parse(localStorage.getItem(PUNTOS_KEY) || '{}'); return s.d === d ? (s.p || 0) : 0; } catch { return 0; }
+  }
+  function addPuntos(n) {
+    puntosHoy += n;
+    const d = new Date().toDateString();
+    try { localStorage.setItem(PUNTOS_KEY, JSON.stringify({ d, p: puntosHoy })); } catch {}
+    document.getElementById('totalPuntos').textContent = puntosHoy;
+  }
+  puntosHoy = getPuntos();
+  document.getElementById('totalPuntos').textContent = puntosHoy;
+
+  // ══════════════════════════════════════════
+  // MODAL
+  // ══════════════════════════════════════════
+  function abrirJuego(id) {
+    const overlay = document.getElementById('gameOverlay');
+    const body = document.getElementById('gameBody');
+    const title = document.getElementById('gameTitle');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    if (QUIZZES[id]) iniciarQuiz(id, title, body);
+    else if (id === 'flash-ing') iniciarFlashcards(title, body);
+    else if (ORDENAR[id]) iniciarOrdenar(id, title, body);
+    else if (id === 'formulas-mat') iniciarFormulas(title, body);
+  }
+  function cerrarJuego() {
+    document.getElementById('gameOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('gameOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('gameOverlay')) cerrarJuego();
+  });
+
+  // ══════════════════════════════════════════
+  // QUIZ
+  // ══════════════════════════════════════════
+  function iniciarQuiz(id, titleEl, body) {
+    const data = QUIZZES[id];
+    titleEl.textContent = data.titulo;
+    const preguntas = [...data.preguntas].sort(() => Math.random() - 0.5);
+    let idx = 0, score = 0, timer = null;
+
+    function renderPregunta() {
+      if (idx >= preguntas.length) { renderFinal(); return; }
+      const q = preguntas[idx];
+      const total = preguntas.length;
+      const pct = (idx / total) * 100;
+      let secs = 15;
+      clearInterval(timer);
+
+      body.innerHTML = `
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="qpf" style="width:${pct}%"></div></div>
+        <div class="quiz-meta">
+          <span>Pregunta ${idx + 1} / ${total}</span>
+          <div style="display:flex;align-items:center;gap:.5rem;">
+            <span>⭐ ${score}</span>
+            <div class="timer-circle" id="timerCircle">${secs}</div>
+          </div>
+        </div>
+        <div class="quiz-question">${q.p}</div>
+        <div class="quiz-options" id="quizOpts">
+          ${q.ops.map((o, i) => `<button class="quiz-option" data-i="${i}">${o}</button>`).join('')}
+        </div>
+        <div id="quizFeedback" style="display:none;" class="quiz-feedback"></div>
+        <button id="nextBtn" style="display:none;" class="button button-primary" onclick="avanzar()">Siguiente →</button>
+      `;
+
+      // Timer
+      timer = setInterval(() => {
+        secs--;
+        const tc = document.getElementById('timerCircle');
+        if (tc) { tc.textContent = secs; if (secs <= 5) tc.classList.add('urgent'); }
+        if (secs <= 0) { clearInterval(timer); revelarRespuesta(-1, q); }
+      }, 1000);
+
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          clearInterval(timer);
+          revelarRespuesta(parseInt(btn.dataset.i), q);
+        });
       });
     }
+
+    function revelarRespuesta(elegida, q) {
+      document.querySelectorAll('.quiz-option').forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === q.r) btn.classList.add('correct');
+        else if (i === elegida) btn.classList.add('wrong');
+      });
+      const fb = document.getElementById('quizFeedback');
+      fb.style.display = 'block';
+      if (elegida === q.r) {
+        score += 10;
+        fb.className = 'quiz-feedback ok';
+        fb.textContent = '✅ ¡Correcto! +10 puntos';
+      } else {
+        fb.className = 'quiz-feedback bad';
+        fb.textContent = elegida === -1 ? `⏰ Tiempo agotado. Era: "${q.ops[q.r]}"` : `❌ Incorrecto. Era: "${q.ops[q.r]}"`;
+      }
+      document.getElementById('nextBtn').style.display = 'block';
+    }
+
+    window.avanzar = () => { idx++; renderPregunta(); };
+
+    function renderFinal() {
+      addPuntos(score);
+      const pct = Math.round((score / (preguntas.length * 10)) * 100);
+      body.innerHTML = `
+        <div class="quiz-score-card">
+          <div style="font-size:3rem;margin-bottom:.5rem;">${pct >= 70 ? '🏆' : pct >= 40 ? '👍' : '📚'}</div>
+          <div class="quiz-score-big">${score}</div>
+          <div style="font-size:.95rem;color:var(--text-muted);margin:.35rem 0 1rem;">puntos · ${pct}% correcto</div>
+          <div style="font-size:.85rem;color:var(--text-muted);">${pct >= 70 ? '¡Excelente trabajo! Dominas este tema.' : pct >= 40 ? 'Buen intento. Repasa los temas que fallaste.' : 'Sigue practicando. ¡La constancia lo es todo!'}</div>
+        </div>
+        <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+          <button class="button button-secondary" onclick="iniciarQuiz('${id}', document.getElementById('gameTitle'), document.getElementById('gameBody'))">🔄 Reintentar</button>
+          <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+        </div>`;
+    }
+
+    renderPregunta();
+  }
+
+  // ══════════════════════════════════════════
+  // FLASHCARDS INGLÉS
+  // ══════════════════════════════════════════
+  function iniciarFlashcards(titleEl, body) {
+    titleEl.textContent = '🇬🇧 Flashcards de Inglés';
+    const cards = [...FLASHCARDS_ING].sort(() => Math.random() - 0.5);
+    let idx = 0;
+
+    function render() {
+      const c = cards[idx];
+      body.innerHTML = `
+        <p style="text-align:center;font-size:.85rem;color:var(--text-muted);margin:0;">Toca la tarjeta para ver el significado</p>
+        <div class="fc-scene" id="fcScene" onclick="flipCard()">
+          <div class="fc-card" id="fcCard">
+            <div class="fc-face fc-front">
+              <div>
+                <div class="fc-word">${c.word}</div>
+                <div class="fc-hint">${c.pron}</div>
+              </div>
+            </div>
+            <div class="fc-face fc-back">
+              <div>
+                <div class="fc-meaning">${c.meaning}</div>
+                <div class="fc-example">"${c.example}"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-nav">
+          <button onclick="fcMove(-1)" ${idx === 0 ? 'disabled' : ''}>← Anterior</button>
+          <span class="fc-counter">${idx + 1} / ${cards.length}</span>
+          <button onclick="fcMove(1)" ${idx === cards.length - 1 ? 'disabled' : ''}>Siguiente →</button>
+        </div>
+        <p style="text-align:center;font-size:.8rem;color:var(--text-muted);margin:0;">+5 puntos por cada tarjeta completada</p>
+      `;
+    }
+
+    window.flipCard = () => { document.getElementById('fcCard').classList.toggle('flipped'); addPuntos(5); };
+    window.fcMove = (dir) => { idx = Math.max(0, Math.min(cards.length - 1, idx + dir)); render(); };
+    render();
+  }
+
+  // ══════════════════════════════════════════
+  // ORDENAR PASOS
+  // ══════════════════════════════════════════
+  function iniciarOrdenar(id, titleEl, body) {
+    const data = ORDENAR[id];
+    titleEl.textContent = data.titulo;
+    let ronda = 0, score = 0;
+    const rondas = data.rondas;
+
+    function renderRonda() {
+      if (ronda >= rondas.length) { renderFinalOrden(); return; }
+      const r = rondas[ronda];
+      const items = [...r.correcto].sort(() => Math.random() - 0.5);
+      let dragged = null;
+
+      body.innerHTML = `
+        <div style="font-size:.85rem;color:var(--text-muted);">Ronda ${ronda + 1} / ${rondas.length} · ⭐ ${score} pts</div>
+        <p style="font-weight:700;color:var(--accent-strong);margin:0;">${r.enunciado}</p>
+        <p style="font-size:.82rem;color:var(--text-muted);margin:0;">Arrastra los pasos al orden correcto:</p>
+        <div class="sort-list" id="sortList">
+          ${items.map((item, i) => `
+            <div class="sort-item" draggable="true" data-item="${encodeURIComponent(item)}">
+              <span class="sort-handle">⠿</span> ${item}
+            </div>`).join('')}
+        </div>
+        <div class="sort-result" id="sortResult"></div>
+        <button class="button button-primary" onclick="verificarOrden('${id}', ${ronda})" style="width:100%;">Verificar orden ✓</button>
+      `;
+
+      // Drag & drop
+      let dragSrc = null;
+      document.querySelectorAll('.sort-item').forEach(item => {
+        item.addEventListener('dragstart', () => { dragSrc = item; item.classList.add('dragging'); });
+        item.addEventListener('dragend', () => item.classList.remove('dragging'));
+        item.addEventListener('dragover', e => { e.preventDefault(); item.classList.add('dragover'); });
+        item.addEventListener('dragleave', () => item.classList.remove('dragover'));
+        item.addEventListener('drop', e => {
+          e.preventDefault();
+          item.classList.remove('dragover');
+          if (dragSrc && dragSrc !== item) {
+            const list = document.getElementById('sortList');
+            const items = [...list.querySelectorAll('.sort-item')];
+            const si = items.indexOf(dragSrc), ti = items.indexOf(item);
+            if (si < ti) list.insertBefore(dragSrc, item.nextSibling);
+            else list.insertBefore(dragSrc, item);
+          }
+        });
+      });
+    }
+
+    window.verificarOrden = (juegoId, rondaIdx) => {
+      const correcto = ORDENAR[juegoId].rondas[rondaIdx].correcto;
+      const actual = [...document.querySelectorAll('.sort-item')].map(el => decodeURIComponent(el.dataset.item));
+      const ok = actual.every((v, i) => v === correcto[i]);
+      const res = document.getElementById('sortResult');
+      if (ok) {
+        res.className = 'sort-result ok';
+        res.textContent = '✅ ¡Correcto! +20 puntos';
+        score += 20;
+        addPuntos(20);
+        setTimeout(() => { ronda++; renderRonda(); }, 1500);
+      } else {
+        res.className = 'sort-result bad';
+        res.textContent = '❌ No es el orden correcto. Inténtalo de nuevo.';
+        setTimeout(() => { res.className = 'sort-result'; }, 2000);
+      }
+    };
+
+    function renderFinalOrden() {
+      body.innerHTML = `
+        <div class="quiz-score-card">
+          <div style="font-size:3rem;margin-bottom:.5rem;">🎉</div>
+          <div class="quiz-score-big">${score}</div>
+          <div style="font-size:.95rem;color:var(--text-muted);margin:.35rem 0 1rem;">puntos ganados</div>
+          <div style="font-size:.85rem;color:var(--text-muted);">¡Completaste todas las rondas correctamente!</div>
+        </div>
+        <div style="display:flex;gap:.75rem;justify-content:center;">
+          <button class="button button-secondary" onclick="iniciarOrdenar('${id}', document.getElementById('gameTitle'), document.getElementById('gameBody'))">🔄 Reintentar</button>
+          <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+        </div>`;
+    }
+
+    renderRonda();
+  }
+
+  // ══════════════════════════════════════════
+  // COMPLETA LA FÓRMULA
+  // ══════════════════════════════════════════
+  function iniciarFormulas(titleEl, body) {
+    titleEl.textContent = FORMULAS_MAT.titulo;
+    const items = FORMULAS_MAT.items;
+
+    body.innerHTML = `
+      <p style="font-size:.88rem;color:var(--text-muted);margin:0;">Escribe el término que falta en cada fórmula:</p>
+      <div class="formula-game" id="formulaGame">
+        ${items.map((item, i) => `
+          <div class="formula-row">
+            <span class="fpart">${item.partes[0]}</span>
+            <input class="formula-input" id="finput_${i}" placeholder="${item.pista}" data-r="${encodeURIComponent(item.respuesta)}" autocomplete="off" />
+            <span class="fpart">${item.partes[1] || ''}</span>
+          </div>`).join('')}
+      </div>
+      <button class="button button-primary" onclick="verificarFormulas()" style="width:100%;">Verificar respuestas ✓</button>
+      <div id="formulaResult" style="display:none;" class="quiz-feedback"></div>
+    `;
+  }
+
+  window.verificarFormulas = () => {
+    let ok = 0;
+    document.querySelectorAll('.formula-input').forEach(inp => {
+      const correcto = decodeURIComponent(inp.dataset.r).toLowerCase().trim();
+      const dado = inp.value.toLowerCase().trim();
+      if (dado === correcto) { inp.className = 'formula-input ok'; ok++; }
+      else { inp.className = 'formula-input bad'; }
+    });
+    const total = document.querySelectorAll('.formula-input').length;
+    const res = document.getElementById('formulaResult');
+    res.style.display = 'block';
+    const pts = ok * 5;
+    if (ok === total) {
+      res.className = 'quiz-feedback ok';
+      res.textContent = `✅ ¡Perfecto! ${ok}/${total} correctas. +${pts} puntos`;
+    } else {
+      res.className = 'quiz-feedback bad';
+      res.textContent = `${ok}/${total} correctas. +${pts} puntos. Las incorrectas están en rojo.`;
+    }
+    addPuntos(pts);
+  };
+
+  // ══════════════════════════════════════════
+  // FILTRO POR MATERIA
+  // ══════════════════════════════════════════
+  document.querySelectorAll('.materia-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.materia-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const materia = tab.dataset.materia;
+      document.querySelectorAll('.game-card').forEach(card => {
+        card.dataset.hidden = materia && card.dataset.materia !== materia ? 'true' : 'false';
+      });
+    });
+  });
+
+  // Sidebar toggle
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebarCollapsible = document.getElementById('sidebarCollapsible');
+  if (sidebarToggle && sidebarCollapsible) {
+    sidebarToggle.addEventListener('click', () => {
+      const isOpen = sidebarCollapsible.classList.toggle('open');
+      sidebarToggle.classList.toggle('open', isOpen);
+      sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
   </script>
-  <script type="module" src="auth-nav.js"></script>
 </body>
 </html>
