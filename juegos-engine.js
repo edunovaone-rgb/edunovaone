@@ -257,6 +257,11 @@ const BANCO = {
       { p: 'El Oncenio de Leguía duró de 1919 a:', ops: ['1925','1928','1930','1933'], r: 2 },
       { p: 'Grupo terrorista junto a Sendero:', ops: ['FARC','ELN','MRTA','IRA'], r: 2 },
       { p: 'Velasco realizó la reforma:', ops: ['Educativa','Agraria','Electoral','Tributaria'], r: 1 },
+      { p: 'Fujimori disolvió el Congreso en el autogolpe de:', ops: ['1990','1992','1995','1998'], r: 1 },
+      { p: 'La Comisión de la Verdad (CVR) fue creada bajo el gobierno de:', ops: ['Toledo','García','Humala','Fujimori'], r: 0 },
+      { p: 'La República Aristocrática fue dominada por la:', ops: ['Clase obrera','Oligarquía agroexportadora','Clase media urbana','Iglesia Católica'], r: 1 },
+      { p: 'El primer gobierno de Alan García fue de 1985 a:', ops: ['1988','1990','1992','1995'], r: 1 },
+      { p: 'El MRTA era un grupo:', ops: ['Político legal','Terrorista','Sindical','Religioso'], r: 1 },
     ],
     5: [
       { p: '¿Cuándo cayó el Muro de Berlín?', ops: ['1985','1987','1989','1991'], r: 2 },
