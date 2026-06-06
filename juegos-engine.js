@@ -310,6 +310,11 @@ const BANCO = {
       { p: 'La tragedia es parte del género:', ops: ['Narrativo','Lírico','Dramático','Épico'], r: 2 },
       { p: '"La ciudad y los perros" es:', ops: ['Lírico','Dramático','Novela (narrativo)','Ensayo'], r: 2 },
       { p: 'La épica narra hazañas de:', ops: ['Seres cotidianos','Héroes y guerreros','Personajes cómicos','Animales'], r: 1 },
+      { p: 'José María Arguedas escribió:', ops: ['Trilce','Los ríos profundos','Tradiciones Peruanas','La ciudad y los perros'], r: 1 },
+      { p: 'El cuento pertenece al género:', ops: ['Lírico','Dramático','Narrativo','Épico'], r: 2 },
+      { p: '"Barranco tiene el mar de ojos verdes" es:', ops: ['Símil','Metáfora','Hipérbole','Anáfora'], r: 1 },
+      { p: 'La anáfora es una figura de:', ops: ['Pensamiento','Dicción (repetición)','Omisión','Contraste'], r: 1 },
+      { p: 'El desenlace en una historia es:', ops: ['El momento de mayor tensión','La presentación de personajes','La resolución del conflicto','El inicio del problema'], r: 2 },
     ],
     3: [
       { p: '¿Qué parte de la oración expresa la acción?', ops: ['Sustantivo','Adjetivo','Verbo','Adverbio'], r: 2 },
