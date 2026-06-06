@@ -274,6 +274,11 @@ const BANCO = {
       { p: 'OEA: organización de estados:', ops: ['Europeos','Africanos','Americanos','Asiáticos'], r: 2 },
       { p: '¿Cuándo terminó la 2da Guerra Mundial?', ops: ['1943','1944','1945','1946'], r: 2 },
       { p: 'Alianza del Pacífico: Perú + Colombia + Chile +', ops: ['Brasil','Argentina','México','Ecuador'], r: 2 },
+      { p: 'El Plan Marshall fue una ayuda económica de EE.UU. para:', ops: ['Asia','Europa tras la 2da GM','América Latina','África'], r: 1 },
+      { p: 'La ONU tiene sede principal en:', ops: ['París','Londres','Ginebra','Nueva York'], r: 3 },
+      { p: 'La decolonización africana ocurrió principalmente en la década de:', ops: ['1930s','1940s','1950-60s','1970s'], r: 2 },
+      { p: 'El acuerdo de paz de Oslo (1993) involucró a:', ops: ['India y Pakistán','Israel y Palestina','Irán e Irak','EE.UU. y Cuba'], r: 1 },
+      { p: 'La revolución tecnológica del siglo XXI se caracteriza por:', ops: ['El vapor','La electricidad','La digitalización e internet','La energía nuclear'], r: 2 },
     ],
   },
   comunicacion: {
