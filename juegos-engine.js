@@ -223,6 +223,11 @@ const BANCO = {
       { p: '¿En qué ciudad fue capturado Atahualpa?', ops: ['Cusco','Lima','Cajamarca','Trujillo'], r: 2 },
       { p: 'La plata de Potosí era del actual:', ops: ['Perú','Bolivia','Chile','Argentina'], r: 1 },
       { p: 'Nombre del gran imperio inca:', ops: ['Azteca','Maya','Tahuantinsuyo','Chimú'], r: 2 },
+      { p: 'El Inca que expandió más el Imperio fue:', ops: ['Manco Cápac','Huáscar','Pachacútec','Atahualpa'], r: 2 },
+      { p: 'Los quipus incas servían para:', ops: ['Comunicarse telegráficamente','Registrar datos y cuentas','Combatir enemigos','Adorar a los dioses'], r: 1 },
+      { p: 'La encomienda colonial otorgaba:', ops: ['Tierras solo','Mano de obra indígena y tributo','Libertad a los indios','Títulos nobiliarios'], r: 1 },
+      { p: 'El Virreinato del Perú tenía capital en:', ops: ['Cusco','Potosí','Lima','Trujillo'], r: 2 },
+      { p: 'El dios Sol de los incas se llamaba:', ops: ['Pachamama','Inti','Viracocha','Supay'], r: 1 },
     ],
     3: [
       { p: '¿En qué año se proclamó la independencia del Perú?', ops: ['1810','1819','1821','1824'], r: 2 },
