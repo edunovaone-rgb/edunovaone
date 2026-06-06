@@ -240,6 +240,11 @@ const BANCO = {
       { p: 'La Guerra del Pacífico fue entre:', ops: ['Perú y Brasil','Perú,Bolivia y Chile','Perú y Ecuador','Perú y Colombia'], r: 1 },
       { p: 'Año de la independencia peruana:', ops: ['1819','1820','1821','1822'], r: 2 },
       { p: '¿Quién completó la independencia sudamericana?', ops: ['San Martín','Bolívar','Sucre','O\'Higgins'], r: 1 },
+      { p: 'El primer presidente del Perú independiente fue:', ops: ['Simón Bolívar','José de la Riva-Agüero','San Martín','Ramón Castilla'], r: 1 },
+      { p: 'La guerra con Chile (1879-1883) se llama:', ops: ['Guerra del Pacífico','Guerra del Guano','Guerra de la Independencia','Guerra del Caucho'], r: 0 },
+      { p: 'Simón Bolívar nació en:', ops: ['Colombia','Venezuela','Ecuador','Perú'], r: 1 },
+      { p: 'Ramón Castilla abolió la esclavitud en:', ops: ['1821','1845','1854','1879'], r: 2 },
+      { p: 'El caudillismo fue un período de:', ops: ['Democracia estable','Gobierno de caudillos militares','Monarquía','Colonialismo'], r: 1 },
     ],
     4: [
       { p: '¿Cuándo se fundó el APRA?', ops: ['1920','1924','1930','1935'], r: 1 },
