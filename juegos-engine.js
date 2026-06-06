@@ -448,6 +448,11 @@ const BANCO = {
       { p: '"Have you ___ visited Machu Picchu?"', ops: ['always','never','ever','just'], r: 2 },
       { p: '"Houses ___ built every year." (presente pasiva)', ops: ['is','are','were','was'], r: 1 },
       { p: 'Present perfect con "for" indica:', ops: ['Fecha específica','Duración de tiempo','Experiencia de vida','Acción reciente'], r: 1 },
+      { p: '"The letter ___ sent yesterday." (pasiva pasado)', ops: ['is','are','was','were'], r: 2 },
+      { p: '"I ___ never ___ sushi." (present perfect)', ops: ['have/eat','have/eaten','had/eaten','did/eat'], r: 1 },
+      { p: '"The man ___ lives next door is a doctor." (relativa)', ops: ['which','where','who','whom'], r: 2 },
+      { p: '"She has worked here ___ three years."', ops: ['since','for','ago','until'], r: 1 },
+      { p: 'En voz pasiva el sujeto de la activa pasa a ser el:', ops: ['Verbo','Complemento agente','Sujeto pasivo','Objeto directo'], r: 1 },
     ],
   },
 };
