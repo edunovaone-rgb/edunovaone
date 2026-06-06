@@ -66,6 +66,11 @@ const BANCO = {
       { p: 'Área de un rombo con diagonales 8 y 6:', ops: ['14','24','48','28'], r: 1 },
       { p: 'Dos rectas paralelas cortadas por una transversal forman ángulos alternos:', ops: ['Suplementarios','Complementarios','Iguales','Diferentes'], r: 2 },
       { p: 'El perímetro de un hexágono regular de lado 5 es:', ops: ['25','30','35','40'], r: 1 },
+      { p: 'tan θ = opuesto / adyacente. Si opuesto=3 y adyacente=4, tan θ =', ops: ['3/5','4/3','3/4','5/4'], r: 2 },
+      { p: 'Área de un círculo con radio 7 (π≈3):', ops: ['21','42','147','44'], r: 2 },
+      { p: 'La suma de los ángulos internos de un hexágono es:', ops: ['540°','720°','900°','1080°'], r: 1 },
+      { p: 'Dos ángulos son suplementarios si su suma es:', ops: ['90°','180°','270°','360°'], r: 1 },
+      { p: 'Si cos θ = 0.8 e hipotenusa = 10, el cateto adyacente mide:', ops: ['6','7','8','9'], r: 2 },
     ],
     4: [
       { p: 'La desviación estándar mide:', ops: ['El valor central','La dispersión respecto a la media','El dato mayor','La frecuencia'], r: 1 },
