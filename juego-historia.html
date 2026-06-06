@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Juegos de Historia | EduNovaOne</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="juegos-shared.css"/>
+</head>
+<body>
+<nav class="uni-nav">
+  <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.png" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+  <ul class="uni-nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="biblioteca.html">Biblioteca</a></li>
+    <li><a href="juegos.html" class="active">Juegos</a></li>
+    <li><a href="herramientas.html">Herramientas</a></li>
+    <li><a href="comunidad.html">Comunidad</a></li>
+  </ul>
+  <div class="uni-nav-actions">
+    <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+  </div>
+</nav>
+<main class="page-content">
+  <nav style="margin-bottom:1rem;font-size:.9rem">
+    <a href="juegos.html" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a Juegos</a>
+  </nav>
+  <div id="areaRoot" data-area="historia" data-color="rgba(217,119,6,0.12)" data-colorhex="#d97706" data-icon="🏛️" data-nombre="Historia, Geografía y Economía"></div>
+</main>
+<div class="game-overlay" id="gameOverlay">
+  <div class="game-modal" id="gameModal">
+    <div class="game-modal-header">
+      <h3 id="gameTitle">Juego</h3>
+      <button class="game-close" id="gameCloseBtn">✕</button>
+    </div>
+    <div id="gameBody"></div>
+  </div>
+</div>
+<footer class="site-footer"><p>EduNovaOne · Biblioteca Digital para Estudiantes</p></footer>
+<script src="script.js"></script>
+<script src="juegos-engine.js"></script>
+<script type="module" src="auth-nav.js"></script>
+</body>
+</html>
