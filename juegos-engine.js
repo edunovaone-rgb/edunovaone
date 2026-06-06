@@ -49,6 +49,11 @@ const BANCO = {
       { p: 'Valor de 2a − b si a=3 y b=−1:', ops: ['5','7','8','6'], r: 1 },
       { p: 'El grado del término 5x²y³ es:', ops: ['2','3','5','6'], r: 2 },
       { p: 'Resuelve el sistema: x+y=5, x−y=1 → x=', ops: ['2','3','4','5'], r: 1 },
+      { p: 'Si f(x) = 3x − 1, ¿cuánto es f(4)?', ops: ['9','10','11','12'], r: 2 },
+      { p: 'El cuadrado de (x + 3) es:', ops: ['x²+6','x²+9','x²+6x+9','x²+3x+9'], r: 2 },
+      { p: 'Resuelve: 2x + 5 = 13', ops: ['x=3','x=4','x=5','x=6'], r: 1 },
+      { p: '¿Cuál es la pendiente de la recta y = −2x + 7?', ops: ['7','−7','2','−2'], r: 3 },
+      { p: 'El término independiente en 5x² − 3x + 4 es:', ops: ['5','−3','4','x'], r: 2 },
     ],
     3: [
       { p: 'Área lateral de un cilindro con r=3 y h=5 (usa π≈3):', ops: ['45','90','30','15'], r: 0 },
