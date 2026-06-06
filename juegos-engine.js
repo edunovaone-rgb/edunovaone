@@ -361,6 +361,11 @@ const BANCO = {
       { p: 'Receptor activo en comunicación:', ops: ['Solo recibe','Interpreta, cuestiona y retroalimenta','Ignora el mensaje','Solo decodifica'], r: 1 },
       { p: 'Fact-checking sirve para:', ops: ['Crear noticias','Verificar información antes de publicar','Censurar medios','Escribir eslóganes'], r: 1 },
       { p: 'Planos de mayor a menor amplitud:', ops: ['PP → PM → PG','PG → PM → PP','PM → PG → PP','PP → PG → PM'], r: 1 },
+      { p: 'La intertextualidad es cuando un texto:', ops: ['No tiene fuentes','Hace referencia a otros textos o autores','Usa solo imágenes','No usa conectores'], r: 1 },
+      { p: 'El discurso político busca principalmente:', ops: ['Informar con objetividad','Influir en la opinión pública','Entretener','Enseñar gramática'], r: 1 },
+      { p: 'La identidad digital es:', ops: ['Tu documento de identidad','Tu presencia e información en internet','El correo electrónico','Tu número de celular'], r: 1 },
+      { p: 'Huella digital en internet se refiere a:', ops: ['Tu firma física','El rastro de datos que dejas en línea','Tu contraseña','Tu número IP fijo'], r: 1 },
+      { p: '"El mundo es un pañuelo" es:', ops: ['Hipérbole','Comparación','Metáfora','Eufemismo'], r: 2 },
     ],
   },
   ingles: {
