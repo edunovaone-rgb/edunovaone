@@ -327,6 +327,11 @@ const BANCO = {
       { p: 'En "Los niños jugaban felices", el adjetivo es:', ops: ['Los','niños','jugaban','felices'], r: 3 },
       { p: 'Núcleo del sujeto en "Los estudiantes estudian":', ops: ['Los','estudiantes','estudian','Los estudiantes'], r: 1 },
       { p: 'Oración compuesta tiene:', ops: ['Un solo verbo','Dos o más proposiciones','Sin verbo','Solo sustantivos'], r: 1 },
+      { p: 'La conjunción "y" une palabras con función de:', ops: ['Contraste','Adición','Consecuencia','Condición'], r: 1 },
+      { p: 'El morfema es la unidad mínima con:', ops: ['Solo sonido','Significado o función gramatical','Solo escritura','Sin función'], r: 1 },
+      { p: '"Se venden casas" es una oración:', ops: ['Personal activa','Personal pasiva','Impersonal refleja','Exclamativa'], r: 2 },
+      { p: 'La tilde en "más" (adverbio de cantidad) es:', ops: ['Diacrítica','Esdrújula','Sobresdrújula','Grave'], r: 0 },
+      { p: 'En "La flor roja cae", el sujeto es:', ops: ['La flor roja','roja cae','La flor','cae'], r: 0 },
     ],
     4: [
       { p: 'Texto argumentativo incluye obligatoriamente:', ops: ['Personajes y trama','Tesis y argumentos','Pasos a seguir','Descripción de lugares'], r: 1 },
