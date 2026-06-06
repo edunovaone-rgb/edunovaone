@@ -119,6 +119,11 @@ const BANCO = {
       { p: 'La pared celular es característica de las células:', ops: ['Animales','Bacterianas y vegetales','Solo animales','Solo hongos'], r: 1 },
       { p: 'La biósfera incluye:', ops: ['Solo los océanos','Solo la atmósfera','Todas las zonas habitadas por seres vivos','Solo la corteza terrestre'], r: 2 },
       { p: 'El ADN se localiza principalmente en:', ops: ['La membrana','El citoplasma','El núcleo','Las mitocondrias'], r: 2 },
+      { p: 'La célula animal NO tiene:', ops: ['Núcleo','Mitocondria','Pared celular','Ribosoma'], r: 2 },
+      { p: '¿Qué tipo de reproducción produce clones?', ops: ['Sexual','Asexual','Meiosis','Polinización'], r: 1 },
+      { p: 'Los hongos son organismos:', ops: ['Autótrofos','Heterótrofos','Solo unicelulares','Procariotas'], r: 1 },
+      { p: 'La vacuna estimula el sistema:', ops: ['Digestivo','Nervioso','Inmune','Endócrino'], r: 2 },
+      { p: 'En la cadena alimenticia los productores son:', ops: ['Animales herbívoros','Animales carnívoros','Plantas','Descomponedores'], r: 2 },
     ],
     2: [
       { p: '¿Cuántos protones tiene el oxígeno?', ops: ['6','7','8','9'], r: 2 },
