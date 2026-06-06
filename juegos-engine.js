@@ -83,6 +83,11 @@ const BANCO = {
       { p: 'El dominio de f(x)=√(x−4) es:', ops: ['x<4','x≤4','x≥4','x>4'], r: 2 },
       { p: '¿Cuál es la moda de {3,3,5,7,7,7,9}?', ops: ['3','5','7','9'], r: 2 },
       { p: 'Si f(x)=2x+1 y g(x)=x², ¿cuánto es f(g(3))?', ops: ['7','15','19','21'], r: 2 },
+      { p: 'La mediana de {4,8,12,16,20} es:', ops: ['8','10','12','14'], r: 2 },
+      { p: '¿Cuántas formas hay de elegir 2 de 5 objetos? (C(5,2))', ops: ['5','8','10','15'], r: 2 },
+      { p: 'Si P(A)=0.4 y P(Aᶜ)=', ops: ['0.4','0.5','0.6','0.8'], r: 2 },
+      { p: 'La función y = −x² + 4 abre hacia:', ops: ['Arriba','Abajo','Los lados','Ninguna'], r: 1 },
+      { p: 'La intersección con el eje y de f(x)=3x−5 es:', ops: ['3','−3','5','−5'], r: 3 },
     ],
     5: [
       { p: 'La derivada de sen(x) es:', ops: ['−cos(x)','cos(x)','−sen(x)','tan(x)'], r: 1 },
