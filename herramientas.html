@@ -758,6 +758,7 @@
 
   <script src="script.js"></script>
   <script>
+    /* ── Sidebar toggle ── */
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebarCollapsible = document.getElementById('sidebarCollapsible');
     if (sidebarToggle && sidebarCollapsible) {
@@ -766,6 +767,287 @@
         sidebarToggle.classList.toggle('open', isOpen);
         sidebarToggle.setAttribute('aria-expanded', String(isOpen));
       });
+    }
+
+    /* ════════════════════════════════════════
+       UTILIDADES GENERALES
+    ════════════════════════════════════════ */
+    const TOOL_IDS = ['planner', 'pomodoro', 'tasks', 'progress'];
+
+    function openTool(id) {
+      TOOL_IDS.forEach(t => {
+        const el = document.getElementById('tool-' + t);
+        if (el) el.classList.toggle('hidden', t !== id);
+      });
+      document.getElementById('tool-' + id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (id === 'tasks')    renderTasks();
+      if (id === 'progress') renderProgress();
+      if (id === 'planner')  renderPlanner();
+    }
+
+    function closeTool(id) {
+      document.getElementById('tool-' + id).classList.add('hidden');
+    }
+
+    /* ════════════════════════════════════════
+       PLANIFICADOR
+    ════════════════════════════════════════ */
+    const DAYS = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+    let plannerEntries = JSON.parse(localStorage.getItem('edunova_planner') || '[]');
+
+    function savePlanner() { localStorage.setItem('edunova_planner', JSON.stringify(plannerEntries)); }
+
+    function addPlannerEntry() {
+      const day     = document.getElementById('plannerDay').value;
+      const subject = document.getElementById('plannerSubject').value;
+      const time    = document.getElementById('plannerTime').value;
+      const note    = document.getElementById('plannerNote').value.trim();
+      if (!note) { document.getElementById('plannerNote').focus(); return; }
+      plannerEntries.push({ id: Date.now(), day, subject, time, note });
+      savePlanner();
+      document.getElementById('plannerNote').value = '';
+      renderPlanner();
+    }
+
+    function deletePlannerEntry(id) {
+      plannerEntries = plannerEntries.filter(e => e.id !== id);
+      savePlanner();
+      renderPlanner();
+    }
+
+    function renderPlanner() {
+      const wrap = document.getElementById('plannerWeek');
+      wrap.innerHTML = DAYS.map(day => {
+        const entries = plannerEntries
+          .filter(e => e.day === day)
+          .sort((a, b) => a.time.localeCompare(b.time));
+        return `
+          <div class="planner-day-col">
+            <div class="planner-day-title">${day}</div>
+            ${entries.length
+              ? entries.map(e => `
+                <div class="planner-entry">
+                  <div class="planner-entry-info">
+                    <span class="planner-entry-subject">${e.subject}</span>
+                    <span class="planner-entry-time">${e.time} · ${e.note}</span>
+                  </div>
+                  <button class="planner-delete-btn" onclick="deletePlannerEntry(${e.id})" title="Eliminar">✕</button>
+                </div>
+              `).join('')
+              : '<span class="planner-empty">Sin sesiones</span>'
+            }
+          </div>`;
+      }).join('');
+    }
+
+    /* ════════════════════════════════════════
+       POMODORO
+    ════════════════════════════════════════ */
+    const POM_MODES = {
+      work:  { mins: 25, label: 'Estudia',   color: '#7c3aed', stroke: '#7c3aed' },
+      short: { mins: 5,  label: 'Descansa',  color: '#10b981', stroke: '#10b981' },
+      long:  { mins: 15, label: 'Relájate',  color: '#2563eb', stroke: '#2563eb' }
+    };
+    const CIRCUM = 2 * Math.PI * 52; // ≈ 326.73
+
+    let pomMode       = 'work';
+    let pomTotal      = 25 * 60;
+    let pomRemaining  = pomTotal;
+    let pomRunning    = false;
+    let pomInterval   = null;
+    let pomCycles     = parseInt(localStorage.getItem('edunova_pom_cycles') || '0');
+    let pomMinsToday  = parseInt(localStorage.getItem('edunova_pom_mins')   || '0');
+
+    function setPomMode(mode) {
+      if (pomRunning) return;
+      pomMode = mode;
+      pomTotal = POM_MODES[mode].mins * 60;
+      pomRemaining = pomTotal;
+      document.querySelectorAll('.pom-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('pomTab-' + mode).classList.add('active');
+      document.getElementById('pomRingFill').style.stroke = POM_MODES[mode].stroke;
+      updatePomDisplay();
+    }
+
+    function updatePomDisplay() {
+      const m = String(Math.floor(pomRemaining / 60)).padStart(2, '0');
+      const s = String(pomRemaining % 60).padStart(2, '0');
+      document.getElementById('pomDisplay').textContent = `${m}:${s}`;
+      document.getElementById('pomLabel').textContent = POM_MODES[pomMode].label;
+
+      const ratio   = pomRemaining / pomTotal;
+      const offset  = CIRCUM * (1 - ratio);
+      document.getElementById('pomRingFill').style.strokeDashoffset = offset;
+
+      document.getElementById('pomCycles').textContent = pomCycles;
+      document.getElementById('pomMins').textContent   = pomMinsToday;
+    }
+
+    function togglePomodoro() {
+      if (pomRunning) {
+        clearInterval(pomInterval);
+        pomRunning = false;
+        document.getElementById('pomStartBtn').textContent = '▶ Reanudar';
+      } else {
+        pomRunning = true;
+        document.getElementById('pomStartBtn').textContent = '⏸ Pausar';
+        pomInterval = setInterval(() => {
+          if (pomRemaining <= 0) {
+            clearInterval(pomInterval);
+            pomRunning = false;
+            document.getElementById('pomStartBtn').textContent = '▶ Iniciar';
+            if (pomMode === 'work') {
+              pomCycles++;
+              pomMinsToday += POM_MODES.work.mins;
+              localStorage.setItem('edunova_pom_cycles', pomCycles);
+              localStorage.setItem('edunova_pom_mins',   pomMinsToday);
+              new Audio('').src = ''; // placeholder — sin audio
+            }
+            updatePomDisplay();
+            return;
+          }
+          pomRemaining--;
+          updatePomDisplay();
+        }, 1000);
+      }
+    }
+
+    function resetPomodoro() {
+      clearInterval(pomInterval);
+      pomRunning = false;
+      pomRemaining = pomTotal;
+      document.getElementById('pomStartBtn').textContent = '▶ Iniciar';
+      updatePomDisplay();
+    }
+
+    // Inicializar display al cargar
+    updatePomDisplay();
+
+    /* ════════════════════════════════════════
+       LISTA DE TAREAS
+    ════════════════════════════════════════ */
+    let tasks      = JSON.parse(localStorage.getItem('edunova_tasks') || '[]');
+    let taskFilter = 'all';
+
+    function saveTasks() { localStorage.setItem('edunova_tasks', JSON.stringify(tasks)); }
+
+    function addTask() {
+      const text     = document.getElementById('taskInput').value.trim();
+      const subject  = document.getElementById('taskSubject').value;
+      const priority = document.getElementById('taskPriority').value;
+      if (!text) { document.getElementById('taskInput').focus(); return; }
+      tasks.unshift({ id: Date.now(), text, subject, priority, done: false });
+      saveTasks();
+      document.getElementById('taskInput').value = '';
+      renderTasks();
+      renderProgress(); // actualiza progreso
+    }
+
+    function toggleTask(id) {
+      const t = tasks.find(t => t.id === id);
+      if (t) { t.done = !t.done; saveTasks(); renderTasks(); renderProgress(); }
+    }
+
+    function deleteTask(id) {
+      tasks = tasks.filter(t => t.id !== id);
+      saveTasks();
+      renderTasks();
+      renderProgress();
+    }
+
+    function clearDoneTasks() {
+      tasks = tasks.filter(t => !t.done);
+      saveTasks();
+      renderTasks();
+      renderProgress();
+    }
+
+    function filterTasks(f, btn) {
+      taskFilter = f;
+      document.querySelectorAll('.task-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const list     = document.getElementById('taskList');
+      const pending  = tasks.filter(t => !t.done).length;
+      const done     = tasks.filter(t => t.done).length;
+      document.getElementById('taskStats').textContent =
+        `${pending} pendiente${pending !== 1 ? 's' : ''} · ${done} completada${done !== 1 ? 's' : ''}`;
+
+      const visible = tasks.filter(t =>
+        taskFilter === 'all'     ? true :
+        taskFilter === 'pending' ? !t.done :
+                                   t.done
+      );
+
+      if (!visible.length) {
+        list.innerHTML = '<li style="text-align:center;padding:1.5rem;color:var(--text-muted);font-size:.88rem;">Sin tareas aquí</li>';
+        return;
+      }
+
+      list.innerHTML = visible.map(t => `
+        <li class="task-item ${t.done ? 'done' : ''}">
+          <button class="task-check" onclick="toggleTask(${t.id})" title="${t.done ? 'Marcar como pendiente' : 'Completar'}">${t.done ? '✓' : ''}</button>
+          <span class="task-text">${escHtml(t.text)}</span>
+          <span class="task-badge">${escHtml(t.subject)}</span>
+          <span class="task-badge task-priority-${t.priority}">${t.priority}</span>
+          <button class="task-delete-btn" onclick="deleteTask(${t.id})" title="Eliminar">🗑</button>
+        </li>
+      `).join('');
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    /* ════════════════════════════════════════
+       SEGUIMIENTO DE PROGRESO
+    ════════════════════════════════════════ */
+    const SUBJECTS = [
+      { key: 'Matemática',   color: 'linear-gradient(90deg,#22c55e,#16a34a)' },
+      { key: 'Ciencias',     color: 'linear-gradient(90deg,#3b82f6,#2563eb)' },
+      { key: 'Historia',     color: 'linear-gradient(90deg,#a855f7,#7c3aed)' },
+      { key: 'Comunicación', color: 'linear-gradient(90deg,#f97316,#ea580c)' },
+      { key: 'Inglés',       color: 'linear-gradient(90deg,#ec4899,#db2777)' },
+      { key: 'Tecnología',   color: 'linear-gradient(90deg,#0ea5e9,#0284c7)' },
+    ];
+
+    let manualProgress = JSON.parse(localStorage.getItem('edunova_progress') || '{}');
+
+    function getSubjectProgress(key) {
+      const manual   = manualProgress[key] ?? null;
+      const total    = tasks.filter(t => t.subject === key).length;
+      const done     = tasks.filter(t => t.subject === key && t.done).length;
+      const taskPct  = total > 0 ? Math.round((done / total) * 100) : 0;
+      return manual !== null ? manual : taskPct;
+    }
+
+    function renderProgress() {
+      const wrap = document.getElementById('progressBars');
+      if (!wrap) return;
+      wrap.innerHTML = SUBJECTS.map(s => {
+        const pct = getSubjectProgress(s.key);
+        return `
+          <div class="prog-item">
+            <div class="prog-label">
+              <span>${s.key}</span>
+              <span>${pct}%</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width:${pct}%;background:${s.color}"></div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function setManualProgress() {
+      const sub = document.getElementById('progSubject').value;
+      const val = parseInt(document.getElementById('progRange').value);
+      manualProgress[sub] = val;
+      localStorage.setItem('edunova_progress', JSON.stringify(manualProgress));
+      renderProgress();
     }
   </script>
   <script type="module" src="auth-nav.js"></script>
