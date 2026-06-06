@@ -153,6 +153,11 @@ const BANCO = {
       { p: '"Acción-reacción" es la ___ Ley de Newton:', ops: ['Primera','Segunda','Tercera','Cuarta'], r: 2 },
       { p: 'Presión P =', ops: ['P=m×V','P=F/A','P=mgh','P=mv'], r: 1 },
       { p: 'La inercia corresponde a la ___ Ley de Newton:', ops: ['Primera','Segunda','Tercera','Cuarta'], r: 0 },
+      { p: 'Un objeto cae libremente. Su aceleración es aprox.:', ops: ['5 m/s²','9.8 m/s²','15 m/s²','20 m/s²'], r: 1 },
+      { p: 'El sonido es una onda:', ops: ['Electromagnética','Mecánica longitudinal','Transversal sin medio','De luz'], r: 1 },
+      { p: 'La densidad se calcula como:', ops: ['d=m+V','d=m×V','d=m/V','d=V/m'], r: 2 },
+      { p: 'Potencia P = Trabajo ÷', ops: ['Masa','Tiempo','Fuerza','Velocidad'], r: 1 },
+      { p: 'La energía potencial gravitatoria es:', ops: ['Ep=½mv²','Ep=mgh','Ep=F×d','Ep=m/h'], r: 1 },
     ],
     4: [
       { p: 'Alcanos tienen fórmula:', ops: ['CₙH₂ₙ','CₙH₂ₙ₊₂','CₙH₂ₙ₋₂','CₙHₙ'], r: 1 },
