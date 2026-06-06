@@ -344,6 +344,11 @@ const BANCO = {
       { p: 'Función del contraargumento:', ops: ['Apoyar la tesis','Refutar objeciones','Reemplazar la tesis','Sustituir la conclusión'], r: 1 },
       { p: 'Eslogan publicitario usa:', ops: ['Argumentos lógicos','Lenguaje conciso y memorable','Estadísticas detalladas','Textos largos'], r: 1 },
       { p: 'Análisis crítico de medios implica:', ops: ['Creer todo','Identificar emisor, propósito y recursos','Solo leer titulares','Rechazar toda información'], r: 1 },
+      { p: 'El título de un ensayo debe ser:', ops: ['Muy largo y detallado','Atractivo y representativo del tema','Solo el nombre del autor','Una pregunta obligatoriamente'], r: 1 },
+      { p: 'La ironía dice lo contrario de:', ops: ['Lo que se piensa','Lo que se escucha','Lo que se ve','Lo que se lee'], r: 0 },
+      { p: 'El texto multimodal combina:', ops: ['Solo palabras','Solo imágenes','Texto, imagen, audio y video','Solo audio y video'], r: 2 },
+      { p: 'Una tesis débil carece de:', ops: ['Ortografía','Argumentos que la sustenten','Puntuación','Vocabulario'], r: 1 },
+      { p: 'El informe académico tiene estructura:', ops: ['Libre','Introducción, desarrollo, conclusiones','Solo conclusiones','Narrativa con personajes'], r: 1 },
     ],
     5: [
       { p: 'Lenguaje audiovisual combina:', ops: ['Solo audio','Solo visual','Imagen y sonido','Solo texto'], r: 2 },
