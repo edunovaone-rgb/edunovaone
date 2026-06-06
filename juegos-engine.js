@@ -32,6 +32,11 @@ const BANCO = {
       { p: 'El MCM de 8 y 12 es:', ops: ['4','12','24','96'], r: 2 },
       { p: 'Si 3/5 de una cantidad es 18, ¿cuál es la cantidad?', ops: ['10','20','30','36'], r: 2 },
       { p: '−8 × (−4) =', ops: ['−32','32','−12','12'], r: 1 },
+      { p: 'El MCD de 18 y 24 es:', ops: ['3','6','9','12'], r: 1 },
+      { p: '¿Cuánto es la raíz cuadrada de 144?', ops: ['10','11','12','13'], r: 2 },
+      { p: 'El 25% de 200 es:', ops: ['25','40','50','75'], r: 2 },
+      { p: '¿Qué número multiplicado por sí mismo da 81?', ops: ['7','8','9','10'], r: 2 },
+      { p: 'Simplifica: 18/24', ops: ['1/2','3/4','2/3','5/6'], r: 1 },
     ],
     2: [
       { p: 'El producto de (2x)(3x²) es:', ops: ['5x²','6x²','6x³','5x³'], r: 2 },
