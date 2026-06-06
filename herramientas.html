@@ -164,6 +164,7 @@
           <img src="assets/herramientas.svg" alt="Herramientas" class="tools-hero-img" loading="lazy" />
         </div>
 
+        <!-- ── Tarjetas de acceso ── -->
         <div id="herramientas">
           <h3 class="tools-section-title">Herramientas disponibles</h3>
           <div class="tools-grid">
@@ -171,43 +172,181 @@
               <div class="tool-icon blue">📅</div>
               <h4>Planificador de estudio</h4>
               <p>Organiza tus sesiones por día, materia y objetivo con un calendario interactivo.</p>
-              <a href="#" class="button button-primary">Abrir</a>
+              <button class="button button-primary" onclick="openTool('planner')">Abrir</button>
             </div>
             <div class="tool-card">
               <div class="tool-icon purple">⏱️</div>
               <h4>Temporizador Pomodoro</h4>
               <p>Estudia en bloques de 25 minutos con descansos programados para mayor concentración.</p>
-              <a href="#" class="button button-primary">Abrir</a>
+              <button class="button button-primary" onclick="openTool('pomodoro')">Abrir</button>
             </div>
             <div class="tool-card">
               <div class="tool-icon green">✅</div>
               <h4>Lista de tareas</h4>
               <p>Registra tus pendientes, márcalos como completados y lleva un seguimiento diario.</p>
-              <a href="#" class="button button-primary">Abrir</a>
+              <button class="button button-primary" onclick="openTool('tasks')">Abrir</button>
             </div>
             <div class="tool-card">
               <div class="tool-icon orange">📊</div>
               <h4>Seguimiento de progreso</h4>
-              <p>Visualiza tu avance por materia con gráficas y estadísticas de estudio.</p>
-              <a href="#" class="button button-primary">Abrir</a>
+              <p>Visualiza tu avance por materia con barras de progreso actualizadas.</p>
+              <button class="button button-primary" onclick="openTool('progress')">Abrir</button>
             </div>
           </div>
         </div>
 
-        <div>
-          <h3 class="tools-section-title">Funciones disponibles</h3>
-          <div class="features-grid">
-            <div class="feature-item">
-              <h4>📋 Planificación</h4>
-              <p>Organiza tus sesiones de estudio por días y objetivos claros.</p>
+        <!-- ══════════════════════════════
+             HERRAMIENTA: PLANIFICADOR
+        ══════════════════════════════ -->
+        <div id="tool-planner" class="tool-panel hidden">
+          <div class="tool-panel-header">
+            <span class="tool-panel-icon">📅</span>
+            <h3>Planificador de estudio semanal</h3>
+            <button class="tool-close-btn" onclick="closeTool('planner')" aria-label="Cerrar">✕</button>
+          </div>
+
+          <div class="planner-add-form">
+            <select id="plannerDay">
+              <option value="Lunes">Lunes</option>
+              <option value="Martes">Martes</option>
+              <option value="Miércoles">Miércoles</option>
+              <option value="Jueves">Jueves</option>
+              <option value="Viernes">Viernes</option>
+              <option value="Sábado">Sábado</option>
+              <option value="Domingo">Domingo</option>
+            </select>
+            <select id="plannerSubject">
+              <option value="Matemática">Matemática</option>
+              <option value="Ciencias">Ciencias</option>
+              <option value="Historia">Historia</option>
+              <option value="Comunicación">Comunicación</option>
+              <option value="Inglés">Inglés</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Arte">Arte</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <input type="time" id="plannerTime" value="08:00" />
+            <input type="text" id="plannerNote" placeholder="Tema o actividad..." maxlength="60" />
+            <button class="button button-primary" onclick="addPlannerEntry()">+ Agregar</button>
+          </div>
+
+          <div class="planner-week" id="plannerWeek"></div>
+        </div>
+
+        <!-- ══════════════════════════════
+             HERRAMIENTA: POMODORO
+        ══════════════════════════════ -->
+        <div id="tool-pomodoro" class="tool-panel hidden">
+          <div class="tool-panel-header">
+            <span class="tool-panel-icon">⏱️</span>
+            <h3>Temporizador Pomodoro</h3>
+            <button class="tool-close-btn" onclick="closeTool('pomodoro')" aria-label="Cerrar">✕</button>
+          </div>
+
+          <div class="pomodoro-wrap">
+            <div class="pomodoro-mode-tabs">
+              <button class="pom-tab active" id="pomTab-work"   onclick="setPomMode('work')">🍅 Trabajo (25 min)</button>
+              <button class="pom-tab"        id="pomTab-short"  onclick="setPomMode('short')">☕ Descanso corto (5 min)</button>
+              <button class="pom-tab"        id="pomTab-long"   onclick="setPomMode('long')">🛋️ Descanso largo (15 min)</button>
             </div>
-            <div class="feature-item">
-              <h4>📈 Seguimiento</h4>
-              <p>Registra avances y tareas completadas en tiempo real.</p>
+
+            <div class="pomodoro-ring-wrap">
+              <svg class="pom-ring" viewBox="0 0 120 120">
+                <circle class="pom-ring-bg" cx="60" cy="60" r="52"/>
+                <circle class="pom-ring-fill" id="pomRingFill" cx="60" cy="60" r="52"
+                        stroke-dasharray="326.73" stroke-dashoffset="0"/>
+              </svg>
+              <div class="pom-time-display">
+                <span id="pomDisplay">25:00</span>
+                <small id="pomLabel">Estudia</small>
+              </div>
             </div>
-            <div class="feature-item">
-              <h4>💡 Apoyo</h4>
-              <p>Accede a herramientas que mejoran tu productividad y concentración.</p>
+
+            <div class="pom-controls">
+              <button class="pom-btn" id="pomStartBtn" onclick="togglePomodoro()">▶ Iniciar</button>
+              <button class="pom-btn pom-btn-reset" onclick="resetPomodoro()">↺ Reiniciar</button>
+            </div>
+
+            <div class="pom-stats">
+              <div class="pom-stat"><strong id="pomCycles">0</strong><span>Ciclos completados</span></div>
+              <div class="pom-stat"><strong id="pomMins">0</strong><span>Min estudiados hoy</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════
+             HERRAMIENTA: LISTA DE TAREAS
+        ══════════════════════════════ -->
+        <div id="tool-tasks" class="tool-panel hidden">
+          <div class="tool-panel-header">
+            <span class="tool-panel-icon">✅</span>
+            <h3>Lista de tareas</h3>
+            <button class="tool-close-btn" onclick="closeTool('tasks')" aria-label="Cerrar">✕</button>
+          </div>
+
+          <div class="tasks-add-row">
+            <input type="text" id="taskInput" placeholder="Nueva tarea..." maxlength="80"
+                   onkeydown="if(event.key==='Enter') addTask()" />
+            <select id="taskSubject">
+              <option value="General">General</option>
+              <option value="Matemática">Matemática</option>
+              <option value="Ciencias">Ciencias</option>
+              <option value="Historia">Historia</option>
+              <option value="Comunicación">Comunicación</option>
+              <option value="Inglés">Inglés</option>
+              <option value="Tecnología">Tecnología</option>
+            </select>
+            <select id="taskPriority">
+              <option value="normal">Normal</option>
+              <option value="alta">Alta</option>
+              <option value="baja">Baja</option>
+            </select>
+            <button class="button button-primary" onclick="addTask()">+ Agregar</button>
+          </div>
+
+          <div class="tasks-filters">
+            <button class="task-filter active" onclick="filterTasks('all',this)">Todas</button>
+            <button class="task-filter" onclick="filterTasks('pending',this)">Pendientes</button>
+            <button class="task-filter" onclick="filterTasks('done',this)">Completadas</button>
+          </div>
+
+          <ul id="taskList" class="task-list"></ul>
+
+          <div class="tasks-footer">
+            <span id="taskStats">0 pendientes · 0 completadas</span>
+            <button class="task-clear-btn" onclick="clearDoneTasks()">Limpiar completadas</button>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════
+             HERRAMIENTA: SEGUIMIENTO
+        ══════════════════════════════ -->
+        <div id="tool-progress" class="tool-panel hidden">
+          <div class="tool-panel-header">
+            <span class="tool-panel-icon">📊</span>
+            <h3>Seguimiento de progreso</h3>
+            <button class="tool-close-btn" onclick="closeTool('progress')" aria-label="Cerrar">✕</button>
+          </div>
+
+          <p class="progress-hint">El progreso se calcula según las tareas completadas en cada materia.</p>
+
+          <div id="progressBars" class="progress-subject-list"></div>
+
+          <div class="progress-manual">
+            <h4>Ajuste manual</h4>
+            <div class="progress-manual-row">
+              <select id="progSubject">
+                <option value="Matemática">Matemática</option>
+                <option value="Ciencias">Ciencias</option>
+                <option value="Historia">Historia</option>
+                <option value="Comunicación">Comunicación</option>
+                <option value="Inglés">Inglés</option>
+                <option value="Tecnología">Tecnología</option>
+              </select>
+              <input type="range" id="progRange" min="0" max="100" value="0"
+                     oninput="document.getElementById('progRangeVal').textContent=this.value+'%'" />
+              <span id="progRangeVal">0%</span>
+              <button class="button button-primary" onclick="setManualProgress()">Guardar</button>
             </div>
           </div>
         </div>
