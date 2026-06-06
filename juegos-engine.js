@@ -22,12 +22,16 @@ function addPuntos(n) {
 const BANCO = {
   matematica: {
     1: [
-      { p: '¿Cuánto es el MCM de 4 y 6?', ops: ['8','12','24','6'], r: 1 },
-      { p: '¿Qué fracción equivale a 1/2?', ops: ['2/3','3/6','3/4','4/6'], r: 1 },
-      { p: '¿Cuánto es 3² + 4²?', ops: ['25','49','14','7'], r: 0 },
-      { p: '¿Cuál es el MCD de 12 y 18?', ops: ['3','6','9','12'], r: 1 },
-      { p: '¿Cuánto es −5 + 8?', ops: ['−3','3','13','−13'], r: 1 },
-      { p: '¿Cuánto es el 25% de 80?', ops: ['20','25','16','40'], r: 0 },
+      { p: 'El número 72 descompuesto en factores primos es:', ops: ['2³×3²','2²×3³','2×36','6×12'], r: 0 },
+      { p: 'Si a una longitud de 5/8 m se le suma 1/4 m, ¿cuánto resulta?', ops: ['7/8 m','6/8 m','3/4 m','1 m'], r: 0 },
+      { p: '¿Cuál es el valor absoluto de −15?', ops: ['−15','0','15','150'], r: 2 },
+      { p: 'El 40% de 150 es:', ops: ['40','50','60','70'], r: 2 },
+      { p: '¿Cuántos centímetros hay en 2.5 metros?', ops: ['25','250','2500','0.025'], r: 1 },
+      { p: 'La suma de los ángulos de un triángulo es siempre:', ops: ['90°','180°','270°','360°'], r: 1 },
+      { p: '¿Cuánto es 4³?', ops: ['12','48','64','128'], r: 2 },
+      { p: 'El MCM de 8 y 12 es:', ops: ['4','12','24','96'], r: 2 },
+      { p: 'Si 3/5 de una cantidad es 18, ¿cuál es la cantidad?', ops: ['10','20','30','36'], r: 2 },
+      { p: '−8 × (−4) =', ops: ['−32','32','−12','12'], r: 1 },
       { p: '¿Cuántos metros hay en 3.5 km?', ops: ['350','3500','3050','35000'], r: 1 },
       { p: '¿Qué número es múltiplo de 7?', ops: ['22','35','41','50'], r: 1 },
       { p: '¿Cuánto es √144?', ops: ['11','12','13','14'], r: 1 },
