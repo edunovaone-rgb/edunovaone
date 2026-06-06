@@ -431,6 +431,11 @@ const BANCO = {
       { p: '"___ I open the window?" (permiso)', ops: ['Must','Should','May','Will'], r: 2 },
       { p: '"I ___ help you." (oferta)', ops: ['must','should','will','can'], r: 2 },
       { p: '"Going to" se usa para:', ops: ['Decisiones espontáneas','Planes ya decididos','Predicciones sin evidencia','Obligaciones'], r: 1 },
+      { p: '"You ___ not smoke here." (prohibición fuerte)', ops: ['should','can','must','will'], r: 2 },
+      { p: '"___ you help me, please?" (petición educada)', ops: ['Will','Would','Must','Should'], r: 1 },
+      { p: '"It ___ be cold tomorrow." (posibilidad)', ops: ['must','will','might','should'], r: 2 },
+      { p: '"If I had money, I ___ travel." (hipotético)', ops: ['will','would','must','can'], r: 1 },
+      { p: '"Can" expresa principalmente:', ops: ['Obligación','Habilidad o posibilidad','Consejo','Predicción'], r: 1 },
     ],
     5: [
       { p: '"I have visited Paris." es:', ops: ['Past simple','Present perfect','Future simple','Present continuous'], r: 1 },
