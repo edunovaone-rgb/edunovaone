@@ -170,6 +170,11 @@ const BANCO = {
       { p: 'Rendimiento=18, teórico=20 → %:', ops: ['80%','85%','90%','95%'], r: 2 },
       { p: '¿Qué es la estequiometría?', ops: ['Estudio de la luz','Cálculo de cantidades en reacciones','Análisis de energía','Clasificación de elementos'], r: 1 },
       { p: 'Nomenclatura sistemática:', ops: ['Nombres comunes','IUPAC','Trivial','Empírica'], r: 1 },
+      { p: 'Los alquinos tienen enlace:', ops: ['Simple C−C','Doble C=C','Triple C≡C','Iónico'], r: 2 },
+      { p: 'Masa molar del CO₂ (C=12, O=16):', ops: ['28 g/mol','40 g/mol','44 g/mol','56 g/mol'], r: 2 },
+      { p: 'Grupo funcional del ácido carboxílico:', ops: ['−OH','−CHO','−COOH','−NH₂'], r: 2 },
+      { p: 'La combustión completa produce:', ops: ['CO y H₂','CO₂ y H₂O','CH₄ y O₂','SO₂ y NO'], r: 1 },
+      { p: '¿Cuántos moles hay en 44g de CO₂ (M=44)?', ops: ['0.5','1','2','4'], r: 1 },
     ],
     5: [
       { p: 'E = mc² es:', ops: ['Energía cinética','Energía potencial','Equivalencia masa-energía','Presión'], r: 2 },
