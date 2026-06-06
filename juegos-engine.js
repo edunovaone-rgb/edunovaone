@@ -414,6 +414,11 @@ const BANCO = {
       { p: '"Was/were" es pasado de:', ops: ['do','have','be','go'], r: 2 },
       { p: '"___ you study last night?"', ops: ['Do','Does','Did','Were'], r: 2 },
       { p: 'Pasado de "have":', ops: ['haved','have','had','has'], r: 2 },
+      { p: '"I ___ (not go) to the party last Saturday."', ops: ["didn't went","didn't go","don't go","wasn't go"], r: 1 },
+      { p: 'Pasado de "speak":', ops: ['speaked','spoken','spoke','speeks'], r: 2 },
+      { p: 'Pasado de "come":', ops: ['comed','came','come','comes'], r: 1 },
+      { p: '"___ she call you yesterday?"', ops: ['Do','Does','Did','Was'], r: 2 },
+      { p: '"Last year" es expresión de tiempo para:', ops: ['Present simple','Present perfect','Past simple','Future'], r: 2 },
     ],
     4: [
       { p: '"I ___ visit Paris, I already have tickets."', ops: ['will','am going to','would','should'], r: 1 },
