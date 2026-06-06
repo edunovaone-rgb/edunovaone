@@ -206,6 +206,11 @@ const BANCO = {
       { p: 'Roma fue fundada aprox. en:', ops: ['1000 a.C.','753 a.C.','500 a.C.','200 a.C.'], r: 1 },
       { p: 'Filósofo griego maestro de Alejandro Magno:', ops: ['Sócrates','Platón','Aristóteles','Pitágoras'], r: 2 },
       { p: 'Capital del Perú:', ops: ['Cusco','Arequipa','Lima','Trujillo'], r: 2 },
+      { p: 'Las pirámides de Giza se construyeron durante la dinastía:', ops: ['IV','VII','XII','XVIII'], r: 0 },
+      { p: 'El Coliseo Romano fue construido en:', ops: ['100 a.C.','50 a.C.','70 d.C.','200 d.C.'], r: 2 },
+      { p: 'Civilización que desarrolló el cero como concepto matemático:', ops: ['Egipcia','Griega','Maya','Romana'], r: 2 },
+      { p: 'Los mayas se ubicaron principalmente en:', ops: ['Andes','Mesoamérica','Caribe','Patagonia'], r: 1 },
+      { p: 'El feudalismo fue un sistema de la Edad:', ops: ['Antigua','Media','Moderna','Contemporánea'], r: 1 },
     ],
     2: [
       { p: 'Capital del Imperio Inca:', ops: ['Lima','Machu Picchu','Cusco','Cajamarca'], r: 2 },
