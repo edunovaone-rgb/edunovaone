@@ -397,6 +397,11 @@ const BANCO = {
       { p: '"He ___ TV every night." (3rd person)', ops: ['watch','watchs','watches','watched'], r: 2 },
       { p: 'Expresión de tiempo para present simple:', ops: ['yesterday','last week','every day','two days ago'], r: 2 },
       { p: '"They ___ not at school today."', ops: ['is','am','are','be'], r: 2 },
+      { p: 'Pasado de "write":', ops: ['writed','wrote','written','writ'], r: 1 },
+      { p: '"How ___ oranges do you want?"', ops: ['many','much','any','some'], r: 0 },
+      { p: '"There ___ a lot of students here."', ops: ['is','am','are','be'], r: 2 },
+      { p: '"She ___ her homework every night." (routine)', ops: ['do','did','does','done'], r: 2 },
+      { p: '"Never" se ubica en la oración:', ops: ['Al inicio siempre','Entre sujeto y verbo principal','Al final siempre','Después del objeto'], r: 1 },
     ],
     3: [
       { p: '"I ___ to the market yesterday." (go)', ops: ['go','goes','went','gone'], r: 2 },
