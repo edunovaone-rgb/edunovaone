@@ -100,6 +100,11 @@ const BANCO = {
       { p: 'La integral representa geométricamente:', ops: ['La pendiente','El área bajo la curva','El máximo','La derivada inversa'], r: 1 },
       { p: 'La suma de los vectores (2,3) y (−1,4) es:', ops: ['(1,7)','(3,7)','(1,−1)','(3,−1)'], r: 0 },
       { p: 'Un punto crítico ocurre cuando f\'(x) =', ops: ['1','−1','∞','0'], r: 3 },
+      { p: 'La derivada de ln(x) es:', ops: ['1','x','1/x','ln(x)'], r: 2 },
+      { p: 'La derivada de una constante es:', ops: ['1','−1','la constante','0'], r: 3 },
+      { p: '∫ 3x² dx =', ops: ['6x','x³+C','3x³+C','x²+C'], r: 1 },
+      { p: 'El módulo del vector (3,4) es:', ops: ['3','4','5','7'], r: 2 },
+      { p: 'Si A = [[1,0],[0,1]], su determinante es:', ops: ['0','1','−1','2'], r: 1 },
     ],
   },
   ciencia: {
