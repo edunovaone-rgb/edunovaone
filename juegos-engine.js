@@ -515,3 +515,401 @@ const ORDENAR = {
     5: { en: 'Ordena estos eventos CONTEMPORÁNEOS:', items: ['Disolución de la URSS (1991)','Caída del Muro de Berlín (1989)','Inicio de la 2da Guerra Mundial (1939)','Fundación de la ONU (1945)'], ok: ['Inicio de la 2da Guerra Mundial (1939)','Fundación de la ONU (1945)','Caída del Muro de Berlín (1989)','Disolución de la URSS (1991)'] },
   },
 };
+
+// ══════════════════════════════════════════════════
+// RENDER PRINCIPAL — se ejecuta al cargar cada página
+// ══════════════════════════════════════════════════
+const root = document.getElementById('areaRoot');
+if (!root) throw new Error('No se encontró #areaRoot');
+
+const AREA    = root.dataset.area;
+const COLOR   = root.dataset.color;
+const HEX     = root.dataset.colorhex;
+const ICON    = root.dataset.icon;
+const NOMBRE  = root.dataset.nombre;
+
+let gradoSel = parseInt(localStorage.getItem('edunova_grado') || '1');
+
+// ── Nombre corto para título ─────────────────────
+const NOMBRE_CORTO = { matematica:'Matemática', ciencia:'Ciencias', historia:'Historia', comunicacion:'Comunicación', ingles:'Inglés' }[AREA] || NOMBRE;
+
+// ── Definición de juegos por área ───────────────
+const JUEGOS_POR_AREA = {
+  matematica: [
+    { id:'quiz',      icon:'🎯', titulo:'Quiz de Matemática',     desc:'10 preguntas de aritmética, álgebra, geometría y más. 15 seg. por pregunta.',    meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
+    { id:'formulas',  icon:'📝', titulo:'Completa la Fórmula',    desc:'Rellena los espacios en blanco de las fórmulas del grado seleccionado.',         meta:'4 fórmulas',         badge:'Fórmulas',   pts:'+8 pts/correcta' },
+    { id:'quiz2',     icon:'⚡', titulo:'Quiz Relámpago',         desc:'5 preguntas aleatorias contra el reloj. ¡Solo 8 segundos por pregunta!',          meta:'5 preguntas · 8s',   badge:'Rápido',     pts:'+15 pts/correcta' },
+  ],
+  ciencia: [
+    { id:'quiz',      icon:'🎯', titulo:'Quiz de Ciencias',       desc:'10 preguntas de biología, química, física o astronomía según tu grado.',          meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
+    { id:'vf',        icon:'✅', titulo:'Verdadero o Falso',      desc:'Decide rápido si cada afirmación científica es verdadera o falsa.',               meta:'5 enunciados',       badge:'V/F',        pts:'+12 pts/correcta' },
+    { id:'ordenar',   icon:'🔀', titulo:'Ordena los Pasos',       desc:'Arrastra y ordena correctamente los pasos de un proceso científico.',             meta:'4 elementos',        badge:'Ordenar',    pts:'+30 pts' },
+  ],
+  historia: [
+    { id:'quiz',      icon:'🎯', titulo:'Trivia de Historia',     desc:'10 preguntas sobre eventos, personajes y fechas clave del Perú y el mundo.',      meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
+    { id:'vf',        icon:'✅', titulo:'Verdadero o Falso',      desc:'Afirmaciones históricas: ¿cierto o falso? Demuestra que sabes tu historia.',      meta:'5 enunciados',       badge:'V/F',        pts:'+12 pts/correcta' },
+    { id:'ordenar',   icon:'📅', titulo:'Línea de Tiempo',        desc:'Ordena cronológicamente los eventos más importantes del período seleccionado.',    meta:'4 eventos',          badge:'Ordenar',    pts:'+30 pts' },
+  ],
+  comunicacion: [
+    { id:'quiz',      icon:'🎯', titulo:'Quiz de Comunicación',   desc:'10 preguntas sobre literatura, gramática, figuras literarias y comprensión.',     meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
+    { id:'quiz2',     icon:'⚡', titulo:'Quiz Relámpago',         desc:'5 preguntas rápidas de gramática y ortografía. Solo 8 segundos cada una.',        meta:'5 preguntas · 8s',   badge:'Rápido',     pts:'+15 pts/correcta' },
+  ],
+  ingles: [
+    { id:'quiz',      icon:'🎯', titulo:'Quiz de Inglés',         desc:'10 preguntas de gramática, verbos y vocabulario adaptadas a tu grado.',           meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
+    { id:'flashcards',icon:'🃏', titulo:'Flashcards de Inglés',   desc:'Voltea las tarjetas para ver la traducción y un ejemplo de uso real.',            meta:'8 tarjetas',         badge:'Flashcards', pts:'+2 pts/tarjeta' },
+    { id:'quiz2',     icon:'⚡', titulo:'Quiz Relámpago',         desc:'5 preguntas de inglés contra el reloj. ¡Solo 8 segundos cada una!',               meta:'5 preguntas · 8s',   badge:'Rápido',     pts:'+15 pts/correcta' },
+  ],
+};
+
+// ── Render de la página ──────────────────────────
+function renderPage() {
+  document.title = `Juegos de ${NOMBRE_CORTO} | EduNovaOne`;
+  root.innerHTML = `
+    <div class="area-hero" style="--area-color:${COLOR}">
+      <div class="area-hero-icon">${ICON}</div>
+      <div>
+        <h1>${ICON} ${NOMBRE}</h1>
+        <p>Elige tu grado y luego selecciona un juego. Las preguntas se adaptan exactamente a lo que estudias.</p>
+      </div>
+    </div>
+
+    <div class="grade-selector-row">
+      <span class="grade-selector-label">Selecciona tu grado:</span>
+      <div class="grade-btns-row">
+        ${[1,2,3,4,5].map(g => `<button class="grade-btn-juego ${g===gradoSel?'active':''}" data-g="${g}">${g}° Sec.</button>`).join('')}
+      </div>
+      <span id="gradoLabel" style="font-size:.8rem;font-weight:700;color:${HEX};margin-left:auto">${gradoSel}° de Secundaria</span>
+    </div>
+
+    <div>
+      <h3 style="margin:0 0 1rem;font-size:1.05rem;font-weight:700;color:var(--text)">Juegos disponibles — ${NOMBRE_CORTO} ${gradoSel}° Sec.</h3>
+      <div class="games-grid" id="gamesGrid">${renderCards()}</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid rgba(59,130,246,0.08);border-radius:1.5rem;padding:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-top:.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <span style="font-size:1.5rem">🏆</span>
+        <div><p style="margin:0;font-size:.82rem;font-weight:700;color:var(--text-muted)">PUNTOS HOY</p><p style="margin:0;font-size:1.5rem;font-weight:900;color:var(--accent-strong)" id="totalPuntos">${getPuntos()}</p></div>
+      </div>
+      <a href="juegos.html" class="button button-secondary" style="font-size:.88rem">← Cambiar área</a>
+    </div>`;
+
+  // Eventos de grado
+  root.querySelectorAll('.grade-btn-juego').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gradoSel = parseInt(btn.dataset.g);
+      localStorage.setItem('edunova_grado', gradoSel);
+      root.querySelectorAll('.grade-btn-juego').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('gradoLabel').textContent = `${gradoSel}° de Secundaria`;
+      document.querySelector('h3').textContent = `Juegos disponibles — ${NOMBRE_CORTO} ${gradoSel}° Sec.`;
+      document.getElementById('gamesGrid').innerHTML = renderCards();
+      bindCards();
+    });
+  });
+  bindCards();
+}
+
+function renderCards() {
+  const juegos = JUEGOS_POR_AREA[AREA] || [];
+  return juegos.map(j => `
+    <div class="game-card" data-juego="${j.id}">
+      <div class="game-icon-card" style="background:${COLOR}">${j.icon}</div>
+      <h4>${j.titulo}</h4>
+      <p>${j.desc}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;align-items:center">
+        <span class="game-badge" style="background:${COLOR};color:${HEX}">${j.badge}</span>
+        <span style="font-size:.78rem;color:var(--text-muted)">${j.pts}</span>
+      </div>
+      <div class="game-meta"><span>${j.meta}</span></div>
+      <button class="button button-primary" onclick="abrirJuego('${j.id}')">🎮 Jugar</button>
+    </div>`).join('');
+}
+
+function bindCards() {
+  // noop — onclick inline ya está en el botón
+}
+
+renderPage();
+
+// ══════════════════════════════════════════════════
+// MODAL
+// ══════════════════════════════════════════════════
+function abrirJuego(id) {
+  document.getElementById('gameOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const titleEl = document.getElementById('gameTitle');
+  const body    = document.getElementById('gameBody');
+  const timerSecs = id === 'quiz2' ? 8 : 15;
+  const qCount    = id === 'quiz2' ? 5 : 10;
+
+  if (id === 'quiz' || id === 'quiz2') iniciarQuiz(titleEl, body, qCount, timerSecs);
+  else if (id === 'flashcards')        iniciarFlashcards(titleEl, body);
+  else if (id === 'formulas')          iniciarFormulas(titleEl, body);
+  else if (id === 'vf')                iniciarVF(titleEl, body);
+  else if (id === 'ordenar')           iniciarOrdenar(titleEl, body);
+}
+
+function cerrarJuego() {
+  document.getElementById('gameOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('totalPuntos').textContent = getPuntos();
+}
+
+document.getElementById('gameCloseBtn').addEventListener('click', cerrarJuego);
+document.getElementById('gameOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('gameOverlay')) cerrarJuego();
+});
+
+// ══════════════════════════════════════════════════
+// QUIZ
+// ══════════════════════════════════════════════════
+function iniciarQuiz(titleEl, body, qCount, timerSecs) {
+  titleEl.textContent = `🎯 Quiz — ${NOMBRE_CORTO} ${gradoSel}° Sec.`;
+  const pool = (BANCO[AREA] && BANCO[AREA][gradoSel]) ? [...BANCO[AREA][gradoSel]] : [];
+  if (!pool.length) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin preguntas para este grado.</p>'; return; }
+  const preguntas = pool.sort(() => Math.random() - .5).slice(0, qCount);
+  let idx = 0, score = 0, timer = null;
+
+  function render() {
+    if (idx >= preguntas.length) { finQuiz(); return; }
+    const q = preguntas[idx];
+    let secs = timerSecs;
+    clearInterval(timer);
+    body.innerHTML = `
+      <div class="quiz-bar"><div class="quiz-bar-fill" id="qbf" style="width:${(idx/preguntas.length)*100}%"></div></div>
+      <div class="quiz-meta">
+        <span>Pregunta ${idx+1} / ${preguntas.length}</span>
+        <div style="display:flex;align-items:center;gap:.5rem"><span>⭐ ${score}</span><div class="timer-c" id="tc">${secs}</div></div>
+      </div>
+      <div class="quiz-q">${q.p}</div>
+      <div class="quiz-opts">${q.ops.map((o,i) => `<button class="quiz-opt" data-i="${i}">${o}</button>`).join('')}</div>
+      <div id="qfb" style="display:none" class="quiz-fb"></div>
+      <button id="qnext" style="display:none" class="button button-primary" onclick="nextQ()">Siguiente →</button>`;
+
+    timer = setInterval(() => {
+      secs--;
+      const tc = document.getElementById('tc');
+      if (tc) { tc.textContent = secs; if (secs <= 3) tc.classList.add('urgent'); }
+      if (secs <= 0) { clearInterval(timer); reveal(-1, q); }
+    }, 1000);
+
+    document.querySelectorAll('.quiz-opt').forEach(btn => {
+      btn.addEventListener('click', () => { clearInterval(timer); reveal(parseInt(btn.dataset.i), q); });
+    });
+  }
+
+  function reveal(elegida, q) {
+    document.querySelectorAll('.quiz-opt').forEach((b, i) => {
+      b.disabled = true;
+      if (i === q.r) b.classList.add('correct');
+      else if (i === elegida) b.classList.add('wrong');
+    });
+    const pts = timerSecs === 8 ? 15 : 10;
+    const fb = document.getElementById('qfb');
+    fb.style.display = 'block';
+    if (elegida === q.r) { score += pts; fb.className = 'quiz-fb ok'; fb.textContent = `✅ ¡Correcto! +${pts} pts`; }
+    else { fb.className = 'quiz-fb bad'; fb.textContent = elegida === -1 ? `⏰ Tiempo. Era: "${q.ops[q.r]}"` : `❌ Incorrecto. Era: "${q.ops[q.r]}"`; }
+    document.getElementById('qnext').style.display = 'block';
+  }
+
+  window.nextQ = () => { idx++; render(); };
+
+  function finQuiz() {
+    addPuntos(score);
+    const pct = Math.round(score / (preguntas.length * (timerSecs === 8 ? 15 : 10)) * 100);
+    body.innerHTML = `
+      <div class="score-card">
+        <div style="font-size:3rem;margin-bottom:.5rem">${pct>=70?'🏆':pct>=40?'👍':'📚'}</div>
+        <div class="score-big">${score}</div>
+        <div style="font-size:.9rem;color:var(--text-muted);margin:.35rem 0 .75rem">puntos · ${pct}% correcto</div>
+        <p style="margin:0;font-size:.85rem;color:var(--text-muted)">${pct>=70?'¡Excelente! Dominas este tema.':pct>=40?'Buen intento. Repasa lo que fallaste.':'Sigue practicando. ¡Tú puedes!'}</p>
+      </div>
+      <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+        <button class="button button-secondary" onclick="iniciarQuiz(document.getElementById('gameTitle'),document.getElementById('gameBody'),${qCount},${timerSecs})">🔄 Reintentar</button>
+        <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+      </div>`;
+  }
+  render();
+}
+
+// ══════════════════════════════════════════════════
+// FLASHCARDS
+// ══════════════════════════════════════════════════
+function iniciarFlashcards(titleEl, body) {
+  titleEl.textContent = `🃏 Flashcards — Inglés ${gradoSel}° Sec.`;
+  const cards = (FLASHCARDS[gradoSel] || []).sort(() => Math.random() - .5);
+  if (!cards.length) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin tarjetas para este grado.</p>'; return; }
+  let idx = 0;
+
+  function render() {
+    const c = cards[idx];
+    body.innerHTML = `
+      <p style="text-align:center;font-size:.85rem;color:var(--text-muted);margin:0">Toca la tarjeta para ver la traducción</p>
+      <div class="fc-scene" onclick="this.querySelector('.fc-card-wrap').classList.toggle('flipped');addPuntos(2);document.getElementById('totalPuntos').textContent=getPuntos()">
+        <div class="fc-card-wrap">
+          <div class="fc-face fc-front"><div><div style="font-size:1.5rem;font-weight:900">${c.f}</div></div></div>
+          <div class="fc-face fc-back"><div><div style="font-size:1.1rem;font-weight:700;color:var(--accent-strong)">${c.b}</div><div style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;font-style:italic">${c.ex}</div></div></div>
+        </div>
+      </div>
+      <div class="fc-nav">
+        <button onclick="fcMove(-1)" ${idx===0?'disabled':''}>← Anterior</button>
+        <span style="font-size:.88rem;color:var(--text-muted);font-weight:700">${idx+1} / ${cards.length}</span>
+        <button onclick="fcMove(1)" ${idx===cards.length-1?'disabled':''}>Siguiente →</button>
+      </div>
+      <p style="text-align:center;font-size:.78rem;color:var(--text-muted);margin:0">+2 pts por tarjeta volteada</p>`;
+  }
+  window.fcMove = dir => { idx = Math.max(0, Math.min(cards.length-1, idx+dir)); render(); };
+  render();
+}
+
+// ══════════════════════════════════════════════════
+// FÓRMULAS
+// ══════════════════════════════════════════════════
+function iniciarFormulas(titleEl, body) {
+  titleEl.textContent = `📝 Fórmulas — Matemática ${gradoSel}° Sec.`;
+  const items = FORMULAS[gradoSel] || [];
+  if (!items.length) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin fórmulas para este grado.</p>'; return; }
+  body.innerHTML = `
+    <p style="font-size:.88rem;color:var(--text-muted);margin:0">Escribe el término que falta en cada fórmula:</p>
+    <div style="display:grid;gap:.85rem">
+      ${items.map((item, i) => `
+        <div class="frow">
+          <span class="fpart">${item.partes[0]}</span>
+          <input class="finput" id="fi${i}" placeholder="${item.pista}" data-r="${encodeURIComponent(item.r)}" autocomplete="off"/>
+          ${item.partes[1] ? `<span class="fpart">${item.partes[1]}</span>` : ''}
+          ${item.partes[2] ? `<span class="fpart">${item.partes[2]}</span>` : ''}
+        </div>`).join('')}
+    </div>
+    <button class="button button-primary" onclick="checkFormulas()" style="width:100%">Verificar ✓</button>
+    <div id="fresult" style="display:none" class="quiz-fb"></div>`;
+}
+
+window.checkFormulas = () => {
+  let ok = 0;
+  document.querySelectorAll('.finput').forEach(inp => {
+    const correct = decodeURIComponent(inp.dataset.r).toLowerCase().trim();
+    const given   = inp.value.toLowerCase().trim();
+    if (given === correct) { inp.className = 'finput ok'; ok++; } else { inp.className = 'finput bad'; }
+  });
+  const total = document.querySelectorAll('.finput').length;
+  const pts   = ok * 8;
+  const fr    = document.getElementById('fresult');
+  fr.style.display = 'block';
+  fr.className = ok === total ? 'quiz-fb ok' : 'quiz-fb bad';
+  fr.textContent = ok === total
+    ? `✅ ¡Perfecto! ${ok}/${total} correctas. +${pts} pts`
+    : `${ok}/${total} correctas. +${pts} pts. Las rojas son incorrectas.`;
+  addPuntos(pts);
+};
+
+// ══════════════════════════════════════════════════
+// VERDADERO / FALSO
+// ══════════════════════════════════════════════════
+function iniciarVF(titleEl, body) {
+  titleEl.textContent = `✅ Verdadero o Falso — ${NOMBRE_CORTO} ${gradoSel}° Sec.`;
+  const pool = (VF[AREA] && VF[AREA][gradoSel]) ? [...VF[AREA][gradoSel]] : [];
+  if (!pool.length) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin contenido para este grado.</p>'; return; }
+  const preguntas = pool.sort(() => Math.random() - .5);
+  let idx = 0, score = 0;
+
+  function render() {
+    if (idx >= preguntas.length) { finVF(); return; }
+    const q = preguntas[idx];
+    body.innerHTML = `
+      <div style="font-size:.82rem;color:var(--text-muted);font-weight:700">${idx+1} / ${preguntas.length} · ⭐ ${score} pts</div>
+      <div class="vf-card">
+        <div class="vf-statement">${q.s}</div>
+        <div class="vf-btns">
+          <button class="vf-btn true-btn" onclick="respVF(true,${q.r})">✅ Verdadero</button>
+          <button class="vf-btn false-btn" onclick="respVF(false,${q.r})">❌ Falso</button>
+        </div>
+      </div>
+      <div id="vffb" style="display:none" class="quiz-fb"></div>
+      <button id="vfnext" style="display:none" class="button button-primary" onclick="nextVF()">Siguiente →</button>`;
+  }
+
+  window.respVF = (resp, correcto) => {
+    document.querySelectorAll('.vf-btn').forEach(b => b.disabled = true);
+    const ok = resp === correcto;
+    if (ok) score += 12;
+    const fb = document.getElementById('vffb');
+    fb.style.display = 'block';
+    fb.className = ok ? 'quiz-fb ok' : 'quiz-fb bad';
+    fb.textContent = ok ? '✅ ¡Correcto! +12 pts' : `❌ Incorrecto. Era ${correcto ? 'VERDADERO' : 'FALSO'}.`;
+    document.getElementById('vfnext').style.display = 'block';
+  };
+  window.nextVF = () => { idx++; render(); };
+
+  function finVF() {
+    addPuntos(score);
+    const pct = Math.round(score / (preguntas.length * 12) * 100);
+    body.innerHTML = `
+      <div class="score-card">
+        <div style="font-size:3rem;margin-bottom:.5rem">${pct>=70?'🏆':pct>=40?'👍':'📚'}</div>
+        <div class="score-big">${score}</div>
+        <div style="font-size:.9rem;color:var(--text-muted);margin:.35rem 0 .75rem">puntos · ${pct}% correcto</div>
+      </div>
+      <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+        <button class="button button-secondary" onclick="iniciarVF(document.getElementById('gameTitle'),document.getElementById('gameBody'))">🔄 Reintentar</button>
+        <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+      </div>`;
+  }
+  render();
+}
+
+// ══════════════════════════════════════════════════
+// ORDENAR
+// ══════════════════════════════════════════════════
+function iniciarOrdenar(titleEl, body) {
+  const data = ORDENAR[AREA] && ORDENAR[AREA][gradoSel];
+  titleEl.textContent = `🔀 Ordenar — ${NOMBRE_CORTO} ${gradoSel}° Sec.`;
+  if (!data) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin contenido para este grado.</p>'; return; }
+
+  const items = [...data.items].sort(() => Math.random() - .5);
+  body.innerHTML = `
+    <p style="font-weight:700;color:var(--accent-strong);margin:0">${data.en}</p>
+    <p style="font-size:.82rem;color:var(--text-muted);margin:0">Arrastra los elementos al orden correcto:</p>
+    <div class="sort-list" id="sortList">
+      ${items.map(item => `
+        <div class="sort-item" draggable="true" data-item="${encodeURIComponent(item)}">
+          <span style="color:var(--text-muted);font-size:1.1rem">⠿</span> ${item}
+        </div>`).join('')}
+    </div>
+    <div id="sres" style="display:none" class="quiz-fb"></div>
+    <button class="button button-primary" onclick="checkOrden()" style="width:100%">Verificar orden ✓</button>`;
+
+  let dragSrc = null;
+  document.querySelectorAll('.sort-item').forEach(item => {
+    item.addEventListener('dragstart', () => { dragSrc = item; item.classList.add('dragging'); });
+    item.addEventListener('dragend',   () => item.classList.remove('dragging'));
+    item.addEventListener('dragover',  e  => { e.preventDefault(); item.classList.add('dragover'); });
+    item.addEventListener('dragleave', () => item.classList.remove('dragover'));
+    item.addEventListener('drop', e => {
+      e.preventDefault(); item.classList.remove('dragover');
+      if (dragSrc && dragSrc !== item) {
+        const list = document.getElementById('sortList');
+        const all  = [...list.querySelectorAll('.sort-item')];
+        const si = all.indexOf(dragSrc), ti = all.indexOf(item);
+        if (si < ti) list.insertBefore(dragSrc, item.nextSibling);
+        else         list.insertBefore(dragSrc, item);
+      }
+    });
+  });
+}
+
+window.checkOrden = () => {
+  const data   = ORDENAR[AREA][gradoSel];
+  const actual = [...document.querySelectorAll('.sort-item')].map(el => decodeURIComponent(el.dataset.item));
+  const ok     = actual.every((v, i) => v === data.ok[i]);
+  const sr     = document.getElementById('sres');
+  sr.style.display = 'block';
+  if (ok) {
+    sr.className = 'quiz-fb ok'; sr.textContent = '✅ ¡Orden correcto! +30 pts';
+    addPuntos(30);
+    setTimeout(cerrarJuego, 2000);
+  } else {
+    sr.className = 'quiz-fb bad'; sr.textContent = '❌ Orden incorrecto. Inténtalo de nuevo.';
+    setTimeout(() => { sr.style.display = 'none'; }, 2000);
+  }
+};
