@@ -136,6 +136,11 @@ const BANCO = {
       { p: 'Símbolo del sodio:', ops: ['So','Na','Sn','Nd'], r: 1 },
       { p: '¿Qué reacción produce sal y agua?', ops: ['Oxidación','Reducción','Neutralización','Combustión'], r: 2 },
       { p: 'Balancea: H₂ + O₂ → H₂O. ¿Cuántas H₂O?', ops: ['1','2','3','4'], r: 1 },
+      { p: 'La tabla periódica fue organizada por:', ops: ['Newton','Einstein','Mendeleiev','Bohr'], r: 2 },
+      { p: '¿Cuántos electrones tiene el carbono?', ops: ['4','5','6','7'], r: 2 },
+      { p: 'Una solución con pH=7 es:', ops: ['Ácida','Básica','Neutra','Oxidante'], r: 2 },
+      { p: 'El estado gaseoso tiene:', ops: ['Forma y volumen fijos','Forma fija, volumen variable','Ni forma ni volumen fijos','Volumen fijo, forma variable'], r: 2 },
+      { p: 'Símbolo del hierro:', ops: ['H','Fe','Ir','In'], r: 1 },
     ],
     3: [
       { p: 'La Segunda Ley de Newton:', ops: ['Inercia','F = m × a','Acción y reacción','Conservación de energía'], r: 1 },
