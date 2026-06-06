@@ -293,6 +293,11 @@ const BANCO = {
       { p: '"Por lo tanto" indica:', ops: ['Contraste','Adición','Consecuencia','Causa'], r: 2 },
       { p: 'Texto argumentativo busca:', ops: ['Entretener','Describir','Persuadir','Instruir'], r: 2 },
       { p: 'Un párrafo es:', ops: ['Una sola oración','Conjunto de oraciones con una idea','Todo el texto','El título'], r: 1 },
+      { p: '"Sin embargo" es conector de:', ops: ['Adición','Consecuencia','Contraste','Causa'], r: 2 },
+      { p: 'La cohesión en un texto se logra mediante:', ops: ['Puntuación y mayúsculas solo','Uso de conectores y pronombres','Solo párrafos largos','Evitar repetir palabras'], r: 1 },
+      { p: '"Tengo mil cosas que hacer" es:', ops: ['Metáfora','Personificación','Hipérbole','Símil'], r: 2 },
+      { p: 'El emisor en la comunicación es:', ops: ['Quien recibe el mensaje','Quien envía el mensaje','El canal','El código'], r: 1 },
+      { p: 'El texto expositivo busca:', ops: ['Persuadir','Entretener','Informar con objetividad','Dar instrucciones'], r: 2 },
     ],
     2: [
       { p: 'Género para representarse en escena:', ops: ['Narrativo','Lírico','Dramático','Ensayístico'], r: 2 },
