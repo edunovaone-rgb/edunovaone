@@ -603,3 +603,321 @@ const FORMULAS = {
   ],
 };
 
+
+// ══════════════════════════════════════════
+// ESTADO GLOBAL
+// ══════════════════════════════════════════
+let gradoSel = null, cursoSel = null;
+
+const PUNTOS_KEY = 'enu_puntos_hoy';
+function getPuntos(){ try{ const s=JSON.parse(localStorage.getItem(PUNTOS_KEY)||'{}'); return s.d===new Date().toDateString()?(s.p||0):0; }catch{return 0;} }
+function addPuntos(n){ const p=getPuntos()+n; try{localStorage.setItem(PUNTOS_KEY,JSON.stringify({d:new Date().toDateString(),p}));}catch{} document.getElementById('totalPuntos').textContent=p; }
+document.getElementById('totalPuntos').textContent = getPuntos();
+
+// ── Selección grado / curso ──
+document.querySelectorAll('#gradoRow .sel-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#gradoRow .sel-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    gradoSel = parseInt(btn.dataset.grado);
+    actualizarJuegos();
+  });
+});
+document.querySelectorAll('#cursoRow .sel-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#cursoRow .sel-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    cursoSel = btn.dataset.curso;
+    actualizarJuegos();
+  });
+});
+
+// ── Leer preferencia guardada ──
+const gradoGuardado = parseInt(localStorage.getItem('edunova_grado')||'0');
+if(gradoGuardado>=1&&gradoGuardado<=5){
+  const btn=document.querySelector(`#gradoRow .sel-btn[data-grado="${gradoGuardado}"]`);
+  if(btn){ btn.click(); }
+}
+
+function actualizarJuegos(){
+  if(!gradoSel||!cursoSel) return;
+  localStorage.setItem('edunova_grado', gradoSel);
+  const nombresGrado={1:'1°',2:'2°',3:'3°',4:'4°',5:'5°'};
+  const nombresCurso={matematica:'Matemática',ciencia:'Ciencias',historia:'Historia',comunicacion:'Comunicación',ingles:'Inglés'};
+  const iconos={matematica:'📐',ciencia:'🔬',historia:'🏛️',comunicacion:'📖',ingles:'🇬🇧'};
+  document.getElementById('selLabel').textContent=`${iconos[cursoSel]} ${nombresCurso[cursoSel]} · ${nombresGrado[gradoSel]} Secundaria`;
+  document.getElementById('selAlert').style.display='block';
+
+  const grid=document.getElementById('gamesGrid');
+  const sec=document.getElementById('juegosSection');
+  sec.style.display='block';
+
+  // Juegos disponibles según curso
+  const juegos=[];
+  juegos.push({id:'quiz',icon:iconos[cursoSel],color:colorCurso(cursoSel),titulo:`Quiz de ${nombresCurso[cursoSel]}`,desc:`10 preguntas de ${nombresCurso[cursoSel]} para ${nombresGrado[gradoSel]} de secundaria. Tienes 15 segundos por pregunta.`,meta:'10 preguntas · 15 s',badge:'Quiz'});
+
+  if(cursoSel==='ingles'){
+    juegos.push({id:'flashcards',icon:'🃏',color:'rgba(37,99,235,0.12)',titulo:'Flashcards de Inglés',desc:`Voltea las tarjetas para ver la traducción y ejemplos de vocabulario de ${nombresGrado[gradoSel]} secundaria.`,meta:'8 tarjetas',badge:'Flashcards'});
+  }
+  if(cursoSel==='matematica'){
+    juegos.push({id:'formulas',icon:'📝',color:'rgba(124,58,237,0.12)',titulo:'Completa la Fórmula',desc:`Rellena los espacios en blanco de las fórmulas de Matemática de ${nombresGrado[gradoSel]} secundaria.`,meta:'4 fórmulas',badge:'Fórmulas'});
+  }
+  if(cursoSel==='historia'||cursoSel==='ciencia'){
+    juegos.push({id:'ordenar',icon:'🔀',color:colorCurso(cursoSel),titulo:`Ordena los ${cursoSel==='historia'?'Eventos':'Pasos'}`,desc:`Arrastra y ordena correctamente ${cursoSel==='historia'?'los eventos históricos':'los pasos del proceso'} de ${nombresGrado[gradoSel]} secundaria.`,meta:'4 elementos',badge:'Ordenar'});
+  }
+
+  grid.innerHTML = juegos.map(j=>`
+    <div class="game-card">
+      <div class="game-icon" style="background:${j.color}">${j.icon}</div>
+      <h4>${j.titulo}</h4>
+      <p>${j.desc}</p>
+      <div class="game-meta"><span>${j.meta}</span><span class="game-badge">${j.badge}</span></div>
+      <button class="button button-primary" onclick="abrirJuego('${j.id}')">Jugar</button>
+    </div>`).join('');
+
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function colorCurso(c){
+  return {matematica:'rgba(124,58,237,0.12)',ciencia:'rgba(5,150,105,0.12)',historia:'rgba(217,119,6,0.12)',comunicacion:'rgba(220,38,38,0.12)',ingles:'rgba(37,99,235,0.12)'}[c]||'rgba(99,102,241,0.12)';
+}
+
+// ══════════════════════════════════════════
+// MODAL
+// ══════════════════════════════════════════
+function abrirJuego(id){
+  document.getElementById('gameOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  const titleEl=document.getElementById('gameTitle');
+  const body=document.getElementById('gameBody');
+  if(id==='quiz')       iniciarQuiz(titleEl,body);
+  else if(id==='flashcards') iniciarFlashcards(titleEl,body);
+  else if(id==='formulas')   iniciarFormulas(titleEl,body);
+  else if(id==='ordenar')    iniciarOrdenar(titleEl,body);
+}
+function cerrarJuego(){
+  document.getElementById('gameOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('gameCloseBtn').addEventListener('click',cerrarJuego);
+document.getElementById('gameOverlay').addEventListener('click',e=>{
+  if(e.target===document.getElementById('gameOverlay')) cerrarJuego();
+});
+
+// ══════════════════════════════════════════
+// QUIZ
+// ══════════════════════════════════════════
+function iniciarQuiz(titleEl, body){
+  const nombresCurso={matematica:'Matemática',ciencia:'Ciencias',historia:'Historia',comunicacion:'Comunicación',ingles:'Inglés'};
+  const iconos={matematica:'📐',ciencia:'🔬',historia:'🏛️',comunicacion:'📖',ingles:'🇬🇧'};
+  titleEl.textContent=`${iconos[cursoSel]} Quiz de ${nombresCurso[cursoSel]} · ${gradoSel}° Sec.`;
+
+  const pool = (BANCO[cursoSel]&&BANCO[cursoSel][gradoSel]) ? [...BANCO[cursoSel][gradoSel]] : [];
+  if(!pool.length){ body.innerHTML='<p style="text-align:center;color:var(--text-muted);padding:2rem;">Sin preguntas para esta combinación.</p>'; return; }
+  const preguntas = pool.sort(()=>Math.random()-.5).slice(0,10);
+
+  let idx=0, score=0, timer=null;
+
+  function render(){
+    if(idx>=preguntas.length){ fin(); return; }
+    const q=preguntas[idx];
+    let secs=15;
+    clearInterval(timer);
+    body.innerHTML=`
+      <div class="quiz-bar"><div class="quiz-bar-fill" style="width:${(idx/preguntas.length)*100}%"></div></div>
+      <div class="quiz-meta">
+        <span>Pregunta ${idx+1}/${preguntas.length}</span>
+        <div style="display:flex;align-items:center;gap:.5rem"><span>⭐ ${score}</span><div class="timer" id="tc">${secs}</div></div>
+      </div>
+      <div class="quiz-q">${q.p}</div>
+      <div class="quiz-opts">${q.ops.map((o,i)=>`<button class="quiz-opt" data-i="${i}">${o}</button>`).join('')}</div>
+      <div id="qfb" style="display:none" class="quiz-fb"></div>
+      <button id="qnext" style="display:none" class="button button-primary" onclick="nextQ()">Siguiente →</button>`;
+
+    timer=setInterval(()=>{
+      secs--;
+      const tc=document.getElementById('tc');
+      if(tc){tc.textContent=secs; if(secs<=5)tc.classList.add('urgent');}
+      if(secs<=0){clearInterval(timer);reveal(-1,q);}
+    },1000);
+
+    document.querySelectorAll('.quiz-opt').forEach(btn=>{
+      btn.addEventListener('click',()=>{ clearInterval(timer); reveal(parseInt(btn.dataset.i),q); });
+    });
+  }
+
+  function reveal(elegida,q){
+    document.querySelectorAll('.quiz-opt').forEach((b,i)=>{
+      b.disabled=true;
+      if(i===q.r) b.classList.add('correct');
+      else if(i===elegida) b.classList.add('wrong');
+    });
+    const fb=document.getElementById('qfb');
+    fb.style.display='block';
+    if(elegida===q.r){ score+=10; fb.className='quiz-fb ok'; fb.textContent='✅ ¡Correcto! +10 pts'; }
+    else { fb.className='quiz-fb bad'; fb.textContent=elegida===-1?`⏰ Tiempo. Respuesta: "${q.ops[q.r]}"`:`❌ Incorrecto. Era: "${q.ops[q.r]}"`; }
+    document.getElementById('qnext').style.display='block';
+  }
+
+  window.nextQ=()=>{ idx++; render(); };
+
+  function fin(){
+    addPuntos(score);
+    const pct=Math.round(score/(preguntas.length*10)*100);
+    body.innerHTML=`
+      <div class="score-card">
+        <div style="font-size:3rem;margin-bottom:.5rem">${pct>=70?'🏆':pct>=40?'👍':'📚'}</div>
+        <div class="score-big">${score}</div>
+        <div style="font-size:.9rem;color:var(--text-muted);margin:.35rem 0 .75rem">puntos · ${pct}% correcto</div>
+        <p style="margin:0;font-size:.85rem;color:var(--text-muted)">${pct>=70?'¡Excelente! Dominas este tema.':pct>=40?'Buen intento. Repasa los temas que fallaste.':'Sigue practicando. ¡La constancia lo es todo!'}</p>
+      </div>
+      <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+        <button class="button button-secondary" onclick="iniciarQuiz(document.getElementById('gameTitle'),document.getElementById('gameBody'))">🔄 Reintentar</button>
+        <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+      </div>`;
+  }
+  render();
+}
+
+// ══════════════════════════════════════════
+// FLASHCARDS INGLÉS
+// ══════════════════════════════════════════
+function iniciarFlashcards(titleEl, body){
+  titleEl.textContent=`🃏 Flashcards de Inglés · ${gradoSel}° Sec.`;
+  const cards=(FLASHCARDS[gradoSel]||[]).sort(()=>Math.random()-.5);
+  if(!cards.length){ body.innerHTML='<p style="text-align:center;color:var(--text-muted);padding:2rem;">Sin tarjetas para este grado.</p>'; return; }
+  let idx=0;
+
+  function render(){
+    const c=cards[idx];
+    body.innerHTML=`
+      <p style="text-align:center;font-size:.85rem;color:var(--text-muted);margin:0">Toca la tarjeta para ver la traducción</p>
+      <div class="fc-scene" onclick="this.querySelector('.fc-card').classList.toggle('flipped');addPuntos(2)">
+        <div class="fc-card">
+          <div class="fc-face fc-front">
+            <div>
+              <div style="font-size:1.6rem;font-weight:900">${c.f}</div>
+            </div>
+          </div>
+          <div class="fc-face fc-back">
+            <div>
+              <div style="font-size:1.1rem;font-weight:700;color:var(--accent-strong)">${c.b}</div>
+              <div style="font-size:.85rem;color:var(--text-muted);margin-top:.5rem;font-style:italic">${c.ex}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-nav">
+        <button onclick="fcMove(-1)" ${idx===0?'disabled':''}>← Anterior</button>
+        <span style="font-size:.88rem;color:var(--text-muted);font-weight:700">${idx+1} / ${cards.length}</span>
+        <button onclick="fcMove(1)" ${idx===cards.length-1?'disabled':''}>Siguiente →</button>
+      </div>
+      <p style="text-align:center;font-size:.78rem;color:var(--text-muted);margin:0">+2 pts por tarjeta volteada</p>`;
+  }
+  window.fcMove=(dir)=>{ idx=Math.max(0,Math.min(cards.length-1,idx+dir)); render(); };
+  render();
+}
+
+// ══════════════════════════════════════════
+// COMPLETA LA FÓRMULA
+// ══════════════════════════════════════════
+function iniciarFormulas(titleEl, body){
+  titleEl.textContent=`📝 Completa la Fórmula · Matemática ${gradoSel}° Sec.`;
+  const items=(FORMULAS[gradoSel]||[]);
+  if(!items.length){ body.innerHTML='<p style="text-align:center;color:var(--text-muted);padding:2rem;">Sin fórmulas para este grado.</p>'; return; }
+  body.innerHTML=`
+    <p style="font-size:.88rem;color:var(--text-muted);margin:0">Escribe el término que falta en cada fórmula:</p>
+    <div style="display:grid;gap:.85rem">
+      ${items.map((item,i)=>`
+        <div class="frow">
+          <span class="fpart">${item.partes[0]}</span>
+          <input class="finput" id="fi${i}" placeholder="${item.pista}" data-r="${encodeURIComponent(item.r)}" autocomplete="off"/>
+          ${item.partes[1]?`<span class="fpart">${item.partes[1]}</span>`:''}
+          ${item.partes[2]?`<span class="fpart">${item.partes[2]}</span>`:''}
+        </div>`).join('')}
+    </div>
+    <button class="button button-primary" onclick="checkFormulas()" style="width:100%">Verificar ✓</button>
+    <div id="fresult" style="display:none" class="quiz-fb"></div>`;
+}
+window.checkFormulas=()=>{
+  let ok=0;
+  document.querySelectorAll('.finput').forEach(inp=>{
+    const r=decodeURIComponent(inp.dataset.r).toLowerCase().trim();
+    const v=inp.value.toLowerCase().trim();
+    if(v===r){inp.className='finput ok';ok++;}else{inp.className='finput bad';}
+  });
+  const total=document.querySelectorAll('.finput').length;
+  const pts=ok*8;
+  const fr=document.getElementById('fresult');
+  fr.style.display='block';
+  fr.className=ok===total?'quiz-fb ok':'quiz-fb bad';
+  fr.textContent=ok===total?`✅ ¡Perfecto! ${ok}/${total} correctas. +${pts} pts`:`${ok}/${total} correctas. +${pts} pts. Las rojas son incorrectas.`;
+  addPuntos(pts);
+};
+
+// ══════════════════════════════════════════
+// ORDENAR
+// ══════════════════════════════════════════
+function iniciarOrdenar(titleEl, body){
+  const data=(ORDENAR[cursoSel]&&ORDENAR[cursoSel][gradoSel]);
+  const nombresCurso={historia:'Historia',ciencia:'Ciencias'};
+  titleEl.textContent=`🔀 Ordenar · ${nombresCurso[cursoSel]||cursoSel} ${gradoSel}° Sec.`;
+  if(!data){ body.innerHTML='<p style="text-align:center;color:var(--text-muted);padding:2rem;">Sin contenido para este grado.</p>'; return; }
+
+  const items=[...data.items].sort(()=>Math.random()-.5);
+  body.innerHTML=`
+    <p style="font-weight:700;color:var(--accent-strong);margin:0">${data.enunciado}</p>
+    <p style="font-size:.82rem;color:var(--text-muted);margin:0">Arrastra los elementos al orden correcto:</p>
+    <div class="sort-list" id="sortList">
+      ${items.map((item,i)=>`<div class="sort-item" draggable="true" data-item="${encodeURIComponent(item)}"><span style="color:var(--text-muted)">⠿</span> ${item}</div>`).join('')}
+    </div>
+    <div id="sresult" style="font-size:.9rem;font-weight:700;padding:.65rem 1rem;border-radius:.85rem;display:none"></div>
+    <button class="button button-primary" onclick="checkOrden()" style="width:100%">Verificar orden ✓</button>`;
+
+  // Drag & drop
+  let dragSrc=null;
+  document.querySelectorAll('.sort-item').forEach(item=>{
+    item.addEventListener('dragstart',()=>{ dragSrc=item; item.classList.add('dragging'); });
+    item.addEventListener('dragend',()=>item.classList.remove('dragging'));
+    item.addEventListener('dragover',e=>{ e.preventDefault(); item.classList.add('dragover'); });
+    item.addEventListener('dragleave',()=>item.classList.remove('dragover'));
+    item.addEventListener('drop',e=>{
+      e.preventDefault(); item.classList.remove('dragover');
+      if(dragSrc&&dragSrc!==item){
+        const list=document.getElementById('sortList');
+        const all=[...list.querySelectorAll('.sort-item')];
+        const si=all.indexOf(dragSrc),ti=all.indexOf(item);
+        if(si<ti) list.insertBefore(dragSrc,item.nextSibling); else list.insertBefore(dragSrc,item);
+      }
+    });
+  });
+}
+window.checkOrden=()=>{
+  const data=ORDENAR[cursoSel][gradoSel];
+  const actual=[...document.querySelectorAll('.sort-item')].map(el=>decodeURIComponent(el.dataset.item));
+  const ok=actual.every((v,i)=>v===data.correcto[i]);
+  const sr=document.getElementById('sresult');
+  sr.style.display='block';
+  if(ok){
+    sr.className='quiz-fb ok'; sr.textContent='✅ ¡Correcto! +30 pts';
+    addPuntos(30);
+    setTimeout(cerrarJuego,2000);
+  } else {
+    sr.className='quiz-fb bad'; sr.textContent='❌ Orden incorrecto. Inténtalo de nuevo.';
+    setTimeout(()=>{ sr.style.display='none'; },2000);
+  }
+};
+
+// Sidebar toggle
+const sidebarToggle=document.getElementById('sidebarToggle');
+const sidebarCollapsible=document.getElementById('sidebarCollapsible');
+if(sidebarToggle&&sidebarCollapsible){
+  sidebarToggle.addEventListener('click',()=>{
+    const isOpen=sidebarCollapsible.classList.toggle('open');
+    sidebarToggle.classList.toggle('open',isOpen);
+    sidebarToggle.setAttribute('aria-expanded',String(isOpen));
+  });
+}
+</script>
+</body>
+</html>
