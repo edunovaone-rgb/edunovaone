@@ -380,6 +380,11 @@ const BANCO = {
       { p: '"I ___ from Peru."', ops: ['is','am','are','be'], r: 1 },
       { p: 'Color del cielo en un día despejado:', ops: ['Red','Green','Blue','Yellow'], r: 2 },
       { p: 'Días de la semana en inglés son:', ops: ['5','6','7','8'], r: 2 },
+      { p: '"Big" en español es:', ops: ['Pequeño','Grande','Rápido','Lento'], r: 1 },
+      { p: 'Plural of "box":', ops: ['boxs','boxes','boxies','boxen'], r: 1 },
+      { p: '"What time is it?" significa:', ops: ['¿Dónde estás?','¿Qué hora es?','¿Cómo estás?','¿Cuánto cuesta?'], r: 1 },
+      { p: '"I ___ hungry." (estar con hambre)', ops: ['am','is','are','be'], r: 0 },
+      { p: '"Happy" en español es:', ops: ['Triste','Cansado','Feliz','Enojado'], r: 2 },
     ],
     2: [
       { p: 'Pasado irregular de "go":', ops: ['goed','gone','went','goes'], r: 2 },
