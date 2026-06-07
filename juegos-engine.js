@@ -642,6 +642,220 @@ const ORDENAR = {
 };
 
 // ══════════════════════════════════════════════════
+// BANCO — TECNOLOGÍA
+// ══════════════════════════════════════════════════
+BANCO.tecnologia = {
+  1: [
+    { p: '¿Qué es el hardware?', ops: ['El software del sistema','Los programas instalados','Los componentes físicos del computador','El sistema operativo'], r: 2 },
+    { p: 'El ratón (mouse) es un dispositivo de:', ops: ['Salida','Entrada','Almacenamiento','Procesamiento'], r: 1 },
+    { p: 'La impresora es un dispositivo de:', ops: ['Entrada','Salida','Almacenamiento','Procesamiento'], r: 1 },
+    { p: '¿Qué hace la CPU?', ops: ['Almacena datos permanentemente','Procesa instrucciones y datos','Muestra imágenes','Conecta a internet'], r: 1 },
+    { p: 'La pantalla (monitor) es un dispositivo de:', ops: ['Entrada','Procesamiento','Salida','Almacenamiento'], r: 2 },
+    { p: '¿Qué es el software?', ops: ['Circuitos electrónicos','Programas e instrucciones','Memoria RAM','Disco duro'], r: 1 },
+    { p: 'La RAM sirve para:', ops: ['Almacenar datos permanentemente','Memoria temporal de trabajo','Conectar periféricos','Mostrar imágenes'], r: 1 },
+    { p: 'El teclado es un dispositivo de:', ops: ['Salida','Almacenamiento','Entrada','Procesamiento'], r: 2 },
+    { p: 'Windows y macOS son ejemplos de:', ops: ['Aplicaciones de oficina','Sistemas operativos','Lenguajes de programación','Navegadores web'], r: 1 },
+    { p: 'El disco duro sirve para:', ops: ['Procesar datos','Mostrar gráficos','Almacenar datos permanentemente','Conectar a internet'], r: 2 },
+    { p: '¿Qué significa USB?', ops: ['Universal Serial Bus','United System Base','Ultra Speed Boot','Unified Source Board'], r: 0 },
+    { p: 'Un archivo con extensión .jpg es:', ops: ['Un documento de texto','Una imagen','Un video','Un audio'], r: 1 },
+    { p: 'El navegador web sirve para:', ops: ['Editar documentos','Acceder a páginas de internet','Hacer cálculos','Almacenar archivos'], r: 1 },
+    { p: '¿Cuántos bits tiene 1 byte?', ops: ['4','6','8','16'], r: 2 },
+    { p: 'El correo electrónico sirve para:', ops: ['Jugar videojuegos','Enviar y recibir mensajes digitales','Almacenar música','Ver películas'], r: 1 },
+  ],
+  2: [
+    { p: 'HTML es un lenguaje de:', ops: ['Programación de apps','Marcado para páginas web','Bases de datos','Diseño gráfico'], r: 1 },
+    { p: 'Una base de datos almacena:', ops: ['Solo imágenes','Información organizada en tablas','Solo texto','Solo videos'], r: 1 },
+    { p: 'Algoritmo es:', ops: ['Un tipo de virus','Secuencia ordenada de pasos para resolver un problema','Un lenguaje de programación','Una red social'], r: 1 },
+    { p: 'El Wi-Fi permite:', ops: ['Conectar dispositivos de forma inalámbrica a internet','Almacenar datos en la nube','Proteger contra virus','Crear aplicaciones'], r: 0 },
+    { p: '¿Qué es una hoja de cálculo?', ops: ['Editor de texto','Programa para tablas y cálculos numéricos','Navegador web','Editor de imágenes'], r: 1 },
+    { p: 'El phishing busca:', ops: ['Acelerar internet','Robar datos personales mediante engaño','Mejorar el hardware','Crear redes sociales'], r: 1 },
+    { p: 'Una contraseña segura debe tener:', ops: ['Solo letras','Solo números','Combinación de letras, números y símbolos','Solo 4 dígitos'], r: 2 },
+    { p: 'La nube (cloud) en tecnología es:', ops: ['Un servidor físico en tu casa','Almacenamiento y servicios por internet','Una red local','Un tipo de virus'], r: 1 },
+    { p: 'Copiar y Pegar usa los atajos:', ops: ['Ctrl+X y Ctrl+V','Ctrl+C y Ctrl+V','Ctrl+Z y Ctrl+Y','Alt+F4'], r: 1 },
+    { p: 'Un antivirus sirve para:', ops: ['Acelerar el procesador','Detectar y eliminar malware','Conectar a internet','Crear archivos'], r: 1 },
+    { p: 'La resolución de una imagen se mide en:', ops: ['Bytes','Hertz','Píxeles (px)','Watts'], r: 2 },
+    { p: '¿Qué es un foro en internet?', ops: ['Una red social de videos','Espacio de discusión en línea','Un tipo de correo','Un antivirus'], r: 1 },
+    { p: 'El archivo .pdf fue creado por:', ops: ['Microsoft','Apple','Adobe','Google'], r: 2 },
+    { p: 'Seleccionar todo el texto: atajo de teclado', ops: ['Ctrl+A','Ctrl+S','Ctrl+P','Ctrl+Z'], r: 0 },
+    { p: 'Una LAN es una red:', ops: ['Global','De área local','Inalámbrica exclusivamente','Solo de internet'], r: 1 },
+  ],
+  3: [
+    { p: 'CSS en diseño web significa:', ops: ['Computer Style Script','Cascading Style Sheets','Creative System Software','Custom Site Structure'], r: 1 },
+    { p: 'Una variable en programación almacena:', ops: ['Solo números','Solo texto','Un dato que puede cambiar','Instrucciones del programa'], r: 2 },
+    { p: '"If / else" en programación es una estructura de:', ops: ['Repetición','Decisión / condicional','Función','Clase'], r: 1 },
+    { p: 'Un bucle "for" se usa para:', ops: ['Tomar decisiones','Definir funciones','Repetir instrucciones un número determinado de veces','Almacenar datos'], r: 2 },
+    { p: 'Python es un:', ops: ['Sistema operativo','Lenguaje de programación','Navegador web','Tipo de base de datos'], r: 1 },
+    { p: 'La dirección IP identifica:', ops: ['El nombre del usuario','Un dispositivo en una red','El sistema operativo','La marca del computador'], r: 1 },
+    { p: 'El protocolo HTTPS indica:', ops: ['Conexión lenta','Comunicación cifrada y segura','Sin conexión a internet','Red local'], r: 1 },
+    { p: '¿Qué es un diagrama de flujo?', ops: ['Tipo de base de datos','Representación visual de un algoritmo','Lenguaje de programación','Tipo de red'], r: 1 },
+    { p: 'Una función en programación:', ops: ['Solo almacena datos','Ejecuta un bloque reutilizable de código','Es un tipo de variable','Controla el hardware'], r: 1 },
+    { p: 'El operador "==" en programación compara:', ops: ['Asigna un valor','Comprueba si dos valores son iguales','Suma dos números','Declara una variable'], r: 1 },
+    { p: 'Scratch es una herramienta de:', ops: ['Diseño gráfico','Programación visual para principiantes','Edición de video','Hojas de cálculo'], r: 1 },
+    { p: 'Una lista/array almacena:', ops: ['Un solo valor','Múltiples valores en orden','Solo texto','Solo imágenes'], r: 1 },
+    { p: 'El navegador interpreta el código:', ops: ['Python','SQL','HTML/CSS/JS','C++'], r: 2 },
+    { p: 'Debugging significa:', ops: ['Crear un programa','Diseñar una interfaz','Encontrar y corregir errores en el código','Compilar un programa'], r: 2 },
+    { p: 'Una API permite:', ops: ['Solo almacenar datos','Comunicación entre aplicaciones distintas','Crear diseños web','Gestionar contraseñas'], r: 1 },
+  ],
+  4: [
+    { p: 'La inteligencia artificial imita:', ops: ['El hardware de computadoras','Procesos cognitivos humanos','Redes de internet','Bases de datos'], r: 1 },
+    { p: 'Big Data se refiere a:', ops: ['Archivos muy pesados','Grandes volúmenes de datos difíciles de procesar con métodos tradicionales','Solo bases de datos','Videos en alta definición'], r: 1 },
+    { p: 'El machine learning permite a las máquinas:', ops: ['Solo calcular sumas','Aprender de datos sin programación explícita','Fabricar hardware','Imprimir en 3D'], r: 1 },
+    { p: 'IoT (Internet de las Cosas) conecta:', ops: ['Solo computadoras','Objetos cotidianos a internet','Solo teléfonos','Solo servidores'], r: 1 },
+    { p: 'La ciberseguridad protege:', ops: ['Solo computadoras antiguas','Sistemas, redes y datos ante ataques digitales','Solo redes sociales','Solo contraseñas'], r: 1 },
+    { p: 'Un chatbot es:', ops: ['Un virus informático','Programa que simula conversación humana','Un tipo de base de datos','Una red social'], r: 1 },
+    { p: 'Blockchain es una tecnología de:', ops: ['Diseño web','Registro distribuido e inmutable de datos','Edición de video','Inteligencia artificial'], r: 1 },
+    { p: 'La realidad aumentada (AR) combina:', ops: ['Solo imágenes digitales','Mundo real con elementos digitales superpuestos','Solo videos','Solo texto'], r: 1 },
+    { p: 'SQL se usa para:', ops: ['Diseñar páginas web','Gestionar y consultar bases de datos relacionales','Programar robots','Crear presentaciones'], r: 1 },
+    { p: 'Un servidor web almacena y sirve:', ops: ['Solo correos','Archivos y páginas web a los navegadores','Solo imágenes','Solo videos'], r: 1 },
+    { p: 'Git es una herramienta de:', ops: ['Diseño gráfico','Control de versiones de código','Análisis de datos','Edición de audio'], r: 1 },
+    { p: 'La impresión 3D construye objetos:', ops: ['Fotografiando','Capa por capa a partir de un modelo digital','Soldando metales','Cortando madera'], r: 1 },
+    { p: 'Scrum es una metodología de trabajo:', ops: ['De diseño gráfico','Ágil para desarrollo de software','De contabilidad','De marketing'], r: 1 },
+    { p: 'La nube pública es gestionada por:', ops: ['El usuario final','Proveedores externos como AWS o Google','Solo empresas privadas','El gobierno'], r: 1 },
+    { p: 'UX significa:', ops: ['Universal eXtra','User eXperience (Experiencia del Usuario)','Ultra eXtended','United eXchange'], r: 1 },
+  ],
+  5: [
+    { p: 'La automatización industrial reemplaza tareas:', ops: ['Solo creativas','Repetitivas y manuales','Solo de gestión','Solo de diseño'], r: 1 },
+    { p: 'Un emprendimiento tecnológico (startup) se caracteriza por:', ops: ['Gran empresa establecida','Empresa nueva con modelo escalable e innovador','Solo empresas de hardware','Solo apps móviles'], r: 1 },
+    { p: 'El teletrabajo es:', ops: ['Trabajar solo de noche','Trabajar de forma remota usando tecnología','Trabajar en turnos','Solo para programadores'], r: 1 },
+    { p: 'La huella digital es:', ops: ['Tu firma física en documentos','El rastro de datos que dejas en internet','Tu contraseña maestra','Tu dirección IP fija'], r: 1 },
+    { p: 'Los derechos de autor protegen:', ops: ['Solo inventos físicos','Obras creativas e intelectuales','Solo marcas comerciales','Solo software comercial'], r: 1 },
+    { p: 'El pensamiento computacional incluye:', ops: ['Solo programar en Python','Descomponer problemas, patrones, abstracción y algoritmos','Solo usar Excel','Solo diseñar interfaces'], r: 1 },
+    { p: 'Una startup unicornio vale más de:', ops: ['100 millones','500 millones','1 billón (1 000 millones) de dólares','10 millones'], r: 2 },
+    { p: 'El trabajo en la era digital requiere:', ops: ['Solo habilidades físicas','Habilidades digitales, pensamiento crítico y adaptabilidad','Solo memorización','Solo inglés'], r: 1 },
+    { p: 'La economía circular en tecnología busca:', ops: ['Producir más rápido','Reducir residuos y reutilizar recursos tecnológicos','Aumentar costos','Solo exportar'], r: 1 },
+    { p: 'Los e-residuos (basura electrónica) son:', ops: ['Correos spam','Dispositivos electrónicos desechados','Archivos borrados','Errores de programación'], r: 1 },
+    { p: 'La transformación digital de una empresa implica:', ops: ['Solo comprar computadoras','Integrar tecnología digital en todos sus procesos','Solo tener redes sociales','Solo usar email'], r: 1 },
+    { p: 'Design Thinking es:', ops: ['Un lenguaje de programación','Metodología creativa centrada en el usuario para resolver problemas','Un tipo de base de datos','Un protocolo de red'], r: 1 },
+    { p: 'El freelancing tecnológico implica:', ops: ['Trabajar en una sola empresa siempre','Trabajar de forma independiente para varios clientes','Solo trabajar en el extranjero','Solo hacer diseño'], r: 1 },
+    { p: 'La privacidad digital implica:', ops: ['Compartir todo en redes','Controlar qué datos personales se comparten y con quién','Usar contraseñas cortas','Evitar usar internet'], r: 1 },
+    { p: 'STEM/STEAM en educación integra:', ops: ['Solo matemáticas','Ciencias, Tecnología, Ingeniería, Artes y Matemáticas','Solo tecnología','Solo ciencias'], r: 1 },
+  ],
+};
+
+// ══════════════════════════════════════════════════
+// DATOS AHORCADO por área y grado
+// ══════════════════════════════════════════════════
+const AHORCADO = {
+  matematica: {
+    1: [{w:'FRACCION',h:'Numerador dividido entre denominador'},{w:'PORCENTAJE',h:'De cada cien partes'},{w:'TRIANGULO',h:'Polígono de 3 lados'},{w:'PERIMETRO',h:'Suma de todos los lados'}],
+    2: [{w:'ALGEBRA',h:'Rama que usa letras para representar números'},{w:'ECUACION',h:'Igualdad con incógnitas'},{w:'POLINOMIO',h:'Suma de monomios'},{w:'PENDIENTE',h:'Inclinación de una recta'}],
+    3: [{w:'HIPOTENUSA',h:'Lado mayor del triángulo rectángulo'},{w:'PITAGORAS',h:'c²=a²+b²'},{w:'TRIGONOMETRIA',h:'Estudio de ángulos y lados'},{w:'CIRCUNFERENCIA',h:'Lugar geométrico equidistante del centro'}],
+    4: [{w:'PROBABILIDAD',h:'Chance de que ocurra un evento'},{w:'ESTADISTICA',h:'Recolección y análisis de datos'},{w:'PARABOLA',h:'Curva de y=x²'},{w:'FUNCION',h:'Relación que asigna un único valor de salida'}],
+    5: [{w:'DERIVADA',h:'Razón de cambio instantáneo'},{w:'INTEGRAL',h:'Área bajo la curva'},{w:'DETERMINANTE',h:'Valor escalar de una matriz'},{w:'VECTORES',h:'Magnitudes con dirección y sentido'}],
+  },
+  ciencia: {
+    1: [{w:'FOTOSINTESIS',h:'Proceso por el que las plantas producen alimento'},{w:'MITOCONDRIA',h:'Central energética de la célula'},{w:'ECOSISTEMA',h:'Comunidad de seres vivos en su ambiente'},{w:'NUCLEO',h:'Organelo que controla la célula'}],
+    2: [{w:'ATOMO',h:'Unidad mínima de la materia'},{w:'ELECTRON',h:'Partícula de carga negativa'},{w:'ENLACE',h:'Unión entre átomos'},{w:'REACCION',h:'Proceso que transforma sustancias'}],
+    3: [{w:'VELOCIDAD',h:'Distancia dividida entre tiempo'},{w:'ACELERACION',h:'Cambio de velocidad en el tiempo'},{w:'GRAVEDAD',h:'Fuerza de atracción terrestre ≈9.8m/s²'},{w:'INERCIA',h:'Tendencia a mantener el estado de movimiento'}],
+    4: [{w:'ALCANO',h:'Hidrocarburo saturado CₙH₂ₙ₊₂'},{w:'ALQUENO',h:'Hidrocarburo con doble enlace'},{w:'ESTEQUIOMETRIA',h:'Cálculo de cantidades en reacciones'},{w:'REACTIVO',h:'Sustancia que participa en una reacción'}],
+    5: [{w:'RELATIVIDAD',h:'Teoría de Einstein E=mc²'},{w:'FISIONNUCLEAR',h:'División de núcleos pesados'},{w:'GALAXIA',h:'Sistema de millones de estrellas'},{w:'RADIOACTIVIDAD',h:'Emisión espontánea de partículas o energía'}],
+  },
+  historia: {
+    1: [{w:'DEMOCRACIA',h:'Sistema de gobierno nacido en Atenas'},{w:'MESOPOTAMIA',h:'Entre el Tigris y el Éufrates'},{w:'FEUDALISMO',h:'Sistema político-económico medieval'},{w:'PIRAMIDE',h:'Monumento funerario egipcio'}],
+    2: [{w:'TAHUANTINSUYO',h:'Imperio de los cuatro suyos'},{w:'MITA',h:'Trabajo forzado colonial'},{w:'VIRREINATO',h:'Organización colonial española'},{w:'ENCOMIENDA',h:'Sistema de trabajo indígena colonial'}],
+    3: [{w:'INDEPENDENCIA',h:'Ruptura con el dominio colonial'},{w:'AYACUCHO',h:'Batalla que consolidó la independencia'},{w:'SANMARTIN',h:'Proclamó la independencia peruana'},{w:'CAUDILLISMO',h:'Período de gobiernos militares inestables'}],
+    4: [{w:'REFORMAAGRARIA',h:'Redistribución de tierras de Velasco'},{w:'SENDERO',h:'Grupo terrorista peruano de los 80s'},{w:'CAUDILLO',h:'Líder militar que toma el poder'},{w:'GOLPE',h:'Toma del poder de forma no democrática'}],
+    5: [{w:'GLOBALIZACION',h:'Integración mundial de economías y culturas'},{w:'GUERRAFRIA',h:'Conflicto EE.UU.–URSS sin enfrentamiento directo'},{w:'ORGANIZACION',h:'Ejemplo: ONU, OEA'},{w:'DEMOCRACIA',h:'Sistema de gobierno elegido por el pueblo'}],
+  },
+  comunicacion: {
+    1: [{w:'METAFORA',h:'Comparación sin usar "como"'},{w:'PERSONIFICACION',h:'Dar cualidades humanas a objetos'},{w:'HIPERBOLE',h:'Exageración literaria'},{w:'SINONIMO',h:'Palabra con significado similar'}],
+    2: [{w:'NARRATIVO',h:'Género que cuenta historias'},{w:'DRAMATICO',h:'Género para representar en escena'},{w:'LIRICO',h:'Género que expresa sentimientos'},{w:'CESARVALLEJO',h:'Autor de Trilce'}],
+    3: [{w:'SUSTANTIVO',h:'Palabra que nombra personas o cosas'},{w:'ADVERBIO',h:'Modifica al verbo'},{w:'PREDICADO',h:'Lo que se dice del sujeto'},{w:'MORFEMA',h:'Unidad mínima con significado'}],
+    4: [{w:'ARGUMENTO',h:'Razón que apoya una tesis'},{w:'ENSAYO',h:'Texto en prosa con tesis propia'},{w:'ANAFORA',h:'Repetición al inicio del verso'},{w:'PROSUMIDOR',h:'Quien produce y consume contenido'}],
+    5: [{w:'AUDIOVISUAL',h:'Combina imagen y sonido'},{w:'FAKENEWS',h:'Noticias falsas o manipuladas'},{w:'CIBERACOSO',h:'Acoso mediante plataformas digitales'},{w:'INTERTEXTUALIDAD',h:'Referencias a otros textos'}],
+  },
+  ingles: {
+    1: [{w:'GREETINGS',h:'Saludos en inglés'},{w:'ALPHABET',h:'Las 26 letras del inglés'},{w:'COLORS',h:'Red, blue, green...'},{w:'NUMBERS',h:'One, two, three...'}],
+    2: [{w:'ROUTINE',h:'What you do every day'},{w:'FREQUENCY',h:'Always, sometimes, never...'},{w:'PRESENT',h:'The tense for habits'},{w:'IRREGULAR',h:'Verbs that change form in past'}],
+    3: [{w:'YESTERDAY',h:'El día de ayer'},{w:'IRREGULAR',h:'Verbos que no siguen la regla de +ed'},{w:'PASTSIMPLE',h:'Tiempo verbal para acciones pasadas'},{w:'IRREGULAR',h:'go→went, eat→ate'}],
+    4: [{w:'MODAL',h:'Can, should, must, will...'},{w:'CONDITIONAL',h:'If you study, you will pass'},{w:'OBLIGATION',h:'Must expresa esto'},{w:'PERMISSION',h:'May / can para pedirla'}],
+    5: [{w:'PASSIVE',h:'The book was written by...'},{w:'PERFECT',h:'Have + past participle'},{w:'RELATIVE',h:'Who, which, where clause'},{w:'SINCE',h:'Used with a specific start time'}],
+  },
+  tecnologia: {
+    1: [{w:'HARDWARE',h:'Componentes físicos del computador'},{w:'SOFTWARE',h:'Programas e instrucciones'},{w:'TECLADO',h:'Dispositivo de entrada de texto'},{w:'MONITOR',h:'Dispositivo de salida visual'}],
+    2: [{w:'ALGORITMO',h:'Secuencia de pasos para resolver un problema'},{w:'PHISHING',h:'Robo de datos mediante engaño'},{w:'ANTIVIRUS',h:'Protege contra malware'},{w:'NUBE',h:'Almacenamiento remoto por internet'}],
+    3: [{w:'VARIABLE',h:'Almacena un dato que puede cambiar'},{w:'FUNCION',h:'Bloque reutilizable de código'},{w:'DEBUGGING',h:'Encontrar y corregir errores'},{w:'NAVEGADOR',h:'Chrome, Firefox, Edge...'}],
+    4: [{w:'BLOCKCHAIN',h:'Registro distribuido e inmutable'},{w:'MACHINELEARNING',h:'Máquinas que aprenden de datos'},{w:'CIBERSEGURIDAD',h:'Protección de sistemas digitales'},{w:'STARTUP',h:'Empresa nueva e innovadora escalable'}],
+    5: [{w:'TELETRABAJO',h:'Trabajar de forma remota con tecnología'},{w:'HUELLEDIGITAL',h:'Rastro de datos en internet'},{w:'AUTOMATIZACION',h:'Usar máquinas para tareas repetitivas'},{w:'EMPRENDIMIENTO',h:'Crear un negocio propio innovador'}],
+  },
+};
+
+// ══════════════════════════════════════════════════
+// DATOS RELACIONA COLUMNAS por área y grado
+// ══════════════════════════════════════════════════
+const RELACIONA = {
+  matematica: {
+    1: { pares: [['MCM','Múltiplo Común Menor'],['MCD','Máximo Común Divisor'],['Numerador','Parte superior de la fracción'],['Porcentaje','De cada 100 partes'],['Valor absoluto','Distancia al cero'],['Perímetro','Suma de todos los lados']] },
+    2: { pares: [['Ecuación','Igualdad con incógnita'],['Monomio','Un solo término algebraico'],['Polinomio','Suma de monomios'],['Pendiente','Inclinación de una recta'],['Factorizar','Descomponer en factores'],['Binomio','Dos términos algebraicos']] },
+    3: { pares: [['Hipotenusa','Lado mayor del triángulo rectángulo'],['Seno','Opuesto/Hipotenusa'],['Coseno','Adyacente/Hipotenusa'],['Tangente','Opuesto/Adyacente'],['Apotema','Distancia del centro al lado'],['Pitágoras','c²=a²+b²']] },
+    4: { pares: [['Media','Suma÷cantidad'],['Mediana','Valor central'],['Moda','Valor más frecuente'],['Probabilidad','Casos favorables÷posibles'],['Dominio','Valores de entrada de una función'],['Rango','Valores de salida de una función']] },
+    5: { pares: [['Derivada','Razón de cambio instantáneo'],['Integral','Área bajo la curva'],['Límite','Valor al que se aproxima una función'],['Vector','Tiene magnitud y dirección'],['Determinante','Valor escalar de una matriz'],['Punto crítico','Donde la derivada es cero']] },
+  },
+  ciencia: {
+    1: { pares: [['Núcleo','Controla la célula'],['Mitocondria','Produce energía ATP'],['Ribosoma','Sintetiza proteínas'],['Vacuola','Almacena agua y nutrientes'],['Cloroplasto','Realiza la fotosíntesis'],['Membrana','Regula el paso de sustancias']] },
+    2: { pares: [['Protón','Carga positiva en el núcleo'],['Electrón','Carga negativa'],['Neutrón','Sin carga eléctrica'],['Enlace iónico','Transferencia de electrones'],['pH 7','Neutro'],['Tabla periódica','Mendeleiev']] },
+    3: { pares: [['1ª Ley Newton','Inercia'],['2ª Ley Newton','F=ma'],['3ª Ley Newton','Acción y reacción'],['Ec cinética','½mv²'],['Ep gravitatoria','mgh'],['Trabajo','F×d']] },
+    4: { pares: [['Alcano','CₙH₂ₙ₊₂'],['Alqueno','CₙH₂ₙ'],['Alquino','CₙH₂ₙ₋₂'],['Grupo -OH','Alcohol'],['Grupo -COOH','Ácido carboxílico'],['Grupo -CHO','Aldehído']] },
+    5: { pares: [['E=mc²','Equivalencia masa-energía'],['Fisión','Divide núcleos pesados'],['Fusión','Une núcleos ligeros'],['Big Bang','Origen del universo'],['Año luz','Medida de distancia'],['Vía Láctea','Nuestra galaxia']] },
+  },
+  historia: {
+    1: { pares: [['Nilo','Río de Egipto'],['Atenas','Cuna de la democracia'],['Mesopotamia','Entre Tigris y Éufrates'],['Feudalismo','Sistema medieval'],['Pirámides','Monumentos funerarios egipcios'],['Aristóteles','Maestro de Alejandro Magno']] },
+    2: { pares: [['Manco Cápac','Primer inca'],['Pachacútec','Inca que más expandió el Imperio'],['Atahualpa','Último inca'],['Cusco','Capital del Imperio Inca'],['Mita','Trabajo forzado colonial'],['Quipus','Sistema de registro inca']] },
+    3: { pares: [['San Martín','Proclamó la independencia peruana'],['Simón Bolívar','Libertador de Sudamérica'],['Ayacucho','Última batalla de la independencia'],['1821','Año de la independencia peruana'],['Túpac Amaru II','Rebelión de 1780'],['Ramón Castilla','Abolió la esclavitud']] },
+    4: { pares: [['APRA','Fundado en 1924'],['Velasco','Reforma Agraria 1969'],['Fujimori','Capturó a Guzmán'],['Sendero Luminoso','Inició en 1980'],['CVR','Comisión de la Verdad'],['Oncenio','Gobierno de Leguía']] },
+    5: { pares: [['1945','Fundación ONU'],['1989','Caída del Muro de Berlín'],['1991','Disolución URSS'],['Guerra Fría','EE.UU. vs URSS'],['Plan Marshall','Ayuda económica para Europa'],['OEA','Organización de Estados Americanos']] },
+  },
+  comunicacion: {
+    1: { pares: [['Símil','Comparación usando "como"'],['Metáfora','Comparación directa sin "como"'],['Hipérbole','Exageración'],['Personificación','Dar atributos humanos a objetos'],['Narrativo','Texto que cuenta una historia'],['Conector de adición','"Además"']] },
+    2: { pares: [['César Vallejo','Trilce'],['Ricardo Palma','Tradiciones Peruanas'],['Vargas Llosa','La ciudad y los perros'],['Arguedas','Los ríos profundos'],['Género lírico','Expresa sentimientos en verso'],['Género dramático','Para representar en escena']] },
+    3: { pares: [['Sustantivo','Nombra personas o cosas'],['Adjetivo','Califica al sustantivo'],['Verbo','Expresa acción o estado'],['Adverbio','Modifica al verbo'],['Preposición','Relaciona palabras'],['Sujeto','Realiza la acción']] },
+    4: { pares: [['Tesis','Posición central del ensayo'],['Argumento','Razón que apoya la tesis'],['Anáfora','Repetición al inicio del verso'],['Ironía','Dice lo contrario de lo que piensa'],['Eslogan','Frase concisa y memorable'],['Ensayo','Texto en prosa con tesis propia']] },
+    5: { pares: [['Plano general','Muestra cuerpo y entorno'],['Primer plano','Solo el rostro'],['Contrapicado','Cámara desde abajo'],['Fake news','Noticias falsas'],['Ciberacoso','Acoso digital'],['Prosumidor','Produce y consume contenido']] },
+  },
+  ingles: {
+    1: { pares: [['Red','Rojo'],['Blue','Azul'],['Book','Libro'],['Happy','Feliz'],['Big','Grande'],['Hello','Hola']] },
+    2: { pares: [['Always','Siempre'],['Never','Nunca'],['Sometimes','A veces'],['go → went','Pasado de ir'],['eat → ate','Pasado de comer'],['have → had','Pasado de tener']] },
+    3: { pares: [['Yesterday','Ayer'],['see → saw','Pasado de ver'],['buy → bought','Pasado de comprar'],['make → made','Pasado de hacer'],['speak → spoke','Pasado de hablar'],['come → came','Pasado de venir']] },
+    4: { pares: [['Can','Habilidad'],['Should','Consejo'],['Must','Obligación fuerte'],['Will','Futuro espontáneo'],['Going to','Plan decidido'],['Might','Posibilidad']] },
+    5: { pares: [['Have + pp','Present perfect'],['Was/were + pp','Pasiva pasado'],['Who','Relativo para personas'],['Which','Relativo para cosas'],['Since','Desde (fecha)'],['For','Durante (duración)']] },
+  },
+  tecnologia: {
+    1: { pares: [['Hardware','Componentes físicos'],['Software','Programas'],['CPU','Procesa instrucciones'],['RAM','Memoria temporal'],['Monitor','Dispositivo de salida'],['Teclado','Dispositivo de entrada']] },
+    2: { pares: [['Algoritmo','Secuencia de pasos'],['Antivirus','Detecta malware'],['Phishing','Robo de datos por engaño'],['Nube','Almacenamiento remoto'],['LAN','Red de área local'],['HTML','Lenguaje de marcado web']] },
+    3: { pares: [['Variable','Dato que puede cambiar'],['Función','Bloque reutilizable'],['Bucle for','Repite N veces'],['If/else','Estructura condicional'],['Python','Lenguaje de programación'],['Debugging','Corregir errores']] },
+    4: { pares: [['IA','Imita procesos cognitivos humanos'],['Machine Learning','Máquinas que aprenden'],['IoT','Objetos conectados a internet'],['Blockchain','Registro distribuido'],['Big Data','Grandes volúmenes de datos'],['UX','Experiencia del usuario']] },
+    5: { pares: [['Startup','Empresa nueva escalable'],['Teletrabajo','Trabajo remoto'],['Automatización','Máquinas para tareas repetitivas'],['Design Thinking','Metodología centrada en el usuario'],['STEAM','Ciencias+Tecnología+Arte+Matemáticas'],['Huella digital','Rastro de datos en internet']] },
+  },
+};
+
+// ══════════════════════════════════════════════════
+// DATOS MEMORIA por área y grado
+// ══════════════════════════════════════════════════
+const MEMORIA_DATA = {
+  ciencia: {
+    1: [['Fotosíntesis','Plantas→glucosa+O₂'],['Célula','Unidad básica de vida'],['Núcleo','Controla la célula'],['Mitocondria','Produce ATP'],['ADN','Material genético'],['Ecosistema','Seres vivos+ambiente'],['Bacteria','Organismo procariota'],['Membrana','Regula el paso de sustancias']],
+    2: [['Protón','Carga +'],['Electrón','Carga −'],['pH ácido','<7'],['pH básico','>7'],['H₂O','Fórmula del agua'],['Tabla periódica','Mendeleiev'],['Enlace iónico','Transferencia e⁻'],['Neutrón','Sin carga']],
+    3: [['F=ma','2ª Ley Newton'],['Inercia','1ª Ley Newton'],['Ec=½mv²','Energía cinética'],['Ep=mgh','Energía potencial'],['W=F×d','Trabajo'],['v=d/t','Velocidad'],['a=(v-v₀)/t','Aceleración'],['P=F/A','Presión']],
+    4: [['Alcano','CₙH₂ₙ₊₂'],['Alqueno','CₙH₂ₙ'],['Alquino','CₙH₂ₙ₋₂'],['-OH','Alcohol'],['-COOH','Ác. carboxílico'],['Mol','6.022×10²³'],['Combustión','CO₂+H₂O'],['Estequiometría','Calcula cantidades']],
+    5: [['E=mc²','Einstein'],['Big Bang','Origen universo'],['Fisión','Divide núcleos'],['Fusión','Une núcleos'],['Vía Láctea','Nuestra galaxia'],['Año luz','Distancia'],['Radioactividad','Emisión espontánea'],['Kepler','Leyes orbitales']],
+  },
+  comunicacion: {
+    1: [['Metáfora','Sin "como"'],['Símil','Con "como"'],['Hipérbole','Exageración'],['Personificación','Da vida a objetos'],['Narrativo','Cuenta historias'],['Descriptivo','Describe características'],['Argumentativo','Persuade'],['Expositivo','Informa objetivamente']],
+    2: [['Vallejo','Trilce'],['Palma','Tradiciones Peruanas'],['Vargas Llosa','Ciudad y los perros'],['Arguedas','Ríos profundos'],['Dramático','Para escena'],['Lírico','En verso'],['Narrativo','Cuenta historias'],['Anáfora','Repetición al inicio']],
+    3: [['Sustantivo','Nombra'],['Adjetivo','Califica'],['Verbo','Acción'],['Adverbio','Modifica verbo'],['Preposición','Relaciona'],['Sujeto','Realiza acción'],['Predicado','Lo que se dice'],['Oración simple','Un verbo']],
+    4: [['Tesis','Posición central'],['Argumento','Apoya tesis'],['Ironía','Dice lo contrario'],['Anáfora','Repetición inicio'],['Ensayo','Prosa+tesis'],['Eslogan','Frase memorable'],['Contraargumento','Refuta objeciones'],['Multimodal','Texto+imagen+audio']],
+    5: [['Plano general','Cuerpo+entorno'],['Primer plano','Solo rostro'],['Contrapicado','Desde abajo'],['Picado','Desde arriba'],['Fake news','Noticias falsas'],['Ciberacoso','Acoso digital'],['Prosumidor','Produce y consume'],['Fact-checking','Verificar información']],
+  },
+  tecnologia: {
+    1: [['Hardware','Físico'],['Software','Programas'],['CPU','Procesa'],['RAM','Temporal'],['HDD','Almacena'],['Monitor','Salida visual'],['Teclado','Entrada'],['USB','Universal Serial Bus']],
+    2: [['Algoritmo','Pasos ordenados'],['Antivirus','Anti-malware'],['Phishing','Engaño digital'],['Nube','Remoto'],['LAN','Red local'],['Wi-Fi','Inalámbrico'],['HTTPS','Seguro'],['HTML','Web']],
+    3: [['Variable','Dato cambiante'],['Función','Reutilizable'],['Bucle','Repite'],['If/else','Decisión'],['Python','Lenguaje'],['CSS','Estilos web'],['Debugging','Corregir'],['API','Comunicación apps']],
+    4: [['IA','Imita cognición'],['ML','Aprende datos'],['IoT','Cosas conectadas'],['Blockchain','Distribuido'],['Big Data','Muchos datos'],['UX','Experiencia usuario'],['AR','Realidad aumentada'],['SQL','Bases de datos']],
+    5: [['Startup','Empresa nueva'],['Teletrabajo','Trabajo remoto'],['Automatización','Máquinas'],['Design Thinking','Centrado en usuario'],['STEAM','Integra disciplinas'],['Huella digital','Rastro online'],['E-residuo','Basura electrónica'],['Freelance','Independiente']],
+  },
+};
+
+// ══════════════════════════════════════════════════
 // RENDER PRINCIPAL — se ejecuta al cargar cada página
 // ══════════════════════════════════════════════════
 const root = document.getElementById('areaRoot');
