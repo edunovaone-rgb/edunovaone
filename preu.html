@@ -670,7 +670,14 @@
     }
 
     onAuthStateChanged(auth, async (user) => {
+      const stateLoading = document.getElementById('stateLoading');
+      const stateLocked  = document.getElementById('stateLocked');
+
       if (!user) {
+        // Sin sesión: mostrar paywall con CTA de login
+        stateLoading.style.display = 'none';
+        stateLocked.style.display  = 'flex';
+        overlay.classList.remove('loading');
         overlay.classList.add('show');
         document.querySelector('.paywall-cta').textContent = '🔑 Iniciar sesión';
         document.querySelector('.paywall-cta').href = 'login.html';
@@ -683,12 +690,23 @@
         const plan = (data.plan || 'free').toLowerCase().trim();
 
         if (PLANES_PAGO.includes(plan)) {
+          // Acceso concedido: ocultar overlay completamente
+          overlay.classList.remove('show');
+          overlay.classList.remove('loading');
           concederAcceso(data, plan);
         } else {
+          // Sin plan: mostrar paywall de upgrade
+          stateLoading.style.display = 'none';
+          stateLocked.style.display  = 'flex';
+          overlay.classList.remove('loading');
           overlay.classList.add('show');
         }
       } catch (err) {
         console.error('Error leyendo plan:', err);
+        // En caso de error mostrar el paywall igual
+        stateLoading.style.display = 'none';
+        stateLocked.style.display  = 'flex';
+        overlay.classList.remove('loading');
         overlay.classList.add('show');
       }
     });
