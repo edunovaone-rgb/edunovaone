@@ -572,8 +572,8 @@
 
         // Stats
         document.getElementById('statTotal').textContent   = users.length;
-        document.getElementById('statPremium').textContent = users.filter(u => u.plan === 'premium').length;
-        document.getElementById('statPreu').textContent    = users.filter(u => u.plan === 'preu').length;
+        document.getElementById('statPremium').textContent = users.filter(u => u.plan === 'plus' || u.plan === 'elite').length;
+        document.getElementById('statPreu').textContent    = users.filter(u => u.plan === 'esencial').length;
         document.getElementById('statFree').textContent    = users.filter(u => !u.plan || u.plan === 'free').length;
 
         if (!users.length) {
