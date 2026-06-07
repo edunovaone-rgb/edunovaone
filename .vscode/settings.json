@@ -1,3 +1,11 @@
 {
-    "html.autoClosingTags": false
+    "html.autoClosingTags": false,
+    "kiroAgent.trustedCommands": [
+        "node",
+        "npm *",
+        "npx *",
+        "node *",
+        "cmd *",
+        "cd *"
+    ]
 }
