@@ -24,14 +24,27 @@
 .grade-btn-juego.active{background:linear-gradient(135deg,#7c3aed,#2563eb);border-color:transparent;color:#fff;font-weight:700}
 
 /* ── Game cards grid ── */
-.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin-top:1rem}
-.game-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.75rem;padding:1.4rem;display:flex;flex-direction:column;gap:.75rem;box-shadow:0 16px 32px rgba(15,23,42,0.05);transition:transform .2s,box-shadow .2s}
-.game-card:hover{transform:translateY(-3px);box-shadow:0 24px 48px rgba(15,23,42,0.1)}
-.game-icon-card{width:3rem;height:3rem;border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
-.game-card h4{margin:0;font-size:1rem;color:var(--accent-strong)}
-.game-card p{margin:0;font-size:.88rem;color:var(--text-muted);line-height:1.6;flex:1}
-.game-meta{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;color:var(--text-muted)}
-.game-badge{padding:.3rem .75rem;border-radius:999px;background:rgba(99,102,241,0.08);color:var(--accent-strong);font-weight:700;font-size:.8rem}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.game-card{
+  background:#fff;border:1px solid rgba(59,130,246,0.1);
+  border-radius:1.75rem;padding:1.4rem;
+  display:flex;flex-direction:column;gap:.75rem;
+  box-shadow:0 8px 24px rgba(15,23,42,0.05);
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;
+  animation:fadeInUp .35s ease both;
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.game-card:nth-child(1){animation-delay:.05s}
+.game-card:nth-child(2){animation-delay:.1s}
+.game-card:nth-child(3){animation-delay:.15s}
+.game-card:nth-child(4){animation-delay:.2s}
+.game-card:nth-child(5){animation-delay:.25s}
+.game-card:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 20px 48px rgba(15,23,42,0.12)}
+.game-icon-card{width:3.2rem;height:3.2rem;border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.game-card h4{margin:0;font-size:1rem;color:var(--accent-strong);font-weight:800}
+.game-card p{margin:0;font-size:.85rem;color:var(--text-muted);line-height:1.6;flex:1}
+.game-meta{display:flex;align-items:center;justify-content:space-between;font-size:.8rem;color:var(--text-muted)}
+.game-badge{padding:.3rem .75rem;border-radius:999px;background:rgba(99,102,241,0.08);color:var(--accent-strong);font-weight:700;font-size:.78rem}
 .grade-placeholder{text-align:center;padding:3rem 1rem;color:var(--text-muted);font-size:.95rem}
 
 /* ── Modal ── */
