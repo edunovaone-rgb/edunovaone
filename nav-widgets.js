@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 import {
   getFirestore,
   collection, query, where, orderBy, limit,
-  getDocs, updateDoc, onSnapshot
+  getDocs, updateDoc, doc, getDoc, onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const _cfg = {
