@@ -1534,3 +1534,40 @@ a {
 @media (max-width: 500px) {
   .uni-nav-actions .button { font-size: 0.82rem; padding: 0.6rem 1rem; }
 }
+
+/* ══════════════════════════════════════
+   BOTÓN "BUSCAR" — responsive adaptativo
+   Móvil (≤480px): solo ícono 🔍
+   Tablet/otros  : texto "Buscar" visible
+   PC/laptop (≥1024px): overflow corregido con flex adecuado
+══════════════════════════════════════ */
+
+/* PC/laptop: asegurar que el search-field no corte el botón */
+@media (min-width: 1024px) {
+  .search-field {
+    overflow: visible;
+  }
+}
+
+/* Móvil: ocultar texto del botón buscar, mostrar solo ícono */
+@media (max-width: 480px) {
+  .search-field .button,
+  .search-field button {
+    font-size: 0;           /* oculta el texto */
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+
+  .search-field .button::after,
+  .search-field button::after {
+    content: "🔍";
+    font-size: 1.1rem;
+    display: block;
+  }
+}
