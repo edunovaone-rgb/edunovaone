@@ -1585,8 +1585,8 @@ a {
   background: #f1f5f9;
   border: 1.5px solid transparent;
   border-radius: 999px;
-  overflow: visible;          /* el dropdown necesita salir del contenedor */
-  width: 2.4rem;              /* colapsada: solo el ícono */
+  overflow: hidden;           /* colapsada: mantiene forma circular */
+  width: 2.4rem;
   transition: width 0.3s cubic-bezier(.4,0,.2,1),
               border-color 0.2s,
               background 0.2s;
@@ -1596,6 +1596,7 @@ a {
   border-color: rgba(99, 102, 241, 0.35);
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(99,102,241,0.08);
+  overflow: visible;          /* expandida: el dropdown puede salir */
 }
 
 .nav-search-btn {
