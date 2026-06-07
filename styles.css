@@ -1581,26 +1581,29 @@ a {
 
 /* ══════════════════════════════════════
    BÚSQUEDA — barra expandible en navbar
+   Expande hacia la izquierda (hacia el logo)
 ══════════════════════════════════════ */
 .nav-search-bar {
   display: flex;
   align-items: center;
+  flex-direction: row-reverse;   /* botón a la derecha, input crece hacia la izquierda */
   gap: 0;
-  background: #f1f5f9;
+  background: rgba(59,130,246,0.1);
   border: 1.5px solid transparent;
   border-radius: 999px;
-  overflow: hidden;           /* colapsada: mantiene forma circular */
+  overflow: hidden;
   width: 2.4rem;
-  transition: width 0.3s cubic-bezier(.4,0,.2,1),
+  transition: width 0.35s cubic-bezier(.4,0,.2,1),
+              background 0.2s,
               border-color 0.2s,
-              background 0.2s;
+              box-shadow 0.2s;
 }
 .nav-search-bar.expanded {
-  width: min(280px, 50vw);
-  border-color: rgba(99, 102, 241, 0.35);
+  width: min(320px, 45vw);
   background: #ffffff;
+  border-color: rgba(99,102,241,0.35);
   box-shadow: 0 0 0 3px rgba(99,102,241,0.08);
-  overflow: visible;          /* expandida: el dropdown puede salir */
+  overflow: visible;
 }
 
 .nav-search-btn {
@@ -1619,7 +1622,7 @@ a {
   transition: background 0.2s;
   flex-shrink: 0;
 }
-.nav-search-btn:hover { background: rgba(99,102,241,0.1); }
+.nav-search-btn:hover { background: rgba(99,102,241,0.12); }
 
 #navSearchInput {
   flex: 1;
@@ -1632,41 +1635,42 @@ a {
   padding: 0;
   width: 0;
   opacity: 0;
-  transition: opacity 0.2s, padding 0.2s;
+  transition: opacity 0.25s, padding 0.25s;
   min-width: 0;
+  direction: ltr;              /* texto siempre de izq a der */
 }
 .nav-search-bar.expanded #navSearchInput {
   opacity: 1;
-  padding: 0 0.5rem 0 0;
+  padding: 0 0 0 0.75rem;    /* padding a la izquierda (es el inicio del input) */
   width: auto;
 }
 #navSearchInput::placeholder { color: var(--text-muted); }
 
 .nav-search-clear {
-  width: 1.6rem;
-  height: 1.6rem;
-  min-width: 1.6rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.5rem;
   border: none;
   background: rgba(148,163,184,0.2);
   border-radius: 50%;
   color: var(--text-muted);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   cursor: pointer;
   display: none;
   align-items: center;
   justify-content: center;
-  margin-right: 0.4rem;
+  margin-left: 0.4rem;       /* margen a la izquierda (lado del input) */
   flex-shrink: 0;
 }
 .nav-search-bar.expanded .nav-search-clear { display: flex; }
 .nav-search-clear:hover { background: rgba(148,163,184,0.4); }
 
-/* Dropdown de sugerencias */
+/* Dropdown — anclado a la derecha del contenedor */
 .nav-search-dropdown {
   display: none;
   position: absolute;
   top: calc(100% + 0.5rem);
-  right: 0;
+  right: 0;                    /* alineado al borde derecho (lado del botón) */
   width: min(340px, calc(100vw - 2rem));
   background: #ffffff;
   border: 1px solid rgba(99,102,241,0.12);
@@ -1675,6 +1679,7 @@ a {
   overflow: hidden;
   z-index: 9999;
   animation: gsSlideIn 0.15s ease;
+  direction: ltr;              /* contenido del dropdown siempre ltr */
 }
 .nav-search-bar.expanded .nav-search-dropdown { display: block; }
 .nav-search-dropdown-inner {
