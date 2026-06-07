@@ -344,7 +344,6 @@ function buildUserPill() {
     <div class="nav-user-icon" id="navUserIcon">👤</div>
     <div class="nav-user-label" id="navUserLabel">
       <strong id="navUserName">—</strong>
-      <span id="navUserSub"></span>
     </div>
     <div class="nav-user-dropdown" id="navUserDropdown">
       <a href="perfil.html" id="navDropPerfil">👤 Mi Perfil</a>
