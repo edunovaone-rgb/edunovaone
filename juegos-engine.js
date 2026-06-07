@@ -664,25 +664,43 @@ const JUEGOS_POR_AREA = {
     { id:'quiz',      icon:'🎯', titulo:'Quiz de Matemática',     desc:'10 preguntas de aritmética, álgebra, geometría y más. 15 seg. por pregunta.',    meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
     { id:'formulas',  icon:'📝', titulo:'Completa la Fórmula',    desc:'Rellena los espacios en blanco de las fórmulas del grado seleccionado.',         meta:'4 fórmulas',         badge:'Fórmulas',   pts:'+8 pts/correcta' },
     { id:'quiz2',     icon:'⚡', titulo:'Quiz Relámpago',         desc:'5 preguntas aleatorias contra el reloj. ¡Solo 8 segundos por pregunta!',          meta:'5 preguntas · 8s',   badge:'Rápido',     pts:'+15 pts/correcta' },
+    { id:'relaciona', icon:'🔗', titulo:'Relaciona Conceptos',    desc:'Une cada término matemático con su definición correcta arrastrando.',            meta:'6 pares',            badge:'Relacionar', pts:'+5 pts/par' },
+    { id:'ahorcado',  icon:'🔤', titulo:'Ahorcado Matemático',    desc:'Adivina el término matemático letra por letra antes de que se acabe el intento.',meta:'6 intentos',         badge:'Ahorcado',   pts:'+25 pts' },
   ],
   ciencia: [
     { id:'quiz',      icon:'🎯', titulo:'Quiz de Ciencias',       desc:'10 preguntas de biología, química, física o astronomía según tu grado.',          meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
     { id:'vf',        icon:'✅', titulo:'Verdadero o Falso',      desc:'Decide rápido si cada afirmación científica es verdadera o falsa.',               meta:'5 enunciados',       badge:'V/F',        pts:'+12 pts/correcta' },
     { id:'ordenar',   icon:'🔀', titulo:'Ordena los Pasos',       desc:'Arrastra y ordena correctamente los pasos de un proceso científico.',             meta:'4 elementos',        badge:'Ordenar',    pts:'+30 pts' },
+    { id:'memoria',   icon:'🧠', titulo:'Juego de Memoria',       desc:'Encuentra los pares de conceptos científicos. ¡Entrena tu memoria!',             meta:'8 pares',            badge:'Memoria',    pts:'+5 pts/par' },
+    { id:'ahorcado',  icon:'🔤', titulo:'Ahorcado Científico',    desc:'Adivina el término de ciencias. Cada letra cuenta. ¡6 intentos!',               meta:'6 intentos',         badge:'Ahorcado',   pts:'+25 pts' },
   ],
   historia: [
     { id:'quiz',      icon:'🎯', titulo:'Trivia de Historia',     desc:'10 preguntas sobre eventos, personajes y fechas clave del Perú y el mundo.',      meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
     { id:'vf',        icon:'✅', titulo:'Verdadero o Falso',      desc:'Afirmaciones históricas: ¿cierto o falso? Demuestra que sabes tu historia.',      meta:'5 enunciados',       badge:'V/F',        pts:'+12 pts/correcta' },
     { id:'ordenar',   icon:'📅', titulo:'Línea de Tiempo',        desc:'Ordena cronológicamente los eventos más importantes del período seleccionado.',    meta:'4 eventos',          badge:'Ordenar',    pts:'+30 pts' },
+    { id:'relaciona', icon:'🔗', titulo:'Relaciona Personajes',   desc:'Une cada personaje histórico con su hecho más importante.',                       meta:'6 pares',            badge:'Relacionar', pts:'+5 pts/par' },
+    { id:'ahorcado',  icon:'🔤', titulo:'Ahorcado Histórico',     desc:'Adivina el personaje o evento histórico letra por letra.',                        meta:'6 intentos',         badge:'Ahorcado',   pts:'+25 pts' },
   ],
   comunicacion: [
     { id:'quiz',      icon:'🎯', titulo:'Quiz de Comunicación',   desc:'10 preguntas sobre literatura, gramática, figuras literarias y comprensión.',     meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
     { id:'quiz2',     icon:'⚡', titulo:'Quiz Relámpago',         desc:'5 preguntas rápidas de gramática y ortografía. Solo 8 segundos cada una.',        meta:'5 preguntas · 8s',   badge:'Rápido',     pts:'+15 pts/correcta' },
+    { id:'relaciona', icon:'🔗', titulo:'Relaciona Figuras',      desc:'Une cada figura literaria con su ejemplo correcto.',                               meta:'6 pares',            badge:'Relacionar', pts:'+5 pts/par' },
+    { id:'ahorcado',  icon:'🔤', titulo:'Ahorcado Literario',     desc:'Adivina el término literario o autor famoso. ¡6 intentos!',                       meta:'6 intentos',         badge:'Ahorcado',   pts:'+25 pts' },
+    { id:'memoria',   icon:'🧠', titulo:'Memoria de Conceptos',   desc:'Encuentra los pares de términos y definiciones de comunicación.',                 meta:'8 pares',            badge:'Memoria',    pts:'+5 pts/par' },
   ],
   ingles: [
     { id:'quiz',      icon:'🎯', titulo:'Quiz de Inglés',         desc:'10 preguntas de gramática, verbos y vocabulario adaptadas a tu grado.',           meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
     { id:'flashcards',icon:'🃏', titulo:'Flashcards de Inglés',   desc:'Voltea las tarjetas para ver la traducción y un ejemplo de uso real.',            meta:'8 tarjetas',         badge:'Flashcards', pts:'+2 pts/tarjeta' },
     { id:'quiz2',     icon:'⚡', titulo:'Quiz Relámpago',         desc:'5 preguntas de inglés contra el reloj. ¡Solo 8 segundos cada una!',               meta:'5 preguntas · 8s',   badge:'Rápido',     pts:'+15 pts/correcta' },
+    { id:'relaciona', icon:'🔗', titulo:'Traduce y Relaciona',    desc:'Une cada palabra en inglés con su traducción al español.',                        meta:'6 pares',            badge:'Relacionar', pts:'+5 pts/par' },
+    { id:'ahorcado',  icon:'🔤', titulo:'Ahorcado en Inglés',     desc:'Adivina la palabra en inglés letra por letra. ¡Piensa en vocabulario del grado!', meta:'6 intentos',         badge:'Ahorcado',   pts:'+25 pts' },
+  ],
+  tecnologia: [
+    { id:'quiz',      icon:'🎯', titulo:'Quiz de Tecnología',     desc:'10 preguntas sobre tecnología, informática y educación para el trabajo.',         meta:'10 preguntas · 15s', badge:'Quiz',       pts:'+10 pts/correcta' },
+    { id:'quiz2',     icon:'⚡', titulo:'Quiz Relámpago',         desc:'5 preguntas tech contra el reloj. ¡Solo 8 segundos cada una!',                   meta:'5 preguntas · 8s',   badge:'Rápido',     pts:'+15 pts/correcta' },
+    { id:'relaciona', icon:'🔗', titulo:'Relaciona Conceptos Tech',desc:'Une cada término tecnológico con su definición.',                               meta:'6 pares',            badge:'Relacionar', pts:'+5 pts/par' },
+    { id:'ahorcado',  icon:'🔤', titulo:'Ahorcado Tech',          desc:'Adivina el término de tecnología e informática letra por letra.',                 meta:'6 intentos',         badge:'Ahorcado',   pts:'+25 pts' },
+    { id:'memoria',   icon:'🧠', titulo:'Memoria Tecnológica',    desc:'Encuentra los pares de conceptos tech. ¡Demuestra tu memoria digital!',          meta:'8 pares',            badge:'Memoria',    pts:'+5 pts/par' },
   ],
 };
 
