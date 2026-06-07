@@ -381,7 +381,6 @@ function updateUserPill(user, firestoreData) {
   const pill  = document.getElementById('navUserPill');
   const icon  = document.getElementById('navUserIcon');
   const name  = document.getElementById('navUserName');
-  const sub   = document.getElementById('navUserSub');
   const logout = document.getElementById('navDropLogout');
   if (!pill) return;
 
