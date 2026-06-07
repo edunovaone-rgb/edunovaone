@@ -7,20 +7,137 @@
   <title>EduNovaOne | Juegos</title>
   <link rel="stylesheet" href="styles.css"/>
   <style>
+    /* ══ Layout ══ */
     .juegos-grid{display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:1.75rem;align-items:start;margin-top:1.5rem}
     .juegos-sidebar{background:#fff;border:1px solid rgba(59,130,246,0.08);border-radius:2rem;padding:1.5rem;box-shadow:0 24px 50px rgba(15,23,42,0.06)}
-    .juegos-main{display:grid;gap:1.5rem}
-    .hero-juegos{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.05));border:1px solid rgba(99,102,241,0.14);border-radius:2rem;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
-    .hero-juegos h2{margin:0 0 .75rem;color:var(--accent-strong);font-size:clamp(1.3rem,2vw,1.9rem)}
-    .hero-juegos p{margin:0;color:var(--text-muted);line-height:1.7}
-    .areas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem}
-    .area-juego{background:#fff;border:1.5px solid rgba(99,102,241,0.12);border-radius:1.75rem;padding:1.6rem 1.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;text-align:center;text-decoration:none;box-shadow:0 8px 24px rgba(15,23,42,0.05);transition:transform .2s,box-shadow .2s,border-color .2s;cursor:pointer}
-    .area-juego:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(99,102,241,0.14);border-color:var(--accent)}
-    .area-juego-icon{width:3.5rem;height:3.5rem;border-radius:1.1rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
-    .area-juego strong{font-size:1rem;color:var(--accent-strong)}
-    .area-juego span{font-size:.82rem;color:var(--text-muted);line-height:1.4}
-    .area-juego .juego-count{font-size:.78rem;font-weight:700;padding:.25rem .75rem;border-radius:999px;background:rgba(99,102,241,0.08);color:var(--accent-strong);margin-top:.1rem}
-    @media(max-width:1080px){.juegos-grid{grid-template-columns:1fr}.hero-juegos{grid-template-columns:1fr}}
+    .juegos-main{display:grid;gap:1.75rem}
+
+    /* ══ Hero animado ══ */
+    .hero-juegos{
+      position:relative;overflow:hidden;
+      background:linear-gradient(135deg,#7c3aed 0%,#2563eb 50%,#0891b2 100%);
+      border-radius:2rem;padding:2.5rem 2rem;
+      display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;
+      box-shadow:0 24px 60px rgba(124,58,237,0.3);
+    }
+    .hero-juegos::before{
+      content:'';position:absolute;inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-juegos-copy{position:relative;z-index:1}
+    .hero-juegos-badge{
+      display:inline-flex;align-items:center;gap:.4rem;
+      background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.25);border-radius:999px;
+      padding:.3rem .85rem;font-size:.78rem;font-weight:700;color:#fff;
+      margin-bottom:.75rem;
+    }
+    .hero-juegos h2{margin:0 0 .6rem;color:#fff;font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:900;line-height:1.1}
+    .hero-juegos p{margin:0 0 1.25rem;color:rgba(255,255,255,0.85);line-height:1.7;font-size:.95rem}
+    .hero-stats{display:flex;gap:.75rem;flex-wrap:wrap}
+    .hero-stat{
+      background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.2);border-radius:1rem;
+      padding:.55rem 1rem;text-align:center;
+    }
+    .hero-stat strong{display:block;font-size:1.3rem;font-weight:900;color:#fff}
+    .hero-stat span{font-size:.72rem;color:rgba(255,255,255,0.75);font-weight:600}
+    .hero-juegos-img{position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
+    .hero-juegos-img img{width:140px;height:140px;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.2));animation:float 4s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    /* ══ Sección título ══ */
+    .section-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem}
+    .section-header h3{margin:0;font-size:1.05rem;font-weight:800;color:var(--text)}
+    .section-badge{padding:.25rem .75rem;border-radius:999px;background:rgba(99,102,241,0.1);color:var(--accent-strong);font-size:.78rem;font-weight:700}
+
+    /* ══ Cards de área ══ */
+    .areas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
+    .area-juego{
+      position:relative;overflow:hidden;
+      border-radius:1.75rem;padding:1.6rem 1.25rem 1.25rem;
+      display:flex;flex-direction:column;align-items:center;gap:.65rem;
+      text-align:center;text-decoration:none;
+      border:1.5px solid transparent;
+      transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;
+      cursor:pointer;
+    }
+    .area-juego::after{
+      content:'';position:absolute;inset:0;border-radius:1.75rem;
+      border:1.5px solid rgba(255,255,255,0.4);pointer-events:none;
+    }
+    .area-juego:hover{transform:translateY(-6px) scale(1.02)}
+    .area-mat { background:linear-gradient(135deg,#f3e8ff,#ede9fe); box-shadow:0 8px 24px rgba(124,58,237,0.15); }
+    .area-mat:hover { box-shadow:0 20px 48px rgba(124,58,237,0.28); }
+    .area-cie { background:linear-gradient(135deg,#d1fae5,#a7f3d0); box-shadow:0 8px 24px rgba(5,150,105,0.15); }
+    .area-cie:hover { box-shadow:0 20px 48px rgba(5,150,105,0.28); }
+    .area-his { background:linear-gradient(135deg,#fef3c7,#fde68a); box-shadow:0 8px 24px rgba(217,119,6,0.15); }
+    .area-his:hover { box-shadow:0 20px 48px rgba(217,119,6,0.28); }
+    .area-com { background:linear-gradient(135deg,#fee2e2,#fecaca); box-shadow:0 8px 24px rgba(220,38,38,0.15); }
+    .area-com:hover { box-shadow:0 20px 48px rgba(220,38,38,0.28); }
+    .area-ing { background:linear-gradient(135deg,#dbeafe,#bfdbfe); box-shadow:0 8px 24px rgba(37,99,235,0.15); }
+    .area-ing:hover { box-shadow:0 20px 48px rgba(37,99,235,0.28); }
+    .area-tec { background:linear-gradient(135deg,#e0e7ff,#c7d2fe); box-shadow:0 8px 24px rgba(99,102,241,0.15); }
+    .area-tec:hover { box-shadow:0 20px 48px rgba(99,102,241,0.28); }
+
+    .area-juego-icon{
+      width:4rem;height:4rem;border-radius:1.25rem;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.9rem;background:rgba(255,255,255,0.6);
+      box-shadow:0 4px 16px rgba(0,0,0,0.08);
+    }
+    .area-juego strong{font-size:.95rem;color:#1e1b4b;font-weight:800}
+    .area-juego span{font-size:.78rem;color:#4b5563;line-height:1.45}
+    .area-juego .juego-count{
+      font-size:.75rem;font-weight:700;padding:.2rem .7rem;border-radius:999px;
+      background:rgba(255,255,255,0.55);color:#374151;margin-top:.15rem;
+      display:flex;align-items:center;gap:.3rem;
+    }
+    .area-juego .juego-count::before{content:'🎮'}
+    .area-arrow{
+      margin-top:.25rem;width:1.8rem;height:1.8rem;border-radius:50%;
+      background:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;
+      font-size:.75rem;transition:transform .2s;
+    }
+    .area-juego:hover .area-arrow{transform:translateX(3px)}
+
+    /* ══ Tipos de juego chips ══ */
+    .game-types-row{display:flex;flex-wrap:wrap;gap:.5rem}
+    .game-type-chip{
+      display:flex;align-items:center;gap:.4rem;
+      padding:.45rem 1rem;border-radius:999px;
+      background:#fff;border:1.5px solid rgba(99,102,241,0.15);
+      font-size:.82rem;font-weight:700;color:var(--accent-strong);
+      box-shadow:0 2px 8px rgba(15,23,42,0.05);
+    }
+
+    /* ══ Feature cards ══ */
+    .features-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem}
+    .feat-card{
+      background:#fff;border:1px solid rgba(99,102,241,0.1);
+      border-radius:1.5rem;padding:1.25rem;
+      box-shadow:0 8px 24px rgba(15,23,42,0.04);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .feat-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(99,102,241,0.1)}
+    .feat-icon{width:2.5rem;height:2.5rem;border-radius:.85rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:.75rem}
+    .feat-card h4{margin:0 0 .35rem;color:var(--accent-strong);font-size:.92rem;font-weight:800}
+    .feat-card p{margin:0;color:var(--text-muted);font-size:.82rem;line-height:1.6}
+
+    /* ══ Puntos banner ══ */
+    .puntos-banner{
+      background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(37,99,235,0.04));
+      border:1px solid rgba(99,102,241,0.14);border-radius:1.75rem;
+      padding:1.25rem 1.5rem;display:flex;align-items:center;
+      justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    }
+    .puntos-left{display:flex;align-items:center;gap:.85rem}
+    .puntos-icon-wrap{width:3rem;height:3rem;border-radius:1rem;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+    .puntos-num{font-size:2rem;font-weight:900;color:var(--accent-strong);line-height:1}
+    .puntos-label{font-size:.78rem;color:var(--text-muted);font-weight:600}
+
+    @media(max-width:1080px){.juegos-grid{grid-template-columns:1fr}.hero-juegos{grid-template-columns:1fr}.hero-juegos-img{display:none}}
+    @media(max-width:640px){.areas-grid{grid-template-columns:1fr 1fr}.hero-juegos{padding:1.75rem 1.25rem}}
   </style>
 </head>
 <body>
@@ -43,6 +160,8 @@
 
 <main class="page-content">
   <div class="juegos-grid">
+
+    <!-- ── Sidebar ── -->
     <aside class="juegos-sidebar library-sidebar">
       <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebarCollapsible">
         <span class="nav-icon">🎮</span> Menú <span class="toggle-arrow">▼</span>
@@ -60,6 +179,23 @@
           <a href="comunidad.html"><span class="nav-icon">👥</span>Comunidad</a>
           <a href="perfil.html"><span class="nav-icon">👤</span>Mi Perfil</a>
         </nav>
+
+        <!-- Tipos de juego en sidebar -->
+        <div style="margin-top:1.25rem;padding:1rem;background:rgba(99,102,241,0.05);border-radius:1.25rem;border:1px solid rgba(99,102,241,0.12)">
+          <p style="margin:0 0 .6rem;font-size:.78rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em">Tipos de juego</p>
+          <div style="display:grid;gap:.35rem">
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">🎯 Quiz cronometrado</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">⚡ Quiz relámpago</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">✅ Verdadero / Falso</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">📅 Línea de tiempo</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">🃏 Flashcards</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">📝 Completa fórmulas</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">🔗 Relaciona columnas</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">🧠 Memoria</span>
+            <span style="font-size:.82rem;color:var(--accent-strong);font-weight:600">🔤 Ahorcado</span>
+          </div>
+        </div>
+
         <div class="sidebar-card" style="margin-top:1rem">
           <strong>🏆 Puntos hoy</strong>
           <p style="font-size:2rem;font-weight:900;color:var(--accent-strong);margin:.25rem 0 0" id="totalPuntos">0</p>
@@ -68,71 +204,143 @@
       </div>
     </aside>
 
+    <!-- ── Main ── -->
     <div class="juegos-main">
+
+      <!-- Hero -->
       <div class="hero-juegos">
-        <div>
-          <h2>🎮 Juegos educativos por área</h2>
-          <p>Elige tu área y luego selecciona el grado. Las preguntas, fórmulas y retos se adaptan exactamente a lo que estás estudiando.</p>
+        <div class="hero-juegos-copy">
+          <div class="hero-juegos-badge">🎮 Aprende jugando</div>
+          <h2>Juegos educativos<br>por área y grado</h2>
+          <p>6 áreas · 5 grados · 9 tipos de juego.<br>Las preguntas se adaptan exactamente a lo que estudias.</p>
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>6</strong><span>Áreas</span></div>
+            <div class="hero-stat"><strong>5</strong><span>Grados</span></div>
+            <div class="hero-stat"><strong>9</strong><span>Tipos de juego</span></div>
+            <div class="hero-stat"><strong>∞</strong><span>Puntos</span></div>
+          </div>
         </div>
-        <img src="assets/juegos.svg" alt="Juegos" style="width:130px;height:130px" loading="lazy"/>
+        <div class="hero-juegos-img">
+          <img src="assets/juegos.svg" alt="Juegos" loading="lazy"/>
+        </div>
       </div>
 
+      <!-- Áreas -->
       <div>
-        <h3 style="margin:0 0 1rem;font-size:1.05rem;font-weight:700;color:var(--text)">Elige tu área:</h3>
+        <div class="section-header">
+          <h3>Elige tu área</h3>
+          <span class="section-badge">6 disponibles</span>
+        </div>
         <div class="areas-grid">
-          <a href="juego-matematica.html" class="area-juego">
-            <div class="area-juego-icon" style="background:rgba(124,58,237,0.12)">📐</div>
+
+          <a href="juego-matematica.html" class="area-juego area-mat">
+            <div class="area-juego-icon">📐</div>
             <strong>Matemática</strong>
             <span>Aritmética, álgebra, geometría, funciones y cálculo</span>
             <span class="juego-count">5 juegos por grado</span>
+            <div class="area-arrow">→</div>
           </a>
-          <a href="juego-ciencia.html" class="area-juego">
-            <div class="area-juego-icon" style="background:rgba(5,150,105,0.12)">🔬</div>
+
+          <a href="juego-ciencia.html" class="area-juego area-cie">
+            <div class="area-juego-icon">🔬</div>
             <strong>Ciencia y Tecnología</strong>
             <span>Biología, química, física y astronomía</span>
             <span class="juego-count">5 juegos por grado</span>
+            <div class="area-arrow">→</div>
           </a>
-          <a href="juego-historia.html" class="area-juego">
-            <div class="area-juego-icon" style="background:rgba(217,119,6,0.12)">🏛️</div>
+
+          <a href="juego-historia.html" class="area-juego area-his">
+            <div class="area-juego-icon">🏛️</div>
             <strong>Historia, Geo. y Eco.</strong>
             <span>Civilizaciones, Perú, República y globalización</span>
             <span class="juego-count">5 juegos por grado</span>
+            <div class="area-arrow">→</div>
           </a>
-          <a href="juego-comunicacion.html" class="area-juego">
-            <div class="area-juego-icon" style="background:rgba(220,38,38,0.12)">📖</div>
+
+          <a href="juego-comunicacion.html" class="area-juego area-com">
+            <div class="area-juego-icon">📖</div>
             <strong>Comunicación</strong>
             <span>Literatura, gramática, comprensión y argumentación</span>
             <span class="juego-count">5 juegos por grado</span>
+            <div class="area-arrow">→</div>
           </a>
-          <a href="juego-ingles.html" class="area-juego">
-            <div class="area-juego-icon" style="background:rgba(37,99,235,0.12)">🇬🇧</div>
+
+          <a href="juego-ingles.html" class="area-juego area-ing">
+            <div class="area-juego-icon">🇬🇧</div>
             <strong>Inglés</strong>
             <span>Gramática, vocabulario y escritura en inglés</span>
             <span class="juego-count">5 juegos por grado</span>
+            <div class="area-arrow">→</div>
           </a>
-          <a href="juego-tecnologia.html" class="area-juego">
-            <div class="area-juego-icon" style="background:rgba(99,102,241,0.12)">💻</div>
+
+          <a href="juego-tecnologia.html" class="area-juego area-tec">
+            <div class="area-juego-icon">💻</div>
             <strong>Tecnología</strong>
             <span>Informática, programación, IA y emprendimiento digital</span>
             <span class="juego-count">5 juegos por grado</span>
+            <div class="area-arrow">→</div>
           </a>
+
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem">
-        <div style="background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05)">
-          <h4 style="margin:0 0 .4rem;color:var(--accent-strong);font-size:.95rem">🎯 Método activo</h4>
-          <p style="margin:0;color:var(--text-muted);font-size:.88rem;line-height:1.6">Retos interactivos que hacen el estudio más entretenido y efectivo.</p>
+      <!-- Tipos de juego chips -->
+      <div>
+        <div class="section-header">
+          <h3>Tipos de juego disponibles</h3>
         </div>
-        <div style="background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05)">
-          <h4 style="margin:0 0 .4rem;color:var(--accent-strong);font-size:.95rem">🧠 Adaptado a tu grado</h4>
-          <p style="margin:0;color:var(--text-muted);font-size:.88rem;line-height:1.6">Las preguntas cambian según el grado que elijas en cada área.</p>
-        </div>
-        <div style="background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.25rem;box-shadow:0 12px 28px rgba(15,23,42,0.05)">
-          <h4 style="margin:0 0 .4rem;color:var(--accent-strong);font-size:.95rem">📈 Puntos</h4>
-          <p style="margin:0;color:var(--text-muted);font-size:.88rem;line-height:1.6">Gana puntos en cada juego. Se acumulan durante el día.</p>
+        <div class="game-types-row">
+          <span class="game-type-chip">🎯 Quiz cronometrado</span>
+          <span class="game-type-chip">⚡ Quiz relámpago</span>
+          <span class="game-type-chip">✅ Verdadero / Falso</span>
+          <span class="game-type-chip">📅 Línea de tiempo</span>
+          <span class="game-type-chip">🃏 Flashcards</span>
+          <span class="game-type-chip">📝 Completa fórmulas</span>
+          <span class="game-type-chip">🔗 Relaciona columnas</span>
+          <span class="game-type-chip">🧠 Memoria</span>
+          <span class="game-type-chip">🔤 Ahorcado</span>
         </div>
       </div>
+
+      <!-- Features -->
+      <div>
+        <div class="section-header"><h3>¿Por qué jugar?</h3></div>
+        <div class="features-row">
+          <div class="feat-card">
+            <div class="feat-icon" style="background:rgba(124,58,237,0.1)">🎯</div>
+            <h4>Método activo</h4>
+            <p>Retos interactivos que hacen el estudio más entretenido y efectivo.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon" style="background:rgba(16,185,129,0.1)">🧠</div>
+            <h4>Adaptado a tu grado</h4>
+            <p>Las preguntas cambian según el grado que elijas en cada área.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon" style="background:rgba(245,158,11,0.1)">🏆</div>
+            <h4>Gana puntos</h4>
+            <p>Acumula puntos cada día jugando. Compite con tus compañeros.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon" style="background:rgba(37,99,235,0.1)">📊</div>
+            <h4>Variedad</h4>
+            <p>Quiz, ahorcado, memoria, flashcards, relacionar y más. Nunca te aburres.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Puntos banner -->
+      <div class="puntos-banner">
+        <div class="puntos-left">
+          <div class="puntos-icon-wrap">🏆</div>
+          <div>
+            <div class="puntos-num" id="totalPuntos2">0</div>
+            <div class="puntos-label">puntos acumulados hoy</div>
+          </div>
+        </div>
+        <a href="perfil.html" class="button button-secondary" style="font-size:.88rem">Ver mi progreso →</a>
+      </div>
+
     </div>
   </div>
 </main>
@@ -141,11 +349,11 @@
 <script src="script.js"></script>
 <script type="module" src="auth-nav.js"></script>
 <script>
-  // Puntos
   const PUNTOS_KEY='enu_puntos_hoy';
   function getPuntos(){try{const s=JSON.parse(localStorage.getItem(PUNTOS_KEY)||'{}');return s.d===new Date().toDateString()?(s.p||0):0;}catch{return 0;}}
-  document.getElementById('totalPuntos').textContent=getPuntos();
-  // Sidebar
+  const p=getPuntos();
+  document.getElementById('totalPuntos').textContent=p;
+  document.getElementById('totalPuntos2').textContent=p;
   const st=document.getElementById('sidebarToggle'),sc=document.getElementById('sidebarCollapsible');
   if(st&&sc){st.addEventListener('click',()=>{const o=sc.classList.toggle('open');st.classList.toggle('open',o);st.setAttribute('aria-expanded',String(o));});}
 </script>
