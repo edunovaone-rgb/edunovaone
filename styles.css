@@ -1885,3 +1885,128 @@ a {
   border: 2px solid #fff;
   pointer-events: none;
 }
+
+/* ══════════════════════════════════════
+   USER PILL — botón perfil expandible
+══════════════════════════════════════ */
+.nav-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1.5px solid rgba(99, 102, 241, 0.18);
+  border-radius: 999px;
+  overflow: hidden;
+  width: 2.4rem;           /* colapsado: solo el ícono 👤 */
+  transition: width 0.3s cubic-bezier(.4,0,.2,1),
+              background 0.2s,
+              border-color 0.2s;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-user-pill.expanded {
+  width: auto;
+  max-width: min(220px, 45vw);
+  background: #ffffff;
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+  overflow: visible;
+}
+
+/* Ícono / avatar */
+.nav-user-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  min-width: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--accent-strong);
+  flex-shrink: 0;
+}
+
+/* Nombre + username */
+.nav-user-label {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 0.2s, max-width 0.3s, padding 0.2s;
+  white-space: nowrap;
+}
+.nav-user-pill.expanded .nav-user-label {
+  opacity: 1;
+  max-width: 160px;
+  padding: 0 0.6rem 0 0;
+}
+.nav-user-label strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-user-label span {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Dropdown del user pill */
+.nav-user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 180px;
+  background: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  border-radius: 1.25rem;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.14);
+  overflow: hidden;
+  z-index: 9999;
+  animation: gsSlideIn 0.15s ease;
+}
+.nav-user-pill.expanded .nav-user-dropdown { display: block; }
+
+.nav-user-dropdown a,
+.nav-user-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: left;
+  box-sizing: border-box;
+}
+.nav-user-dropdown a:hover,
+.nav-user-dropdown button:hover {
+  background: rgba(99, 102, 241, 0.07);
+  color: var(--accent-strong);
+}
+.nav-user-dropdown .dropdown-divider {
+  height: 1px;
+  background: rgba(99, 102, 241, 0.08);
+  margin: 0.25rem 0;
+}
+.nav-user-dropdown .dropdown-danger:hover {
+  background: rgba(239, 68, 68, 0.07);
+  color: #dc2626;
+}
