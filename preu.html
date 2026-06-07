@@ -608,6 +608,11 @@
 
     const overlay = document.getElementById('paywallOverlay');
 
+    // Usuarios con acceso directo a la Pre-u (sin necesitar plan premium)
+    const ACCESO_DIRECTO = [
+      'jhosapharjrs@gmail.com',
+    ];
+
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
         // No está logueado → mostrar paywall con opción de login
@@ -623,7 +628,10 @@
         const data = snap.exists() ? snap.data() : {};
         const plan = data.plan || 'free'; // 'free' | 'premium'
 
-        if (plan !== 'premium') {
+        // Acceso concedido si tiene plan premium O está en la lista de acceso directo
+        const tieneAcceso = plan === 'premium' || ACCESO_DIRECTO.includes(user.email);
+
+        if (!tieneAcceso) {
           // No tiene plan → mostrar paywall
           overlay.classList.add('show');
         } else {
