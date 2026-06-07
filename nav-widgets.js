@@ -437,11 +437,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Leer datos de Firestore para el username
       let fsData = null;
       try {
-        const { getDoc: _getDoc, doc: _doc } = await import(
-          'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'
+        const snap = await getDocs(
+          query(collection(_db, 'usuarios'), where('__name__', '==', user.uid), limit(1))
         );
-        const snap = await _getDoc(_doc(_db, 'usuarios', user.uid));
-        if (snap.exists()) fsData = snap.data();
+        if (!snap.empty) fsData = snap.docs[0].data();
       } catch (_) {}
 
       updateUserPill(user, fsData);
