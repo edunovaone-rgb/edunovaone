@@ -817,12 +817,14 @@ a {
 }
 
 .search-field input {
-  width: 100%;
+  flex: 1 1 0;
   min-width: 0;
+  width: 100%;
   padding: 1rem 1.2rem;
   border: 1px solid rgba(148, 163, 184, 0.35);
   border-radius: 1rem;
   font-size: 0.95rem;
+  box-sizing: border-box;
 }
 
 .filter-row {
