@@ -870,7 +870,7 @@ const NOMBRE  = root.dataset.nombre;
 let gradoSel = parseInt(localStorage.getItem('edunova_grado') || '1');
 
 // ── Nombre corto para título ─────────────────────
-const NOMBRE_CORTO = { matematica:'Matemática', ciencia:'Ciencias', historia:'Historia', comunicacion:'Comunicación', ingles:'Inglés' }[AREA] || NOMBRE;
+const NOMBRE_CORTO = { matematica:'Matemática', ciencia:'Ciencias', historia:'Historia', comunicacion:'Comunicación', ingles:'Inglés', tecnologia:'Tecnología' }[AREA] || NOMBRE;
 
 // ── Definición de juegos por área ───────────────
 const JUEGOS_POR_AREA = {
