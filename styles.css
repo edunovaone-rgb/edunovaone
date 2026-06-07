@@ -1938,21 +1938,12 @@ a {
   flex-shrink: 0;
 }
 
-/* Nombre + username */
+/* Nombre + username — siempre visible */
 .nav-user-label {
   flex: 1;
   min-width: 0;
-  padding: 0;
-  opacity: 0;
-  max-width: 0;
-  overflow: hidden;
-  transition: opacity 0.2s, max-width 0.3s, padding 0.2s;
   white-space: nowrap;
-}
-.nav-user-pill.expanded .nav-user-label {
-  opacity: 1;
-  max-width: 160px;
-  padding: 0 0.6rem 0 0;
+  overflow: hidden;
 }
 .nav-user-label strong {
   display: block;
