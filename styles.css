@@ -1750,7 +1750,7 @@ a {
   position: fixed;
   z-index: 9998;
   top: 4rem;
-  left: 1rem;                           /* anclado a la izquierda, cerca del botón */
+  right: 1rem;                          /* siempre a la derecha */
   width: min(360px, calc(100vw - 2rem));
   background: #ffffff;
   border: 1px solid rgba(99, 102, 241, 0.12);
