@@ -613,6 +613,35 @@
       'jhosapharjrs@gmail.com',
     ];
 
+    function concederAcceso(data = {}) {
+      overlay.classList.remove('show');
+
+      // Personalizar stats si los tiene guardados
+      if (data.preuStats) {
+        const { mejorPuntaje, ranking } = data.preuStats;
+        if (mejorPuntaje) document.getElementById('statPuntaje').textContent = mejorPuntaje + '%';
+        if (ranking)      document.getElementById('statRanking').textContent = '#' + ranking;
+      }
+
+      // Actualizar barras de progreso si existen
+      const prog = data.progreso || {};
+      const barMap = {
+        'mat-matematica':   prog.matematica    || 0,
+        'mat-ciencia':      prog.ciencia       || 0,
+        'mat-historia':     prog.historia      || 0,
+        'mat-comunicacion': prog.comunicacion  || 0,
+        'mat-ingles':       prog.ingles        || 0,
+      };
+      document.querySelectorAll('.preu-materia-card').forEach(card => {
+        const href = card.getAttribute('href').replace('#', '');
+        const pct  = barMap[href] || 0;
+        const bar  = card.querySelector('.preu-progress-bar');
+        const lbl  = card.querySelector('.prog-row span');
+        if (bar) bar.style.width = pct + '%';
+        if (lbl) lbl.textContent = 'Progreso: ' + pct + '%';
+      });
+    }
+
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
         // No está logueado → mostrar paywall con opción de login
@@ -622,46 +651,24 @@
         return;
       }
 
+      const emailNorm = (user.email || '').toLowerCase().trim();
+
+      // Si está en la lista de acceso directo, no hace falta consultar Firestore
+      if (ACCESO_DIRECTO.map(e => e.toLowerCase()).includes(emailNorm)) {
+        concederAcceso();
+        return;
+      }
+
       // Leer doc del usuario en Firestore
       try {
         const snap = await getDoc(doc(db, 'usuarios', user.uid));
         const data = snap.exists() ? snap.data() : {};
         const plan = data.plan || 'free'; // 'free' | 'premium'
 
-        // Acceso concedido si tiene plan premium O está en la lista de acceso directo
-        const tieneAcceso = plan === 'premium' || ACCESO_DIRECTO.includes(user.email);
-
-        if (!tieneAcceso) {
-          // No tiene plan → mostrar paywall
-          overlay.classList.add('show');
+        if (plan === 'premium') {
+          concederAcceso(data);
         } else {
-          // Tiene acceso → ocultar overlay (ya está hidden por defecto)
-          overlay.classList.remove('show');
-
-          // Personalizar stats si los tiene guardados
-          if (data.preuStats) {
-            const { mejorPuntaje, ranking } = data.preuStats;
-            if (mejorPuntaje) document.getElementById('statPuntaje').textContent = mejorPuntaje + '%';
-            if (ranking)      document.getElementById('statRanking').textContent = '#' + ranking;
-          }
-
-          // Actualizar barras de progreso si existen
-          const prog = data.progreso || {};
-          const barMap = {
-            'mat-matematica': prog.matematica || 0,
-            'mat-ciencia':    prog.ciencia    || 0,
-            'mat-historia':   prog.historia   || 0,
-            'mat-comunicacion': prog.comunicacion || 0,
-            'mat-ingles':     prog.ingles     || 0,
-          };
-          document.querySelectorAll('.preu-materia-card').forEach(card => {
-            const href = card.getAttribute('href').replace('#', '');
-            const pct  = barMap[href] || 0;
-            const bar  = card.querySelector('.preu-progress-bar');
-            const lbl  = card.querySelector('.prog-row span');
-            if (bar) bar.style.width = pct + '%';
-            if (lbl) lbl.textContent = 'Progreso: ' + pct + '%';
-          });
+          overlay.classList.add('show');
         }
       } catch (err) {
         console.error('Error leyendo plan:', err);
