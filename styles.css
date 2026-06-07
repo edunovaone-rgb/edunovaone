@@ -764,6 +764,8 @@ a {
 .library-main {
   display: grid;
   gap: 1.5rem;
+  min-width: 0; /* evita overflow horizontal en grid */
+  overflow: hidden;
 }
 
 .library-hero-card {
