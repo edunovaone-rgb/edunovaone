@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <meta name="description" content="Planes y precios EduNovaOne Pre-universitaria — Esencial, Plus y Élite." />
+  <title>EduNovaOne | Planes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 20% 10%, rgba(124,58,237,0.12) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 80%, rgba(37,99,235,0.09) 0%, transparent 50%),
+                  #f5f3ff;
+    }
+
+    /* ── Hero ── */
+    .planes-hero {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    .planes-hero .eyebrow {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: linear-gradient(135deg,#7c3aed,#4f46e5);
+      color: #fff; font-size: .78rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      padding: .35rem 1.1rem; border-radius: 999px;
+    }
+    .planes-hero h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: #1e1b4b;
+      line-height: 1.15;
+    }
+    .planes-hero h1 span { color: #7c3aed; }
+    .planes-hero p {
+      margin: 0;
+      color: #64748b;
+      font-size: 1rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ── Toggle billing (visual only) ── */
+    .billing-toggle {
+      display: flex; align-items: center; gap: .75rem;
+      background: #fff;
+      border: 1px solid rgba(99,102,241,0.15);
+      border-radius: 999px;
+      padding: .45rem .85rem;
+      font-size: .88rem; font-weight: 600; color: #64748b;
+    }
+    .billing-toggle .active-billing { color: #7c3aed; font-weight: 800; }
+
+    /* ── Grid de planes ── */
+    .planes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ── Tarjeta de plan ── */
+    .plan-card {
+      background: #fff;
+      border: 2px solid rgba(99,102,241,0.12);
+      border-radius: 2rem;
+      padding: 2rem 1.75rem;
+      display: flex; flex-direction: column; gap: 1.25rem;
+      position: relative;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+    }
+    .plan-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(99,102,241,0.15);
+    }
+
+    /* Plan Plus — destacado */
+    .plan-card.featured {
+      border-color: #7c3aed;
+      box-shadow: 0 16px 50px rgba(99,102,241,0.2);
+    }
+    .plan-card.featured:hover {
+      box-shadow: 0 28px 70px rgba(99,102,241,0.28);
+    }
+
+    .plan-badge-popular {
+      position: absolute;
+      top: -14px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg,#7c3aed,#4f46e5);
+      color: #fff; font-size: .72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .08em;
+      padding: .3rem 1.1rem; border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(99,102,241,0.35);
+    }
+
+    /* Header de la tarjeta */
+    .plan-header { display: flex; flex-direction: column; gap: .5rem; }
+    .plan-icon {
+      width: 3rem; height: 3rem; border-radius: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .plan-icon.esencial { background: rgba(13,148,136,0.12); }
+    .plan-icon.plus     { background: rgba(99,102,241,0.12); }
+    .plan-icon.elite    { background: rgba(217,119,6,0.12); }
+
+    .plan-name {
+      font-size: 1.3rem; font-weight: 900; color: #1e1b4b; margin: 0;
+    }
+    .plan-tagline { font-size: .85rem; color: #64748b; margin: 0; line-height: 1.5; }
+
+    /* Precio */
+    .plan-price-row {
+      display: flex; align-items: baseline; gap: .3rem;
+    }
+    .plan-price-row .currency { font-size: 1.1rem; font-weight: 700; color: #7c3aed; align-self: flex-start; margin-top: .35rem; }
+    .plan-price-row .amount   { font-size: 3rem; font-weight: 900; color: #1e1b4b; line-height: 1; }
+    .plan-price-row .period   { font-size: .85rem; color: #94a3b8; }
+
+    .plan-divider {
+      height: 1px;
+      background: rgba(148,163,184,0.18);
+      border: none; margin: 0;
+    }
+
+    /* Features */
+    .plan-features { list-style: none; padding: 0; margin: 0; display: grid; gap: .7rem; }
+    .plan-features li {
+      display: flex; align-items: flex-start; gap: .65rem;
+      font-size: .9rem; color: #334155; line-height: 1.4;
+    }
+    .feat-check {
+      width: 1.35rem; height: 1.35rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 800; flex-shrink: 0;
+      margin-top: .05rem;
+    }
+    .feat-check.green  { background: rgba(16,185,129,0.15); color: #059669; }
+    .feat-check.purple { background: rgba(99,102,241,0.12); color: #4f46e5; }
+    .feat-check.gold   { background: rgba(217,119,6,0.12);  color: #b45309; }
+    .feat-check.gray   { background: rgba(148,163,184,0.15); color: #94a3b8; }
+
+    .feat-locked { color: #94a3b8; text-decoration: line-through; }
+
+    /* CTA */
+    .plan-cta {
+      display: block;
+      width: 100%;
+      padding: .95rem;
+      border: none; border-radius: 1.25rem;
+      font-size: 1rem; font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .plan-cta.cta-esencial {
+      background: linear-gradient(135deg,#0d9488,#0891b2);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(13,148,136,0.28);
+    }
+    .plan-cta.cta-plus {
+      background: linear-gradient(135deg,#7c3aed,#4f46e5);
+      color: #fff;
+      box-shadow: 0 8px 26px rgba(99,102,241,0.35);
+    }
+    .plan-cta.cta-elite {
+      background: linear-gradient(135deg,#d97706,#b45309);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(217,119,6,0.3);
+    }
+    .plan-cta:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    .plan-cta.cta-outline {
+      background: transparent;
+      border: 2px solid rgba(99,102,241,0.25);
+      color: #7c3aed;
+      box-shadow: none;
+    }
+    .plan-cta.cta-outline:hover { background: rgba(99,102,241,0.06); transform: translateY(-1px); }
+
+    .plan-note {
+      text-align: center; font-size: .78rem; color: #94a3b8;
+    }
+
+    /* ── Comparación rápida ── */
+    .compare-section {
+      max-width: 700px; margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .compare-section h2 {
+      text-align: center; font-size: 1.3rem; color: #1e1b4b; font-weight: 900; margin: 0;
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      background: #fff;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+    }
+    .compare-table th {
+      padding: .85rem 1rem;
+      font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em;
+      color: #fff; text-align: center;
+    }
+    .compare-table th:nth-child(1) { background: #f8fafc; color: #64748b; text-align: left; }
+    .compare-table th:nth-child(2) { background: #0d9488; }
+    .compare-table th:nth-child(3) { background: #7c3aed; }
+    .compare-table th:nth-child(4) { background: #d97706; }
+    .compare-table td {
+      padding: .8rem 1rem;
+      font-size: .88rem; color: #334155;
+      border-top: 1px solid rgba(148,163,184,0.12);
+      text-align: center;
+    }
+    .compare-table td:first-child { text-align: left; font-weight: 600; color: #475569; }
+    .compare-table tr:nth-child(even) td { background: #f8fafc; }
+
+    /* FAQ breve */
+    .faq-section {
+      max-width: 640px; margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .faq-section h2 { text-align: center; font-size: 1.3rem; color: #1e1b4b; font-weight: 900; margin: 0 0 .5rem; }
+    .faq-item {
+      background: #fff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 1.25rem;
+      padding: 1.1rem 1.25rem;
+    }
+    .faq-item strong { display: block; font-size: .95rem; color: #1e1b4b; margin-bottom: .4rem; }
+    .faq-item p { margin: 0; font-size: .88rem; color: #64748b; line-height: 1.65; }
+
+    @media (max-width: 640px) {
+      .planes-grid { grid-template-columns: 1fr; }
+      .plan-price-row .amount { font-size: 2.4rem; }
+      .compare-table { font-size: .78rem; }
+      .compare-table th, .compare-table td { padding: .65rem .6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.webp" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="preu.html">Pre-u</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn"
+         style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="planes-hero">
+    <span class="eyebrow">🎓 Pre-universitaria · EduNovaOne</span>
+    <h1>Invierte en tu <span>futuro universitario</span></h1>
+    <p>Elige el plan que se adapta a ti. Todos incluyen acceso a la sección Pre-u con simulacros, resúmenes y seguimiento de progreso.</p>
+    <div class="billing-toggle">
+      <span class="active-billing">Mensual</span>
+      <span style="opacity:.4;">·</span>
+      <span>Sin contratos · Cancela cuando quieras</span>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <div class="planes-grid">
+
+    <!-- ── ESENCIAL ── -->
+    <div class="plan-card">
+      <div class="plan-header">
+        <div class="plan-icon esencial">🌱</div>
+        <h2 class="plan-name">Esencial</h2>
+        <p class="plan-tagline">Para quienes quieren probar sin comprometerse demasiado.</p>
+      </div>
+      <div class="plan-price-row">
+        <span class="currency">S/</span>
+        <span class="amount">14.99</span>
+        <span class="period">/ mes</span>
+      </div>
+      <hr class="plan-divider" />
+      <ul class="plan-features">
+        <li><span class="feat-check green">✓</span> Clases grabadas seleccionadas</li>
+        <li><span class="feat-check green">✓</span> Banco básico de preguntas</li>
+        <li><span class="feat-check green">✓</span> 1 simulacro al mes</li>
+        <li><span class="feat-check green">✓</span> Seguimiento simple de progreso</li>
+        <li><span class="feat-check green">✓</span> Acceso a resúmenes básicos</li>
+        <li><span class="feat-check gray">✗</span> <span class="feat-locked">Simulacros ilimitados</span></li>
+        <li><span class="feat-check gray">✗</span> <span class="feat-locked">Material descargable</span></li>
+        <li><span class="feat-check gray">✗</span> <span class="feat-locked">Asesoría académica</span></li>
+      </ul>
+      <a href="#activar" class="plan-cta cta-esencial" data-plan="esencial">Empezar con Esencial →</a>
+      <p class="plan-note">Sin tarjeta de crédito requerida</p>
+    </div>
+
+    <!-- ── PLUS ── -->
+    <div class="plan-card featured">
+      <div class="plan-badge-popular">⚡ Más popular</div>
+      <div class="plan-header">
+        <div class="plan-icon plus">⚡</div>
+        <h2 class="plan-name">Plus</h2>
+        <p class="plan-tagline">El plan más completo para postulantes serios. Ideal para la mayoría.</p>
+      </div>
+      <div class="plan-price-row">
+        <span class="currency">S/</span>
+        <span class="amount">29.99</span>
+        <span class="period">/ mes</span>
+      </div>
+      <hr class="plan-divider" />
+      <ul class="plan-features">
+        <li><span class="feat-check purple">✓</span> Todo lo del plan Esencial</li>
+        <li><span class="feat-check purple">✓</span> Simulacros frecuentes (sin límite mensual)</li>
+        <li><span class="feat-check purple">✓</span> Rutas de estudio personalizadas</li>
+        <li><span class="feat-check purple">✓</span> Material descargable</li>
+        <li><span class="feat-check purple">✓</span> Corrección detallada de simulacros</li>
+        <li><span class="feat-check purple">✓</span> Banco completo de preguntas</li>
+        <li><span class="feat-check purple">✓</span> Estadísticas de rendimiento</li>
+        <li><span class="feat-check gray">✗</span> <span class="feat-locked">Asesoría académica personalizada</span></li>
+      </ul>
+      <a href="#activar" class="plan-cta cta-plus" data-plan="plus">Empezar con Plus →</a>
+      <p class="plan-note">El favorito de nuestros postulantes</p>
+    </div>
+
+    <!-- ── ÉLITE ── -->
+    <div class="plan-card">
+      <div class="plan-header">
+        <div class="plan-icon elite">👑</div>
+        <h2 class="plan-name">Élite</h2>
+        <p class="plan-tagline">Para quienes quieren competir en serio y necesitan el máximo respaldo.</p>
+      </div>
+      <div class="plan-price-row">
+        <span class="currency">S/</span>
+        <span class="amount">49.99</span>
+        <span class="period">/ mes</span>
+      </div>
+      <hr class="plan-divider" />
+      <ul class="plan-features">
+        <li><span class="feat-check gold">✓</span> Todo lo del plan Plus</li>
+        <li><span class="feat-check gold">✓</span> Simulacros ilimitados y frecuentes</li>
+        <li><span class="feat-check gold">✓</span> Asesoría académica personalizada</li>
+        <li><span class="feat-check gold">✓</span> Clases en vivo con docentes</li>
+        <li><span class="feat-check gold">✓</span> Reportes de avance detallados</li>
+        <li><span class="feat-check gold">✓</span> Acceso total sin restricciones</li>
+        <li><span class="feat-check gold">✓</span> Soporte prioritario</li>
+        <li><span class="feat-check gold">✓</span> Ranking competitivo nacional</li>
+      </ul>
+      <a href="#activar" class="plan-cta cta-elite" data-plan="elite">Empezar con Élite →</a>
+      <p class="plan-note">Acceso completo desde el primer día</p>
+    </div>
+
+  </div>
+
+  <!-- TABLA COMPARATIVA -->
+  <section class="compare-section">
+    <h2>¿Cuál es la diferencia?</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th>🌱 Esencial</th>
+          <th>⚡ Plus</th>
+          <th>👑 Élite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Clases grabadas</td>
+          <td>Seleccionadas</td>
+          <td>Completas</td>
+          <td>Completas</td>
+        </tr>
+        <tr>
+          <td>Simulacros</td>
+          <td>1 / mes</td>
+          <td>Sin límite</td>
+          <td>Ilimitados</td>
+        </tr>
+        <tr>
+          <td>Banco de preguntas</td>
+          <td>Básico</td>
+          <td>Completo</td>
+          <td>Completo</td>
+        </tr>
+        <tr>
+          <td>Material descargable</td>
+          <td>—</td>
+          <td>✓</td>
+          <td>✓</td>
+        </tr>
+        <tr>
+          <td>Ruta personalizada</td>
+          <td>—</td>
+          <td>✓</td>
+          <td>✓</td>
+        </tr>
+        <tr>
+          <td>Asesoría académica</td>
+          <td>—</td>
+          <td>—</td>
+          <td>✓</td>
+        </tr>
+        <tr>
+          <td>Clases en vivo</td>
+          <td>—</td>
+          <td>—</td>
+          <td>✓</td>
+        </tr>
+        <tr>
+          <td>Reportes de avance</td>
+          <td>Simple</td>
+          <td>Detallado</td>
+          <td>Avanzado</td>
+        </tr>
+        <tr>
+          <td>Soporte</td>
+          <td>Estándar</td>
+          <td>Estándar</td>
+          <td>Prioritario</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;color:#1e1b4b;">Precio / mes</td>
+          <td style="font-weight:800;color:#0d9488;">S/ 14.99</td>
+          <td style="font-weight:800;color:#7c3aed;">S/ 29.99</td>
+          <td style="font-weight:800;color:#d97706;">S/ 49.99</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <strong>¿Puedo cambiar de plan después?</strong>
+      <p>Sí. Puedes subir o bajar de plan en cualquier momento. El cambio se aplica desde el siguiente ciclo de facturación.</p>
+    </div>
+    <div class="faq-item">
+      <strong>¿Qué pasa si cancelo?</strong>
+      <p>Conservas el acceso hasta que termine el mes pagado. Después vuelves al plan gratuito sin perder tu historial ni progreso.</p>
+    </div>
+    <div class="faq-item">
+      <strong>¿Cómo se activa el plan?</strong>
+      <p>Por ahora el acceso se activa manualmente a través de nuestro equipo. Escríbenos por WhatsApp o al correo con tu usuario registrado y el plan que elegiste.</p>
+    </div>
+    <div class="faq-item">
+      <strong>¿El Plan Esencial me da acceso a la Pre-u?</strong>
+      <p>Sí, todos los planes de pago incluyen acceso a la sección Pre-universitaria, con las diferencias indicadas en la tabla de arriba.</p>
+    </div>
+  </section>
+
+  <!-- MODAL / TOAST de activación (por ahora solo info) -->
+  <div id="activarToast" style="
+    display:none; position:fixed; bottom:2rem; left:50%; transform:translateX(-50%);
+    background:#1e1b4b; color:#fff; padding:1rem 1.75rem; border-radius:1.25rem;
+    font-size:.92rem; font-weight:700; box-shadow:0 16px 40px rgba(15,23,42,0.25);
+    z-index:9999; text-align:center; max-width:90vw;
+    animation: slide-up .3s ease both;">
+    🎓 Para activar tu plan, contáctanos por WhatsApp o escríbenos a <strong>contacto@edunovaone.com</strong>
+  </div>
+  <style>
+    @keyframes slide-up {
+      from { opacity:0; transform:translateX(-50%) translateY(16px); }
+      to   { opacity:1; transform:translateX(-50%) translateY(0); }
+    }
+  </style>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script>
+    // Botones de planes — mostrar toast de activación
+    document.querySelectorAll('.plan-cta[data-plan]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const toast = document.getElementById('activarToast');
+        toast.style.display = 'block';
+        clearTimeout(window._toastTimer);
+        window._toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 6000);
+      });
+    });
+  </script>
+</body>
+</html>
