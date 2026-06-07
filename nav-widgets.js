@@ -258,10 +258,18 @@ function timeAgo(ts) {
   if (!ts) return '';
   const d   = ts.toDate ? ts.toDate() : new Date(ts);
   const sec = Math.floor((Date.now() - d.getTime()) / 1000);
+  const dy  = Math.floor(sec / 86400);
+  const wk  = Math.floor(dy / 7);
+  const mo  = Math.floor(dy / 30);
   if (sec < 60)    return 'Ahora mismo';
   if (sec < 3600)  return `Hace ${Math.floor(sec / 60)} min`;
   if (sec < 86400) return `Hace ${Math.floor(sec / 3600)} h`;
-  return `Hace ${Math.floor(sec / 86400)} días`;
+  if (dy === 1)    return 'Ayer';
+  if (dy < 7)      return `Hace ${dy} días`;
+  if (wk === 1)    return 'Hace 1 semana';
+  if (wk < 4)      return `Hace ${wk} semanas`;
+  if (mo === 1)    return 'Hace 1 mes';
+  return `Hace ${mo} meses`;
 }
 
 function setBadge(count) {
