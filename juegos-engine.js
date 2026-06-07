@@ -1043,7 +1043,7 @@ function iniciarQuiz(titleEl, body, qCount, timerSecs) {
         <div style="display:flex;align-items:center;gap:.5rem"><span>⭐ ${score}</span><div class="timer-c" id="tc">${secs}</div></div>
       </div>
       <div class="quiz-q">${q.p}</div>
-      <div class="quiz-opts">${q.ops.map((o,i) => `<button class="quiz-opt" data-i="${i}">${o}</button>`).join('')}</div>
+    <div class="quiz-opts">${q.ops.map((o,i) => `<button class="quiz-opt" data-i="${i}" data-letter="${['A','B','C','D'][i]}">${o}</button>`).join('')}</div>
       <div id="qfb" style="display:none" class="quiz-fb"></div>
       <button id="qnext" style="display:none" class="button button-primary" onclick="nextQ()">Siguiente →</button>`;
 
