@@ -434,13 +434,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   onAuthStateChanged(_auth, async user => {
     if (user) {
-      // Leer datos de Firestore para el username
       let fsData = null;
       try {
-        const snap = await getDocs(
-          query(collection(_db, 'usuarios'), where('__name__', '==', user.uid), limit(1))
-        );
-        if (!snap.empty) fsData = snap.docs[0].data();
+        const snap = await getDoc(doc(_db, 'usuarios', user.uid));
+        if (snap.exists()) fsData = snap.data();
       } catch (_) {}
 
       updateUserPill(user, fsData);
