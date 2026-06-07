@@ -781,12 +781,27 @@ a {
 }
 
 .search-field {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 0.75rem;
+  display: flex;
+  flex-wrap: nowrap;
   align-items: center;
+  gap: 0.75rem;
   margin-bottom: 1.25rem;
   min-width: 0;
+  overflow: hidden; /* corta el desborde en lugar de crear scrollbar */
+}
+
+/* El input ocupa todo el espacio disponible */
+.search-field input {
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* El botón nunca se encoge */
+.search-field .button,
+.search-field button {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .search-icon {
