@@ -1256,6 +1256,19 @@
       const usernameEl = document.getElementById('profileUsername');
       if (data.username) usernameEl.textContent = '@' + data.username;
 
+      // ── Tag de plan exclusivo ──
+      const planTag = document.getElementById('planTag');
+      const plan    = data.plan || 'free';
+      if (plan === 'premium') {
+        planTag.textContent = '✨ Premium';
+        planTag.classList.add('show', 'variant-premium');
+        planTag.title = 'Usuario con Plan Premium';
+      } else if (plan === 'preu') {
+        planTag.textContent = '🎓 Pre-u';
+        planTag.classList.add('show', 'variant-preu');
+        planTag.title = 'Usuario con Plan Pre-universitaria';
+      }
+
       // ── Indicador de actividad (lastSeen) ──
       const statusDot   = document.getElementById('statusDot');
       const statusLabel = document.getElementById('statusLabel');
