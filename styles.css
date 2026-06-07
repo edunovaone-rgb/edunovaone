@@ -1510,6 +1510,7 @@ a {
   align-items: center;
   gap: 0.6rem;
   flex-shrink: 0;
+  margin-left: auto;  /* siempre empuja las acciones a la derecha */
 }
 
 .uni-icon-btn {
