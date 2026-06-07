@@ -1,16 +1,17 @@
 // auth-nav.js — actualiza el botón del navbar según sesión Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const _app = initializeApp({
+const _cfg = {
   apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
   authDomain: "edunova-library.firebaseapp.com",
   projectId: "edunova-library",
   storageBucket: "edunova-library.firebasestorage.app",
   messagingSenderId: "707176884039",
   appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
-});
+};
+const _app = getApps().length ? getApps()[0] : initializeApp(_cfg);
 
 const _auth = getAuth(_app);
 const _db   = getFirestore(_app);
