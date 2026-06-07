@@ -1238,9 +1238,13 @@ a {
     display: flex;
   }
 
-  /* Grids de sidebar colapsan */
+  /* Grids de biblioteca — colapso progresivo */
   .library-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(200px, 220px) 1fr; /* sidebar izq + contenido; panel der desaparece */
+  }
+
+  .library-rightpanel {
+    display: none; /* se oculta en tablet, queda solo sidebar izq + main */
   }
 
   .library-sidebar,
