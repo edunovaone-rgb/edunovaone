@@ -673,15 +673,30 @@
     onAuthStateChanged(auth, async (user) => {
       const stateLoading = document.getElementById('stateLoading');
       const stateLocked  = document.getElementById('stateLocked');
+      const paywallTitle = document.getElementById('paywallTitle');
+      const paywallDesc  = document.getElementById('paywallDesc');
+      const paywallCta   = document.getElementById('paywallCta');
 
-      if (!user) {
-        // Sin sesión: mostrar paywall con CTA de login
+      function showPaywall(sinSesion = false) {
         stateLoading.style.display = 'none';
         stateLocked.style.display  = 'flex';
         overlay.classList.remove('loading');
         overlay.classList.add('show');
-        document.querySelector('.paywall-cta').textContent = '🔑 Iniciar sesión';
-        document.querySelector('.paywall-cta').href = 'login.html';
+        if (sinSesion) {
+          paywallTitle.textContent = 'Inicia sesión para continuar';
+          paywallDesc.textContent  = 'Necesitas una cuenta con plan activo para acceder a la sección Pre-universitaria.';
+          paywallCta.textContent   = '🔑 Iniciar sesión';
+          paywallCta.href          = 'login.html';
+        } else {
+          paywallTitle.textContent = 'Consigue tu plan para acceder';
+          paywallDesc.textContent  = 'La Pre-u requiere un plan de pago. Todos incluyen simulacros, resúmenes y rutas de estudio personalizadas.';
+          paywallCta.textContent   = '🚀 Conseguir mi plan';
+          paywallCta.href          = 'planes.html';
+        }
+      }
+
+      if (!user) {
+        showPaywall(true);
         return;
       }
 
@@ -696,19 +711,12 @@
           overlay.classList.remove('loading');
           concederAcceso(data, plan);
         } else {
-          // Sin plan: mostrar paywall de upgrade
-          stateLoading.style.display = 'none';
-          stateLocked.style.display  = 'flex';
-          overlay.classList.remove('loading');
-          overlay.classList.add('show');
+          // Tiene sesión pero no tiene plan
+          showPaywall(false);
         }
       } catch (err) {
         console.error('Error leyendo plan:', err);
-        // En caso de error mostrar el paywall igual
-        stateLoading.style.display = 'none';
-        stateLocked.style.display  = 'flex';
-        overlay.classList.remove('loading');
-        overlay.classList.add('show');
+        showPaywall(false);
       }
     });
   </script>
