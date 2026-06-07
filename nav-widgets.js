@@ -392,26 +392,23 @@ function updateUserPill(user, firestoreData) {
     // Foto o inicial
     if (user.photoURL) {
       icon.innerHTML = `<img src="${user.photoURL}" alt="avatar"
-        style="width:2.4rem;height:2.4rem;border-radius:999px;object-fit:cover;display:block;">`;
+        style="width:1.6rem;height:1.6rem;border-radius:999px;object-fit:cover;display:block;">`;
     } else {
       icon.textContent = displayFirst[0]?.toUpperCase() || '👤';
-      icon.style.cssText = `font-size:0.95rem;font-weight:800;color:var(--accent-strong);
-        background:rgba(99,102,241,0.12);width:2.4rem;height:2.4rem;min-width:2.4rem;
-        display:flex;align-items:center;justify-content:center;border-radius:999px;`;
+      icon.style.cssText = `font-size:0.88rem;font-weight:800;color:var(--accent-strong);
+        width:1.6rem;height:1.6rem;min-width:1.6rem;
+        display:flex;align-items:center;justify-content:center;
+        background:rgba(99,102,241,0.15);border-radius:999px;flex-shrink:0;`;
     }
 
     name.textContent = displayFirst;
-    sub.textContent  = username ? `@${username}` : '';
     if (logout) logout.style.display = '';
   } else {
-    // Sin sesión: el pill actúa como link a login
     icon.textContent = '👤';
     icon.style.cssText = '';
-    name.textContent = 'Iniciar sesión';
-    sub.textContent  = '';
+    name.textContent = 'Entrar';
     if (logout) logout.style.display = 'none';
 
-    // Click directo va a login si no tiene sesión
     pill.onclick = e => {
       if (document.getElementById('navUserDropdown')?.contains(e.target)) return;
       window.location.href = 'login.html';
