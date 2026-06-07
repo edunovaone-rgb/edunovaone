@@ -1436,7 +1436,7 @@ a {
 .uni-nav {
   display: flex;
   align-items: center;
-  justify-content: flex-start;   /* brand a la izq, links al centro via flex:1, actions al extremo der */
+  justify-content: flex-start;
   padding: 0.75rem 2.5rem;
   background: #ffffff;
   border-bottom: 1px solid rgba(99,102,241,0.1);
@@ -1475,6 +1475,7 @@ a {
   letter-spacing: 0.1em;
 }
 
+/* Links centrados — solo en desktop */
 .uni-nav-links {
   display: flex;
   align-items: center;
@@ -1505,19 +1506,20 @@ a {
   background: rgba(99,102,241,0.08);
 }
 
+/* Acciones — siempre a la derecha */
 .uni-nav-actions {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   flex-shrink: 0;
-  margin-left: auto;  /* siempre empuja las acciones a la derecha */
+  margin-left: auto;
 }
 
 .uni-icon-btn {
   width: 2.4rem;
   height: 2.4rem;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 999px;          /* circular como en la imagen */
   background: rgba(59,130,246,0.1);
   color: var(--accent-strong);
   font-size: 1rem;
@@ -1530,6 +1532,7 @@ a {
 
 .uni-icon-btn:hover { background: rgba(59,130,246,0.18); }
 
+/* ≤860px: ocultar links de navegación, mantener acciones a la derecha */
 @media (max-width: 860px) {
   .uni-nav { padding: 0.75rem 1.25rem; }
   .uni-nav-links { display: none; }
