@@ -1313,8 +1313,6 @@ a {
   .categories-row {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
-
-  .filter-row {
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   }
 
