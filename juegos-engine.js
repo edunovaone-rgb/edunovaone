@@ -1273,3 +1273,212 @@ window.checkOrden = () => {
     setTimeout(() => { sr.style.display = 'none'; }, 2000);
   }
 };
+
+// ══════════════════════════════════════════════════
+// AHORCADO
+// ══════════════════════════════════════════════════
+function iniciarAhorcado(titleEl, body) {
+  titleEl.textContent = `🔤 Ahorcado — ${NOMBRE_CORTO} ${gradoSel}° Sec.`;
+  const pool = (AHORCADO[AREA] && AHORCADO[AREA][gradoSel]) ? [...AHORCADO[AREA][gradoSel]] : [];
+  if (!pool.length) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin palabras para este grado.</p>'; return; }
+  const item = pool[Math.floor(Math.random() * pool.length)];
+  const word = item.w.toUpperCase();
+  const hint = item.h;
+  const maxErr = 6;
+  let errors = 0;
+  const guessed = new Set();
+
+  const HANG_STAGES = [
+    '','─','┐','│\n┐','╱│\n┐','╱│╲\n┐','╱│╲\n┐\n╱'
+  ];
+
+  function render() {
+    const display = word.split('').map(l => guessed.has(l) ? `<span style="color:var(--accent-strong);font-weight:900">${l}</span>` : '_').join(' ');
+    const won  = word.split('').every(l => guessed.has(l));
+    const lost = errors >= maxErr;
+    const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    body.innerHTML = `
+      <div style="text-align:center;margin-bottom:.5rem">
+        <div style="font-size:.82rem;color:var(--text-muted);font-weight:700;margin-bottom:.5rem">💡 Pista: ${hint}</div>
+        <div style="font-size:1.6rem;font-family:monospace;letter-spacing:.35rem;color:var(--text);min-height:2.5rem">${display}</div>
+        <div style="margin:.75rem 0;font-size:.88rem;color:${errors>=4?'#ef4444':errors>=2?'#f59e0b':'#10b981'};font-weight:700">
+          ${'❤️'.repeat(maxErr-errors)}${'🖤'.repeat(errors)} · ${maxErr-errors} vidas restantes
+        </div>
+        ${won  ? `<div class="quiz-fb ok" style="margin-bottom:.75rem">🎉 ¡Correcto! La palabra era <strong>${word}</strong>. +25 pts</div>` : ''}
+        ${lost ? `<div class="quiz-fb bad" style="margin-bottom:.75rem">💀 ¡Perdiste! La palabra era <strong>${word}</strong></div>` : ''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin-bottom:1rem">
+        ${alpha.map(l => {
+          const used   = guessed.has(l);
+          const isGood = used && word.includes(l);
+          const isBad  = used && !word.includes(l);
+          return `<button onclick="ahorcadoLetra('${l}')" ${(used||won||lost)?'disabled':''} style="
+            width:2.2rem;height:2.2rem;border-radius:.5rem;border:1.5px solid rgba(99,102,241,0.2);
+            background:${isGood?'rgba(16,185,129,0.15)':isBad?'rgba(239,68,68,0.1)':'#f8fbff'};
+            color:${isGood?'#065f46':isBad?'#991b1b':'var(--text)'};
+            font-weight:700;font-size:.85rem;cursor:pointer;transition:all .15s">${l}</button>`;
+        }).join('')}
+      </div>
+      ${(won||lost) ? `<div style="display:flex;gap:.75rem;justify-content:center">
+        <button class="button button-secondary" onclick="iniciarAhorcado(document.getElementById('gameTitle'),document.getElementById('gameBody'))">🔄 Otra palabra</button>
+        <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+      </div>` : ''}`;
+    if (won) addPuntos(25);
+  }
+
+  window.ahorcadoLetra = (l) => {
+    guessed.add(l);
+    if (!word.includes(l)) errors++;
+    render();
+  };
+  render();
+}
+
+// ══════════════════════════════════════════════════
+// RELACIONA COLUMNAS
+// ══════════════════════════════════════════════════
+function iniciarRelaciona(titleEl, body) {
+  titleEl.textContent = `🔗 Relaciona — ${NOMBRE_CORTO} ${gradoSel}° Sec.`;
+  const data = RELACIONA[AREA] && RELACIONA[AREA][gradoSel];
+  if (!data) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin datos para este grado.</p>'; return; }
+
+  const pares = [...data.pares].sort(() => Math.random() - .5);
+  const lefts  = pares.map(p => p[0]);
+  const rights = [...pares.map(p => p[1])].sort(() => Math.random() - .5);
+  let sel = null; // { side, idx }
+  const matches = {}; // left_idx → right_idx
+
+  function render() {
+    const done = Object.keys(matches).length === pares.length;
+    body.innerHTML = `
+      <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 .75rem">Toca un concepto de la izquierda y luego su par de la derecha:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="display:grid;gap:.4rem">
+          ${lefts.map((l, i) => {
+            const matched = Object.keys(matches).includes(String(i));
+            return `<button onclick="relSel('L',${i})" style="
+              padding:.65rem .85rem;border-radius:.85rem;border:1.5px solid ${sel?.side==='L'&&sel.idx===i?'var(--accent)':matched?'#10b981':'rgba(99,102,241,0.2)'};
+              background:${matched?'rgba(16,185,129,0.1)':sel?.side==='L'&&sel.idx===i?'rgba(99,102,241,0.08)':'#f8fbff'};
+              font-size:.82rem;font-weight:700;color:var(--accent-strong);text-align:left;cursor:pointer" ${matched?'disabled':''}>${l}</button>`;
+          }).join('')}
+        </div>
+        <div style="display:grid;gap:.4rem">
+          ${rights.map((r, i) => {
+            const matchedLeft = Object.entries(matches).find(([li,ri]) => rights[ri]===r);
+            const matched = !!matchedLeft;
+            return `<button onclick="relSel('R',${i})" style="
+              padding:.65rem .85rem;border-radius:.85rem;border:1.5px solid ${sel?.side==='R'&&sel.idx===i?'var(--accent)':matched?'#10b981':'rgba(99,102,241,0.2)'};
+              background:${matched?'rgba(16,185,129,0.1)':sel?.side==='R'&&sel.idx===i?'rgba(99,102,241,0.08)':'#f8fbff'};
+              font-size:.82rem;color:var(--text);text-align:left;cursor:pointer" ${matched?'disabled':''}>${r}</button>`;
+          }).join('')}
+        </div>
+      </div>
+      <div id="relFb" style="margin-top:.75rem"></div>
+      ${done ? `
+        <div class="score-card" style="margin-top:.75rem">
+          <div style="font-size:2rem">🏆</div>
+          <div class="score-big">${pares.length * 5}</div>
+          <div style="font-size:.9rem;color:var(--text-muted)">puntos · ¡Todos los pares correctos!</div>
+        </div>
+        <div style="display:flex;gap:.75rem;justify-content:center;margin-top:.75rem">
+          <button class="button button-secondary" onclick="iniciarRelaciona(document.getElementById('gameTitle'),document.getElementById('gameBody'))">🔄 Reintentar</button>
+          <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+        </div>` : ''}`;
+  }
+
+  window.relSel = (side, idx) => {
+    if (!sel) { sel = { side, idx }; render(); return; }
+    if (sel.side === side) { sel = { side, idx }; render(); return; }
+    // intentar emparejar
+    const leftIdx  = sel.side === 'L' ? sel.idx : idx;
+    const rightIdx = sel.side === 'R' ? sel.idx : idx;
+    const leftVal  = lefts[leftIdx];
+    const rightVal = rights[rightIdx];
+    const correct  = pares[leftIdx][1] === rightVal;
+    const fb = document.createElement('div');
+    fb.className = correct ? 'quiz-fb ok' : 'quiz-fb bad';
+    fb.textContent = correct ? `✅ ¡Correcto! "${leftVal}" → "${rightVal}" +5 pts` : `❌ Incorrecto. Intenta de nuevo.`;
+    if (correct) { matches[leftIdx] = rightIdx; addPuntos(5); }
+    sel = null;
+    render();
+    const fbEl = document.getElementById('relFb');
+    if (fbEl) { fbEl.innerHTML = ''; fbEl.appendChild(fb); setTimeout(() => { fbEl.innerHTML = ''; }, 1500); }
+  };
+  render();
+}
+
+// ══════════════════════════════════════════════════
+// MEMORIA
+// ══════════════════════════════════════════════════
+function iniciarMemoria(titleEl, body) {
+  titleEl.textContent = `🧠 Memoria — ${NOMBRE_CORTO} ${gradoSel}° Sec.`;
+  const pool = MEMORIA_DATA[AREA] && MEMORIA_DATA[AREA][gradoSel];
+  if (!pool) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin datos para este grado.</p>'; return; }
+
+  // Crear pares: cada par tiene [concepto, definición] → 2 cartas
+  const cards = [];
+  pool.forEach((par, i) => {
+    cards.push({ id: i, val: par[0], pair: i, type: 'A' });
+    cards.push({ id: i + pool.length, val: par[1], pair: i, type: 'B' });
+  });
+  cards.sort(() => Math.random() - .5);
+
+  let flipped = [];
+  let matched = new Set();
+  let score = 0;
+  let locked = false;
+
+  function render() {
+    const done = matched.size === pool.length;
+    body.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
+        <span style="font-size:.85rem;color:var(--text-muted);font-weight:700">Pares encontrados: ${matched.size}/${pool.length}</span>
+        <span style="font-size:.85rem;font-weight:800;color:var(--accent-strong)">⭐ ${score} pts</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem">
+        ${cards.map((c, ci) => {
+          const isMatched  = matched.has(c.pair);
+          const isFlipped  = flipped.includes(ci);
+          return `<button onclick="memFlip(${ci})" style="
+            aspect-ratio:1;border-radius:1rem;border:1.5px solid ${isMatched?'#10b981':isFlipped?'var(--accent)':'rgba(99,102,241,0.18)'};
+            background:${isMatched?'rgba(16,185,129,0.12)':isFlipped?'rgba(99,102,241,0.08)':'#f8fbff'};
+            font-size:.72rem;font-weight:700;color:${isMatched?'#065f46':isFlipped?'var(--accent-strong)':'#cbd5e1'};
+            cursor:pointer;padding:.25rem;line-height:1.2;word-break:break-word;transition:all .2s"
+            ${(isMatched||locked&&!isFlipped)?'disabled':''}>
+            ${isFlipped||isMatched ? c.val : '?'}
+          </button>`;
+        }).join('')}
+      </div>
+      ${done ? `
+        <div class="score-card" style="margin-top:1rem">
+          <div style="font-size:2.5rem">🧠</div>
+          <div class="score-big">${score}</div>
+          <div style="font-size:.9rem;color:var(--text-muted)">¡Encontraste todos los pares!</div>
+        </div>
+        <div style="display:flex;gap:.75rem;justify-content:center;margin-top:.75rem">
+          <button class="button button-secondary" onclick="iniciarMemoria(document.getElementById('gameTitle'),document.getElementById('gameBody'))">🔄 Reintentar</button>
+          <button class="button button-primary" onclick="cerrarJuego()">Cerrar</button>
+        </div>` : ''}`;
+  }
+
+  window.memFlip = (ci) => {
+    if (locked || flipped.includes(ci) || matched.has(cards[ci].pair)) return;
+    flipped.push(ci);
+    render();
+    if (flipped.length === 2) {
+      locked = true;
+      const [a, b] = flipped;
+      if (cards[a].pair === cards[b].pair && cards[a].type !== cards[b].type) {
+        matched.add(cards[a].pair);
+        score += 5;
+        addPuntos(5);
+        flipped = [];
+        locked = false;
+        render();
+      } else {
+        setTimeout(() => { flipped = []; locked = false; render(); }, 900);
+      }
+    }
+  };
+  render();
+}
