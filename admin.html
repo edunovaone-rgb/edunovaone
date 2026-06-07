@@ -612,9 +612,9 @@
               const row = list.querySelector(`.user-row[data-uid="${uid}"]`);
               if (row) {
                 const tag = row.querySelector('.plan-tag');
-                const labels = { free:'🔓 Free', premium:'✨ Premium', preu:'🎓 Pre-u' };
+                const labels = { free:'🔓 Free', esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
                 tag.className = 'plan-tag ' + plan;
-                tag.textContent = labels[plan];
+                tag.textContent = labels[plan] || plan;
                 row.querySelectorAll('.quick-plan-btn').forEach(b => {
                   b.className = 'quick-plan-btn';
                   if (b.dataset.plan === plan) b.classList.add('qp-' + plan);
