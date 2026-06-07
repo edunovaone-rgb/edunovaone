@@ -526,22 +526,22 @@ const FORMULAS = {
     { partes: ['Pendiente m = dy ÷ ', '____'], r: 'dx', pista: 'm=dy÷?' },
   ],
   3: [
-    { partes: ['Pitágoras: c² = a² + ', '____'], r: 'b²', pista: 'c²=a²+?' },
+    { partes: ['Pitagoras: c2 = a2 + ', '____'], r: 'b2', pista: 'c2=a2+?' },
     { partes: ['sen θ = opuesto ÷ ', '____'], r: 'hipotenusa', pista: 'SOH' },
-    { partes: ['Área triángulo = (base × altura) ÷ ', '____'], r: '2', pista: '(b×h)÷?' },
+    { partes: ['Area triangulo = (base × altura) ÷ ', '____'], r: '2', pista: '(b×h)÷?' },
     { partes: ['cos θ = adyacente ÷ ', '____'], r: 'hipotenusa', pista: 'CAH' },
   ],
   4: [
-    { partes: ['Media = Σx ÷ ', '____'], r: 'n', pista: 'suma÷?' },
+    { partes: ['Media = suma ÷ ', '____'], r: 'n', pista: 'suma÷?' },
     { partes: ['P(A) = favorables ÷ ', '____'], r: 'posibles', pista: 'P=fav÷?' },
     { partes: ['f(x) = ', '____', 'x + b  (pendiente)'], r: 'm', pista: 'f(x)=?x+b' },
-    { partes: ['Varianza = Σ(xi − x̄)² ÷ ', '____'], r: 'n', pista: 'Σ(...)÷?' },
+    { partes: ['Varianza = suma(xi - media)2 ÷ ', '____'], r: 'n', pista: 'suma(...)÷?' },
   ],
   5: [
-    { partes: ["d/dx(xⁿ) = ", "____", "·xⁿ⁻¹"], r: 'n', pista: '?·xⁿ⁻¹' },
-    { partes: ['∫xⁿ dx = xⁿ⁺¹ ÷ (n+1) + ', '____'], r: 'C', pista: '...+?' },
-    { partes: ['|v| = √(x² + ', '____', ')'], r: 'y²', pista: '√(x²+?)' },
-    { partes: ["f'(x) de 3x² + 2x = ", "____"], r: '6x + 2', pista: '6x+?' },
+    { partes: ['d/dx(xn) = n · x^(', '____', '-1)'], r: 'n', pista: 'n·x^(n-1)' },
+    { partes: ['integral xn dx = x^(n+1) ÷ (n+1) + ', '____'], r: 'C', pista: '...+?' },
+    { partes: ['|v| = raiz(x2 + ', '____', ')'], r: 'y2', pista: 'raiz(x2+?)' },
+    { partes: ["f'(x) de 3x2 + 2x = ", "____"], r: '6x + 2', pista: '6x+?' },
   ],
 };
 
