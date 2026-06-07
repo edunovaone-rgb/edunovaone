@@ -4,482 +4,349 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
-  <meta name="description" content="PreU One: plataforma integral de preparación preuniversitaria en EduNova. Diagnóstico, rutas personalizadas, banco de preguntas y tutor visual interactivo." />
-  <title>EduNova | PreU One</title>
+  <meta name="description" content="Pre-universitaria EduNovaOne: repaso intensivo, simulacros y rutas de estudio para postular a la universidad." />
+  <title>EduNovaOne | Pre-universitaria</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ── Layout ── */
-    .preu-grid {
-      display: grid;
-      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
-      gap: 1.75rem;
-      align-items: start;
-      margin-top: 1.5rem;
-    }
-    .preu-sidebar {
-      background: #fff;
-      border: 1px solid rgba(59,130,246,0.08);
-      border-radius: 2rem;
+    /* PAYWALL OVERLAY */
+    #paywallOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(15, 10, 35, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
       padding: 1.5rem;
-      box-shadow: 0 24px 50px rgba(15,23,42,0.06);
+    }
+    #paywallOverlay.show { display: flex; }
+    .paywall-card {
+      background: #ffffff;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      max-width: 460px;
+      width: 100%;
+      box-shadow: 0 32px 80px rgba(99,102,241,0.22);
       display: flex;
       flex-direction: column;
-      gap: 0;
-    }
-    .preu-main { display: grid; gap: 1.75rem; }
-
-    /* ── Hero ── */
-    .preu-hero {
-      background: linear-gradient(135deg, rgba(124,58,237,0.09), rgba(37,99,235,0.06));
-      border: 1px solid rgba(124,58,237,0.16);
-      border-radius: 2rem;
-      padding: 2.25rem 2.5rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
       align-items: center;
-      position: relative;
-      overflow: hidden;
+      gap: 1.25rem;
+      text-align: center;
+      animation: paywall-pop 0.35s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes paywall-pop {
+      from { opacity: 0; transform: scale(0.88) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .paywall-lock {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed22, #2563eb22);
+      border: 2px solid rgba(99,102,241,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .paywall-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
+      font-size: .78rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      padding: .35rem 1rem;
+      border-radius: 999px;
+    }
+    .paywall-card h2 {
+      margin: 0;
+      font-size: 1.65rem;
+      color: #1e1b4b;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+    .paywall-card p {
+      margin: 0;
+      color: #64748b;
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+    .paywall-features {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: grid; gap: .55rem;
+      width: 100%;
+      text-align: left;
+    }
+    .paywall-features li {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .9rem; color: #334155;
+    }
+    .paywall-features li .feat-icon {
+      width: 1.6rem; height: 1.6rem;
+      border-radius: 50%;
+      background: rgba(99,102,241,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; flex-shrink: 0;
+    }
+    .paywall-price {
+      display: flex; align-items: baseline; gap: .35rem;
+      padding: .75rem 1.75rem;
+      background: linear-gradient(135deg, rgba(124,58,237,0.07), rgba(37,99,235,0.05));
+      border: 1.5px solid rgba(99,102,241,0.18);
+      border-radius: 1.25rem;
+    }
+    .paywall-price strong { font-size: 2rem; color: #7c3aed; font-weight: 900; }
+    .paywall-price span   { font-size: .88rem; color: #64748b; }
+    .paywall-cta {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      font-size: 1rem; font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.32);
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none;
+      display: block;
+    }
+    .paywall-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(99,102,241,0.42); }
+    .paywall-back {
+      font-size: .85rem; color: #94a3b8;
+      cursor: pointer; text-decoration: underline;
+      background: none; border: none;
+    }
+    .paywall-back:hover { color: #7c3aed; }
+
+    /* LAYOUT */
+    .preu-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: calc(100vh - 60px);
+    }
+    .preu-sidebar {
+      background: #ffffff;
+      border-right: 1px solid rgba(99,102,241,0.1);
+      padding: 1.75rem 1.25rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+      position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .preu-sidebar-brand { display: flex; align-items: center; gap: .7rem; }
+    .preu-sidebar-brand img { width: 36px; height: 36px; }
+    .preu-sidebar-brand strong { font-size: .95rem; color: var(--accent-strong); font-weight: 800; }
+    .preu-sidebar-brand span  { font-size: .72rem; color: #c026d3; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+    .preu-sidebar nav { display: grid; gap: .35rem; }
+    .preu-sidebar nav a {
+      display: flex; align-items: center; gap: .7rem;
+      padding: .75rem 1rem;
+      border-radius: 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: .92rem;
+      transition: background .2s, color .2s;
+    }
+    .preu-sidebar nav a:hover { background: rgba(99,102,241,0.08); color: var(--accent-strong); }
+    .preu-sidebar nav a.active { background: rgba(99,102,241,0.12); color: var(--accent-strong); font-weight: 700; }
+    .preu-sidebar nav a .nav-icon {
+      width: 2rem; height: 2rem; border-radius: .6rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(99,102,241,0.1);
+      font-size: .95rem; flex-shrink: 0;
+    }
+    .preu-sidebar nav a.active .nav-icon { background: var(--accent); }
+    .sidebar-plan-card {
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      border-radius: 1.5rem;
+      padding: 1.25rem;
+      color: #fff;
+      display: flex; flex-direction: column; gap: .65rem;
+    }
+    .sidebar-plan-card strong { font-size: .95rem; font-weight: 800; line-height: 1.35; }
+    .sidebar-plan-card p { font-size: .8rem; opacity: .85; margin: 0; line-height: 1.5; }
+    .sidebar-plan-card a {
+      display: block;
+      background: rgba(255,255,255,0.2);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: #fff;
+      text-align: center;
+      padding: .6rem;
+      border-radius: .85rem;
+      font-size: .85rem; font-weight: 700;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .sidebar-plan-card a:hover { background: rgba(255,255,255,0.3); }
+    .preu-main {
+      padding: 2rem 2.25rem;
+      display: flex; flex-direction: column; gap: 2rem;
+      max-width: 1100px;
+    }
+    .preu-hero {
+      background: linear-gradient(135deg, #7c3aed 0%, #2563eb 60%, #0ea5e9 100%);
+      border-radius: 2rem;
+      padding: 2.5rem 2.75rem;
+      color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1.5rem;
+      position: relative; overflow: hidden;
     }
     .preu-hero::before {
       content: '';
-      position: absolute;
-      right: -60px; top: -60px;
-      width: 260px; height: 260px;
-      border-radius: 50%;
-      background: rgba(124,58,237,0.1);
-      filter: blur(40px);
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.12) 0%, transparent 60%);
     }
-    .preu-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .45rem;
-      padding: .4rem .9rem;
-      background: linear-gradient(135deg, rgba(124,58,237,0.14), rgba(37,99,235,0.1));
-      border: 1px solid rgba(124,58,237,0.2);
-      border-radius: 999px;
-      color: #7c3aed;
-      font-size: .75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: .9rem;
-    }
-    .preu-hero h2 {
-      margin: 0 0 .75rem;
-      font-size: clamp(1.7rem, 2.5vw, 2.4rem);
-      color: var(--accent-strong);
-      line-height: 1.15;
-    }
-    .preu-hero h2 span { color: #7c3aed; }
-    .preu-hero p {
-      margin: 0 0 1.4rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      max-width: 540px;
-    }
-    .preu-hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
-    .preu-hero-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .75rem;
-      position: relative;
-      z-index: 1;
-    }
-    .preu-hero-icon {
-      width: 120px; height: 120px;
-      border-radius: 2rem;
-      background: linear-gradient(135deg, #7c3aed, #2563eb);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.5rem;
-      box-shadow: 0 24px 48px rgba(124,58,237,0.3);
-      animation: float 6s ease-in-out infinite;
-    }
-    .preu-hero-stats {
-      display: flex;
-      gap: .6rem;
-    }
-    .preu-stat-pill {
-      padding: .35rem .8rem;
-      background: #fff;
-      border: 1px solid rgba(124,58,237,0.18);
-      border-radius: 999px;
-      font-size: .75rem;
-      font-weight: 700;
-      color: var(--accent-strong);
-      white-space: nowrap;
-    }
-
-    /* ── Section title ── */
-    .preu-section-title {
-      margin: 0 0 1rem;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .preu-section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(99,102,241,0.12);
-    }
-
-    /* ── Diagnóstico CTA ── */
-    .preu-diagnose-card {
-      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
-      border-radius: 1.75rem;
-      padding: 1.75rem 2rem;
+    .preu-hero-text { position: relative; z-index: 1; }
+    .preu-hero-text .eyebrow { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; opacity: .8; margin: 0 0 .5rem; }
+    .preu-hero-text h1 { margin: 0 0 .65rem; font-size: 2rem; font-weight: 900; line-height: 1.2; }
+    .preu-hero-text p  { margin: 0; opacity: .85; font-size: .95rem; max-width: 520px; line-height: 1.6; }
+    .preu-hero-emoji  { font-size: 5rem; position: relative; z-index: 1; user-select: none; }
+    .preu-stats {
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 1.5rem;
-      color: #fff;
-      box-shadow: 0 20px 48px rgba(37,99,235,0.3);
-    }
-    .preu-diagnose-card h3 { margin: 0 0 .4rem; font-size: 1.15rem; }
-    .preu-diagnose-card p  { margin: 0; font-size: .88rem; opacity: .85; line-height: 1.6; }
-    .btn-white {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: .75rem 1.4rem;
-      background: #fff;
-      color: #1d4ed8;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: .88rem;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: box-shadow .2s, transform .2s;
-      flex-shrink: 0;
-    }
-    .btn-white:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); }
-
-    /* ── Módulos grid ── */
-    .preu-modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 1rem;
     }
-    .preu-module-card {
+    .preu-stat-card {
       background: #fff;
-      border: 1px solid rgba(59,130,246,0.1);
-      border-radius: 1.75rem;
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-      box-shadow: 0 12px 28px rgba(15,23,42,0.05);
-      transition: transform .2s, box-shadow .2s;
-      cursor: pointer;
-      text-decoration: none;
+      border: 1.5px solid rgba(99,102,241,0.1);
+      border-radius: 1.5rem;
+      padding: 1.35rem 1.25rem;
+      display: flex; flex-direction: column; gap: .4rem;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05);
     }
-    .preu-module-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px rgba(15,23,42,0.1); }
-    .preu-module-icon {
-      width: 2.8rem; height: 2.8rem;
-      border-radius: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-    }
-    .mi-purple { background: rgba(124,58,237,0.12); }
-    .mi-blue   { background: rgba(37,99,235,0.12); }
-    .mi-green  { background: rgba(16,185,129,0.12); }
-    .mi-orange { background: rgba(249,115,22,0.12); }
-    .mi-red    { background: rgba(239,68,68,0.12); }
-    .mi-teal   { background: rgba(14,165,233,0.12); }
-    .preu-module-card h4 { margin: 0; font-size: .95rem; color: var(--accent-strong); }
-    .preu-module-card p  { margin: 0; font-size: .83rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
-    .preu-module-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: .2rem .65rem;
-      border-radius: 999px;
-      font-size: .72rem;
-      font-weight: 700;
-      width: fit-content;
-    }
-    .badge-free    { background: rgba(16,185,129,0.1);  color: #16a34a; }
-    .badge-premium { background: rgba(249,115,22,0.1);  color: #ea580c; }
-    .badge-new     { background: rgba(124,58,237,0.1);  color: #7c3aed; }
-
-    /* ── Materias tabs ── */
-    .preu-tabs {
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .preu-tab {
-      padding: .45rem 1rem;
-      border: 1px solid rgba(99,102,241,0.18);
-      border-radius: 999px;
+    .preu-stat-card .stat-icon { font-size: 1.5rem; }
+    .preu-stat-card .stat-val  { font-size: 1.75rem; font-weight: 900; color: var(--accent-strong); line-height: 1; }
+    .preu-stat-card .stat-lbl  { font-size: .78rem; color: var(--text-muted); font-weight: 600; }
+    .preu-section {
       background: #fff;
-      color: var(--text-muted);
-      font-size: .83rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
+      border: 1px solid rgba(99,102,241,0.08);
+      border-radius: 2rem;
+      padding: 1.75rem;
+      box-shadow: 0 8px 28px rgba(15,23,42,0.05);
+      display: flex; flex-direction: column; gap: 1.25rem;
     }
-    .preu-tab.active, .preu-tab:hover {
-      background: rgba(99,102,241,0.1);
+    .preu-section-title {
+      margin: 0;
+      font-size: 1.15rem; font-weight: 800;
       color: var(--accent-strong);
-      border-color: rgba(99,102,241,0.3);
+      display: flex; align-items: center; gap: .5rem;
     }
-
-    /* ── Materias grid ── */
     .preu-materias-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: .85rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
     }
     .preu-materia-card {
-      background: #fff;
-      border: 1px solid rgba(59,130,246,0.1);
+      border: 1.5px solid rgba(99,102,241,0.12);
       border-radius: 1.5rem;
-      padding: 1.1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: .85rem;
-      box-shadow: 0 8px 20px rgba(15,23,42,0.04);
-      transition: transform .18s, box-shadow .18s;
+      padding: 1.4rem 1.1rem;
+      display: flex; flex-direction: column; align-items: center; gap: .7rem;
       cursor: pointer;
-      text-decoration: none;
-    }
-    .preu-materia-card:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(15,23,42,0.09); }
-    .preu-materia-emoji { font-size: 1.6rem; flex-shrink: 0; }
-    .preu-materia-info strong { display: block; font-size: .88rem; color: var(--accent-strong); }
-    .preu-materia-info span   { font-size: .76rem; color: var(--text-muted); }
-
-    /* ── Simulacro card ── */
-    .preu-simulacro-card {
-      background: linear-gradient(135deg, rgba(16,185,129,0.07), rgba(37,99,235,0.05));
-      border: 1px solid rgba(16,185,129,0.16);
-      border-radius: 1.75rem;
-      padding: 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      align-items: center;
-    }
-    .preu-sim-info h4 { margin: 0 0 .35rem; color: var(--accent-strong); font-size: 1rem; }
-    .preu-sim-info p  { margin: 0; color: var(--text-muted); font-size: .83rem; line-height: 1.55; }
-    .preu-sim-stats {
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-    }
-    .preu-sim-stat {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: .5rem;
-      padding: .5rem .85rem;
-      background: #fff;
-      border-radius: .9rem;
-      font-size: .82rem;
-    }
-    .preu-sim-stat span:last-child { font-weight: 700; color: var(--accent-strong); }
-    .preu-sim-action { display: flex; flex-direction: column; gap: .75rem; align-items: flex-start; }
-
-    /* ── Gamificación ── */
-    .preu-gamif-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: .85rem;
-    }
-    .preu-gamif-card {
-      background: #fff;
-      border: 1px solid rgba(59,130,246,0.1);
-      border-radius: 1.5rem;
-      padding: 1.1rem;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
       text-align: center;
-      box-shadow: 0 8px 20px rgba(15,23,42,0.04);
+      background: #fafbff;
+      text-decoration: none; color: inherit;
     }
-    .preu-gamif-icon { font-size: 1.8rem; margin-bottom: .4rem; }
-    .preu-gamif-card strong { display: block; font-size: 1.2rem; color: var(--accent-strong); }
-    .preu-gamif-card span   { font-size: .78rem; color: var(--text-muted); }
-
-    /* ── Mentor One ── */
-    .preu-mentor-card {
-      background: linear-gradient(135deg, #0f172a, #1d4ed8);
-      border-radius: 2rem;
-      padding: 1.75rem 2rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 1.5rem;
-      color: #fff;
-      box-shadow: 0 24px 50px rgba(15,23,42,0.2);
-    }
-    .preu-mentor-avatar {
-      width: 64px; height: 64px;
+    .preu-materia-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(99,102,241,0.14); border-color: var(--accent); }
+    .materia-icon-wrap { width: 3.2rem; height: 3.2rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .preu-materia-card strong { font-size: .95rem; color: var(--accent-strong); font-weight: 700; }
+    .preu-materia-card span   { font-size: .78rem; color: var(--text-muted); }
+    .preu-progress-bar-wrap { height: 6px; background: rgba(99,102,241,0.1); border-radius: 999px; overflow: hidden; width: 100%; }
+    .preu-progress-bar { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #7c3aed, #2563eb); transition: width .6s ease; }
+    .preu-materia-card .prog-row { width: 100%; display: flex; flex-direction: column; gap: .3rem; }
+    .preu-materia-card .prog-row span { font-size: .73rem; color: var(--text-muted); text-align: left; }
+    .simulacros-list { display: grid; gap: .85rem; }
+    .simulacro-item {
+      display: flex; align-items: center; gap: 1rem;
+      background: #fafbff;
+      border: 1.5px solid rgba(99,102,241,0.1);
       border-radius: 1.25rem;
+      padding: 1.1rem 1.25rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .simulacro-item:hover { border-color: var(--accent); box-shadow: 0 6px 20px rgba(99,102,241,0.1); }
+    .simulacro-num {
+      width: 2.8rem; height: 2.8rem; border-radius: .85rem;
       background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff; font-size: .9rem; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
-      font-size: 2rem;
       flex-shrink: 0;
     }
-    .preu-mentor-info h4 { margin: 0 0 .3rem; font-size: 1.05rem; }
-    .preu-mentor-info p  { margin: 0; font-size: .85rem; opacity: .8; line-height: 1.55; }
-    .preu-mentor-chat {
-      display: flex;
-      gap: .5rem;
-      flex-shrink: 0;
+    .simulacro-info { flex: 1; }
+    .simulacro-info strong { display: block; font-size: .95rem; color: var(--text); font-weight: 700; }
+    .simulacro-info span   { font-size: .78rem; color: var(--text-muted); }
+    .simulacro-badge { font-size: .72rem; font-weight: 700; padding: .3rem .8rem; border-radius: 999px; }
+    .badge-nuevo    { background: rgba(16,185,129,0.12); color: #059669; }
+    .badge-popular  { background: rgba(245,158,11,0.12); color: #d97706; }
+    .badge-completo { background: rgba(99,102,241,0.12); color: #4f46e5; }
+    .simulacro-btn {
+      padding: .55rem 1.1rem; border: none; border-radius: .85rem;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff; font-size: .82rem; font-weight: 700;
+      cursor: pointer; transition: transform .15s;
+      text-decoration: none; white-space: nowrap;
     }
-    .preu-mentor-input {
-      padding: .65rem 1rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      font-size: .85rem;
-      outline: none;
-      width: 200px;
+    .simulacro-btn:hover { transform: translateY(-1px); }
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
+    .tip-card {
+      background: #fafbff;
+      border: 1.5px solid rgba(99,102,241,0.1);
+      border-radius: 1.5rem;
+      padding: 1.25rem;
+      display: flex; flex-direction: column; gap: .55rem;
     }
-    .preu-mentor-input::placeholder { color: rgba(255,255,255,0.5); }
-    .btn-mentor {
-      padding: .65rem 1.2rem;
-      background: #fff;
-      color: #1d4ed8;
-      border: none;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: .85rem;
-      cursor: pointer;
-      transition: box-shadow .2s;
-      white-space: nowrap;
+    .tip-card .tip-icon { font-size: 1.6rem; }
+    .tip-card strong { font-size: .92rem; color: var(--accent-strong); font-weight: 700; }
+    .tip-card p { font-size: .83rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+    .diagnostico-intro {
+      background: linear-gradient(135deg, rgba(124,58,237,0.07), rgba(37,99,235,0.04));
+      border: 1.5px dashed rgba(99,102,241,0.25);
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;
     }
-    .btn-mentor:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-
-    /* ── Predictor ── */
-    .preu-predictor-card {
-      background: #fff;
-      border: 1px solid rgba(59,130,246,0.1);
-      border-radius: 1.75rem;
-      padding: 1.5rem;
-      box-shadow: 0 12px 28px rgba(15,23,42,0.05);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      align-items: center;
+    .diagnostico-intro h3 { margin: 0; font-size: 1.1rem; color: var(--accent-strong); font-weight: 800; }
+    .diagnostico-intro p  { margin: 0; font-size: .88rem; color: var(--text-muted); line-height: 1.65; }
+    @media (max-width: 900px) {
+      .preu-layout { grid-template-columns: 1fr; }
+      .preu-sidebar { display: none; }
+      .preu-main { padding: 1.25rem 1rem; }
+      .preu-hero { flex-direction: column; padding: 1.75rem; }
+      .preu-hero-emoji { font-size: 3.5rem; }
+      .preu-hero-text h1 { font-size: 1.5rem; }
     }
-    .preu-predictor-info h4 { margin: 0 0 .5rem; color: var(--accent-strong); font-size: 1rem; }
-    .preu-predictor-info p  { margin: 0 0 1rem; color: var(--text-muted); font-size: .85rem; line-height: 1.6; }
-    .preu-progress-bars { display: grid; gap: .6rem; }
-    .preu-progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: .8rem;
-      color: var(--text-muted);
-      margin-bottom: .2rem;
-    }
-    .preu-progress-track {
-      height: .5rem;
-      background: rgba(99,102,241,0.1);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .preu-progress-fill {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #7c3aed, #2563eb);
-      transition: width 1s ease;
-    }
-    .preu-big-score {
-      text-align: center;
-    }
-    .preu-big-score .score-ring {
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: conic-gradient(#7c3aed 0% 68%, rgba(99,102,241,0.1) 68% 100%);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem;
-      box-shadow: 0 8px 24px rgba(124,58,237,0.2);
-    }
-    .preu-big-score .score-ring-inner {
-      width: 90px; height: 90px;
-      border-radius: 50%;
-      background: #fff;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column;
-    }
-    .preu-big-score .score-ring-inner strong { font-size: 1.6rem; color: #7c3aed; line-height: 1; }
-    .preu-big-score .score-ring-inner span   { font-size: .65rem; color: var(--text-muted); }
-    .preu-big-score p { margin: 0; font-size: .83rem; color: var(--text-muted); }
-
-    /* ── Freemium ── */
-    .preu-plans-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .preu-plan-card {
-      border-radius: 1.75rem;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-    }
-    .preu-plan-free {
-      background: #fff;
-      border: 1px solid rgba(59,130,246,0.12);
-      box-shadow: 0 12px 28px rgba(15,23,42,0.05);
-    }
-    .preu-plan-premium {
-      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
-      color: #fff;
-      box-shadow: 0 20px 48px rgba(37,99,235,0.28);
-    }
-    .preu-plan-title { font-size: 1.1rem; font-weight: 800; margin: 0 0 .15rem; }
-    .preu-plan-price { font-size: 1.6rem; font-weight: 800; margin: 0 0 .75rem; }
-    .preu-plan-price span { font-size: .85rem; font-weight: 500; opacity: .7; }
-    .preu-plan-features { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .4rem; }
-    .preu-plan-features li {
-      font-size: .83rem;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      opacity: .9;
-    }
-    .preu-plan-features li::before { content: '✓'; font-weight: 700; }
-    .preu-plan-free .preu-plan-features li::before { color: #16a34a; }
-    .preu-plan-premium .preu-plan-features li::before { color: #a5f3fc; }
-    .preu-plan-free .preu-plan-title   { color: var(--accent-strong); }
-    .preu-plan-free .preu-plan-price   { color: var(--text); }
-    .preu-plan-free .preu-plan-features li { color: var(--text-muted); }
-
-    /* ── Responsive ── */
-    @media (max-width: 1080px) {
-      .preu-grid { grid-template-columns: 1fr; }
-      .preu-hero { grid-template-columns: 1fr; }
-      .preu-hero-visual { display: none; }
-      .preu-simulacro-card { grid-template-columns: 1fr 1fr; }
-      .preu-gamif-grid { grid-template-columns: repeat(2, 1fr); }
-      .preu-mentor-card { grid-template-columns: auto 1fr; }
-      .preu-mentor-chat { display: none; }
-      .preu-diagnose-card { grid-template-columns: 1fr; gap: 1rem; }
-    }
-    @media (max-width: 700px) {
-      .preu-modules-grid { grid-template-columns: 1fr 1fr; }
-      .preu-materias-grid { grid-template-columns: 1fr 1fr; }
-      .preu-simulacro-card { grid-template-columns: 1fr; }
-      .preu-predictor-card { grid-template-columns: 1fr; }
-      .preu-plans-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .preu-modules-grid { grid-template-columns: 1fr; }
-      .preu-materias-grid { grid-template-columns: 1fr; }
-      .preu-gamif-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 560px) {
+      .paywall-card { padding: 2rem 1.25rem; border-radius: 1.75rem; }
+      .paywall-card h2 { font-size: 1.35rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Navbar ── -->
+  <!-- PAYWALL OVERLAY -->
+  <div id="paywallOverlay">
+    <div class="paywall-card">
+      <div class="paywall-lock">🔒</div>
+      <span class="paywall-badge">✨ Plan Premium</span>
+      <h2>Acceso exclusivo a la Pre-u</h2>
+      <p>Esta sección está disponible solo para usuarios con el <strong>Plan Premium</strong>. Incluye simulacros, rutas personalizadas y resúmenes intensivos.</p>
+      <ul class="paywall-features">
+        <li><span class="feat-icon">📝</span> Simulacros tipo examen con corrección inmediata</li>
+        <li><span class="feat-icon">🗺️</span> Ruta de estudio personalizada por universidad</li>
+        <li><span class="feat-icon">⚡</span> Resúmenes express de todas las materias</li>
+        <li><span class="feat-icon">📊</span> Seguimiento de progreso con estadísticas</li>
+        <li><span class="feat-icon">🏆</span> Ranking y competencia con otros postulantes</li>
+      </ul>
+      <div class="paywall-price">
+        <strong>S/ 15</strong>
+        <span>/ mes · cancela cuando quieras</span>
+      </div>
+      <a href="planes.html" class="paywall-cta">🚀 Activar Plan Premium</a>
+      <button class="paywall-back" onclick="history.back()">← Volver atrás</button>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
   <nav class="uni-nav">
     <a href="index.html" class="uni-nav-brand">
       <img src="assets/Icono.png" alt="EduNovaOne" />
@@ -491,402 +358,244 @@
       <li><a href="juegos.html">Juegos</a></li>
       <li><a href="herramientas.html">Herramientas</a></li>
       <li><a href="comunidad.html">Comunidad</a></li>
-      <li><a href="preu.html" class="active">PreU One</a></li>
+      <li><a href="preu.html" class="active">Pre-u</a></li>
     </ul>
     <div class="uni-nav-actions">
       <button class="uni-icon-btn" aria-label="Buscar">🔍</button>
       <button class="uni-icon-btn" aria-label="Notificaciones">🔔</button>
-      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+      <a href="login.html" class="button button-primary" id="navAuthBtn"
+         style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
     </div>
   </nav>
 
-  <main class="page-content">
-    <div class="preu-grid">
+  <!-- LAYOUT -->
+  <div class="preu-layout">
 
-      <!-- ── Sidebar ── -->
-      <aside class="preu-sidebar library-sidebar">
-        <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebarCollapsible">
-          <span class="nav-icon">🎓</span> Menú
-          <span class="toggle-arrow">▼</span>
-        </button>
-        <div class="sidebar-collapsible" id="sidebarCollapsible">
-          <div class="sidebar-brand">
-            <img src="assets/Icono.png" alt="EduNovaOne" />
-            <div>
-              <p class="eyebrow">EduNovaOne</p>
-              <h2>PreU One</h2>
-            </div>
-          </div>
-          <nav class="sidebar-nav">
-            <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
-            <a href="biblioteca.html"><span class="nav-icon">📚</span>Biblioteca</a>
-            <a href="juegos.html"><span class="nav-icon">🎮</span>Juegos</a>
-            <a href="herramientas.html"><span class="nav-icon">🛠️</span>Herramientas</a>
-            <a href="comunidad.html"><span class="nav-icon">👥</span>Comunidad</a>
-            <a href="preu.html" class="active"><span class="nav-icon">🎓</span>PreU One</a>
-            <a href="perfil.html"><span class="nav-icon">👤</span>Mi Perfil</a>
-          </nav>
-          <div class="sidebar-card">
-            <strong>🎯 Tu meta universitaria</strong>
-            <p>Comienza con el diagnóstico y descubre tu nivel real de preparación.</p>
-            <a href="#diagnostico" class="button button-primary">Empezar ahora</a>
-          </div>
-        </div>
-      </aside>
-
-      <!-- ── Main ── -->
-      <div class="preu-main">
-
-        <!-- Hero -->
-        <div class="preu-hero">
-          <div>
-            <div class="preu-hero-badge">🎓 Módulo Preuniversitario</div>
-            <h2>Tu camino a la universidad,<br><span>inteligente y personalizado</span></h2>
-            <p>PreU One combina diagnóstico adaptativo, banco de preguntas, tutor visual interactivo y gamificación para maximizar tus probabilidades de ingreso.</p>
-            <div class="preu-hero-actions">
-              <a href="#diagnostico" class="button button-primary">Iniciar diagnóstico gratuito</a>
-              <a href="#modulos" class="button button-secondary">Ver módulos</a>
-            </div>
-          </div>
-          <div class="preu-hero-visual">
-            <div class="preu-hero-icon">🎓</div>
-            <div class="preu-hero-stats">
-              <span class="preu-stat-pill">📊 Diagnóstico IA</span>
-              <span class="preu-stat-pill">🏆 Gamificado</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Diagnóstico CTA -->
-        <div class="preu-diagnose-card" id="diagnostico">
-          <div>
-            <h3>Evaluación Diagnóstica Inteligente</h3>
-            <p>Descubre tus fortalezas, debilidades y nivel estimado de preparación. Al finalizar, recibirás una ruta de aprendizaje 100% personalizada.</p>
-          </div>
-          <a href="#" class="btn-white">Comenzar evaluación →</a>
-        </div>
-
-        <!-- Módulos -->
-        <div id="modulos">
-          <h3 class="preu-section-title">Módulos disponibles</h3>
-          <div class="preu-modules-grid">
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-purple">📊</div>
-              <h4>Diagnóstico adaptativo</h4>
-              <p>Evaluación inteligente que mapea tu nivel en todos los cursos preuniversitarios.</p>
-              <span class="preu-module-badge badge-free">Gratis</span>
-            </div>
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-blue">📚</div>
-              <h4>Biblioteca académica</h4>
-              <p>Resúmenes, formularios, mapas conceptuales e infografías para todos los cursos.</p>
-              <span class="preu-module-badge badge-free">Gratis</span>
-            </div>
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-green">🧩</div>
-              <h4>Banco de preguntas</h4>
-              <p>Miles de ejercicios clasificados por curso, tema, dificultad y universidad.</p>
-              <span class="preu-module-badge badge-free">Gratis</span>
-            </div>
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-orange">🎬</div>
-              <h4>Tutor visual interactivo</h4>
-              <p>Explicaciones paso a paso con animaciones, diagramas y simulaciones.</p>
-              <span class="preu-module-badge badge-premium">Premium</span>
-            </div>
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-red">⏱️</div>
-              <h4>Simulacros de admisión</h4>
-              <p>Exámenes cronometrados que replican los formatos reales de admisión universitaria.</p>
-              <span class="preu-module-badge badge-free">Gratis</span>
-            </div>
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-teal">📈</div>
-              <h4>Predictor de ingreso</h4>
-              <p>Analítica avanzada con tu probabilidad estimada de ingreso y evolución semanal.</p>
-              <span class="preu-module-badge badge-premium">Premium</span>
-            </div>
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-purple">🗺️</div>
-              <h4>Rutas personalizadas</h4>
-              <p>Plan de estudio único generado según tu diagnóstico, objetivos y tiempo disponible.</p>
-              <span class="preu-module-badge badge-premium">Premium</span>
-            </div>
-
-            <div class="preu-module-card">
-              <div class="preu-module-icon mi-orange">🤖</div>
-              <h4>Mentor One IA</h4>
-              <p>Tutor virtual que resuelve dudas, recomienda recursos y te motiva cada día.</p>
-              <span class="preu-module-badge badge-new">Nuevo</span>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Materias -->
+    <!-- SIDEBAR -->
+    <aside class="preu-sidebar">
+      <div class="preu-sidebar-brand">
+        <img src="assets/Icono.png" alt="EduNovaOne" />
         <div>
-          <h3 class="preu-section-title">Cursos preuniversitarios</h3>
-          <div class="preu-tabs" id="presTabs">
-            <button class="preu-tab active" data-filter="all">Todos</button>
-            <button class="preu-tab" data-filter="ciencias">Ciencias</button>
-            <button class="preu-tab" data-filter="letras">Letras</button>
+          <strong>Pre-universitaria</strong>
+          <span>EduNovaOne</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#inicio"      class="active"><span class="nav-icon">🏠</span> Inicio</a>
+        <a href="#materias">                  <span class="nav-icon">📚</span> Materias</a>
+        <a href="#simulacros">                <span class="nav-icon">📝</span> Simulacros</a>
+        <a href="#diagnostico">               <span class="nav-icon">🎯</span> Diagnóstico</a>
+        <a href="#consejos">                  <span class="nav-icon">💡</span> Consejos</a>
+        <a href="perfil.html">                <span class="nav-icon">👤</span> Mi Perfil</a>
+      </nav>
+      <div class="sidebar-plan-card" id="sidebarPlanCard">
+        <strong>🚀 Plan Premium activo</strong>
+        <p>Tienes acceso completo a todos los recursos Pre-u.</p>
+        <a href="perfil.html">Ver mi plan →</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="preu-main" id="mainContent">
+
+      <!-- HERO -->
+      <section class="preu-hero" id="inicio">
+        <div class="preu-hero-text">
+          <p class="eyebrow">🎓 Pre-universitaria · EduNovaOne</p>
+          <h1>Tu camino a la universidad empieza aquí</h1>
+          <p>Simulacros, resúmenes intensivos y rutas personalizadas para que postules con confianza a la universidad que eliges.</p>
+        </div>
+        <div class="preu-hero-emoji">🎓</div>
+      </section>
+
+      <!-- STATS -->
+      <div class="preu-stats">
+        <div class="preu-stat-card">
+          <span class="stat-icon">📝</span>
+          <span class="stat-val">12</span>
+          <span class="stat-lbl">Simulacros disponibles</span>
+        </div>
+        <div class="preu-stat-card">
+          <span class="stat-icon">📚</span>
+          <span class="stat-val">6</span>
+          <span class="stat-lbl">Áreas temáticas</span>
+        </div>
+        <div class="preu-stat-card">
+          <span class="stat-icon">⭐</span>
+          <span class="stat-val" id="statPuntaje">—</span>
+          <span class="stat-lbl">Tu mejor puntaje</span>
+        </div>
+        <div class="preu-stat-card">
+          <span class="stat-icon">🏆</span>
+          <span class="stat-val" id="statRanking">—</span>
+          <span class="stat-lbl">Tu posición</span>
+        </div>
+      </div>
+
+      <!-- MATERIAS -->
+      <section class="preu-section" id="materias">
+        <h2 class="preu-section-title">📚 Áreas temáticas</h2>
+        <p style="margin:0;color:var(--text-muted);font-size:.9rem;">Selecciona un área para repasar con resúmenes y ejercicios intensivos.</p>
+        <div class="preu-materias-grid">
+          <a href="#mat-matematica" class="preu-materia-card">
+            <div class="materia-icon-wrap" style="background:rgba(99,102,241,0.12);">∑</div>
+            <strong>Matemática</strong>
+            <div class="prog-row">
+              <span>Progreso: 0%</span>
+              <div class="preu-progress-bar-wrap"><div class="preu-progress-bar" style="width:0%"></div></div>
+            </div>
+            <span>Álgebra · Aritmética · Geometría</span>
+          </a>
+          <a href="#mat-ciencia" class="preu-materia-card">
+            <div class="materia-icon-wrap" style="background:rgba(16,185,129,0.12);">⚗️</div>
+            <strong>Ciencias</strong>
+            <div class="prog-row">
+              <span>Progreso: 0%</span>
+              <div class="preu-progress-bar-wrap"><div class="preu-progress-bar" style="width:0%"></div></div>
+            </div>
+            <span>Física · Química · Biología</span>
+          </a>
+          <a href="#mat-historia" class="preu-materia-card">
+            <div class="materia-icon-wrap" style="background:rgba(245,158,11,0.12);">🏛️</div>
+            <strong>Historia</strong>
+            <div class="prog-row">
+              <span>Progreso: 0%</span>
+              <div class="preu-progress-bar-wrap"><div class="preu-progress-bar" style="width:0%"></div></div>
+            </div>
+            <span>Perú · Universal · Geografía</span>
+          </a>
+          <a href="#mat-comunicacion" class="preu-materia-card">
+            <div class="materia-icon-wrap" style="background:rgba(239,68,68,0.1);">📖</div>
+            <strong>Comunicación</strong>
+            <div class="prog-row">
+              <span>Progreso: 0%</span>
+              <div class="preu-progress-bar-wrap"><div class="preu-progress-bar" style="width:0%"></div></div>
+            </div>
+            <span>Comprensión · Redacción · Literatura</span>
+          </a>
+          <a href="#mat-ingles" class="preu-materia-card">
+            <div class="materia-icon-wrap" style="background:rgba(59,130,246,0.1);">🇬🇧</div>
+            <strong>Inglés</strong>
+            <div class="prog-row">
+              <span>Progreso: 0%</span>
+              <div class="preu-progress-bar-wrap"><div class="preu-progress-bar" style="width:0%"></div></div>
+            </div>
+            <span>Grammar · Vocabulary · Reading</span>
+          </a>
+          <a href="#mat-aptitud" class="preu-materia-card">
+            <div class="materia-icon-wrap" style="background:rgba(168,85,247,0.1);">🧠</div>
+            <strong>Aptitud Verbal</strong>
+            <div class="prog-row">
+              <span>Progreso: 0%</span>
+              <div class="preu-progress-bar-wrap"><div class="preu-progress-bar" style="width:0%"></div></div>
+            </div>
+            <span>Analogías · Series · Razonamiento</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- SIMULACROS -->
+      <section class="preu-section" id="simulacros">
+        <h2 class="preu-section-title">📝 Simulacros de examen</h2>
+        <p style="margin:0;color:var(--text-muted);font-size:.9rem;">Practica con exámenes tipo admisión con puntaje y corrección automática.</p>
+        <div class="simulacros-list">
+          <div class="simulacro-item">
+            <div class="simulacro-num">01</div>
+            <div class="simulacro-info">
+              <strong>Simulacro General — Nivel Básico</strong>
+              <span>40 preguntas · 60 min · Todas las áreas</span>
+            </div>
+            <span class="simulacro-badge badge-nuevo">Nuevo</span>
+            <a href="simulacro-01.html" class="simulacro-btn">Iniciar →</a>
           </div>
-          <div class="preu-materias-grid">
-            <a class="preu-materia-card" href="#" data-cat="ciencias">
-              <span class="preu-materia-emoji">🔢</span>
-              <div class="preu-materia-info"><strong>Matemática</strong><span>Álgebra, geometría, aritmética</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="ciencias">
-              <span class="preu-materia-emoji">🧠</span>
-              <div class="preu-materia-info"><strong>Razonamiento Matemático</strong><span>Lógica y resolución de problemas</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="ciencias">
-              <span class="preu-materia-emoji">⚡</span>
-              <div class="preu-materia-info"><strong>Física</strong><span>Mecánica, termodinámica, óptica</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="ciencias">
-              <span class="preu-materia-emoji">🧪</span>
-              <div class="preu-materia-info"><strong>Química</strong><span>Orgánica, inorgánica, estequiometría</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="ciencias">
-              <span class="preu-materia-emoji">🌿</span>
-              <div class="preu-materia-info"><strong>Biología</strong><span>Células, genética, ecología</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="letras">
-              <span class="preu-materia-emoji">📝</span>
-              <div class="preu-materia-info"><strong>Razonamiento Verbal</strong><span>Comprensión lectora y semántica</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="letras">
-              <span class="preu-materia-emoji">📖</span>
-              <div class="preu-materia-info"><strong>Literatura</strong><span>Corrientes, autores, obras</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="letras">
-              <span class="preu-materia-emoji">🌍</span>
-              <div class="preu-materia-info"><strong>Historia</strong><span>Universal, del Perú y del mundo</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="letras">
-              <span class="preu-materia-emoji">🗺️</span>
-              <div class="preu-materia-info"><strong>Geografía</strong><span>Física, política y económica</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="letras">
-              <span class="preu-materia-emoji">💰</span>
-              <div class="preu-materia-info"><strong>Economía</strong><span>Micro, macro y sector público</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="letras">
-              <span class="preu-materia-emoji">🏛️</span>
-              <div class="preu-materia-info"><strong>Filosofía</strong><span>Lógica, ética y epistemología</span></div>
-            </a>
-            <a class="preu-materia-card" href="#" data-cat="letras">
-              <span class="preu-materia-emoji">⚖️</span>
-              <div class="preu-materia-info"><strong>Educación Cívica</strong><span>Constitución y derechos civiles</span></div>
-            </a>
+          <div class="simulacro-item">
+            <div class="simulacro-num">02</div>
+            <div class="simulacro-info">
+              <strong>Simulacro Matemática Intensiva</strong>
+              <span>30 preguntas · 45 min · Álgebra y Geometría</span>
+            </div>
+            <span class="simulacro-badge badge-popular">Popular</span>
+            <a href="simulacro-02.html" class="simulacro-btn">Iniciar →</a>
+          </div>
+          <div class="simulacro-item">
+            <div class="simulacro-num">03</div>
+            <div class="simulacro-info">
+              <strong>Simulacro Ciencias — Física y Química</strong>
+              <span>30 preguntas · 45 min · Física + Química</span>
+            </div>
+            <span class="simulacro-badge badge-popular">Popular</span>
+            <a href="simulacro-03.html" class="simulacro-btn">Iniciar →</a>
+          </div>
+          <div class="simulacro-item">
+            <div class="simulacro-num">04</div>
+            <div class="simulacro-info">
+              <strong>Simulacro Historia del Perú</strong>
+              <span>25 preguntas · 35 min · Historia nacional</span>
+            </div>
+            <span class="simulacro-badge badge-nuevo">Nuevo</span>
+            <a href="simulacro-04.html" class="simulacro-btn">Iniciar →</a>
+          </div>
+          <div class="simulacro-item">
+            <div class="simulacro-num">05</div>
+            <div class="simulacro-info">
+              <strong>Simulacro Completo — Nivel Avanzado</strong>
+              <span>80 preguntas · 120 min · Todas las áreas</span>
+            </div>
+            <span class="simulacro-badge badge-completo">Completo</span>
+            <a href="simulacro-05.html" class="simulacro-btn">Iniciar →</a>
           </div>
         </div>
+      </section>
 
-        <!-- Simulacro -->
-        <div>
-          <h3 class="preu-section-title">Simulacro de admisión</h3>
-          <div class="preu-simulacro-card">
-            <div class="preu-sim-info">
-              <h4>Simulacro General · Semana 1</h4>
-              <p>100 preguntas · 120 minutos · Todas las áreas · Nivel preuniversitario</p>
-              <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap;">
-                <span style="padding:.3rem .8rem;background:rgba(16,185,129,0.1);color:#16a34a;border-radius:999px;font-size:.76rem;font-weight:700;">⏱ Cronometrado</span>
-                <span style="padding:.3rem .8rem;background:rgba(37,99,235,0.1);color:#1d4ed8;border-radius:999px;font-size:.76rem;font-weight:700;">📊 Estadísticas</span>
-                <span style="padding:.3rem .8rem;background:rgba(249,115,22,0.1);color:#ea580c;border-radius:999px;font-size:.76rem;font-weight:700;">🏆 Ranking</span>
-              </div>
-            </div>
-            <div class="preu-sim-stats">
-              <div class="preu-sim-stat"><span>Tu mejor puntaje</span><span>—</span></div>
-              <div class="preu-sim-stat"><span>Promedio plataforma</span><span>—</span></div>
-              <div class="preu-sim-stat"><span>Simulacros completados</span><span>0</span></div>
-            </div>
-            <div class="preu-sim-action">
-              <a href="#" class="button button-primary" id="btnSimulacro">Iniciar simulacro</a>
-              <a href="#" class="button button-secondary" style="font-size:.83rem;">Ver historial</a>
-            </div>
+      <!-- DIAGNÓSTICO -->
+      <section class="preu-section" id="diagnostico">
+        <h2 class="preu-section-title">🎯 Diagnóstico de nivel</h2>
+        <div class="diagnostico-intro">
+          <h3>¿Por dónde empezar?</h3>
+          <p>Completa el diagnóstico inicial (15 min) y descubrimos tus puntos fuertes y débiles. Luego te generamos una ruta de estudio personalizada para la universidad que eliges.</p>
+          <a href="diagnostico-preu.html" class="button button-primary" style="font-size:.9rem;padding:.7rem 1.5rem;">
+            🚀 Hacer diagnóstico ahora
+          </a>
+        </div>
+      </section>
+
+      <!-- CONSEJOS -->
+      <section class="preu-section" id="consejos">
+        <h2 class="preu-section-title">💡 Consejos para postulantes</h2>
+        <div class="tips-grid">
+          <div class="tip-card">
+            <span class="tip-icon">📅</span>
+            <strong>Planifica con tiempo</strong>
+            <p>Empieza el repaso al menos 6 meses antes del examen. Divide las materias por semanas y sé constante.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-icon">🔁</span>
+            <strong>Repaso espaciado</strong>
+            <p>Estudia un tema, espera 2 días y vuelve a repasarlo. La memoria a largo plazo se forma con repetición espaciada.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-icon">📝</span>
+            <strong>Practica con simulacros</strong>
+            <p>Un simulacro semanal te entrena en tiempo y presión real. Analiza siempre tus errores antes del siguiente.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-icon">😴</span>
+            <strong>Duerme bien</strong>
+            <p>Las 8 horas de sueño consolidan lo aprendido. Estudiar cansado es casi inútil: prioriza el descanso.</p>
           </div>
         </div>
+      </section>
 
-        <!-- Predictor -->
-        <div>
-          <h3 class="preu-section-title">Predictor de ingreso</h3>
-          <div class="preu-predictor-card">
-            <div class="preu-predictor-info">
-              <h4>Tu nivel de preparación actual</h4>
-              <p>Completa ejercicios y simulacros para que el predictor calcule tu probabilidad estimada de ingreso universitario.</p>
-              <div class="preu-progress-bars">
-                <div>
-                  <div class="preu-progress-label"><span>Matemática</span><span>—%</span></div>
-                  <div class="preu-progress-track"><div class="preu-progress-fill" style="width:0%" data-subject="Matemática"></div></div>
-                </div>
-                <div>
-                  <div class="preu-progress-label"><span>Ciencias</span><span>—%</span></div>
-                  <div class="preu-progress-track"><div class="preu-progress-fill" style="width:0%" data-subject="Ciencias"></div></div>
-                </div>
-                <div>
-                  <div class="preu-progress-label"><span>Letras</span><span>—%</span></div>
-                  <div class="preu-progress-track"><div class="preu-progress-fill" style="width:0%" data-subject="Letras"></div></div>
-                </div>
-              </div>
-              <a href="#" class="button button-primary" style="margin-top:1rem;font-size:.85rem;">Ver analítica completa</a>
-            </div>
-            <div class="preu-big-score">
-              <div class="score-ring">
-                <div class="score-ring-inner">
-                  <strong id="scoreValue">0%</strong>
-                  <span>preparado</span>
-                </div>
-              </div>
-              <p>Completa tu diagnóstico<br>para ver tu predicción</p>
-            </div>
-          </div>
-        </div>
+    </main>
+  </div>
 
-        <!-- Gamificación -->
-        <div>
-          <h3 class="preu-section-title">Tu progreso y logros</h3>
-          <div class="preu-gamif-grid">
-            <div class="preu-gamif-card">
-              <div class="preu-gamif-icon">🔥</div>
-              <strong id="rachaCount">0</strong>
-              <span>días de racha</span>
-            </div>
-            <div class="preu-gamif-card">
-              <div class="preu-gamif-icon">⭐</div>
-              <strong id="xpCount">0</strong>
-              <span>puntos XP</span>
-            </div>
-            <div class="preu-gamif-card">
-              <div class="preu-gamif-icon">🏅</div>
-              <strong id="badgeCount">0</strong>
-              <span>insignias</span>
-            </div>
-            <div class="preu-gamif-card">
-              <div class="preu-gamif-icon">✅</div>
-              <strong id="exerciseCount">0</strong>
-              <span>ejercicios resueltos</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mentor One -->
-        <div>
-          <h3 class="preu-section-title">Mentor One — Tutor IA</h3>
-          <div class="preu-mentor-card">
-            <div class="preu-mentor-avatar">🤖</div>
-            <div class="preu-mentor-info">
-              <h4>Mentor One</h4>
-              <p>Tu tutor virtual disponible 24/7. Resuelve dudas, explica conceptos, recomienda recursos y elabora planes de estudio personalizados.</p>
-            </div>
-            <div class="preu-mentor-chat">
-              <input class="preu-mentor-input" type="text" placeholder="Pregúntale algo a Mentor One..." id="mentorInput" />
-              <button class="btn-mentor" id="mentorBtn">Preguntar</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Planes -->
-        <div>
-          <h3 class="preu-section-title">Planes de acceso</h3>
-          <div class="preu-plans-grid">
-            <div class="preu-plan-card preu-plan-free">
-              <div class="preu-plan-title">Gratuito</div>
-              <div class="preu-plan-price">S/ 0 <span>/ mes</span></div>
-              <ul class="preu-plan-features">
-                <li>Diagnóstico inicial</li>
-                <li>Banco básico de ejercicios</li>
-                <li>2 simulacros al mes</li>
-                <li>Estadísticas básicas</li>
-                <li>Biblioteca académica</li>
-              </ul>
-              <a href="register.html" class="button button-secondary">Registrarse gratis</a>
-            </div>
-            <div class="preu-plan-card preu-plan-premium">
-              <div class="preu-plan-title">Premium</div>
-              <div class="preu-plan-price">S/ 19 <span>/ mes</span></div>
-              <ul class="preu-plan-features">
-                <li>Todo lo gratuito incluido</li>
-                <li>Banco avanzado ilimitado</li>
-                <li>Tutor visual interactivo completo</li>
-                <li>Simulacros ilimitados</li>
-                <li>Predictor de ingreso avanzado</li>
-                <li>Rutas de aprendizaje personalizadas</li>
-                <li>Mentor One IA completo</li>
-                <li>Analíticas detalladas</li>
-              </ul>
-              <a href="#" class="btn-white">Activar Premium</a>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /preu-main -->
-    </div><!-- /preu-grid -->
-  </main>
-
-  <footer class="site-footer">
-    <p>EduNovaOne · Biblioteca Digital para Estudiantes</p>
-  </footer>
-
-  <script src="script.js"></script>
-  <script>
-    // Sidebar toggle
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebarCollapsible = document.getElementById('sidebarCollapsible');
-    if (sidebarToggle && sidebarCollapsible) {
-      sidebarToggle.addEventListener('click', () => {
-        const isOpen = sidebarCollapsible.classList.toggle('open');
-        sidebarToggle.classList.toggle('open', isOpen);
-        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
-      });
-    }
-
-    // Tabs de materias
-    const tabs = document.querySelectorAll('.preu-tab');
-    const materias = document.querySelectorAll('.preu-materia-card');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filter = tab.dataset.filter;
-        materias.forEach(m => {
-          m.style.display = (filter === 'all' || m.dataset.cat === filter) ? '' : 'none';
-        });
-      });
-    });
-
-    // Simulacro locked para no logueados
-    document.getElementById('btnSimulacro').addEventListener('click', e => {
-      if (!window._preUUser) {
-        e.preventDefault();
-        window.location.href = 'login.html';
-      }
-    });
-
-    // Mentor One
-    document.getElementById('mentorBtn').addEventListener('click', () => {
-      const input = document.getElementById('mentorInput');
-      if (!input.value.trim()) return;
-      if (!window._preUUser) { window.location.href = 'login.html'; return; }
-      // TODO: conectar con IA
-      alert('Mentor One estará disponible próximamente. Inicia sesión para acceder cuando se active.');
-      input.value = '';
-    });
-  </script>
-
+  <!-- SCRIPTS -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    const app = initializeApp({
+    const app  = initializeApp({
       apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
       authDomain: "edunova-library.firebaseapp.com",
       projectId: "edunova-library",
@@ -897,37 +606,64 @@
     const auth = getAuth(app);
     const db   = getFirestore(app);
 
-    onAuthStateChanged(auth, async user => {
-      window._preUUser = user || null;
-      if (!user) return;
+    const overlay = document.getElementById('paywallOverlay');
 
-      const snap = await getDoc(doc(db, 'usuarios', user.uid)).catch(() => null);
-      if (!snap || !snap.exists()) return;
-      const data = snap.data();
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        // No está logueado → mostrar paywall con opción de login
+        overlay.classList.add('show');
+        document.querySelector('.paywall-cta').textContent = '🔑 Iniciar sesión';
+        document.querySelector('.paywall-cta').href = 'login.html';
+        return;
+      }
 
-      // Gamificación
-      if (data.xp)        document.getElementById('xpCount').textContent       = data.xp;
-      if (data.racha)     document.getElementById('rachaCount').textContent     = data.racha;
-      if (data.insignias) document.getElementById('badgeCount').textContent     = (data.insignias||[]).length;
-      if (data.ejerciciosResueltos) document.getElementById('exerciseCount').textContent = data.ejerciciosResueltos;
+      // Leer doc del usuario en Firestore
+      try {
+        const snap = await getDoc(doc(db, 'usuarios', user.uid));
+        const data = snap.exists() ? snap.data() : {};
+        const plan = data.plan || 'free'; // 'free' | 'premium'
 
-      // Predictor score
-      const score = data.preUScore || 0;
-      document.getElementById('scoreValue').textContent = score + '%';
-      document.querySelector('.score-ring').style.background =
-        `conic-gradient(#7c3aed 0% ${score}%, rgba(99,102,241,0.1) ${score}% 100%)`;
+        if (plan !== 'premium') {
+          // No tiene plan → mostrar paywall
+          overlay.classList.add('show');
+        } else {
+          // Tiene plan premium → ocultar overlay (ya está hidden por defecto)
+          overlay.classList.remove('show');
 
-      // Barras de progreso
-      const materias = data.preUMaterias || {};
-      document.querySelectorAll('.preu-progress-fill').forEach(bar => {
-        const subj = bar.dataset.subject;
-        const val = materias[subj] || 0;
-        bar.style.width = val + '%';
-        bar.closest('.preu-progress-track').previousElementSibling.querySelector('span:last-child').textContent = val + '%';
-      });
+          // Personalizar stats si los tiene guardados
+          if (data.preuStats) {
+            const { mejorPuntaje, ranking } = data.preuStats;
+            if (mejorPuntaje) document.getElementById('statPuntaje').textContent = mejorPuntaje + '%';
+            if (ranking)      document.getElementById('statRanking').textContent = '#' + ranking;
+          }
+
+          // Actualizar barras de progreso si existen
+          const prog = data.progreso || {};
+          const barMap = {
+            'mat-matematica': prog.matematica || 0,
+            'mat-ciencia':    prog.ciencia    || 0,
+            'mat-historia':   prog.historia   || 0,
+            'mat-comunicacion': prog.comunicacion || 0,
+            'mat-ingles':     prog.ingles     || 0,
+          };
+          document.querySelectorAll('.preu-materia-card').forEach(card => {
+            const href = card.getAttribute('href').replace('#', '');
+            const pct  = barMap[href] || 0;
+            const bar  = card.querySelector('.preu-progress-bar');
+            const lbl  = card.querySelector('.prog-row span');
+            if (bar) bar.style.width = pct + '%';
+            if (lbl) lbl.textContent = 'Progreso: ' + pct + '%';
+          });
+        }
+      } catch (err) {
+        console.error('Error leyendo plan:', err);
+        overlay.classList.add('show');
+      }
     });
   </script>
 
+  <!-- auth-nav (actualiza botón navbar) -->
   <script type="module" src="auth-nav.js"></script>
+
 </body>
 </html>
