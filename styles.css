@@ -685,6 +685,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 5rem);
 }
 
 .sidebar-brand {
