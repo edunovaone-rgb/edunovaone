@@ -1585,8 +1585,8 @@ a {
   background: #f1f5f9;
   border: 1.5px solid transparent;
   border-radius: 999px;
-  overflow: hidden;
-  width: 2.4rem;           /* colapsada: solo el ícono */
+  overflow: visible;          /* el dropdown necesita salir del contenedor */
+  width: 2.4rem;              /* colapsada: solo el ícono */
   transition: width 0.3s cubic-bezier(.4,0,.2,1),
               border-color 0.2s,
               background 0.2s;
