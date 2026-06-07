@@ -583,7 +583,7 @@
 
         list.innerHTML = users.map(u => {
           const plan = (u.plan || 'free').toLowerCase();
-          const planLabel = { free:'🔓 Free', premium:'✨ Premium', preu:'🎓 Pre-u' };
+          const planLabel = { free:'🔓 Free', esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
           return `
             <div class="user-row" data-uid="${u.uid}">
               <div class="user-row-info">
@@ -592,9 +592,10 @@
               </div>
               <span class="plan-tag ${plan}" style="flex-shrink:0;">${planLabel[plan] || plan}</span>
               <div class="user-row-quick">
-                <button class="quick-plan-btn ${plan==='free'?'qp-free':''}"    data-uid="${u.uid}" data-plan="free"    title="Asignar Free">Free</button>
-                <button class="quick-plan-btn ${plan==='premium'?'qp-premium':''}" data-uid="${u.uid}" data-plan="premium" title="Asignar Premium">Premium</button>
-                <button class="quick-plan-btn ${plan==='preu'?'qp-preu':''}"    data-uid="${u.uid}" data-plan="preu"    title="Asignar Pre-u">Pre-u</button>
+                <button class="quick-plan-btn ${plan==='free'?'qp-free':''}"     data-uid="${u.uid}" data-plan="free"     title="Free">Free</button>
+                <button class="quick-plan-btn ${plan==='esencial'?'qp-esencial':''}" data-uid="${u.uid}" data-plan="esencial" title="Esencial">Esencial</button>
+                <button class="quick-plan-btn ${plan==='plus'?'qp-plus':''}"     data-uid="${u.uid}" data-plan="plus"     title="Plus">Plus</button>
+                <button class="quick-plan-btn ${plan==='elite'?'qp-elite':''}"   data-uid="${u.uid}" data-plan="elite"    title="Élite">Élite</button>
               </div>
             </div>`;
         }).join('');
