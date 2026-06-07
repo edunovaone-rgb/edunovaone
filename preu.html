@@ -603,22 +603,18 @@
 
     const overlay = document.getElementById('paywallOverlay');
 
-    // Usuarios con acceso directo a la Pre-u (sin necesitar plan premium)
-    const ACCESO_DIRECTO = [
-      'jhosapharjrs@gmail.com',
-    ];
+    // Planes que dan acceso a la Pre-u
+    const PLANES_PAGO = ['esencial', 'plus', 'elite'];
 
-    function concederAcceso(data = {}) {
+    function concederAcceso(data = {}, plan = '') {
       overlay.classList.remove('show');
 
-      // Personalizar stats si los tiene guardados
       if (data.preuStats) {
         const { mejorPuntaje, ranking } = data.preuStats;
         if (mejorPuntaje) document.getElementById('statPuntaje').textContent = mejorPuntaje + '%';
         if (ranking)      document.getElementById('statRanking').textContent = '#' + ranking;
       }
 
-      // Actualizar barras de progreso si existen
       const prog = data.progreso || {};
       const barMap = {
         'mat-matematica':   prog.matematica    || 0,
@@ -635,33 +631,38 @@
         if (bar) bar.style.width = pct + '%';
         if (lbl) lbl.textContent = 'Progreso: ' + pct + '%';
       });
+
+      // Plan Esencial: solo 1 simulacro, bloquear el resto
+      if (plan === 'esencial') {
+        document.querySelectorAll('.simulacro-item').forEach((item, i) => {
+          if (i > 0) {
+            item.style.opacity = '0.45';
+            const btn = item.querySelector('.simulacro-btn');
+            if (btn) {
+              btn.textContent = '� Plan Plus+';
+              btn.style.cssText = 'background:#94a3b8;cursor:default;box-shadow:none;';
+              btn.onclick = (e) => { e.preventDefault(); window.location.href = 'planes.html'; };
+            }
+          }
+        });
+      }
     }
 
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
-        // No está logueado → mostrar paywall con opción de login
         overlay.classList.add('show');
         document.querySelector('.paywall-cta').textContent = '🔑 Iniciar sesión';
         document.querySelector('.paywall-cta').href = 'login.html';
         return;
       }
 
-      const emailNorm = (user.email || '').toLowerCase().trim();
-
-      // Si está en la lista de acceso directo, no hace falta consultar Firestore
-      if (ACCESO_DIRECTO.map(e => e.toLowerCase()).includes(emailNorm)) {
-        concederAcceso();
-        return;
-      }
-
-      // Leer doc del usuario en Firestore
       try {
         const snap = await getDoc(doc(db, 'usuarios', user.uid));
         const data = snap.exists() ? snap.data() : {};
-        const plan = data.plan || 'free'; // 'free' | 'premium'
+        const plan = (data.plan || 'free').toLowerCase().trim();
 
-        if (plan === 'premium') {
-          concederAcceso(data);
+        if (PLANES_PAGO.includes(plan)) {
+          concederAcceso(data, plan);
         } else {
           overlay.classList.add('show');
         }
