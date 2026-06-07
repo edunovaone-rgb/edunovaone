@@ -69,10 +69,15 @@ export function tiempoRelativo(ts) {
   const min  = Math.floor(diff / 60000);
   const h    = Math.floor(diff / 3600000);
   const d    = Math.floor(diff / 86400000);
-  if (min < 1)   return 'Ahora mismo';
-  if (min < 60)  return `Hace ${min} min`;
-  if (h < 24)    return `Hace ${h} h`;
-  if (d === 1)   return 'Ayer';
-  if (d < 7)     return `Hace ${d} días`;
-  return new Date(ts).toLocaleDateString('es-PE', { day:'numeric', month:'short' });
+  const wk   = Math.floor(d / 7);
+  const mo   = Math.floor(d / 30);
+  if (min < 1)  return 'Ahora mismo';
+  if (min < 60) return `Hace ${min} min`;
+  if (h < 24)   return `Hace ${h} h`;
+  if (d === 1)  return 'Ayer';
+  if (d < 7)    return `Hace ${d} días`;
+  if (wk === 1) return 'Hace 1 semana';
+  if (wk < 4)   return `Hace ${wk} semanas`;
+  if (mo === 1) return 'Hace 1 mes';
+  return `Hace ${mo} meses`;
 }

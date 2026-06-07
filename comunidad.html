@@ -264,12 +264,20 @@
     function initials(name) { return name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
     function timeAgo(ts) {
       if (!ts) return 'Ahora';
-      const d = ts.toDate ? ts.toDate() : new Date(ts);
-      const s = Math.floor((Date.now()-d)/1000);
-      if (s<60) return 'Hace un momento';
-      if (s<3600) return `Hace ${Math.floor(s/60)} min`;
-      if (s<86400) return `Hace ${Math.floor(s/3600)} h`;
-      return `Hace ${Math.floor(s/86400)} días`;
+      const d  = ts.toDate ? ts.toDate() : new Date(ts);
+      const s  = Math.floor((Date.now() - d) / 1000);
+      const dy = Math.floor(s / 86400);
+      const wk = Math.floor(dy / 7);
+      const mo = Math.floor(dy / 30);
+      if (s  < 60)    return 'Hace un momento';
+      if (s  < 3600)  return `Hace ${Math.floor(s / 60)} min`;
+      if (s  < 86400) return `Hace ${Math.floor(s / 3600)} h`;
+      if (dy === 1)   return 'Ayer';
+      if (dy < 7)     return `Hace ${dy} días`;
+      if (wk === 1)   return 'Hace 1 semana';
+      if (wk < 4)     return `Hace ${wk} semanas`;
+      if (mo === 1)   return 'Hace 1 mes';
+      return `Hace ${mo} meses`;
     }
 
     let currentUser = null;

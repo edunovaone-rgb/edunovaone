@@ -160,13 +160,21 @@
     };
 
     function tiempoRel(ts) {
-      const d=Date.now()-ts, m=Math.floor(d/60000), h=Math.floor(d/3600000), dy=Math.floor(d/86400000);
-      if (m<1) return 'Ahora mismo';
-      if (m<60) return `Hace ${m} min`;
-      if (h<24) return `Hace ${h} h`;
-      if (dy===1) return 'Ayer';
-      if (dy<7) return `Hace ${dy} días`;
-      return new Date(ts).toLocaleDateString('es-PE',{day:'numeric',month:'short',year:'numeric'});
+      const d  = Date.now() - ts;
+      const m  = Math.floor(d / 60000);
+      const h  = Math.floor(d / 3600000);
+      const dy = Math.floor(d / 86400000);
+      const wk = Math.floor(dy / 7);
+      const mo = Math.floor(dy / 30);
+      if (m  < 1)   return 'Ahora mismo';
+      if (m  < 60)  return `Hace ${m} min`;
+      if (h  < 24)  return `Hace ${h} h`;
+      if (dy === 1) return 'Ayer';
+      if (dy < 7)   return `Hace ${dy} días`;
+      if (wk === 1) return 'Hace 1 semana';
+      if (wk < 4)   return `Hace ${wk} semanas`;
+      if (mo === 1) return 'Hace 1 mes';
+      return `Hace ${mo} meses`;
     }
 
     let filtroMateria = '';
