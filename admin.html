@@ -510,7 +510,7 @@
     function updatePlanTag(plan) {
       const tag = document.getElementById('resPlanTag');
       tag.className = 'plan-tag ' + plan;
-      const labels = { free:'🔓 Free', premium:'✨ Premium', preu:'🎓 Pre-u' };
+      const labels = { free:'🔓 Free', esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
       tag.textContent = labels[plan] || plan;
     }
 
