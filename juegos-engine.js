@@ -1005,6 +1005,9 @@ function abrirJuego(id) {
   else if (id === 'formulas')          iniciarFormulas(titleEl, body);
   else if (id === 'vf')                iniciarVF(titleEl, body);
   else if (id === 'ordenar')           iniciarOrdenar(titleEl, body);
+  else if (id === 'ahorcado')          iniciarAhorcado(titleEl, body);
+  else if (id === 'relaciona')         iniciarRelaciona(titleEl, body);
+  else if (id === 'memoria')           iniciarMemoria(titleEl, body);
 }
 
 function cerrarJuego() {
