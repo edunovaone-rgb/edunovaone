@@ -789,7 +789,8 @@ a {
   gap: 0.75rem;
   margin-bottom: 1.25rem;
   min-width: 0;
-  overflow: hidden; /* corta el desborde en lugar de crear scrollbar */
+  /* overflow se maneja por breakpoint: en móvil el botón colapsa a ícono,
+     en PC hay espacio suficiente, así nunca se corta el botón */
 }
 
 /* El input ocupa todo el espacio disponible */
