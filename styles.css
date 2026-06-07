@@ -1436,7 +1436,7 @@ a {
 .uni-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;   /* brand a la izq, links al centro via flex:1, actions al extremo der */
   padding: 0.75rem 2.5rem;
   background: #ffffff;
   border-bottom: 1px solid rgba(99,102,241,0.1);
