@@ -86,3 +86,62 @@
 .vf-btn.false-btn{background:rgba(239,68,68,0.08);color:#991b1b;border:1.5px solid #ef4444}
 .vf-btn:hover:not(:disabled){transform:scale(1.05)}
 .vf-btn:disabled{opacity:.5;cursor:default}
+
+/* ── Relaciona columnas ── */
+.rel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.rel-btn {
+  padding: .65rem .85rem; border-radius: .85rem;
+  border: 1.5px solid rgba(99,102,241,0.2);
+  background: #f8fbff; font-size: .82rem; font-weight: 700;
+  color: var(--accent-strong); text-align: left; cursor: pointer;
+  transition: all .18s;
+}
+.rel-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(99,102,241,0.06); }
+.rel-btn.selected { border-color: var(--accent); background: rgba(99,102,241,0.1); }
+.rel-btn.matched  { border-color: #10b981; background: rgba(16,185,129,0.1); color: #065f46; }
+
+/* ── Memoria ── */
+.mem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+}
+.mem-card {
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  border: 1.5px solid rgba(99,102,241,0.18);
+  background: #f8fbff;
+  font-size: .72rem; font-weight: 700;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: .25rem;
+  line-height: 1.2;
+  word-break: break-word;
+  transition: all .2s;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+}
+.mem-card.flipped  { border-color: var(--accent); background: rgba(99,102,241,0.08); color: var(--accent-strong); }
+.mem-card.matched  { border-color: #10b981; background: rgba(16,185,129,0.12); color: #065f46; }
+
+/* ── Ahorcado letras ── */
+.hang-alpha {
+  display: flex; flex-wrap: wrap; gap: .35rem; justify-content: center; margin-bottom: 1rem;
+}
+.hang-letter {
+  width: 2.2rem; height: 2.2rem; border-radius: .5rem;
+  border: 1.5px solid rgba(99,102,241,0.2);
+  background: #f8fbff; font-weight: 700; font-size: .85rem;
+  cursor: pointer; transition: all .15s;
+}
+.hang-letter:hover:not(:disabled) { border-color: var(--accent); background: rgba(99,102,241,0.08); }
+.hang-letter.correct { background: rgba(16,185,129,0.15); border-color: #10b981; color: #065f46; }
+.hang-letter.wrong   { background: rgba(239,68,68,0.1); border-color: #ef4444; color: #991b1b; }
+.hang-letter:disabled { cursor: default; }
+
+/* ── Word display ── */
+.hang-word {
+  font-size: 1.6rem; font-family: monospace;
+  letter-spacing: .35rem; color: var(--text);
+  min-height: 2.5rem; text-align: center;
+}
