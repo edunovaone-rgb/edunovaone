@@ -327,21 +327,128 @@ function subscribeNotifications(uid) {
 }
 
 // ══════════════════════════════════════════════════
+//  USER PILL — botón de perfil expandible
+// ══════════════════════════════════════════════════
+
+function buildUserPill() {
+  const authBtn = document.getElementById('navAuthBtn');
+  if (!authBtn || document.getElementById('navUserPill')) return;
+
+  const pill = document.createElement('div');
+  pill.id = 'navUserPill';
+  pill.className = 'nav-user-pill';
+  pill.setAttribute('role', 'button');
+  pill.setAttribute('aria-haspopup', 'true');
+  pill.setAttribute('aria-expanded', 'false');
+  pill.innerHTML = `
+    <div class="nav-user-icon" id="navUserIcon">👤</div>
+    <div class="nav-user-label" id="navUserLabel">
+      <strong id="navUserName">—</strong>
+      <span id="navUserSub"></span>
+    </div>
+    <div class="nav-user-dropdown" id="navUserDropdown">
+      <a href="perfil.html" id="navDropPerfil">👤 Mi Perfil</a>
+      <a href="index.html">🏠 Inicio</a>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-danger" id="navDropLogout">🚪 Cerrar sesión</button>
+    </div>`;
+
+  authBtn.replaceWith(pill);
+
+  // Toggle al click en el pill (pero no en el dropdown)
+  pill.addEventListener('click', e => {
+    if (document.getElementById('navUserDropdown')?.contains(e.target)) return;
+    const open = pill.classList.toggle('expanded');
+    pill.setAttribute('aria-expanded', String(open));
+  });
+
+  // Cerrar al click fuera
+  document.addEventListener('click', e => {
+    if (!pill.contains(e.target)) {
+      pill.classList.remove('expanded');
+      pill.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Cerrar sesión
+  document.getElementById('navDropLogout')?.addEventListener('click', async () => {
+    try { await _auth.signOut(); } catch (_) {}
+    window.location.href = 'login.html';
+  });
+}
+
+// Actualizar el pill con los datos del usuario (llamado desde onAuthStateChanged)
+function updateUserPill(user, firestoreData) {
+  const pill  = document.getElementById('navUserPill');
+  const icon  = document.getElementById('navUserIcon');
+  const name  = document.getElementById('navUserName');
+  const sub   = document.getElementById('navUserSub');
+  const logout = document.getElementById('navDropLogout');
+  if (!pill) return;
+
+  if (user) {
+    const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
+    const username     = firestoreData?.username || null;
+
+    // Foto o inicial
+    if (user.photoURL) {
+      icon.innerHTML = `<img src="${user.photoURL}" alt="avatar"
+        style="width:2.4rem;height:2.4rem;border-radius:999px;object-fit:cover;display:block;">`;
+    } else {
+      icon.textContent = displayFirst[0]?.toUpperCase() || '👤';
+      icon.style.cssText = `font-size:0.95rem;font-weight:800;color:var(--accent-strong);
+        background:rgba(99,102,241,0.12);width:2.4rem;height:2.4rem;min-width:2.4rem;
+        display:flex;align-items:center;justify-content:center;border-radius:999px;`;
+    }
+
+    name.textContent = displayFirst;
+    sub.textContent  = username ? `@${username}` : '';
+    if (logout) logout.style.display = '';
+  } else {
+    // Sin sesión: el pill actúa como link a login
+    icon.textContent = '👤';
+    icon.style.cssText = '';
+    name.textContent = 'Iniciar sesión';
+    sub.textContent  = '';
+    if (logout) logout.style.display = 'none';
+
+    // Click directo va a login si no tiene sesión
+    pill.onclick = e => {
+      if (document.getElementById('navUserDropdown')?.contains(e.target)) return;
+      window.location.href = 'login.html';
+    };
+  }
+}
+
+// ══════════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
   buildSearchBar();
   buildNotifPanel();
+  buildUserPill();
 
   const notifBtn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
   if (notifBtn) notifBtn.addEventListener('click', toggleNotifPanel);
 
-  onAuthStateChanged(_auth, user => {
+  onAuthStateChanged(_auth, async user => {
     if (user) {
+      // Leer datos de Firestore para el username
+      let fsData = null;
+      try {
+        const { getDoc: _getDoc, doc: _doc } = await import(
+          'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'
+        );
+        const snap = await _getDoc(_doc(_db, 'usuarios', user.uid));
+        if (snap.exists()) fsData = snap.data();
+      } catch (_) {}
+
+      updateUserPill(user, fsData);
       subscribeNotifications(user.uid);
     } else {
       if (_notifUnsub) { _notifUnsub(); _notifUnsub = null; }
+      updateUserPill(null, null);
       showNotifEmpty('Inicia sesión para ver tus notificaciones');
       setBadge(0);
     }
