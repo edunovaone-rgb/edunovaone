@@ -1815,6 +1815,24 @@
       });
     });
   </script>
+  <script>
+    // Leer parámetro ?q= de la URL y auto-rellenar el buscador
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (q) {
+        const input = document.getElementById('searchInput');
+        if (input) {
+          input.value = q;
+          // Esperar a que applyFilters esté disponible
+          if (typeof applyFilters === 'function') applyFilters();
+          else window.addEventListener('DOMContentLoaded', () => {
+            if (typeof applyFilters === 'function') applyFilters();
+          });
+        }
+      }
+    })();
+  </script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -2081,5 +2099,6 @@
       }, 2200);
     }
   </script>
+  <script type="module" src="nav-widgets.js"></script>
 </body>
 </html>
