@@ -91,6 +91,54 @@
       font-weight: 700;
     }
 
+    /* ── Tag exclusivo Premium / Pre-u ── */
+    .badge-premium {
+      display: none; /* JS lo muestra si corresponde */
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      flex-shrink: 0;
+    }
+    .badge-premium.show { display: inline-flex; }
+
+    /* Variante Premium (plan === 'premium') */
+    .badge-premium.variant-premium {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(99,102,241,0.35);
+    }
+    .badge-premium.variant-premium::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Variante Pre-u (plan === 'preu') */
+    .badge-premium.variant-preu {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+    }
+    .badge-premium.variant-preu::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Tooltip nativo en title — o uno custom si quieres */
+    .badge-premium:hover { filter: brightness(1.08); }
+
     .profile-meta {
       margin: 0;
       color: var(--text-muted);
