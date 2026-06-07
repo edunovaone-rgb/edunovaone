@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>EduNovaOne | Panel Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 20% 30%, rgba(124,58,237,0.1) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 70%, rgba(37,99,235,0.08) 0%, transparent 50%),
+                  #f5f3ff;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* ── Access denied / loading ── */
+    .admin-gate {
+      width: 100%; max-width: 420px;
+      background: #fff;
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 24px 60px rgba(99,102,241,0.13);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 1.1rem;
+    }
+    .admin-gate .gate-icon { font-size: 3rem; }
+    .admin-gate h2 { margin:0; font-size:1.4rem; color:var(--accent-strong); font-weight:900; }
+    .admin-gate p  { margin:0; color:var(--text-muted); font-size:.92rem; line-height:1.6; }
+
+    /* ── Header ── */
+    .admin-header {
+      width: 100%; max-width: 900px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-brand {
+      display: flex; align-items: center; gap: .7rem;
+      text-decoration: none;
+    }
+    .admin-brand img { width:38px; height:38px; }
+    .admin-brand strong { font-size:1rem; color:var(--accent-strong); font-weight:900; }
+    .admin-brand span   { font-size:.72rem; color:#c026d3; font-weight:700; text-transform:uppercase; letter-spacing:.08em; display:block; }
+
+    .admin-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: linear-gradient(135deg,#7c3aed,#4f46e5);
+      color:#fff; font-size:.8rem; font-weight:800;
+      padding:.4rem 1rem; border-radius:999px;
+      letter-spacing:.04em;
+    }
+
+    /* ── Main panel ── */
+    .admin-panel {
+      width: 100%; max-width: 900px;
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+
+    /* ── Card genérica ── */
+    .admin-card {
+      background: #fff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 2rem;
+      padding: 1.75rem;
+      box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .admin-card h2 {
+      margin:0; font-size:1.1rem; color:var(--accent-strong);
+      font-weight:800; display:flex; align-items:center; gap:.5rem;
+    }
+
+    /* ── Search ── */
+    .search-row {
+      display: flex; gap: .75rem; flex-wrap: wrap;
+    }
+    .search-row input {
+      flex: 1; min-width: 220px;
+      padding: .85rem 1.1rem;
+      border: 1.5px solid rgba(99,102,241,0.2);
+      border-radius: 1rem;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      background: #fafbff;
+    }
+    .search-row input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(109,40,217,0.1);
+    }
+    .search-row button {
+      padding: .85rem 1.5rem;
+      border: none; border-radius: 1rem;
+      background: linear-gradient(135deg,#7c3aed,#4f46e5);
+      color:#fff; font-weight:700; font-size:.92rem;
+      cursor:pointer; transition: transform .15s;
+      white-space: nowrap;
+    }
+    .search-row button:hover { transform:translateY(-1px); }
+    .search-row button:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+    /* ── Result card ── */
+    .user-result {
+      background: #fafbff;
+      border: 1.5px solid rgba(99,102,241,0.12);
+      border-radius: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      gap: 1.1rem;
+    }
+    .user-result-top {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .user-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(37,99,235,0.15));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; border: 2px solid rgba(99,102,241,0.2);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .user-avatar img { width:100%; height:100%; border-radius:50%; object-fit:cover; }
+    .user-info { flex:1; }
+    .user-info strong { display:block; font-size:1rem; color:var(--text); font-weight:800; }
+    .user-info span   { font-size:.82rem; color:var(--text-muted); }
+    .user-uid {
+      font-size:.7rem; color:#94a3b8; font-family:monospace;
+      word-break: break-all;
+    }
+
+    /* Plan tag inline */
+    .plan-tag {
+      display: inline-flex; align-items: center; gap:.3rem;
+      padding: .3rem .85rem; border-radius:999px;
+      font-size:.8rem; font-weight:800;
+    }
+    .plan-tag.free    { background:rgba(148,163,184,0.15); color:#64748b; }
+    .plan-tag.premium { background:linear-gradient(135deg,#7c3aed,#4f46e5); color:#fff; box-shadow:0 3px 10px rgba(99,102,241,0.3); }
+    .plan-tag.preu    { background:linear-gradient(135deg,#0ea5e9,#2563eb); color:#fff; box-shadow:0 3px 10px rgba(37,99,235,0.3); }
+
+    /* Plan selector */
+    .plan-selector {
+      display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+    }
+    .plan-selector label { font-size:.88rem; font-weight:700; color:var(--text-muted); }
+    .plan-btn {
+      padding: .55rem 1.1rem;
+      border: 1.5px solid rgba(99,102,241,0.2);
+      border-radius: 999px;
+      background: #fff;
+      font-size: .85rem; font-weight: 700;
+      cursor: pointer; transition: all .2s;
+      color: var(--text-muted);
+    }
+    .plan-btn:hover { border-color:var(--accent); color:var(--accent-strong); }
+    .plan-btn.active-free    { background:#f1f5f9; border-color:#94a3b8; color:#475569; }
+    .plan-btn.active-premium { background:linear-gradient(135deg,#7c3aed,#4f46e5); border-color:transparent; color:#fff; box-shadow:0 4px 14px rgba(99,102,241,0.3); }
+    .plan-btn.active-preu    { background:linear-gradient(135deg,#0ea5e9,#2563eb); border-color:transparent; color:#fff; box-shadow:0 4px 14px rgba(37,99,235,0.3); }
+
+    .save-plan-btn {
+      padding:.65rem 1.5rem;
+      border:none; border-radius:1rem;
+      background:linear-gradient(135deg,#7c3aed,#4f46e5);
+      color:#fff; font-weight:800; font-size:.9rem;
+      cursor:pointer; transition:transform .15s, box-shadow .15s;
+      box-shadow:0 6px 18px rgba(99,102,241,0.28);
+    }
+    .save-plan-btn:hover { transform:translateY(-1px); box-shadow:0 10px 26px rgba(99,102,241,0.38); }
+    .save-plan-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+    .save-feedback {
+      font-size:.85rem; font-weight:700;
+      padding:.4rem .9rem; border-radius:.75rem;
+      display:none;
+    }
+    .save-feedback.success { background:rgba(16,185,129,0.12); color:#059669; display:inline-block; }
+    .save-feedback.error   { background:rgba(239,68,68,0.1);   color:#dc2626; display:inline-block; }
+
+    /* ── Users list ── */
+    .users-list { display:grid; gap:.75rem; }
+    .user-row {
+      display:flex; align-items:center; gap:1rem;
+      background:#fafbff;
+      border:1.5px solid rgba(99,102,241,0.1);
+      border-radius:1.25rem;
+      padding:.9rem 1.2rem;
+      flex-wrap:wrap;
+      transition:border-color .2s;
+    }
+    .user-row:hover { border-color:rgba(99,102,241,0.3); }
+    .user-row-info { flex:1; min-width:180px; }
+    .user-row-info strong { display:block; font-size:.92rem; color:var(--text); font-weight:700; }
+    .user-row-info span   { font-size:.76rem; color:var(--text-muted); }
+    .user-row-quick { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .quick-plan-btn {
+      padding:.38rem .85rem;
+      border:1.5px solid rgba(99,102,241,0.18);
+      border-radius:999px;
+      background:#fff;
+      font-size:.76rem; font-weight:700;
+      cursor:pointer; transition:all .18s;
+      color:var(--text-muted);
+    }
+    .quick-plan-btn:hover { border-color:var(--accent); color:var(--accent-strong); }
+    .quick-plan-btn.qp-premium { background:linear-gradient(135deg,#7c3aed,#4f46e5); border-color:transparent; color:#fff; }
+    .quick-plan-btn.qp-preu    { background:linear-gradient(135deg,#0ea5e9,#2563eb); border-color:transparent; color:#fff; }
+    .quick-plan-btn.qp-free    { background:#f1f5f9; border-color:#94a3b8; color:#475569; }
+
+    .list-empty { color:var(--text-muted); font-size:.9rem; text-align:center; padding:1.5rem 0; }
+
+    /* ── Tabs ── */
+    .admin-tabs {
+      display:flex; gap:.5rem;
+      background:#fff;
+      border-radius:1rem;
+      padding:.45rem;
+      border:1px solid rgba(99,102,241,0.1);
+      width:fit-content;
+    }
+    .admin-tab {
+      padding:.55rem 1.25rem;
+      border:none; background:transparent;
+      font-size:.9rem; font-weight:600;
+      color:var(--text-muted);
+      border-radius:.65rem;
+      cursor:pointer; transition:background .2s, color .2s;
+    }
+    .admin-tab:hover { background:rgba(99,102,241,0.07); color:var(--accent-strong); }
+    .admin-tab.active {
+      background:linear-gradient(135deg,#7c3aed,#4f46e5);
+      color:#fff; font-weight:700;
+    }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:flex; flex-direction:column; gap:1.25rem; }
+
+    /* ── Stats mini ── */
+    .admin-stats {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+      gap:1rem;
+    }
+    .admin-stat {
+      background:#fafbff;
+      border:1.5px solid rgba(99,102,241,0.1);
+      border-radius:1.25rem;
+      padding:1rem 1.1rem;
+      display:flex; flex-direction:column; gap:.3rem;
+    }
+    .admin-stat .as-val { font-size:1.6rem; font-weight:900; color:var(--accent-strong); line-height:1; }
+    .admin-stat .as-lbl { font-size:.75rem; color:var(--text-muted); font-weight:600; }
+  </style>
+</head>
+<body>
+
+  <!-- Gate: se muestra mientras carga o si no tiene acceso -->
+  <div id="adminGate" class="admin-gate">
+    <div class="gate-icon">⏳</div>
+    <h2>Verificando acceso...</h2>
+    <p>Comprobando tus permisos de administrador.</p>
+  </div>
+
+  <!-- Panel admin: oculto hasta confirmar rol -->
+  <div id="adminApp" style="display:none;width:100%;max-width:900px;display:none;flex-direction:column;gap:1.5rem;align-items:center;">
+
+    <div class="admin-header">
+      <a href="index.html" class="admin-brand">
+        <img src="assets/Icono.png" alt="EduNovaOne" />
+        <div>
+          <strong>EduNovaOne</strong>
+          <span>Panel Administrador</span>
+        </div>
+      </a>
+      <span class="admin-badge">🛡️ Admin · <span id="adminName">—</span></span>
+    </div>
+
+    <div class="admin-panel">
+
+      <!-- Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="buscar">🔍 Buscar usuario</button>
+        <button class="admin-tab" data-tab="lista">📋 Todos los usuarios</button>
+      </div>
+
+      <!-- ── TAB: Buscar ── -->
+      <div class="tab-panel active" id="tab-buscar">
+
+        <div class="admin-card">
+          <h2>🔍 Buscar y gestionar plan</h2>
+          <p style="margin:0;color:var(--text-muted);font-size:.88rem;">Busca por <strong>email</strong> o <strong>@username</strong> para gestionar el plan del usuario.</p>
+
+          <div class="search-row">
+            <input type="text" id="searchInput" placeholder="Email o @username..." autocomplete="off" />
+            <button id="searchBtn">Buscar</button>
+          </div>
+          <div id="searchMsg" style="font-size:.85rem;color:var(--text-muted);display:none;"></div>
+        </div>
+
+        <!-- Resultado de búsqueda -->
+        <div class="admin-card" id="resultCard" style="display:none;">
+          <h2>👤 Usuario encontrado</h2>
+
+          <div class="user-result">
+            <div class="user-result-top">
+              <div class="user-avatar" id="resAvatar">🧑‍🎓</div>
+              <div class="user-info">
+                <strong id="resName">—</strong>
+                <span id="resEmail">—</span><br>
+                <span id="resUsername" style="color:var(--accent);font-weight:700;"></span>
+                <span id="resGrado" style="margin-left:.5rem;"></span>
+              </div>
+              <span class="plan-tag free" id="resPlanTag">free</span>
+            </div>
+            <div class="user-uid">UID: <span id="resUid">—</span></div>
+          </div>
+
+          <div class="plan-selector">
+            <label>Asignar plan:</label>
+            <button class="plan-btn active-free" data-plan="free">🔓 Free</button>
+            <button class="plan-btn" data-plan="premium">✨ Premium</button>
+            <button class="plan-btn" data-plan="preu">🎓 Pre-u</button>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;">
+            <button class="save-plan-btn" id="savePlanBtn">💾 Guardar plan</button>
+            <span class="save-feedback" id="saveFeedback"></span>
+          </div>
+        </div>
+
+      </div><!-- /tab-buscar -->
+
+      <!-- ── TAB: Lista ── -->
+      <div class="tab-panel" id="tab-lista">
+
+        <div class="admin-card">
+          <h2>📊 Estadísticas</h2>
+          <div class="admin-stats">
+            <div class="admin-stat"><span class="as-val" id="statTotal">—</span><span class="as-lbl">Usuarios totales</span></div>
+            <div class="admin-stat"><span class="as-val" id="statPremium">—</span><span class="as-lbl">Con Premium</span></div>
+            <div class="admin-stat"><span class="as-val" id="statPreu">—</span><span class="as-lbl">Con Pre-u</span></div>
+            <div class="admin-stat"><span class="as-val" id="statFree">—</span><span class="as-lbl">Plan Free</span></div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+            <h2>📋 Lista de usuarios</h2>
+            <button class="search-row button" id="loadUsersBtn" style="padding:.6rem 1.2rem;border:none;border-radius:.85rem;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;">Cargar usuarios</button>
+          </div>
+          <div class="users-list" id="usersList">
+            <p class="list-empty">Haz clic en "Cargar usuarios" para ver la lista.</p>
+          </div>
+        </div>
+
+      </div><!-- /tab-lista -->
+
+    </div><!-- /admin-panel -->
+  </div><!-- /adminApp -->
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import {
+      getFirestore, doc, getDoc, getDocs, updateDoc, collection, query, where, limit
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const app  = initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    const gate    = document.getElementById('adminGate');
+    const appDiv  = document.getElementById('adminApp');
+
+    // ── Verificar acceso admin ──
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        gate.innerHTML = `
+          <div class="gate-icon">🔒</div>
+          <h2>Acceso denegado</h2>
+          <p>Debes iniciar sesión con una cuenta de administrador.</p>
+          <a href="login.html" class="button button-primary" style="margin-top:.5rem;">Iniciar sesión</a>`;
+        return;
+      }
+
+      const snap = await getDoc(doc(db, 'usuarios', user.uid));
+      const data = snap.exists() ? snap.data() : {};
+
+      if (data.rol !== 'admin') {
+        gate.innerHTML = `
+          <div class="gate-icon">⛔</div>
+          <h2>Sin permisos</h2>
+          <p>Tu cuenta no tiene permisos de administrador.</p>
+          <a href="index.html" class="button button-secondary" style="margin-top:.5rem;">Volver al inicio</a>`;
+        return;
+      }
+
+      // Es admin — mostrar panel
+      gate.style.display = 'none';
+      appDiv.style.display = 'flex';
+      document.getElementById('adminName').textContent = user.displayName || user.email.split('@')[0];
+    });
+
+    // ── Tabs ──
+    document.querySelectorAll('.admin-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ── Búsqueda de usuario ──
+    let foundUid  = null;
+    let selectedPlan = null;
+
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn   = document.getElementById('searchBtn');
+    const searchMsg   = document.getElementById('searchMsg');
+    const resultCard  = document.getElementById('resultCard');
+
+    searchBtn.addEventListener('click', () => doSearch());
+    searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+    async function doSearch() {
+      const val = searchInput.value.trim();
+      if (!val) return;
+
+      searchBtn.disabled = true;
+      searchBtn.textContent = 'Buscando...';
+      searchMsg.style.display = 'none';
+      resultCard.style.display = 'none';
+      foundUid = null;
+      selectedPlan = null;
+
+      try {
+        let userSnap = null;
+        let uid = null;
+
+        if (val.startsWith('@')) {
+          // Buscar por username
+          const username = val.slice(1).toLowerCase();
+          const q = query(collection(db, 'usuarios'), where('username', '==', username), limit(1));
+          const res = await getDocs(q);
+          if (!res.empty) { uid = res.docs[0].id; userSnap = res.docs[0]; }
+        } else {
+          // Buscar por email
+          const q = query(collection(db, 'usuarios'), where('email', '==', val.toLowerCase()), limit(1));
+          const res = await getDocs(q);
+          if (!res.empty) { uid = res.docs[0].id; userSnap = res.docs[0]; }
+
+          // Si no hay email en Firestore, intentar buscar por nombre (fallback)
+          if (!uid) {
+            const q2 = query(collection(db, 'usuarios'), where('nombre', '==', val), limit(1));
+            const res2 = await getDocs(q2);
+            if (!res2.empty) { uid = res2.docs[0].id; userSnap = res2.docs[0]; }
+          }
+        }
+
+        if (!uid) {
+          searchMsg.textContent = '❌ No se encontró ningún usuario con ese email o username.';
+          searchMsg.style.display = 'block';
+        } else {
+          foundUid = uid;
+          renderResult(uid, userSnap.data());
+        }
+      } catch (err) {
+        searchMsg.textContent = '⚠️ Error al buscar: ' + err.message;
+        searchMsg.style.display = 'block';
+      } finally {
+        searchBtn.disabled = false;
+        searchBtn.textContent = 'Buscar';
+      }
+    }
+
+    function renderResult(uid, d) {
+      document.getElementById('resName').textContent     = d.nombre || d.username || '(sin nombre)';
+      document.getElementById('resEmail').textContent    = d.email  || '(email no guardado)';
+      document.getElementById('resUsername').textContent = d.username ? '@' + d.username : '';
+      document.getElementById('resGrado').textContent    = d.grado  || '';
+      document.getElementById('resUid').textContent      = uid;
+
+      if (d.photoURL) {
+        document.getElementById('resAvatar').innerHTML = `<img src="${d.photoURL}" alt="avatar">`;
+      } else {
+        document.getElementById('resAvatar').textContent = '🧑‍🎓';
+      }
+
+      const currentPlan = (d.plan || 'free').toLowerCase();
+      selectedPlan = currentPlan;
+      updatePlanTag(currentPlan);
+      updatePlanBtns(currentPlan);
+
+      resultCard.style.display = 'flex';
+    }
+
+    function updatePlanTag(plan) {
+      const tag = document.getElementById('resPlanTag');
+      tag.className = 'plan-tag ' + plan;
+      const labels = { free:'🔓 Free', premium:'✨ Premium', preu:'🎓 Pre-u' };
+      tag.textContent = labels[plan] || plan;
+    }
+
+    function updatePlanBtns(activePlan) {
+      document.querySelectorAll('.plan-selector .plan-btn').forEach(btn => {
+        btn.className = 'plan-btn';
+        if (btn.dataset.plan === activePlan) {
+          btn.classList.add('active-' + activePlan);
+        }
+      });
+    }
+
+    // Seleccionar plan
+    document.querySelectorAll('.plan-selector .plan-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedPlan = btn.dataset.plan;
+        updatePlanBtns(selectedPlan);
+      });
+    });
+
+    // Guardar plan
+    document.getElementById('savePlanBtn').addEventListener('click', async () => {
+      if (!foundUid || !selectedPlan) return;
+      const saveBtn  = document.getElementById('savePlanBtn');
+      const feedback = document.getElementById('saveFeedback');
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Guardando...';
+      feedback.className = 'save-feedback';
+      feedback.style.display = 'none';
+
+      try {
+        await updateDoc(doc(db, 'usuarios', foundUid), { plan: selectedPlan });
+        updatePlanTag(selectedPlan);
+        feedback.textContent = '✅ Plan actualizado correctamente';
+        feedback.className   = 'save-feedback success';
+        feedback.style.display = 'inline-block';
+        setTimeout(() => { feedback.style.display = 'none'; }, 3000);
+      } catch (err) {
+        feedback.textContent = '❌ Error: ' + err.message;
+        feedback.className   = 'save-feedback error';
+        feedback.style.display = 'inline-block';
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = '💾 Guardar plan';
+      }
+    });
+
+    // ── Cargar lista de usuarios ──
+    document.getElementById('loadUsersBtn').addEventListener('click', loadUsers);
+
+    async function loadUsers() {
+      const list = document.getElementById('usersList');
+      list.innerHTML = '<p class="list-empty">Cargando...</p>';
+
+      try {
+        const snap = await getDocs(collection(db, 'usuarios'));
+        const users = [];
+        snap.forEach(d => users.push({ uid: d.id, ...d.data() }));
+
+        // Stats
+        document.getElementById('statTotal').textContent   = users.length;
+        document.getElementById('statPremium').textContent = users.filter(u => u.plan === 'premium').length;
+        document.getElementById('statPreu').textContent    = users.filter(u => u.plan === 'preu').length;
+        document.getElementById('statFree').textContent    = users.filter(u => !u.plan || u.plan === 'free').length;
+
+        if (!users.length) {
+          list.innerHTML = '<p class="list-empty">No hay usuarios.</p>';
+          return;
+        }
+
+        list.innerHTML = users.map(u => {
+          const plan = (u.plan || 'free').toLowerCase();
+          const planLabel = { free:'🔓 Free', premium:'✨ Premium', preu:'🎓 Pre-u' };
+          return `
+            <div class="user-row" data-uid="${u.uid}">
+              <div class="user-row-info">
+                <strong>${u.nombre || u.username || '(sin nombre)'}</strong>
+                <span>${u.email || ''} ${u.username ? '· @'+u.username : ''} ${u.grado ? '· '+u.grado : ''}</span>
+              </div>
+              <span class="plan-tag ${plan}" style="flex-shrink:0;">${planLabel[plan] || plan}</span>
+              <div class="user-row-quick">
+                <button class="quick-plan-btn ${plan==='free'?'qp-free':''}"    data-uid="${u.uid}" data-plan="free"    title="Asignar Free">Free</button>
+                <button class="quick-plan-btn ${plan==='premium'?'qp-premium':''}" data-uid="${u.uid}" data-plan="premium" title="Asignar Premium">Premium</button>
+                <button class="quick-plan-btn ${plan==='preu'?'qp-preu':''}"    data-uid="${u.uid}" data-plan="preu"    title="Asignar Pre-u">Pre-u</button>
+              </div>
+            </div>`;
+        }).join('');
+
+        // Click rápido en plan
+        list.querySelectorAll('.quick-plan-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const uid  = btn.dataset.uid;
+            const plan = btn.dataset.plan;
+            btn.disabled = true;
+            try {
+              await updateDoc(doc(db, 'usuarios', uid), { plan });
+              // Refrescar fila visualmente
+              const row = list.querySelector(`.user-row[data-uid="${uid}"]`);
+              if (row) {
+                const tag = row.querySelector('.plan-tag');
+                const labels = { free:'🔓 Free', premium:'✨ Premium', preu:'🎓 Pre-u' };
+                tag.className = 'plan-tag ' + plan;
+                tag.textContent = labels[plan];
+                row.querySelectorAll('.quick-plan-btn').forEach(b => {
+                  b.className = 'quick-plan-btn';
+                  if (b.dataset.plan === plan) b.classList.add('qp-' + plan);
+                });
+              }
+            } catch(e) { alert('Error: ' + e.message); }
+            finally { btn.disabled = false; }
+          });
+        });
+
+      } catch (err) {
+        list.innerHTML = `<p class="list-empty">Error al cargar: ${err.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
