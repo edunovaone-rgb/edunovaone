@@ -323,23 +323,44 @@
 </head>
 <body>
 
-  <!-- PAYWALL OVERLAY -->
-  <div id="paywallOverlay">
-    <div class="paywall-card">
-      <div class="paywall-lock">🔒</div>
-      <span class="paywall-badge">🎓 Sección Pre-universitaria</span>
-      <h2>Elige tu plan para acceder</h2>
-      <p>La Pre-u requiere un plan de pago. Elige el que más te convenga — todos incluyen acceso a simulacros, resúmenes y rutas de estudio.</p>
-      <ul class="paywall-features">
-        <li><span class="feat-icon">📝</span> Simulacros tipo examen con corrección inmediata</li>
-        <li><span class="feat-icon">🗺️</span> Ruta de estudio personalizada</li>
-        <li><span class="feat-icon">⚡</span> Resúmenes express de todas las materias</li>
-        <li><span class="feat-icon">📊</span> Seguimiento de tu progreso</li>
-      </ul>
-      <a href="planes.html" class="paywall-cta">🚀 Ver planes y precios</a>
-      <button class="paywall-back" onclick="history.back()">← Volver atrás</button>
+  <!-- LOADING / PAYWALL OVERLAY -->
+  <!-- Empieza como loading (sin mostrar ni el contenido ni el paywall) -->
+  <div id="paywallOverlay" class="show loading">
+    <div class="paywall-card" id="paywallCard">
+      <!-- Estado: cargando -->
+      <div id="stateLoading" style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1rem 0;">
+        <div style="width:48px;height:48px;border-radius:50%;border:4px solid rgba(99,102,241,0.15);border-top-color:#7c3aed;animation:spin .7s linear infinite;"></div>
+        <p style="margin:0;color:#64748b;font-size:.92rem;">Verificando acceso...</p>
+      </div>
+      <!-- Estado: sin plan (oculto hasta confirmar) -->
+      <div id="stateLocked" style="display:none;flex-direction:column;align-items:center;gap:1.25rem;text-align:center;">
+        <div class="paywall-lock">🔒</div>
+        <span class="paywall-badge">🎓 Sección Pre-universitaria</span>
+        <h2 style="margin:0;font-size:1.65rem;color:#1e1b4b;font-weight:900;line-height:1.25;">Elige tu plan para acceder</h2>
+        <p style="margin:0;color:#64748b;font-size:.92rem;line-height:1.65;">La Pre-u requiere un plan de pago. Todos incluyen acceso a simulacros, resúmenes y rutas de estudio.</p>
+        <ul class="paywall-features">
+          <li><span class="feat-icon">📝</span> Simulacros tipo examen con corrección inmediata</li>
+          <li><span class="feat-icon">🗺️</span> Ruta de estudio personalizada</li>
+          <li><span class="feat-icon">⚡</span> Resúmenes express de todas las materias</li>
+          <li><span class="feat-icon">📊</span> Seguimiento de tu progreso</li>
+        </ul>
+        <a href="planes.html" class="paywall-cta">🚀 Ver planes y precios</a>
+        <button class="paywall-back" onclick="history.back()">← Volver atrás</button>
+      </div>
     </div>
   </div>
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Loading: fondo semitransparente pero más suave que el paywall */
+    #paywallOverlay.loading {
+      background: rgba(245,243,255,0.92);
+      backdrop-filter: blur(4px);
+    }
+    #paywallOverlay.loading .paywall-card {
+      box-shadow: 0 16px 40px rgba(99,102,241,0.1);
+      padding: 2.5rem;
+    }
+  </style>
 
   <!-- NAVBAR -->
   <nav class="uni-nav">
