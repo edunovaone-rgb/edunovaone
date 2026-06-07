@@ -514,10 +514,10 @@ const FLASHCARDS = {
 // ── Fórmulas Matemática por grado ───────────────────
 const FORMULAS = {
   1: [
-    { partes: ['Área rectángulo = base × ', '____'], r: 'altura', pista: 'A = b × ?' },
+    { partes: ['Area rectangulo = base × ', '____'], r: 'altura', pista: 'A = b × ?' },
     { partes: ['MCM: factores primos con mayor ', '____'], r: 'exponente', pista: 'mayor ...' },
     { partes: ['Porcentaje = (parte ÷ ', '____ ) × 100'], r: 'total', pista: '(p÷?)×100' },
-    { partes: ['Fracción = Numerador ÷ ', '____'], r: 'Denominador', pista: 'a ÷ ?' },
+    { partes: ['Fraccion = Numerador ÷ ', '____'], r: 'denominador', pista: 'a ÷ ?' },
   ],
   2: [
     { partes: ['ax + b = 0  →  x = −b ÷ ', '____'], r: 'a', pista: 'x=−b/?' },
