@@ -644,8 +644,8 @@ a {
 
 .library-grid {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) minmax(0, 2.6fr) minmax(260px, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) minmax(220px, 280px);
+  gap: 1.25rem;
   align-items: start;
   margin-top: 1.5rem;
 }
