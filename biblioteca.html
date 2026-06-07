@@ -1765,6 +1765,7 @@
     });
 
     function applyFilters() {
+      window._bibApplyFilters && window._bibApplyFilters();
       const search  = document.getElementById('searchInput').value.toLowerCase().trim();
       const materia = document.getElementById('filterMateria').value;
       const tipo    = document.getElementById('filterTipo').value;
