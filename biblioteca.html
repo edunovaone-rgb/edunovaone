@@ -1814,6 +1814,17 @@
         document.getElementById('booksSection').scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // Exponer applyFilters para que nav-widgets.js pueda llamarla
+    // cuando el usuario busca desde el overlay estando ya en biblioteca
+    window._bibSearch = function(term) {
+      const input = document.getElementById('searchInput');
+      if (input) {
+        input.value = term;
+        applyFilters();
+        document.getElementById('booksSection')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
   </script>
   <script>
     // Leer parámetro ?q= de la URL y auto-rellenar el buscador
