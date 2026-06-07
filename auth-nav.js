@@ -19,18 +19,16 @@ const _db   = getFirestore(_app);
 let _presenceInterval = null;
 
 onAuthStateChanged(_auth, async (user) => {
+  // Si nav-widgets.js ya maneja el pill, auth-nav.js solo gestiona el lastSeen
   const btn = document.getElementById('navAuthBtn');
-  if (!btn) return;
+  const pill = document.getElementById('navUserPill');
 
   // Limpiar intervalo anterior si el usuario cambia
   if (_presenceInterval) { clearInterval(_presenceInterval); _presenceInterval = null; }
 
   if (user) {
-    const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
-
     const ref = doc(_db, 'usuarios', user.uid);
 
-    // Leer el doc primero para no sobreescribir un nombre real ya guardado
     let username = null;
     let existingNombre = null;
     try {
@@ -41,43 +39,44 @@ onAuthStateChanged(_auth, async (user) => {
       }
     } catch (_) {}
 
-    // Solo escribir nombre si el doc no tiene uno ya, o si el displayName de Auth
-    // es diferente al username (para no guardar el username técnico como nombre)
     const updatePayload = { lastSeen: Date.now() };
     if (user.displayName && (!existingNombre || existingNombre === username)) {
       updatePayload.nombre = user.displayName;
     }
     setDoc(ref, updatePayload, { merge: true }).catch(() => {});
 
-    // Refrescar lastSeen cada 2 minutos para mantener el estado "Activo"
     _presenceInterval = setInterval(() => {
       setDoc(ref, { lastSeen: Date.now() }, { merge: true }).catch(() => {});
     }, 2 * 60 * 1000);
 
-    // username ya fue leído arriba junto con el doc
-    if (username) {
-      btn.innerHTML = `
-        <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;gap:1px;">
-          <span style="font-size:0.88rem;font-weight:700;">👤 ${displayFirst}</span>
-          <span style="font-size:0.72rem;font-weight:500;opacity:0.75;">@${username}</span>
-        </span>`;
-    } else {
-      btn.textContent = `👤 ${displayFirst}`;
+    // Solo actualizar el botón legacy si nav-widgets no generó el pill
+    if (!pill && btn) {
+      const displayFirst = user.displayName ? user.displayName.split(' ')[0] : 'Mi cuenta';
+      if (username) {
+        btn.innerHTML = `
+          <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;gap:1px;">
+            <span style="font-size:0.88rem;font-weight:700;">👤 ${displayFirst}</span>
+            <span style="font-size:0.72rem;font-weight:500;opacity:0.75;">@${username}</span>
+          </span>`;
+      } else {
+        btn.textContent = `👤 ${displayFirst}`;
+      }
+      btn.href = 'perfil.html';
+      btn.style.background = 'rgba(99,102,241,0.1)';
+      btn.style.color = 'var(--accent-strong)';
+      btn.style.boxShadow = 'none';
+      btn.style.border = '1px solid rgba(99,102,241,0.2)';
+      btn.style.padding = '0.45rem 1rem';
     }
-
-    btn.href = 'perfil.html';
-    btn.style.background = 'rgba(99,102,241,0.1)';
-    btn.style.color = 'var(--accent-strong)';
-    btn.style.boxShadow = 'none';
-    btn.style.border = '1px solid rgba(99,102,241,0.2)';
-    btn.style.padding = '0.45rem 1rem';
   } else {
-    btn.textContent = 'Iniciar sesión';
-    btn.href = 'login.html';
-    btn.style.background = '';
-    btn.style.color = '';
-    btn.style.boxShadow = '';
-    btn.style.border = '';
-    btn.style.padding = '';
+    if (!pill && btn) {
+      btn.textContent = 'Iniciar sesión';
+      btn.href = 'login.html';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.boxShadow = '';
+      btn.style.border = '';
+      btn.style.padding = '';
+    }
   }
 });
