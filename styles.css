@@ -1530,10 +1530,12 @@ a {
   justify-content: center;
   min-width: 0;
 }
+
+.uni-icon-btn {
   width: 2.4rem;
   height: 2.4rem;
   border: none;
-  border-radius: 999px;          /* circular como en la imagen */
+  border-radius: 999px;
   background: rgba(59,130,246,0.1);
   color: var(--accent-strong);
   font-size: 1rem;
@@ -1543,6 +1545,8 @@ a {
   justify-content: center;
   transition: background 0.2s;
 }
+
+.uni-icon-btn:hover { background: rgba(59,130,246,0.18); }
 
 .uni-icon-btn:hover { background: rgba(59,130,246,0.18); }
 
