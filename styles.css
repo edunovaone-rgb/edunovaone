@@ -1515,7 +1515,21 @@ a {
   margin-left: auto;
 }
 
-.uni-icon-btn {
+/* Evitar que el navbar envuelva a segunda línea */
+.uni-nav { flex-wrap: nowrap; }
+
+/* En desktop: links visibles y centrados */
+.uni-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+}
   width: 2.4rem;
   height: 2.4rem;
   border: none;
