@@ -521,9 +521,9 @@ const FORMULAS = {
   ],
   2: [
     { partes: ['ax + b = 0  →  x = −b ÷ ', '____'], r: 'a', pista: 'x=−b/?' },
-    { partes: ['(a + b)² = a² + 2ab + ', '____'], r: 'b²', pista: '...+?' },
-    { partes: ['a² − b² = (a+b)(a', '____', ')'], r: '−b', pista: '(a+b)(a?)' },
-    { partes: ['Pendiente m = Δy ÷ ', '____'], r: 'Δx', pista: 'm=Δy÷?' },
+    { partes: ['(a + b)2 = a2 + 2ab + ', '____'], r: 'b2', pista: '...+?' },
+    { partes: ['a2 − b2 = (a+b)(a', '____', ')'], r: '-b', pista: '(a+b)(a?)' },
+    { partes: ['Pendiente m = dy ÷ ', '____'], r: 'dx', pista: 'm=dy÷?' },
   ],
   3: [
     { partes: ['Pitágoras: c² = a² + ', '____'], r: 'b²', pista: 'c²=a²+?' },
