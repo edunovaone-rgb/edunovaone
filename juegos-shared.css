@@ -48,13 +48,27 @@
 .grade-placeholder{text-align:center;padding:3rem 1rem;color:var(--text-muted);font-size:.95rem}
 
 /* ── Modal ── */
-.game-overlay{position:fixed;inset:0;background:rgba(15,23,42,0.55);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem}
-.game-overlay.open{display:flex}
-.game-modal{background:#fff;border-radius:2rem;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;padding:2rem;box-shadow:0 40px 80px rgba(15,23,42,0.2);display:grid;gap:1.25rem}
-.game-modal-header{display:flex;align-items:center;justify-content:space-between}
-.game-modal-header h3{margin:0;font-size:1.2rem;color:var(--accent-strong)}
-.game-close{background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);padding:.25rem .5rem;border-radius:.5rem}
-.game-close:hover{background:rgba(148,163,184,0.12)}
+.game-overlay{position:fixed;inset:0;background:rgba(15,23,42,0.6);backdrop-filter:blur(8px);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem}
+.game-overlay.open{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.game-modal{
+  background:#fff;border-radius:2rem;width:100%;max-width:680px;
+  max-height:90vh;overflow-y:auto;padding:2rem;
+  box-shadow:0 40px 80px rgba(15,23,42,0.25);
+  display:grid;gap:1.25rem;
+  animation:slideUp .25s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.game-modal-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:1rem;border-bottom:1px solid rgba(148,163,184,0.12)}
+.game-modal-header h3{margin:0;font-size:1.15rem;color:var(--accent-strong);font-weight:800}
+.game-close{
+  background:rgba(148,163,184,0.12);border:none;font-size:1.1rem;
+  cursor:pointer;color:var(--text-muted);
+  width:2.2rem;height:2.2rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .2s;
+}
+.game-close:hover{background:rgba(239,68,68,0.1);color:#ef4444;transform:scale(1.1)}
 
 /* ── Quiz ── */
 .quiz-bar{height:6px;border-radius:999px;background:rgba(99,102,241,0.12);overflow:hidden}
