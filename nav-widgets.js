@@ -7,7 +7,7 @@ import {
   getDocs, updateDoc, doc, onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ── Firebase (reutiliza instancia si ya fue inicializada por auth-nav.js) ──
+// ── Firebase (reutiliza instancia si ya existe) ──
 const _cfg = {
   apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
   authDomain: "edunova-library.firebaseapp.com",
@@ -20,36 +20,57 @@ const _app  = getApps().length ? getApps()[0] : initializeApp(_cfg);
 const _auth = getAuth(_app);
 const _db   = getFirestore(_app);
 
+// Detectar si ya estamos en biblioteca
+function enBiblioteca() {
+  return window.location.pathname.includes('biblioteca');
+}
+
 // ══════════════════════════════════════════════════
 //  BÚSQUEDA GLOBAL
 // ══════════════════════════════════════════════════
 
-// Sugerencias estáticas (atajos de navegación)
 const QUICK_LINKS = [
-  { icon: '📚', label: 'Biblioteca',     href: 'biblioteca.html' },
-  { icon: '🎮', label: 'Juegos',          href: 'juegos.html' },
-  { icon: '🛠️', label: 'Herramientas',   href: 'herramientas.html' },
-  { icon: '👥', label: 'Comunidad',       href: 'comunidad.html' },
-  { icon: '🏠', label: 'Inicio',          href: 'index.html' },
-  { icon: '👤', label: 'Mi Perfil',       href: 'perfil.html' },
+  { icon: '📚', label: 'Biblioteca',      href: 'biblioteca.html' },
+  { icon: '🎮', label: 'Juegos',           href: 'juegos.html' },
+  { icon: '🛠️', label: 'Herramientas',    href: 'herramientas.html' },
+  { icon: '👥', label: 'Comunidad',        href: 'comunidad.html' },
+  { icon: '🏠', label: 'Inicio',           href: 'index.html' },
+  { icon: '👤', label: 'Mi Perfil',        href: 'perfil.html' },
 ];
 
-// Catálogo de páginas para búsqueda local
 const PAGE_CATALOG = [
-  { icon: '∑',  label: 'Matemática 1°',    href: 'grado-1.html',    tags: ['matematica','aritmetica','numeros'] },
-  { icon: '⚗️', label: 'Ciencias 1°',      href: 'grado-1.html',    tags: ['ciencia','celula','ecosistema'] },
-  { icon: '📖', label: 'Comunicación',      href: 'biblioteca.html', tags: ['comunicacion','lectura','gramatica'] },
-  { icon: '🏛️', label: 'Historia',          href: 'biblioteca.html', tags: ['historia','geografia','economia'] },
-  { icon: '🇬🇧', label: 'Inglés',           href: 'biblioteca.html', tags: ['ingles','english'] },
-  { icon: '💻', label: 'Tecnología',        href: 'biblioteca.html', tags: ['tecnologia','computacion'] },
-  { icon: '🧪', label: 'Grupo Ciencias',    href: 'grupo-ciencias.html',      tags: ['ciencias','grupo','foro'] },
-  { icon: '📝', label: 'Grupo Comunicación',href: 'grupo-comunicacion.html',  tags: ['comunicacion','grupo','foro'] },
-  { icon: '🔢', label: 'Grupo Matemática',  href: 'grupo-matematica.html',    tags: ['matematica','grupo','foro'] },
-  { icon: '🌍', label: 'Grupo Historia',    href: 'grupo-historia.html',      tags: ['historia','grupo','foro'] },
-  { icon: '🎮', label: 'Juego Matemática',  href: 'juego-matematica.html',    tags: ['juego','matematica'] },
-  { icon: '🧬', label: 'Juego Ciencias',    href: 'juego-ciencia.html',       tags: ['juego','ciencia'] },
-  { icon: '🗣️', label: 'Juego Comunicación',href: 'juego-comunicacion.html',  tags: ['juego','comunicacion'] },
+  { icon: '∑',  label: 'Matemática 1°',     href: 'grado-1.html',             tags: ['matematica','aritmetica','numeros'] },
+  { icon: '⚗️', label: 'Ciencias 1°',       href: 'grado-1.html',             tags: ['ciencia','celula','ecosistema'] },
+  { icon: '📖', label: 'Comunicación',       href: 'biblioteca.html',          tags: ['comunicacion','lectura','gramatica'] },
+  { icon: '🏛️', label: 'Historia',           href: 'biblioteca.html',          tags: ['historia','geografia','economia'] },
+  { icon: '🇬🇧', label: 'Inglés',            href: 'biblioteca.html',          tags: ['ingles','english'] },
+  { icon: '💻', label: 'Tecnología',         href: 'biblioteca.html',          tags: ['tecnologia','computacion'] },
+  { icon: '🧪', label: 'Grupo Ciencias',     href: 'grupo-ciencias.html',      tags: ['ciencias','grupo','foro'] },
+  { icon: '📝', label: 'Grupo Comunicación', href: 'grupo-comunicacion.html',  tags: ['comunicacion','grupo','foro'] },
+  { icon: '🔢', label: 'Grupo Matemática',   href: 'grupo-matematica.html',    tags: ['matematica','grupo','foro'] },
+  { icon: '🌍', label: 'Grupo Historia',     href: 'grupo-historia.html',      tags: ['historia','grupo','foro'] },
+  { icon: '🎮', label: 'Juego Matemática',   href: 'juego-matematica.html',    tags: ['juego','matematica'] },
+  { icon: '🧬', label: 'Juego Ciencias',     href: 'juego-ciencia.html',       tags: ['juego','ciencia'] },
+  { icon: '🗣️', label: 'Juego Comunicación', href: 'juego-comunicacion.html',  tags: ['juego','comunicacion'] },
 ];
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function doSearch(term) {
+  const overlay = document.getElementById('globalSearchOverlay');
+  if (overlay) overlay.classList.remove('gs-open');
+  document.body.style.overflow = '';
+
+  if (enBiblioteca() && typeof window._bibSearch === 'function') {
+    // Ya estamos en biblioteca: filtrar en la misma página
+    window._bibSearch(term);
+  } else {
+    // Redirigir a biblioteca con el parámetro
+    window.location.href = `biblioteca.html?q=${encodeURIComponent(term)}`;
+  }
+}
 
 function buildSearchOverlay() {
   if (document.getElementById('globalSearchOverlay')) return;
@@ -79,10 +100,10 @@ function buildSearchOverlay() {
 
   document.body.appendChild(overlay);
 
-  const input     = overlay.querySelector('#gsInput');
-  const results   = overlay.querySelector('#gsResults');
-  const closeBtn  = overlay.querySelector('.gs-close-btn');
-  const backdrop  = overlay.querySelector('.gs-backdrop');
+  const input    = overlay.querySelector('#gsInput');
+  const results  = overlay.querySelector('#gsResults');
+  const closeBtn = overlay.querySelector('.gs-close-btn');
+  const backdrop = overlay.querySelector('.gs-backdrop');
 
   function closeOverlay() {
     overlay.classList.remove('gs-open');
@@ -107,17 +128,16 @@ function buildSearchOverlay() {
     const term = q.toLowerCase().trim();
     if (!term) { renderQuickLinks(); return; }
 
-    // Filtrar catálogo
     const matched = PAGE_CATALOG.filter(p =>
       p.label.toLowerCase().includes(term) ||
       p.tags.some(t => t.includes(term))
     );
 
-    // Siempre ofrecer buscar en Biblioteca
-    const bibHref = `biblioteca.html?q=${encodeURIComponent(q)}`;
+    const actionLabel = enBiblioteca()
+      ? `Buscar "<strong>${escHtml(q)}</strong>" en esta página`
+      : `Buscar "<strong>${escHtml(q)}</strong>" en Biblioteca`;
 
     let html = '';
-
     if (matched.length) {
       html += `<p class="gs-section-label">Páginas relacionadas</p>
         <ul class="gs-list">
@@ -131,37 +151,36 @@ function buildSearchOverlay() {
 
     html += `<p class="gs-section-label">Buscar recursos</p>
       <ul class="gs-list">
-        <li><a href="${bibHref}" class="gs-item gs-item-primary">
+        <li><a class="gs-item gs-item-primary" id="gsActionBtn" style="cursor:pointer;">
           <span class="gs-item-icon">📚</span>
-          <span class="gs-item-label">Buscar "<strong>${escHtml(q)}</strong>" en Biblioteca</span>
+          <span class="gs-item-label">${actionLabel}</span>
           <span class="gs-item-arrow">→</span>
         </a></li>
       </ul>`;
 
     results.innerHTML = html;
+
+    // Asignar acción al botón de búsqueda
+    const actionBtn = results.querySelector('#gsActionBtn');
+    if (actionBtn) {
+      actionBtn.addEventListener('click', () => doSearch(q));
+    }
   }
 
-  function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // Eventos
   input.addEventListener('input', () => renderResults(input.value));
   input.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeOverlay();
-    if (e.key === 'Enter' && input.value.trim()) {
-      window.location.href = `biblioteca.html?q=${encodeURIComponent(input.value.trim())}`;
-    }
+    if (e.key === 'Enter' && input.value.trim()) doSearch(input.value.trim());
   });
   closeBtn.addEventListener('click', closeOverlay);
   backdrop.addEventListener('click', closeOverlay);
 
   renderQuickLinks();
-  return overlay;
 }
 
 function openSearch() {
-  const overlay = document.getElementById('globalSearchOverlay') || buildSearchOverlay();
+  if (!document.getElementById('globalSearchOverlay')) buildSearchOverlay();
+  const overlay = document.getElementById('globalSearchOverlay');
   overlay.classList.add('gs-open');
   document.body.style.overflow = 'hidden';
   setTimeout(() => overlay.querySelector('#gsInput').focus(), 50);
@@ -185,20 +204,24 @@ function buildNotifPanel() {
       <button class="notif-mark-all" id="notifMarkAll" aria-label="Marcar todas como leídas">Marcar todo leído</button>
     </div>
     <div class="notif-list" id="notifList">
-      <div class="notif-empty">Cargando…</div>
+      <div class="notif-empty">
+        <span style="font-size:2rem;">🔔</span>
+        <p>Sin notificaciones</p>
+      </div>
     </div>`;
 
   document.body.appendChild(panel);
+  document.getElementById('notifMarkAll').addEventListener('click', markAllRead);
 
-  document.getElementById('notifMarkAll').addEventListener('click', () => markAllRead());
-
-  // Cerrar al click fuera
+  // Cerrar al click fuera del panel y fuera del botón
   document.addEventListener('click', e => {
-    const btn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
-    if (!panel.contains(e.target) && e.target !== btn) {
+    const panel  = document.getElementById('notifPanel');
+    const notifBtn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
+    if (!panel) return;
+    if (!panel.contains(e.target) && (!notifBtn || !notifBtn.contains(e.target))) {
       panel.classList.remove('notif-open');
     }
-  }, true);
+  });
 }
 
 function positionNotifPanel() {
@@ -206,16 +229,38 @@ function positionNotifPanel() {
   const panel = document.getElementById('notifPanel');
   if (!btn || !panel) return;
 
-  const rect = btn.getBoundingClientRect();
-  panel.style.top  = (rect.bottom + 8) + 'px';
-  panel.style.right = (window.innerWidth - rect.right) + 'px';
+  const rect        = btn.getBoundingClientRect();
+  const panelWidth  = 360;
+  const margin      = 12;
+
+  // Calcular top
+  panel.style.top = (rect.bottom + margin) + 'px';
+
+  // Alinear el panel para que no se salga de la pantalla
+  // Intentar alinear con el borde derecho del botón
+  let right = window.innerWidth - rect.right;
+  // Asegurar que el panel no se salga por la izquierda
+  if (window.innerWidth - right - panelWidth < margin) {
+    right = window.innerWidth - panelWidth - margin;
+  }
+  // Asegurar que no sea negativo
+  right = Math.max(margin, right);
+
+  panel.style.right = right + 'px';
+  panel.style.left  = 'auto';
 }
 
 function toggleNotifPanel() {
   buildNotifPanel();
   const panel = document.getElementById('notifPanel');
-  positionNotifPanel();
-  panel.classList.toggle('notif-open');
+  const isOpen = panel.classList.contains('notif-open');
+
+  if (isOpen) {
+    panel.classList.remove('notif-open');
+  } else {
+    positionNotifPanel();
+    panel.classList.add('notif-open');
+  }
 }
 
 function renderNotifications(notifs) {
@@ -234,61 +279,58 @@ function renderNotifications(notifs) {
     <div class="notif-item ${n.read ? '' : 'notif-unread'}" data-id="${n.id}">
       <div class="notif-item-icon">${n.icon || '📢'}</div>
       <div class="notif-item-body">
-        <p class="notif-item-title">${escHtml2(n.title || '')}</p>
-        <p class="notif-item-text">${escHtml2(n.message || '')}</p>
+        <p class="notif-item-title">${escHtml(n.title || '')}</p>
+        <p class="notif-item-text">${escHtml(n.message || '')}</p>
         <span class="notif-item-time">${timeAgo(n.createdAt)}</span>
       </div>
       ${!n.read ? '<span class="notif-dot"></span>' : ''}
     </div>`).join('');
 }
 
-function escHtml2(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
 function timeAgo(ts) {
   if (!ts) return '';
   const d   = ts.toDate ? ts.toDate() : new Date(ts);
   const sec = Math.floor((Date.now() - d.getTime()) / 1000);
-  if (sec < 60)   return 'Ahora mismo';
-  if (sec < 3600) return `Hace ${Math.floor(sec/60)} min`;
-  if (sec < 86400)return `Hace ${Math.floor(sec/3600)} h`;
-  return `Hace ${Math.floor(sec/86400)} días`;
+  if (sec < 60)    return 'Ahora mismo';
+  if (sec < 3600)  return `Hace ${Math.floor(sec / 60)} min`;
+  if (sec < 86400) return `Hace ${Math.floor(sec / 3600)} h`;
+  return `Hace ${Math.floor(sec / 86400)} días`;
 }
 
 function setBadge(count) {
-  let badge = document.getElementById('notifBadge');
-  const btn  = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
+  const btn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
   if (!btn) return;
 
+  let badge = document.getElementById('notifBadge');
   if (!badge) {
     badge = document.createElement('span');
     badge.id = 'notifBadge';
     badge.setAttribute('aria-label', 'notificaciones sin leer');
-    // Posicionar el badge relativo al botón
     btn.style.position = 'relative';
     btn.appendChild(badge);
   }
 
-  if (count > 0) {
-    badge.textContent = count > 9 ? '9+' : String(count);
-    badge.style.display = 'flex';
-  } else {
-    badge.style.display = 'none';
-  }
+  badge.textContent    = count > 9 ? '9+' : String(count);
+  badge.style.display  = count > 0 ? 'flex' : 'none';
 }
 
 async function markAllRead() {
   const uid = _auth.currentUser?.uid;
   if (!uid) return;
+  try {
+    const q    = query(collection(_db, 'usuarios', uid, 'notificaciones'), where('read', '==', false));
+    const snap = await getDocs(q);
+    await Promise.all(snap.docs.map(d => updateDoc(d.ref, { read: true })));
+  } catch (_) {}
+}
 
-  const q = query(
-    collection(_db, 'usuarios', uid, 'notificaciones'),
-    where('read', '==', false)
-  );
-  const snap = await getDocs(q);
-  const promises = snap.docs.map(d => updateDoc(d.ref, { read: true }));
-  await Promise.all(promises);
+function showNotifEmpty(msg) {
+  setBadge(0);
+  const list = document.getElementById('notifList');
+  if (list) list.innerHTML = `<div class="notif-empty">
+    <span style="font-size:2rem;">🔔</span>
+    <p>${msg}</p>
+  </div>`;
 }
 
 function subscribeNotifications(uid) {
@@ -302,50 +344,47 @@ function subscribeNotifications(uid) {
     limit(20)
   );
 
-  _notifUnsub = onSnapshot(q, snap => {
-    const notifs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    const unread = notifs.filter(n => !n.read).length;
-    setBadge(unread);
-    renderNotifications(notifs);
-  }, () => {
-    // Sin permiso o sin notificaciones — mostrar estado vacío
-    setBadge(0);
-    const list = document.getElementById('notifList');
-    if (list) list.innerHTML = `<div class="notif-empty">
-      <span style="font-size:2rem;">🔔</span>
-      <p>Sin notificaciones</p>
-    </div>`;
-  });
+  _notifUnsub = onSnapshot(
+    q,
+    snap => {
+      const notifs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      setBadge(notifs.filter(n => !n.read).length);
+      renderNotifications(notifs);
+    },
+    _err => {
+      // Firestore rechazó (colección vacía o sin regla): mostrar vacío igual
+      showNotifEmpty('Sin notificaciones');
+    }
+  );
 }
 
 // ══════════════════════════════════════════════════
-//  INIT — conectar botones del navbar
+//  INIT
 // ══════════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Overlay de búsqueda (construir en el DOM desde el inicio)
   buildSearchOverlay();
+  buildNotifPanel();
 
-  // Botón lupa
   const searchBtn = document.querySelector('.uni-icon-btn[aria-label="Buscar"]');
   if (searchBtn) searchBtn.addEventListener('click', openSearch);
 
-  // Botón notificaciones
   const notifBtn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
   if (notifBtn) notifBtn.addEventListener('click', toggleNotifPanel);
 
-  // Auth → suscribir notificaciones si hay sesión
+  // Reposicionar panel al cambiar tamaño
+  window.addEventListener('resize', () => {
+    const panel = document.getElementById('notifPanel');
+    if (panel?.classList.contains('notif-open')) positionNotifPanel();
+  });
+
   onAuthStateChanged(_auth, user => {
     if (user) {
       subscribeNotifications(user.uid);
     } else {
       if (_notifUnsub) { _notifUnsub(); _notifUnsub = null; }
+      showNotifEmpty('Inicia sesión para ver tus notificaciones');
       setBadge(0);
-      const list = document.getElementById('notifList');
-      if (list) list.innerHTML = `<div class="notif-empty">
-        <span style="font-size:2rem;">🔔</span>
-        <p>Inicia sesión para ver tus notificaciones</p>
-      </div>`;
     }
   });
 });
