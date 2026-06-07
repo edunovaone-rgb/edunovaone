@@ -1,7 +1,18 @@
 /* ── Area page layout ── */
-.area-hero{background:var(--area-bg,rgba(99,102,241,0.08));border:1px solid rgba(99,102,241,0.14);border-radius:2rem;padding:1.75rem 2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem}
-.area-hero-icon{width:4rem;height:4rem;border-radius:1.25rem;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;background:var(--area-color,rgba(99,102,241,0.12))}
-.area-hero h1{margin:0 0 .25rem;font-size:clamp(1.2rem,2vw,1.7rem);color:var(--accent-strong)}
+.area-hero{
+  position:relative;overflow:hidden;
+  border-radius:2rem;padding:2rem 2rem 1.75rem;
+  display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;
+  border:1px solid rgba(99,102,241,0.14);
+}
+.area-hero::before{
+  content:'';position:absolute;inset:0;
+  background:var(--area-bg,rgba(99,102,241,0.06));
+  z-index:0;
+}
+.area-hero>*{position:relative;z-index:1}
+.area-hero-icon{width:4.5rem;height:4.5rem;border-radius:1.5rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem;flex-shrink:0;background:rgba(255,255,255,0.7);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.area-hero h1{margin:0 0 .3rem;font-size:clamp(1.3rem,2vw,1.8rem);color:var(--accent-strong)}
 .area-hero p{margin:0;font-size:.9rem;color:var(--text-muted)}
 
 /* ── Grade selector ── */
