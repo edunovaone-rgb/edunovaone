@@ -907,7 +907,7 @@ a {
 
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1rem;
 }
 
@@ -918,6 +918,20 @@ a {
   padding: 1.25rem;
   display: grid;
   gap: 1rem;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Forzar que los textos internos no rompan palabras innecesariamente */
+.book-card h4,
+.book-card p,
+.book-category,
+.book-grade,
+.book-description {
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
   min-width: 0;
 }
 
