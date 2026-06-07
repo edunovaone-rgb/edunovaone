@@ -139,14 +139,18 @@
 .finput.bad{border-color:#ef4444;background:rgba(239,68,68,0.06);color:#991b1b}
 
 /* ── Verdadero/Falso ── */
-.vf-card{background:#fff;border:1.5px solid rgba(99,102,241,0.12);border-radius:1.5rem;padding:1.5rem;text-align:center}
-.vf-statement{font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:1rem}
+.vf-card{background:#fff;border:1.5px solid rgba(99,102,241,0.12);border-radius:1.5rem;padding:1.75rem;text-align:center}
+.vf-statement{font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.65;margin-bottom:1.25rem;padding:.85rem 1rem;background:rgba(99,102,241,0.04);border-radius:1rem}
 .vf-btns{display:flex;gap:1rem;justify-content:center}
-.vf-btn{padding:.75rem 2rem;border-radius:999px;border:none;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
-.vf-btn.true-btn{background:rgba(16,185,129,0.1);color:#065f46;border:1.5px solid #10b981}
-.vf-btn.false-btn{background:rgba(239,68,68,0.08);color:#991b1b;border:1.5px solid #ef4444}
-.vf-btn:hover:not(:disabled){transform:scale(1.05)}
+.vf-btn{padding:.8rem 2.2rem;border-radius:999px;border:none;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s}
+.vf-btn.true-btn{background:rgba(16,185,129,0.1);color:#065f46;border:2px solid #10b981}
+.vf-btn.false-btn{background:rgba(239,68,68,0.08);color:#991b1b;border:2px solid #ef4444}
+.vf-btn:hover:not(:disabled){transform:scale(1.06);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
+.vf-btn.true-btn:hover:not(:disabled){background:#10b981;color:#fff}
+.vf-btn.false-btn:hover:not(:disabled){background:#ef4444;color:#fff}
 .vf-btn:disabled{opacity:.5;cursor:default}
+
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
 /* ── Relaciona columnas ── */
 .rel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
