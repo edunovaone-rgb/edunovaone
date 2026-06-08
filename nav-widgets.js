@@ -231,18 +231,22 @@ function toggleNotifPanel() {
   const isOpen = panel.classList.toggle('notif-open');
 
   if (isOpen) {
-    // Posicionar el panel debajo del botón de notificaciones
     const btn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
     if (btn) {
       const rect = btn.getBoundingClientRect();
-      const panelWidth = Math.min(360, window.innerWidth - 16);
-      // Alinear el borde derecho del panel con el borde derecho del botón
-      let left = rect.right - panelWidth;
-      // Asegurarse de que no se salga por la izquierda
-      if (left < 8) left = 8;
-      panel.style.top  = (rect.bottom + 8) + 'px';
-      panel.style.left = left + 'px';
+      const panelW = Math.min(360, window.innerWidth - 16);
+
+      // Intentar alinear borde derecho del panel con borde derecho del botón
+      let left = rect.right - panelW;
+      // Si se sale por la izquierda, anclar al borde izquierdo del botón
+      if (left < 8) left = rect.left;
+      // Si aun así se sale por la derecha, recortar
+      if (left + panelW > window.innerWidth - 8) left = window.innerWidth - panelW - 8;
+
+      panel.style.top   = (rect.bottom + 8) + 'px';
+      panel.style.left  = left + 'px';
       panel.style.right = 'auto';
+      panel.style.width = panelW + 'px';
     }
   }
 }
