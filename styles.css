@@ -1801,8 +1801,8 @@ a {
   display: none;
   position: fixed;
   z-index: 9998;
-  top: 4rem;
-  right: auto;                          /* posición controlada por JS */
+  top: 0;
+  left: 0;
   width: min(360px, calc(100vw - 2rem));
   background: #ffffff;
   border: 1px solid rgba(99, 102, 241, 0.12);
