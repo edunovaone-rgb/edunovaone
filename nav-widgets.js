@@ -225,29 +225,31 @@ function buildNotifPanel() {
   });
 }
 
+function positionNotifPanel() {
+  const panel = document.getElementById('notifPanel');
+  const btn   = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
+  if (!panel || !btn) return;
+
+  const rect    = btn.getBoundingClientRect();
+  const panelW  = Math.min(360, window.innerWidth - 16);
+  let   left    = rect.right - panelW;
+  if (left < 8) left = rect.left;
+  if (left + panelW > window.innerWidth - 8) left = window.innerWidth - panelW - 8;
+
+  panel.style.setProperty('top',   (rect.bottom + 8) + 'px', 'important');
+  panel.style.setProperty('left',  left + 'px',              'important');
+  panel.style.setProperty('right', 'auto',                   'important');
+  panel.style.setProperty('width', panelW + 'px',            'important');
+}
+
 function toggleNotifPanel() {
   buildNotifPanel();
-  const panel = document.getElementById('notifPanel');
-  const isOpen = panel.classList.toggle('notif-open');
-
+  const panel   = document.getElementById('notifPanel');
+  const isOpen  = panel.classList.toggle('notif-open');
   if (isOpen) {
-    const btn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
-    if (btn) {
-      const rect = btn.getBoundingClientRect();
-      const panelW = Math.min(360, window.innerWidth - 16);
-
-      // Intentar alinear borde derecho del panel con borde derecho del botón
-      let left = rect.right - panelW;
-      // Si se sale por la izquierda, anclar al borde izquierdo del botón
-      if (left < 8) left = rect.left;
-      // Si aun así se sale por la derecha, recortar
-      if (left + panelW > window.innerWidth - 8) left = window.innerWidth - panelW - 8;
-
-      panel.style.top   = (rect.bottom + 8) + 'px';
-      panel.style.left  = left + 'px';
-      panel.style.right = 'auto';
-      panel.style.width = panelW + 'px';
-    }
+    positionNotifPanel();
+    // Re-calcular por si el layout cambia al mostrarse (scrollbar, etc.)
+    requestAnimationFrame(positionNotifPanel);
   }
 }
 
