@@ -814,7 +814,7 @@ a {
   display: grid;
   gap: 1.5rem;
   min-width: 0; /* evita overflow horizontal en grid */
-  overflow: hidden;
+  overflow: clip; /* clip no rompe position:sticky en elementos hermanos */
 }
 
 .library-hero-card {
