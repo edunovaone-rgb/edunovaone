@@ -1803,6 +1803,7 @@ a {
   z-index: 9998;
   top: 0;
   left: 0;
+  right: auto !important;
   width: min(360px, calc(100vw - 2rem));
   background: #ffffff;
   border: 1px solid rgba(99, 102, 241, 0.12);
