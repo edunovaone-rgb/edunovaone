@@ -227,7 +227,24 @@ function buildNotifPanel() {
 
 function toggleNotifPanel() {
   buildNotifPanel();
-  document.getElementById('notifPanel').classList.toggle('notif-open');
+  const panel = document.getElementById('notifPanel');
+  const isOpen = panel.classList.toggle('notif-open');
+
+  if (isOpen) {
+    // Posicionar el panel debajo del botón de notificaciones
+    const btn = document.querySelector('.uni-icon-btn[aria-label="Notificaciones"]');
+    if (btn) {
+      const rect = btn.getBoundingClientRect();
+      const panelWidth = Math.min(360, window.innerWidth - 16);
+      // Alinear el borde derecho del panel con el borde derecho del botón
+      let left = rect.right - panelWidth;
+      // Asegurarse de que no se salga por la izquierda
+      if (left < 8) left = 8;
+      panel.style.top  = (rect.bottom + 8) + 'px';
+      panel.style.left = left + 'px';
+      panel.style.right = 'auto';
+    }
+  }
 }
 
 function renderNotifications(notifs) {
