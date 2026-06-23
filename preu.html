@@ -625,11 +625,28 @@
 
     const overlay = document.getElementById('paywallOverlay');
 
-    // Planes que dan acceso a la Pre-u
-    const PLANES_PAGO = ['esencial', 'plus', 'elite'];
+    // Planes que dan acceso a la Pre-u (trial incluido — nivel equivalente a Plus)
+    const PLANES_PAGO = ['esencial', 'plus', 'elite', 'trial'];
+
+    // Jerarquía de planes (trial == plus)
+    const PLAN_NIVEL = { free: 0, esencial: 1, trial: 2, plus: 2, elite: 3 };
+
+    /**
+     * Resuelve el plan efectivo:
+     * - Si plan === 'trial' y trialFin venció → devuelve 'free'
+     * - En caso contrario devuelve el plan tal cual
+     */
+    function resolverPlan(rawPlan, trialFin) {
+      if (rawPlan === 'trial' && trialFin) {
+        const fin = new Date(trialFin);
+        if (Date.now() > fin.getTime()) return 'free';
+      }
+      return rawPlan;
+    }
 
     function concederAcceso(data = {}, plan = '') {
       overlay.classList.remove('show');
+      overlay.classList.remove('loading');
 
       if (data.preuStats) {
         const { mejorPuntaje, ranking } = data.preuStats;
@@ -654,19 +671,33 @@
         if (lbl) lbl.textContent = 'Progreso: ' + pct + '%';
       });
 
-      // Plan Esencial: solo 1 simulacro, bloquear el resto
+      // Plan Esencial: solo 1 simulacro disponible, bloquear el resto
+      // Trial y Plus tienen acceso ilimitado a simulacros
       if (plan === 'esencial') {
         document.querySelectorAll('.simulacro-item').forEach((item, i) => {
           if (i > 0) {
             item.style.opacity = '0.45';
             const btn = item.querySelector('.simulacro-btn');
             if (btn) {
-              btn.textContent = '� Plan Plus+';
-              btn.style.cssText = 'background:#94a3b8;cursor:default;box-shadow:none;';
+              btn.textContent = '⚡ Plan Plus+';
+              btn.style.cssText = 'background:#94a3b8;cursor:default;box-shadow:none;text-decoration:none;';
               btn.onclick = (e) => { e.preventDefault(); window.location.href = 'planes.html'; };
             }
           }
         });
+      }
+
+      // Mostrar badge de trial si aplica
+      if (plan === 'trial' && data.trialFin) {
+        const diasRestantes = Math.ceil((new Date(data.trialFin).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+        const sidebarCard = document.getElementById('sidebarPlanCard');
+        if (sidebarCard) {
+          sidebarCard.innerHTML = `
+            <strong>🎁 Free Trial activo</strong>
+            <p>Acceso Plus completo. Te quedan <strong>${diasRestantes} día${diasRestantes !== 1 ? 's' : ''}</strong> de prueba.</p>
+            <a href="planes.html">Ver planes →</a>`;
+          sidebarCard.style.background = 'linear-gradient(135deg,#059669,#047857)';
+        }
       }
     }
 
@@ -677,7 +708,7 @@
       const paywallDesc  = document.getElementById('paywallDesc');
       const paywallCta   = document.getElementById('paywallCta');
 
-      function showPaywall(sinSesion = false) {
+      function showPaywall(sinSesion = false, trialExpirado = false) {
         stateLoading.style.display = 'none';
         stateLocked.style.display  = 'flex';
         overlay.classList.remove('loading');
@@ -687,6 +718,11 @@
           paywallDesc.textContent  = 'Necesitas una cuenta con plan activo para acceder a la sección Pre-universitaria.';
           paywallCta.textContent   = '🔑 Iniciar sesión';
           paywallCta.href          = 'login.html';
+        } else if (trialExpirado) {
+          paywallTitle.textContent = 'Tu Free Trial ha vencido';
+          paywallDesc.textContent  = 'Los 7 días de prueba han terminado. Elige un plan para seguir accediendo a la Pre-u sin interrupciones.';
+          paywallCta.textContent   = '🚀 Ver planes';
+          paywallCta.href          = 'planes.html';
         } else {
           paywallTitle.textContent = 'Consigue tu plan para acceder';
           paywallDesc.textContent  = 'La Pre-u requiere un plan de pago. Todos incluyen simulacros, resúmenes y rutas de estudio personalizadas.';
@@ -703,16 +739,16 @@
       try {
         const snap = await getDoc(doc(db, 'usuarios', user.uid));
         const data = snap.exists() ? snap.data() : {};
-        const plan = (data.plan || 'free').toLowerCase().trim();
+        const rawPlan = (data.plan || 'free').toLowerCase().trim();
+        const plan = resolverPlan(rawPlan, data.trialFin);
+        const trialExpirado = rawPlan === 'trial' && plan === 'free';
 
         if (PLANES_PAGO.includes(plan)) {
-          // Acceso concedido: ocultar overlay completamente
-          overlay.classList.remove('show');
-          overlay.classList.remove('loading');
+          // Acceso concedido: ocultar overlay y mostrar contenido
           concederAcceso(data, plan);
         } else {
-          // Tiene sesión pero no tiene plan
-          showPaywall(false);
+          // Sin plan válido o trial expirado
+          showPaywall(false, trialExpirado);
         }
       } catch (err) {
         console.error('Error leyendo plan:', err);
