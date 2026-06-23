@@ -632,6 +632,112 @@
       document.getElementById('planModal').style.display = 'none';
     }
 
+    // ── Botón Free Trial ──
+    const _trialBtn = document.getElementById('trialBtn');
+    if (_trialBtn) {
+      _trialBtn.addEventListener('click', async () => {
+        if (!_currentUser) {
+          showModal(`
+            <div style="font-size:3rem;line-height:1;">🎁</div>
+            <h2 style="margin:0;font-size:1.5rem;color:#1e1b4b;font-weight:900;">Crea tu cuenta gratis</h2>
+            <p style="margin:0;color:#64748b;font-size:.92rem;line-height:1.65;">
+              Necesitas una cuenta para activar el Free Trial de 7 días. Es gratis y toma menos de 1 minuto.
+            </p>
+            <a href="register.html?redirect=planes" style="
+              display:block;width:100%;padding:1rem;border-radius:1.25rem;
+              background:linear-gradient(135deg,#059669,#047857);
+              color:#fff;font-weight:800;font-size:1rem;text-decoration:none;
+              box-shadow:0 8px 26px rgba(5,150,105,0.35);">🎁 Registrarme y activar Trial</a>
+            <a href="login.html?redirect=planes" style="font-size:.88rem;color:#7c3aed;font-weight:700;">¿Ya tienes cuenta? Inicia sesión →</a>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.85rem;">Cancelar</button>`);
+          return;
+        }
+        if (_trialUsed) {
+          showModal(`
+            <div style="font-size:3rem;">⏳</div>
+            <h2 style="margin:0;font-size:1.4rem;color:#1e1b4b;font-weight:900;">Trial ya utilizado</h2>
+            <p style="margin:0;color:#64748b;font-size:.92rem;line-height:1.65;">
+              Ya usaste tu Free Trial. Elige uno de nuestros planes para seguir disfrutando de todo el contenido.
+            </p>
+            <a href="#" onclick="document.getElementById('planModal').style.display='none';document.querySelector('.planes-grid').scrollIntoView({behavior:'smooth'});return false;" style="
+              display:block;width:100%;padding:.9rem;border-radius:1.25rem;
+              background:linear-gradient(135deg,#7c3aed,#4f46e5);
+              color:#fff;font-weight:800;font-size:.95rem;text-decoration:none;">Ver planes →</a>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.85rem;">Cerrar</button>`);
+          return;
+        }
+        if (_currentDbPlan !== 'free') {
+          showModal(`
+            <div style="font-size:3rem;">✅</div>
+            <h2 style="margin:0;font-size:1.4rem;color:#1e1b4b;font-weight:900;">Ya tienes un plan activo</h2>
+            <p style="margin:0;color:#64748b;font-size:.92rem;line-height:1.65;">
+              El Free Trial es solo para cuentas con plan gratuito. Tu plan actual ya incluye todas las funciones.
+            </p>
+            <a href="perfil.html" style="
+              display:block;width:100%;padding:.9rem;border-radius:1.25rem;
+              background:linear-gradient(135deg,#7c3aed,#4f46e5);
+              color:#fff;font-weight:800;font-size:.95rem;text-decoration:none;">Ver mi perfil →</a>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.85rem;">Cerrar</button>`);
+          return;
+        }
+
+        // Activar trial
+        _trialBtn.textContent = 'Activando...';
+        _trialBtn.style.opacity = '0.7';
+        _trialBtn.style.pointerEvents = 'none';
+
+        try {
+          const trialEnd = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+          await setDoc(doc(_db, 'usuarios', _currentUser.uid), {
+            plan: 'trial',
+            trialUsado: true,
+            trialInicio: new Date().toISOString(),
+            trialFin: trialEnd,
+          }, { merge: true });
+
+          _currentDbPlan = 'trial';
+          _trialUsed = true;
+          updateTrialBtn('trial', true);
+
+          showModal(`
+            <div style="font-size:3rem;">🎉</div>
+            <div style="display:inline-flex;align-items:center;gap:.4rem;
+              background:linear-gradient(135deg,#059669,#047857);color:#fff;
+              font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+              padding:.3rem .9rem;border-radius:999px;">🎁 Free Trial Activado</div>
+            <h2 style="margin:0;font-size:1.45rem;color:#1e1b4b;font-weight:900;">¡Tu trial está activo!</h2>
+            <p style="margin:0;color:#475569;font-size:.92rem;line-height:1.75;">
+              Tienes <strong>7 días gratis</strong> con acceso completo al plan Plus.<br><br>
+              Explora simulacros ilimitados, rutas personalizadas y material descargable sin restricciones.
+            </p>
+            <div style="width:100%;background:#f0fdf4;border:1px solid rgba(5,150,105,0.2);
+              border-radius:1.25rem;padding:1rem 1.25rem;text-align:left;font-size:.9rem;color:#065f46;">
+              ⏰ <strong>Vence el:</strong> ${new Date(trialEnd).toLocaleDateString('es-PE', { day:'numeric', month:'long', year:'numeric' })}
+            </div>
+            <a href="preu.html" style="
+              display:block;width:100%;padding:.9rem;border-radius:1.25rem;
+              background:linear-gradient(135deg,#059669,#047857);
+              color:#fff;font-weight:800;font-size:.95rem;text-decoration:none;
+              box-shadow:0 6px 20px rgba(5,150,105,0.3);">🚀 Empezar a estudiar →</a>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.85rem;">Cerrar</button>`);
+        } catch (err) {
+          _trialBtn.textContent = '✨ Activar Free Trial';
+          _trialBtn.style.opacity = '';
+          _trialBtn.style.pointerEvents = '';
+          showModal(`
+            <div style="font-size:3rem;">⚠️</div>
+            <h2 style="margin:0;font-size:1.3rem;color:#dc2626;">Error al activar</h2>
+            <p style="margin:0;color:#64748b;font-size:.92rem;">${err.message}</p>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              class="button button-secondary">Cerrar</button>`);
+        }
+      });
+    }
+
     // Botones de planes
     document.querySelectorAll('.plan-cta[data-plan]').forEach(btn => {
       btn.addEventListener('click', async (e) => {
