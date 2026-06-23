@@ -1246,15 +1246,25 @@
       if (user) {
         try {
           const snap = await getDoc(doc(_db, 'usuarios', user.uid));
-          if (snap.exists()) plan = (snap.data().plan || 'free').toLowerCase().trim();
+          if (snap.exists()) {
+            const data = snap.data();
+            const rawPlan = (data.plan || 'free').toLowerCase().trim();
+            // Verificar si el trial venció
+            if (rawPlan === 'trial' && data.trialFin) {
+              const fin = new Date(data.trialFin);
+              plan = Date.now() > fin.getTime() ? 'free' : 'trial';
+            } else {
+              plan = rawPlan;
+            }
+          }
         } catch (_) {}
       }
       window._userPlan = plan;
       if (typeof updateSidebarPremiumLocks === 'function') updateSidebarPremiumLocks(plan);
 
       // Mostrar badge de plan en sidebar-promo si tiene plan de pago
-      const planLabels = { esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
-      const planColors = { esencial:'#0d9488', plus:'#7c3aed', elite:'#d97706' };
+      const planLabels = { esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite', trial:'🎁 Free Trial' };
+      const planColors = { esencial:'#0d9488', plus:'#7c3aed', elite:'#d97706', trial:'#059669' };
       if (planLabels[plan]) {
         const promo = document.querySelector('.sidebar-promo');
         if (promo) {
