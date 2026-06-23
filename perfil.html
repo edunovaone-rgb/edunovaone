@@ -1290,7 +1290,16 @@
       if (cfg) {
         planTag.textContent = cfg.label;
         planTag.classList.add('show', cfg.variant);
-        planTag.title = cfg.title;
+        // Para trial: mostrar días restantes en el título
+        if (planStr === 'trial' && data.trialFin) {
+          const diasRestantes = Math.max(0, Math.ceil((new Date(data.trialFin).getTime() - Date.now()) / 86400000));
+          planTag.title = diasRestantes > 0
+            ? `Free Trial — ${diasRestantes} día${diasRestantes !== 1 ? 's' : ''} restante${diasRestantes !== 1 ? 's' : ''}`
+            : 'Free Trial vencido';
+          if (diasRestantes <= 2) planTag.title += ' — ¡Renueva pronto!';
+        } else {
+          planTag.title = cfg.title;
+        }
       }
 
       // ── Banner de solicitud pendiente ──
