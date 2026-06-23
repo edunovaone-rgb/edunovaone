@@ -1076,7 +1076,8 @@
       rapido:     'plus',      // Plus o Élite
     };
 
-    const PLAN_NIVEL = { free: 0, esencial: 1, plus: 2, elite: 3 };
+    // trial tiene nivel equivalente a plus (acceso completo durante el periodo de prueba)
+    const PLAN_NIVEL = { free: 0, esencial: 1, trial: 2, plus: 2, elite: 3 };
 
     function switchTab(target) {
       sidebarLinks.forEach(l => l.classList.remove('active'));
