@@ -600,7 +600,7 @@
 
         list.innerHTML = users.map(u => {
           const plan = (u.plan || 'free').toLowerCase();
-          const planLabel = { free:'🔓 Free', esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
+          const planLabel = { free:'🔓 Free', trial:'🎁 Free Trial', esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
           return `
             <div class="user-row" data-uid="${u.uid}">
               <div class="user-row-info">
