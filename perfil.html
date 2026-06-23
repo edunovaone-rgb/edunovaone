@@ -1286,6 +1286,28 @@
         planTag.title = cfg.title;
       }
 
+      // ── Banner de solicitud pendiente ──
+      if (!planStr && data.planSolicitado && data.planSolicitadoEstado === 'pendiente') {
+        const planLabels = { esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
+        const planSolLabel = planLabels[data.planSolicitado] || data.planSolicitado;
+        // Insertar banner debajo del nombre
+        const identityEl = document.querySelector('.profile-identity');
+        if (identityEl) {
+          const banner = document.createElement('div');
+          banner.style.cssText = `
+            background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(37,99,235,0.05));
+            border:1px solid rgba(99,102,241,0.2);border-radius:1rem;
+            padding:.75rem 1rem;font-size:.88rem;color:#4f46e5;
+            display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-top:.75rem;`;
+          banner.innerHTML = `
+            <span style="font-size:1rem;">⏳</span>
+            <span>Tu solicitud de <strong>${planSolLabel}</strong> está pendiente de activación.
+            Contáctanos por WhatsApp para completar el pago.</span>
+            <a href="planes.html" style="color:#7c3aed;font-weight:700;white-space:nowrap;">Ver planes →</a>`;
+          identityEl.after(banner);
+        }
+      }
+
       // ── Indicador de actividad (lastSeen) ──
       const statusDot   = document.getElementById('statusDot');
       const statusLabel = document.getElementById('statusLabel');

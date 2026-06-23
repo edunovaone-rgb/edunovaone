@@ -466,32 +466,193 @@
     </div>
   </section>
 
-  <!-- MODAL / TOAST de activación (por ahora solo info) -->
-  <div id="activarToast" style="
-    display:none; position:fixed; bottom:2rem; left:50%; transform:translateX(-50%);
-    background:#1e1b4b; color:#fff; padding:1rem 1.75rem; border-radius:1.25rem;
-    font-size:.92rem; font-weight:700; box-shadow:0 16px 40px rgba(15,23,42,0.25);
-    z-index:9999; text-align:center; max-width:90vw;
-    animation: slide-up .3s ease both;">
-    🎓 Para activar tu plan, contáctanos por WhatsApp o escríbenos a <strong>contacto@edunovaone.com</strong>
+  <!-- ── Modal de confirmación de plan ── -->
+  <div id="planModal" style="
+    display:none; position:fixed; inset:0; z-index:9999;
+    background:rgba(15,10,35,0.7); backdrop-filter:blur(8px);
+    align-items:center; justify-content:center; padding:1.5rem;">
+    <div id="planModalCard" style="
+      background:#fff; border-radius:2.5rem; padding:2.5rem 2rem;
+      max-width:480px; width:100%; box-shadow:0 32px 80px rgba(99,102,241,0.22);
+      display:flex; flex-direction:column; align-items:center; gap:1.25rem;
+      text-align:center; animation: modal-pop .35s cubic-bezier(.34,1.56,.64,1) both;">
+    </div>
   </div>
+
   <style>
-    @keyframes slide-up {
-      from { opacity:0; transform:translateX(-50%) translateY(16px); }
-      to   { opacity:1; transform:translateX(-50%) translateY(0); }
+    @keyframes modal-pop {
+      from { opacity:0; transform:scale(0.88) translateY(20px); }
+      to   { opacity:1; transform:scale(1) translateY(0); }
     }
   </style>
 
   <script type="module" src="auth-nav.js"></script>
-  <script>
-    // Botones de planes — mostrar toast de activación
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const _app = getApps().length ? getApps()[0] : initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+    const _auth = getAuth(_app);
+    const _db   = getFirestore(_app);
+
+    const PLAN_META = {
+      esencial: { label: '🌱 Plan Esencial', precio: 'S/ 14.99/mes', color: '#0d9488', icon: '🌱' },
+      plus:     { label: '⚡ Plan Plus',     precio: 'S/ 29.99/mes', color: '#7c3aed', icon: '⚡' },
+      elite:    { label: '👑 Plan Élite',    precio: 'S/ 49.99/mes', color: '#d97706', icon: '👑' },
+    };
+
+    let _currentUser = null;
+    let _currentDbPlan = 'free';
+
+    onAuthStateChanged(_auth, async (user) => {
+      _currentUser = user;
+      if (user) {
+        try {
+          const snap = await getDoc(doc(_db, 'usuarios', user.uid));
+          if (snap.exists()) _currentDbPlan = (snap.data().plan || 'free').toLowerCase();
+        } catch (_) {}
+        // Mostrar badge de plan activo en los botones si ya tiene uno
+        updateActivePlanUI(_currentDbPlan);
+      }
+    });
+
+    function updateActivePlanUI(plan) {
+      document.querySelectorAll('.plan-cta[data-plan]').forEach(btn => {
+        const btnPlan = btn.dataset.plan;
+        if (btnPlan === plan) {
+          btn.textContent = '✅ Tu plan actual';
+          btn.style.opacity = '0.7';
+          btn.style.cursor = 'default';
+          btn.style.pointerEvents = 'none';
+        }
+      });
+    }
+
+    function showModal(html) {
+      const modal = document.getElementById('planModal');
+      document.getElementById('planModalCard').innerHTML = html;
+      modal.style.display = 'flex';
+      modal.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+    }
+
+    function closeModal() {
+      document.getElementById('planModal').style.display = 'none';
+    }
+
+    // Botones de planes
     document.querySelectorAll('.plan-cta[data-plan]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', async (e) => {
         e.preventDefault();
-        const toast = document.getElementById('activarToast');
-        toast.style.display = 'block';
-        clearTimeout(window._toastTimer);
-        window._toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 6000);
+        const planKey = btn.dataset.plan;
+        const meta    = PLAN_META[planKey];
+        if (!meta) return;
+
+        // Si no está logueado — pedir iniciar sesión
+        if (!_currentUser) {
+          showModal(`
+            <div style="font-size:3rem;line-height:1;">🔑</div>
+            <h2 style="margin:0;font-size:1.5rem;color:#1e1b4b;font-weight:900;">Inicia sesión primero</h2>
+            <p style="margin:0;color:#64748b;font-size:.92rem;line-height:1.65;">
+              Necesitas una cuenta en EduNovaOne para activar un plan. Es gratis y toma menos de 1 minuto.
+            </p>
+            <a href="login.html?redirect=planes" style="
+              display:block;width:100%;padding:1rem;border-radius:1.25rem;
+              background:linear-gradient(135deg,#7c3aed,#4f46e5);
+              color:#fff;font-weight:800;font-size:1rem;text-decoration:none;
+              box-shadow:0 8px 26px rgba(99,102,241,0.35);">🔑 Iniciar sesión</a>
+            <a href="register.html" style="font-size:.88rem;color:#7c3aed;font-weight:700;">¿No tienes cuenta? Regístrate gratis →</a>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.85rem;">Cancelar</button>`);
+          return;
+        }
+
+        // Si ya tiene ese plan
+        if (_currentDbPlan === planKey) {
+          showModal(`
+            <div style="font-size:3rem;">${meta.icon}</div>
+            <h2 style="margin:0;font-size:1.4rem;color:#1e1b4b;font-weight:900;">Ya tienes el ${meta.label}</h2>
+            <p style="margin:0;color:#64748b;font-size:.92rem;line-height:1.65;">
+              Tu plan <strong>${meta.label}</strong> está activo. Puedes seguir usando todos sus beneficios.
+            </p>
+            <a href="perfil.html" style="
+              display:block;width:100%;padding:1rem;border-radius:1.25rem;
+              background:linear-gradient(135deg,${meta.color},${meta.color}dd);
+              color:#fff;font-weight:800;font-size:1rem;text-decoration:none;">Ver mi perfil →</a>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.85rem;">Cerrar</button>`);
+          return;
+        }
+
+        // Registrar solicitud de plan en Firestore
+        btn.textContent = 'Procesando...';
+        btn.style.opacity = '0.7';
+        btn.style.pointerEvents = 'none';
+
+        try {
+          const ref = doc(_db, 'usuarios', _currentUser.uid);
+          await setDoc(ref, {
+            planSolicitado: planKey,
+            planSolicitadoFecha: new Date().toISOString(),
+            planSolicitadoEstado: 'pendiente',
+          }, { merge: true });
+
+          showModal(`
+            <div style="font-size:3rem;">${meta.icon}</div>
+            <div style="display:inline-flex;align-items:center;gap:.4rem;
+              background:linear-gradient(135deg,${meta.color},${meta.color}dd);color:#fff;
+              font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+              padding:.3rem .9rem;border-radius:999px;">${meta.label}</div>
+            <h2 style="margin:0;font-size:1.45rem;color:#1e1b4b;font-weight:900;">¡Solicitud enviada!</h2>
+            <p style="margin:0;color:#475569;font-size:.92rem;line-height:1.75;">
+              Tu solicitud para el <strong>${meta.label}</strong> (${meta.precio}) fue registrada correctamente.<br><br>
+              Para <strong>activar tu plan</strong>, completa el pago por uno de estos medios y envíanos tu 
+              <strong>usuario o email</strong>:
+            </p>
+            <div style="width:100%;background:#f8fafc;border:1px solid rgba(99,102,241,0.12);
+              border-radius:1.25rem;padding:1.1rem 1.25rem;text-align:left;display:grid;gap:.65rem;">
+              <div style="display:flex;align-items:center;gap:.75rem;font-size:.92rem;color:#334155;">
+                <span style="font-size:1.2rem;">📱</span>
+                <span><strong>WhatsApp:</strong> <a href="https://wa.me/51999999999" target="_blank" style="color:#7c3aed;font-weight:700;">+51 999 999 999</a></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:.75rem;font-size:.92rem;color:#334155;">
+                <span style="font-size:1.2rem;">📧</span>
+                <span><strong>Email:</strong> <a href="mailto:contacto@edunovaone.com" style="color:#7c3aed;font-weight:700;">contacto@edunovaone.com</a></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:.75rem;font-size:.92rem;color:#334155;">
+                <span style="font-size:1.2rem;">🏦</span>
+                <span><strong>Yape / Plin:</strong> 999 999 999</span>
+              </div>
+            </div>
+            <p style="margin:0;font-size:.82rem;color:#94a3b8;line-height:1.5;">
+              Activamos tu plan en menos de <strong>24 horas</strong> hábiles.
+            </p>
+            <a href="perfil.html" style="
+              display:block;width:100%;padding:.9rem;border-radius:1.25rem;
+              background:linear-gradient(135deg,#7c3aed,#4f46e5);
+              color:#fff;font-weight:800;font-size:.95rem;text-decoration:none;
+              box-shadow:0 6px 20px rgba(99,102,241,0.3);">Ver mi perfil →</a>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:.85rem;">Cerrar</button>`);
+        } catch (err) {
+          showModal(`
+            <div style="font-size:3rem;">⚠️</div>
+            <h2 style="margin:0;font-size:1.3rem;color:#dc2626;">Error al registrar</h2>
+            <p style="margin:0;color:#64748b;font-size:.92rem;">${err.message}</p>
+            <button onclick="document.getElementById('planModal').style.display='none'"
+              class="button button-secondary">Cerrar</button>`);
+        } finally {
+          btn.textContent = PLAN_META[planKey].label.split(' ').slice(1).join(' ') + ' →';
+          btn.style.opacity = '';
+          btn.style.pointerEvents = '';
+        }
       });
     });
   </script>

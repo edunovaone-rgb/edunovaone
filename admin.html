@@ -317,6 +317,7 @@
               <span class="plan-tag free" id="resPlanTag">free</span>
             </div>
             <div class="user-uid">UID: <span id="resUid">—</span></div>
+            <div id="resSolicitud" style="display:none;padding:.6rem 1rem;background:rgba(99,102,241,0.07);border:1px solid rgba(99,102,241,0.18);border-radius:.85rem;font-size:.85rem;color:#4f46e5;font-weight:700;"></div>
           </div>
 
           <div class="plan-selector">
@@ -493,6 +494,19 @@
       document.getElementById('resGrado').textContent    = d.grado  || '';
       document.getElementById('resUid').textContent      = uid;
 
+      // Mostrar solicitud pendiente si la hay
+      const solicitudEl = document.getElementById('resSolicitud');
+      if (d.planSolicitado && d.planSolicitadoEstado === 'pendiente') {
+        const planLabels = { esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
+        const fecha = d.planSolicitadoFecha
+          ? new Date(d.planSolicitadoFecha).toLocaleDateString('es-PE', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' })
+          : '';
+        solicitudEl.style.display = 'block';
+        solicitudEl.innerHTML = `⏳ Solicitó: <strong>${planLabels[d.planSolicitado] || d.planSolicitado}</strong> · ${fecha} — asígnale el plan y quedará activo.`;
+      } else {
+        solicitudEl.style.display = 'none';
+      }
+
       if (d.photoURL) {
         document.getElementById('resAvatar').innerHTML = `<img src="${d.photoURL}" alt="avatar">`;
       } else {
@@ -542,7 +556,10 @@
       feedback.style.display = 'none';
 
       try {
-        await updateDoc(doc(db, 'usuarios', foundUid), { plan: selectedPlan });
+        await updateDoc(doc(db, 'usuarios', foundUid), {
+          plan: selectedPlan,
+          planSolicitadoEstado: 'activado',
+        });
         updatePlanTag(selectedPlan);
         feedback.textContent = '✅ Plan actualizado correctamente';
         feedback.className   = 'save-feedback success';

@@ -1064,18 +1064,93 @@
       document.getElementById('areaSelector').style.display = 'grid';
     });
 
-    // ── Sidebar tabs ──
+    // ── Sidebar tabs (con protección premium) ──
     const sidebarLinks = document.querySelectorAll('.resumenes-sidebar nav a[data-tab]');
+
+    // Qué plan mínimo requiere cada tab
+    const TAB_PLAN = {
+      resumen:    'free',      // libre para todos
+      formulas:   'esencial',  // cualquier plan de pago
+      flashcards: 'plus',      // Plus o Élite
+      mapa:       'plus',      // Plus o Élite
+      rapido:     'plus',      // Plus o Élite
+    };
+
+    const PLAN_NIVEL = { free: 0, esencial: 1, plus: 2, elite: 3 };
+
+    function switchTab(target) {
+      sidebarLinks.forEach(l => l.classList.remove('active'));
+      const activeLink = document.querySelector(`.resumenes-sidebar nav a[data-tab="${target}"]`);
+      if (activeLink) activeLink.classList.add('active');
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + target).classList.add('active');
+    }
+
+    function renderPremiumBlock(container, requiredPlan, loggedIn) {
+      const planLabels = { esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
+      const label = planLabels[requiredPlan] || requiredPlan;
+      const href = loggedIn ? 'planes.html' : 'login.html';
+      const ctaText = loggedIn ? '🚀 Ver planes' : '🔑 Iniciar sesión';
+      const msg = loggedIn
+        ? `Esta función requiere el plan <strong>${label}</strong> o superior.`
+        : 'Inicia sesión y activa un plan para acceder a esta función.';
+      container.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;gap:1.1rem;padding:2.5rem 1.5rem;text-align:center;
+          background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(37,99,235,0.04));
+          border:1.5px dashed rgba(99,102,241,0.25);border-radius:1.5rem;">
+          <div style="width:60px;height:60px;border-radius:50%;
+            background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(37,99,235,0.1));
+            border:2px solid rgba(99,102,241,0.2);
+            display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🔒</div>
+          <div style="display:inline-flex;align-items:center;gap:.4rem;
+            background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;
+            font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+            padding:.3rem .9rem;border-radius:999px;">${label}</div>
+          <p style="margin:0;color:#334155;font-size:.95rem;line-height:1.65;max-width:380px;">${msg}</p>
+          <a href="${href}" style="display:inline-block;padding:.85rem 2rem;
+            background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-weight:800;
+            font-size:.95rem;border-radius:1.25rem;text-decoration:none;
+            box-shadow:0 8px 24px rgba(99,102,241,0.32);">${ctaText}</a>
+        </div>`;
+    }
+
     sidebarLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = link.dataset.tab;
-        sidebarLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        document.getElementById('tab-' + target).classList.add('active');
+        const required = TAB_PLAN[target] || 'free';
+        const userPlanNivel = PLAN_NIVEL[window._userPlan] ?? 0;
+        const requiredNivel = PLAN_NIVEL[required] ?? 0;
+
+        switchTab(target);
+
+        // Si requiere plan superior al actual, mostrar bloqueo
+        if (requiredNivel > userPlanNivel) {
+          const panel = document.getElementById('tab-' + target);
+          renderPremiumBlock(panel, required, !!window._userLoggedIn);
+        }
       });
     });
+
+    // Marcar con lock los tabs premium en el sidebar
+    function updateSidebarPremiumLocks(plan) {
+      sidebarLinks.forEach(link => {
+        const target = link.dataset.tab;
+        const required = TAB_PLAN[target] || 'free';
+        const userNivel = PLAN_NIVEL[plan] ?? 0;
+        const reqNivel  = PLAN_NIVEL[required] ?? 0;
+        // Eliminar lock previo si existe
+        const old = link.querySelector('.tab-lock');
+        if (old) old.remove();
+        if (reqNivel > userNivel) {
+          const lock = document.createElement('span');
+          lock.className = 'tab-lock';
+          lock.style.cssText = 'margin-left:auto;font-size:.7rem;opacity:.55;';
+          lock.textContent = '🔒';
+          link.appendChild(lock);
+        }
+      });
+    }
 
     // ── Sidebar toggle (móvil) ──
     const sidebarToggle = document.getElementById('sidebarToggle');
@@ -1147,5 +1222,52 @@
     })();
   </script>
   <script type="module" src="auth-nav.js"></script>
+  <script type="module">
+    // ── Verificar plan del usuario y actualizar locks ──
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const _app = getApps().length ? getApps()[0] : initializeApp({
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    });
+    const _auth = getAuth(_app);
+    const _db   = getFirestore(_app);
+
+    onAuthStateChanged(_auth, async (user) => {
+      window._userLoggedIn = !!user;
+      let plan = 'free';
+      if (user) {
+        try {
+          const snap = await getDoc(doc(_db, 'usuarios', user.uid));
+          if (snap.exists()) plan = (snap.data().plan || 'free').toLowerCase().trim();
+        } catch (_) {}
+      }
+      window._userPlan = plan;
+      if (typeof updateSidebarPremiumLocks === 'function') updateSidebarPremiumLocks(plan);
+
+      // Mostrar badge de plan en sidebar-promo si tiene plan de pago
+      const planLabels = { esencial:'🌱 Esencial', plus:'⚡ Plus', elite:'👑 Élite' };
+      const planColors = { esencial:'#0d9488', plus:'#7c3aed', elite:'#d97706' };
+      if (planLabels[plan]) {
+        const promo = document.querySelector('.sidebar-promo');
+        if (promo) {
+          promo.innerHTML = `
+            <div style="display:inline-flex;align-items:center;gap:.4rem;
+              background:${planColors[plan]};color:#fff;
+              font-size:.78rem;font-weight:800;padding:.3rem .85rem;border-radius:999px;">
+              ${planLabels[plan]} activo
+            </div>
+            <strong style="font-size:.9rem;">Tienes acceso a contenido premium ✨</strong>
+            <a href="perfil.html" style="font-size:.82rem;color:var(--accent-strong);font-weight:700;text-decoration:none;">Ver mi perfil →</a>`;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
