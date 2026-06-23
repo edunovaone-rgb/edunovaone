@@ -55,6 +55,41 @@
     }
     .billing-toggle .active-billing { color: #7c3aed; font-weight: 800; }
 
+    /* ── Free Trial Banner ── */
+    .trial-banner {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      padding: 0 1.5rem;
+    }
+    .trial-banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 2px solid rgba(16,185,129,0.3);
+      border-radius: 1.75rem;
+      padding: 1.25rem 1.75rem;
+      box-shadow: 0 8px 28px rgba(16,185,129,0.1);
+    }
+    .trial-banner-text { display: flex; flex-direction: column; gap: .3rem; }
+    .trial-banner-text strong {
+      font-size: 1.1rem; font-weight: 900; color: #065f46;
+      display: flex; align-items: center; gap: .45rem;
+    }
+    .trial-banner-text p { margin: 0; font-size: .88rem; color: #047857; line-height: 1.5; }
+    .trial-cta-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #fff; font-size: .92rem; font-weight: 800;
+      padding: .75rem 1.5rem; border-radius: 1.25rem; border: none;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      box-shadow: 0 6px 18px rgba(5,150,105,0.35);
+      transition: transform .2s, filter .2s;
+    }
+    .trial-cta-btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+
     /* ── Grid de planes ── */
     .planes-grid {
       display: grid;
@@ -281,6 +316,19 @@
     </div>
   </section>
 
+  <!-- FREE TRIAL BANNER -->
+  <div class="trial-banner">
+    <div class="trial-banner-inner">
+      <div class="trial-banner-text">
+        <strong>🎁 7 días gratis — sin tarjeta requerida</strong>
+        <p>Prueba todas las funciones del plan Plus durante 7 días. Sin compromisos, cancela cuando quieras.</p>
+      </div>
+      <button class="trial-cta-btn" id="trialBtn" data-plan="trial">
+        ✨ Activar Free Trial
+      </button>
+    </div>
+  </div>
+
   <!-- PLANES -->
   <div class="planes-grid">
 
@@ -441,6 +489,12 @@
           <td style="font-weight:800;color:#7c3aed;">S/ 29.99</td>
           <td style="font-weight:800;color:#d97706;">S/ 49.99</td>
         </tr>
+        <tr>
+          <td style="font-weight:800;color:#1e1b4b;">Free Trial (7 días)</td>
+          <td>—</td>
+          <td style="font-weight:800;color:#059669;">✓ Incluido</td>
+          <td>—</td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -448,6 +502,18 @@
   <!-- FAQ -->
   <section class="faq-section">
     <h2>Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <strong>¿Qué incluye el Free Trial?</strong>
+      <p>El Free Trial de 7 días te da acceso completo a todas las funciones del plan Plus: simulacros sin límite, rutas de estudio personalizadas, material descargable y estadísticas de rendimiento. Solo necesitas tener una cuenta. Sin tarjeta de crédito.</p>
+    </div>
+    <div class="faq-item">
+      <strong>¿Puedo activar el Free Trial si ya usé uno antes?</strong>
+      <p>El Free Trial es único por cuenta. Si ya lo usaste anteriormente, podrás elegir directamente uno de los planes de pago.</p>
+    </div>
+    <div class="faq-item">
+      <strong>¿Qué pasa al terminar el Free Trial?</strong>
+      <p>Al finalizar los 7 días vuelves automáticamente al plan gratuito. Tu historial y progreso se conservan intactos. Puedes activar un plan de pago cuando quieras.</p>
+    </div>
     <div class="faq-item">
       <strong>¿Puedo cambiar de plan después?</strong>
       <p>Sí. Puedes subir o bajar de plan en cualquier momento. El cambio se aplica desde el siguiente ciclo de facturación.</p>
@@ -507,22 +573,41 @@
       esencial: { label: '🌱 Plan Esencial', precio: 'S/ 14.99/mes', color: '#0d9488', icon: '🌱' },
       plus:     { label: '⚡ Plan Plus',     precio: 'S/ 29.99/mes', color: '#7c3aed', icon: '⚡' },
       elite:    { label: '👑 Plan Élite',    precio: 'S/ 49.99/mes', color: '#d97706', icon: '👑' },
+      trial:    { label: '🎁 Free Trial',    precio: 'Gratis 7 días', color: '#059669', icon: '🎁' },
     };
 
     let _currentUser = null;
     let _currentDbPlan = 'free';
+    let _trialUsed = false;
 
     onAuthStateChanged(_auth, async (user) => {
       _currentUser = user;
       if (user) {
         try {
           const snap = await getDoc(doc(_db, 'usuarios', user.uid));
-          if (snap.exists()) _currentDbPlan = (snap.data().plan || 'free').toLowerCase();
+          if (snap.exists()) {
+            const data = snap.data();
+            _currentDbPlan = (data.plan || 'free').toLowerCase();
+            _trialUsed = !!data.trialUsado;
+          }
         } catch (_) {}
-        // Mostrar badge de plan activo en los botones si ya tiene uno
         updateActivePlanUI(_currentDbPlan);
+        updateTrialBtn(_currentDbPlan, _trialUsed);
       }
     });
+
+    function updateTrialBtn(plan, trialUsado) {
+      const btn = document.getElementById('trialBtn');
+      if (!btn) return;
+      if (trialUsado || plan !== 'free') {
+        btn.textContent = trialUsado ? '✅ Trial ya utilizado' : '✅ Plan activo';
+        btn.style.opacity = '0.6';
+        btn.style.cursor = 'default';
+        btn.style.pointerEvents = 'none';
+        btn.style.background = 'linear-gradient(135deg,#94a3b8,#64748b)';
+        btn.style.boxShadow = 'none';
+      }
+    }
 
     function updateActivePlanUI(plan) {
       document.querySelectorAll('.plan-cta[data-plan]').forEach(btn => {
