@@ -587,8 +587,16 @@
           const snap = await getDoc(doc(_db, 'usuarios', user.uid));
           if (snap.exists()) {
             const data = snap.data();
-            _currentDbPlan = (data.plan || 'free').toLowerCase();
+            const rawPlan = (data.plan || 'free').toLowerCase();
             _trialUsed = !!data.trialUsado;
+
+            // Si tiene trial, verificar si ya venció → tratarlo como free para la UI
+            if (rawPlan === 'trial' && data.trialFin) {
+              const fin = new Date(data.trialFin);
+              _currentDbPlan = Date.now() > fin.getTime() ? 'free' : 'trial';
+            } else {
+              _currentDbPlan = rawPlan;
+            }
           }
         } catch (_) {}
         updateActivePlanUI(_currentDbPlan);
