@@ -1206,6 +1206,7 @@ function iniciarVF(titleEl, body) {
   if (!pool.length) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin contenido para este grado.</p>'; return; }
   const preguntas = pool.sort(() => Math.random() - .5);
   let idx = 0, score = 0;
+  const vfAnswers = new Array(preguntas.length).fill(null);
 
   function render() {
     if (idx >= preguntas.length) { finVF(); return; }
