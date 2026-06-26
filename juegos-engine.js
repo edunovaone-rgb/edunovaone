@@ -1100,7 +1100,7 @@ function iniciarQuiz(titleEl, body, qCount, timerSecs) {
     const ptsMax = preguntas.length * (timerSecs === 8 ? 15 : 10);
     const pct = Math.round(score / ptsMax * 100);
     // ── Registrar resultado para diagnóstico ──
-    const correctasTotal = preguntas.filter((q, i) => window._lastQuizAnswers && window._lastQuizAnswers[i] === q.r).length;
+    const correctasTotal = preguntas.filter((q, i) => quizAnswers[i] === q.r).length;
     if (typeof window._enuEvalRegistrar === 'function') {
       window._enuEvalRegistrar({
         area:      AREA,
@@ -1108,7 +1108,7 @@ function iniciarQuiz(titleEl, body, qCount, timerSecs) {
         tipo:      timerSecs === 8 ? 'quiz2' : 'quiz',
         score,
         scoreMax:  ptsMax,
-        correctas: Math.round(pct * preguntas.length / 100),
+        correctas: correctasTotal,
         total:     preguntas.length,
       });
     }
