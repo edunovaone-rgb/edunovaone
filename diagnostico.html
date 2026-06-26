@@ -163,3 +163,42 @@
       <button class="diag-tab"        role="tab" onclick="showTab('radar')">🕸️ Radar</button>
       <button class="diag-tab"        role="tab" onclick="showTab('historial')">📋 Historial</button>
     </nav>
+
+    <!-- Panel: Resumen por área -->
+    <div class="diag-panel active" id="panel-resumen">
+      <p class="sec-title">Progreso por materia</p>
+      <div class="area-grid" id="areaGrid">
+        <!-- Se renderiza con JS -->
+      </div>
+    </div>
+
+    <!-- Panel: Radar -->
+    <div class="diag-panel" id="panel-radar">
+      <p class="sec-title">Mapa de fortalezas y debilidades</p>
+      <div class="radar-wrap">
+        <svg id="radarSvg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" aria-label="Gráfico de radar de materias">
+          <!-- Se dibuja con JS -->
+        </svg>
+      </div>
+      <div id="radarLeyenda" style="display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center;margin-bottom:1.5rem;"></div>
+    </div>
+
+    <!-- Panel: Historial -->
+    <div class="diag-panel" id="panel-historial">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <p class="sec-title" style="margin:0">Últimas evaluaciones</p>
+        <button id="btnLimpiar" class="button button-secondary" style="font-size:.8rem;padding:.45rem .9rem;">🗑️ Borrar historial</button>
+      </div>
+      <div class="hist-list" id="histList"></div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-actions">
+      <a href="juegos.html" class="button button-secondary">🎮 Ir a Juegos</a>
+      <a href="grado-5.html" class="button button-primary">5° Secundaria →</a>
+    </div>
+  </footer>
+
+  <script type="module" src="auth-nav.js"></script>
