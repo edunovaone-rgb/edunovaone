@@ -1090,6 +1090,26 @@
                   <div><strong>${a.texto}</strong><time>${a.fecha}</time></div>
                 </div>`).join('');
             }
+          } else {
+            // Sin doc en Firestore — leer progreso solo de localStorage
+            (function fallbackLocalProgress() {
+              try {
+                const rs = JSON.parse(localStorage.getItem('enu_eval_resultados') || '[]');
+                if (!rs.length) return;
+                const mapa = {};
+                rs.forEach(r => {
+                  if (!mapa[r.area]) { mapa[r.area] = { suma: 0, n: 0 }; }
+                  mapa[r.area].suma += r.pct;
+                  mapa[r.area].n++;
+                });
+                const avg = k => mapa[k] ? Math.round(mapa[k].suma / mapa[k].n) : 0;
+                setBar('dpb-math', 'dp-math', avg('matematica'));
+                setBar('dpb-sci',  'dp-sci',  avg('ciencia'));
+                setBar('dpb-his',  'dp-his',  avg('historia'));
+                setBar('dpb-com',  'dp-com',  avg('comunicacion'));
+                setBar('dpb-eng',  'dp-eng',  avg('ingles'));
+              } catch(_) {}
+            })();
           }
         } catch(e) {}
 
