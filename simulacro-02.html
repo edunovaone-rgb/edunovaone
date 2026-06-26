@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Simulacro 02 — Matemática Intensiva | EduNovaOne Pre-u</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="simulacro-shared.css"/>
+</head>
+<body>
+<nav class="uni-nav">
+  <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.webp" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+  <ul class="uni-nav-links"><li><a href="preu.html" class="active">Pre-u</a></li></ul>
+  <div class="uni-nav-actions">
+    <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+  </div>
+</nav>
+
+<div id="simApp" data-total="45" data-titulo="Simulacro Matemática Intensiva" data-num="02" data-color="#7c3aed"></div>
+
+<script src="simulacro-engine.js"></script>
+<script type="module" src="auth-nav.js"></script>
+<script>
+const PREGUNTAS = [
+  // ── ÁLGEBRA (15) ──
+  {area:"Álgebra",q:"Resuelve: 2^(x+1) = 32",op:["x = 3","x = 4","x = 5","x = 6"],r:1},
+  {area:"Álgebra",q:"¿Cuál es el discriminante de x² − 6x + 9?",op:["0","−9","9","36"],r:0},
+  {area:"Álgebra",q:"Si P(x) = x³ − 3x² + 4, calcula P(2):",op:["0","−4","4","8"],r:0},
+  {area:"Álgebra",q:"Las raíces de 2x² − 8x + 6 = 0 son:",op:["x = 1 y x = 3","x = 2 y x = 3","x = 1 y x = 2","x = −1 y x = −3"],r:0},
+  {area:"Álgebra",q:"Simplifica: (a²b³)² / (a³b²)",op:["a b⁴","ab⁴","a²b⁴","a³b⁴"],r:1},
+  {area:"Álgebra",q:"¿Para qué valor de k el sistema kx + 2y = 5 y 3x + 6y = 15 tiene infinitas soluciones?",op:["k = 1","k = 2","k = 3","k = 9"],r:0},
+  {area:"Álgebra",q:"El valor de log₃81 es:",op:["2","3","4","5"],r:2},
+  {area:"Álgebra",q:"La suma de los coeficientes de (x+2)⁴ es:",op:["16","64","81","256"],r:2},
+  {area:"Álgebra",q:"Si los ángulos de un triángulo están en relación 2:3:5, el mayor ángulo mide:",op:["54°","72°","90°","108°"],r:2},
+  {area:"Álgebra",q:"El coeficiente del término x³ en la expansión de (x+3)⁵ es:",op:["90","270","405","810"],r:1},
+  {area:"Álgebra",q:"¿Cuántos números naturales de 3 cifras son divisibles por 7?",op:["127","128","129","130"],r:1},
+  {area:"Álgebra",q:"Si f(x) = (x−1)/(x+1), ¿cuál es f(f(x))?",op:["x","1/x","−x","x+1"],r:0},
+  {area:"Álgebra",q:"La 8va. fila del triángulo de Pascal suma:",op:["64","128","256","512"],r:2},
+  {area:"Álgebra",q:"Si α y β son raíces de x² − px + q = 0, entonces α² + β² =",op:["p² − q","p² − 2q","p + 2q","2p − q"],r:1},
+  {area:"Álgebra",q:"Resuelve la inecuación: |2x − 4| < 6",op:["−1 < x < 5","x < −1 o x > 5","−1 ≤ x ≤ 5","0 < x < 4"],r:0},
+
+  // ── GEOMETRÍA (15) ──
+  {area:"Geometría",q:"El área de un círculo de radio 7 es (usar π ≈ 3,14):",op:["43,96","153,86","21,98","98"],r:1},
+  {area:"Geometría",q:"En un triángulo rectángulo, si los catetos miden 8 y 15, la hipotenusa es:",op:["16","17","18","23"],r:1},
+  {area:"Geometría",q:"La suma de los ángulos interiores de un hexágono es:",op:["540°","600°","720°","900°"],r:2},
+  {area:"Geometría",q:"El volumen de un cubo de arista 4 cm es:",op:["16 cm³","48 cm³","64 cm³","96 cm³"],r:2},
+  {area:"Geometría",q:"Si dos rectas son cortadas por una transversal, los ángulos alternos internos son:",op:["Suplementarios","Complementarios","Iguales","Adyacentes"],r:2},
+  {area:"Geometría",q:"¿Cuál es el área de un trapecio con bases 10 y 6, y altura 4?",op:["32","64","40","48"],r:0},
+  {area:"Geometría",q:"Una esfera de radio 3 tiene un volumen de:",op:["28π","36π","48π","54π"],r:1},
+  {area:"Geometría",q:"El perímetro de un rombo con diagonal mayor 8 y diagonal menor 6 es:",op:["20","24","28","40"],r:0},
+  {area:"Geometría",q:"¿Cuánto mide cada ángulo interior de un octágono regular?",op:["120°","135°","140°","150°"],r:1},
+  {area:"Geometría",q:"En el círculo, el ángulo inscrito es la mitad del ángulo central que subtende el mismo arco. Si el arco mide 100°, el ángulo inscrito mide:",op:["200°","100°","50°","25°"],r:2},
+  {area:"Geometría",q:"La distancia entre los puntos A(1, 2) y B(4, 6) es:",op:["4","5","6","7"],r:1},
+  {area:"Geometría",q:"La ecuación x² + y² = 25 representa un círculo con radio:",op:["5","25","√5","12,5"],r:0},
+  {area:"Geometría",q:"El área lateral de un cilindro de radio 3 y altura 10 es:",op:["30π","60π","90π","120π"],r:1},
+  {area:"Geometría",q:"Si la hipotenusa de un triángulo isósceles rectángulo mide 10, sus catetos miden:",op:["5","5√2","4√2","5√3"],r:1},
+  {area:"Geometría",q:"La mediatriz de un segmento es perpendicular al segmento y pasa por su:",op:["Extremo","Punto medio","Baricentro","Circuncentro"],r:1},
+];
+initSimulacro(PREGUNTAS);
+</script>
+</body>
+</html>
