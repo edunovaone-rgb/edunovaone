@@ -50,6 +50,13 @@ const PAGE_CATALOG = [
   { icon: '🎮', label: 'Juego Matemática',   href: 'juego-matematica.html',   tags: ['juego','matematica'] },
   { icon: '🧬', label: 'Juego Ciencias',     href: 'juego-ciencia.html',      tags: ['juego','ciencia'] },
   { icon: '🗣️', label: 'Juego Comunicación', href: 'juego-comunicacion.html', tags: ['juego','comunicacion'] },
+  { icon: '🩺', label: 'Mi Diagnóstico',     href: 'diagnostico.html',        tags: ['diagnostico','nivel','progreso','evaluacion'] },
+  { icon: '🩺', label: 'Diagnóstico Matemática',   href: 'diagnostico-matematica.html',   tags: ['diagnostico','matematica','test'] },
+  { icon: '🩺', label: 'Diagnóstico Ciencias',     href: 'diagnostico-ciencias.html',     tags: ['diagnostico','ciencias','test'] },
+  { icon: '🩺', label: 'Diagnóstico Comunicación', href: 'diagnostico-comunicacion.html', tags: ['diagnostico','comunicacion','test'] },
+  { icon: '🩺', label: 'Diagnóstico Historia',     href: 'diagnostico-historia.html',     tags: ['diagnostico','historia','test'] },
+  { icon: '🩺', label: 'Diagnóstico Inglés',       href: 'diagnostico-ingles.html',       tags: ['diagnostico','ingles','test'] },
+  { icon: '🩺', label: 'Diagnóstico Tecnología',   href: 'diagnostico-tecnologia.html',   tags: ['diagnostico','tecnologia','test'] },
 ];
 
 function escHtml(s) {
