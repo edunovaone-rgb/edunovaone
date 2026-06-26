@@ -784,3 +784,202 @@
       showPanel(PANELS.includes(hash) ? hash : 'inicio');
     });
   </script>
+
+  <!-- SCRIPTS FIREBASE -->
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const _cfg = {
+      apiKey: "AIzaSyD4eHOmnHZNNxtnWQAdNfw6vGNC2t9g5eE",
+      authDomain: "edunova-library.firebaseapp.com",
+      projectId: "edunova-library",
+      storageBucket: "edunova-library.firebasestorage.app",
+      messagingSenderId: "707176884039",
+      appId: "1:707176884039:web:7c2b34c1bfcbdc7ec10e62"
+    };
+    const app  = getApps().length ? getApps()[0] : initializeApp(_cfg);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    const overlay = document.getElementById('paywallOverlay');
+    const PLANES_PAGO = ['esencial', 'plus', 'elite', 'trial'];
+
+    function resolverPlan(rawPlan, trialFin) {
+      if (rawPlan === 'trial' && trialFin) {
+        if (Date.now() > new Date(trialFin).getTime()) return 'free';
+      }
+      return rawPlan;
+    }
+
+    function setBar(fillId, pctId, val) {
+      const f = document.getElementById(fillId);
+      const l = document.getElementById(pctId);
+      if (f) f.style.width = val + '%';
+      if (l) l.textContent = val + '%';
+    }
+
+    function concederAcceso(data, plan) {
+      overlay.classList.remove('show');
+      overlay.classList.remove('loading');
+
+      const prog = data.progreso || {};
+      const ps   = data.preuStats || {};
+
+      // Stat cards
+      if (ps.mejorPuntaje) document.getElementById('statPuntaje').textContent = ps.mejorPuntaje + '%';
+      if (ps.ranking)      document.getElementById('statRanking').textContent = '#' + ps.ranking;
+      if (data.rachaActual) document.getElementById('statRacha').textContent = data.rachaActual;
+
+      // Horas en cronograma
+      if (data.horasEstudio) document.getElementById('cronoHorasHechas').textContent = data.horasEstudio + 'h';
+
+      // Progreso panel inicio
+      setBar('ppb-mat',  'pp-mat',  prog.matematica   || 0);
+      setBar('ppb-cien', 'pp-cien', prog.ciencia       || 0);
+      setBar('ppb-his',  'pp-his',  prog.historia      || 0);
+      setBar('ppb-com',  'pp-com',  prog.comunicacion  || 0);
+      setBar('ppb-ing',  'pp-ing',  prog.ingles        || 0);
+      setBar('ppb-rv',   'pp-rv',   prog.rv            || 0);
+      setBar('ppb-rm',   'pp-rm',   prog.rm            || 0);
+
+      // Barras de materias grid
+      const barMap = {
+        'bar-mat':  [prog.matematica  || 0, 'lbl-mat'],
+        'bar-cien': [prog.ciencia     || 0, 'lbl-cien'],
+        'bar-his':  [prog.historia    || 0, 'lbl-his'],
+        'bar-com':  [prog.comunicacion|| 0, 'lbl-com'],
+        'bar-ing':  [prog.ingles      || 0, 'lbl-ing'],
+        'bar-rv':   [prog.rv          || 0, 'lbl-rv'],
+        'bar-rm':   [prog.rm          || 0, 'lbl-rm'],
+      };
+      Object.entries(barMap).forEach(([barId, [val, lblId]]) => {
+        const b = document.getElementById(barId);
+        const l = document.getElementById(lblId);
+        if (b) b.style.width = val + '%';
+        if (l) l.textContent = 'Progreso: ' + val + '%';
+      });
+
+      // Diagnóstico
+      setBar('diagf-mat',  'diag-mat',  prog.matematica   || 0);
+      setBar('diagf-cien', 'diag-cien', prog.ciencia       || 0);
+      setBar('diagf-his',  'diag-his',  prog.historia      || 0);
+      setBar('diagf-com',  'diag-com',  prog.comunicacion  || 0);
+      setBar('diagf-ing',  'diag-ing',  prog.ingles        || 0);
+      setBar('diagf-rv',   'diag-rv',   prog.rv            || 0);
+      setBar('diagf-rm',   'diag-rm',   prog.rm            || 0);
+
+      // Áreas débiles
+      const areas = [
+        { k:'matematica',   label:'∑ Matemática',          val: prog.matematica   || 0 },
+        { k:'ciencia',      label:'⚗️ Ciencias',            val: prog.ciencia      || 0 },
+        { k:'historia',     label:'🏛️ Historia',            val: prog.historia     || 0 },
+        { k:'comunicacion', label:'📖 Comunicación',        val: prog.comunicacion || 0 },
+        { k:'ingles',       label:'🇬🇧 Inglés',             val: prog.ingles       || 0 },
+        { k:'rv',           label:'🧠 R. Verbal',           val: prog.rv           || 0 },
+        { k:'rm',           label:'🔢 R. Matemático',       val: prog.rm           || 0 },
+      ];
+      const debiles = areas.filter(a => a.val < 60).sort((a,b) => a.val - b.val).slice(0,3);
+      const debilesEl = document.getElementById('areasDebiles');
+      if (debilesEl && debiles.length > 0) {
+        debilesEl.innerHTML = debiles.map(a =>
+          `<div style="background:#fff;border-radius:1rem;padding:.85rem 1rem;border:1px solid rgba(245,158,11,0.2);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.88rem;font-weight:600;color:var(--text)">${a.label}</span>
+            <span style="font-size:.82rem;font-weight:700;color:#d97706;background:rgba(245,158,11,0.1);padding:.2rem .6rem;border-radius:999px">${a.val}%</span>
+          </div>`
+        ).join('');
+      }
+
+      // Ruta: simulacros hechos
+      if (ps.simulacrosHechos != null) {
+        const el = document.getElementById('rutaSimulacros');
+        if (el) el.textContent = ps.simulacrosHechos;
+      }
+
+      // Ranking: mi posición
+      if (ps.ranking) {
+        const posEl = document.getElementById('miRankPos');
+        const scoreEl = document.getElementById('miRankScore');
+        if (posEl) posEl.textContent = '#' + ps.ranking;
+        if (scoreEl && ps.mejorPuntaje) scoreEl.textContent = ps.mejorPuntaje + '%';
+      }
+
+      // Plan Esencial: bloquear simulacros >1
+      if (plan === 'esencial') {
+        document.querySelectorAll('.simulacro-item').forEach((item, i) => {
+          if (i > 0) {
+            item.style.opacity = '0.45';
+            const btn = item.querySelector('.simulacro-btn');
+            if (btn) {
+              btn.textContent = '⚡ Plan Plus+';
+              btn.style.cssText = 'background:#94a3b8;cursor:default;box-shadow:none;text-decoration:none;';
+              btn.onclick = (e) => { e.preventDefault(); window.location.href = 'planes.html'; };
+            }
+          }
+        });
+      }
+
+      // Trial badge
+      if (plan === 'trial' && data.trialFin) {
+        const dias = Math.ceil((new Date(data.trialFin).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+        const sc = document.getElementById('sidebarPlanCard');
+        if (sc) {
+          sc.innerHTML = `<strong>🎁 Free Trial activo</strong><p>Acceso Plus completo. Te quedan <strong>${dias} día${dias !== 1 ? 's' : ''}</strong> de prueba.</p><a href="planes.html">Ver planes →</a>`;
+          sc.style.background = 'linear-gradient(135deg,#059669,#047857)';
+        }
+      }
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      const stateLoading = document.getElementById('stateLoading');
+      const stateLocked  = document.getElementById('stateLocked');
+
+      function showPaywall(sinSesion = false, trialExpirado = false) {
+        stateLoading.style.display = 'none';
+        stateLocked.style.display  = 'flex';
+        overlay.classList.remove('loading');
+        overlay.classList.add('show');
+        const t = document.getElementById('paywallTitle');
+        const d = document.getElementById('paywallDesc');
+        const c = document.getElementById('paywallCta');
+        if (sinSesion) {
+          t.textContent = 'Inicia sesión para continuar';
+          d.textContent = 'Necesitas una cuenta con plan activo para acceder a la sección Pre-universitaria.';
+          c.textContent = '🔑 Iniciar sesión'; c.href = 'login.html';
+        } else if (trialExpirado) {
+          t.textContent = 'Tu Free Trial ha vencido';
+          d.textContent = 'Los 7 días de prueba han terminado. Elige un plan para seguir accediendo.';
+          c.textContent = '🚀 Ver planes'; c.href = 'planes.html';
+        } else {
+          t.textContent = 'Consigue tu plan para acceder';
+          d.textContent = 'La Pre-u requiere un plan de pago. Todos incluyen simulacros, resúmenes y rutas de estudio.';
+          c.textContent = '🚀 Conseguir mi plan'; c.href = 'planes.html';
+        }
+      }
+
+      if (!user) { showPaywall(true); return; }
+
+      try {
+        const snap = await getDoc(doc(db, 'usuarios', user.uid));
+        const data = snap.exists() ? snap.data() : {};
+        const rawPlan = (data.plan || 'free').toLowerCase().trim();
+        const plan = resolverPlan(rawPlan, data.trialFin);
+        const trialExpirado = rawPlan === 'trial' && plan === 'free';
+        if (PLANES_PAGO.includes(plan)) {
+          concederAcceso(data, plan);
+        } else {
+          showPaywall(false, trialExpirado);
+        }
+      } catch (err) {
+        console.error('Error leyendo plan:', err);
+        showPaywall(false);
+      }
+    });
+  </script>
+
+  <script type="module" src="auth-nav.js"></script>
+  <script type="module" src="nav-widgets.js"></script>
+
+</body>
+</html>
