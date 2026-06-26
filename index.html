@@ -1054,7 +1054,28 @@
             if (el('dashHoras'))  el('dashHoras').textContent  = d.horasEstudio      ?? 0;
             if (el('dashRacha'))  el('dashRacha').textContent  = racha;
             if (el('dashJuegos')) el('dashJuegos').textContent = d.juegosCompletados ?? 0;
+            // Progreso base de Firestore
             const p = d.progreso || {};
+            // Enriquecer con evaluaciones locales (diagnósticos/juegos)
+            (function mergeLocalProgress() {
+              try {
+                const rs = JSON.parse(localStorage.getItem('enu_eval_resultados') || '[]');
+                if (!rs.length) return;
+                const mapa = {};
+                rs.forEach(r => {
+                  if (!mapa[r.area]) { mapa[r.area] = { suma: 0, n: 0 }; }
+                  mapa[r.area].suma += r.pct;
+                  mapa[r.area].n++;
+                });
+                const avg = k => mapa[k] ? Math.round(mapa[k].suma / mapa[k].n) : null;
+                const best = (fv, lv) => lv !== null ? Math.max(fv || 0, lv) : (fv || 0);
+                p.matematica   = best(p.matematica,   avg('matematica'));
+                p.ciencia      = best(p.ciencia,      avg('ciencia'));
+                p.historia     = best(p.historia,     avg('historia'));
+                p.comunicacion = best(p.comunicacion, avg('comunicacion'));
+                p.ingles       = best(p.ingles,       avg('ingles'));
+              } catch(_) {}
+            })();
             setBar('dpb-math', 'dp-math', p.matematica   ?? 0);
             setBar('dpb-sci',  'dp-sci',  p.ciencia       ?? 0);
             setBar('dpb-his',  'dp-his',  p.historia      ?? 0);
