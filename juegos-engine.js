@@ -1095,7 +1095,21 @@ function iniciarQuiz(titleEl, body, qCount, timerSecs) {
 
   function finQuiz() {
     addPuntos(score);
-    const pct = Math.round(score / (preguntas.length * (timerSecs === 8 ? 15 : 10)) * 100);
+    const ptsMax = preguntas.length * (timerSecs === 8 ? 15 : 10);
+    const pct = Math.round(score / ptsMax * 100);
+    // ── Registrar resultado para diagnóstico ──
+    const correctasTotal = preguntas.filter((q, i) => window._lastQuizAnswers && window._lastQuizAnswers[i] === q.r).length;
+    if (typeof window._enuEvalRegistrar === 'function') {
+      window._enuEvalRegistrar({
+        area:      AREA,
+        grado:     gradoSel,
+        tipo:      timerSecs === 8 ? 'quiz2' : 'quiz',
+        score,
+        scoreMax:  ptsMax,
+        correctas: Math.round(pct * preguntas.length / 100),
+        total:     preguntas.length,
+      });
+    }
     body.innerHTML = `
       <div class="score-card">
         <div style="font-size:3rem;margin-bottom:.5rem">${pct>=70?'🏆':pct>=40?'👍':'📚'}</div>
