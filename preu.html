@@ -637,9 +637,57 @@
           </div>
         </div>
       </section>
+      </div><!-- /panel-consejos -->
 
     </main>
   </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="preu-mobile-nav" id="mobileNav">
+    <a href="#" onclick="showPanel('inicio');return false"      class="active" id="mnav-inicio">     <span class="mn-icon">🏠</span>Inicio</a>
+    <a href="#" onclick="showPanel('materias');return false"    id="mnav-materias">                  <span class="mn-icon">📚</span>Materias</a>
+    <a href="#" onclick="showPanel('simulacros');return false"  id="mnav-simulacros">                <span class="mn-icon">📝</span>Simulacros</a>
+    <a href="#" onclick="showPanel('diagnostico');return false" id="mnav-diagnostico">               <span class="mn-icon">🎯</span>Diagnóstico</a>
+    <a href="#" onclick="showPanel('consejos');return false"    id="mnav-consejos">                  <span class="mn-icon">💡</span>Consejos</a>
+  </nav>
+
+  <script>
+    const PANELS = ['inicio','materias','simulacros','diagnostico','consejos'];
+
+    function showPanel(name) {
+      if (!PANELS.includes(name)) name = 'inicio';
+      // Paneles
+      PANELS.forEach(id => {
+        const el = document.getElementById('panel-' + id);
+        if (el) el.classList.toggle('active', id === name);
+      });
+      // Sidebar nav
+      PANELS.forEach(id => {
+        const a = document.getElementById('snav-' + id);
+        if (a) a.classList.toggle('active', id === name);
+      });
+      // Mobile nav
+      PANELS.forEach(id => {
+        const a = document.getElementById('mnav-' + id);
+        if (a) a.classList.toggle('active', id === name);
+      });
+      // Actualizar hash sin saltar al top
+      history.replaceState(null, '', '#' + name);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Leer hash inicial
+    (function() {
+      const hash = location.hash.replace('#', '');
+      showPanel(PANELS.includes(hash) ? hash : 'inicio');
+    })();
+
+    // Responder si el hash cambia (ej: botón atrás)
+    window.addEventListener('hashchange', () => {
+      const hash = location.hash.replace('#', '');
+      showPanel(PANELS.includes(hash) ? hash : 'inicio');
+    });
+  </script>
 
   <!-- SCRIPTS -->
   <script type="module">
