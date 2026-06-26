@@ -350,6 +350,53 @@
     // Restaurar pestaña desde URL hash si existe
     const hash = location.hash.replace('#','');
     if (['materias','simulacros','diagnosticos','consejos'].includes(hash)) switchTab(hash);
+
+    // ── Mini resumen de diagnóstico ──────────────────────────────────
+    (function renderDiagMini() {
+      const EVAL_KEY = 'enu_eval_resultados';
+      const AREAS = [
+        { key:'matematica',   nombre:'Matemática',   emoji:'📐', from:'#7c3aed', to:'#6d28d9' },
+        { key:'ciencia',      nombre:'Ciencias',     emoji:'🔬', from:'#10b981', to:'#059669' },
+        { key:'comunicacion', nombre:'Comunicación', emoji:'📖', from:'#ef4444', to:'#dc2626' },
+        { key:'historia',     nombre:'Historia',     emoji:'🌍', from:'#f59e0b', to:'#d97706' },
+        { key:'ingles',       nombre:'Inglés',       emoji:'🇬🇧', from:'#3b82f6', to:'#2563eb' },
+        { key:'tecnologia',   nombre:'Tecnología',   emoji:'💻', from:'#8b5cf6', to:'#7c3aed' },
+      ];
+      function getNv(p){ if(p>=85)return{c:'#10b981',e:'🏆',l:'Excelente'}; if(p>=70)return{c:'#3b82f6',e:'👍',l:'Bueno'}; if(p>=50)return{c:'#f59e0b',e:'📚',l:'Regular'}; if(p>=30)return{c:'#ef4444',e:'⚠️',l:'Mejorable'}; return{c:'#6b7280',e:'🌱',l:'Inicial'}; }
+      try {
+        const rs = JSON.parse(localStorage.getItem(EVAL_KEY)||'[]');
+        if (!rs.length) return;
+        const mapa = {};
+        rs.forEach(r => {
+          if(!mapa[r.area]){mapa[r.area]={suma:0,n:0,mejor:0};}
+          mapa[r.area].suma+=r.pct; mapa[r.area].n++;
+          if(r.pct>mapa[r.area].mejor) mapa[r.area].mejor=r.pct;
+        });
+        const areasConDatos = AREAS.filter(a=>mapa[a.key]);
+        if (!areasConDatos.length) return;
+        const el = document.getElementById('diagResumenMini');
+        el.innerHTML = `<div style="background:#fff;border:1px solid rgba(99,102,241,0.1);border-radius:1.5rem;padding:1.25rem 1.5rem;box-shadow:0 6px 18px rgba(15,23,42,0.04)">
+          <p style="margin:0 0 .85rem;font-size:.88rem;font-weight:700;color:var(--accent-strong)">📊 Tu progreso actual</p>
+          <div style="display:grid;gap:.6rem">`+
+          areasConDatos.map(a=>{
+            const s=mapa[a.key], avg=Math.round(s.suma/s.n), nv=getNv(avg);
+            return `<div style="display:flex;align-items:center;gap:.75rem">
+              <span style="font-size:1.1rem;flex-shrink:0">${a.emoji}</span>
+              <span style="font-size:.82rem;font-weight:600;color:var(--text);min-width:110px">${a.nombre}</span>
+              <div style="flex:1;height:8px;border-radius:999px;background:rgba(99,102,241,0.08);overflow:hidden">
+                <div style="height:100%;border-radius:999px;width:${avg}%;background:linear-gradient(90deg,${a.from},${a.to});transition:width .8s"></div>
+              </div>
+              <span style="font-size:.82rem;font-weight:800;color:${nv.c};min-width:3rem;text-align:right">${avg}%</span>
+              <span style="font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;background:${nv.c}1a;color:${nv.c}">${nv.e} ${nv.l}</span>
+            </div>`;
+          }).join('')+
+          `</div>
+          <div style="margin-top:.9rem;text-align:right">
+            <a href="diagnostico.html" style="font-size:.82rem;font-weight:700;color:var(--accent-strong);text-decoration:none">Ver diagnóstico completo →</a>
+          </div>
+        </div>`;
+      } catch(e){}
+    })();
   </script>
 </body>
 </html>
