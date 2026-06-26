@@ -334,5 +334,20 @@
   </footer>
 
   <script type="module" src="auth-nav.js"></script>
+  <script>
+    function switchTab(name) {
+      document.querySelectorAll('.preu-tab').forEach(t => {
+        const active = t.id === 'tab-' + name;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active);
+      });
+      document.querySelectorAll('.preu-panel').forEach(p => {
+        p.classList.toggle('active', p.id === 'panel-' + name);
+      });
+    }
+    // Restaurar pestaña desde URL hash si existe
+    const hash = location.hash.replace('#','');
+    if (['materias','simulacros','diagnosticos','consejos'].includes(hash)) switchTab(hash);
+  </script>
 </body>
 </html>
