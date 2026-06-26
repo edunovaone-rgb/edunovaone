@@ -378,6 +378,7 @@ function buildUserPill() {
     </div>
     <div class="nav-user-dropdown" id="navUserDropdown">
       <a href="perfil.html" id="navDropPerfil">👤 Mi Perfil</a>
+      <a href="diagnostico.html">🩺 Mi Diagnóstico</a>
       <a href="index.html">🏠 Inicio</a>
       <div class="dropdown-divider"></div>
       <button class="dropdown-danger" id="navDropLogout">🚪 Cerrar sesión</button>
