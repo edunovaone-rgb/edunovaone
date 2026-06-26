@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Simulacro 05 — Completo Avanzado | EduNovaOne Pre-u</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="simulacro-shared.css"/>
+</head>
+<body>
+<nav class="uni-nav">
+  <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.webp" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+  <ul class="uni-nav-links"><li><a href="preu.html" class="active">Pre-u</a></li></ul>
+  <div class="uni-nav-actions">
+    <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+  </div>
+</nav>
+
+<div id="simApp" data-total="120" data-titulo="Simulacro Completo — Nivel Avanzado" data-num="05" data-color="#4f46e5"></div>
+
+<script src="simulacro-engine.js"></script>
+<script type="module" src="auth-nav.js"></script>
+<script>
+const PREGUNTAS = [
+  // ── MATEMÁTICA (16) ──
+  {area:"Matemática",q:"Si z = 3 + 4i, el módulo |z| es:",op:["5","7","√7","25"],r:0},
+  {area:"Matemática",q:"El límite de (x²−1)/(x−1) cuando x→1 es:",op:["0","1","2","∞"],r:2},
+  {area:"Matemática",q:"¿Cuántas diagonales tiene un polígono de 10 lados?",op:["35","40","45","50"],r:0},
+  {area:"Matemática",q:"En una combinatoria, C(8,3) =",op:["24","40","56","112"],r:2},
+  {area:"Matemática",q:"La derivada de f(x) = x³ − 2x es:",op:["3x² − 2","3x² + 2","x² − 2","3x − 2"],r:0},
+  {area:"Matemática",q:"¿Cuántas soluciones enteras positivas tiene x + y + z = 10?",op:["36","54","66","72"],r:0},
+  {area:"Matemática",q:"La suma de la serie geométrica infinita 1 + 1/3 + 1/9 + … es:",op:["3/2","2","3","∞"],r:0},
+  {area:"Matemática",q:"Si sen θ = 3/5 y θ es agudo, cos θ =",op:["4/5","3/4","5/4","5/3"],r:0},
+  {area:"Matemática",q:"¿Cuál es la integral de 2x dx?",op:["x + C","x² + C","2 + C","2x² + C"],r:1},
+  {area:"Matemática",q:"El número de permutaciones de la palabra LIMA es:",op:["12","16","24","48"],r:2},
+  {area:"Matemática",q:"En un experimento se lanzan 2 dados. La probabilidad de obtener suma 7 es:",op:["1/6","5/36","6/36","7/36"],r:2},
+  {area:"Matemática",q:"Si A = {1,2,3} y B = {2,3,4}, entonces A ∩ B =",op:["{1,2,3,4}","{2,3}","{1,4}","{1,2,3,4}"],r:1},
+  {area:"Matemática",q:"La ecuación de la parábola con vértice en el origen que abre hacia arriba con p=2 es:",op:["x² = 4y","x² = 8y","y² = 4x","y² = 8x"],r:1},
+  {area:"Matemática",q:"Resuelve: 3^(2x−1) = 27",op:["x = 1","x = 2","x = 3","x = 4"],r:1},
+  {area:"Matemática",q:"¿Cuántos triángulos se forman con 7 puntos no colineales?",op:["21","35","42","70"],r:1},
+  {area:"Matemática",q:"La tangente de 45° es:",op:["0","√2/2","1","√3"],r:2},
+
+  // ── CIENCIAS / BIOLOGÍA (14) ──
+  {area:"Biología",q:"¿Cuál es la función principal del ARN mensajero (ARNm)?",op:["Replicar el ADN","Transportar aminoácidos","Llevar la información genética del núcleo al citoplasma","Sintetizar lípidos"],r:2},
+  {area:"Biología",q:"La meiosis produce:",op:["2 células diploides","4 células diploides","2 células haploides","4 células haploides"],r:3},
+  {area:"Biología",q:"¿Qué orgánulo celular produce energía (ATP)?",op:["Ribosoma","Vacuola","Mitocondria","Aparato de Golgi"],r:2},
+  {area:"Biología",q:"En la cadena alimentaria, los productores son organismos:",op:["Carnívoros","Herbívoros","Autótrofos (plantas)","Descomponedores"],r:2},
+  {area:"Biología",q:"El efecto invernadero es causado principalmente por el exceso de:",op:["O₂","N₂","CO₂","H₂"],r:2},
+  {area:"Biología",q:"La ley de la segregación de Mendel establece que:",op:["Los genes se mezclan","Los alelos se separan durante la formación de gametos","Todos los genes se heredan juntos","Los rasgos adquiridos se heredan"],r:1},
+  {area:"Biología",q:"¿Qué tipo de tejido recubre la superficie del cuerpo y los órganos internos?",op:["Tejido muscular","Tejido epitelial","Tejido nervioso","Tejido conectivo"],r:1},
+  {area:"Biología",q:"La digestión de los carbohidratos comienza en:",op:["Estómago","Intestino delgado","Boca","Intestino grueso"],r:2},
+  {area:"Biología",q:"¿Qué hormona regula los niveles de glucosa en sangre?",op:["Adrenalina","Insulina","Testosterona","Tiroxina"],r:1},
+  {area:"Biología",q:"El cambio climático global está relacionado principalmente con el aumento de:",op:["Gases nobles","Gases de efecto invernadero","Ozono","Nitrógeno"],r:1},
+  {area:"Biología",q:"Los virus son considerados seres no celulares porque:",op:["No tienen ADN","No tienen membrana plasmática ni orgánulos propios","Son demasiado pequeños","No pueden reproducirse"],r:1},
+  {area:"Biología",q:"¿Cuál es el proceso por el cual las plantas pierden agua por sus hojas?",op:["Fotosíntesis","Transpiración","Respiración","Absorción"],r:1},
+  {area:"Biología",q:"El sistema nervioso central está formado por:",op:["Cerebro y nervios periféricos","Encéfalo y médula espinal","Solo el cerebro","Nervios y ganglios"],r:1},
+  {area:"Biología",q:"¿Qué tipo de sangre es el donante universal?",op:["A+","B−","O−","AB+"],r:2},
+
+  // ── FÍSICA AVANZADA (10) ──
+  {area:"Física",q:"La energía de un fotón es E = hf. Si h = 6,63×10⁻³⁴ J·s y f = 6×10¹⁴ Hz, E ≈",op:["3,98×10⁻¹⁹ J","3,98×10⁻²⁰ J","6,63×10⁻²⁰ J","1×10⁻¹⁹ J"],r:0},
+  {area:"Física",q:"La Ley de Faraday establece que la FEM inducida es proporcional a la variación de:",op:["Carga eléctrica","Temperatura","Flujo magnético","Presión"],r:2},
+  {area:"Física",q:"En un movimiento circular uniforme, la aceleración centrípeta apunta hacia:",op:["La tangente","El exterior del círculo","El centro del círculo","Arriba"],r:2},
+  {area:"Física",q:"¿Cuál es el principio de Arquímedes?",op:["Todo cuerpo sumergido experimenta un empuje igual al peso del fluido desalojado","La presión es proporcional a la temperatura","La fuerza es igual a masa por aceleración","La energía se conserva"],r:0},
+  {area:"Física",q:"La Primera Ley de la Termodinámica es una expresión de la conservación de:",op:["Momentum","Masa","Energía","Carga"],r:2},
+  {area:"Física",q:"En un transformador ideal, si N₁/N₂ = 1/10 y V₁ = 220 V, entonces V₂ =",op:["22 V","220 V","2 200 V","22 000 V"],r:2},
+  {area:"Física",q:"¿Cuál es la velocidad de escape de la Tierra (aproximada)?",op:["7,9 km/s","11,2 km/s","20 km/s","1,6 km/s"],r:1},
+  {area:"Física",q:"El efecto fotoeléctrico fue explicado por:",op:["Newton","Maxwell","Einstein","Bohr"],r:2},
+  {area:"Física",q:"La presión en un fluido a profundidad h es P = ρgh. Si ρ = 1000 kg/m³ y h = 10 m, P =",op:["100 Pa","1 000 Pa","10 000 Pa","100 000 Pa"],r:3},
+  {area:"Física",q:"El número cuántico que describe la forma del orbital es:",op:["n (principal)","l (azimutal)","m (magnético)","s (espín)"],r:1},
+
+  // ── QUÍMICA AVANZADA (10) ──
+  {area:"Química",q:"¿Qué es la entalpía de formación?",op:["Calor liberado en cualquier reacción","Energía necesaria para ionizar un átomo","Calor de reacción al formarse 1 mol de compuesto desde sus elementos","Energía de enlace"],r:2},
+  {area:"Química",q:"La hibridación del carbono en el benceno (C₆H₆) es:",op:["sp³","sp²","sp","sp³d"],r:1},
+  {area:"Química",q:"En una reacción de oxidación-reducción, el agente reductor:",op:["Gana electrones","Pierde electrones","No cambia su estado de oxidación","Acepta protones"],r:1},
+  {area:"Química",q:"¿Qué gas se produce en la electrólisis del agua en el cátodo?",op:["Oxígeno","Hidrógeno","Cloro","Nitrógeno"],r:1},
+  {area:"Química",q:"La Ley de Hess establece que el cambio de entalpía de una reacción:",op:["Depende de la velocidad","Es independiente de la ruta tomada","Siempre es positivo","Solo aplica a gases"],r:1},
+  {area:"Química",q:"Un polímero de adición se forma por la ruptura de:",op:["Enlace iónico","Enlace sigma","Dobles o triples enlaces (π)","Enlace de hidrógeno"],r:2},
+  {area:"Química",q:"¿Cuál es el principio de Le Chatelier?",op:["Todo sistema en equilibrio tiende a permanecer invariable","Un sistema perturbado responde para contrarrestar la perturbación","La velocidad depende de la temperatura","Los gases ideales siguen PV = nRT"],r:1},
+  {area:"Química",q:"La concentración molar (M) se expresa en:",op:["g/L","mol/kg","mol/L","g/mol"],r:2},
+  {area:"Química",q:"¿Qué tipo de isomería presenta el 1-buteno y el 2-buteno?",op:["Isomería óptica","Isomería de posición","Isomería de cadena","Isomería funcional"],r:1},
+  {area:"Química",q:"El punto de ebullición del agua aumenta cuando:",op:["Disminuye la presión","Aumenta la presión","Se agrega alcohol","Se enfría"],r:1},
+
+  // ── HISTORIA (10) ──
+  {area:"Historia",q:"La Revolución Francesa inició en:",op:["1776","1789","1799","1804"],r:1},
+  {area:"Historia",q:"¿Quién escribió 'El Capital', base teórica del marxismo?",op:["Friedrich Engels","Vladimir Lenin","Karl Marx","León Trotsky"],r:2},
+  {area:"Historia",q:"La Primera Guerra Mundial terminó con el Tratado de:",op:["Versalles","París","Berlín","Roma"],r:0},
+  {area:"Historia",q:"El proceso de descolonización africana ocurrió principalmente en:",op:["1918-1930","1939-1945","1950-1970","1980-2000"],r:2},
+  {area:"Historia",q:"¿Cuál fue la causa directa de la Segunda Guerra Mundial?",op:["Invasión alemana a Polonia","Ataque japonés a Pearl Harbor","Crisis económica de 1929","Asesinato del Archiduque Francisco Fernando"],r:0},
+  {area:"Historia",q:"La ONU fue fundada en:",op:["1919","1939","1945","1950"],r:2},
+  {area:"Historia",q:"¿Qué fue el Plan Marshall?",op:["Un plan de rearme europeo","Ayuda económica de EE.UU. a Europa tras la IIGM","Pacto militar de la OTAN","Plan de colonización africana"],r:1},
+  {area:"Historia",q:"La caída del Muro de Berlín ocurrió en:",op:["1985","1987","1989","1991"],r:2},
+  {area:"Historia",q:"¿Cuál es el principal organismo de la ONU para la seguridad internacional?",op:["Asamblea General","Consejo de Seguridad","Corte Internacional","Secretaría General"],r:1},
+  {area:"Historia",q:"El concepto de 'globalización' se intensificó especialmente tras:",op:["La IIGM","La caída del bloque soviético","La Revolución Industrial","La Guerra Fría"],r:1},
+
+  // ── COMUNICACIÓN / APTITUD VERBAL (10) ──
+  {area:"Comunicación",q:"¿Cuál es el antónimo de 'benévolo'?",op:["Generoso","Caritativo","Malévolo","Afable"],r:2},
+  {area:"Comunicación",q:"Identifica la oración con error ortográfico:",op:["Haber si llegas temprano","A ver si llegas temprano","¿Haber quién puede?","A ver quién puede"],r:2},
+  {area:"Comunicación",q:"¿Qué figura retórica consiste en la repetición de sonidos al inicio de palabras consecutivas?",op:["Anáfora","Aliteración","Onomatopeya","Asíndeton"],r:1},
+  {area:"Comunicación",q:"'La luna me miraba con sus ojos de plata' es un ejemplo de:",op:["Comparación","Personificación (prosopopeya)","Hipérbole","Sinécdoque"],r:1},
+  {area:"Comunicación",q:"¿Qué tipo de narrador conoce los pensamientos de todos los personajes?",op:["Narrador protagonista","Narrador testigo","Narrador omnisciente","Narrador en 2ª persona"],r:2},
+  {area:"Comunicación",q:"En 'El otoño del patriarca', el autor es:",op:["Mario Vargas Llosa","Julio Cortázar","Gabriel García Márquez","Pablo Neruda"],r:2},
+  {area:"Comunicación",q:"La serie de palabras LUNA : SATÉLITE :: TIERRA : ___ corresponde a:",op:["Planeta","Sol","Luna","Estrella"],r:0},
+  {area:"Comunicación",q:"¿Cuál es la función del prefijo 'des-' en la palabra 'deshacer'?",op:["Aumentativa","Diminutiva","Negación o inversión","Superlativa"],r:2},
+  {area:"Comunicación",q:"Un texto cohesivo usa conectores adecuados. ¿Cuál expresa consecuencia?",op:["Sin embargo","Por lo tanto","Aunque","A pesar de"],r:1},
+  {area:"Comunicación",q:"¿Cuál es el correcto uso de 'sino' vs. 'si no'?",op:["'Sino' introduce una condición negativa","'Si no' une dos elementos contrastados","'Sino' une dos elementos contrastados","No hay diferencia entre ambos"],r:2},
+];
+initSimulacro(PREGUNTAS);
+</script>
+</body>
+</html>
