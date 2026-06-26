@@ -168,3 +168,74 @@
   </style>
 </head>
 <body>
+
+  <!-- PAYWALL OVERLAY -->
+  <div id="paywallOverlay" class="show loading">
+    <div class="paywall-card" id="paywallCard">
+      <div id="stateLoading" style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1rem 0;">
+        <div style="width:48px;height:48px;border-radius:50%;border:4px solid rgba(99,102,241,0.15);border-top-color:#7c3aed;animation:spin .7s linear infinite;"></div>
+        <p style="margin:0;color:#64748b;font-size:.92rem;">Verificando acceso...</p>
+      </div>
+      <div id="stateLocked" style="display:none;flex-direction:column;align-items:center;gap:1.25rem;text-align:center;">
+        <div class="paywall-lock">🔒</div>
+        <span class="paywall-badge">🎓 Sección Pre-universitaria</span>
+        <h2 id="paywallTitle">Consigue tu plan para acceder</h2>
+        <p id="paywallDesc">La Pre-u requiere un plan de pago. Todos incluyen simulacros, resúmenes y rutas de estudio.</p>
+        <ul class="paywall-features">
+          <li><span class="feat-icon">📝</span> Simulacros tipo examen con corrección inmediata</li>
+          <li><span class="feat-icon">🗺️</span> Ruta de estudio personalizada</li>
+          <li><span class="feat-icon">⚡</span> Resúmenes express de todas las materias</li>
+          <li><span class="feat-icon">📊</span> Seguimiento de tu progreso</li>
+        </ul>
+        <a href="planes.html" class="paywall-cta" id="paywallCta">🚀 Conseguir mi plan</a>
+        <button class="paywall-back" onclick="history.back()">← Volver atrás</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.webp" alt="EduNovaOne" />
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+      <li><a href="preu.html" class="active">Pre-u</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <button class="uni-icon-btn" aria-label="Buscar">🔍</button>
+      <button class="uni-icon-btn" aria-label="Notificaciones">🔔</button>
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <!-- LAYOUT -->
+  <div class="preu-layout">
+    <!-- SIDEBAR -->
+    <aside class="preu-sidebar">
+      <div class="preu-sidebar-brand">
+        <img src="assets/Icono.webp" alt="EduNovaOne" />
+        <div><strong>Pre-universitaria</strong><br><span>EduNovaOne</span></div>
+      </div>
+      <nav>
+        <a href="#" onclick="showPanel('inicio');return false"       class="active" id="snav-inicio">      <span class="nav-icon">🏠</span> Inicio</a>
+        <a href="#" onclick="showPanel('materias');return false"     id="snav-materias">                   <span class="nav-icon">📚</span> Materias</a>
+        <a href="#" onclick="showPanel('simulacros');return false"   id="snav-simulacros">                 <span class="nav-icon">📝</span> Simulacros</a>
+        <a href="#" onclick="showPanel('ruta');return false"         id="snav-ruta">                       <span class="nav-icon">🗺️</span> Mi Ruta</a>
+        <a href="#" onclick="showPanel('cronograma');return false"   id="snav-cronograma">                 <span class="nav-icon">📅</span> Cronograma</a>
+        <a href="#" onclick="showPanel('ranking');return false"      id="snav-ranking">                    <span class="nav-icon">🏆</span> Ranking</a>
+        <a href="#" onclick="showPanel('diagnostico');return false"  id="snav-diagnostico">                <span class="nav-icon">🎯</span> Diagnóstico</a>
+        <a href="#" onclick="showPanel('consejos');return false"     id="snav-consejos">                   <span class="nav-icon">💡</span> Consejos</a>
+        <a href="perfil.html">                                                                             <span class="nav-icon">👤</span> Mi Perfil</a>
+      </nav>
+      <div class="sidebar-plan-card" id="sidebarPlanCard">
+        <strong>🚀 Plan Premium activo</strong>
+        <p>Tienes acceso completo a todos los recursos Pre-u.</p>
+        <a href="perfil.html">Ver mi plan →</a>
+      </div>
+    </aside>
