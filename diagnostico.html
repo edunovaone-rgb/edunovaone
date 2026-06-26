@@ -348,3 +348,119 @@
 
     grid.innerHTML = [...cards, ...pending].join('');
   }
+
+  function renderRadar(mapa) {
+    const svg    = document.getElementById('radarSvg');
+    const leyenda= document.getElementById('radarLeyenda');
+    const cx = 170, cy = 170, maxR = 130;
+    const N = AREAS_CONFIG.length;
+
+    // Ejes
+    let ejesHTML = '';
+    let labelsHTML = '';
+    AREAS_CONFIG.forEach((a, i) => {
+      const ang = (2 * Math.PI * i / N) - Math.PI / 2;
+      const x2  = cx + maxR * Math.cos(ang);
+      const y2  = cy + maxR * Math.sin(ang);
+      ejesHTML += `<line x1="${cx}" y1="${cy}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="rgba(99,102,241,0.12)" stroke-width="1.5"/>`;
+      // Anillos de referencia (25%, 50%, 75%, 100%)
+      const lx = cx + (maxR + 14) * Math.cos(ang);
+      const ly = cy + (maxR + 14) * Math.sin(ang);
+      labelsHTML += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="#4f46e5">${a.emoji} ${a.nombre}</text>`;
+    });
+
+    // Círculos de referencia
+    let anillosHTML = '';
+    [25, 50, 75, 100].forEach(pct => {
+      const r = maxR * pct / 100;
+      anillosHTML += `<circle cx="${cx}" cy="${cy}" r="${r.toFixed(1)}" fill="none" stroke="rgba(99,102,241,0.09)" stroke-width="1"/>`;
+      anillosHTML += `<text x="${(cx+5).toFixed(1)}" y="${(cy - r + 4).toFixed(1)}" font-size="9" fill="rgba(99,102,241,0.4)" font-weight="600">${pct}%</text>`;
+    });
+
+    // Polígono de datos
+    function getPoints(data) {
+      return AREAS_CONFIG.map((a, i) => {
+        const pct = (data[a.key] ? data[a.key].promedioPct : 0) / 100;
+        const ang  = (2 * Math.PI * i / N) - Math.PI / 2;
+        const r    = maxR * pct;
+        return `${(cx + r * Math.cos(ang)).toFixed(1)},${(cy + r * Math.sin(ang)).toFixed(1)}`;
+      }).join(' ');
+    }
+
+    const hayDatos = Object.keys(mapa).length > 0;
+    const polyPts  = hayDatos ? getPoints(mapa) : '';
+
+    svg.innerHTML = `
+      <defs>
+        <radialGradient id="radarGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="rgba(99,102,241,0.22)"/>
+          <stop offset="100%" stop-color="rgba(37,99,235,0.06)"/>
+        </radialGradient>
+      </defs>
+      ${anillosHTML}
+      ${ejesHTML}
+      ${hayDatos ? `<polygon points="${polyPts}" fill="url(#radarGrad)" stroke="#6366f1" stroke-width="2.5" stroke-linejoin="round"/>` : ''}
+      ${labelsHTML}
+    `;
+
+    leyenda.innerHTML = AREAS_CONFIG.map(a => {
+      const s   = mapa[a.key];
+      const pct = s ? s.promedioPct : 0;
+      const nv  = getNivel(pct);
+      return `<div style="display:flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:999px;background:${a.bg};font-size:.75rem;font-weight:700;color:#4f46e5">
+        ${a.emoji} ${a.nombre}: <span style="color:${nv.color}">${pct}%</span>
+      </div>`;
+    }).join('');
+  }
+
+  function renderHistorial(rs) {
+    const list = document.getElementById('histList');
+    if (!rs.length) {
+      list.innerHTML = `<div class="empty-state"><div style="font-size:2.5rem;margin-bottom:.5rem">📋</div><p>No hay evaluaciones registradas todavía.</p><a href="juegos.html" class="button button-primary">Ir a Juegos</a></div>`;
+      return;
+    }
+    const AREA_MAP = {};
+    AREAS_CONFIG.forEach(a => { AREA_MAP[a.key] = a; });
+    list.innerHTML = rs.slice(0, 50).map(r => {
+      const a  = AREA_MAP[r.area] || { emoji:'📝', nombre: r.areaNombre, from:'#6366f1', to:'#4f46e5', bg:'rgba(99,102,241,0.1)' };
+      const nv = getNivel(r.pct);
+      return `<div class="hist-row">
+        <div class="hist-icon">${a.emoji}</div>
+        <div class="hist-info">
+          <strong>${a.nombre} · ${r.tipoLabel}</strong>
+          <span>Grado ${r.grado}° · ${tiempoRel(r.ts)}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.25rem">
+          <span class="hist-pct" style="color:${nv.color}">${r.pct}%</span>
+          <span class="nivel-badge" style="background:${nv.bg};color:${nv.color};font-size:.68rem">${nv.emoji} ${nv.label}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ══════════════════════════════════════════════════
+  // TABS
+  // ══════════════════════════════════════════════════
+  function showTab(name) {
+    document.querySelectorAll('.diag-tab').forEach((t, i) => {
+      const names = ['resumen','radar','historial'];
+      t.classList.toggle('active', names[i] === name);
+    });
+    document.querySelectorAll('.diag-panel').forEach(p => {
+      p.classList.toggle('active', p.id === 'panel-' + name);
+    });
+  }
+
+  // ── Borrar historial ──
+  document.getElementById('btnLimpiar').addEventListener('click', () => {
+    if (confirm('¿Borrar todo el historial de evaluaciones? Esta acción no se puede deshacer.')) {
+      localStorage.removeItem(EVAL_KEY);
+      render();
+    }
+  });
+
+  // ── Init ──
+  render();
+  </script>
+</body>
+</html>
