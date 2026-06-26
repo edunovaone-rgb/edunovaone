@@ -626,3 +626,75 @@
           </div>
         </div>
       </div><!-- /panel-ranking -->
+
+      <!-- ══════════════════ PANEL: DIAGNÓSTICO ══════════════════ -->
+      <div class="preu-panel" id="panel-diagnostico">
+        <div class="preu-section">
+          <h2 class="preu-section-title">🎯 Diagnóstico de nivel</h2>
+          <div class="diagnostico-intro">
+            <h3>¿Por dónde empezar?</h3>
+            <p>Completa el diagnóstico inicial (15 min) y detectamos tus puntos fuertes y débiles por área. Luego te generamos una ruta de estudio personalizada para la universidad que eliges.</p>
+            <a href="diagnostico-preu.html" class="button button-primary" style="font-size:.9rem;padding:.7rem 1.5rem;">🚀 Hacer diagnóstico ahora</a>
+          </div>
+        </div>
+        <div class="preu-section">
+          <h2 class="preu-section-title">📊 Nivel actual por área</h2>
+          <p class="preu-section-subtitle">Actualizado automáticamente con tus resultados de simulacros.</p>
+          <div class="diag-areas" id="diagAreas">
+            <div class="diag-area-card"><div class="da-header"><span class="da-label">∑ Matemática</span><span class="da-pct" id="diag-mat">0%</span></div><div class="diag-bar"><div class="diag-fill" id="diagf-mat" style="width:0%"></div></div></div>
+            <div class="diag-area-card"><div class="da-header"><span class="da-label">⚗️ Ciencias</span><span class="da-pct" id="diag-cien">0%</span></div><div class="diag-bar"><div class="diag-fill" id="diagf-cien" style="width:0%"></div></div></div>
+            <div class="diag-area-card"><div class="da-header"><span class="da-label">🏛️ Historia</span><span class="da-pct" id="diag-his">0%</span></div><div class="diag-bar"><div class="diag-fill" id="diagf-his" style="width:0%"></div></div></div>
+            <div class="diag-area-card"><div class="da-header"><span class="da-label">📖 Comunicación</span><span class="da-pct" id="diag-com">0%</span></div><div class="diag-bar"><div class="diag-fill" id="diagf-com" style="width:0%"></div></div></div>
+            <div class="diag-area-card"><div class="da-header"><span class="da-label">🇬🇧 Inglés</span><span class="da-pct" id="diag-ing">0%</span></div><div class="diag-bar"><div class="diag-fill" id="diagf-ing" style="width:0%"></div></div></div>
+            <div class="diag-area-card"><div class="da-header"><span class="da-label">🧠 R. Verbal</span><span class="da-pct" id="diag-rv">0%</span></div><div class="diag-bar"><div class="diag-fill" id="diagf-rv" style="width:0%"></div></div></div>
+            <div class="diag-area-card"><div class="da-header"><span class="da-label">🔢 R. Matemático</span><span class="da-pct" id="diag-rm">0%</span></div><div class="diag-bar"><div class="diag-fill" id="diagf-rm" style="width:0%"></div></div></div>
+          </div>
+        </div>
+        <div class="preu-section" style="background:linear-gradient(135deg,rgba(245,158,11,0.07),rgba(239,68,68,0.04));border-color:rgba(245,158,11,0.2)">
+          <h2 class="preu-section-title" style="color:#d97706">⚠️ Áreas a reforzar</h2>
+          <p class="preu-section-subtitle">Basado en tus resultados, te recomendamos enfocarte en estas áreas primero.</p>
+          <div id="areasDebiles" style="display:grid;gap:.6rem">
+            <div style="background:#fff;border-radius:1rem;padding:.85rem 1rem;border:1px solid rgba(245,158,11,0.15);font-size:.88rem;color:var(--text-muted)">Completa el diagnóstico para ver tus áreas a reforzar.</div>
+          </div>
+        </div>
+      </div><!-- /panel-diagnostico -->
+
+      <!-- ══════════════════ PANEL: CONSEJOS ══════════════════ -->
+      <div class="preu-panel" id="panel-consejos">
+        <div class="preu-section">
+          <h2 class="preu-section-title">💡 Consejos para postulantes</h2>
+          <div class="tips-grid">
+            <div class="tip-card"><span class="tip-icon">📅</span><strong>Planifica con tiempo</strong><p>Empieza el repaso al menos 6 meses antes del examen. Divide las materias por semanas y sé constante.</p></div>
+            <div class="tip-card"><span class="tip-icon">🔁</span><strong>Repaso espaciado</strong><p>Estudia un tema, espera 2 días y vuelve a repasarlo. La memoria a largo plazo se forma con repetición espaciada.</p></div>
+            <div class="tip-card"><span class="tip-icon">📝</span><strong>Practica con simulacros</strong><p>Un simulacro semanal te entrena en tiempo y presión real. Analiza siempre tus errores antes del siguiente.</p></div>
+            <div class="tip-card"><span class="tip-icon">😴</span><strong>Duerme bien</strong><p>Las 8 horas de sueño consolidan lo aprendido. Estudiar cansado es casi inútil: prioriza el descanso.</p></div>
+            <div class="tip-card"><span class="tip-icon">🧠</span><strong>Técnica Pomodoro</strong><p>25 min de estudio enfocado + 5 min de pausa. Después de 4 bloques, toma 20 min. Rinde el doble.</p></div>
+            <div class="tip-card"><span class="tip-icon">📖</span><strong>Lee todos los días</strong><p>30 minutos de lectura diaria mejoran comprensión, vocabulario y velocidad lectora — crucial en el examen.</p></div>
+            <div class="tip-card"><span class="tip-icon">✍️</span><strong>Escribe lo que estudias</strong><p>Tomar apuntes a mano mejora la retención. Resume con tus palabras, no copies textual.</p></div>
+            <div class="tip-card"><span class="tip-icon">🎯</span><strong>Conoce tu universidad</strong><p>Descarga los exámenes de admisión de años anteriores de tu universidad objetivo y analiza el patrón.</p></div>
+            <div class="tip-card"><span class="tip-icon">🍎</span><strong>Cuida tu alimentación</strong><p>El cerebro necesita glucosa constante. Frutas, frutos secos y agua son tus aliados en época de estudio intensivo.</p></div>
+            <div class="tip-card"><span class="tip-icon">👥</span><strong>Estudia en grupo</strong><p>Explícale un tema a alguien más. Si puedes enseñarlo, lo dominaste. El grupo también te mantiene motivado.</p></div>
+            <div class="tip-card"><span class="tip-icon">📱</span><strong>Menos redes sociales</strong><p>Durante el período de repaso, limita redes a 30 min al día. Cada hora de distracción se paga en el examen.</p></div>
+            <div class="tip-card"><span class="tip-icon">🏃</span><strong>Haz ejercicio</strong><p>20-30 min de actividad física mejoran la oxigenación cerebral y reducen el estrés preexamen. No lo saltes.</p></div>
+          </div>
+        </div>
+
+        <!-- Universidades del Perú -->
+        <div class="preu-section">
+          <h2 class="preu-section-title">🏫 Universidades destino populares</h2>
+          <p class="preu-section-subtitle">Las más solicitadas por estudiantes en EduNovaOne.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem">
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">🔴</div><strong style="font-size:.9rem;color:var(--accent-strong)">UNMSM</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">San Marcos · Lima</div></div>
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">⚫</div><strong style="font-size:.9rem;color:var(--accent-strong)">UNI</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">Ingeniería · Lima</div></div>
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">🔵</div><strong style="font-size:.9rem;color:var(--accent-strong)">PUCP</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">Pontificia · Lima</div></div>
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">🟢</div><strong style="font-size:.9rem;color:var(--accent-strong)">UNSAAC</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">San Antonio · Cusco</div></div>
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">🟠</div><strong style="font-size:.9rem;color:var(--accent-strong)">UNSA</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">San Agustín · Arequipa</div></div>
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">🟣</div><strong style="font-size:.9rem;color:var(--accent-strong)">UNT</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">Trujillo</div></div>
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">🔷</div><strong style="font-size:.9rem;color:var(--accent-strong)">UP</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">del Pacífico · Lima</div></div>
+            <div style="background:#fafbff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.25rem;padding:1rem"><div style="font-size:1.3rem;margin-bottom:.4rem">🔶</div><strong style="font-size:.9rem;color:var(--accent-strong)">UDEP</strong><div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem">Piura</div></div>
+          </div>
+        </div>
+      </div><!-- /panel-consejos -->
+
+    </main>
+  </div><!-- /preu-layout -->
