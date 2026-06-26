@@ -252,61 +252,56 @@
     <!-- Panel: Diagnósticos -->
     <div class="preu-panel" id="panel-diagnosticos" role="tabpanel" aria-labelledby="tab-diagnosticos">
       <h2 class="section-title">Diagnósticos de nivel</h2>
-      <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1.25rem">Descubre tu nivel actual en cada materia y recibe un plan de estudio personalizado.</p>
+      <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1.25rem">Descubre tu nivel actual en cada materia. Cada evaluación que completes en Juegos queda registrada aquí automáticamente.</p>
+
+      <!-- Mini resumen dinámico -->
+      <div id="diagResumenMini" style="margin-bottom:1.5rem"></div>
+
       <div class="diag-list">
+
+        <div class="diag-card" style="background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(37,99,235,0.03));border-color:rgba(124,58,237,0.15)">
+          <div class="diag-icon">🩺</div>
+          <div class="diag-info">
+            <h4>Ver mi Diagnóstico Completo</h4>
+            <p>Accede a tu panel con gráfico radar, barras de progreso por materia e historial de evaluaciones.</p>
+          </div>
+          <a href="diagnostico.html" class="button button-primary diag-badge">Ver panel</a>
+        </div>
 
         <div class="diag-card">
           <div class="diag-icon">📐</div>
           <div class="diag-info">
-            <h4>Diagnóstico de Matemática</h4>
-            <p>Evalúa tu dominio en álgebra, geometría y funciones avanzadas. 15 preguntas · ~20 min.</p>
+            <h4>Practicar Matemática</h4>
+            <p>Quiz, fórmulas y más. Cada partida registra tu nivel automáticamente.</p>
           </div>
-          <a href="#" class="button button-primary diag-badge">Hacer test</a>
+          <a href="juego-matematica.html" class="button button-primary diag-badge">Ir a Juegos</a>
         </div>
 
         <div class="diag-card">
           <div class="diag-icon">🔬</div>
           <div class="diag-info">
-            <h4>Diagnóstico de Ciencias</h4>
-            <p>Biología molecular, física y química. Identifica tus brechas. 15 preguntas · ~20 min.</p>
+            <h4>Practicar Ciencias</h4>
+            <p>Biología molecular, física y química. Identifica tus brechas jugando.</p>
           </div>
-          <a href="#" class="button button-primary diag-badge">Hacer test</a>
+          <a href="juego-ciencia.html" class="button button-primary diag-badge">Ir a Juegos</a>
         </div>
 
         <div class="diag-card">
           <div class="diag-icon">📖</div>
           <div class="diag-info">
-            <h4>Diagnóstico de Comunicación</h4>
-            <p>Comprensión lectora, ortografía y producción textual. 10 preguntas · ~15 min.</p>
+            <h4>Practicar Comunicación</h4>
+            <p>Comprensión lectora, ortografía y producción textual.</p>
           </div>
-          <a href="#" class="button button-primary diag-badge">Hacer test</a>
+          <a href="juego-comunicacion.html" class="button button-primary diag-badge">Ir a Juegos</a>
         </div>
 
         <div class="diag-card">
           <div class="diag-icon">🌍</div>
           <div class="diag-info">
-            <h4>Diagnóstico de Historia y Economía</h4>
-            <p>Hechos del Perú contemporáneo y conceptos económicos básicos. 10 preguntas · ~15 min.</p>
+            <h4>Practicar Historia</h4>
+            <p>Hechos del Perú contemporáneo y conceptos económicos básicos.</p>
           </div>
-          <a href="#" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">🇬🇧</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Inglés</h4>
-            <p>Grammar, vocabulary y reading comprehension nivel B1–B2. 10 preguntas · ~15 min.</p>
-          </div>
-          <a href="#" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">🧠</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Filosofía</h4>
-            <p>Lógica, argumentación y conocimiento de los grandes filósofos. 10 preguntas · ~10 min.</p>
-          </div>
-          <a href="#" class="button button-primary diag-badge">Hacer test</a>
+          <a href="juego-historia.html" class="button button-primary diag-badge">Ir a Juegos</a>
         </div>
 
       </div>
