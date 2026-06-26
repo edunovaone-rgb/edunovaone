@@ -239,3 +239,68 @@
         <a href="perfil.html">Ver mi plan →</a>
       </div>
     </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="preu-main" id="mainContent">
+
+      <!-- ══════════════════ PANEL: INICIO ══════════════════ -->
+      <div class="preu-panel active" id="panel-inicio">
+        <section class="preu-hero">
+          <div class="preu-hero-text">
+            <p class="eyebrow">🎓 Pre-universitaria · EduNovaOne</p>
+            <h1>Tu camino a la universidad empieza aquí</h1>
+            <p>Simulacros, resúmenes intensivos y rutas personalizadas para que postules con confianza.</p>
+          </div>
+          <div class="preu-hero-emoji">🎓</div>
+        </section>
+
+        <div class="preu-stats">
+          <div class="preu-stat-card"><span class="stat-icon">📝</span><span class="stat-val">12</span><span class="stat-lbl">Simulacros</span></div>
+          <div class="preu-stat-card"><span class="stat-icon">📚</span><span class="stat-val">7</span><span class="stat-lbl">Áreas temáticas</span></div>
+          <div class="preu-stat-card"><span class="stat-icon">📖</span><span class="stat-val">84</span><span class="stat-lbl">Temas disponibles</span></div>
+          <div class="preu-stat-card"><span class="stat-icon">⭐</span><span class="stat-val" id="statPuntaje">—</span><span class="stat-lbl">Tu mejor puntaje</span></div>
+          <div class="preu-stat-card"><span class="stat-icon">🏆</span><span class="stat-val" id="statRanking">—</span><span class="stat-lbl">Tu posición</span></div>
+          <div class="preu-stat-card"><span class="stat-icon">🔥</span><span class="stat-val" id="statRacha">—</span><span class="stat-lbl">Racha de estudio</span></div>
+        </div>
+
+        <!-- Acceso rápido -->
+        <div class="preu-section">
+          <h2 class="preu-section-title">⚡ Acceso rápido</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.85rem">
+            <button onclick="showPanel('materias')" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.05));border:1.5px solid rgba(99,102,241,0.15);border-radius:1.25rem;padding:1.1rem;cursor:pointer;text-align:left;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 8px 20px rgba(99,102,241,0.15)'" onmouseout="this.style.boxShadow=''">
+              <div style="font-size:1.6rem;margin-bottom:.4rem">📚</div>
+              <div style="font-size:.9rem;font-weight:700;color:var(--accent-strong)">Estudiar materia</div>
+              <div style="font-size:.75rem;color:var(--text-muted)">7 áreas · 84 temas</div>
+            </button>
+            <button onclick="showPanel('simulacros')" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.05));border:1.5px solid rgba(99,102,241,0.15);border-radius:1.25rem;padding:1.1rem;cursor:pointer;text-align:left;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 8px 20px rgba(99,102,241,0.15)'" onmouseout="this.style.boxShadow=''">
+              <div style="font-size:1.6rem;margin-bottom:.4rem">📝</div>
+              <div style="font-size:.9rem;font-weight:700;color:var(--accent-strong)">Hacer simulacro</div>
+              <div style="font-size:.75rem;color:var(--text-muted)">12 exámenes tipo admisión</div>
+            </button>
+            <button onclick="showPanel('ruta')" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.05));border:1.5px solid rgba(99,102,241,0.15);border-radius:1.25rem;padding:1.1rem;cursor:pointer;text-align:left;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 8px 20px rgba(99,102,241,0.15)'" onmouseout="this.style.boxShadow=''">
+              <div style="font-size:1.6rem;margin-bottom:.4rem">🗺️</div>
+              <div style="font-size:.9rem;font-weight:700;color:var(--accent-strong)">Mi ruta de estudio</div>
+              <div style="font-size:.75rem;color:var(--text-muted)">Personalizada para ti</div>
+            </button>
+            <button onclick="showPanel('diagnostico')" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.05));border:1.5px solid rgba(99,102,241,0.15);border-radius:1.25rem;padding:1.1rem;cursor:pointer;text-align:left;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 8px 20px rgba(99,102,241,0.15)'" onmouseout="this.style.boxShadow=''">
+              <div style="font-size:1.6rem;margin-bottom:.4rem">🎯</div>
+              <div style="font-size:.9rem;font-weight:700;color:var(--accent-strong)">Diagnóstico</div>
+              <div style="font-size:.75rem;color:var(--text-muted)">Detecta tus puntos débiles</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Progreso general -->
+        <div class="preu-section">
+          <h2 class="preu-section-title">📊 Tu progreso Pre-u</h2>
+          <div style="display:grid;gap:.7rem" id="preuProgressHome">
+            <div class="dash-progress-item"><div class="dash-progress-label"><span>Matemática</span><span id="pp-mat">0%</span></div><div class="dash-progress-bar"><div class="dash-progress-fill" id="ppb-mat" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div></div>
+            <div class="dash-progress-item"><div class="dash-progress-label"><span>Ciencias</span><span id="pp-cien">0%</span></div><div class="dash-progress-bar"><div class="dash-progress-fill" id="ppb-cien" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div></div>
+            <div class="dash-progress-item"><div class="dash-progress-label"><span>Historia</span><span id="pp-his">0%</span></div><div class="dash-progress-bar"><div class="dash-progress-fill" id="ppb-his" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div></div>
+            <div class="dash-progress-item"><div class="dash-progress-label"><span>Comunicación</span><span id="pp-com">0%</span></div><div class="dash-progress-bar"><div class="dash-progress-fill" id="ppb-com" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div></div>
+            <div class="dash-progress-item"><div class="dash-progress-label"><span>Inglés</span><span id="pp-ing">0%</span></div><div class="dash-progress-bar"><div class="dash-progress-fill" id="ppb-ing" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div></div>
+            <div class="dash-progress-item"><div class="dash-progress-label"><span>Razonamiento Verbal</span><span id="pp-rv">0%</span></div><div class="dash-progress-bar"><div class="dash-progress-fill" id="ppb-rv" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div></div>
+            <div class="dash-progress-item"><div class="dash-progress-label"><span>Razonamiento Matemático</span><span id="pp-rm">0%</span></div><div class="dash-progress-bar"><div class="dash-progress-fill" id="ppb-rm" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div></div>
+          </div>
+        </div>
+      </div><!-- /panel-inicio -->
