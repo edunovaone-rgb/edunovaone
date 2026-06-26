@@ -1182,6 +1182,32 @@
       setBar('barComm',    'pctComm',    p.comunicacion ?? 0);
       setBar('barEnglish', 'pctEnglish', p.ingles       ?? 0);
 
+      // ── Bloque PRE-U en perfil ──
+      (function loadPerfilPreu() {
+        const rawPlan = (data.plan || 'free').toLowerCase().trim();
+        let plan = rawPlan;
+        if (rawPlan === 'trial' && data.trialFin) {
+          if (Date.now() > new Date(data.trialFin).getTime()) plan = 'free';
+        }
+        const PLANES_PREU = ['esencial', 'plus', 'elite', 'trial'];
+        if (!PLANES_PREU.includes(plan)) return;
+
+        const block = document.getElementById('perfilPreuBlock');
+        if (block) block.style.display = 'block';
+
+        const ps = data.preuStats || {};
+        const puntEl = document.getElementById('perf-preu-puntaje');
+        const rankEl = document.getElementById('perf-preu-ranking');
+        if (puntEl) puntEl.textContent = ps.mejorPuntaje != null ? ps.mejorPuntaje + '%' : '—';
+        if (rankEl) rankEl.textContent = ps.ranking != null ? '#' + ps.ranking : '—';
+
+        setBar('perfbar-preu-math', 'perf-preu-math', p.matematica   ?? 0);
+        setBar('perfbar-preu-sci',  'perf-preu-sci',  p.ciencia       ?? 0);
+        setBar('perfbar-preu-his',  'perf-preu-his',  p.historia      ?? 0);
+        setBar('perfbar-preu-com',  'perf-preu-com',  p.comunicacion  ?? 0);
+        setBar('perfbar-preu-eng',  'perf-preu-eng',  p.ingles        ?? 0);
+      })();
+
       // Actividad reciente
       const actList = document.querySelector('.activity-list');
       if (data.actividad && data.actividad.length > 0) {
