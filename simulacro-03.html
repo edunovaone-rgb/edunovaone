@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Simulacro 03 — Ciencias: Física y Química | EduNovaOne Pre-u</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="simulacro-shared.css"/>
+</head>
+<body>
+<nav class="uni-nav">
+  <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.webp" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+  <ul class="uni-nav-links"><li><a href="preu.html" class="active">Pre-u</a></li></ul>
+  <div class="uni-nav-actions">
+    <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+  </div>
+</nav>
+
+<div id="simApp" data-total="45" data-titulo="Simulacro Ciencias — Física y Química" data-num="03" data-color="#10b981"></div>
+
+<script src="simulacro-engine.js"></script>
+<script type="module" src="auth-nav.js"></script>
+<script>
+const PREGUNTAS = [
+  // ── FÍSICA (15) ──
+  {area:"Física",q:"Un objeto se lanza verticalmente hacia arriba con v₀ = 20 m/s. ¿Cuánto tarda en llegar a la altura máxima? (g = 10 m/s²)",op:["1 s","2 s","3 s","4 s"],r:1},
+  {area:"Física",q:"La Ley de Ohm establece que V =",op:["I/R","IR","I+R","I²R"],r:1},
+  {area:"Física",q:"¿Cuál es la unidad SI del trabajo?",op:["Watt","Newton","Joule","Pascal"],r:2},
+  {area:"Física",q:"Un cuerpo de 5 kg cae libremente durante 3 s. Su velocidad final es (g = 10 m/s²):",op:["10 m/s","15 m/s","30 m/s","50 m/s"],r:2},
+  {area:"Física",q:"La potencia de un motor que realiza 600 J en 10 s es:",op:["6 000 W","600 W","60 W","6 W"],r:2},
+  {area:"Física",q:"¿Cuál es la fuerza gravitacional entre dos masas de 10 kg separadas 1 m? (G ≈ 6,67×10⁻¹¹)",op:["6,67×10⁻⁹ N","6,67×10⁻¹¹ N","6,67×10⁻¹² N","6,67×10⁻⁸ N"],r:0},
+  {area:"Física",q:"Un resorte con constante k = 200 N/m se comprime 0,1 m. La energía potencial elástica almacenada es:",op:["1 J","2 J","10 J","20 J"],r:0},
+  {area:"Física",q:"La velocidad de una onda es v = λf. Si λ = 4 m y f = 50 Hz, v =",op:["12,5 m/s","200 m/s","54 m/s","46 m/s"],r:1},
+  {area:"Física",q:"¿Qué tipo de carga tienen los protones?",op:["Negativa","Nula","Positiva","Variable"],r:2},
+  {area:"Física",q:"La cantidad de movimiento (momento lineal) de un cuerpo de 3 kg a 10 m/s es:",op:["0,3 kg·m/s","3 kg·m/s","13 kg·m/s","30 kg·m/s"],r:3},
+  {area:"Física",q:"¿A qué temperatura (°C) el agua pura hierve a nivel del mar?",op:["90°","95°","100°","105°"],r:2},
+  {area:"Física",q:"En un circuito en serie con R₁ = 4 Ω y R₂ = 6 Ω, la resistencia equivalente es:",op:["2,4 Ω","5 Ω","10 Ω","24 Ω"],r:2},
+  {area:"Física",q:"¿Cuál es la energía cinética de un cuerpo de 2 kg a 6 m/s?",op:["6 J","12 J","24 J","36 J"],r:3},
+  {area:"Física",q:"El sonido no puede propagarse en:",op:["Sólidos","Líquidos","Gases","El vacío"],r:3},
+  {area:"Física",q:"La Primera Ley de Newton (Inercia) establece que un cuerpo en reposo permanecerá en reposo a menos que:",op:["Tenga masa variable","Una fuerza neta actúe sobre él","Cambie de temperatura","Se encuentre en el vacío"],r:1},
+
+  // ── QUÍMICA (15) ──
+  {area:"Química",q:"El número atómico del carbono es:",op:["6","8","12","14"],r:0},
+  {area:"Química",q:"¿Qué tipo de enlace se forma entre Na y Cl?",op:["Covalente polar","Covalente apolar","Metálico","Iónico"],r:3},
+  {area:"Química",q:"La reacción A + B → AB es un ejemplo de reacción:",op:["Descomposición","Combinación o síntesis","Desplazamiento","Doble desplazamiento"],r:1},
+  {area:"Química",q:"¿Cuántos moles hay en 44 g de CO₂? (M = 44 g/mol)",op:["0,5 mol","1 mol","2 mol","44 mol"],r:1},
+  {area:"Química",q:"El pH de una solución neutra a 25°C es:",op:["0","7","10","14"],r:1},
+  {area:"Química",q:"¿Cuál es el número de oxidación del azufre en H₂SO₄?",op:["+2","+4","+6","+8"],r:2},
+  {area:"Química",q:"La Ley de Conservación de la Masa establece que en una reacción química la masa de los reactivos es:",op:["Mayor que la de los productos","Menor que la de los productos","Igual a la de los productos","No tiene relación con los productos"],r:2},
+  {area:"Química",q:"¿Qué elemento tiene el símbolo 'Fe'?",op:["Flúor","Fósforo","Hierro","Francio"],r:2},
+  {area:"Química",q:"Un ácido fuerte en solución acuosa produce:",op:["Poca ionización","Ionización parcial","Ionización completa","Ninguna ionización"],r:2},
+  {area:"Química",q:"Los alcanos son hidrocarburos con enlaces:",op:["Triples","Dobles","Sencillos únicamente","Sencillos y dobles"],r:2},
+  {area:"Química",q:"¿Cuál de estas sustancias es un óxido básico?",op:["CO₂","SO₃","CaO","NO₂"],r:2},
+  {area:"Química",q:"La electronegatividad más alta corresponde al elemento:",op:["Oxígeno","Cloro","Nitrógeno","Flúor"],r:3},
+  {area:"Química",q:"¿Cuál es el producto de la reacción de neutralización entre HCl y NaOH?",op:["NaCl + H₂","NaH + Cl₂","NaCl + H₂O","NaO + HCl"],r:2},
+  {area:"Química",q:"El número de Avogadro es aproximadamente:",op:["6,02×10²³","3,01×10²³","9,03×10²³","1,67×10²⁴"],r:0},
+  {area:"Química",q:"¿En qué grupo de la tabla periódica se ubican los gases nobles?",op:["Grupo 1","Grupo 2","Grupo 17","Grupo 18"],r:3},
+];
+initSimulacro(PREGUNTAS);
+</script>
+</body>
+</html>
