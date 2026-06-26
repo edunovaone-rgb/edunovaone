@@ -1079,6 +1079,7 @@ function iniciarQuiz(titleEl, body, qCount, timerSecs) {
   }
 
   function reveal(elegida, q) {
+    quizAnswers[idx] = elegida;
     document.querySelectorAll('.quiz-opt').forEach((b, i) => {
       b.disabled = true;
       if (i === q.r) b.classList.add('correct');
