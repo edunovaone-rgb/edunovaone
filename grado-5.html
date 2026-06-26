@@ -81,6 +81,16 @@
       </div>
     </div>
 
+    <!-- Tabs de navegación -->
+    <nav class="preu-tabs" role="tablist" aria-label="Secciones Pre-u">
+      <button class="preu-tab active" role="tab" aria-selected="true"  aria-controls="panel-materias"    id="tab-materias"    onclick="switchTab('materias')">📚 Materias</button>
+      <button class="preu-tab"        role="tab" aria-selected="false" aria-controls="panel-simulacros"  id="tab-simulacros"  onclick="switchTab('simulacros')">📝 Simulacros</button>
+      <button class="preu-tab"        role="tab" aria-selected="false" aria-controls="panel-diagnosticos" id="tab-diagnosticos" onclick="switchTab('diagnosticos')">🩺 Diagnósticos</button>
+      <button class="preu-tab"        role="tab" aria-selected="false" aria-controls="panel-consejos"    id="tab-consejos"    onclick="switchTab('consejos')">💡 Consejos</button>
+    </nav>
+
+    <!-- Panel: Materias -->
+    <div class="preu-panel active" id="panel-materias" role="tabpanel" aria-labelledby="tab-materias">
     <h2 class="section-title">Materias disponibles</h2>
     <div class="materias-grid">
 
