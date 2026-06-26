@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Simulacro 01 — General Básico | EduNovaOne Pre-u</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="simulacro-shared.css"/>
+</head>
+<body>
+<nav class="uni-nav">
+  <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.webp" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+  <ul class="uni-nav-links">
+    <li><a href="preu.html" class="active">Pre-u</a></li>
+  </ul>
+  <div class="uni-nav-actions">
+    <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+  </div>
+</nav>
+
+<div id="simApp" data-total="60" data-titulo="Simulacro General — Nivel Básico" data-num="01" data-color="#7c3aed"></div>
+
+<script src="simulacro-engine.js"></script>
+<script type="module" src="auth-nav.js"></script>
+<script>
+const PREGUNTAS = [
+  // ── MATEMÁTICA (10) ──
+  {area:"Matemática",q:"Si f(x) = 3x² − 2x + 1, ¿cuál es f(−2)?",op:["17","9","−3","21"],r:0},
+  {area:"Matemática",q:"El logaritmo de base 2 de 64 es:",op:["5","6","7","8"],r:1},
+  {area:"Matemática",q:"¿Cuántos términos tiene la progresión aritmética: 4, 7, 10, …, 100?",op:["32","33","34","35"],r:2},
+  {area:"Matemática",q:"Una persona deposita S/ 5 000 al 8% de interés simple anual. ¿Cuánto recibe después de 3 años?",op:["S/ 6 000","S/ 6 200","S/ 1 200","S/ 5 400"],r:0},
+  {area:"Matemática",q:"La solución del sistema 2x + y = 7 y x − y = 2 es:",op:["x = 3, y = 1","x = 2, y = 3","x = 4, y = −1","x = 1, y = 5"],r:0},
+  {area:"Matemática",q:"¿Cuál es la suma de las raíces del polinomio x² − 5x + 6?",op:["6","−6","5","−5"],r:2},
+  {area:"Matemática",q:"Un triángulo tiene lados 5, 12 y 13. Su área es:",op:["30","32,5","60","65"],r:0},
+  {area:"Matemática",q:"Si log₁₀(x) = 2, entonces x =",op:["20","100","1 000","10"],r:1},
+  {area:"Matemática",q:"¿Cuánto es 5! (factorial de 5)?",op:["60","100","120","150"],r:2},
+  {area:"Matemática",q:"La pendiente de la recta que pasa por (1,2) y (3,8) es:",op:["2","3","4","6"],r:1},
+
+  // ── CIENCIAS (10) ──
+  {area:"Ciencias",q:"¿Qué partícula subatómica NO tiene carga eléctrica?",op:["Protón","Electrón","Neutrón","Ion"],r:2},
+  {area:"Ciencias",q:"La fotosíntesis ocurre principalmente en el:",op:["Mitocondria","Cloroplasto","Ribosoma","Núcleo"],r:1},
+  {area:"Ciencias",q:"La fórmula química del ácido sulfúrico es:",op:["HCl","H₂SO₃","H₂SO₄","H₂S"],r:2},
+  {area:"Ciencias",q:"La Segunda Ley de Newton establece que F =",op:["mv","ma","mg","mv²/r"],r:1},
+  {area:"Ciencias",q:"¿En qué unidad se mide la intensidad de corriente eléctrica?",op:["Voltio","Ohmio","Amperio","Watt"],r:2},
+  {area:"Ciencias",q:"El ADN está formado por cuatro bases nitrogenadas. ¿Cuál NO es una de ellas?",op:["Adenina","Uracilo","Citosina","Guanina"],r:1},
+  {area:"Ciencias",q:"¿Cuántos cromosomas tiene una célula somática humana normal?",op:["23","44","46","48"],r:2},
+  {area:"Ciencias",q:"La velocidad de la luz en el vacío es aproximadamente:",op:["3×10⁶ m/s","3×10⁸ m/s","3×10¹⁰ m/s","3×10⁴ m/s"],r:1},
+  {area:"Ciencias",q:"¿Qué tipo de enlace une los aminoácidos en una proteína?",op:["Iónico","Metálico","Peptídico","Covalente polar"],r:2},
+  {area:"Ciencias",q:"La respiración celular aeróbica se realiza en la:",op:["Vacuola","Membrana plasmática","Mitocondria","Lisosoma"],r:2},
+
+  // ── HISTORIA (8) ──
+  {area:"Historia",q:"¿En qué año se firmó la Independencia del Perú?",op:["1820","1821","1824","1826"],r:1},
+  {area:"Historia",q:"La batalla de Ayacucho (1824) fue decisiva porque:",op:["Inició la independencia peruana","Selló la independencia de Sudamérica","Liberó a México","Expulsó a los ingleses"],r:1},
+  {area:"Historia",q:"¿Quién fue el primer presidente constitucional del Perú?",op:["José de San Martín","Simón Bolívar","José de la Riva Agüero","José de la Mar"],r:2},
+  {area:"Historia",q:"El Informe Final de la CVR sobre el terrorismo en el Perú fue publicado en:",op:["1998","2000","2003","2005"],r:2},
+  {area:"Historia",q:"La Guerra del Pacífico (1879-1884) enfrentó al Perú y Bolivia contra:",op:["Argentina","Colombia","Chile","Ecuador"],r:2},
+  {area:"Historia",q:"¿Qué tratado puso fin a la Guerra del Pacífico para el Perú?",op:["Tratado de Ancón","Tratado de Lima","Tratado de Valparaíso","Tratado de Santiago"],r:0},
+  {area:"Historia",q:"El período del terrorismo en el Perú (Sendero Luminoso) se inició en:",op:["1978","1980","1985","1992"],r:1},
+  {area:"Historia",q:"El Bicentenario de la Independencia del Perú se celebró en:",op:["2019","2020","2021","2024"],r:2},
+
+  // ── COMUNICACIÓN (7) ──
+  {area:"Comunicación",q:"En la oración 'El estudiante aprobó el examen', el sujeto es:",op:["aprobó el examen","el examen","el estudiante","aprobó"],r:2},
+  {area:"Comunicación",q:"¿Qué figura literaria es 'sus dientes son perlas'?",op:["Metáfora","Comparación","Hipérbole","Metonimia"],r:0},
+  {area:"Comunicación",q:"La palabra 'psicología' al ser separada en sílabas resulta en:",op:["psi-co-lo-gí-a","psi-col-o-gí-a","psi-co-lo-gia","p-si-co-lo-gí-a"],r:0},
+  {area:"Comunicación",q:"¿Cuál de las siguientes es una oración bimembre?",op:["¡Fuego!","Llueve intensamente","La luna brilla","¡Silencio!"],r:2},
+  {area:"Comunicación",q:"El texto que busca convencer al lector de una postura es:",op:["Narrativo","Descriptivo","Argumentativo","Expositivo"],r:2},
+  {area:"Comunicación",q:"¿Qué obra pertenece a Mario Vargas Llosa?",op:["Cien años de soledad","El señor Presidente","La ciudad y los perros","Rayuela"],r:2},
+  {area:"Comunicación",q:"Un sinónimo de 'veraz' es:",op:["Falaz","Honesto","Engañoso","Parcial"],r:1},
+
+  // ── INGLÉS (5) ──
+  {area:"Inglés",q:"Choose the correct form: 'By the time she arrived, he ___ already left.'",op:["has","had","have","was"],r:1},
+  {area:"Inglés",q:"The word 'benevolent' means:",op:["malicious","indifferent","kind and generous","strict"],r:2},
+  {area:"Inglés",q:"Select the passive voice: 'The teacher explains the lesson.'",op:["The lesson is explained by the teacher.","The teacher is explained the lesson.","The lesson explains the teacher.","The lesson was explaining."],r:0},
+  {area:"Inglés",q:"Which sentence uses the third conditional correctly?",op:["If I study, I will pass.","If I studied, I would pass.","If I had studied, I would have passed.","If I would study, I pass."],r:2},
+  {area:"Inglés",q:"'She ___ to the gym every day last year.' Complete with the correct tense:",op:["goes","has gone","went","was going"],r:2},
+];
+initSimulacro(PREGUNTAS);
+</script>
+</body>
+</html>
