@@ -57,3 +57,109 @@
     .area-card-title { font-size: .97rem; font-weight: 700; color: var(--accent-strong); margin: 0; }
     .area-card-sub   { font-size: .78rem; color: var(--text-muted); margin: 0; }
   </style>
+
+  <style>
+    /* ── Barra de progreso ── */
+    .prog-bar-wrap { display: flex; align-items: center; gap: .75rem; }
+    .prog-bar-track {
+      flex: 1; height: 10px; border-radius: 999px;
+      background: rgba(99,102,241,0.08); overflow: hidden;
+    }
+    .prog-bar-fill {
+      height: 100%; border-radius: 999px;
+      transition: width .8s cubic-bezier(.4,0,.2,1);
+      background: linear-gradient(90deg, var(--bar-from), var(--bar-to));
+    }
+    .prog-bar-pct { font-size: .88rem; font-weight: 800; min-width: 3rem; text-align: right; }
+
+    /* ── Nivel badge ── */
+    .nivel-badge {
+      display: inline-flex; align-items: center; gap: .35rem;
+      padding: .25rem .75rem; border-radius: 999px;
+      font-size: .72rem; font-weight: 700;
+    }
+
+    /* ── Info fila ── */
+    .area-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .area-card-meta   { font-size: .78rem; color: var(--text-muted); }
+
+    /* ── Estado vacío ── */
+    .empty-state {
+      text-align: center; padding: 3rem 1.5rem;
+      background: rgba(99,102,241,0.04); border-radius: 1.75rem;
+      border: 2px dashed rgba(99,102,241,0.15);
+    }
+    .empty-state p { color: var(--text-muted); font-size: .92rem; margin: .5rem 0 1.25rem; }
+
+    /* ── Historial ── */
+    .hist-list { display: grid; gap: .75rem; }
+    .hist-row {
+      display: flex; align-items: center; gap: .75rem;
+      background: #fff; border: 1px solid rgba(99,102,241,0.08);
+      border-radius: 1.25rem; padding: .9rem 1.25rem;
+      box-shadow: 0 3px 10px rgba(15,23,42,0.04);
+    }
+    .hist-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .hist-info { flex: 1; min-width: 0; }
+    .hist-info strong { font-size: .9rem; font-weight: 700; color: var(--text); display: block; }
+    .hist-info span   { font-size: .78rem; color: var(--text-muted); }
+    .hist-pct { font-size: 1.1rem; font-weight: 800; }
+
+    /* ── Radar (polígono SVG) ── */
+    .radar-wrap { display: flex; justify-content: center; padding: 1rem 0; margin-bottom: 2rem; }
+    .radar-wrap svg { max-width: 340px; width: 100%; }
+
+    /* ── Tabs ── */
+    .diag-tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; background: rgba(99,102,241,0.05); padding: .45rem; border-radius: 1.15rem; }
+    .diag-tab { flex: 1; padding: .6rem .9rem; border: none; border-radius: .85rem; background: transparent; font-size: .87rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: background .2s, color .2s; }
+    .diag-tab:hover  { background: rgba(99,102,241,0.08); color: var(--accent-strong); }
+    .diag-tab.active { background: #fff; color: var(--accent-strong); box-shadow: 0 2px 10px rgba(99,102,241,0.13); }
+    .diag-panel      { display: none; }
+    .diag-panel.active { display: block; }
+  </style>
+</head>
+<body>
+  <nav class="uni-nav">
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.webp" alt="EduNovaOne"/>
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
+    <ul class="uni-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+    </ul>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <nav style="margin-bottom:1rem;font-size:.9rem">
+      <a href="grado-5.html#diagnosticos" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a 5° Secundaria</a>
+    </nav>
+
+    <div class="diag-hero">
+      <div class="diag-hero-badge">🩺</div>
+      <div class="diag-hero-info">
+        <h1>Mi Diagnóstico de Nivel</h1>
+        <p>Visualiza tu progreso, identifica tus fortalezas y detecta las áreas que necesitan más atención.</p>
+      </div>
+    </div>
+
+    <!-- Stats generales -->
+    <div class="diag-stats" id="statsBar">
+      <div class="diag-stat-pill"><strong id="statTotal">0</strong><span>Evaluaciones realizadas</span></div>
+      <div class="diag-stat-pill"><strong id="statPromedio">—</strong><span>Promedio general</span></div>
+      <div class="diag-stat-pill"><strong id="statMejorArea">—</strong><span>Área más fuerte</span></div>
+      <div class="diag-stat-pill"><strong id="statRacha">—</strong><span>Mejor racha</span></div>
+    </div>
+
+    <!-- Tabs -->
+    <nav class="diag-tabs" role="tablist">
+      <button class="diag-tab active" role="tab" onclick="showTab('resumen')">📊 Resumen</button>
+      <button class="diag-tab"        role="tab" onclick="showTab('radar')">🕸️ Radar</button>
+      <button class="diag-tab"        role="tab" onclick="showTab('historial')">📋 Historial</button>
+    </nav>
