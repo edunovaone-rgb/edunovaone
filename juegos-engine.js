@@ -4,6 +4,24 @@
    según data-area del #areaRoot en cada HTML.
    ══════════════════════════════════════════════════ */
 
+// ── Registro de evaluaciones (inline, sin import para compatibilidad) ──
+(function() {
+  const EVAL_KEY = 'enu_eval_resultados';
+  const EVAL_MAX = 200;
+  const AREA_NOMBRES = { matematica:'Matemática', ciencia:'Ciencias', historia:'Historia', comunicacion:'Comunicación', ingles:'Inglés', tecnologia:'Tecnología' };
+  const TIPO_LABELS  = { quiz:'Quiz Principal', quiz2:'Quiz Relámpago', vf:'Verdadero o Falso', ahorcado:'Ahorcado', relaciona:'Relaciona Columnas', ordenar:'Ordena los Pasos', memoria:'Memoria', flashcards:'Flashcards', formulas:'Completa la Fórmula' };
+  window._enuEvalRegistrar = function({ area, grado, tipo, score, scoreMax, correctas, total }) {
+    const pct = total > 0 ? Math.round((correctas / total) * 100) : (scoreMax > 0 ? Math.round((score / scoreMax) * 100) : 0);
+    const entrada = { id: `${area}-${grado}-${tipo}-${Date.now()}`, area, areaNombre: AREA_NOMBRES[area] || area, grado: Number(grado), tipo, tipoLabel: TIPO_LABELS[tipo] || tipo, score: Number(score), scoreMax: Number(scoreMax || 0), correctas: Number(correctas || 0), total: Number(total || 0), pct, ts: Date.now() };
+    try {
+      let arr = JSON.parse(localStorage.getItem(EVAL_KEY) || '[]');
+      arr.unshift(entrada);
+      if (arr.length > EVAL_MAX) arr = arr.slice(0, EVAL_MAX);
+      localStorage.setItem(EVAL_KEY, JSON.stringify(arr));
+    } catch(e) {}
+  };
+})();
+
 // ── Puntos ──────────────────────────────────────────
 const PUNTOS_KEY = 'enu_puntos_hoy';
 function getPuntos() {
