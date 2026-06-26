@@ -1238,6 +1238,9 @@ function iniciarVF(titleEl, body) {
   function finVF() {
     addPuntos(score);
     const pct = Math.round(score / (preguntas.length * 12) * 100);
+    if (typeof window._enuEvalRegistrar === 'function') {
+      window._enuEvalRegistrar({ area: AREA, grado: gradoSel, tipo: 'vf', score, scoreMax: preguntas.length * 12, correctas: vfAnswers.filter((a,i)=>a===preguntas[i].r).length, total: preguntas.length });
+    }
     body.innerHTML = `
       <div class="score-card">
         <div style="font-size:3rem;margin-bottom:.5rem">${pct>=70?'🏆':pct>=40?'👍':'📚'}</div>
