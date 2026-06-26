@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
+  <title>Diagnóstico de Nivel | EduNovaOne</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Variables de estado para anillos circulares ── */
+    .diag-ring { --pct: 0%; }
+
+    /* ── Hero ── */
+    .diag-hero {
+      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(37,99,235,0.05));
+      border-radius: 2rem; padding: 2rem; margin-bottom: 1.75rem;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .diag-hero-badge {
+      width: 5rem; height: 5rem; border-radius: 1.5rem;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff; font-size: 2rem; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .diag-hero-info h1 { margin: 0 0 .4rem; font-size: clamp(1.4rem,2.5vw,2rem); color: var(--accent-strong); }
+    .diag-hero-info p  { margin: 0; color: var(--text-muted); font-size: .95rem; }
+
+    /* ── Stat pills ── */
+    .diag-stats { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .diag-stat-pill {
+      background: #fff; border: 1px solid rgba(99,102,241,0.12);
+      border-radius: 1.25rem; padding: .7rem 1.25rem;
+      display: flex; flex-direction: column; gap: .15rem;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.05); flex: 1; min-width: 120px;
+    }
+    .diag-stat-pill strong { font-size: 1.5rem; font-weight: 800; color: var(--accent-strong); }
+    .diag-stat-pill span   { font-size: .78rem; color: var(--text-muted); font-weight: 600; }
+
+    /* ── Sección título ── */
+    .sec-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+
+    /* ── Tarjetas de materia (barras) ── */
+    .area-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+    .area-card {
+      background: #fff; border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 1.75rem; padding: 1.4rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.05);
+      display: flex; flex-direction: column; gap: .75rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .area-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(99,102,241,0.1); }
+    .area-card-header { display: flex; align-items: center; gap: .75rem; }
+    .area-card-icon {
+      width: 2.75rem; height: 2.75rem; border-radius: .9rem;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    }
+    .area-card-title { font-size: .97rem; font-weight: 700; color: var(--accent-strong); margin: 0; }
+    .area-card-sub   { font-size: .78rem; color: var(--text-muted); margin: 0; }
+  </style>
