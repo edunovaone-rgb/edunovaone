@@ -1195,6 +1195,9 @@ window.checkFormulas = () => {
     ? `✅ ¡Perfecto! ${ok}/${total} correctas. +${pts} pts`
     : `${ok}/${total} correctas. +${pts} pts. Las rojas son incorrectas.`;
   addPuntos(pts);
+  if (typeof window._enuEvalRegistrar === 'function') {
+    window._enuEvalRegistrar({ area: AREA, grado: gradoSel, tipo: 'formulas', score: pts, scoreMax: total * 8, correctas: ok, total });
+  }
 };
 
 // ══════════════════════════════════════════════════
