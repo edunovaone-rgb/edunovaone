@@ -1123,6 +1123,34 @@
             setBar('dpb-com',  'dp-com',  p.comunicacion  ?? 0);
             setBar('dpb-eng',  'dp-eng',  p.ingles        ?? 0);
 
+            // ── Bloque PRE-U ──
+            (function loadPreuBlock() {
+              const rawPlan = (d.plan || 'free').toLowerCase().trim();
+              let plan = rawPlan;
+              if (rawPlan === 'trial' && d.trialFin) {
+                if (Date.now() > new Date(d.trialFin).getTime()) plan = 'free';
+              }
+              const PLANES_PREU = ['esencial', 'plus', 'elite', 'trial'];
+              if (!PLANES_PREU.includes(plan)) return; // sin plan → no mostrar
+
+              const block = document.getElementById('dashPreuBlock');
+              if (block) block.style.display = 'block';
+
+              // Stats
+              const ps = d.preuStats || {};
+              const puntajeEl = document.getElementById('dp-preu-puntaje');
+              const rankingEl = document.getElementById('dp-preu-ranking');
+              if (puntajeEl) puntajeEl.textContent = ps.mejorPuntaje != null ? ps.mejorPuntaje + '%' : '—';
+              if (rankingEl) rankingEl.textContent = ps.ranking != null ? '#' + ps.ranking : '—';
+
+              // Barras PRE-U (mismas materias del progreso base)
+              setBar('dpb-preu-math', 'dp-preu-math', p.matematica   ?? 0);
+              setBar('dpb-preu-sci',  'dp-preu-sci',  p.ciencia       ?? 0);
+              setBar('dpb-preu-his',  'dp-preu-his',  p.historia      ?? 0);
+              setBar('dpb-preu-com',  'dp-preu-com',  p.comunicacion  ?? 0);
+              setBar('dpb-preu-eng',  'dp-preu-eng',  p.ingles        ?? 0);
+            })();
+
             // Actividad reciente
             if (d.actividad && d.actividad.length > 0) {
               document.getElementById('dashActivity').innerHTML = d.actividad.slice(0,3).map(a => `
