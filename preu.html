@@ -566,3 +566,63 @@
           </div>
         </div>
       </div><!-- /panel-ruta -->
+
+      <!-- ══════════════════ PANEL: CRONOGRAMA ══════════════════ -->
+      <div class="preu-panel" id="panel-cronograma">
+        <div class="preu-section">
+          <h2 class="preu-section-title">📅 Cronograma semanal</h2>
+          <p class="preu-section-subtitle">Tu plan de estudio para esta semana. Haz clic en un día para ver la tarea.</p>
+          <div class="crono-grid" id="cronoGrid">
+            <div class="crono-day activo" onclick="toggleCronoDay(this)"><div class="cd-name">Lun</div><div class="cd-emoji">∑</div><div class="cd-label">Matemática</div></div>
+            <div class="crono-day" onclick="toggleCronoDay(this)"><div class="cd-name">Mar</div><div class="cd-emoji">⚗️</div><div class="cd-label">Ciencias</div></div>
+            <div class="crono-day" onclick="toggleCronoDay(this)"><div class="cd-name">Mié</div><div class="cd-emoji">📖</div><div class="cd-label">Comunicación</div></div>
+            <div class="crono-day" onclick="toggleCronoDay(this)"><div class="cd-name">Jue</div><div class="cd-emoji">🏛️</div><div class="cd-label">Historia</div></div>
+            <div class="crono-day" onclick="toggleCronoDay(this)"><div class="cd-name">Vie</div><div class="cd-emoji">🇬🇧</div><div class="cd-label">Inglés</div></div>
+            <div class="crono-day" onclick="toggleCronoDay(this)"><div class="cd-name">Sáb</div><div class="cd-emoji">📝</div><div class="cd-label">Simulacro</div></div>
+            <div class="crono-day" onclick="toggleCronoDay(this)"><div class="cd-name">Dom</div><div class="cd-emoji">😴</div><div class="cd-label">Descanso</div></div>
+          </div>
+        </div>
+        <div class="preu-section" id="cronoDetalle">
+          <h2 class="preu-section-title">📌 Tarea del día seleccionado</h2>
+          <div id="cronoTarea" style="color:var(--text-muted);font-size:.9rem;line-height:1.7">
+            <strong style="color:var(--accent-strong)">Lunes — Matemática</strong><br>
+            · Repasar álgebra: ecuaciones cuadráticas (45 min)<br>
+            · Resolver 10 ejercicios de geometría plana (30 min)<br>
+            · Ver resumen de funciones en la Biblioteca (20 min)
+          </div>
+        </div>
+        <div class="preu-section" style="background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(37,99,235,0.03))">
+          <h2 class="preu-section-title">⏱️ Meta semanal</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.85rem">
+            <div style="background:#fff;border-radius:1.25rem;padding:1rem;border:1px solid rgba(99,102,241,0.12);text-align:center"><div style="font-size:1.5rem;font-weight:800;color:var(--accent-strong)">7h</div><div style="font-size:.75rem;color:var(--text-muted)">Meta de estudio</div></div>
+            <div style="background:#fff;border-radius:1.25rem;padding:1rem;border:1px solid rgba(99,102,241,0.12);text-align:center"><div id="cronoHorasHechas" style="font-size:1.5rem;font-weight:800;color:#059669">0h</div><div style="font-size:.75rem;color:var(--text-muted)">Registradas</div></div>
+            <div style="background:#fff;border-radius:1.25rem;padding:1rem;border:1px solid rgba(99,102,241,0.12);text-align:center"><div style="font-size:1.5rem;font-weight:800;color:var(--accent-strong)">1</div><div style="font-size:.75rem;color:var(--text-muted)">Simulacro esta sem.</div></div>
+          </div>
+        </div>
+      </div><!-- /panel-cronograma -->
+
+      <!-- ══════════════════ PANEL: RANKING ══════════════════ -->
+      <div class="preu-panel" id="panel-ranking">
+        <div class="preu-section">
+          <h2 class="preu-section-title">🏆 Ranking de simulacros</h2>
+          <p class="preu-section-subtitle">Top estudiantes por puntaje en simulacros completados esta semana.</p>
+          <div class="ranking-list" id="rankingList">
+            <div class="ranking-item"><div class="ranking-pos pos-1">🥇</div><div class="ranking-info"><strong>Carolina M.</strong><span>Lima · 8 simulacros</span></div><div class="ranking-score">97%</div></div>
+            <div class="ranking-item"><div class="ranking-pos pos-2">🥈</div><div class="ranking-info"><strong>Sebastián R.</strong><span>Arequipa · 6 simulacros</span></div><div class="ranking-score">95%</div></div>
+            <div class="ranking-item"><div class="ranking-pos pos-3">🥉</div><div class="ranking-info"><strong>Valeria T.</strong><span>Trujillo · 7 simulacros</span></div><div class="ranking-score">93%</div></div>
+            <div class="ranking-item"><div class="ranking-pos pos-n">4</div><div class="ranking-info"><strong>Diego F.</strong><span>Cusco · 5 simulacros</span></div><div class="ranking-score">91%</div></div>
+            <div class="ranking-item"><div class="ranking-pos pos-n">5</div><div class="ranking-info"><strong>Ana L.</strong><span>Piura · 6 simulacros</span></div><div class="ranking-score">89%</div></div>
+            <div class="ranking-item"><div class="ranking-pos pos-n">6</div><div class="ranking-info"><strong>Mateo C.</strong><span>Lima · 4 simulacros</span></div><div class="ranking-score">88%</div></div>
+            <div class="ranking-item"><div class="ranking-pos pos-n">7</div><div class="ranking-info"><strong>Luciana V.</strong><span>Ica · 5 simulacros</span></div><div class="ranking-score">86%</div></div>
+            <div class="ranking-item"><div class="ranking-pos pos-n">8</div><div class="ranking-info"><strong>Rodrigo P.</strong><span>Chiclayo · 3 simulacros</span></div><div class="ranking-score">84%</div></div>
+          </div>
+        </div>
+        <div class="preu-section" id="miPosicionCard" style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(37,99,235,0.05));border-color:rgba(99,102,241,0.2)">
+          <h2 class="preu-section-title">📍 Tu posición</h2>
+          <div style="display:flex;align-items:center;gap:1rem">
+            <div style="width:3.5rem;height:3.5rem;border-radius:1rem;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:1.3rem;font-weight:900;display:flex;align-items:center;justify-content:center" id="miRankPos">—</div>
+            <div><div style="font-size:1rem;font-weight:700;color:var(--accent-strong)" id="miRankNombre">Tu posición</div><div style="font-size:.82rem;color:var(--text-muted)">Haz más simulacros para subir en el ranking</div></div>
+            <div style="margin-left:auto;font-size:1.5rem;font-weight:900;color:var(--accent-strong)" id="miRankScore">—</div>
+          </div>
+        </div>
+      </div><!-- /panel-ranking -->
