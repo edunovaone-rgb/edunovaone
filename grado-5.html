@@ -4,68 +4,207 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if(location.pathname.endsWith(".html")){history.replaceState(null,"",location.pathname.slice(0,-5)+location.search+location.hash)}</script>
-  <meta name="description" content="Recursos educativos para 5° de Secundaria en EduNovaOne." />
-  <title>5° Secundaria | EduNovaOne</title>
+  <!-- Redirige a preu si el hash es #diagnosticos u otro sub-anchor -->
+  <script>
+    (function(){
+      const h = location.hash;
+      // Si viene de un link directo con hash, redirigir a preu con ese panel
+      const map = { '#diagnosticos': 'preu#panel-diagnostico', '#simulacros': 'preu#panel-simulacros', '#materias': 'preu#panel-materias', '#consejos': 'preu#panel-consejos' };
+      if (map[h]) { location.replace(map[h]); }
+    })();
+  </script>
+  <meta name="description" content="5° de Secundaria — el puente hacia la Pre-universitaria en EduNovaOne." />
+  <title>5° Secundaria → Pre-u | EduNovaOne</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .grado-hero{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(37,99,235,0.06));border-radius:2rem;padding:2rem;margin-bottom:1.75rem;display:flex;align-items:center;gap:1.5rem}
-    .grado-hero-badge{width:5rem;height:5rem;border-radius:1.5rem;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:2rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .grado-hero-info h1{margin:0 0 .4rem;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--accent-strong)}
-    .grado-hero-info p{margin:0;color:var(--text-muted);font-size:.95rem}
-    .materias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
-    .materia-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.75rem;padding:1.5rem;box-shadow:0 12px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.75rem;transition:transform .2s,box-shadow .2s}
-    .materia-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(99,102,241,0.12)}
-    .materia-icon{width:3rem;height:3rem;border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
-    .materia-card h3{margin:0;font-size:1rem;color:var(--accent-strong)}
-    .materia-card p{margin:0;font-size:.88rem;color:var(--text-muted);line-height:1.5;flex:1}
-    .materia-recursos{display:flex;gap:.5rem;flex-wrap:wrap}
-    .recurso-tag{padding:.25rem .7rem;border-radius:999px;font-size:.75rem;font-weight:700;background:rgba(99,102,241,0.08);color:var(--accent-strong)}
-    .materia-actions{display:flex;gap:.65rem;margin-top:.25rem}
-    .section-title{font-size:1.1rem;font-weight:700;color:var(--text);margin:0 0 1rem}
-    .tips-card{background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(37,99,235,0.04));border:1px solid rgba(16,185,129,0.15);border-radius:1.5rem;padding:1.4rem}
-    .tips-list{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
-    .tips-list li{display:flex;align-items:flex-start;gap:.65rem;font-size:.9rem;color:var(--text-muted)}
-    .tips-list li span{font-size:1rem;flex-shrink:0}
+    /* ── Hero bridge ── */
+    .bridge-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+      gap: 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .bridge-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
+      font-size: .8rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      padding: .4rem 1.1rem;
+      border-radius: 999px;
+    }
+    .bridge-icon-wrap {
+      position: relative;
+    }
+    .bridge-num {
+      width: 7rem; height: 7rem;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff; font-size: 3rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 16px 40px rgba(99,102,241,0.35);
+    }
+    .bridge-arrow {
+      position: absolute; right: -1.5rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem; opacity: .6;
+    }
+    .bridge-title {
+      margin: 0;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 900;
+      color: var(--accent-strong);
+      line-height: 1.2;
+    }
+    .bridge-sub {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+    }
 
-    /* ── Tabs ── */
-    .preu-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.75rem;background:rgba(99,102,241,0.05);padding:.5rem;border-radius:1.25rem}
-    .preu-tab{flex:1;min-width:120px;padding:.65rem 1rem;border:none;border-radius:.9rem;background:transparent;font-size:.9rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:background .2s,color .2s;display:flex;align-items:center;justify-content:center;gap:.45rem}
-    .preu-tab:hover{background:rgba(99,102,241,0.08);color:var(--accent-strong)}
-    .preu-tab.active{background:#fff;color:var(--accent-strong);box-shadow:0 2px 12px rgba(99,102,241,0.13)}
-    .preu-panel{display:none}
-    .preu-panel.active{display:block}
+    /* ── Features grid ── */
+    .bridge-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      text-align: left;
+    }
+    .bridge-feat {
+      background: #fff;
+      border: 1.5px solid rgba(99,102,241,0.12);
+      border-radius: 1.5rem;
+      padding: 1.25rem 1rem;
+      display: flex; flex-direction: column; gap: .55rem;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05);
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .bridge-feat:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(99,102,241,0.14);
+      border-color: rgba(99,102,241,0.3);
+    }
+    .bridge-feat .feat-icon { font-size: 1.6rem; }
+    .bridge-feat strong { font-size: .92rem; color: var(--accent-strong); font-weight: 700; }
+    .bridge-feat span { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
 
-    /* ── Simulacros ── */
-    .simulacros-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem}
-    .simulacro-card{background:#fff;border:1px solid rgba(99,102,241,0.1);border-radius:1.75rem;padding:1.5rem;box-shadow:0 8px 24px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:.75rem;transition:transform .2s,box-shadow .2s}
-    .simulacro-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(99,102,241,0.11)}
-    .sim-header{display:flex;align-items:center;gap:.75rem}
-    .sim-icon{width:2.75rem;height:2.75rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-    .sim-meta{display:flex;gap:.5rem;flex-wrap:wrap}
-    .sim-tag{padding:.2rem .65rem;border-radius:999px;font-size:.73rem;font-weight:700}
-    .sim-tag.preguntas{background:rgba(99,102,241,0.08);color:#4f46e5}
-    .sim-tag.tiempo{background:rgba(16,185,129,0.08);color:#059669}
-    .sim-tag.dificultad{background:rgba(239,68,68,0.08);color:#dc2626}
+    /* ── CTA ── */
+    .bridge-cta-group {
+      display: flex; gap: .85rem; flex-wrap: wrap; justify-content: center;
+    }
+    .bridge-cta-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
+      font-size: 1rem; font-weight: 800;
+      padding: .9rem 2rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(99,102,241,0.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .bridge-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(99,102,241,0.45); }
+    .bridge-cta-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #fff;
+      border: 2px solid rgba(99,102,241,0.25);
+      color: var(--accent-strong);
+      font-size: 1rem; font-weight: 700;
+      padding: .9rem 2rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .bridge-cta-secondary:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(99,102,241,0.12); }
 
-    /* ── Diagnósticos ── */
-    .diag-list{display:grid;gap:1rem}
-    .diag-card{background:#fff;border:1px solid rgba(59,130,246,0.1);border-radius:1.5rem;padding:1.35rem 1.5rem;box-shadow:0 6px 18px rgba(15,23,42,0.04);display:flex;align-items:center;gap:1rem;transition:transform .2s,box-shadow .2s}
-    .diag-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(99,102,241,0.09)}
-    .diag-icon{font-size:1.8rem;flex-shrink:0}
-    .diag-info{flex:1}
-    .diag-info h4{margin:0 0 .25rem;font-size:.97rem;color:var(--accent-strong);font-weight:700}
-    .diag-info p{margin:0;font-size:.85rem;color:var(--text-muted)}
-    .diag-badge{padding:.3rem .8rem;border-radius:999px;font-size:.75rem;font-weight:700;background:rgba(99,102,241,0.08);color:#4f46e5;white-space:nowrap}
+    /* ── Divider ── */
+    .bridge-divider {
+      width: 100%;
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--text-muted); font-size: .85rem;
+    }
+    .bridge-divider::before,
+    .bridge-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(99,102,241,0.1);
+    }
+
+    /* ── Areas funcionales ── */
+    .areas-section {
+      width: 100%;
+      text-align: left;
+    }
+    .areas-section h2 {
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--text); margin: 0 0 1rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: .85rem;
+    }
+    .area-card {
+      background: #fff;
+      border: 1.5px solid rgba(99,102,241,0.1);
+      border-radius: 1.5rem;
+      padding: 1.1rem 1rem;
+      display: flex; align-items: center; gap: .85rem;
+      text-decoration: none; color: inherit;
+      transition: transform .18s, box-shadow .18s, border-color .18s;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.04);
+    }
+    .area-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(99,102,241,0.13);
+      border-color: rgba(99,102,241,0.28);
+    }
+    .area-icon {
+      width: 2.6rem; height: 2.6rem; border-radius: .9rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .area-info strong { display: block; font-size: .9rem; font-weight: 700; color: var(--accent-strong); }
+    .area-info span { font-size: .76rem; color: var(--text-muted); }
+
+    /* ── Nota grado ── */
+    .grade-note {
+      background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(37,99,235,0.03));
+      border: 1.5px solid rgba(99,102,241,0.15);
+      border-radius: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: flex-start; gap: .85rem;
+      width: 100%; text-align: left;
+    }
+    .grade-note .note-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .05rem; }
+    .grade-note p { margin: 0; font-size: .88rem; color: var(--text-muted); line-height: 1.65; }
+    .grade-note strong { color: var(--text); }
   </style>
 </head>
 <body>
   <nav class="uni-nav">
-    <a href="index.html" class="uni-nav-brand"><img src="assets/Icono.webp" alt="EduNovaOne"/><div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div></a>
+    <a href="index.html" class="uni-nav-brand">
+      <img src="assets/Icono.webp" alt="EduNovaOne"/>
+      <div class="uni-nav-brand-text"><strong>EduNovaOne</strong></div>
+    </a>
     <ul class="uni-nav-links">
-      <li><a href="index.html">Inicio</a></li><li><a href="biblioteca.html" class="active">Biblioteca</a></li>
-      <li><a href="juegos.html">Juegos</a></li><li><a href="herramientas.html">Herramientas</a></li><li><a href="comunidad.html">Comunidad</a></li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="biblioteca.html" class="active">Biblioteca</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="herramientas.html">Herramientas</a></li>
+      <li><a href="comunidad.html">Comunidad</a></li>
+      <li><a href="preu.html">Pre-u</a></li>
     </ul>
-    <div class="uni-nav-actions"><a href="login.html" class="button button-primary" id="navAuthBtn" style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a></div>
+    <div class="uni-nav-actions">
+      <a href="login.html" class="button button-primary" id="navAuthBtn"
+         style="white-space:nowrap;font-size:.88rem;padding:.6rem 1.1rem;">Iniciar sesión</a>
+    </div>
   </nav>
 
   <main class="page-content">
@@ -73,348 +212,158 @@
       <a href="biblioteca.html" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a Biblioteca</a>
     </nav>
 
-    <div class="grado-hero">
-      <div class="grado-hero-badge">5°</div>
-      <div class="grado-hero-info">
-        <h1>5° de Secundaria</h1>
-        <p>El año final: prepárate para la universidad y tu proyecto de vida.</p>
-      </div>
-    </div>
+    <div class="bridge-wrap">
 
-    <!-- Tabs de navegación -->
-    <nav class="preu-tabs" role="tablist" aria-label="Secciones Pre-u">
-      <button class="preu-tab active" role="tab" aria-selected="true"  aria-controls="panel-materias"    id="tab-materias"    onclick="switchTab('materias')">📚 Materias</button>
-      <button class="preu-tab"        role="tab" aria-selected="false" aria-controls="panel-simulacros"  id="tab-simulacros"  onclick="switchTab('simulacros')">📝 Simulacros</button>
-      <button class="preu-tab"        role="tab" aria-selected="false" aria-controls="panel-diagnosticos" id="tab-diagnosticos" onclick="switchTab('diagnosticos')">🩺 Diagnósticos</button>
-      <button class="preu-tab"        role="tab" aria-selected="false" aria-controls="panel-consejos"    id="tab-consejos"    onclick="switchTab('consejos')">💡 Consejos</button>
-    </nav>
+      <!-- Badge -->
+      <span class="bridge-badge">🎓 Último año de secundaria</span>
 
-    <!-- Panel: Materias -->
-    <div class="preu-panel active" id="panel-materias" role="tabpanel" aria-labelledby="tab-materias">
-    <h2 class="section-title">Materias disponibles</h2>
-    <div class="materias-grid">
-
-      <div class="materia-card">
-        <div class="materia-icon" style="background:rgba(124,58,237,0.1)">📐</div>
-        <h3>Matemática</h3>
-        <p>Funciones avanzadas, límites y nociones de cálculo, números complejos, combinatoria y geometría analítica.</p>
-        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">6 temas</span></div>
-        <div class="materia-actions"><a href="tema-matematica-5.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      <!-- Icon -->
+      <div class="bridge-icon-wrap">
+        <div class="bridge-num">5°</div>
       </div>
 
-      <div class="materia-card">
-        <div class="materia-icon" style="background:rgba(16,185,129,0.1)">🔬</div>
-        <h3>Ciencia y Tecnología</h3>
-        <p>Biología molecular, cambio climático, equilibrio químico, electromagnetismo y termodinámica.</p>
-        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">5 temas</span></div>
-        <div class="materia-actions"><a href="tema-ciencias-5.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      <!-- Headline -->
+      <h1 class="bridge-title">5° de Secundaria es el puente a la universidad</h1>
+      <p class="bridge-sub">
+        Completaste los 4 años anteriores. Ahora el enfoque cambia: ya no es solo aprender por grado,
+        sino prepararte de verdad para postular. Todo lo que necesitas está en la sección <strong>Pre-u</strong>.
+      </p>
+
+      <!-- Nota informativa -->
+      <div class="grade-note">
+        <span class="note-icon">💡</span>
+        <p>
+          <strong>¿Por qué no hay "materias de 5° grado" aquí?</strong><br>
+          El contenido de 5° ya no encaja en el formato por grados — el foco real es la admisión universitaria.
+          Los temas de Matemática, Ciencias, Historia, Comunicación, Inglés y Filosofía los encuentras
+          organizados por área temática en la sección Pre-u, con simulacros y diagnósticos incluidos.
+        </p>
       </div>
 
-      <div class="materia-card">
-        <div class="materia-icon" style="background:rgba(239,68,68,0.1)">📖</div>
-        <h3>Comunicación</h3>
-        <p>Lingüística textual, oratoria y debate, literatura posmoderna, proyecto de vida y comprensión lectora avanzada.</p>
-        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">5 temas</span></div>
-        <div class="materia-actions"><a href="tema-comunicacion-5.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      <!-- Features del Pre-u -->
+      <div class="bridge-features">
+        <div class="bridge-feat">
+          <span class="feat-icon">📝</span>
+          <strong>Simulacros</strong>
+          <span>Exámenes tipo admisión con corrección automática y puntaje.</span>
+        </div>
+        <div class="bridge-feat">
+          <span class="feat-icon">🎯</span>
+          <strong>Diagnóstico</strong>
+          <span>Descubre tus puntos fuertes y débiles por área en 15 minutos.</span>
+        </div>
+        <div class="bridge-feat">
+          <span class="feat-icon">📚</span>
+          <strong>6 Áreas</strong>
+          <span>Matemática, Ciencias, Historia, Comunicación, Inglés y Aptitud Verbal.</span>
+        </div>
+        <div class="bridge-feat">
+          <span class="feat-icon">📊</span>
+          <strong>Progreso</strong>
+          <span>Seguimiento de tu avance y ruta de estudio personalizada.</span>
+        </div>
+        <div class="bridge-feat">
+          <span class="feat-icon">💡</span>
+          <strong>Consejos</strong>
+          <span>Estrategias reales para el examen y la planificación previa.</span>
+        </div>
+        <div class="bridge-feat">
+          <span class="feat-icon">🔁</span>
+          <strong>Repaso</strong>
+          <span>Resúmenes y ejercicios por tema para reforzar lo que más necesitas.</span>
+        </div>
       </div>
 
-      <div class="materia-card">
-        <div class="materia-icon" style="background:rgba(217,119,6,0.1)">🌍</div>
-        <h3>Historia, Geografía y Economía</h3>
-        <p>Perú siglo XXI, terrorismo y CVR, economía actual, geopolítica y desarrollo sostenible.</p>
-        <div class="materia-recursos"><span class="recurso-tag">Libro</span><span class="recurso-tag">5 temas</span></div>
-        <div class="materia-actions"><a href="tema-historia-5.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
+      <!-- CTAs -->
+      <div class="bridge-cta-group">
+        <a href="preu.html" class="bridge-cta-primary">🚀 Ir a Pre-universitaria</a>
+        <a href="diagnostico.html" class="bridge-cta-secondary">🩺 Hacer diagnóstico</a>
       </div>
 
-      <div class="materia-card">
-        <div class="materia-icon" style="background:rgba(37,99,235,0.1)">🇬🇧</div>
-        <h3>Inglés</h3>
-        <p>Condicionales mixtos, inglés académico, inglés de negocios, literatura en inglés y preparación B2.</p>
-        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">5 temas</span></div>
-        <div class="materia-actions"><a href="tema-ingles-5.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
-      </div>
+      <div class="bridge-divider">o explora las áreas funcionales</div>
 
-      <div class="materia-card">
-        <div class="materia-icon" style="background:rgba(67,56,202,0.1)">🧠</div>
-        <h3>Filosofía / PFRH</h3>
-        <p>Introducción a la filosofía, grandes filósofos, ética y moral, lógica formal y ciudadanía democrática.</p>
-        <div class="materia-recursos"><span class="recurso-tag">PDF</span><span class="recurso-tag">5 temas</span></div>
-        <div class="materia-actions"><a href="tema-filosofia-5.html" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Ver temas</a></div>
-      </div>
+      <!-- Áreas funcionales -->
+      <div class="areas-section">
+        <h2>⚡ Áreas de la plataforma</h2>
+        <div class="areas-grid">
 
-    </div><!-- /materias-grid -->
-    </div><!-- /panel-materias -->
-
-    <!-- Panel: Simulacros -->
-    <div class="preu-panel" id="panel-simulacros" role="tabpanel" aria-labelledby="tab-simulacros">
-      <h2 class="section-title">Simulacros de examen</h2>
-      <div class="simulacros-grid">
-
-        <div class="simulacro-card">
-          <div class="sim-header">
-            <div class="sim-icon" style="background:rgba(99,102,241,0.1)">📐</div>
-            <div>
-              <h3 style="margin:0;font-size:.97rem;color:var(--accent-strong)">Simulacro de Matemática</h3>
-              <p style="margin:.15rem 0 0;font-size:.83rem;color:var(--text-muted)">Funciones, geometría y cálculo</p>
+          <a href="biblioteca.html" class="area-card">
+            <div class="area-icon" style="background:rgba(99,102,241,0.1)">📚</div>
+            <div class="area-info">
+              <strong>Biblioteca</strong>
+              <span>Libros y recursos por grado y materia</span>
             </div>
-          </div>
-          <div class="sim-meta">
-            <span class="sim-tag preguntas">30 preguntas</span>
-            <span class="sim-tag tiempo">⏱ 45 min</span>
-            <span class="sim-tag dificultad">Avanzado</span>
-          </div>
-          <div class="materia-actions"><a href="#" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Iniciar</a></div>
-        </div>
+          </a>
 
-        <div class="simulacro-card">
-          <div class="sim-header">
-            <div class="sim-icon" style="background:rgba(16,185,129,0.1)">🔬</div>
-            <div>
-              <h3 style="margin:0;font-size:.97rem;color:var(--accent-strong)">Simulacro de Ciencias</h3>
-              <p style="margin:.15rem 0 0;font-size:.83rem;color:var(--text-muted)">Biología, química y física</p>
+          <a href="preu.html#panel-simulacros" class="area-card">
+            <div class="area-icon" style="background:rgba(16,185,129,0.1)">📝</div>
+            <div class="area-info">
+              <strong>Simulacros</strong>
+              <span>Exámenes tipo admisión con puntaje</span>
             </div>
-          </div>
-          <div class="sim-meta">
-            <span class="sim-tag preguntas">25 preguntas</span>
-            <span class="sim-tag tiempo">⏱ 40 min</span>
-            <span class="sim-tag dificultad">Avanzado</span>
-          </div>
-          <div class="materia-actions"><a href="#" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Iniciar</a></div>
-        </div>
+          </a>
 
-        <div class="simulacro-card">
-          <div class="sim-header">
-            <div class="sim-icon" style="background:rgba(239,68,68,0.1)">📖</div>
-            <div>
-              <h3 style="margin:0;font-size:.97rem;color:var(--accent-strong)">Simulacro de Comunicación</h3>
-              <p style="margin:.15rem 0 0;font-size:.83rem;color:var(--text-muted)">Comprensión lectora y lingüística</p>
+          <a href="diagnostico.html" class="area-card">
+            <div class="area-icon" style="background:rgba(124,58,237,0.1)">🩺</div>
+            <div class="area-info">
+              <strong>Diagnósticos</strong>
+              <span>Tests de nivel por materia</span>
             </div>
-          </div>
-          <div class="sim-meta">
-            <span class="sim-tag preguntas">25 preguntas</span>
-            <span class="sim-tag tiempo">⏱ 40 min</span>
-            <span class="sim-tag dificultad">Medio</span>
-          </div>
-          <div class="materia-actions"><a href="#" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Iniciar</a></div>
-        </div>
+          </a>
 
-        <div class="simulacro-card">
-          <div class="sim-header">
-            <div class="sim-icon" style="background:rgba(217,119,6,0.1)">🌍</div>
-            <div>
-              <h3 style="margin:0;font-size:.97rem;color:var(--accent-strong)">Simulacro de Historia</h3>
-              <p style="margin:.15rem 0 0;font-size:.83rem;color:var(--text-muted)">Perú siglo XXI y economía</p>
+          <a href="juegos.html" class="area-card">
+            <div class="area-icon" style="background:rgba(245,158,11,0.1)">🎮</div>
+            <div class="area-info">
+              <strong>Juegos</strong>
+              <span>Aprende jugando, retos y rankings</span>
             </div>
-          </div>
-          <div class="sim-meta">
-            <span class="sim-tag preguntas">20 preguntas</span>
-            <span class="sim-tag tiempo">⏱ 30 min</span>
-            <span class="sim-tag dificultad">Medio</span>
-          </div>
-          <div class="materia-actions"><a href="#" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Iniciar</a></div>
-        </div>
+          </a>
 
-        <div class="simulacro-card">
-          <div class="sim-header">
-            <div class="sim-icon" style="background:rgba(37,99,235,0.1)">🇬🇧</div>
-            <div>
-              <h3 style="margin:0;font-size:.97rem;color:var(--accent-strong)">Simulacro de Inglés</h3>
-              <p style="margin:.15rem 0 0;font-size:.83rem;color:var(--text-muted)">Nivel B2 — inglés académico</p>
+          <a href="herramientas.html" class="area-card">
+            <div class="area-icon" style="background:rgba(239,68,68,0.1)">🛠️</div>
+            <div class="area-info">
+              <strong>Herramientas</strong>
+              <span>Calculadoras, convertidores y más</span>
             </div>
-          </div>
-          <div class="sim-meta">
-            <span class="sim-tag preguntas">20 preguntas</span>
-            <span class="sim-tag tiempo">⏱ 30 min</span>
-            <span class="sim-tag dificultad">Avanzado</span>
-          </div>
-          <div class="materia-actions"><a href="#" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Iniciar</a></div>
-        </div>
+          </a>
 
-        <div class="simulacro-card">
-          <div class="sim-header">
-            <div class="sim-icon" style="background:rgba(67,56,202,0.1)">🧠</div>
-            <div>
-              <h3 style="margin:0;font-size:.97rem;color:var(--accent-strong)">Simulacro de Filosofía</h3>
-              <p style="margin:.15rem 0 0;font-size:.83rem;color:var(--text-muted)">Lógica formal y ética</p>
+          <a href="comunidad.html" class="area-card">
+            <div class="area-icon" style="background:rgba(6,182,212,0.1)">👥</div>
+            <div class="area-info">
+              <strong>Comunidad</strong>
+              <span>Foros, grupos y debate entre estudiantes</span>
             </div>
-          </div>
-          <div class="sim-meta">
-            <span class="sim-tag preguntas">20 preguntas</span>
-            <span class="sim-tag tiempo">⏱ 25 min</span>
-            <span class="sim-tag dificultad">Medio</span>
-          </div>
-          <div class="materia-actions"><a href="#" class="button button-primary" style="font-size:.85rem;padding:.55rem 1rem;">Iniciar</a></div>
-        </div>
+          </a>
 
+          <a href="preu.html#panel-materias" class="area-card">
+            <div class="area-icon" style="background:rgba(168,85,247,0.1)">🎓</div>
+            <div class="area-info">
+              <strong>Pre-u</strong>
+              <span>Repaso intensivo para la admisión</span>
+            </div>
+          </a>
+
+          <a href="perfil.html" class="area-card">
+            <div class="area-icon" style="background:rgba(20,184,166,0.1)">👤</div>
+            <div class="area-info">
+              <strong>Mi Perfil</strong>
+              <span>Historial, progreso y configuración</span>
+            </div>
+          </a>
+
+        </div>
       </div>
-    </div><!-- /panel-simulacros -->
 
-    <!-- Panel: Diagnósticos -->
-    <div class="preu-panel" id="panel-diagnosticos" role="tabpanel" aria-labelledby="tab-diagnosticos">
-      <h2 class="section-title">Diagnósticos de nivel</h2>
-      <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1.25rem">Descubre tu nivel actual en cada materia. Cada evaluación que completes en Juegos queda registrada aquí automáticamente.</p>
-
-      <!-- Mini resumen dinámico -->
-      <div id="diagResumenMini" style="margin-bottom:1.5rem"></div>
-
-      <div class="diag-list">
-
-        <div class="diag-card" style="background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(37,99,235,0.03));border-color:rgba(124,58,237,0.15)">
-          <div class="diag-icon">🩺</div>
-          <div class="diag-info">
-            <h4>Ver mi Diagnóstico Completo</h4>
-            <p>Accede a tu panel con gráfico radar, barras de progreso por materia e historial de evaluaciones.</p>
-          </div>
-          <a href="diagnostico.html" class="button button-primary diag-badge">Ver panel</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">📐</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Matemática</h4>
-            <p>Álgebra, geometría, estadística y funciones. 15 preguntas · 30s cada una.</p>
-          </div>
-          <a href="diagnostico-matematica.html" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">🔬</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Ciencias</h4>
-            <p>Biología, química, física y ecología. 15 preguntas · 30s cada una.</p>
-          </div>
-          <a href="diagnostico-ciencias.html" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">📖</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Comunicación</h4>
-            <p>Comprensión lectora, gramática y literatura. 15 preguntas · 30s cada una.</p>
-          </div>
-          <a href="diagnostico-comunicacion.html" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">🌍</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Historia</h4>
-            <p>Historia del Perú, independencia y siglo XX. 15 preguntas · 30s cada una.</p>
-          </div>
-          <a href="diagnostico-historia.html" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">🇬🇧</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Inglés</h4>
-            <p>Grammar, vocabulary y reading nivel B1–B2. 15 preguntas · 30s cada una.</p>
-          </div>
-          <a href="diagnostico-ingles.html" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-        <div class="diag-card">
-          <div class="diag-icon">💻</div>
-          <div class="diag-info">
-            <h4>Diagnóstico de Tecnología</h4>
-            <p>Hardware, programación, redes e IA. 15 preguntas · 30s cada una.</p>
-          </div>
-          <a href="diagnostico-tecnologia.html" class="button button-primary diag-badge">Hacer test</a>
-        </div>
-
-      </div>
-    </div><!-- /panel-diagnosticos -->
-
-    <!-- Panel: Consejos -->
-    <div class="preu-panel" id="panel-consejos" role="tabpanel" aria-labelledby="tab-consejos">
-      <h2 class="section-title">Consejos para Pre-u</h2>
-      <div class="tips-card">
-        <h3 class="section-title" style="margin-bottom:.85rem">💡 Consejos para 5° de Secundaria</h3>
-        <ul class="tips-list">
-          <li><span>🎓</span>Define tu vocación: investiga las carreras universitarias que te interesan y sus requisitos de ingreso.</li>
-          <li><span>📝</span>Practica con exámenes de admisión de años anteriores — es la mejor preparación posible.</li>
-          <li><span>🧠</span>Estudia filosofía con seriedad — desarrolla tu pensamiento crítico que te será útil toda la vida.</li>
-          <li><span>🌍</span>El bicentenario del Perú y los temas actuales son frecuentes en exámenes de admisión.</li>
-          <li><span>🇬🇧</span>Apunta al nivel B2 de inglés — muchas universidades lo requieren como condición de egreso.</li>
-          <li><span>💡</span>Desarrolla tu proyecto de vida: metas claras te dan dirección y motivación para los exámenes.</li>
-          <li><span>⏰</span>Organiza tu tiempo con bloques de estudio de 45–50 min y descansos de 10 min (técnica Pomodoro).</li>
-          <li><span>📊</span>Lleva un registro de tus simulacros para identificar los temas en los que necesitas reforzar.</li>
-          <li><span>🤝</span>Forma grupos de estudio: explicar un tema a otros consolida tu propio aprendizaje.</li>
-          <li><span>🌙</span>Duerme mínimo 7–8 horas la noche antes del examen — el descanso mejora la retención.</li>
-        </ul>
-      </div>
-    </div><!-- /panel-consejos -->
+    </div><!-- /bridge-wrap -->
   </main>
 
   <footer class="site-footer">
     <div class="footer-actions">
       <a href="grado-4.html" class="button button-secondary">← 4° Secundaria</a>
-      <a href="biblioteca.html" class="button button-primary">Biblioteca →</a>
+      <a href="preu.html" class="button button-primary">Pre-universitaria →</a>
     </div>
   </footer>
 
   <script type="module" src="auth-nav.js"></script>
-  <script>
-    function switchTab(name) {
-      document.querySelectorAll('.preu-tab').forEach(t => {
-        const active = t.id === 'tab-' + name;
-        t.classList.toggle('active', active);
-        t.setAttribute('aria-selected', active);
-      });
-      document.querySelectorAll('.preu-panel').forEach(p => {
-        p.classList.toggle('active', p.id === 'panel-' + name);
-      });
-    }
-    // Restaurar pestaña desde URL hash si existe
-    const hash = location.hash.replace('#','');
-    if (['materias','simulacros','diagnosticos','consejos'].includes(hash)) switchTab(hash);
-
-    // ── Mini resumen de diagnóstico ──────────────────────────────────
-    (function renderDiagMini() {
-      const EVAL_KEY = 'enu_eval_resultados';
-      const AREAS = [
-        { key:'matematica',   nombre:'Matemática',   emoji:'📐', from:'#7c3aed', to:'#6d28d9' },
-        { key:'ciencia',      nombre:'Ciencias',     emoji:'🔬', from:'#10b981', to:'#059669' },
-        { key:'comunicacion', nombre:'Comunicación', emoji:'📖', from:'#ef4444', to:'#dc2626' },
-        { key:'historia',     nombre:'Historia',     emoji:'🌍', from:'#f59e0b', to:'#d97706' },
-        { key:'ingles',       nombre:'Inglés',       emoji:'🇬🇧', from:'#3b82f6', to:'#2563eb' },
-        { key:'tecnologia',   nombre:'Tecnología',   emoji:'💻', from:'#8b5cf6', to:'#7c3aed' },
-      ];
-      function getNv(p){ if(p>=85)return{c:'#10b981',e:'🏆',l:'Excelente'}; if(p>=70)return{c:'#3b82f6',e:'👍',l:'Bueno'}; if(p>=50)return{c:'#f59e0b',e:'📚',l:'Regular'}; if(p>=30)return{c:'#ef4444',e:'⚠️',l:'Mejorable'}; return{c:'#6b7280',e:'🌱',l:'Inicial'}; }
-      try {
-        const rs = JSON.parse(localStorage.getItem(EVAL_KEY)||'[]');
-        if (!rs.length) return;
-        const mapa = {};
-        rs.forEach(r => {
-          if(!mapa[r.area]){mapa[r.area]={suma:0,n:0,mejor:0};}
-          mapa[r.area].suma+=r.pct; mapa[r.area].n++;
-          if(r.pct>mapa[r.area].mejor) mapa[r.area].mejor=r.pct;
-        });
-        const areasConDatos = AREAS.filter(a=>mapa[a.key]);
-        if (!areasConDatos.length) return;
-        const el = document.getElementById('diagResumenMini');
-        el.innerHTML = `<div style="background:#fff;border:1px solid rgba(99,102,241,0.1);border-radius:1.5rem;padding:1.25rem 1.5rem;box-shadow:0 6px 18px rgba(15,23,42,0.04)">
-          <p style="margin:0 0 .85rem;font-size:.88rem;font-weight:700;color:var(--accent-strong)">📊 Tu progreso actual</p>
-          <div style="display:grid;gap:.6rem">`+
-          areasConDatos.map(a=>{
-            const s=mapa[a.key], avg=Math.round(s.suma/s.n), nv=getNv(avg);
-            return `<div style="display:flex;align-items:center;gap:.75rem">
-              <span style="font-size:1.1rem;flex-shrink:0">${a.emoji}</span>
-              <span style="font-size:.82rem;font-weight:600;color:var(--text);min-width:110px">${a.nombre}</span>
-              <div style="flex:1;height:8px;border-radius:999px;background:rgba(99,102,241,0.08);overflow:hidden">
-                <div style="height:100%;border-radius:999px;width:${avg}%;background:linear-gradient(90deg,${a.from},${a.to});transition:width .8s"></div>
-              </div>
-              <span style="font-size:.82rem;font-weight:800;color:${nv.c};min-width:3rem;text-align:right">${avg}%</span>
-              <span style="font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;background:${nv.c}1a;color:${nv.c}">${nv.e} ${nv.l}</span>
-            </div>`;
-          }).join('')+
-          `</div>
-          <div style="margin-top:.9rem;text-align:right">
-            <a href="diagnostico.html" style="font-size:.82rem;font-weight:700;color:var(--accent-strong);text-decoration:none">Ver diagnóstico completo →</a>
-          </div>
-        </div>`;
-      } catch(e){}
-    })();
-  </script>
 </body>
 </html>
