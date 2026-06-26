@@ -202,3 +202,81 @@
   </footer>
 
   <script type="module" src="auth-nav.js"></script>
+
+  <script>
+  // ══════════════════════════════════════════════════
+  // DATOS + UTILIDADES
+  // ══════════════════════════════════════════════════
+  const EVAL_KEY = 'enu_eval_resultados';
+  const AREAS_CONFIG = [
+    { key: 'matematica',   nombre: 'Matemática',   emoji: '📐', from: '#7c3aed', to: '#6d28d9', bg: 'rgba(124,58,237,0.1)'  },
+    { key: 'ciencia',      nombre: 'Ciencias',     emoji: '🔬', from: '#10b981', to: '#059669', bg: 'rgba(16,185,129,0.1)'   },
+    { key: 'comunicacion', nombre: 'Comunicación', emoji: '📖', from: '#ef4444', to: '#dc2626', bg: 'rgba(239,68,68,0.1)'    },
+    { key: 'historia',     nombre: 'Historia',     emoji: '🌍', from: '#f59e0b', to: '#d97706', bg: 'rgba(245,158,11,0.1)'   },
+    { key: 'ingles',       nombre: 'Inglés',       emoji: '🇬🇧', from: '#3b82f6', to: '#2563eb', bg: 'rgba(59,130,246,0.1)'  },
+    { key: 'tecnologia',   nombre: 'Tecnología',   emoji: '💻', from: '#8b5cf6', to: '#7c3aed', bg: 'rgba(139,92,246,0.1)'  },
+  ];
+
+  function getResultados() {
+    try { return JSON.parse(localStorage.getItem(EVAL_KEY) || '[]'); } catch { return []; }
+  }
+
+  function getNivel(pct) {
+    if (pct >= 85) return { label:'Excelente', color:'#10b981', bg:'rgba(16,185,129,0.12)', emoji:'🏆' };
+    if (pct >= 70) return { label:'Bueno',     color:'#3b82f6', bg:'rgba(59,130,246,0.12)', emoji:'👍' };
+    if (pct >= 50) return { label:'Regular',   color:'#f59e0b', bg:'rgba(245,158,11,0.12)', emoji:'📚' };
+    if (pct >= 30) return { label:'Mejorable', color:'#ef4444', bg:'rgba(239,68,68,0.12)',  emoji:'⚠️' };
+    return               { label:'Inicial',   color:'#6b7280', bg:'rgba(107,114,128,0.1)', emoji:'🌱' };
+  }
+
+  function tiempoRel(ts) {
+    const d = Date.now() - ts, min = Math.floor(d/60000), h = Math.floor(d/3600000), dd = Math.floor(d/86400000);
+    if (min < 1)  return 'Ahora mismo';
+    if (min < 60) return `Hace ${min} min`;
+    if (h < 24)   return `Hace ${h} h`;
+    if (dd === 1) return 'Ayer';
+    if (dd < 7)   return `Hace ${dd} días`;
+    return new Date(ts).toLocaleDateString('es-PE', { day:'2-digit', month:'short' });
+  }
+
+  // ══════════════════════════════════════════════════
+  // ESTADÍSTICAS
+  // ══════════════════════════════════════════════════
+  function calcStats() {
+    const rs = getResultados();
+    const mapa = {};
+    rs.forEach(r => {
+      if (!mapa[r.area]) mapa[r.area] = { intentos:0, sumaPct:0, mejorPct:0, ultimoPct:0, ultimaFecha:0, ultTipo:'', ultGrado:1 };
+      const s = mapa[r.area];
+      s.intentos++; s.sumaPct += r.pct;
+      if (r.pct > s.mejorPct) s.mejorPct = r.pct;
+      if (r.ts > s.ultimaFecha) { s.ultimaFecha = r.ts; s.ultimoPct = r.pct; s.ultTipo = r.tipoLabel; s.ultGrado = r.grado; }
+    });
+    Object.values(mapa).forEach(s => { s.promedioPct = s.intentos > 0 ? Math.round(s.sumaPct / s.intentos) : 0; });
+    return { rs, mapa };
+  }
+
+  // ══════════════════════════════════════════════════
+  // RENDER
+  // ══════════════════════════════════════════════════
+  function render() {
+    const { rs, mapa } = calcStats();
+
+    // Stats pills
+    const total = rs.length;
+    document.getElementById('statTotal').textContent = total;
+    if (total > 0) {
+      const promGlobal = Math.round(Object.values(mapa).reduce((s,v)=>s+v.promedioPct,0) / Object.keys(mapa).length);
+      document.getElementById('statPromedio').textContent = isNaN(promGlobal) ? '—' : promGlobal + '%';
+      const mejorEntry = Object.entries(mapa).sort((a,b)=>b[1].promedioPct - a[1].promedioPct)[0];
+      const areaConf   = AREAS_CONFIG.find(a => a.key === mejorEntry[0]);
+      document.getElementById('statMejorArea').textContent = areaConf ? areaConf.emoji + ' ' + areaConf.nombre : mejorEntry[0];
+      // Racha: días consecutivos con al menos 1 evaluación
+      const diasSet = new Set(rs.map(r => new Date(r.ts).toDateString()));
+      document.getElementById('statRacha').textContent = diasSet.size + ' día' + (diasSet.size !== 1 ? 's' : '');
+    }
+
+    renderResumen(mapa);
+    renderRadar(mapa);
+    renderHistorial(rs);
+  }
