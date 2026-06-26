@@ -175,3 +175,334 @@ const DIAG_CONFIG = {
   ingles:       { nombre:'Inglés',       emoji:'🇬🇧', color:'#2563eb', colorBg:'rgba(59,130,246,0.1)',  tiempo:18 },
   tecnologia:   { nombre:'Tecnología',   emoji:'💻', color:'#7c3aed', colorBg:'rgba(139,92,246,0.1)',  tiempo:18 },
 };
+
+// ════════════════════════════════════════════════════════════════════════
+// RENDER ENGINE
+// ════════════════════════════════════════════════════════════════════════
+(function() {
+  const root = document.getElementById('diagRoot');
+  if (!root) return;
+  const AREA   = root.dataset.area;
+  const GRADO  = parseInt(root.dataset.grado || localStorage.getItem('edunova_grado') || 5);
+  const CFG    = DIAG_CONFIG[AREA];
+  const BANCO  = DIAG_BANCO[AREA];
+  if (!CFG || !BANCO) { root.innerHTML = '<p>Área no disponible.</p>'; return; }
+
+  const TOTAL_Q = BANCO.length; // 15
+  const SECS_Q  = 30; // 30 segundos por pregunta
+
+  // ── Inyectar estilos ─────────────────────────────────────────────────
+  const style = document.createElement('style');
+  style.textContent = `
+    :root { --dc: ${CFG.color}; }
+    .dc-intro { background: linear-gradient(135deg, ${CFG.colorBg}, rgba(255,255,255,0)); border-radius:2rem; padding:2rem; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1rem; }
+    .dc-intro-icon { width:5rem;height:5rem;border-radius:1.5rem;background:linear-gradient(135deg,${CFG.color},${CFG.color}cc);color:#fff;font-size:2.2rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px ${CFG.color}40; }
+    .dc-intro h2 { margin:0;font-size:clamp(1.3rem,2.5vw,1.75rem);color:${CFG.color}; }
+    .dc-intro p  { margin:0;color:var(--text-muted);font-size:.92rem;max-width:480px; }
+    .dc-meta-pills { display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center; }
+    .dc-meta-pill  { padding:.35rem .9rem;border-radius:999px;font-size:.78rem;font-weight:700;background:${CFG.colorBg};color:${CFG.color}; }
+    .dc-rules  { background:#fff;border:1px solid rgba(99,102,241,0.1);border-radius:1.5rem;padding:1.25rem 1.5rem;text-align:left;width:100%;max-width:480px;box-sizing:border-box; }
+    .dc-rules li { font-size:.87rem;color:var(--text-muted);margin:.35rem 0;display:flex;gap:.5rem;align-items:flex-start; }
+    .dc-start-btn { padding:.85rem 2.5rem;border-radius:1rem;border:none;background:linear-gradient(135deg,${CFG.color},${CFG.color}cc);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 20px ${CFG.color}40;transition:transform .15s,box-shadow .15s; }
+    .dc-start-btn:hover { transform:translateY(-2px);box-shadow:0 10px 28px ${CFG.color}55; }
+
+    .dc-topbar { display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;padding:.75rem 1rem;background:#fff;border-radius:1.25rem;margin-bottom:1.25rem;box-shadow:0 3px 12px rgba(15,23,42,0.06);position:sticky;top:0.5rem;z-index:10; }
+    .dc-topbar-label { font-size:.82rem;font-weight:700;color:${CFG.color}; }
+    .dc-prog-wrap { flex:1;height:8px;border-radius:999px;background:rgba(99,102,241,0.08);overflow:hidden;min-width:60px; }
+    .dc-prog-fill  { height:100%;border-radius:999px;background:linear-gradient(90deg,${CFG.color},${CFG.color}99);transition:width .4s; }
+    .dc-timer  { font-size:.9rem;font-weight:800;padding:.3rem .75rem;border-radius:999px;background:${CFG.colorBg};color:${CFG.color};min-width:3.5rem;text-align:center;transition:background .3s,color .3s; }
+    .dc-timer.warn  { background:rgba(245,158,11,0.15);color:#d97706; }
+    .dc-timer.danger{ background:rgba(239,68,68,0.15);color:#dc2626; }
+
+    .dc-qcard { background:#fff;border:1px solid rgba(99,102,241,0.1);border-radius:1.75rem;padding:1.75rem;box-shadow:0 8px 28px rgba(15,23,42,0.06);margin-bottom:1rem; }
+    .dc-tema-tag { display:inline-block;padding:.2rem .7rem;border-radius:999px;font-size:.72rem;font-weight:700;background:${CFG.colorBg};color:${CFG.color};margin-bottom:.85rem; }
+    .dc-question  { font-size:1.05rem;font-weight:600;color:var(--text);line-height:1.6;margin:0 0 1.25rem; }
+    .dc-opts { display:grid;gap:.65rem; }
+    .dc-opt { display:flex;align-items:center;gap:.85rem;padding:.8rem 1.1rem;border-radius:1rem;border:2px solid rgba(99,102,241,0.1);background:#fff;cursor:pointer;font-size:.9rem;font-weight:500;color:var(--text);transition:border-color .15s,background .15s;text-align:left; }
+    .dc-opt:hover:not(:disabled) { border-color:${CFG.color}55;background:${CFG.colorBg}; }
+    .dc-opt:disabled { cursor:default; }
+    .dc-opt .dc-letter { width:1.8rem;height:1.8rem;border-radius:.55rem;background:rgba(99,102,241,0.08);color:var(--accent-strong);font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .dc-opt.correct { border-color:#10b981;background:rgba(16,185,129,0.08); }
+    .dc-opt.correct .dc-letter { background:#10b981;color:#fff; }
+    .dc-opt.wrong   { border-color:#ef4444;background:rgba(239,68,68,0.07); }
+    .dc-opt.wrong .dc-letter   { background:#ef4444;color:#fff; }
+    .dc-feedback { padding:.75rem 1rem;border-radius:.85rem;font-size:.87rem;font-weight:600;margin-bottom:.75rem;display:none; }
+    .dc-feedback.ok  { background:rgba(16,185,129,0.1);color:#059669; }
+    .dc-feedback.bad { background:rgba(239,68,68,0.08);color:#dc2626; }
+    .dc-next-btn { width:100%;padding:.75rem;border-radius:1rem;border:none;background:linear-gradient(135deg,${CFG.color},${CFG.color}cc);color:#fff;font-size:.92rem;font-weight:700;cursor:pointer;display:none;margin-top:.25rem; }
+
+    /* Resultado */
+    .dc-result { display:flex;flex-direction:column;gap:1.5rem; }
+    .dc-score-hero { text-align:center;display:flex;flex-direction:column;align-items:center;gap:.75rem;background:linear-gradient(135deg,${CFG.colorBg},rgba(255,255,255,0));border-radius:2rem;padding:2rem; }
+    .dc-score-ring { width:9rem;height:9rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;background:conic-gradient(${CFG.color} calc(var(--pct)*1%*3.6deg/1deg), rgba(99,102,241,0.1) 0);box-shadow:0 8px 28px ${CFG.color}33; }
+    .dc-score-ring .dc-score-pct  { font-size:1.75rem;font-weight:900;color:${CFG.color}; }
+    .dc-score-ring .dc-score-sub  { font-size:.72rem;font-weight:600;color:var(--text-muted); }
+    .dc-result-title { font-size:1.35rem;font-weight:800;color:var(--accent-strong);margin:0; }
+    .dc-result-msg   { font-size:.9rem;color:var(--text-muted);margin:0; }
+
+    .dc-temas-grid { display:grid;gap:.75rem; }
+    .dc-tema-row { background:#fff;border:1px solid rgba(99,102,241,0.09);border-radius:1.25rem;padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.4rem; }
+    .dc-tema-row-head { display:flex;align-items:center;justify-content:space-between;gap:.5rem; }
+    .dc-tema-name { font-size:.87rem;font-weight:700;color:var(--text); }
+    .dc-tema-pct-label { font-size:.87rem;font-weight:800; }
+    .dc-tema-bar-track { height:7px;border-radius:999px;background:rgba(99,102,241,0.08);overflow:hidden; }
+    .dc-tema-bar-fill  { height:100%;border-radius:999px;transition:width .8s cubic-bezier(.4,0,.2,1); }
+
+    .dc-recos { background:#fff;border:1px solid rgba(99,102,241,0.1);border-radius:1.75rem;padding:1.4rem 1.5rem; }
+    .dc-recos h3 { margin:0 0 .85rem;font-size:.97rem;font-weight:700;color:${CFG.color}; }
+    .dc-recos ul { list-style:none;padding:0;margin:0;display:grid;gap:.5rem; }
+    .dc-recos li { font-size:.87rem;color:var(--text-muted);display:flex;gap:.55rem;align-items:flex-start;line-height:1.5; }
+
+    .dc-actions { display:flex;gap:.75rem;flex-wrap:wrap; }
+    .dc-actions a, .dc-actions button { flex:1;min-width:140px; }
+  `;
+  document.head.appendChild(style);
+
+  // ── Estado ───────────────────────────────────────────────────────────
+  let current  = 0;
+  let answers  = new Array(TOTAL_Q).fill(null);
+  let secsLeft = SECS_Q;
+  let timerInt = null;
+
+  // ════════════════════════════════════════════════════════════════════
+  // PANTALLA INTRO
+  // ════════════════════════════════════════════════════════════════════
+  function showIntro() {
+    root.innerHTML = `
+      <nav style="margin-bottom:1.25rem;font-size:.9rem">
+        <a href="grado-5.html#diagnosticos" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver</a>
+      </nav>
+      <div class="dc-intro">
+        <div class="dc-intro-icon">${CFG.emoji}</div>
+        <h2>Diagnóstico de ${CFG.nombre}</h2>
+        <p>Evalúa tu nivel actual en los temas clave de ${CFG.nombre}. Al terminar recibirás un análisis detallado de tus fortalezas y debilidades.</p>
+        <div class="dc-meta-pills">
+          <span class="dc-meta-pill">📝 ${TOTAL_Q} preguntas</span>
+          <span class="dc-meta-pill">⏱ ${SECS_Q}s por pregunta</span>
+          <span class="dc-meta-pill">🎓 Grado ${GRADO}°</span>
+          <span class="dc-meta-pill">🩺 Diagnóstico</span>
+        </div>
+        <div class="dc-rules">
+          <ul style="list-style:none;padding:0;margin:0">
+            <li style="display:flex;gap:.5rem;font-size:.87rem;color:var(--text-muted);margin:.3rem 0"><span>⏱</span>Tienes <strong>${SECS_Q} segundos</strong> por pregunta. Si se acaba, pasa a la siguiente.</li>
+            <li style="display:flex;gap:.5rem;font-size:.87rem;color:var(--text-muted);margin:.3rem 0"><span>✅</span>Solo una respuesta correcta por pregunta.</li>
+            <li style="display:flex;gap:.5rem;font-size:.87rem;color:var(--text-muted);margin:.3rem 0"><span>📊</span>Al final verás tu nivel por tema y recomendaciones personalizadas.</li>
+            <li style="display:flex;gap:.5rem;font-size:.87rem;color:var(--text-muted);margin:.3rem 0"><span>💾</span>Tu resultado se guarda automáticamente en tu diagnóstico.</li>
+          </ul>
+        </div>
+        <button class="dc-start-btn" id="dcStartBtn">🚀 Iniciar diagnóstico</button>
+      </div>`;
+    document.getElementById('dcStartBtn').addEventListener('click', showQuestion);
+  }
+
+  // ════════════════════════════════════════════════════════════════════
+  // PREGUNTA
+  // ════════════════════════════════════════════════════════════════════
+  function showQuestion() {
+    if (current >= TOTAL_Q) { showResult(); return; }
+    const q = BANCO[current];
+    secsLeft = SECS_Q;
+
+    root.innerHTML = `
+      <div class="dc-topbar">
+        <span class="dc-topbar-label">${CFG.emoji} ${CFG.nombre} · Diagnóstico</span>
+        <div class="dc-prog-wrap">
+          <div class="dc-prog-fill" id="dcProg" style="width:${(current/TOTAL_Q)*100}%"></div>
+        </div>
+        <span class="dc-timer" id="dcTimer">⏱ ${secsLeft}</span>
+      </div>
+
+      <div class="dc-qcard">
+        <span class="dc-tema-tag">📌 ${q.t} · ${current+1}/${TOTAL_Q}</span>
+        <p class="dc-question">${q.p}</p>
+        <div class="dc-opts" id="dcOpts">
+          ${q.ops.map((o,i)=>`
+            <button class="dc-opt" data-i="${i}">
+              <span class="dc-letter">${['A','B','C','D'][i]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="dc-feedback" id="dcFb"></div>
+        <button class="dc-next-btn" id="dcNext">Siguiente →</button>
+      </div>`;
+
+    // Timer
+    timerInt = setInterval(() => {
+      secsLeft--;
+      const el = document.getElementById('dcTimer');
+      if (!el) { clearInterval(timerInt); return; }
+      el.textContent = `⏱ ${secsLeft}`;
+      el.className = 'dc-timer' + (secsLeft <= 5 ? ' danger' : secsLeft <= 10 ? ' warn' : '');
+      if (secsLeft <= 0) { clearInterval(timerInt); reveal(-1); }
+    }, 1000);
+
+    document.querySelectorAll('.dc-opt').forEach(btn => {
+      btn.addEventListener('click', () => { clearInterval(timerInt); reveal(parseInt(btn.dataset.i)); });
+    });
+
+    document.getElementById('dcNext').addEventListener('click', () => { current++; showQuestion(); });
+  }
+
+  function reveal(elegida) {
+    const q = BANCO[current];
+    answers[current] = elegida;
+    document.querySelectorAll('.dc-opt').forEach((b, i) => {
+      b.disabled = true;
+      if (i === q.r) b.classList.add('correct');
+      else if (i === elegida) b.classList.add('wrong');
+    });
+    const fb = document.getElementById('dcFb');
+    fb.style.display = 'block';
+    if (elegida === q.r) {
+      fb.className = 'dc-feedback ok';
+      fb.textContent = '✅ ¡Correcto!';
+    } else if (elegida === -1) {
+      fb.className = 'dc-feedback bad';
+      fb.textContent = `⏰ Tiempo agotado. La respuesta correcta era: "${q.ops[q.r]}"`;
+    } else {
+      fb.className = 'dc-feedback bad';
+      fb.textContent = `❌ Incorrecto. La respuesta correcta era: "${q.ops[q.r]}"`;
+    }
+    const nextBtn = document.getElementById('dcNext');
+    if (nextBtn) {
+      nextBtn.style.display = 'block';
+      nextBtn.textContent = current === TOTAL_Q - 1 ? '✅ Ver resultados' : 'Siguiente →';
+    }
+  }
+
+  // ════════════════════════════════════════════════════════════════════
+  // RESULTADO
+  // ════════════════════════════════════════════════════════════════════
+  function showResult() {
+    clearInterval(timerInt);
+    const correctas = answers.filter((a,i) => a === BANCO[i].r).length;
+    const pct = Math.round(correctas / TOTAL_Q * 100);
+
+    // Guardar resultado
+    _saveResult(AREA, GRADO, pct, correctas, TOTAL_Q);
+
+    // Stats por tema
+    const temaMap = {};
+    BANCO.forEach((q, i) => {
+      if (!temaMap[q.t]) temaMap[q.t] = { ok:0, total:0 };
+      temaMap[q.t].total++;
+      if (answers[i] === q.r) temaMap[q.t].ok++;
+    });
+
+    // Nivel general
+    let titulo, mensaje, emoji;
+    if (pct >= 85) { titulo='🏆 Nivel Avanzado';   emoji='🏆'; mensaje=`Tienes un dominio sólido en ${CFG.nombre}. ¡Sigue profundizando en los temas con menor puntaje!`; }
+    else if (pct >= 70) { titulo='👍 Nivel Bueno';  emoji='👍'; mensaje=`Tienes buenas bases en ${CFG.nombre}. Refuerza los temas en rojo para alcanzar el nivel avanzado.`; }
+    else if (pct >= 50) { titulo='📚 Nivel Regular'; emoji='📚'; mensaje=`Hay áreas que necesitan trabajo. Revisa los temas donde obtuviste menos del 50% y practica con los quizzes.`; }
+    else if (pct >= 30) { titulo='⚠️ Nivel Básico';  emoji='⚠️'; mensaje=`Tienes varias brechas en ${CFG.nombre}. Te recomendamos repasar los temas fundamentales y completar los quizzes por grado.`; }
+    else { titulo='🌱 Nivel Inicial'; emoji='🌱'; mensaje=`No te desanimes. Este diagnóstico te muestra exactamente dónde empezar. ¡Cada quiz que hagas te ayudará a subir tu nivel!`; }
+
+    // Recomendaciones dinámicas
+    const temasDebiles = Object.entries(temaMap)
+      .filter(([,v]) => v.ok / v.total < 0.6)
+      .sort((a,b) => (a[1].ok/a[1].total) - (b[1].ok/b[1].total))
+      .slice(0, 3);
+
+    const recosList = temasDebiles.length
+      ? temasDebiles.map(([t,v]) => {
+          const p2 = Math.round(v.ok/v.total*100);
+          return `<li><span>📌</span>Refuerza <strong>${t}</strong> — obtuviste ${p2}%. Practica en los quizzes de Juegos.</li>`;
+        }).join('')
+      : `<li><span>🌟</span>¡Excelente nivel en todos los temas! Intenta los simulacros para seguir progresando.</li>`;
+
+    // CSS para el conic-gradient del anillo (workaround con SVG)
+    const ringDeg = Math.round(pct * 3.6);
+
+    root.innerHTML = `
+      <nav style="margin-bottom:1.25rem;font-size:.9rem">
+        <a href="grado-5.html#diagnosticos" style="color:var(--accent-strong);text-decoration:none;font-weight:600">← Volver a Diagnósticos</a>
+      </nav>
+      <div class="dc-result">
+        <!-- Score hero -->
+        <div class="dc-score-hero">
+          <svg width="150" height="150" viewBox="0 0 150 150" style="transform:rotate(-90deg)">
+            <circle cx="75" cy="75" r="62" fill="none" stroke="rgba(99,102,241,0.1)" stroke-width="12"/>
+            <circle cx="75" cy="75" r="62" fill="none" stroke="${CFG.color}" stroke-width="12"
+              stroke-dasharray="${Math.round(2*Math.PI*62)}" stroke-dashoffset="${Math.round(2*Math.PI*62*(1-pct/100))}"
+              stroke-linecap="round" style="transition:stroke-dashoffset 1s ease"/>
+          </svg>
+          <div style="margin-top:-120px;text-align:center;display:flex;flex-direction:column;gap:.15rem;align-items:center">
+            <span style="font-size:2rem;font-weight:900;color:${CFG.color}">${pct}%</span>
+            <span style="font-size:.75rem;font-weight:600;color:var(--text-muted)">${correctas}/${TOTAL_Q} correctas</span>
+          </div>
+          <div style="margin-top:1rem">
+            <h2 class="dc-result-title">${titulo}</h2>
+            <p class="dc-result-msg">${mensaje}</p>
+          </div>
+        </div>
+
+        <!-- Desglose por tema -->
+        <div>
+          <p style="font-size:.97rem;font-weight:700;color:var(--text);margin:0 0 .85rem">📊 Resultados por tema</p>
+          <div class="dc-temas-grid">
+            ${Object.entries(temaMap).map(([tema, v]) => {
+              const tp = Math.round(v.ok/v.total*100);
+              const tcolor = tp >= 70 ? '#10b981' : tp >= 45 ? '#f59e0b' : '#ef4444';
+              const tlabel = tp >= 70 ? '✅ Dominado' : tp >= 45 ? '📚 Mejorable' : '❌ Repasar';
+              return `<div class="dc-tema-row">
+                <div class="dc-tema-row-head">
+                  <span class="dc-tema-name">${tema}</span>
+                  <div style="display:flex;align-items:center;gap:.5rem">
+                    <span class="dc-tema-pct-label" style="color:${tcolor}">${tp}%</span>
+                    <span style="font-size:.7rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;background:${tcolor}18;color:${tcolor}">${tlabel}</span>
+                  </div>
+                </div>
+                <div class="dc-tema-bar-track">
+                  <div class="dc-tema-bar-fill" style="width:${tp}%;background:linear-gradient(90deg,${tcolor},${tcolor}99)"></div>
+                </div>
+                <span style="font-size:.73rem;color:var(--text-muted)">${v.ok} de ${v.total} preguntas correctas</span>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+
+        <!-- Recomendaciones -->
+        <div class="dc-recos">
+          <h3>💡 Recomendaciones personalizadas</h3>
+          <ul>${recosList}</ul>
+        </div>
+
+        <!-- Revisión completa -->
+        <div>
+          <p style="font-size:.97rem;font-weight:700;color:var(--text);margin:0 0 .85rem">🔍 Revisión de respuestas</p>
+          <div style="display:grid;gap:.85rem">
+            ${BANCO.map((q, i) => {
+              const ua = answers[i];
+              const ok = ua === q.r;
+              const bord = ok ? 'rgba(16,185,129,0.2)' : ua === null ? 'rgba(148,163,184,0.15)' : 'rgba(239,68,68,0.2)';
+              const status = ua === null ? '⬜ Sin responder' : ok ? '✅ Correcto' : '❌ Incorrecto';
+              return `<div style="background:#fff;border:1.5px solid ${bord};border-radius:1.25rem;padding:1.1rem 1.25rem">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;flex-wrap:wrap;gap:.25rem">
+                  <span style="font-size:.73rem;font-weight:700;color:var(--text-muted)">${i+1}. ${q.t}</span>
+                  <span style="font-size:.73rem;font-weight:700">${status}</span>
+                </div>
+                <p style="margin:0 0 .65rem;font-size:.88rem;font-weight:600;color:var(--text)">${q.p}</p>
+                ${q.ops.map((o,j)=>`
+                  <div style="padding:.4rem .75rem;border-radius:.7rem;font-size:.83rem;margin-bottom:.3rem;
+                    background:${j===q.r?'rgba(16,185,129,0.1)':j===ua&&!ok?'rgba(239,68,68,0.07)':'transparent'};
+                    border:1px solid ${j===q.r?'rgba(16,185,129,0.25)':j===ua&&!ok?'rgba(239,68,68,0.2)':'transparent'};
+                    font-weight:${j===q.r?'700':'400'}">
+                    <span style="font-size:.7rem;font-weight:800;margin-right:.4rem;padding:.1rem .4rem;border-radius:.35rem;
+                      background:${j===q.r?'#10b981':j===ua&&!ok?'#ef4444':'rgba(99,102,241,0.1)'};
+                      color:${j===q.r||j===ua&&!ok?'#fff':'var(--accent-strong)'}">${['A','B','C','D'][j]}</span>${o}
+                  </div>`).join('')}
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+
+        <!-- Acciones -->
+        <div class="dc-actions">
+          <button onclick="location.reload()" class="button button-secondary">🔄 Repetir diagnóstico</button>
+          <a href="diagnostico.html" class="button button-primary">📊 Ver mi diagnóstico completo</a>
+        </div>
+      </div>`;
+  }
+
+  // ── Arrancar ──────────────────────────────────────────────────────────
+  showIntro();
+})();
