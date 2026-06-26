@@ -788,6 +788,47 @@
                 <div class="progress-bar"><div class="progress-fill fill-english" id="barEnglish" style="width:0%"></div></div>
               </div>
             </div>
+
+            <!-- ── Bloque PRE-U (solo si el usuario tiene plan activo) ── -->
+            <div id="perfilPreuBlock" style="display:none;margin-top:1.1rem;padding-top:1rem;border-top:1px solid rgba(99,102,241,0.18)">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+                <span style="font-size:.82rem;font-weight:700;color:var(--accent-strong)">🎓 PRE-U</span>
+                <a href="preu.html" style="font-size:.78rem;color:var(--accent-strong);font-weight:600;text-decoration:none">Ver detalle →</a>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.85rem">
+                <div style="background:linear-gradient(135deg,rgba(124,58,237,0.09),rgba(79,70,229,0.06));border:1px solid rgba(99,102,241,0.15);border-radius:1rem;padding:.7rem .85rem;text-align:center">
+                  <div id="perf-preu-puntaje" style="font-size:1.4rem;font-weight:800;color:var(--accent-strong)">—</div>
+                  <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem">Mejor simulacro</div>
+                </div>
+                <div style="background:linear-gradient(135deg,rgba(124,58,237,0.09),rgba(79,70,229,0.06));border:1px solid rgba(99,102,241,0.15);border-radius:1rem;padding:.7rem .85rem;text-align:center">
+                  <div id="perf-preu-ranking" style="font-size:1.4rem;font-weight:800;color:var(--accent-strong)">—</div>
+                  <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem">Ranking</div>
+                </div>
+              </div>
+              <div style="display:grid;gap:.45rem">
+                <div class="progress-item">
+                  <div class="progress-label"><span style="font-size:.8rem">Matemática</span><span id="perf-preu-math" style="font-size:.8rem">0%</span></div>
+                  <div class="progress-bar"><div class="progress-fill" id="perfbar-preu-math" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-label"><span style="font-size:.8rem">Ciencia</span><span id="perf-preu-sci" style="font-size:.8rem">0%</span></div>
+                  <div class="progress-bar"><div class="progress-fill" id="perfbar-preu-sci" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-label"><span style="font-size:.8rem">Historia</span><span id="perf-preu-his" style="font-size:.8rem">0%</span></div>
+                  <div class="progress-bar"><div class="progress-fill" id="perfbar-preu-his" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-label"><span style="font-size:.8rem">Comunicación</span><span id="perf-preu-com" style="font-size:.8rem">0%</span></div>
+                  <div class="progress-bar"><div class="progress-fill" id="perfbar-preu-com" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-label"><span style="font-size:.8rem">Inglés</span><span id="perf-preu-eng" style="font-size:.8rem">0%</span></div>
+                  <div class="progress-bar"><div class="progress-fill" id="perfbar-preu-eng" style="width:0%;background:linear-gradient(90deg,#7c3aed,#4f46e5)"></div></div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <!-- Diagnóstico de nivel -->
