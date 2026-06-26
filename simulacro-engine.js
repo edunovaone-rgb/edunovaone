@@ -7,6 +7,19 @@
  *   data-num     = número (ej. "01")
  *   data-color   = color hex del simulacro
  */
+
+// ── Registro de evaluaciones inline ──
+(function() {
+  const EK = 'enu_eval_resultados';
+  const AN = { matematica:'Matemática', ciencia:'Ciencias', historia:'Historia', comunicacion:'Comunicación', ingles:'Inglés', tecnologia:'Tecnología' };
+  const TL = { simulacro:'Simulacro' };
+  window._enuEvalRegistrar = window._enuEvalRegistrar || function({ area, grado, tipo, score, scoreMax, correctas, total }) {
+    const pct = total > 0 ? Math.round((correctas / total) * 100) : (scoreMax > 0 ? Math.round((score / scoreMax) * 100) : 0);
+    const e = { id:`${area}-${grado}-${tipo}-${Date.now()}`, area, areaNombre:AN[area]||area, grado:Number(grado), tipo, tipoLabel:TL[tipo]||tipo, score:Number(score), scoreMax:Number(scoreMax||0), correctas:Number(correctas||0), total:Number(total||0), pct, ts:Date.now() };
+    try { let a=JSON.parse(localStorage.getItem(EK)||'[]'); a.unshift(e); if(a.length>200)a=a.slice(0,200); localStorage.setItem(EK,JSON.stringify(a)); } catch(_){}
+  };
+})();
+
 function initSimulacro(preguntas) {
   const appEl   = document.getElementById('simApp');
   const MINS    = parseInt(appEl.dataset.total, 10);
