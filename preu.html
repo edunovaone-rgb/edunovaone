@@ -304,3 +304,66 @@
           </div>
         </div>
       </div><!-- /panel-inicio -->
+
+      <!-- ══════════════════ PANEL: MATERIAS ══════════════════ -->
+      <div class="preu-panel" id="panel-materias">
+
+        <!-- Vista: listado de materias -->
+        <div id="materias-index">
+          <div class="preu-section">
+            <h2 class="preu-section-title">📚 Áreas temáticas</h2>
+            <p class="preu-section-subtitle">Selecciona un área para ver todos sus temas y repasar con ejercicios intensivos.</p>
+            <div class="preu-materias-grid">
+
+              <a href="#" onclick="showMateria('mat');return false" class="preu-materia-card" data-area="mat-matematica">
+                <div class="materia-icon-wrap" style="background:rgba(99,102,241,0.12)">∑</div>
+                <strong>Matemática</strong>
+                <div class="prog-row"><span id="lbl-mat">Progreso: 0%</span><div class="preu-progress-bar-wrap"><div class="preu-progress-bar" id="bar-mat" style="width:0%"></div></div></div>
+                <span class="sub">Álgebra · Aritmética · Geometría · Trigonometría</span>
+              </a>
+
+              <a href="#" onclick="showMateria('cien');return false" class="preu-materia-card" data-area="mat-ciencia">
+                <div class="materia-icon-wrap" style="background:rgba(16,185,129,0.12)">⚗️</div>
+                <strong>Ciencias</strong>
+                <div class="prog-row"><span id="lbl-cien">Progreso: 0%</span><div class="preu-progress-bar-wrap"><div class="preu-progress-bar" id="bar-cien" style="width:0%"></div></div></div>
+                <span class="sub">Física · Química · Biología · Ecología</span>
+              </a>
+
+              <a href="#" onclick="showMateria('his');return false" class="preu-materia-card" data-area="mat-historia">
+                <div class="materia-icon-wrap" style="background:rgba(245,158,11,0.12)">🏛️</div>
+                <strong>Historia</strong>
+                <div class="prog-row"><span id="lbl-his">Progreso: 0%</span><div class="preu-progress-bar-wrap"><div class="preu-progress-bar" id="bar-his" style="width:0%"></div></div></div>
+                <span class="sub">Perú · Universal · Geografía · Economía</span>
+              </a>
+
+              <a href="#" onclick="showMateria('com');return false" class="preu-materia-card" data-area="mat-comunicacion">
+                <div class="materia-icon-wrap" style="background:rgba(239,68,68,0.1)">📖</div>
+                <strong>Comunicación</strong>
+                <div class="prog-row"><span id="lbl-com">Progreso: 0%</span><div class="preu-progress-bar-wrap"><div class="preu-progress-bar" id="bar-com" style="width:0%"></div></div></div>
+                <span class="sub">Comprensión · Redacción · Literatura · Ortografía</span>
+              </a>
+
+              <a href="#" onclick="showMateria('ing');return false" class="preu-materia-card" data-area="mat-ingles">
+                <div class="materia-icon-wrap" style="background:rgba(59,130,246,0.1)">🇬🇧</div>
+                <strong>Inglés</strong>
+                <div class="prog-row"><span id="lbl-ing">Progreso: 0%</span><div class="preu-progress-bar-wrap"><div class="preu-progress-bar" id="bar-ing" style="width:0%"></div></div></div>
+                <span class="sub">Grammar · Vocabulary · Reading · Writing</span>
+              </a>
+
+              <a href="#" onclick="showMateria('rv');return false" class="preu-materia-card" data-area="mat-rv">
+                <div class="materia-icon-wrap" style="background:rgba(168,85,247,0.1)">🧠</div>
+                <strong>Razonamiento Verbal</strong>
+                <div class="prog-row"><span id="lbl-rv">Progreso: 0%</span><div class="preu-progress-bar-wrap"><div class="preu-progress-bar" id="bar-rv" style="width:0%"></div></div></div>
+                <span class="sub">Analogías · Series · Oraciones · Textos</span>
+              </a>
+
+              <a href="#" onclick="showMateria('rm');return false" class="preu-materia-card" data-area="mat-rm">
+                <div class="materia-icon-wrap" style="background:rgba(20,184,166,0.1)">🔢</div>
+                <strong>Razonamiento Matemático</strong>
+                <div class="prog-row"><span id="lbl-rm">Progreso: 0%</span><div class="preu-progress-bar-wrap"><div class="preu-progress-bar" id="bar-rm" style="width:0%"></div></div></div>
+                <span class="sub">Sucesiones · Conteo · Lógica · Problemas</span>
+              </a>
+
+            </div>
+          </div>
+        </div><!-- /materias-index -->
