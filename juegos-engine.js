@@ -1225,6 +1225,7 @@ function iniciarVF(titleEl, body) {
   }
 
   window.respVF = (resp, correcto) => {
+    vfAnswers[idx] = resp;
     document.querySelectorAll('.vf-btn').forEach(b => b.disabled = true);
     const ok = resp === correcto;
     if (ok) score += 12;
