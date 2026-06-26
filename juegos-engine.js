@@ -1048,6 +1048,7 @@ function iniciarQuiz(titleEl, body, qCount, timerSecs) {
   if (!pool.length) { body.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:2rem">Sin preguntas para este grado.</p>'; return; }
   const preguntas = pool.sort(() => Math.random() - .5).slice(0, qCount);
   let idx = 0, score = 0, timer = null;
+  const quizAnswers = new Array(qCount).fill(-1); // -1 = sin responder / tiempo agotado
 
   function render() {
     if (idx >= preguntas.length) { finQuiz(); return; }
