@@ -215,6 +215,18 @@ function initSimulacro(preguntas) {
     document.getElementById('simScoreCircle').style.setProperty('--pct', pct + '%');
     document.getElementById('simScorePct').textContent = pct + '%';
 
+    // ── Registrar resultado para diagnóstico ──
+    if (typeof window._enuEvalRegistrar === 'function') {
+      const areaKey = (TITULO || '').toLowerCase().includes('matem') ? 'matematica'
+        : (TITULO || '').toLowerCase().includes('cien')  ? 'ciencia'
+        : (TITULO || '').toLowerCase().includes('comuni') ? 'comunicacion'
+        : (TITULO || '').toLowerCase().includes('histo')  ? 'historia'
+        : (TITULO || '').toLowerCase().includes('ingl')   ? 'ingles'
+        : (TITULO || '').toLowerCase().includes('tecno')  ? 'tecnologia'
+        : 'simulacro';
+      window._enuEvalRegistrar({ area: areaKey, grado: parseInt(localStorage.getItem('edunova_grado') || 5), tipo: 'simulacro', score: correct, scoreMax: TOTAL, correctas: correct, total: TOTAL });
+    }
+
     // Título motivador
     let title, msg;
     if (pct >= 85)      { title = '🏆 Excelente resultado'; msg = 'Estás muy bien preparado/a. ¡Sigue así!'; }
