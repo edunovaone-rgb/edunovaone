@@ -29,6 +29,7 @@ function enBiblioteca() {
 const QUICK_LINKS = [
   { icon: '📚', label: 'Biblioteca',       href: 'biblioteca.html' },
   { icon: '🎮', label: 'Juegos',            href: 'juegos.html' },
+  { icon: '🩺', label: 'Mi Diagnóstico',    href: 'diagnostico.html' },
   { icon: '🛠️', label: 'Herramientas',     href: 'herramientas.html' },
   { icon: '👥', label: 'Comunidad',         href: 'comunidad.html' },
   { icon: '🏠', label: 'Inicio',            href: 'index.html' },
