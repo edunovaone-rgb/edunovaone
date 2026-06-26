@@ -280,3 +280,71 @@
     renderRadar(mapa);
     renderHistorial(rs);
   }
+
+  function renderResumen(mapa) {
+    const grid = document.getElementById('areaGrid');
+    const areasConDatos = AREAS_CONFIG.filter(a => mapa[a.key]);
+    const areasSin      = AREAS_CONFIG.filter(a => !mapa[a.key]);
+
+    if (!areasConDatos.length) {
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+        <div style="font-size:3rem;margin-bottom:.5rem">🎮</div>
+        <p>Todavía no tienes evaluaciones registradas.<br>¡Juega un Quiz en cualquier área para ver tu diagnóstico aquí!</p>
+        <a href="juegos.html" class="button button-primary">Ir a Juegos</a>
+      </div>`;
+      return;
+    }
+
+    const cards = areasConDatos.map(a => {
+      const s = mapa[a.key];
+      const nv = getNivel(s.promedioPct);
+      const tendencia = s.ultimoPct > s.promedioPct ? '↑' : s.ultimoPct < s.promedioPct ? '↓' : '→';
+      const tendColor = tendencia === '↑' ? '#10b981' : tendencia === '↓' ? '#ef4444' : '#6b7280';
+      return `<div class="area-card">
+        <div class="area-card-header">
+          <div class="area-card-icon" style="background:${a.bg}">${a.emoji}</div>
+          <div>
+            <p class="area-card-title">${a.nombre}</p>
+            <p class="area-card-sub">${s.intentos} intento${s.intentos !== 1 ? 's' : ''} · Grado ${s.ultGrado}°</p>
+          </div>
+        </div>
+        <!-- Barra promedio -->
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:600;color:var(--text-muted);margin-bottom:.35rem">
+            <span>Promedio</span><span style="color:${a.from}">${s.promedioPct}%</span>
+          </div>
+          <div class="prog-bar-track">
+            <div class="prog-bar-fill" style="--bar-from:${a.from};--bar-to:${a.to};width:${s.promedioPct}%"></div>
+          </div>
+        </div>
+        <!-- Barra mejor resultado -->
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:600;color:var(--text-muted);margin-bottom:.35rem">
+            <span>Mejor resultado</span><span style="color:${a.from}">${s.mejorPct}%</span>
+          </div>
+          <div class="prog-bar-track">
+            <div class="prog-bar-fill" style="--bar-from:${a.from};--bar-to:${a.to};width:${s.mejorPct}%;opacity:.55"></div>
+          </div>
+        </div>
+        <div class="area-card-footer">
+          <span class="nivel-badge" style="background:${nv.bg};color:${nv.color}">${nv.emoji} ${nv.label}</span>
+          <span class="area-card-meta" style="color:${tendColor};font-weight:700">${tendencia} ${s.ultTipo}</span>
+        </div>
+      </div>`;
+    });
+
+    // Áreas sin datos como cards "pendientes"
+    const pending = areasSin.map(a => `<div class="area-card" style="opacity:.55">
+      <div class="area-card-header">
+        <div class="area-card-icon" style="background:${a.bg}">${a.emoji}</div>
+        <div><p class="area-card-title">${a.nombre}</p><p class="area-card-sub">Sin evaluaciones aún</p></div>
+      </div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="--bar-from:#d1d5db;--bar-to:#9ca3af;width:0%"></div></div>
+      <div class="area-card-footer">
+        <span class="nivel-badge" style="background:rgba(107,114,128,0.1);color:#6b7280">🌱 Sin datos</span>
+        <a href="juegos.html" style="font-size:.78rem;color:var(--accent-strong);font-weight:600;text-decoration:none">Practicar →</a>
+      </div>
+    </div>`);
+
+    grid.innerHTML = [...cards, ...pending].join('');
+  }
