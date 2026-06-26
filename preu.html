@@ -698,3 +698,89 @@
 
     </main>
   </div><!-- /preu-layout -->
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="preu-mobile-nav" id="mobileNav">
+    <a href="#" onclick="showPanel('inicio');return false"       class="active" id="mnav-inicio">     <span class="mn-icon">🏠</span>Inicio</a>
+    <a href="#" onclick="showPanel('materias');return false"     id="mnav-materias">                  <span class="mn-icon">📚</span>Materias</a>
+    <a href="#" onclick="showPanel('simulacros');return false"   id="mnav-simulacros">                <span class="mn-icon">📝</span>Simul.</a>
+    <a href="#" onclick="showPanel('ruta');return false"         id="mnav-ruta">                      <span class="mn-icon">🗺️</span>Ruta</a>
+    <a href="#" onclick="showPanel('ranking');return false"      id="mnav-ranking">                   <span class="mn-icon">🏆</span>Ranking</a>
+    <a href="#" onclick="showPanel('diagnostico');return false"  id="mnav-diagnostico">               <span class="mn-icon">🎯</span>Diag.</a>
+    <a href="#" onclick="showPanel('consejos');return false"     id="mnav-consejos">                  <span class="mn-icon">💡</span>Tips</a>
+  </nav>
+
+  <script>
+    // ── Navegación de paneles ──
+    const PANELS = ['inicio','materias','simulacros','ruta','cronograma','ranking','diagnostico','consejos'];
+
+    function showPanel(name) {
+      if (!PANELS.includes(name)) name = 'inicio';
+      PANELS.forEach(id => {
+        const el = document.getElementById('panel-' + id);
+        if (el) el.classList.toggle('active', id === name);
+        const sn = document.getElementById('snav-' + id);
+        if (sn) sn.classList.toggle('active', id === name);
+        const mn = document.getElementById('mnav-' + id);
+        if (mn) mn.classList.toggle('active', id === name);
+      });
+      // Si volvemos a materias, mostramos el índice y ocultamos detalles
+      if (name === 'materias') hideMateria();
+      history.replaceState(null, '', '#' + name);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Navegación dentro de Materias ──
+    const MATERIAS = ['mat','cien','his','com','ing','rv','rm'];
+
+    function showMateria(key) {
+      document.getElementById('materias-index').style.display = 'none';
+      MATERIAS.forEach(k => {
+        const d = document.getElementById('detalle-' + k);
+        if (d) d.classList.toggle('active', k === key);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function hideMateria() {
+      document.getElementById('materias-index').style.display = '';
+      MATERIAS.forEach(k => {
+        const d = document.getElementById('detalle-' + k);
+        if (d) d.classList.remove('active');
+      });
+    }
+
+    // ── Cronograma: toggle día ──
+    const CRONO_TAREAS = {
+      0: { mat: '∑ Matemática', tarea: '· Ecuaciones cuadráticas (45 min)\n· 10 ejercicios de geometría plana (30 min)\n· Repasar identidades notables (15 min)' },
+      1: { mat: '⚗️ Ciencias', tarea: '· Cinemática: MRU y MRUA (40 min)\n· Tabla periódica y nomenclatura (25 min)\n· Repaso de célula y metabolismo (20 min)' },
+      2: { mat: '📖 Comunicación', tarea: '· Lectura de texto complejo e inferencias (30 min)\n· Ortografía: tildación especial (20 min)\n· Figuras retóricas (15 min)' },
+      3: { mat: '🏛️ Historia', tarea: '· Historia del Perú s. XIX (40 min)\n· Geografía del Perú: regiones naturales (25 min)\n· Actualidad y geopolítica (20 min)' },
+      4: { mat: '🇬🇧 Inglés', tarea: '· Grammar: passive voice + modal verbs (35 min)\n· Vocabulario académico: 20 palabras (15 min)\n· Reading comprehension: 1 texto (25 min)' },
+      5: { mat: '📝 Simulacro', tarea: '· Realizar 1 simulacro cronometrado (60-90 min)\n· Revisar respuestas incorrectas (30 min)\n· Anotar errores y temas a reforzar (15 min)' },
+      6: { mat: '😴 Descanso', tarea: '· Descanso activo: paseo, deporte o actividad física\n· Lectura libre o entretenimiento sin presión\n· El cerebro consolida lo aprendido durante el descanso' }
+    };
+
+    function toggleCronoDay(el) {
+      document.querySelectorAll('.crono-day').forEach(d => d.classList.remove('activo'));
+      el.classList.add('activo');
+      const idx = Array.from(document.querySelectorAll('.crono-day')).indexOf(el);
+      const info = CRONO_TAREAS[idx];
+      if (info) {
+        document.getElementById('cronoTarea').innerHTML =
+          `<strong style="color:var(--accent-strong)">${info.mat}</strong><br>` +
+          info.tarea.split('\n').join('<br>');
+      }
+    }
+
+    // ── Hash inicial ──
+    (function() {
+      const hash = location.hash.replace('#', '');
+      showPanel(PANELS.includes(hash) ? hash : 'inicio');
+    })();
+
+    window.addEventListener('hashchange', () => {
+      const hash = location.hash.replace('#', '');
+      showPanel(PANELS.includes(hash) ? hash : 'inicio');
+    });
+  </script>
