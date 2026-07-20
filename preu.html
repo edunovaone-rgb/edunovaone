@@ -8,25 +8,38 @@
   <title>EduNovaOne | Pre-universitaria</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* PAYWALL */
-    #paywallOverlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(15,10,35,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1.5rem}
-    #paywallOverlay.show{display:flex}
-    .paywall-card{background:#fff;border-radius:2.5rem;padding:2.5rem 2rem;max-width:460px;width:100%;box-shadow:0 32px 80px rgba(99,102,241,0.22);display:flex;flex-direction:column;align-items:center;gap:1.25rem;text-align:center;animation:paywall-pop .35s cubic-bezier(.34,1.56,.64,1) both}
+    /* ═══════════════════════════════════════════
+       KEYFRAMES
+    ═══════════════════════════════════════════ */
     @keyframes paywall-pop{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-    .paywall-lock{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#7c3aed22,#2563eb22);border:2px solid rgba(99,102,241,0.25);display:flex;align-items:center;justify-content:center;font-size:2rem}
-    .paywall-badge{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:.35rem 1rem;border-radius:999px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+    @keyframes pulse-glow{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,0)}50%{box-shadow:0 0 20px 6px rgba(124,58,237,0.25)}}
+    @keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes orb-move{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.1)}66%{transform:translate(-20px,15px) scale(.95)}}
+
+    /* ═══════════════════════════════════════════
+       PAYWALL
+    ═══════════════════════════════════════════ */
+    #paywallOverlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,6,30,0.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1.5rem}
+    #paywallOverlay.show{display:flex}
+    #paywallOverlay.loading{background:rgba(243,242,255,0.94);backdrop-filter:blur(6px)}
+    #paywallOverlay.loading .paywall-card{box-shadow:0 16px 40px rgba(99,102,241,0.1);padding:2.5rem}
+    .paywall-card{background:rgba(255,255,255,0.97);border-radius:2.75rem;padding:2.5rem 2rem;max-width:480px;width:100%;box-shadow:0 40px 100px rgba(99,102,241,0.28),0 0 0 1px rgba(255,255,255,0.8) inset;display:flex;flex-direction:column;align-items:center;gap:1.25rem;text-align:center;animation:paywall-pop .4s cubic-bezier(.34,1.56,.64,1) both}
+    .paywall-lock{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(37,99,235,0.1));border:2px solid rgba(99,102,241,0.2);display:flex;align-items:center;justify-content:center;font-size:2.2rem;animation:float 3s ease-in-out infinite}
+    .paywall-badge{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:.4rem 1.1rem;border-radius:999px;box-shadow:0 4px 14px rgba(99,102,241,0.35)}
     .paywall-card h2{margin:0;font-size:1.65rem;color:#1e1b4b;font-weight:900;line-height:1.25}
     .paywall-card p{margin:0;color:#64748b;font-size:.92rem;line-height:1.65}
     .paywall-features{list-style:none;padding:0;margin:0;display:grid;gap:.55rem;width:100%;text-align:left}
     .paywall-features li{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:#334155}
     .paywall-features li .feat-icon{width:1.6rem;height:1.6rem;border-radius:50%;background:rgba(99,102,241,0.1);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
-    .paywall-cta{width:100%;padding:1rem;border:none;border-radius:1rem;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(99,102,241,0.32);transition:transform .2s,box-shadow .2s;text-decoration:none;display:block}
-    .paywall-cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(99,102,241,0.42)}
-    .paywall-back{font-size:.85rem;color:#94a3b8;cursor:pointer;text-decoration:underline;background:none;border:none}
+    .paywall-cta{width:100%;padding:1rem;border:none;border-radius:1.1rem;background:linear-gradient(135deg,#7c3aed,#4f46e5,#2563eb);background-size:200% auto;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 8px 28px rgba(99,102,241,0.4);transition:transform .2s,box-shadow .2s,background-position .4s;text-decoration:none;display:block;position:relative;overflow:hidden}
+    .paywall-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.25) 50%,transparent 60%);background-size:200% auto;opacity:0;transition:opacity .3s}
+    .paywall-cta:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(99,102,241,0.5);background-position:right center}
+    .paywall-cta:hover::after{opacity:1;animation:shimmer .7s linear}
+    .paywall-back{font-size:.85rem;color:#94a3b8;cursor:pointer;text-decoration:underline;background:none;border:none;transition:color .2s}
     .paywall-back:hover{color:#7c3aed}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    #paywallOverlay.loading{background:rgba(245,243,255,0.92);backdrop-filter:blur(4px)}
-    #paywallOverlay.loading .paywall-card{box-shadow:0 16px 40px rgba(99,102,241,0.1);padding:2.5rem}
     /* LAYOUT */
     .preu-layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 60px)}
     .preu-sidebar{background:#fff;border-right:1px solid rgba(99,102,241,0.1);padding:1.75rem 1.25rem;display:flex;flex-direction:column;gap:1.25rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}

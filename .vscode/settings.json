@@ -9,6 +9,7 @@
         "cd *",
         "git *",
         "$files *",
-        "Select-String *"
+        "Select-String *",
+        "(Get-Content *"
     ]
 }
