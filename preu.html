@@ -139,16 +139,37 @@
     .preu-hero-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.3) 50%,transparent 60%);background-size:200% auto;opacity:0;transition:opacity .3s}
     .preu-hero-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
     .preu-hero-btn:hover::after{opacity:1;animation:shimmer .65s linear}
-    /* STATS ROW */
+    /* ═══════════════════════════════════════════
+       STAT CARDS
+    ═══════════════════════════════════════════ */
     .preu-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
-    .preu-stat-card{background:#fff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.5rem;padding:1.25rem 1.1rem;display:flex;flex-direction:column;gap:.4rem;box-shadow:0 6px 20px rgba(15,23,42,0.05)}
-    .preu-stat-card .stat-icon{font-size:1.4rem}
-    .preu-stat-card .stat-val{font-size:1.65rem;font-weight:900;color:var(--accent-strong);line-height:1}
-    .preu-stat-card .stat-lbl{font-size:.76rem;color:var(--text-muted);font-weight:600}
-    /* SECTION CARD */
-    .preu-section{background:#fff;border:1px solid rgba(99,102,241,0.08);border-radius:2rem;padding:1.75rem;box-shadow:0 8px 28px rgba(15,23,42,0.05);display:flex;flex-direction:column;gap:1.25rem}
+    .preu-stat-card{
+      background:#fff;
+      border:1.5px solid rgba(99,102,241,0.1);
+      border-radius:1.75rem;padding:1.35rem 1.15rem;
+      display:flex;flex-direction:column;gap:.4rem;
+      box-shadow:0 4px 20px rgba(15,23,42,0.06);
+      transition:transform .22s,box-shadow .22s,border-color .22s;
+      cursor:default;
+    }
+    .preu-stat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(99,102,241,0.14);border-color:rgba(99,102,241,0.3)}
+    .preu-stat-card .stat-icon{font-size:1.5rem;filter:drop-shadow(0 2px 4px rgba(99,102,241,0.2))}
+    .preu-stat-card .stat-val{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#7c3aed,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+    .preu-stat-card .stat-lbl{font-size:.75rem;color:var(--text-muted);font-weight:600}
+
+    /* ═══════════════════════════════════════════
+       SECTION CARD
+    ═══════════════════════════════════════════ */
+    .preu-section{
+      background:rgba(255,255,255,0.95);
+      border:1px solid rgba(99,102,241,0.09);
+      border-radius:2rem;padding:1.85rem;
+      box-shadow:0 8px 32px rgba(15,23,42,0.06),0 0 0 1px rgba(255,255,255,0.7) inset;
+      display:flex;flex-direction:column;gap:1.35rem;
+      backdrop-filter:blur(4px);
+    }
     .preu-section-title{margin:0;font-size:1.1rem;font-weight:800;color:var(--accent-strong);display:flex;align-items:center;gap:.5rem}
-    .preu-section-subtitle{margin:0;color:var(--text-muted);font-size:.88rem}
+    .preu-section-subtitle{margin:0;color:var(--text-muted);font-size:.88rem;line-height:1.6}
     /* MATERIAS GRID */
     .preu-materias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
     .preu-materia-card{border:1.5px solid rgba(99,102,241,0.12);border-radius:1.5rem;padding:1.3rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;text-align:center;background:#fafbff;text-decoration:none;color:inherit}
