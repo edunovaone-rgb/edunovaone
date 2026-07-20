@@ -13,7 +13,7 @@
   },
   "then": {
     "type": "runCommand",
-    "command": "cd /d \"c:\\Users\\Casa\\Desktop\\J.A.P\\workspace\\proyecto\" && \"C:\\Program Files\\Git\\bin\\git.exe\" add . && \"C:\\Program Files\\Git\\bin\\git.exe\" diff --cached --quiet || \"C:\\Program Files\\Git\\bin\\git.exe\" commit -m \"Auto-update: cambios guardados\" && \"C:\\Program Files\\Git\\bin\\git.exe\" push",
+    "command": "Set-Location 'c:\\Users\\Casa\\Desktop\\J.A.P\\workspace\\proyecto'; $git = 'C:\\Program Files\\Git\\bin\\git.exe'; & $git add .; $status = & $git diff --cached --quiet; if ($LASTEXITCODE -ne 0) { & $git commit -m 'Auto-update: cambios guardados'; & $git push }",
     "timeout": 30
   },
   "workspaceFolderName": "proyecto",

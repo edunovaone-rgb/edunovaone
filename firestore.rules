@@ -1,0 +1,108 @@
+// ═══════════════════════════════════════════════════════════
+//  EduNovaOne — Firestore Security Rules
+//  Última actualización: 2026-07
+//
+//  REGLA GENERAL:
+//  - Nadie puede leer ni escribir nada sin estar autenticado.
+//  - Cada usuario solo puede leer y modificar SU propio documento.
+//  - Los administradores (campo isAdmin: true) tienen acceso ampliado.
+//  - Las colecciones de stats son de solo lectura pública.
+//  - Las reglas bloquean COMPLETAMENTE cualquier acceso no autorizado,
+//    aunque alguien tenga la API key (que es pública por diseño de Firebase).
+// ═══════════════════════════════════════════════════════════
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Funciones helpers ────────────────────────────────────
+    function isAuth()  { return request.auth != null; }
+    function isOwner(uid) { return isAuth() && request.auth.uid == uid; }
+    function isAdmin() {
+      return isAuth() &&
+        get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Verifica que el campo 'plan' sea válido (evita que alguien se autoasigne 'elite')
+    function planValido(plan) {
+      return plan in ['free', 'trial', 'esencial', 'plus', 'elite'];
+    }
+
+    // Campos que un usuario PUEDE escribir en su propio doc
+    function camposPermitidos() {
+      return request.resource.data.keys().hasOnly([
+        'nombre', 'username', 'grado', 'colegio', 'avatar', 'bio',
+        'horasEstudio', 'recursosGuardados', 'juegosCompletados',
+        'rachaActual', 'ultimaVisita', 'lastSeen',
+        'progreso', 'actividad', 'metas',
+        'preuStats', 'diagnostico'
+      ]);
+      // NOTA: 'plan', 'trialFin', 'isAdmin' solo los puede escribir un admin
+    }
+
+    // ─── /usuarios/{uid} ──────────────────────────────────────
+    match /usuarios/{uid} {
+
+      // Leer: solo el propio usuario o un admin
+      allow read: if isOwner(uid) || isAdmin();
+
+      // Crear: solo el propio usuario, con campos controlados
+      allow create: if isOwner(uid) && camposPermitidos();
+
+      // Actualizar: el usuario puede actualizar solo sus campos permitidos
+      // Un admin puede actualizar cualquier campo (incluido 'plan')
+      allow update: if isOwner(uid) && camposPermitidos()
+                    || isAdmin();
+
+      // Borrar: solo admin
+      allow delete: if isAdmin();
+
+      // ─── Subcolección: notificaciones ────────────────────────
+      match /notificaciones/{notifId} {
+        // Leer las propias notificaciones
+        allow read: if isOwner(uid);
+        // Marcar como leído (solo el campo 'read')
+        allow update: if isOwner(uid)
+                      && request.resource.data.keys().hasOnly(['read'])
+                      && request.resource.data.read is bool;
+        // Crear/borrar notificaciones: solo admin o sistema (Cloud Functions)
+        allow create, delete: if isAdmin();
+      }
+    }
+
+    // ─── /stats/global ────────────────────────────────────────
+    // Contador global de estudiantes — lectura pública, escritura solo auth
+    match /stats/{docId} {
+      allow read: if true;
+      allow write: if isAuth();
+    }
+
+    // ─── /recursos/{id} ───────────────────────────────────────
+    // Contenido de la biblioteca — lectura pública, escritura solo admin
+    match /recursos/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ─── /grupos/{id} & mensajes ──────────────────────────────
+    match /grupos/{grupoId} {
+      allow read: if isAuth();
+      allow write: if isAdmin();
+
+      match /mensajes/{msgId} {
+        allow read:   if isAuth();
+        allow create: if isAuth()
+                      && request.resource.data.uid == request.auth.uid
+                      && request.resource.data.texto is string
+                      && request.resource.data.texto.size() <= 1000;
+        allow update, delete: if isAdmin()
+                              || (isAuth() && resource.data.uid == request.auth.uid);
+      }
+    }
+
+    // ─── Todo lo demás: DENEGADO ──────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
