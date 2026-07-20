@@ -99,18 +99,46 @@
     .sidebar-plan-card a::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.35) 50%,transparent 60%);background-size:200% auto;opacity:0;transition:opacity .3s}
     .sidebar-plan-card a:hover{background:rgba(255,255,255,0.3);transform:translateY(-1px)}
     .sidebar-plan-card a:hover::after{opacity:1;animation:shimmer .6s linear}
-    /* MAIN & PANELS */
+    /* ═══════════════════════════════════════════
+       MAIN & PANELS
+    ═══════════════════════════════════════════ */
     .preu-main{padding:2rem 2.25rem;display:flex;flex-direction:column;gap:2rem;max-width:1100px;width:100%}
-    .preu-panel{display:none;flex-direction:column;gap:1.75rem}
+    .preu-panel{display:none;flex-direction:column;gap:1.75rem;animation:fade-up .3s ease both}
     .preu-panel.active{display:flex}
-    /* HERO */
-    .preu-hero{background:linear-gradient(135deg,#7c3aed 0%,#2563eb 60%,#0ea5e9 100%);border-radius:2rem;padding:2.5rem 2.75rem;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden}
-    .preu-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(255,255,255,0.12) 0%,transparent 60%)}
+
+    /* ═══════════════════════════════════════════
+       HERO — con orbes animados y brillo
+    ═══════════════════════════════════════════ */
+    .preu-hero{
+      background:linear-gradient(135deg,#5b21b6 0%,#4f46e5 40%,#1d4ed8 75%,#0369a1 100%);
+      border-radius:2.25rem;padding:2.75rem 3rem;color:#fff;
+      display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+      position:relative;overflow:hidden;
+      box-shadow:0 24px 64px rgba(99,102,241,0.35),0 0 0 1px rgba(255,255,255,0.08) inset;
+    }
+    .preu-hero::before,.preu-hero::after{content:'';position:absolute;border-radius:50%;pointer-events:none}
+    .preu-hero::before{width:380px;height:380px;background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 70%);top:-100px;right:-80px;animation:orb-move 8s ease-in-out infinite}
+    .preu-hero::after{width:200px;height:200px;background:radial-gradient(circle,rgba(167,139,250,0.25) 0%,transparent 65%);bottom:-60px;left:30%;animation:orb-move 10s ease-in-out infinite reverse}
     .preu-hero-text{position:relative;z-index:1}
-    .preu-hero-text .eyebrow{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;opacity:.8;margin:0 0 .5rem}
-    .preu-hero-text h1{margin:0 0 .65rem;font-size:2rem;font-weight:900;line-height:1.2}
-    .preu-hero-text p{margin:0;opacity:.85;font-size:.95rem;max-width:520px;line-height:1.6}
-    .preu-hero-emoji{font-size:5rem;position:relative;z-index:1;user-select:none}
+    .preu-hero-text .eyebrow{font-size:.76rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;opacity:.78;margin:0 0 .6rem;display:flex;align-items:center;gap:.4rem}
+    .preu-hero-text h1{margin:0 0 .7rem;font-size:clamp(1.6rem,2.5vw,2.1rem);font-weight:900;line-height:1.18;text-shadow:0 2px 12px rgba(0,0,0,0.15)}
+    .preu-hero-text p{margin:0 0 1.25rem;opacity:.88;font-size:.95rem;max-width:520px;line-height:1.65}
+    .preu-hero-emoji{font-size:5.5rem;position:relative;z-index:1;user-select:none;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.2));animation:float 4s ease-in-out infinite}
+
+    /* Botón hero */
+    .preu-hero-btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.7rem 1.4rem;border-radius:999px;
+      background:rgba(255,255,255,0.15);
+      border:1.5px solid rgba(255,255,255,0.35);
+      color:#fff;font-size:.88rem;font-weight:700;
+      text-decoration:none;cursor:pointer;
+      transition:background .22s,transform .18s,box-shadow .22s;
+      position:relative;overflow:hidden;
+    }
+    .preu-hero-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.3) 50%,transparent 60%);background-size:200% auto;opacity:0;transition:opacity .3s}
+    .preu-hero-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+    .preu-hero-btn:hover::after{opacity:1;animation:shimmer .65s linear}
     /* STATS ROW */
     .preu-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
     .preu-stat-card{background:#fff;border:1.5px solid rgba(99,102,241,0.1);border-radius:1.5rem;padding:1.25rem 1.1rem;display:flex;flex-direction:column;gap:.4rem;box-shadow:0 6px 20px rgba(15,23,42,0.05)}
